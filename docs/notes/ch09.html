@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ch09 – R과 데이터 분석 입문</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-77072c9bb77c017c95fbd10e8121cada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="R과 데이터 분석 입문">
+<meta property="og:description" content="">
+<meta property="og:image" content="ch09_files/figure-html/fig-prop-cancelled-1.png">
+<meta property="og:site_name" content="R과 데이터 분석 입문">
+<meta name="twitter:title" content="R과 데이터 분석 입문">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="ch09_files/figure-html/fig-prop-cancelled-1.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      R과 데이터 분석 입문
+      </li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">R과 데이터 분석 입문</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 언어</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">R과 데이터 분석</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 변환</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 가져오기</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#숫자-만들기" id="toc-숫자-만들기" class="nav-link active" data-scroll-target="#숫자-만들기"><span class="header-section-number">1</span> 숫자 만들기</a></li>
+  <li><a href="#개수-세기" id="toc-개수-세기" class="nav-link" data-scroll-target="#개수-세기"><span class="header-section-number">2</span> 개수 세기</a>
+  <ul class="collapse">
+  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">2.1</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#숫자-변환" id="toc-숫자-변환" class="nav-link" data-scroll-target="#숫자-변환"><span class="header-section-number">3</span> 숫자 변환</a>
+  <ul class="collapse">
+  <li><a href="#산술-및-재활용-규칙" id="toc-산술-및-재활용-규칙" class="nav-link" data-scroll-target="#산술-및-재활용-규칙"><span class="header-section-number">3.1</span> 산술 및 재활용 규칙</a></li>
+  <li><a href="#최솟값과-최댓값" id="toc-최솟값과-최댓값" class="nav-link" data-scroll-target="#최솟값과-최댓값"><span class="header-section-number">3.2</span> 최솟값과 최댓값</a></li>
+  <li><a href="#모듈러-산술" id="toc-모듈러-산술" class="nav-link" data-scroll-target="#모듈러-산술"><span class="header-section-number">3.3</span> 모듈러 산술</a></li>
+  <li><a href="#로그" id="toc-로그" class="nav-link" data-scroll-target="#로그"><span class="header-section-number">3.4</span> 로그</a></li>
+  <li><a href="#반올림" id="toc-반올림" class="nav-link" data-scroll-target="#반올림"><span class="header-section-number">3.5</span> 반올림</a></li>
+  <li><a href="#숫자를-범위로-자르기" id="toc-숫자를-범위로-자르기" class="nav-link" data-scroll-target="#숫자를-범위로-자르기"><span class="header-section-number">3.6</span> 숫자를 범위로 자르기</a></li>
+  <li><a href="#누적-및-이동-집계" id="toc-누적-및-이동-집계" class="nav-link" data-scroll-target="#누적-및-이동-집계"><span class="header-section-number">3.7</span> 누적 및 이동 집계</a></li>
+  <li><a href="#연습-문제-1" id="toc-연습-문제-1" class="nav-link" data-scroll-target="#연습-문제-1"><span class="header-section-number">3.8</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#일반-변환" id="toc-일반-변환" class="nav-link" data-scroll-target="#일반-변환"><span class="header-section-number">4</span> 일반 변환</a>
+  <ul class="collapse">
+  <li><a href="#순위" id="toc-순위" class="nav-link" data-scroll-target="#순위"><span class="header-section-number">4.1</span> 순위</a></li>
+  <li><a href="#오프셋" id="toc-오프셋" class="nav-link" data-scroll-target="#오프셋"><span class="header-section-number">4.2</span> 오프셋</a></li>
+  <li><a href="#연속된-식별자" id="toc-연속된-식별자" class="nav-link" data-scroll-target="#연속된-식별자"><span class="header-section-number">4.3</span> 연속된 식별자</a></li>
+  <li><a href="#연습-문제-2" id="toc-연습-문제-2" class="nav-link" data-scroll-target="#연습-문제-2"><span class="header-section-number">4.4</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#숫자-요약" id="toc-숫자-요약" class="nav-link" data-scroll-target="#숫자-요약"><span class="header-section-number">5</span> 숫자 요약</a>
+  <ul class="collapse">
+  <li><a href="#중심" id="toc-중심" class="nav-link" data-scroll-target="#중심"><span class="header-section-number">5.1</span> 중심</a></li>
+  <li><a href="#최솟값-최댓값-및-분위수" id="toc-최솟값-최댓값-및-분위수" class="nav-link" data-scroll-target="#최솟값-최댓값-및-분위수"><span class="header-section-number">5.2</span> 최솟값, 최댓값 및 분위수</a></li>
+  <li><a href="#퍼짐" id="toc-퍼짐" class="nav-link" data-scroll-target="#퍼짐"><span class="header-section-number">5.3</span> 퍼짐</a></li>
+  <li><a href="#분포" id="toc-분포" class="nav-link" data-scroll-target="#분포"><span class="header-section-number">5.4</span> 분포</a></li>
+  <li><a href="#위치" id="toc-위치" class="nav-link" data-scroll-target="#위치"><span class="header-section-number">5.5</span> 위치</a></li>
+  <li><a href="#mutate와-함께-사용하기" id="toc-mutate와-함께-사용하기" class="nav-link" data-scroll-target="#mutate와-함께-사용하기"><span class="header-section-number">5.6</span> <code>mutate()</code>와 함께 사용하기</a></li>
+  <li><a href="#연습-문제-3" id="toc-연습-문제-3" class="nav-link" data-scroll-target="#연습-문제-3"><span class="header-section-number">5.7</span> 연습 문제</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">벡터: 숫자</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p>숫자형 벡터(numeric vectors)는 데이터 과학의 중추(backbone)이며, 여러분은 이 책의 앞부분에서 이미 여러 번 사용해 보았습니다. 이제 R에서 숫자로 할 수 있는 작업을 체계적으로 조사(survey)하여 숫자형 벡터와 관련된 향후 문제에 대처(tackle)할 수 있는 좋은 위치(well situated)에 서게 될 때입니다.</p>
+</blockquote>
+<p>문자열이 있을 때 숫자를 만드는 몇 가지 도구를 제공하는 것으로 시작한 다음, <code>count()</code>에 대해 조금 더 자세히 알아보겠습니다. 그런 다음 다른 유형의 벡터에도 적용할 수 있지만 숫자형 벡터에 자주 사용되는 보다 일반적인 변환(transformations)을 포함하여 <code>mutate()</code>와 잘 어울리는(pair well) 다양한 숫자 변환에 대해 깊이 알아볼(dive into) 것입니다. 마지막으로 <code>summarize()</code>와 잘 어울리는 요약(summary) 함수들을 다루고 이들이 <code>mutate()</code>와 어떻게 사용될 수 있는지 보여주며 마무리하겠습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="숫자-만들기" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="숫자-만들기"><span class="header-section-number">1</span> 숫자 만들기</h2>
+<p>대부분의 경우 이미 R의 숫자 유형 중 하나인 정수(integer) 또는 배정도 실수(double)로 기록된 숫자를 얻게 됩니다. 그러나 열 머리글(column headers)에서 피벗하여 생성했거나 데이터 가져오기 프로세스에서 무언가 잘못되어 문자열로 표시되는 경우가 있습니다.</p>
+<p>readr은 문자열을 숫자로 파싱하는 데 유용한 두 가지 함수인 <code>parse_double()</code>과 <code>parse_number()</code>를 제공합니다. 문자열로 작성된 숫자가 있을 때 <code>parse_double()</code>을 사용합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"1.2"</span>, <span class="st">"5.6"</span>, <span class="st">"1e3"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">parse_double</span>(x)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]    1.2    5.6 1000.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>문자열에 무시하고 싶은 숫자가 아닌 텍스트가 포함된 경우 <code>parse_number()</code>를 사용하세요. 이것은 통화(currency) 데이터와 백분율에 특히 유용합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"$1,234"</span>, <span class="st">"USD 3,513"</span>, <span class="st">"59%"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">parse_number</span>(x)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1234 3513   59</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="개수-세기" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="개수-세기"><span class="header-section-number">2</span> 개수 세기</h2>
+<p>개수 세기(counts)와 약간의 기본 산술만으로 얼마나 많은 데이터 과학을 할 수 있는지 놀랍기 때문에 dplyr은 <code>count()</code>를 사용하여 개수를 세는 것을 가능한 한 쉽게 만들기 위해 노력(strives)합니다. 이 함수는 분석 중 빠른 탐색(quick exploration) 및 검사(checks)에 매우 좋습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">count</span>(dest)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 105 × 2</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dest      n</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; &lt;int&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 ABQ     254</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 ACK     265</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 ALB     439</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 ANC       8</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 ATL   17215</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 AUS    2439</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 99 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>우리는 일반적으로 계산이 예상대로 작동하는지 빠르게 확인하기 위해 콘솔에서 자주 사용하기 때문에 보통 한 줄에 <code>count()</code>를 넣습니다. 흔한 값을 보고 싶다면 <code>sort = TRUE</code>를 추가하세요.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">count</span>(dest, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 105 × 2</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dest      n</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; &lt;int&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 ORD   17283</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 ATL   17215</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 LAX   16174</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 BOS   15508</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 MCO   14082</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 CLT   14064</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 99 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>모든 값을 보고 싶다면 <code>|&gt; View()</code> 또는 <code>|&gt; print(n = Inf)</code>를 사용할 수 있다는 것을 기억하세요.</p>
+<p><code>group_by()</code>, <code>summarize()</code>, <code>n()</code>을 사용하여 동일한 계산을 “수동으로(by hand)” 수행할 수 있습니다. 이것은 동시에 다른 요약(summaries)을 계산할 수 있게 해주기 때문에 유용합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dest) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">delay =</span> <span class="fu">mean</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 105 × 3</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dest      n delay</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 ABQ     254  4.38</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 ACK     265  4.85</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 ALB     439 14.4 </span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 ANC       8 -2.5 </span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 ATL   17215 11.3 </span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 AUS    2439  6.02</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 99 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>n()</code>은 아무런 인자도 취하지 않고 대신 “현재(current)” 그룹에 대한 정보에 접근하는 특별한 요약 함수입니다. 이것은 오직 dplyr 동사(verbs) 내부에서만 작동한다는 것을 의미합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n</span>()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in `n()`:</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! Must only be used inside data-masking verbs like `mutate()`,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   `filter()`, and `group_by()`.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>유용하게 사용할 수 있는 <code>n()</code> 및 <code>count()</code>의 몇 가지 변형(variants)이 있습니다.</p>
+<ol type="1">
+<li><code>n_distinct(x)</code>는 하나 이상의 변수에서 뚜렷하게 구분되는(distinct) (고유한(unique)) 값의 개수를 셉니다. 예를 들어 많은 항공사(carriers)가 서비스하는 목적지가 어디인지 알아낼 수 있습니다.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dest) <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">carriers =</span> <span class="fu">n_distinct</span>(carrier)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(carriers))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 105 × 2</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dest  carriers</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;    &lt;int&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 ATL          7</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 BOS          7</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 CLT          7</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 ORD          7</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 TPA          7</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 AUS          6</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 99 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="2" type="1">
+<li>가중 카운트(weighted count)는 합계(sum)입니다. 예를 들어 각 비행기가 비행한 마일(miles) 수를 “세어볼(count)” 수 있습니다.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tailnum) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">miles =</span> <span class="fu">sum</span>(distance))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4,044 × 2</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   tailnum  miles</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;    &lt;dbl&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 D942DN    3418</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 N0EGMQ  250866</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 N10156  115966</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 N102UW   25722</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 N103US   24619</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 N104UW   25157</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4,038 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>가중 카운트는 일반적인 문제이므로 <code>count()</code>에는 동일한 작업을 수행하는 <code>wt</code> 인수가 있습니다.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">count</span>(tailnum, <span class="at">wt =</span> distance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="4" type="1">
+<li><code>sum()</code>과 <code>is.na()</code>를 결합하여 결측값의 개수를 셀 수 있습니다. <code>flights</code> 데이터셋에서 이것은 취소된 비행편을 나타냅니다.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dest) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_cancelled =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(dep_time))) </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 105 × 2</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dest  n_cancelled</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 ABQ             0</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 ACK             0</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 ALB            20</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 ANC             0</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 ATL           317</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 AUS            21</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 99 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="연습-문제" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">2.1</span> 연습 문제</h3>
+<ol type="1">
+<li><p>특정 변수에 대해 결측값이 있는 행의 수를 세기 위해 <code>count()</code>를 어떻게 사용할 수 있습니까?</p></li>
+<li><p><code>count()</code>에 대한 다음 호출(calls)을 대신 <code>group_by()</code>, <code>summarize()</code>, <code>arrange()</code>를 사용하도록 확장(Expand)하세요.</p></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">count</span>(dest, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">count</span>(tailnum, <span class="at">wt =</span> distance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="숫자-변환" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="숫자-변환"><span class="header-section-number">3</span> 숫자 변환</h2>
+<p>변환 함수(Transformation functions)는 출력이 입력과 길이가 동일하기 때문에 <code>mutate()</code>와 잘 작동합니다. 대부분의(The vast majority of) 변환 함수는 이미 기본 R에 내장되어 있습니다. 이 모든 것을 나열하는 것은 비현실적이므로(impractical) 이 섹션에서는 유용한 것을 보여줄 것입니다. 예를 들어 R은 여러분이 꿈꿀 수 있는 모든 삼각 함수(trigonometric functions)를 제공하지만, 데이터 과학에서는 거의 필요하지 않기 때문에 여기에 나열하지 않습니다.</p>
+<section id="산술-및-재활용-규칙" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="산술-및-재활용-규칙"><span class="header-section-number">3.1</span> 산술 및 재활용 규칙</h3>
+<p>우리는 산술(<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>)의 기초를 소개했고 그 이후로 많이 사용해 왔습니다. 이 함수들은 여러분이 초등학교(grade school)에서 배운 것을 수행하기 때문에 많은 설명이 필요하지 않습니다. 그러나 우리는 좌변(left)과 우변(right)의 길이가 다를 때 어떤 일이 일어나는지를 결정하는 재활용 규칙(recycling rules)에 대해 간단히 이야기할 필요가 있습니다. 이것은 <code>flights |&gt; mutate(air_time = air_time / 60)</code>과 같은 연산에 중요한데, 왜냐하면 <code>/</code>의 왼쪽에는 336,776개의 숫자가 있지만 오른쪽에는 하나만 있기 때문입니다.</p>
+<p>R은 짧은 벡터를 재활용(recycling), 즉 반복(repeating)하여 불일치하는 길이(mismatched lengths)를 처리합니다. 데이터 프레임 외부에 몇 개의 벡터를 만들면 이러한 작동을 더 쉽게 볼 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">/</span> <span class="dv">5</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.2 0.4 2.0 4.0</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># is shorthand for</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>x <span class="sc">/</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.2 0.4 2.0 4.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>일반적으로 단일 숫자(즉, 길이 1의 벡터)만 재활용하고 싶겠지만, R은 더 짧은 길이의 벡터라면 무엇이든 재활용합니다. 더 긴 벡터가 더 짧은 벡터의 배수(multiple)가 아닌 경우 일반적으로(항상은 아니지만) 경고(warning)를 표시합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1  4 10 40</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in x * c(1, 2, 3): longer object length is not a multiple of shorter</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; object length</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1  4 30 20</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>이러한 재활용 규칙은 논리 비교(<code>==</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>!=</code>)에도 적용되며 실수로 <code>%in%</code> 대신 <code>==</code>를 사용하고 데이터 프레임의 행 수가 불행한 수(unfortunate number of rows)인 경우 놀라운 결과로 이어질 수 있습니다. 예를 들어 1월과 2월의 모든 비행편을 찾으려는 다음 코드를 살펴보세요.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 25,977 × 19</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  2013     1     1      517            515         2      830            819</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  2013     1     1      542            540         2      923            850</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  2013     1     1      554            600        -6      812            837</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  2013     1     1      555            600        -5      913            854</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  2013     1     1      557            600        -3      838            846</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  2013     1     1      558            600        -2      849            851</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 25,971 more rows</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>코드는 오류 없이 실행되지만 원하는 결과를 반환하지 않습니다. 재활용 규칙 때문에 홀수(odd numbered) 행에서는 1월 출발 비행편을, 짝수(even numbered) 행에서는 2월 출발 비행편을 찾습니다. 그리고 불행하게도 <code>flights</code>의 행 수가 짝수이기 때문에 경고도 없습니다.</p>
+<p>이러한 유형의 조용한 실패(silent failure)로부터 여러분을 보호하기 위해 대부분의 tidyverse 함수는 단일 값(single values)만 재활용하는 더 엄격한(stricter) 형태의 재활용을 사용합니다. 불행하게도 여기서나 다른 많은 경우에는 핵심 계산이 <code>filter()</code>가 아닌 기본 R 함수 <code>==</code>에 의해 수행되기 때문에 그것이 도움이 되지 않습니다.</p>
+</section>
+<section id="최솟값과-최댓값" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="최솟값과-최댓값"><span class="header-section-number">3.2</span> 최솟값과 최댓값</h3>
+<p>산술 함수는 쌍으로 이루어진(pairs of) 변수들과 작동합니다. 밀접하게 관련된 두 함수인 <code>pmin()</code>과 <code>pmax()</code>는 두 개 이상의 변수가 주어졌을 때 각 행에서 작거나 큰 값을 반환합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>x, <span class="sc">~</span>y,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,  <span class="dv">3</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">5</span>,  <span class="dv">2</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">7</span>, <span class="cn">NA</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">pmin</span>(x, y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">pmax</span>(x, y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       x     y   min   max</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     1     3     1     3</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     5     2     2     5</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     7    NA     7     7</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>이것들은 여러 관측치를 가져와 하나의 값을 반환하는 요약 함수 <code>min()</code> 및 <code>max()</code>와는 다르다는 점에 유의하세요. 모든 최솟값과 모든 최댓값이 동일한 값을 가질 때 여러분이 잘못된 형식을 사용했음을 알 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(x, y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(x, y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       x     y   min   max</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     1     3     1     7</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     5     2     1     7</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     7    NA     1     7</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="모듈러-산술" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="모듈러-산술"><span class="header-section-number">3.3</span> 모듈러 산술</h3>
+<p>모듈러 산술(Modular arithmetic)은 여러분이 소수 자릿수(decimal places)에 대해 배우기 전에 했던 수학의 한 유형, 즉 정수(whole number)와 나머지(remainder)를 산출하는 나눗셈의 기술적인 이름입니다. R에서 <code>%/%</code>는 정수 나눗셈을 수행하고 <code>%%</code>는 나머지를 계산합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%/%</span> <span class="dv">3</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 0 0 1 1 1 2 2 2 3 3</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%%</span> <span class="dv">3</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 1 2 0 1 2 0 1 2 0 1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>모듈러 산술은 <code>sched_dep_time</code> 변수를 <code>hour</code>와 <code>minute</code>으로 푸는(unpack) 데 사용할 수 있기 때문에 <code>flights</code> 데이터셋에 유용합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">hour =</span> sched_dep_time <span class="sc">%/%</span> <span class="dv">100</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">minute =</span> sched_dep_time <span class="sc">%%</span> <span class="dv">100</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.keep =</span> <span class="st">"used"</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 336,776 × 3</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sched_dep_time  hour minute</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1            515     5     15</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2            529     5     29</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3            540     5     40</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4            545     5     45</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5            600     6      0</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6            558     5     58</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 336,770 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>이것을 <code>mean(is.na(x))</code> 기법과 결합하여 취소된 비행편의 비율이 하루 동안 어떻게 달라지는지(varies) 확인할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">hour =</span> sched_dep_time <span class="sc">%/%</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prop_cancelled =</span> <span class="fu">mean</span>(<span class="fu">is.na</span>(dep_time)), <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(hour <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> hour, <span class="at">y =</span> prop_cancelled)) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"grey50"</span>) <span class="sc">+</span> </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-prop-cancelled" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prop-cancelled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ch09_files/figure-html/fig-prop-cancelled-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prop-cancelled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: x축에는 예정된 출발 시간(hour), y축에는 취소된 비행편의 비율을 나타내는 선형 플롯(line plot). 취소는 오후 8시까지 하루 동안 누적되는 것으로 보이며, 매우 늦은 비행편은 취소될 가능성이 훨씬 낮습니다.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="로그" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="로그"><span class="header-section-number">3.4</span> 로그</h3>
+<p>로그(Logarithms)는 여러 자릿수(orders of magnitude)에 걸쳐 있는 데이터를 처리하고 지수적(exponential) 성장을 선형(linear) 성장으로 변환하는 데 믿을 수 없을 정도로(incredibly) 유용한 변환입니다. R에서는 <code>log()</code> (자연로그, 밑이 e), <code>log2()</code> (밑이 2), <code>log10()</code> (밑이 10) 세 가지 로그 중에서 선택할 수 있습니다. 우리는 <code>log2()</code> 또는 <code>log10()</code>을 사용할 것을 권장합니다.</p>
+<p><code>log2()</code>는 로그 스케일에서 1의 차이가 원래 스케일에서 두 배가 되는 것에 해당하고 -1의 차이는 절반이 되는 것에 해당하기 때문에 해석하기 쉽습니다. 반면에 <code>log10()</code>은 역변환(back-transform)하기 쉽습니다 (3은 10^3 = 1000). <code>log()</code>의 역함수는 <code>exp()</code>입니다; <code>log2()</code> 또는 <code>log10()</code>의 역함수를 계산하려면 <code>2^</code> 또는 <code>10^</code>을 사용해야 합니다.</p>
+</section>
+<section id="반올림" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="반올림"><span class="header-section-number">3.5</span> 반올림</h3>
+<p>숫자를 가까운 정수로 반올림하려면 <code>round(x)</code>를 사용하세요.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">123.456</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 123</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>두 번째 인수 <code>digits</code>로 반올림의 정밀도(precision)를 제어할 수 있습니다. <code>round(x, digits)</code>는 가까운 <code>10^-n</code>으로 반올림하므로 <code>digits = 2</code>는 가까운 0.01로 반올림합니다. 이 정의는 <code>round(x, -3)</code>이 가까운 1000으로 반올림한다는 것을 암시하기 때문에 유용하며, 실제로 그렇게 작동합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">123.456</span>, <span class="dv">2</span>)  <span class="co"># 두 자리 (two digits)</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 123.46</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">123.456</span>, <span class="dv">1</span>)  <span class="co"># 한 자리 (one digit)</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 123.5</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">123.456</span>, <span class="sc">-</span><span class="dv">1</span>) <span class="co"># 가까운 10의 배수로 반올림 (round to nearest ten)</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 120</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">123.456</span>, <span class="sc">-</span><span class="dv">2</span>) <span class="co"># 가까운 100의 배수로 반올림 (round to nearest hundred)</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>언뜻 보기에(at first glance) 놀랍게 보이는 <code>round()</code>의 이상한 점(weirdness)이 하나 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">c</span>(<span class="fl">1.5</span>, <span class="fl">2.5</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>round()</code>는 “짝수 반올림(round half to even)” 또는 은행원 반올림(Banker’s rounding)으로 알려진 것을 사용합니다. 숫자가 두 정수의 정중앙(half way)에 있으면 짝수(even) 정수로 반올림됩니다. 이것은 모든 0.5의 절반은 올림하고 절반은 내림하기 때문에 반올림이 편향되지 않게(unbiased) 유지하므로 좋은 전략입니다.</p>
+<p><code>round()</code>는 항상 내림(rounds down)하는 <code>floor()</code> 및 항상 올림(rounds up)하는 <code>ceiling()</code>과 짝을 이룹니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fl">123.456</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">floor</span>(x)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 123</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>(x)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 124</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>이 함수들에는 <code>digits</code> 인수가 없으므로 대신 크기를 줄였다가(scale down), 반올림하고, 다시 크기를 키울(scale back up) 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 가까운 두 자리 소수로 내림 (Round down to nearest two digits)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">floor</span>(x <span class="sc">/</span> <span class="fl">0.01</span>) <span class="sc">*</span> <span class="fl">0.01</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 123.45</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 가까운 두 자리 소수로 올림 (Round up to nearest two digits)</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>(x <span class="sc">/</span> <span class="fl">0.01</span>) <span class="sc">*</span> <span class="fl">0.01</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 123.46</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>어떤 다른 숫자의 배수(multiple)로 <code>round()</code>하고 싶다면 같은 기법을 사용할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 가까운 4의 배수로 반올림 (Round to nearest multiple of 4)</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(x <span class="sc">/</span> <span class="dv">4</span>) <span class="sc">*</span> <span class="dv">4</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 124</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 가까운 0.25 단위로 반올림 (Round to nearest 0.25)</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(x <span class="sc">/</span> <span class="fl">0.25</span>) <span class="sc">*</span> <span class="fl">0.25</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 123.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="숫자를-범위로-자르기" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="숫자를-범위로-자르기"><span class="header-section-number">3.6</span> 숫자를 범위로 자르기</h3>
+<p><code>cut()</code>을 사용하여 숫자형 벡터를 이산형 버킷(discrete buckets)으로 나누세요(break up (일명 bin)).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span>(x, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] (0,5]   (0,5]   (0,5]   (5,10]  (10,15] (15,20]</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: (0,5] (5,10] (10,15] (15,20]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>구간(breaks)이 일정한 간격(evenly spaced)일 필요는 없습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span>(x, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">100</span>))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] (0,5]    (0,5]    (0,5]    (5,10]   (10,100] (10,100]</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: (0,5] (5,10] (10,100]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>선택적으로 자신만의 <code>labels</code>를 제공할 수 있습니다. <code>labels</code>의 개수는 <code>breaks</code>보다 하나 적어야 한다는 점에 유의하세요.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span>(x, </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"sm"</span>, <span class="st">"md"</span>, <span class="st">"lg"</span>, <span class="st">"xl"</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] sm sm sm md lg xl</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: sm md lg xl</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>구간의 범위(range of the breaks)를 벗어나는(outside of) 값은 <code>NA</code>가 됩니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span>(y, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>))</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &lt;NA&gt;   &lt;NA&gt;   (0,5]  (5,10] &lt;NA&gt;  </span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: (0,5] (5,10] (10,15] (15,20]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>구간이 <code>[a, b)</code>인지 <code>(a, b]</code>인지, 그리고 낮은 구간이 <code>[a, b]</code>여야 하는지를 제어하는 <code>right</code> 및 <code>include.lowest</code>와 같은 다른 유용한 인수에 대한 설명서를 참조하세요.</p>
+</section>
+<section id="누적-및-이동-집계" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="누적-및-이동-집계"><span class="header-section-number">3.7</span> 누적 및 이동 집계</h3>
+<p>기본 R은 누계(running) 또는 누적(cumulative) 합계(sums), 곱(products), 최솟값(mins), 최댓값(maxes)을 위한 <code>cumsum()</code>, <code>cumprod()</code>, <code>cummin()</code>, <code>cummax()</code>를 제공합니다. dplyr은 누적 평균을 위한 <code>cummean()</code>을 제공합니다. 실제로는 누적 합계가 자주 등장하는 경향이 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(x)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  1  3  6 10 15 21 28 36 45 55</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>더 복잡한 롤링(rolling) 또는 슬라이딩(sliding) 집계가 필요하다면 slider(<a href="https://slider.r-lib.org/">https://slider.r-lib.org/</a>) 패키지를 시도해 보세요.</p>
+</section>
+<section id="연습-문제-1" class="level3" data-number="3.8">
+<h3 data-number="3.8" class="anchored" data-anchor-id="연습-문제-1"><span class="header-section-number">3.8</span> 연습 문제</h3>
+<ol type="1">
+<li><p>R은 어떤 삼각 함수를 제공합니까? 몇 가지 이름을 추측하고 문서를 찾아보세요. 도(degrees)를 사용합니까 아니면 라디안(radians)을 사용합니까?</p></li>
+<li><p>현재 <code>dep_time</code>과 <code>sched_dep_time</code>은 보기는 편하지만 실제로는 연속된 숫자가 아니기 때문에 계산하기가 어렵습니다. 아래 코드를 실행하면 기본적인 문제를 볼 수 있습니다. 각 시간(hour) 사이에 간격(gap)이 있습니다. 이들을 시간에 대한 보다 진실한(truthful) 표현(시간의 분수(fractional) 형태 또는 자정 이후의 분(minutes))으로 변환하세요.</p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">1</span>, day <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sched_dep_time, <span class="at">y =</span> dep_delay)) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li><code>dep_time</code>과 <code>arr_time</code>을 가까운 5분 단위로 반올림하세요.</li>
+</ol>
+</section>
+</section>
+<section id="일반-변환" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="일반-변환"><span class="header-section-number">4</span> 일반 변환</h2>
+<p>다음 섹션에서는 숫자형 벡터에 자주 사용되지만 다른 모든 열(column) 유형에도 적용할 수 있는 몇 가지 일반적인 변환에 대해 설명합니다.</p>
+<section id="순위" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="순위"><span class="header-section-number">4.1</span> 순위</h3>
+<p>dplyr은 SQL에서 영감을 받은 여러 가지 순위(ranking) 함수를 제공하지만 항상 <code>dplyr::min_rank()</code>로 시작해야 합니다. 이것은 동점(ties)을 처리하는 전형적인 방법, 예를 들어 1등, 2등, 2등, 4등 방식을 사용합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">17</span>, <span class="dv">22</span>, <span class="cn">NA</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">min_rank</span>(x)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1  2  2  4  5 NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>작은 값이 낮은 순위를 받는다는 점에 유의하세요; 큰 값에 작은 순위를 부여하려면 <code>desc(x)</code>를 사용하세요.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min_rank</span>(<span class="fu">desc</span>(x))</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  5  3  3  2  1 NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>min_rank()</code>가 원하는 작업을 수행하지 못하면 변형인 <code>dplyr::row_number()</code>, <code>dplyr::dense_rank()</code>, <code>dplyr::percent_rank()</code>, <code>dplyr::cume_dist()</code>를 살펴보세요.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> x)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_number =</span> <span class="fu">row_number</span>(x),</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">dense_rank =</span> <span class="fu">dense_rank</span>(x),</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_rank =</span> <span class="fu">percent_rank</span>(x),</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cume_dist =</span> <span class="fu">cume_dist</span>(x)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 5</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       x row_number dense_rank percent_rank cume_dist</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt;      &lt;int&gt;      &lt;int&gt;        &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     1          1          1         0          0.2</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     5          2          2         0.25       0.6</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     5          3          2         0.25       0.6</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    17          4          3         0.75       0.8</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    22          5          4         1          1  </span></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    NA         NA         NA        NA         NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>기본 R의 <code>rank()</code>에 적절한 <code>ties.method</code> 인수를 선택하여 똑같은 많은 결과를 얻을 수 있습니다; 또한 <code>NA</code>를 <code>NA</code>로 유지하려면 <code>na.last = "keep"</code>을 설정하고 싶을 것입니다. <code>row_number()</code>는 dplyr 동사 내부에서 인수 없이 사용될 수도 있습니다. 이 경우 “현재” 행의 번호를 제공합니다. <code>%%</code> 또는 <code>%/%</code>와 결합될 때 데이터를 비슷한 크기의 그룹으로 나누는 유용한 도구가 될 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">row0 =</span> <span class="fu">row_number</span>() <span class="sc">-</span> <span class="dv">1</span>,</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">three_groups =</span> row0 <span class="sc">%%</span> <span class="dv">3</span>,</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">three_in_each_group =</span> row0 <span class="sc">%/%</span> <span class="dv">3</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      id  row0 three_groups three_in_each_group</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt;        &lt;dbl&gt;               &lt;dbl&gt;</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     1     0            0                   0</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     2     1            1                   0</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     3     2            2                   0</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     4     3            0                   1</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     5     4            1                   1</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6     6     5            2                   1</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="오프셋" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="오프셋"><span class="header-section-number">4.2</span> 오프셋</h3>
+<p><code>dplyr::lead()</code>와 <code>dplyr::lag()</code>를 사용하면 “현재” 값 바로 앞이나 바로 뒤의 값을 참조할 수 있습니다. 이들은 입력과 같은 길이의 벡터를 반환하며 시작이나 끝은 <code>NA</code>로 채워집니다(padded).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">19</span>, <span class="dv">35</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(x)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA  2  5 11 11 19</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lead</span>(x)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  5 11 11 19 35 NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol type="1">
+<li><code>x - lag(x)</code>는 현재 값과 이전 값의 차이를 제공합니다.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">-</span> <span class="fu">lag</span>(x)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA  3  6  0  8 16</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="2" type="1">
+<li><code>x == lag(x)</code>는 현재 값이 언제 변경되는지 알려줍니다.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> <span class="fu">lag</span>(x)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]    NA FALSE FALSE  TRUE FALSE FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>두 번째 인수 <code>n</code>을 사용하여 두 개 이상의 위치를 앞당기거나(lead) 뒤처지게(lag) 할 수 있습니다.</p>
+</section>
+<section id="연속된-식별자" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="연속된-식별자"><span class="header-section-number">4.3</span> 연속된 식별자</h3>
+<p>때로는 어떤 이벤트가 발생할 때마다 새 그룹을 시작하고 싶을 수 있습니다. 예를 들어 웹사이트 데이터를 볼 때 이벤트를 세션으로 나누는 것이 일반적인데, 이때 마지막 활동(activity) 이후 <code>x</code>분 이상의 간격(gap)이 생긴 후 새로운 세션을 시작합니다. 예를 들어 누군가 웹사이트를 방문한 시간이 있다고 상상해 보세요.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>events <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">27</span>, <span class="dv">28</span>, <span class="dv">30</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>그리고 각 이벤트 사이의 시간을 계산하고 조건을 충족할(qualify) 만큼 간격이 큰지 파악했습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>events <span class="ot">&lt;-</span> events <span class="sc">|&gt;</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">diff =</span> time <span class="sc">-</span> <span class="fu">lag</span>(time, <span class="at">default =</span> <span class="fu">first</span>(time)),</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">has_gap =</span> diff <span class="sc">&gt;=</span> <span class="dv">5</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>events</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 14 × 3</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    time  diff has_gap</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;  </span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0     0 FALSE  </span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     1     1 FALSE  </span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     2     1 FALSE  </span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     3     1 FALSE  </span></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     5     2 FALSE  </span></span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    10     5 TRUE   </span></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 8 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>하지만 이 논리형 벡터에서 우리가 <code>group_by()</code>할 수 있는 무언가로 어떻게 넘어갈 수 있을까요? 간격(gap), 즉 <code>has_gap</code>이 <code>TRUE</code>일 때 <code>group</code>을 1씩 증가시키게 될 것이므로, <code>cumsum()</code>이 구세주로 등장합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>events <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">cumsum</span>(has_gap)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 14 × 4</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    time  diff has_gap group</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;   &lt;int&gt;</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0     0 FALSE       0</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     1     1 FALSE       0</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     2     1 FALSE       0</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     3     1 FALSE       0</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     5     2 FALSE       0</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    10     5 TRUE        1</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 8 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>그룹화 변수(grouping variables)를 만드는 또 다른 접근 방식은 <code>consecutive_id()</code>이며, 이는 인수 중 하나가 변경될 때마다 새로운 그룹을 시작합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>),</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">199</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>반복되는 각 <code>x</code>에서 첫 번째 행을 유지하려면 <code>group_by()</code>, <code>consecutive_id()</code>, <code>slice_head()</code>를 사용할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">id =</span> <span class="fu">consecutive_id</span>(x)) <span class="sc">|&gt;</span> </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 3</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Groups:   id [7]</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   x         y    id</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 a         1     1</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 b         2     2</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 c         4     3</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 d         3     4</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 e         9     5</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 a         4     6</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 1 more row</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="연습-문제-2" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="연습-문제-2"><span class="header-section-number">4.4</span> 연습 문제</h3>
+<ol type="1">
+<li><p>순위 지정 함수를 사용하여 많이 지연된 비행편 10개를 찾으세요. 동점(ties)은 어떻게 처리하고 싶나요? <code>min_rank()</code>에 대한 설명서를 주의 깊게 읽어보세요.</p></li>
+<li><p>어떤 비행기(<code>tailnum</code>)의 정시 도착 기록이 나쁩니까?</p></li>
+<li><p>지연을 최대한 피하고 싶다면 하루 중 어느 시간에 비행기를 타야 할까요?</p></li>
+<li><p><code>flights |&gt; group_by(dest) |&gt; filter(row_number() &lt; 4)</code>는 무엇을 합니까? <code>flights |&gt; group_by(dest) |&gt; filter(row_number(dep_delay) &lt; 4)</code>는 무엇을 합니까?</p></li>
+<li><p>각 목적지별로 총 지연 시간을 분(minutes) 단위로 계산하세요. 각 비행편에 대해 해당 목적지의 총 지연 시간 중 차지하는 비율을 계산하세요.</p></li>
+<li><p>지연은 일반적으로 시간적으로 상관관계가 있습니다(temporally correlated). 초기 지연을 유발한 문제가 해결되더라도 이전 비행편이 떠날 수 있도록 이후 비행편이 지연됩니다. <code>lag()</code>를 사용하여 특정 시간(hour)의 평균 비행 지연이 이전 시간의 평균 지연과 어떻게 관련되어 있는지 탐색해 보세요.</p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hour =</span> dep_time <span class="sc">%/%</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day, hour) <span class="sc">|&gt;</span> </span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep_delay =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="7" type="1">
+<li><p>각 목적지를 살펴보세요. 의심스럽게(suspiciously) 빠른 비행편(즉, 잠재적인 데이터 입력 오류를 나타내는 비행편)을 찾을 수 있습니까? 해당 목적지까지 짧은 비행편을 기준으로 비행편의 비행 시간(air time)을 계산하세요. 어느 비행편이 공중(in the air)에서 많이 지연되었나요?</p></li>
+<li><p>두 개 이상의 항공사가 운항하는 모든 목적지를 찾으세요. 이러한 목적지들을 사용하여 동일한 목적지에 대한 실적을 바탕으로 항공사들의 상대적인 순위를 매겨보세요.</p></li>
+</ol>
+</section>
+</section>
+<section id="숫자-요약" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="숫자-요약"><span class="header-section-number">5</span> 숫자 요약</h2>
+<p>우리가 이미 소개한 개수, 평균, 합계만 사용해도 많은 것을 할 수 있지만, R은 유용한 요약 함수들을 더 많이 제공합니다. 다음은 여러분이 유용하다고 여길 만한 몇 가지 선택 사항(selection)입니다.</p>
+<section id="중심" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="중심"><span class="header-section-number">5.1</span> 중심</h3>
+<p>지금까지 값 벡터의 중심을 요약하기 위해 주로 <code>mean()</code>을 사용했습니다. 평균은 합계를 개수로 나눈 것이기 때문에 몇 개의 비정상적으로 높거나 낮은 값에 민감(sensitive)합니다. 대안은 벡터의 “중간(middle)”에 있는 값을 찾는 <code>median()</code>(중앙값)을 사용하는 것입니다. 즉, 값의 50%는 중앙값보다 위에 있고 50%는 아래에 있습니다.</p>
+<p>관심 있는 변수 분포의 모양에 따라 평균 또는 중앙값이 중심에 대한 더 나은 척도(measure)가 될 수 있습니다. 예를 들어 대칭 분포(symmetric distributions)의 경우 일반적으로 평균을 보고하고, 치우친(비대칭) 분포(skewed distributions)의 경우 일반적으로 중앙값을 보고합니다.</p>
+<p>각 목적지에 대한 평균 출발 지연(분 단위)과 중앙값 출발 지연을 비교합니다. 비행편이 때때로 몇 시간 늦게 떠나지만 결코 몇 시간 일찍 떠나지는 않기 때문에 중앙값 지연은 항상 평균 지연보다 작습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mean, <span class="at">y =</span> median)) <span class="sc">+</span> </span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-mean-vs-median" class="quarto-float quarto-figure quarto-figure-center anchored" alt="모든 점이 45° 선 아래에 위치하며, 이는 중앙값 지연이  항상 평균 지연보다 작음을 의미합니다. 대부분의 점은 평균  [0, 20] 및 중앙값 [-5, 5]의 조밀한(dense) 영역에 모여 있습니다. 평균 지연이  증가함에 따라 중앙값의 퍼짐 정도(spread)도 증가합니다. 평균 ~60, 중앙값 ~30인 점과  평균 ~85, 중앙값 ~55인 두 개의 멀리 떨어진(outlying) 점이 있습니다.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mean-vs-median-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ch09_files/figure-html/fig-mean-vs-median-1.png" class="img-fluid figure-img" alt="모든 점이 45° 선 아래에 위치하며, 이는 중앙값 지연이  항상 평균 지연보다 작음을 의미합니다. 대부분의 점은 평균  [0, 20] 및 중앙값 [-5, 5]의 조밀한(dense) 영역에 모여 있습니다. 평균 지연이  증가함에 따라 중앙값의 퍼짐 정도(spread)도 증가합니다. 평균 ~60, 중앙값 ~30인 점과  평균 ~85, 중앙값 ~55인 두 개의 멀리 떨어진(outlying) 점이 있습니다." width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mean-vs-median-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: 일일 출발 지연을 평균 대신 중앙값으로 요약할 때의 차이를 보여주는 산점도.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>여러분은 또한 흔한 값인 최빈값(mode)에 대해서도 궁금해할 수 있습니다. 이것은 매우 단순한 경우(고등학교에서 이것에 대해 배웠을 수 있는 이유)에만 잘 작동하는 요약이지만, 많은 실제 데이터셋에서는 잘 작동하지 않습니다. 데이터가 이산형(discrete)이면 일반적인 값이 여러 개일 수 있고, 데이터가 연속형(continuous)이면 모든 값이 아주 조금씩(ever so slightly) 다르기 때문에 일반적인 값이 전혀 없을 수도 있습니다.</p>
+<p>이러한 이유로 최빈값은 통계학자들이 잘 사용하지 않는 경향이 있으며 기본 R에는 최빈값 함수가 포함되어 있지 않습니다.</p>
+</section>
+<section id="최솟값-최댓값-및-분위수" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="최솟값-최댓값-및-분위수"><span class="header-section-number">5.2</span> 최솟값, 최댓값 및 분위수</h3>
+<p>중심 이외의 위치(locations)에 관심이 있다면 어떨까요? <code>min()</code>과 <code>max()</code>는 큰 값과 작은 값을 제공합니다. 또 다른 강력한 도구는 중앙값의 일반화인 <code>quantile()</code>입니다. <code>quantile(x, 0.25)</code>는 값의 25%보다 큰 <code>x</code>의 값을 찾고, <code>quantile(x, 0.5)</code>는 중앙값과 동일하며, <code>quantile(x, 0.95)</code>는 값의 95%보다 큰 값을 찾습니다.</p>
+<p><code>flights</code> 데이터의 경우, 많이 지연된 5%의 비행편은 꽤 극단적(extreme)일 수 있고 이를 무시할 것이기 때문에 최대값보다는 지연의 95% 분위수를 보는 것이 좋습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">q95 =</span> <span class="fu">quantile</span>(dep_delay, <span class="fl">0.95</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 365 × 5</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    year month   day   max   q95</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  2013     1     1   853  70.1</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  2013     1     2   379  85  </span></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  2013     1     3   291  68  </span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  2013     1     4   288  60  </span></span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  2013     1     5   327  41  </span></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  2013     1     6   202  51  </span></span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 359 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="퍼짐" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="퍼짐"><span class="header-section-number">5.3</span> 퍼짐</h3>
+<p>때때로 데이터의 대부분(bulk)이 어디에 있는지보다는 데이터가 얼마나 널리 퍼져 있는지(spread out)에 더 관심이 있습니다. 일반적으로 사용되는 두 가지 요약은 표준편차 <code>sd(x)</code>와 사분위수 범위 <code>IQR()</code>입니다. 여러분은 아마도 이미 <code>sd()</code>에 익숙할 것이기 때문에 여기서는 설명하지 않겠지만, <code>IQR()</code>은 새로울 수 있습니다. 이것은 <code>quantile(x, 0.75) - quantile(x, 0.25)</code>이며 데이터의 중간 50%가 포함된 범위를 제공합니다.</p>
+<p>우리는 이것을 사용하여 <code>flights</code> 데이터에서 약간 이상한 점을 드러낼 수 있습니다. 공항은 항상 같은 장소에 있기 때문에 출발지와 목적지 사이의 거리의 퍼짐 정도(spread)가 0일 것이라고 예상할 수 있습니다. 하지만 아래 코드는 EGE(<a href="https://en.wikipedia.org/wiki/Eagle_County_Regional_Airport">https://en.wikipedia.org/wiki/Eagle_County_Regional_Airport</a>) 공항에 대한 데이터의 이상한 점을 보여줍니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(origin, dest) <span class="sc">|&gt;</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">distance_iqr =</span> <span class="fu">IQR</span>(distance), </span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(distance_iqr <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 4</span></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   origin dest  distance_iqr     n</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 EWR    EGE              1   110</span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 JFK    EGE              1   103</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="분포" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="분포"><span class="header-section-number">5.4</span> 분포</h3>
+<p>위에 설명된 모든 요약 통계(summary statistics)는 분포를 단일 숫자로 줄이는(reducing) 방법이라는 것을 기억할 가치가 있습니다. 이것은 그것들이 근본적으로 환원적(reductive)이며, 잘못된 요약을 선택하면 그룹 간의 중요한 차이를 쉽게 놓칠 수 있음을 의미합니다. 그렇기 때문에 요약 통계량을 확정하기 전(before committing to)에 분포를 시각화하는 것이 항상 좋은 생각입니다.</p>
+<p>분포가 너무 치우쳐 있어서 데이터의 대부분(bulk)을 보려면 확대해야 합니다. 이것은 평균이 좋은 요약이 될 가능성이 낮으며 대신 중앙값을 선호할 수 있음을 시사(suggests)합니다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-flights-dist" class="quarto-float quarto-figure quarto-figure-center anchored" alt="`dep_delay`의 두 히스토그램. 왼쪽에서는 0 부근에서 매우 큰  스파이크(spike)가 있고 막대의 높이가 급격히 감소(decay)하며  플롯의 대부분에서 막대가 너무 짧아서 볼 수 없다는 점 외에는 패턴을  보기가 매우 어렵습니다. 오른쪽에서는 2시간  초과의 지연을 버린 상태로 볼 때, 스파이크가 0보다 약간 낮은  곳에서 발생하지만(즉, 대부분의 비행편이  몇 분 일찍 떠남), 그 이후에는 여전히 매우 가파른 감소가 있음을 알 수 있습니다. ">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-flights-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ch09_files/figure-html/fig-flights-dist-1.png" class="img-fluid figure-img" alt="`dep_delay`의 두 히스토그램. 왼쪽에서는 0 부근에서 매우 큰  스파이크(spike)가 있고 막대의 높이가 급격히 감소(decay)하며  플롯의 대부분에서 막대가 너무 짧아서 볼 수 없다는 점 외에는 패턴을  보기가 매우 어렵습니다. 오른쪽에서는 2시간  초과의 지연을 버린 상태로 볼 때, 스파이크가 0보다 약간 낮은  곳에서 발생하지만(즉, 대부분의 비행편이  몇 분 일찍 떠남), 그 이후에는 여전히 매우 가파른 감소가 있음을 알 수 있습니다. " width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flights-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: (왼쪽) 전체 데이터의 히스토그램은 매우 치우쳐 있어서 세부 사항을 파악하기 어렵습니다. (오른쪽) 2시간 미만의 지연으로 확대하면 대부분의 관측치에서 무슨 일이 일어나고 있는지 볼 수 있습니다.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>하위 그룹에 대한 분포가 전체와 닮았는지 확인하는 것도 좋은 생각입니다. 다음 플롯에는 일(day)마다 하나씩, 365개의 <code>dep_delay</code> 도수 다각형(frequency polygons)이 오버레이(overlaid)되어 있습니다. 분포가 일반적인 패턴을 따르는 것 같으므로, 각 요일에 대해 동일한 요약을 사용하는 것이 좋음을 시사합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dep_delay <span class="sc">&lt;</span> <span class="dv">120</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> dep_delay, <span class="at">group =</span> <span class="fu">interaction</span>(day, month))) <span class="sc">+</span> </span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch09_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" alt="`dep_delay`의 분포는 오른쪽으로 많이 치우쳐 있으며(right skewed)  0보다 약간 작은 곳에서 강한 정점(peak)을 이룹니다. 365개의 도수 다각형은 대부분  겹쳐져 두꺼운 검은색 띠를 형성합니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>여러분이 다루고 있는 데이터에 특별히 맞춤화된 자신만의 커스텀 요약을 탐구하는 것을 두려워하지 마세요. 이 경우, 그것은 일찍 떠난 비행편과 늦게 떠난 비행편을 따로 요약하거나 값이 심하게(heavily) 치우쳐 있다는 점을 감안하여(given that) 로그 변환(log-transformation)을 시도하는 것을 의미할 수 있습니다. 수치 요약을 생성할 때마다 각 그룹의 관측치 수를 포함하는 것이 좋습니다.</p>
+</section>
+<section id="위치" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="위치"><span class="header-section-number">5.5</span> 위치</h3>
+<p>숫자형 벡터에 유용하지만 다른 모든 유형의 값과도 작동하는 마지막 한 가지 요약 유형이 있습니다. 바로 특정 위치의 값을 추출하는 것입니다. <code>first(x)</code>, <code>last(x)</code>, 그리고 <code>nth(x, n)</code>. 예를 들어 매일 첫 번째, 다섯 번째, 마지막 출발을 찾을 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span> </span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_dep =</span> <span class="fu">first</span>(dep_time, <span class="at">na_rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fifth_dep =</span> <span class="fu">nth</span>(dep_time, <span class="dv">5</span>, <span class="at">na_rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">last_dep =</span> <span class="fu">last</span>(dep_time, <span class="at">na_rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Summaries were computed grouped by year, month, and day.</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Output is grouped by year and month.</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `summarise(.groups = "drop_last")` to silence this message.</span></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `summarise(.by = c(year, month, day))` for per-operation grouping</span></span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (`?dplyr::dplyr_by`) instead.</span></span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 365 × 6</span></span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Groups:   year, month [12]</span></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    year month   day first_dep fifth_dep last_dep</span></span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;int&gt;     &lt;int&gt;    &lt;int&gt;</span></span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  2013     1     1       517       554     2356</span></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  2013     1     2        42       535     2354</span></span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  2013     1     3        32       520     2349</span></span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  2013     1     4        25       531     2358</span></span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  2013     1     5        14       534     2357</span></span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  2013     1     6        16       555     2355</span></span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 359 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>(주의(NB): dplyr 함수들은 함수와 인수 이름의 구성 요소를 구분하는 데 <code>_</code>를 사용하기 때문에 이 함수들은 <code>na.rm</code> 대신 <code>na_rm</code>을 사용합니다.)</p>
+<p>다시 설명할 <code>[</code>에 익숙하다면 이러한 함수가 필요한지 의문이 들 수 있습니다. 세 가지 이유가 있습니다. <code>default</code> 인수를 사용하면 지정된 위치가 존재하지 않는 경우 기본값을 제공할 수 있고, <code>order_by</code> 인수를 사용하면 행의 순서를 로컬에서 무시할 수 있으며(locally override), <code>na_rm</code> 인수를 사용하면 결측값을 삭제(drop)할 수 있습니다.</p>
+<p>위치에서 값을 추출하는 것은 순위 필터링(filtering on ranks)을 보완(complementary)합니다. 필터링은 각 관측치가 별도의 행에 있는 모든 변수를 제공합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span> </span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">r =</span> <span class="fu">min_rank</span>(sched_dep_time)) <span class="sc">|&gt;</span> </span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(r <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">max</span>(r)))</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1,195 × 20</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Groups:   year, month, day [365]</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  2013     1     1      517            515         2      830            819</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  2013     1     1     2353           2359        -6      425            445</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  2013     1     1     2353           2359        -6      418            442</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  2013     1     1     2356           2359        -3      425            437</span></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  2013     1     2       42           2359        43      518            442</span></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  2013     1     2      458            500        -2      703            650</span></span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 1,189 more rows</span></span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 12 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="mutate와-함께-사용하기" class="level3" data-number="5.6">
+<h3 data-number="5.6" class="anchored" data-anchor-id="mutate와-함께-사용하기"><span class="header-section-number">5.6</span> <code>mutate()</code>와 함께 사용하기</h3>
+<p>이름에서 알 수 있듯이(As the names suggest) 요약 함수는 일반적으로 <code>summarize()</code>와 짝을 이룹니다. 논의한 재활용 규칙 때문에 특히 일종의 그룹 표준화(group standardization)를 수행하려는 경우 <code>mutate()</code>와 유용하게 짝을 이룰 수도 있습니다.</p>
+<ol type="1">
+<li><code>x / sum(x)</code>는 전체 비율을 계산합니다.</li>
+<li><code>(x - mean(x)) / sd(x)</code>는 Z-점수(Z-score)를 계산합니다 (평균 0, 표준편차 1로 표준화).</li>
+<li><code>(x - min(x)) / (max(x) - min(x))</code>는 [0, 1] 범위로 표준화합니다.</li>
+<li><code>x / first(x)</code>는 첫 번째 관측치를 기준으로 지수(index)를 계산합니다.</li>
+</ol>
+</section>
+<section id="연습-문제-3" class="level3" data-number="5.7">
+<h3 data-number="5.7" class="anchored" data-anchor-id="연습-문제-3"><span class="header-section-number">5.7</span> 연습 문제</h3>
+<ol type="1">
+<li><p>비행편 그룹의 전형적인 지연 특성을 평가(assess)하는 5가지 이상의 서로 다른 방법에 대해 브레인스토밍하세요. 언제 <code>mean()</code>이 유용합니까? 언제 <code>median()</code>이 유용합니까? 언제 다른 것을 사용하고 싶을 수 있나요? 도착 지연이나 출발 지연 중 어느 것을 사용해야 할까요? <code>planes</code>의 데이터를 사용하고 싶을 수 있는 이유는 무엇입니까?</p></li>
+<li><p>어느 목적지가 비행 속도에서 큰 변동(variation)을 보입니까?</p></li>
+<li><p>플롯을 만들어 EGE의 모험에 대해 더 탐구해 보세요. 공항이 위치를 옮겼다는 증거를 찾을 수 있습니까? 차이를 설명할 수 있는 다른 변수를 찾을 수 있습니까?</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

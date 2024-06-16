@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ch06 – R과 데이터 분석 입문</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-77072c9bb77c017c95fbd10e8121cada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="R과 데이터 분석 입문">
+<meta property="og:description" content="">
+<meta property="og:image" content="ch06_files/figure-html/unnamed-chunk-2-1.png">
+<meta property="og:site_name" content="R과 데이터 분석 입문">
+<meta property="og:image:alt" content="다이아몬드의 캐럿 히스토그램으로, x축의 범위는 0에서 4.5이고  y축의 범위는 0에서 30000입니다. 분포는 오른쪽으로 꼬리가 길며(right skewed)  중심이 0인 구간(bin)에는 다이아몬드가 거의 없고 중심이 0.5인 구간에는  거의 30000개의 다이아몬드가 있으며 중심이 1인 구간에는 약  15000개의 다이아몬드가 있고 중심이 1.5인 구간에는 훨씬 적은 약 5000개의  다이아몬드가 있습니다. 이를 넘어서면 늘어지는 꼬리(trailing tail)가 있습니다.">
+<meta name="twitter:title" content="R과 데이터 분석 입문">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="ch06_files/figure-html/unnamed-chunk-2-1.png">
+<meta name="twitter:image:alt" content="다이아몬드의 캐럿 히스토그램으로, x축의 범위는 0에서 4.5이고  y축의 범위는 0에서 30000입니다. 분포는 오른쪽으로 꼬리가 길며(right skewed)  중심이 0인 구간(bin)에는 다이아몬드가 거의 없고 중심이 0.5인 구간에는  거의 30000개의 다이아몬드가 있으며 중심이 1인 구간에는 약  15000개의 다이아몬드가 있고 중심이 1.5인 구간에는 훨씬 적은 약 5000개의  다이아몬드가 있습니다. 이를 넘어서면 늘어지는 꼬리(trailing tail)가 있습니다.">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      R과 데이터 분석 입문
+      </li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">R과 데이터 분석 입문</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 언어</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">R과 데이터 분석</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 변환</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 가져오기</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#질문" id="toc-질문" class="nav-link active" data-scroll-target="#질문"><span class="header-section-number">1</span> 질문</a></li>
+  <li><a href="#변동" id="toc-변동" class="nav-link" data-scroll-target="#변동"><span class="header-section-number">2</span> 변동</a>
+  <ul class="collapse">
+  <li><a href="#일반적인-값" id="toc-일반적인-값" class="nav-link" data-scroll-target="#일반적인-값"><span class="header-section-number">2.1</span> 일반적인 값</a></li>
+  <li><a href="#비정상적인-값" id="toc-비정상적인-값" class="nav-link" data-scroll-target="#비정상적인-값"><span class="header-section-number">2.2</span> 비정상적인 값</a></li>
+  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">2.3</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#비정상적인-값-1" id="toc-비정상적인-값-1" class="nav-link" data-scroll-target="#비정상적인-값-1"><span class="header-section-number">3</span> 비정상적인 값</a>
+  <ul class="collapse">
+  <li><a href="#연습-문제-exercises" id="toc-연습-문제-exercises" class="nav-link" data-scroll-target="#연습-문제-exercises"><span class="header-section-number">3.1</span> 연습 문제 (Exercises)</a></li>
+  </ul></li>
+  <li><a href="#공변동" id="toc-공변동" class="nav-link" data-scroll-target="#공변동"><span class="header-section-number">4</span> 공변동</a>
+  <ul class="collapse">
+  <li><a href="#범주형-변수와-숫자형-변수" id="toc-범주형-변수와-숫자형-변수" class="nav-link" data-scroll-target="#범주형-변수와-숫자형-변수"><span class="header-section-number">4.1</span> 범주형 변수와 숫자형 변수</a></li>
+  <li><a href="#두-개의-범주형-변수" id="toc-두-개의-범주형-변수" class="nav-link" data-scroll-target="#두-개의-범주형-변수"><span class="header-section-number">4.2</span> 두 개의 범주형 변수</a></li>
+  <li><a href="#두-개의-숫자형-변수" id="toc-두-개의-숫자형-변수" class="nav-link" data-scroll-target="#두-개의-숫자형-변수"><span class="header-section-number">4.3</span> 두 개의 숫자형 변수</a></li>
+  </ul></li>
+  <li><a href="#패턴과-모델" id="toc-패턴과-모델" class="nav-link" data-scroll-target="#패턴과-모델"><span class="header-section-number">5</span> 패턴과 모델</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">시각화: EDA</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p>시각화(visualization)와 변환(transformation)을 사용하여 체계적인 방식으로 데이터를 탐색하는 방법을 보여줄 것입니다. 통계학자들은 이 작업을 탐색적 데이터 분석(exploratory data analysis) 또는 줄여서 EDA라고 부릅니다.</p>
+</blockquote>
+<p>EDA는 반복적인 주기(iterative cycle)입니다.</p>
+<ol type="1">
+<li>데이터에 대한 질문을 생성합니다.</li>
+<li>데이터를 시각화, 변환, 모델링하여 답변을 검색합니다.</li>
+<li>배운 것을 사용하여 질문을 다듬고(refine) 새로운 질문을 생성합니다.</li>
+</ol>
+<p>EDA는 엄격한 규칙 세트가 있는 형식적인 프로세스가 아닙니다. 무엇보다도 EDA는 마음가짐(state of mind)입니다. EDA의 초기 단계에서는 떠오르는 모든 아이디어를 자유롭게 조사해야 합니다. 이러한 아이디어 중 일부는 성공할 것이고 일부는 막다른 골목(dead ends)이 될 것입니다. 탐색을 계속하면서 여러분은 궁극적으로 문서화하고 다른 사람들과 소통할 수 있는 생산적인 통찰력(productive insights) 몇 가지로 범위를 좁히게(home in on) 될 것입니다.</p>
+<p>EDA는 주요 연구 질문(primary research questions)이 쟁반에 담겨 제공되는(handed to you on a platter) 경우에도 분석에 항상 데이터의 품질을 조사해야 하기 때문에 모든 데이터 분석의 중요한 부분입니다. 데이터 정리(Data cleaning)는 EDA의 한 가지 적용일 뿐입니다. 데이터가 기대치를 충족하는지 여부에 대해 질문합니다. 데이터 정리를 수행하려면 시각화, 변환, 모델링과 같은 EDA의 모든 도구를 배포(deploy)해야 합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="질문" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="질문"><span class="header-section-number">1</span> 질문</h2>
+<blockquote class="blockquote">
+<p>“일상적인 통계적 질문(routine statistical questions)은 없다. 의심스러운 통계적 일상(questionable statistical routines)만 있을 뿐이다.” - 데이비드 콕스 경(Sir David Cox)</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“항상 정밀해질 수 있는 잘못된 질문에 대한 정확한 답보다는, 종종 모호하더라도 올바른 질문에 대한 근사적인 답이 훨씬 낫다.” - 존 튜키(John Tukey)</p>
+</blockquote>
+<p>EDA 중 목표는 데이터에 대한 이해를 발전시키는 것입니다. 이를 수행하는 쉬운 방법은 조사를 안내하는 도구로 질문을 사용하는 것입니다. 질문을 할 때 그 질문은 데이터셋의 특정 부분에 집중하게 하고 어떤 그래프, 모델 또는 변환을 만들지 결정하는 데 도움을 줍니다.</p>
+<p>EDA는 기본적으로 창조적인 프로세스(creative process)입니다. 대부분의 창조적인 프로세스와 마찬가지로 양질의(quality) 질문을 하는 열쇠는 많은 양의(quantity) 질문을 생성하는 것입니다. 분석 시작 시점에는 데이터셋에서 어떤 통찰력을 얻을 수 있을지 모르기 때문에 핵심을 찌르는(revealing) 질문을 하기가 어렵습니다. 반면에 새로운 질문을 할 때마다 데이터의 새로운 측면을 노출시키고 발견을 할 가능성을 높일 수 있습니다. 여러분이 발견한 것에 기반한 새로운 질문으로 각 질문에 대한 후속 조치(follow up)를 취한다면, 흥미로운 데이터 부분으로 빠르게 파고들어(drill down) 생각할 거리를 던져주는(thought-provoking) 질문 모음을 개발할 수 있습니다.</p>
+<p>연구를 안내하기 위해 어떤 질문을 해야 하는지에 대한 규칙은 없습니다. 그러나 두 가지 유형의 질문은 데이터 내에서 발견을 하는 데 항상 유용합니다. 이 질문들을 대략적으로 다음과 같이 표현할 수 있습니다.</p>
+<ol type="1">
+<li>내 변수 내에서 어떤 유형의 변동(variation)이 발생합니까?</li>
+<li>내 변수들 사이에서 어떤 유형의 공변동(covariation)이 발생합니까?</li>
+</ol>
+<p>이 장의 나머지 부분에서는 이 두 가지 질문을 살펴볼 것입니다. 변동과 공변동이 무엇인지 설명하고 각 질문에 답하는 여러 가지 방법을 보여드리겠습니다.</p>
+</section>
+<section id="변동" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="변동"><span class="header-section-number">2</span> 변동</h2>
+<p>변동(Variation)은 측정에서 측정으로(measurement to measurement) 변수의 값이 변하는 경향입니다. 실생활에서 변동을 쉽게 볼 수 있습니다. 연속형(continuous) 변수를 두 번 측정하면 두 가지 다른 결과를 얻게 됩니다. 이것은 빛의 속도와 같이 일정한 수치(quantities)를 측정하더라도 마찬가지입니다.</p>
+<p>각 측정에는 측정할 때마다 달라지는 적은 양의 오차(error)가 포함됩니다. 다른 대상(다른 사람들의 눈 색깔)을 측정하거나 다른 시간(다른 순간의 전자 에너지 수준)에 측정하는 경우에도 변수는 변동할 수 있습니다. 모든 변수는 고유한 변동 패턴을 가지고 있으며, 이는 동일한 관측치에 대한 측정 간에 그리고 관측치 전체에 걸쳐 변수가 어떻게 달라지는지에 대한 흥미로운 정보를 밝혀낼 수 있습니다. 이 패턴을 이해하는 좋은 방법은 변수 값의 분포(distribution)를 시각화하는 것입니다.</p>
+<p><code>diamonds</code> 데이터셋에 있는 약 54,000개의 다이아몬드의 무게(<code>carat</code>) 분포를 시각화하는 것으로 탐색을 시작하겠습니다. <code>carat</code>은 숫자형(numerical) 변수이므로 히스토그램을 사용할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" alt="다이아몬드의 캐럿 히스토그램으로, x축의 범위는 0에서 4.5이고  y축의 범위는 0에서 30000입니다. 분포는 오른쪽으로 꼬리가 길며(right skewed)  중심이 0인 구간(bin)에는 다이아몬드가 거의 없고 중심이 0.5인 구간에는  거의 30000개의 다이아몬드가 있으며 중심이 1인 구간에는 약  15000개의 다이아몬드가 있고 중심이 1.5인 구간에는 훨씬 적은 약 5000개의  다이아몬드가 있습니다. 이를 넘어서면 늘어지는 꼬리(trailing tail)가 있습니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>이제 변동을 시각화할 수 있게 되었습니다. 플롯에서 무엇을 찾아야 할까요? 그리고 어떤 유형의 후속 질문을 해야 할까요? 그래프에서 찾을 수 있는 유용한 유형의 정보 목록과 각 정보 유형에 대한 몇 가지 후속 질문을 아래에 정리해 두었습니다. 좋은 후속 질문을 하는 핵심은 여러분의 호기심(무엇에 대해 더 알고 싶은가요?)과 회의주의(이것이 어떻게 오해를 불러일으킬 수 있을까요?)에 의존하는 것입니다.</p>
+<section id="일반적인-값" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="일반적인-값"><span class="header-section-number">2.1</span> 일반적인 값</h3>
+<p>막대 차트와 히스토그램 모두에서 높은 막대는 변수의 일반적인(common) 값을 보여주고 짧은 막대는 덜 일반적인 값을 보여줍니다. 막대가 없는 곳은 데이터에서 보이지 않은 값을 나타냅니다. 이 정보를 유용한 질문으로 바꾸려면 예상치 못한 것을 찾으세요.</p>
+<ul>
+<li>어떤 값이 일반적입니까? 왜 그럴까요?</li>
+<li>어떤 값이 드문가요(rare)? 왜 그럴까요? 그것이 여러분의 기대치와 일치합니까?</li>
+<li>비정상적인 패턴이 보이나요? 그것들을 무엇으로 설명할 수 있을까요?</li>
+</ul>
+<p>더 작은 다이아몬드에 대한 <code>carat</code>의 분포를 살펴보겠습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>smaller <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(carat <span class="sc">&lt;</span> <span class="dv">3</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smaller, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.01</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" alt="다이아몬드의 캐럿 히스토그램으로, x축의 범위는 0에서 3이고  y축의 범위는 0에서 대략 2500입니다. 구간 너비(binwidth)가 상당히 좁아  (0.01) 매우 많은 수의 얇은 막대가 생깁니다. 분포는  오른쪽으로 꼬리가 길며 여러 정점(peaks)이 있고 이어서 높이가 감소하는 막대들이  나타나다가 다음 정점에서 급격히 증가합니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>이 히스토그램은 몇 가지 흥미로운 질문을 시사합니다.</p>
+<ul>
+<li>왜 정수 캐럿과 캐럿의 일반적인 분수(fractions)에서 더 많은 다이아몬드가 존재할까요?</li>
+<li>왜 각 정점의 약간 왼쪽보다 각 정점의 약간 오른쪽에 더 많은 다이아몬드가 있을까요?</li>
+</ul>
+<p>시각화는 군집(clusters)을 드러낼 수도 있으며 이는 데이터에 하위 그룹(subgroups)이 존재함을 시사합니다. 하위 그룹을 이해하려면 다음과 같이 질문하세요.</p>
+<ul>
+<li>각 하위 그룹 내의 관측치는 어떻게 서로 비슷합니까?</li>
+<li>별도의 군집에 있는 관측치는 서로 어떻게 다릅니까?</li>
+<li>군집을 어떻게 설명하거나 묘사할 수 있습니까?</li>
+<li>군집의 모양이 오해를 불러일으킬 수 있는 이유는 무엇입니까?</li>
+</ul>
+<p>이러한 질문 중 일부는 데이터로 대답할 수 있지만 일부는 데이터에 대한 도메인 전문 지식(domain expertise)이 필요합니다. 많은 질문들이 한 변수의 값이 다른 변수의 행동을 설명할 수 있는지 확인하기 위해 변수들 사이의(between) 관계를 탐색하도록 유도할 것입니다. 이에 대해서는 곧 다루겠습니다.</p>
+</section>
+<section id="비정상적인-값" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="비정상적인-값"><span class="header-section-number">2.2</span> 비정상적인 값</h3>
+<p>이상치(Outliers)는 비정상적인 관측치입니다. 즉 패턴에 맞지 않는 것 같은 데이터 포인트입니다. 때로는 이상치가 데이터 입력 오류일 수도 있고, 때로는 이 데이터 수집 과정에서 우연히 관찰된 극한의(extremes) 값일 뿐일 수도 있으며, 다른 때로는 중요한 새로운 발견을 암시할 수도 있습니다.</p>
+<p>데이터가 많을 때 이상치는 히스토그램에서 보기가 어려운 경우가 많습니다. 예를 들어 다이아몬드 데이터셋의 <code>y</code> 변수 분포를 가져옵니다. 이상치의 유일한 증거는 x축의 비정상적으로 넓은 한계(limits)입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> y)) <span class="sc">+</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" alt="다이아몬드의 길이(lengths) 히스토그램. x축의 범위는 0에서 60이고  y축의 범위는 0에서 12000입니다. 약 5 부근에 정점이 있으며  데이터는 정점 주위에 완전히 군집해 있는 것처럼 보입니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>일반적인 구간에는 너무 많은 관측치가 있어서 드문 구간은 매우 짧아 보기가 매우 어렵습니다(물론 0을 뚫어지게 쳐다보면 무언가를 발견할 수도 있겠지만요). 비정상적인 값을 쉽게 보려면 <code>coord_cartesian()</code>을 사용하여 y축의 작은 값으로 확대(zoom)해야 합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> y)) <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" alt="다이아몬드의 길이 히스토그램. x축의 범위는 0에서 60이고  y축의 범위는 0에서 50입니다. 약 5 부근에 정점이 있으며 데이터는  정점 주위에 완전히 군집해 있는 것처럼 보입니다. 이러한 데이터 외에  높이가 약 8인 0의 구간이 하나 있고 높이가 1인 30을 조금 넘는 구간이 하나 있으며  높이가 1인 60을 조금 밑도는 구간이 하나 있습니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>coord_cartesian()</code>에는 x축을 확대해야 할 때를 위한 <code>xlim()</code> 인수도 있습니다. ggplot2에는 약간 다르게 작동하는 <code>xlim()</code> 및 <code>ylim()</code> 함수도 있습니다. 이들은 한계 밖의 데이터를 버립니다(throw away).</p>
+<p>이를 통해 비정상적인 값이 세 가지(0, ~30, ~60) 있음을 알 수 있습니다. dplyr을 사용하여 그것들을 뽑아냅니다(pluck them out).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>unusual <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">|</span> y <span class="sc">&gt;</span> <span class="dv">20</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(price, x, y, z) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(y)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>unusual</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 4</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   price     x     y     z</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  5139  0      0    0   </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  6381  0      0    0   </span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 12800  0      0    0   </span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 15686  0      0    0   </span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 18034  0      0    0   </span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  2130  0      0    0   </span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7  2130  0      0    0   </span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8  2075  5.15  31.8  5.12</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9 12210  8.09  58.9  8.06</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>y</code> 변수는 이 다이아몬드의 세 가지 차원 중 하나를 mm 단위로 측정합니다. 다이아몬드는 폭이 0mm일 수 없다는 것을 알기 때문에 이 값들은 틀렸음이 틀림없습니다. EDA를 수행함으로써 0으로 코딩된 결측 데이터(missing data)를 발견했으며, 단순히 <code>NA</code>를 검색하는 것만으로는 절대 찾을 수 없었을 것입니다. 앞으로는 오해의 소지가 있는 계산을 방지하기 위해 이러한 값을 <code>NA</code>로 다시 코딩하도록 선택할 수 있습니다. 또한 32mm와 59mm의 측정치가 믿기 어렵다고(implausible) 의심할 수 있습니다. 그 다이아몬드는 길이가 1인치가 넘지만 수십만 달러가 들지 않습니다!</p>
+<p>이상치를 포함하거나 제외하고 분석을 반복하는 것이 좋은 관행입니다. 결과에 미치는 영향이 최소화되고 왜 그 자리에 있는지 파악할 수 없다면 그것들을 생략하고 계속 진행하는 것이 합리적입니다. 그러나 결과에 상당한 영향을 미치는 경우 정당한 이유(justification) 없이 제외해서는 안 됩니다. 원인(데이터 입력 오류)을 파악하고 보고서(write-up)에서 이상치를 제거했음을 밝혀야 합니다.</p>
+</section>
+<section id="연습-문제" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">2.3</span> 연습 문제</h3>
+<ol type="1">
+<li><p><code>diamonds</code> 데이터셋에서 <code>x</code>, <code>y</code>, <code>z</code> 변수 각각의 분포를 탐색하세요. 무엇을 알 수 있나요? 다이아몬드에 대해 생각해 보고 어떤 치수가 길이, 너비, 깊이인지 어떻게 결정할 수 있을지 생각해 보세요.</p></li>
+<li><p><code>price</code>의 분포를 탐색하세요. 특이하거나 놀라운 점을 발견하셨나요? (힌트: <code>binwidth</code>에 대해 신중하게 생각하고 넓은 범위의 값을 시도해 보세요.)</p></li>
+<li><p>0.99 캐럿의 다이아몬드는 몇 개인가요? 1 캐럿은 몇 개인가요? 차이의 원인이 무엇이라고 생각하시나요?</p></li>
+<li><p>히스토그램을 확대할 때 <code>coord_cartesian()</code>과 <code>xlim()</code> 또는 <code>ylim()</code>을 비교하고 대조하세요. <code>binwidth</code>를 설정하지 않고 두면 어떻게 되나요? 막대의 절반만 보이도록 확대(zoom)하려고 시도하면 어떻게 되나요?</p></li>
+</ol>
+</section>
+</section>
+<section id="비정상적인-값-1" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="비정상적인-값-1"><span class="header-section-number">3</span> 비정상적인 값</h2>
+<p>데이터셋에서 비정상적인 값을 발견했고 단순히 분석의 나머지 부분으로 넘어가고 싶다면 두 가지 옵션이 있습니다.</p>
+<ol type="1">
+<li>이상한 값이 포함된 전체 행을 삭제합니다(Drop the entire row). 하나의 잘못된 값이 해당 관측치에 대한 다른 모든 값도 유효하지 않음을 의미하지는 않기 때문에 이 옵션은 권장하지 않습니다. 게다가 저품질 데이터(low quality data)가 있는 경우, 모든 변수에 이 접근법을 적용하고 나면 남은 데이터가 전혀 없을 수도 있습니다!</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(y, <span class="dv">3</span>, <span class="dv">20</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="2" type="1">
+<li>대신 비정상적인 값을 결측값으로 바꾸는 것을 권장합니다. 쉬운 방법은 <code>mutate()</code>를 사용하여 변수를 수정된 복사본으로 대체하는 것입니다. <code>if_else()</code> 함수를 사용하여 비정상적인 값을 <code>NA</code>로 대체할 수 있습니다. 결측값을 어디에 플롯해야 하는지 명확하지 않기 때문에 ggplot2는 이를 플롯에 포함시키지 않지만 제거되었다고 경고합니다.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">if_else</span>(y <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">|</span> y <span class="sc">&gt;</span> <span class="dv">20</span>, <span class="cn">NA</span>, y))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 9 rows containing missing values or values outside the scale range</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (`geom_point()`).</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" alt="다이아몬드의 너비(widths) 대 길이(lengths)의 산점도. 두 변수 사이에  강한 선형(linear) 연관성이 있습니다. 다이아몬드 중 하나를 제외한 모든  다이아몬드의 길이는 3보다 큽니다. 하나의 이상치는 길이가 0이고 너비가  약 6.5입니다. " width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>이 경고를 억제하려면 <code>na.rm = TRUE</code>를 설정합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>어떤 때는 결측값이 있는 관측치가 기록된 값(recorded values)이 있는 관측치와 어떻게 다른지 이해하고 싶을 수 있습니다. 예를 들어 <code>nycflights13::flights</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>에서 <code>dep_time</code> 변수의 결측값은 항공편이 취소되었음을 나타냅니다.</p>
+<p>따라서 취소된 시간과 취소되지 않은 시간의 예정 출발 시간(scheduled departure times)을 비교하고 싶을 수 있습니다. <code>is.na()</code>를 사용하여 <code>dep_time</code>이 누락되었는지 확인하는 새 변수를 만들어 이 작업을 수행할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nycflights13<span class="sc">::</span>flights <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cancelled =</span> <span class="fu">is.na</span>(dep_time),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sched_hour =</span> sched_dep_time <span class="sc">%/%</span> <span class="dv">100</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sched_min =</span> sched_dep_time <span class="sc">%%</span> <span class="dv">100</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sched_dep_time =</span> sched_hour <span class="sc">+</span> (sched_min <span class="sc">/</span> <span class="dv">60</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sched_dep_time)) <span class="sc">+</span> </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(<span class="at">color =</span> cancelled), <span class="at">binwidth =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" alt="항공편의 예정 출발 시간 빈도 다각형. 두 선은  취소된 항공편과 취소되지 않은 항공편을 나타냅니다. x축의 범위는  0에서 25분이고 y축의 범위는 0에서 10000입니다. 취소되지 않은 항공편의 수가  취소된 항공편보다 훨씬 많습니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>그러나 취소되지 않은 항공편이 취소된 항공편보다 훨씬 많기 때문에 이 플롯은 그다지 좋지 않습니다. 다음 섹션에서는 이 비교를 개선하기 위한 몇 가지 기술을 탐색할 것입니다.</p>
+<section id="연습-문제-exercises" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="연습-문제-exercises"><span class="header-section-number">3.1</span> 연습 문제 (Exercises)</h3>
+<ol type="1">
+<li><p>히스토그램에서 결측값은 어떻게 되나요? 막대 차트에서 결측값은 어떻게 되나요? 히스토그램과 막대 차트에서 결측값이 처리되는 방식에 차이가 있는 이유는 무엇인가요?</p></li>
+<li><p><code>mean()</code>과 <code>sum()</code>에서 <code>na.rm = TRUE</code>는 무슨 역할을 하나요?</p></li>
+<li><p>항공편이 취소되었는지 여부에 따라 색상이 지정된 <code>scheduled_dep_time</code>의 빈도 플롯을 다시 만드세요. 또한 <code>cancelled</code> 변수로 패싯(facet)을 만드세요. 패싯 함수의 <code>scales</code> 변수에 여러 가지 값을 실험하여 취소되지 않은 항공편이 취소된 항공편보다 많은 경우의 효과를 완화해(mitigate) 보세요.</p></li>
+</ol>
+</section>
+</section>
+<section id="공변동" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="공변동"><span class="header-section-number">4</span> 공변동</h2>
+<p>변동(variation)이 변수 내부의(within) 행동을 묘사한다면 공변동(covariation)은 변수 사이의(between) 행동을 묘사합니다. 공변동은 두 개 이상의 변수 값이 관련된 방식으로 함께 변동하는 경향입니다. 공변동을 파악하는 좋은 방법은 두 개 이상의 변수 간 관계를 시각화하는 것입니다.</p>
+<section id="범주형-변수와-숫자형-변수" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="범주형-변수와-숫자형-변수"><span class="header-section-number">4.1</span> 범주형 변수와 숫자형 변수</h3>
+<p>예를 들어 <code>geom_freqpoly()</code>를 사용하여 다이아몬드의 가격이 다이아몬드의 품질(<code>cut</code>으로 측정됨)에 따라 어떻게 달라지는지 탐색해 보겠습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(<span class="at">color =</span> cut), <span class="at">binwidth =</span> <span class="dv">500</span>, <span class="at">linewidth =</span> <span class="fl">0.75</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" alt="다이아몬드 가격의 빈도 다각형으로, 캐럿의 각 컷(Fair,  Good, Very Good, Premium, Ideal)이 서로 다른 색상의  선으로 표현됩니다. x축의 범위는 0에서 30000이고 y축의 범위는 0에서  5000입니다. 선들이 많이 겹쳐 있어 다이아몬드 가격의  유사한 빈도 분포를 시사합니다. 한 가지 주목할 만한 점은  Ideal 다이아몬드가 약 1500에서 높은 정점을 갖는다는 것입니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>cut</code>은 데이터에서 순서형 팩터 변수(ordered factor variable)로 정의되어 있기 때문에 ggplot2는 <code>cut</code>에 대해 순서가 있는 색상 척도(ordered color scale)를 사용합니다.</p>
+<p>전체 개수에 의해 결정되는 높이가 <code>cut</code> 전체에 걸쳐 너무 많이 다르기 때문에 분포 모양의 차이를 보기 어렵게 만들므로 <code>geom_freqpoly()</code>의 기본 모양은 여기에서 그다지 유용하지 않습니다.</p>
+<p>비교를 더 쉽게 하려면 y축에 표시되는 것을 바꿔야 합니다. 개수를 표시하는 대신 밀도(density)를 표시할 것입니다. 밀도는 각 빈도 다각형 아래의 면적이 1이 되도록 표준화된(standardized) 개수입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">y =</span> <span class="fu">after_stat</span>(density))) <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(<span class="at">color =</span> cut), <span class="at">binwidth =</span> <span class="dv">500</span>, <span class="at">linewidth =</span> <span class="fl">0.75</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" alt="다이아몬드 가격의 밀도 빈도 다각형으로, 캐럿의 각 컷(Fair,  Good, Very Good, Premium, Ideal)이 서로 다른 색상의  선으로 표현됩니다. x축의 범위는 0에서 20000입니다. 선들이 많이 겹쳐  있어 다이아몬드 가격의 유사한 밀도 분포를  시사합니다. 한 가지 주목할 만한 점은 Fair 다이아몬드를 제외한 모든  다이아몬드가 약 1500의 가격에서 높은 정점을 가지며 Fair 다이아몬드가 다른 다이아몬드보다 평균이 더 높다는 것입니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>밀도를 <code>y</code>에 매핑하고 있지만 <code>density</code>는 <code>diamonds</code> 데이터셋의 변수가 아니기 때문에 먼저 이를 계산해야 한다는 점에 유의하세요. 이를 수행하기 위해 <code>after_stat()</code> 함수를 사용합니다.</p>
+<p>이 플롯에는 다소 놀라운 점이 있습니다. 바로 fair 다이아몬드(최저 품질)의 평균 가격이 높아 보인다는 것입니다! 하지만 그것은 빈도 다각형이 해석하기 약간 어렵기 때문일 수 있습니다. 이 플롯에서는 많은 일이 일어나고 있습니다.</p>
+<p>이 관계를 탐색하기 위해 시각적으로 더 단순한 플롯은 나란히 놓인(side-by-side) 상자 그림(boxplots)을 사용하는 것입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" alt="컷별 다이아몬드 가격의 나란히 놓인 상자 그림. 가격의  분포는 각 컷(Fair, Good, Very Good, Premium,  Ideal)에 대해 오른쪽으로 꼬리가 깁니다. 중앙값(medians)은 서로 가까우며 Ideal  다이아몬드의 중앙값이 낮고 Fair의 중앙값이 높습니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>분포에 대한 정보는 훨씬 적게 보이지만 상자 그림이 훨씬 더 간결(compact)하여 더 쉽게 비교할 수 있습니다(그리고 하나의 플롯에 더 많이 들어맞게 할 수 있습니다). 이 플롯은 더 좋은 품질의 다이아몬드가 일반적으로 더 저렴하다는 직관에 반하는 (counter-intuitive) 발견을 뒷받침합니다! 연습 문제에서 그 이유를 알아내기 위한 과제(challenge)가 주어질 것입니다.</p>
+<p><code>cut</code>은 순서형 팩터(ordered factor)입니다. fair는 good보다 나쁘고, 이는 very good보다 나쁘며 이런 식으로 계속됩니다. 많은 범주형 변수에는 이러한 내재적(intrinsic) 순서가 없으므로 더 유용한(informative) 디스플레이를 만들기 위해 이들의 순서를 재정렬(reorder)하고 싶을 수 있습니다.이를 수행하는 한 가지 방법은 <code>fct_reorder()</code>를 사용하는 것입니다. 유용하기 때문에 여기서 간단한 미리보기(preview)를 제공하고자 합니다. 예를 들어 <code>mpg</code> 데이터셋의 <code>class</code> 변수를 가져옵니다. 고속도로 주행 거리가 class에 따라 어떻게 다른지 알고 싶을 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" alt="class별 자동차 고속도로 주행 거리의 나란히 놓인 상자 그림. class는  x축에 있습니다(2seaters, compact, midsize, minivan, pickup, subcompact,  suv)." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>추세(trend)를 더 쉽게 보기 위해 <code>hwy</code>의 중앙값을 기반으로 <code>class</code>를 재정렬할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(class, hwy, median), <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" alt="class별 자동차 고속도로 주행 거리의 나란히 놓인 상자 그림. class는  x축에 있으며 고속도로 주행 거리 중앙값이 증가하는 순서(pickup,  suv, minivan, 2seater, subcompact, compact, midsize)로 정렬됩니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>변수 이름이 긴 경우 <code>geom_boxplot()</code>을 90도 뒤집으면(flip) 더 잘 작동합니다. <code>x</code>와 <code>y</code> 심미성 매핑을 교환(exchanging)하여 이 작업을 수행할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> hwy, <span class="at">y =</span> <span class="fu">fct_reorder</span>(class, hwy, median))) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" alt="class별 자동차 고속도로 주행 거리의 나란히 놓인 상자 그림. class는  y축에 있으며 고속도로 주행 거리 중앙값이 증가하는 순서로 정렬됩니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="연습-문제-1" class="level4" data-number="4.1.1">
+<h4 data-number="4.1.1" class="anchored" data-anchor-id="연습-문제-1"><span class="header-section-number">4.1.1</span> 연습 문제</h4>
+<ol type="1">
+<li><p>취소된 항공편과 취소되지 않은 항공편의 출발 시간 시각화를 개선하기 위해 배운 내용을 사용하세요.</p></li>
+<li><p>EDA를 기반으로 다이아몬드 데이터셋에서 다이아몬드 가격을 예측하는 데 중요해 보이는 변수는 무엇입니까? 해당 변수는 cut과 어떤 상관관계가 있습니까? 이 두 관계의 조합으로 인해 왜 낮은 품질의 다이아몬드가 더 비싼 결과를 낳게 될까요?</p></li>
+<li><p><code>x</code>와 <code>y</code> 변수를 교환하는 대신 세로형 상자 그림에 새로운 레이어로 <code>coord_flip()</code>을 추가하여 가로형 상자 그림을 만드세요. 변수를 교환하는 것과 어떻게 비교되나요?</p></li>
+<li><p>상자 그림의 한 가지 문제는 훨씬 더 작은 데이터셋이 일반적이던 시대(era)에 개발되었으며 엄청나게 많은 수의 “외부 값(outlying values)”을 표시하는 경향이 있다는 것입니다. 이 문제를 해결하기 위한 한 가지 접근법은 문자 값 플롯(letter value plot)입니다. lvplot 패키지를 설치하고 <code>geom_lv()</code>를 사용하여 price 대 cut의 분포를 표시해 보세요. 무엇을 알 수 있나요? 플롯을 어떻게 해석하나요?</p></li>
+<li><p><code>geom_violin()</code>을 사용하여 <code>diamonds</code> 데이터셋의 범주형 변수 대 다이아몬드 가격의 시각화를 생성한 다음 패싯 처리된 <code>geom_histogram()</code>, 색상이 지정된 <code>geom_freqpoly()</code>, 색상이 지정된 <code>geom_density()</code>를 생성하세요. 네 가지 플롯을 비교하고 대조하세요. 범주형 변수의 수준(levels)에 따라 숫자형 변수의 분포를 시각화하는 각 방법의 장단점은 무엇입니까?</p></li>
+<li><p>데이터셋이 작은 경우 연속형 변수와 범주형 변수 간의 관계를 더 쉽게 보기 위해 오버플로팅(overplotting)을 방지하는 <code>geom_jitter()</code>를 사용하는 것이 유용할 때가 있습니다. ggbeeswarm 패키지는 <code>geom_jitter()</code>와 유사한 다양한 방법을 제공합니다. 목록을 작성하고 각각의 기능을 간략하게 설명하세요.</p></li>
+</ol>
+</section>
+</section>
+<section id="두-개의-범주형-변수" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="두-개의-범주형-변수"><span class="header-section-number">4.2</span> 두 개의 범주형 변수</h3>
+<p>범주형 변수들 사이의 공변동을 시각화하려면 이러한 범주형 변수의 각 수준 조합(combination of levels)에 대한 관측치 수를 세어야 합니다. 이를 수행하는 한 가지 방법은 내장된 <code>geom_count()</code>에 의존하는 것입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> color)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" alt="다이아몬드의 color 대 cut 산점도. cut(Fair, Good, Very Good, Premium,  Ideal) 및 color(D, E, F, G, G, I, J) 수준의 각 조합에 대해  하나의 점이 있습니다. 점의 크기는 해당 조합에 대한 관측치 수를  나타냅니다. 범례는 이러한 크기가 1000에서 4000  사이임을 나타냅니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>플롯의 각 원 크기는 각 값의 조합에서 얼마나 많은 관측치가 발생했는지를 나타냅니다. 공변동은 특정 x 값과 특정 y 값 사이의 강한 상관관계로 나타납니다.</p>
+<p>이러한 변수 간의 관계를 탐색하는 또 다른 접근법은 dplyr을 사용하여 개수를 계산하는 것입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(color, cut)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 35 × 3</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   color cut           n</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;ord&gt; &lt;ord&gt;     &lt;int&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 D     Fair        163</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 D     Good        662</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 D     Very Good  1513</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 D     Premium    1603</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 D     Ideal      2834</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 E     Fair        224</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 29 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>그런 다음 <code>geom_tile()</code> 및 fill 심미성으로 시각화합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(color, cut) <span class="sc">|&gt;</span>  </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> color, <span class="at">y =</span> cut)) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" alt="다이아몬드의 cut 대 color 타일 플롯(tile plot). 각 타일은  cut/color 조합을 나타내며 각 타일의 관측치 수에 따라 타일  색상이 지정됩니다. 다른 컷보다 Ideal 다이아몬드가 더 많으며  높은 수는 color G인 Ideal 다이아몬드입니다. Fair 다이아몬드와  color I인 다이아몬드는 빈도가 낮습니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>범주형 변수의 순서가 없는 경우(unordered), 흥미로운 패턴을 더 명확하게 드러내기 위해 행과 열을 동시에 재정렬하는 seriation 패키지를 사용하고 싶을 수 있습니다. 더 큰 플롯의 경우 대화형 플롯(interactive plots)을 생성하는 heatmaply 패키지를 사용해 볼 수 있습니다.</p>
+<section id="연습-문제-2" class="level4" data-number="4.2.1">
+<h4 data-number="4.2.1" class="anchored" data-anchor-id="연습-문제-2"><span class="header-section-number">4.2.1</span> 연습 문제</h4>
+<ol type="1">
+<li><p>color 내의 cut 분포 또는 cut 내의 color 분포를 더 명확하게 표시하기 위해 위의 카운트 데이터셋의 스케일을 어떻게 조정(rescale)할 수 있을까요?</p></li>
+<li><p>color를 <code>x</code> 심미성에 매핑하고 <code>cut</code>을 <code>fill</code> 심미성에 매핑한 분할 막대 차트를 사용하면 어떤 다른 데이터 통찰을 얻을 수 있나요? 각 세그먼트에 속하는 개수를 계산하세요.</p></li>
+<li><p><code>geom_tile()</code>을 dplyr과 함께 사용하여 평균 항공편 출발 지연이 목적지 및 연중 월(month of year)에 따라 어떻게 달라지는지 탐색하세요. 이 플롯을 읽기 어렵게 만드는 이유는 무엇입니까? 어떻게 개선할 수 있을까요?</p></li>
+</ol>
+</section>
+</section>
+<section id="두-개의-숫자형-변수" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="두-개의-숫자형-변수"><span class="header-section-number">4.3</span> 두 개의 숫자형 변수</h3>
+<p>두 숫자형 변수 사이의 공변동을 시각화하는 아주 좋은 방법을 이미 보았습니다. <code>geom_point()</code>로 산점도를 그리는 것입니다. 점의 패턴으로 공변동을 볼 수 있습니다. 예를 들어 다이아몬드의 캐럿 크기와 가격 사이의 양의 관계(positive relationship)를 볼 수 있습니다. 캐럿이 높은 다이아몬드가 더 높은 가격을 갖습니다. 이 관계는 지수적(exponential)입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smaller, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" alt="price 대 carat 산점도. 관계는 양의 관계이고  다소 강하며 지수적(exponential)입니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>데이터셋의 크기가 커질수록 점들이 오버플로팅(overplot)되기 시작하고 짙은 검은색 영역에 쌓여 2차원 공간 전체에서 데이터 밀도의 차이를 판단하기 어렵게 만들고 추세를 파악하기 어렵게 하므로 산점도의 유용성이 떨어집니다. 이 문제를 해결하는 한 가지 방법을 이미 보았습니다. 투명도를 추가하기 위해 <code>alpha</code> 심미성을 사용하는 것입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smaller, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" alt="price 대 carat 산점도. 관계는 양의 관계이고 다소 강하며  지수적입니다. 점들이 투명하여 다른 영역보다  점의 수가 더 많은 군집을 보여줍니다. 뚜렷한 군집은  1, 1.5, 2캐럿 다이아몬드에 대한 군집입니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>그러나 투명도를 사용하는 것은 매우 큰 데이터셋에서는 어려울 수 있습니다. 또 다른 해결책은 구간(bin)을 사용하는 것입니다. 이전에 <code>geom_histogram()</code> 및 <code>geom_freqpoly()</code>를 사용하여 1차원으로 구간을 나누었습니다. 이제 <code>geom_bin2d()</code> 및 <code>geom_hex()</code>를 사용하여 2차원으로 구간을 나누는 방법을 배울 것입니다.</p>
+<p><code>geom_bin2d()</code> 및 <code>geom_hex()</code>는 좌표 평면을 2차원 구간(2d bins)으로 나눈 다음 채우기 색상(fill color)을 사용하여 각 구간에 속하는 점의 수를 표시합니다. <code>geom_bin2d()</code>는 직사각형 구간을 생성합니다. <code>geom_hex()</code>는 육각형 구간(hexagonal bins)을 생성합니다. <code>geom_hex()</code>를 사용하려면 hexbin 패키지를 설치해야 합니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smaller, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>()</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `stat_bin2d()` using `bins = 30`. Pick better value `binwidth`.</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("hexbin")</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smaller, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hex</span>()</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Computation failed in `stat_binhex()`.</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Caused by error in `compute_group()` at ggplot2/R/ggproto.R:196:17:</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! The package "hexbin" is required for `stat_bin_hex()`.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="ch06_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" alt="플롯 1: price 대 carat의 구간 밀도 플롯(binned density plot). 플롯 2: price  대 carat의 육각형 구간 플롯. 두 플롯 모두 다이아몬드의  밀도가 높은 곳이 낮은 캐럿과 낮은 가격임을 보여줍니다." width="288"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="ch06_files/figure-html/unnamed-chunk-25-2.png" class="img-fluid" alt="플롯 1: price 대 carat의 구간 밀도 플롯(binned density plot). 플롯 2: price  대 carat의 육각형 구간 플롯. 두 플롯 모두 다이아몬드의  밀도가 높은 곳이 낮은 캐럿과 낮은 가격임을 보여줍니다." width="288"></p>
+</div>
+</div>
+</div>
+<p>또 다른 옵션은 하나의 연속형 변수를 구간으로 나누어 범주형 변수처럼 작동하게 하는 것입니다. 그런 다음 여러분이 배운 범주형 변수와 연속형 변수의 조합을 시각화하는 기술 중 하나를 사용할 수 있습니다. 예를 들어 <code>carat</code>을 구간으로 나누고 각 그룹에 대해 상자 그림을 표시할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smaller, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">group =</span> <span class="fu">cut_width</span>(carat, <span class="fl">0.1</span>)))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Orientation is not uniquely specified when both the x and y aesthetics are</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; continuous. Picking default orientation 'x'.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" alt="carat별 price의 나란히 놓인 상자 그림. 각 상자 그림은  무게가 0.1캐럿씩 차이 나는 다이아몬드를 나타냅니다. 상자 그림은 캐럿이  증가함에 따라 중앙값 가격도 증가함을 보여줍니다. 또한 1.5캐럿  이하의 다이아몬드는 오른쪽으로 꼬리가 긴(right skewed) 가격 분포를 가지고, 1.5에서 2캐럿은  대략 대칭적인 가격 분포를 가지며, 그 이상 나가는 다이아몬드는  왼쪽으로 꼬리가 긴(left skewed) 분포를 가집니다. 더 저렴하고 작은 다이아몬드는  위쪽에 이상치가 있고, 더 비싸고 큰 다이아몬드는 아래쪽에 이상치가 있습니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>위에서 사용된 <code>cut_width(x, width)</code>는 <code>x</code>를 <code>width</code> 너비의 구간으로 나눕니다. 기본적으로 상자 그림은 관측치가 얼마나 많은지에 관계없이 (이상치의 수를 제외하고) 대략 동일하게 보이므로 각 상자 그림이 다른 수의 점을 요약한다는 것을 알기 어렵습니다.</p>
+<p>이를 보여주는 한 가지 방법은 <code>varwidth = TRUE</code>를 사용하여 상자 그림의 너비를 점의 수에 비례하도록(proportional) 만드는 것입니다.</p>
+<section id="연습-문제-3" class="level4" data-number="4.3.1">
+<h4 data-number="4.3.1" class="anchored" data-anchor-id="연습-문제-3"><span class="header-section-number">4.3.1</span> 연습 문제</h4>
+<ol type="1">
+<li><p>상자 그림으로 조건부 분포(conditional distribution)를 요약하는 대신 빈도 다각형(frequency polygon)을 사용할 수 있습니다. <code>cut_width()</code> 대 <code>cut_number()</code>를 사용할 때 무엇을 고려해야 하나요? 그것이 <code>carat</code>과 <code>price</code>의 2차원 분포 시각화에 어떤 영향을 미치나요?</p></li>
+<li><p><code>price</code>로 분할된 <code>carat</code>의 분포를 시각화하세요.</p></li>
+<li><p>매우 큰 다이아몬드의 가격 분포는 작은 다이아몬드와 어떻게 비교되나요? 예상한 대로인가요, 아니면 놀라운가요?</p></li>
+<li><p>배운 기술 중 두 가지를 결합하여 cut, carat, price의 결합된 분포를 시각화하세요.</p></li>
+<li><p>2차원 플롯은 1차원 플롯에서 보이지 않는 이상치를 드러냅니다. 예를 들어 다음 플롯의 일부 점들은 비정상적인 <code>x</code>와 <code>y</code> 값의 조합을 가지고 있으며, 이 점들은 따로 검사할 때 <code>x</code>와 <code>y</code> 값이 정상으로 보임에도 불구하고 이상치가 됩니다. 이 경우 구간 플롯(binned plot)보다 산점도가 더 나은 디스플레이인 이유는 무엇입니까?</p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(x <span class="sc">&gt;=</span> <span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">11</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">11</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="6" type="1">
+<li><code>cut_width()</code>를 사용하여 동일한 너비의 상자를 만드는 대신 <code>cut_number()</code>를 사용하여 대략 동일한 수의 점을 포함하는 상자를 만들 수 있습니다. 이 접근법의 장점과 단점은 무엇입니까?</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smaller, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">group =</span> <span class="fu">cut_number</span>(carat, <span class="dv">20</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+</section>
+<section id="패턴과-모델" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="패턴과-모델"><span class="header-section-number">5</span> 패턴과 모델</h2>
+<p>두 변수 사이에 체계적인(systematic) 관계가 존재한다면 데이터에서 패턴으로 나타납니다. 패턴을 발견하면 스스로에게 물어보세요.</p>
+<ol type="1">
+<li><p>이 패턴이 우연(coincidence) (즉, 무작위 확률(random chance))에 의한 것일 수 있을까?</p></li>
+<li><p>패턴이 암시하는(implied by) 관계를 어떻게 설명할 수 있을까?</p></li>
+<li><p>패턴이 암시하는 관계는 얼마나 강할까?</p></li>
+<li><p>관계에 영향을 미칠 수 있는 다른 변수들은 무엇이 있을까?</p></li>
+<li><p>데이터의 개별 하위 그룹(subgroups)을 살펴보면 관계가 바뀌는가?</p></li>
+</ol>
+<p>데이터의 패턴은 관계에 대한 단서(clues)를 제공합니다. 즉, 공변동을 드러냅니다. 변동(variation)을 불확실성을 생성하는 현상으로 생각한다면, 공변동(covariation)은 이를 줄이는 현상입니다. 두 변수가 공변동하는 경우 하나의 변수 값을 사용하여 다른 변수의 값을 더 잘 예측할 수 있습니다. 공변동이 인과 관계(causal relationship)(특수한 경우) 때문이라면 한 변수의 값을 사용하여 다른 변수의 값을 통제(control)할 수 있습니다.</p>
+<p>모델은 데이터에서 패턴을 추출하는 도구입니다. 예를 들어 diamonds 데이터를 살펴보세요. cut과 carat, carat과 price가 긴밀하게(tightly) 관련되어 있기 때문에 cut과 price 사이의 관계를 이해하기 어렵습니다. price와 carat 사이의 매우 강한 관계를 제거하여 남아 있는 미묘한 차이(subtleties)를 탐색할 수 있도록 모델을 사용하는 것이 가능합니다. 다음 코드는 <code>carat</code>으로 <code>price</code>를 예측하는 모델을 적합(fits)시킨 다음 잔차(residuals)(예측값과 실제값의 차이)를 계산합니다. 잔차는 carat의 효과가 제거된 후 다이아몬드 가격에 대한 뷰를 제공합니다. <code>price</code>와 <code>carat</code>의 원시 값(raw values)을 사용하는 대신 먼저 로그(log) 변환을 수행하고 로그 변환된 값에 모델을 적합시킨다는 점에 유의하세요. 그런 다음 원시 가격 척도로 되돌리기 위해 잔차를 지수화(exponentiate)합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>diamonds <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_price =</span> <span class="fu">log</span>(price),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_carat =</span> <span class="fu">log</span>(carat)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>diamonds_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(log_price <span class="sc">~</span> log_carat, <span class="at">data =</span> diamonds)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>diamonds_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(diamonds_fit, <span class="at">new_data =</span> diamonds) <span class="sc">|&gt;</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">.resid =</span> <span class="fu">exp</span>(.resid))</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds_aug, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> .resid)) <span class="sc">+</span> </span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" alt="다이아몬드의 잔차(residuals) 대 캐럿 산점도. x축의 범위는 0에서  5이고 y축의 범위는 0에서 거의 4입니다. 많은 데이터가 낮은 캐럿 및 잔차  값 주위에 모여 있습니다. 캐럿이 증가함에 따라 잔차가 감소하는 것을  보여주는 명확한 곡선 패턴(curved pattern)이 있습니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>carat과 price 사이의 강한 관계를 제거하고 나면 cut과 price 사이의 관계에서 예상할 수 있는 것을 볼 수 있습니다. 크기에 비해 품질이 더 좋은 다이아몬드가 더 비쌉니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds_aug, <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> .resid)) <span class="sc">+</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch06_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" alt="cut별 잔차의 나란히 놓인 상자 그림. x축에는 다양한  컷(Fair에서 Ideal까지)이 표시되고 y축의 범위는 0에서 거의 5까지입니다.  중앙값(medians)은 대략 0.75에서 1.25 사이로 매우 유사합니다.  잔차의 각 분포는 오른쪽으로 꼬리가 길며, 높은 쪽에 많은  이상치가 있습니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>데이터 랭글링(data wrangling) 및 프로그래밍 도구를 익히고 나면 모델이 무엇이고 어떻게 작동하는지 이해하는 것이 쉽기 때문에 이 책에서는 모델링을 논의하지 않습니다.</p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>함수(또는 데이터셋)의 출처를 명시해야 할 때는 <code>package::function()</code> 또는 <code>package::dataset</code>이라는 특수한 형태를 사용한다는 것을 기억하세요.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

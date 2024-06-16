@@ -1,0 +1,15 @@
+{
+  "hash": "b76d605e1a2448ae51fe463672b6c1c0",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# 톺아보기 {#sec-whole-game-intro .unnumbered}\n\n\n\n이 장에서는 데이터 과학의 주요 도구인 `가져오기(importing)`, `깔끔하게 만들기(tidying)`, `변환하기(transforming)`, `데이터 시각화(visualizing data)`에 대한 빠른 개요를 제공합니다. 데이터 과학의 \"전체 과정(whole game)\"을 보여주고 모든 주요 조각들을 충분히 제공하여, 비록 간단하더라도 실제 데이터셋을 다룰 수 있도록 돕고자 합니다.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![우리는 데이터를 가져오고, 정재하고, 변환하고, 시각화하는 방법을 배웁니다.](../diagrams/data-science/whole-game.png){#fig-ds-whole-game width=569}\n:::\n:::\n\n\n1. 데이터를 변환하고 시각화하기 위해서는 먼저 데이터를 R로 가져와야 합니다. 일단 `.csv` 파일을 R로 가져오는 기본 사항을 배울 것입니다. 좀 더 나아가서 SQL을 함께 활용하는 방법도 소개합니다.\n\n2. 일관된 데이터 저장 방식인 깔끔한 데이터(tidy data)에 대해 배웁니다. 데이터를 다루는 기본 원칙과 데이터를 깔끔한 형태로 만드는 원칙을 논의합니다.\n\n3. 시각화만으로는 충분하지 않으므로 중요한 변수를 선택하고, 핵심 변수를 기준으로 데이터를 재구성하고, 새로운 변수를 생성하고, 요약 통계량을 계산할 수 있게 해주는 주요 방법과 연산을 연습합니다.\n\n4. 시각화는 R 프로그래밍을 시작하기에 좋은 출발점입니다. 데이터를 이해하는 데 도움이 되는 시각화 방법을 배울 수 있습니다. 우리는 ggplot2 플롯의 기본 구조와 데이터를 시각화는 과정을 학습합니다.\n\n시작해보죠!\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

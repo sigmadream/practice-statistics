@@ -1,0 +1,954 @@
+﻿---
+title: "시각화: 관련 정보"
+---
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+> 다른 사람들이 데이터의 좋은 멘탈 모델(mental model)을 빠르게 세우도록 플롯을 가능한 한 설명 없이도 이해되는(self-explanatory) 형태로 만드는 데 상당한 노력을 들여야 합니다.
+
+탐색적 플롯을 만들 때는 플롯에 표시될 변수를 이미 알고 있습니다. 목적에 따라 플롯을 만들고 빠르게 살펴본 다음 바로 다음 플롯으로 넘어갑니다. 대부분의 분석 과정에서는 수십 또는 수백 개의 플롯을 만들며 그중 상당수는 즉시 버립니다.
+
+이 장에서는 여러분이 원하는 바는 분명하고 그 방법만 배우면 된다고 가정합니다. 그래서 일반 시각화를 잘 다룬 책과 함께 읽기를 강력히 권합니다.
+
+특히 알베르토 카이로(Albert Cairo)의 The Truthful Art([https://www.amazon.com/gp/product/0321934075/](https://www.amazon.com/gp/product/0321934075/))를 추천합니다.
+이 책은 시각화를 만드는 기술적인 메커니즘보다 효과적인 그래픽을 만들 때 무엇을 생각해야 하는지에 초점을 맞춥니다.
+
+데이터 조작에는 dplyr을 조금 사용합니다. 기본 눈금(breaks), 라벨(labels), 변환(transformations), 팔레트(palettes)는 scales로 재정의합니다. Kamil Slowikowski의 ggrepel([https://ggrepel.slowkow.com](https://ggrepel.slowkow.com/))과 Thomas Lin Pedersen의 patchwork([https://patchwork.data-imaginist.com](https://patchwork.data-imaginist.com/))을 비롯한 ggplot2 확장 패키지도 몇 가지 사용합니다. 해당 패키지가 아직 없다면 `install.packages()`로 설치해야 합니다.
+
+```{r}
+#| label: setup
+#| message: false
+library(tidyverse)
+library(scales)
+library(ggrepel)
+library(patchwork)
+```
+
+## 라벨 (Labels)
+
+탐색적 그래픽을 설명적(expository) 그래픽으로 바꿀 때는 좋은 라벨(labels)부터 붙이는 것이 쉽습니다. 라벨은 `labs()` 함수로 추가합니다.
+
+```{r}
+#| message: false
+#| fig-alt: |
+#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 점들은 자동차 class에 따라 
+#|   색상이 지정되어 있습니다. 자동차의 고속도로 연료 효율 대 
+#|   엔진 크기 간 관계 궤적(trajectory)을 따르는 매끄러운 곡선(smooth curve)이 오버레이됩니다. 
+#|   x축에는 "Engine displacement (L)" 라벨이, y축에는 "Highway fuel economy (mpg)" 
+#|   라벨이 지정되어 있습니다. 
+#|   범례(legend)는 "Car type"이라는 라벨이 지정되어 있습니다. 플롯 제목은 "Fuel efficiency 
+#|   generally decreases with engine size(연료 효율은 일반적으로 엔진 크기에 따라 감소합니다)"입니다. 부제(subtitle)는 "Two seaters 
+#|   (sports cars) are an exception because of their light weight(2인승(스포츠카)은 가벼운 무게 때문에 예외입니다)"이며 
+#|   캡션은 "Data from fueleconomy.gov"입니다.
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class)) +
+  geom_smooth(se = FALSE) +
+  labs(
+    x = "Engine displacement (L)",
+    y = "Highway fuel economy (mpg)",
+    color = "Car type",
+    title = "Fuel efficiency generally decreases with engine size",
+    subtitle = "Two seaters (sports cars) are an exception because of their light weight",
+    caption = "Data from fueleconomy.gov"
+  )
+```
+
+플롯 제목(title)은 주요 발견(main finding)을 요약해야 합니다.
+플롯의 종류만 설명하는 제목("엔진 배기량 대 연료 경제성 산점도")은 피하십시오.
+
+텍스트가 더 필요할 때 쓸 만한 라벨이 두 가지 있습니다. subtitle`은 제목 아래에 작은 글꼴로 세부 정보를 덧붙입니다. `caption`은 플롯 오른쪽 아래에 텍스트를 넣으며 주로 데이터 출처를 밝힐 때 씁니다. `labs()`로 축과 범례 제목도 바꿀 수 있습니다. 짧은 변수 이름은 더 자세한 설명으로 바꾸고 단위를 포함하는 편이 좋습니다.
+
+문자열 대신 수학 방정식(mathematical equations)을 써도 됩니다. `""`를 `quote()`로 바꾸고 `?plotmath`에서 사용 가능한 옵션을 살펴보세요.
+
+```{r}
+#| fig-asp: 1
+#| out-width: "50%"
+#| fig-width: 3
+#| fig-alt: |
+#|   x 및 y축 라벨에 수학 텍스트가 있는 산점도. X축 라벨은 
+#|   x_i, y축 라벨은 i가 1부터 n까지인 x_i 제곱의 합을 나타냅니다.
+df <- tibble(
+  x = 1:10,
+  y = cumsum(x^2)
+)
+
+ggplot(df, aes(x, y)) +
+  geom_point() +
+  labs(
+    x = quote(x[i]),
+    y = quote(sum(x[i] ^ 2, i == 1, n))
+  )
+```
+
+### 연습 문제 (Exercises)
+
+1. fuel economy(연료 경제성) 데이터로 플롯 하나를 만들고 `title`, `subtitle`, `caption`, `x`, `y`, `color` 라벨을 직접 지정하세요.
+
+2. fuel economy 데이터를 사용하여 다음 플롯을 다시 만드세요. 구동계(drive train) 유형에 따라 점의 색상과 모양이 모두 다르다는 점에 유의하세요.
+
+```{r}
+#| echo: false
+#| fig-alt: |
+#|   고속도로 대 도시 연료 효율의 산점도. 점의 모양과 
+#|   색상은 구동계 유형에 의해 결정됩니다.
+ggplot(mpg, aes(x = cty, y = hwy, color = drv, shape = drv)) +
+  geom_point() +
+  labs(
+    x = "City MPG",
+    y = "Highway MPG",
+    shape = "Type of\ndrive train",
+    color = "Type of\ndrive train"
+  )
+```
+
+3. 지난달에 만든 탐색적 그래픽 하나를 가져와 다른 사람들이 더 쉽게 이해하도록 정보성(informative) 제목을 추가해 보세요.
+
+## 주석
+
+플롯의 주요 구성 요소뿐 아니라 개별 관측치나 관측치 그룹에도 라벨을 붙이면 유용할 때가 많습니다. 먼저 `geom_text()`를 살펴보겠습니다. `geom_point()`와 비슷하지만 `label`이라는 심미성이 하나 더 있어 플롯에 텍스트 라벨을 추가합니다.
+
+라벨의 출처는 두 가지입니다. 첫 번째는 라벨을 담은 티블(tibble)입니다. 다음 플롯에서는 구동 유형별로 엔진이 큰 자동차를 뽑아 `label_info`라는 새 데이터 프레임에 저장합니다.
+
+```{r}
+label_info <- mpg |>
+  group_by(drv) |>
+  arrange(desc(displ)) |>
+  slice_head(n = 1) |>
+  mutate(
+    drive_type = case_when(
+      drv == "f" ~ "front-wheel drive",
+      drv == "r" ~ "rear-wheel drive",
+      drv == "4" ~ "4-wheel drive"
+    )
+  ) |>
+  select(displ, hwy, drv, drive_type)
+
+label_info
+```
+
+이 데이터 프레임으로 세 그룹에 직접 라벨을 붙여 범례를 플롯 안의 라벨로 바꿉니다. `fontface`와 `size` 인수로 텍스트 라벨의 모양을 조정합니다. 여기서는 플롯의 다른 텍스트보다 크고 굵게 표시했습니다. (`theme(legend.position = "none"`은 모든 범례를 끕니다 --- 곧 자세히 다루겠습니다.)
+
+```{r}
+#| fig-alt: |
+#|   점들이 구동 유형에 따라 색상이 지정된 고속도로 주행 거리 대 엔진 크기 산점도. 
+#|   각 구동 유형에 대한 매끄러운 곡선이 오버레이됩니다. 
+#|   텍스트 라벨은 곡선을 전륜, 후륜, 4륜으로 식별합니다.
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(se = FALSE) +
+  geom_text(
+    data = label_info, 
+    aes(x = displ, y = hwy, label = drive_type),
+    fontface = "bold", size = 5, hjust = "right", vjust = "bottom"
+  ) +
+  theme(legend.position = "none")
+```
+
+`hjust`(수평 정렬(horizontal justification))와 `vjust`(수직 정렬(vertical justification))로 라벨의 정렬을 제어한다는 점에 유의하세요.
+
+그러나 위에서 만든 플롯은 라벨끼리 겹치고 라벨과 점도 겹쳐 읽기 어렵습니다. ggrepel 패키지의 `geom_label_repel()` 함수는 두 문제를 모두 해결합니다. 라벨이 겹치지 않도록 위치를 자동으로 조정하기 때문입니다.
+
+```{r}
+#| fig-alt: |
+#|   점들이 구동 유형에 따라 색상이 지정된 고속도로 주행 거리 대 엔진 크기 산점도. 
+#|   각 구동 유형에 대한 매끄러운 곡선이 오버레이됩니다. 
+#|   텍스트 라벨은 곡선을 전륜, 후륜, 4륜으로 식별합니다.
+#|   라벨은 흰색 배경의 상자이며 
+#|   겹치지 않게 배치됩니다.
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(se = FALSE) +
+  geom_label_repel(
+    data = label_info, 
+    aes(x = displ, y = hwy, label = drive_type),
+    fontface = "bold", size = 5, nudge_y = 2
+  ) +
+  theme(legend.position = "none")
+```
+
+ggrepel 패키지의 `geom_text_repel()`로 같은 원리를 적용해 플롯의 특정 지점을 강조(highlight)할 수도 있습니다. 여기서는 라벨을 붙인 점이 더 두드러지도록 크고 속이 빈 점으로 구성된 두 번째 레이어도 추가했습니다.
+
+```{r}
+#| fig-alt: |
+#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도. 
+#|   엔진 크기가 5보다 크면서 고속도로 주행 거리가 40보다 크거나 20보다 큰 
+#|   점들은 빨간색이며 속이 빈 빨간색 원으로 표시되고 자동차의 모델 이름이 
+#|   라벨로 지정됩니다.
+potential_outliers <- mpg |>
+  filter(hwy > 40 | (hwy > 20 & displ > 5))
+  
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_text_repel(data = potential_outliers, aes(label = model)) +
+  geom_point(data = potential_outliers, color = "red") +
+  geom_point(
+    data = potential_outliers,
+    color = "red", size = 3, shape = "circle open"
+  )
+```
+
+`geom_text()`와 `geom_label()` 외에도 ggplot2에는 주석에 활용할 지옴(geoms)이 많습니다.
+
+1. 참조선(reference lines)은 `geom_hline()`과 `geom_vline()`으로 추가합니다. 이 선은 흔히 굵게(`linewidth = 2`), 흰색으로(`color = white`) 설정하고 주 데이터(primary data) 레이어 아래에 그립니다. 그러면 데이터에서 주의를 빼앗지 않으면서(without drawing attention away) 참조선도 쉽게 볼 수 있습니다.
+
+2. 관심 지점 주위에 사각형을 그릴 때는 `geom_rect()`를 사용합니다. 사각형의 경계는 심미성 `xmin`, `xmax`, `ymin`, `ymax`로 정합니다. 볼록 껍질(hulls)로 점들의 하위 집합(subsets of points)에 주석을 다는 `ggforce` 패키지([https://ggforce.data-imaginist.com/index.html](https://ggforce.data-imaginist.com/index.html)), 그중에서도 `geom_mark_hull()`([https://ggforce.data-imaginist.com/reference/geom_mark_hull.html](https://ggforce.data-imaginist.com/reference/geom_mark_hull.html))도 살펴보세요.
+
+3. 화살표로 한 점을 가리킬 때는 `arrow` 인수와 함께 `geom_segment()`를 사용합니다. 시작 위치는 심미성 `x`와 `y`로, 종료 위치는 `xend`와 `yend`로 정합니다.
+
+플롯에 주석을 추가할 때는 `annotate()`도 편리합니다. 경험 법칙(rule of thumb)에 따르면 지옴은 데이터의 하위 집합을 강조할 때, `annotate()`는 플롯에 하나 또는 소수의 주석 요소를 넣을 때 유용합니다.
+
+`annotate()` 사용법을 시연하려고 플롯에 넣을 텍스트를 만들어 보겠습니다. 텍스트가 다소 길어서 줄당 문자 수를 지정하면 자동으로 줄을 바꾸는 `stringr::str_wrap()`을 사용합니다.
+
+```{r}
+trend_text <- "Larger engine sizes tend to have lower fuel economy." |>
+  str_wrap(width = 30)
+trend_text
+```
+
+그런 다음 라벨 지옴과 세그먼트 지옴, 두 레이어의 주석을 추가합니다. 두 지옴의 `x`와 `y` 심미성은 주석의 시작 위치를 정하고 세그먼트 주석의 `xend`와 `yend`는 종료 위치를 정합니다. 세그먼트가 화살표 스타일로 지정된다는 점도 눈여겨보세요.
+
+```{r}
+#| fig-alt: |
+#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도. 점들의 추세를 따르는 
+#|   아래를 향하는 빨간색 화살표가 있고 화살표 옆에 배치된 주석에는 
+#|   "Larger engine sizes tend to have lower fuel economy(엔진 크기가 클수록 연료 경제성이 떨어지는 경향이 있습니다)"라고 
+#|   쓰여 있습니다. 화살표와 주석 텍스트는 빨간색입니다.
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  annotate(
+    geom = "label", x = 3.5, y = 38,
+    label = trend_text,
+    hjust = "left", color = "red"
+  ) +
+  annotate(
+    geom = "segment",
+    x = 3, y = 35, xend = 5, yend = 25, color = "red",
+    arrow = arrow(type = "closed")
+  )
+```
+
+주석(Annotation)은 시각화의 주요 요점(main takeaways)과 흥미로운 특징(features)을 전달하는 강력한 도구입니다. 한계라면 여러분의 상상력과 주석을 미학적으로 아름답게 배치하는 인내심뿐입니다!
+
+### 연습 문제
+
+1. 무한대(infinite) 위치를 가진 `geom_text()`를 사용하여 플롯의 네 모서리에 텍스트를 배치하세요.
+
+2. `annotate()`를 사용하여 티블을 만들지 않고 이전 플롯의 중간에 점 지옴(point geom)을 추가하세요. 점의 모양, 크기 또는 색상을 사용자 정의하세요.
+
+3. `geom_text()`가 있는 라벨은 패싯 처리(faceting)와 어떻게 상호 작용하나요? 단일 패싯에 라벨을 추가하려면 어떻게 해야 합니까? 각 패싯에 다른 라벨을 넣으려면 어떻게 해야 합니까? (힌트: `geom_text()`에 전달되는 데이터셋을 생각해 보세요.)
+
+4. `geom_label()`의 어떤 인수가 배경 상자의 모양을 제어합니까?
+
+5. `arrow()`의 네 가지 인수는 무엇입니까? 그것들은 어떻게 작동합니까? 중요한 옵션을 보여주는 일련의 플롯을 만드세요.
+
+## 스케일
+
+플롯의 소통 효과를 높이는 세 번째 방법은 스케일(scales, 척도)을 조정하는 것입니다. 스케일은 심미성 매핑이 시각적으로 나타나는 방식을 제어합니다.
+
+### 기본 스케일
+
+일반적으로 ggplot2는 스케일을 자동으로 추가합니다.
+
+```{r}
+#| label: default-scales
+#| fig-show: hide
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class))
+```
+
+ggplot2는 내부적으로(behind the scenes) 기본 스케일을 자동으로 추가합니다.
+
+```{r}
+#| fig-show: hide
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class)) +
+  scale_x_continuous() +
+  scale_y_continuous() +
+  scale_color_discrete()
+```
+
+스케일의 명명 체계(naming scheme)에 유의하세요. `scale_` 뒤에 심미성 이름, `_`, 스케일 이름이 차례로 옵니다.
+
+기본 스케일의 이름은 스케일에 대응하는 변수 유형, 곧 연속형(continuous), 이산형(discrete), 날짜시간(datetime), 날짜(date)에 따라 정해집니다.
+
+`scale_x_continuous()`는 `displ`의 숫자 값을 x축의 연속 수직선(continuous number line)에 놓습니다. `scale_color_discrete()`는 자동차의 각 `class`에 색상을 지정합니다.
+
+아래에서는 여러 비기본(non-default) 스케일을 배웁니다.
+
+기본 스케일은 폭넓은 입력에서 잘 작동하도록 신중하게 선택되었습니다.
+그래도 다음 두 가지 이유로 기본값을 재정의(override)할 때가 있습니다.
+
+1. 기본 스케일의 일부 매개변수를 조정(tweak)하는 경우입니다. 축의 눈금(breaks)이나 범례의 주요 라벨(key labels) 등을 바꿉니다.
+
+2. 스케일을 완전히 대체해 전혀 다른 알고리즘을 사용하는 경우입니다. 데이터를 더 잘 안다면 기본값보다 나은 결과를 얻기도 합니다.
+
+### 축 눈금 및 범례 키
+
+축과 범례를 통틀어 가이드(guides)라고 합니다. 축은 `x`와 `y` 심미성에, 범례는 나머지 심미성에 사용됩니다.
+
+축의 틱(ticks, 눈금선)과 범례 키 모양을 좌우하는 주요 인수는 `breaks`와 `labels`입니다. Breaks(눈금)는 틱의 위치나 키에 연결된 값을, Labels(라벨)는 각 틱/키에 붙는 텍스트를 제어합니다.
+`breaks`의 일반적인 용도는 기본 선택을 재정의하는 것입니다.
+
+```{r}
+#| fig-alt: |
+#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 구동(drive)에 
+#|   따라 색상이 지정되어 있습니다. y축에는 15부터 시작하여 5씩 증가해 40에서 
+#|   끝나는 눈금(breaks)이 있습니다.
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point() +
+  scale_y_continuous(breaks = seq(15, 40, by = 5)) 
+```
+
+`labels`는 `breaks`와 길이가 같은 문자 벡터로 지정합니다. 라벨을 모두 숨기려면 `NULL`로 설정합니다. 지도나 절대 숫자를 공개할 수 없는 플롯을 게시(publishing)할 때 유용합니다. `breaks`와 `labels`는 범례 모양도 제어합니다. 범주형 변수의 이산형(discrete) 스케일에서는 기존 수준(level) 이름과 원하는 라벨을 연결한 명명된 목록(named list)을 `labels`에 넣을 수 있습니다.
+
+```{r}
+#| fig-alt: |
+#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 구동에 따라 색상이 
+#|   지정되어 있습니다. x 및 y축의 축 눈금(ticks)에는 
+#|   아무런 라벨이 없습니다. 
+#|   범례에는 사용자 정의 라벨이 있습니다. 4-wheel, front, rear.
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point() +
+  scale_x_continuous(labels = NULL) +
+  scale_y_continuous(labels = NULL) +
+  scale_color_discrete(labels = c("4" = "4-wheel", "f" = "front", "r" = "rear"))
+```
+
+`labels` 인수에 scales 패키지의 라벨링 함수(labelling functions)를 결합하면 숫자를 통화나 백분율 등으로 표시합니다. 왼쪽 플롯은 `label_dollar()`의 기본 라벨을 사용해 달러 기호와 천 단위 구분 쉼표를 붙입니다.
+
+오른쪽 플롯은 달러 값을 1,000으로 나누고 사용자 정의 눈금(breaks)과 접미사 "K"("수천"을 의미)를 추가합니다. `breaks`는 데이터의 원래 스케일에 있다는 점에 유의하세요.
+
+```{r}
+#| layout-ncol: 2
+#| fig-width: 4
+#| fig-alt: |
+#|   다이아몬드의 가격 대 컷에 대한 나란히 놓인 두 개의 상자 그림. 이상치는 
+#|   투명합니다. 두 플롯 모두 x축 라벨이 달러로 형식화되어 있습니다.
+#|   왼쪽 플롯의 x축 라벨은 $0부터 시작하여 $5,000씩 증가해 
+#|   $15,000까지입니다. 오른쪽 플롯의 x축 라벨은 $1K에서 시작하여 $6K씩 
+#|   증가해 $19K까지입니다. 
+# Left
+ggplot(diamonds, aes(x = price, y = cut)) +
+  geom_boxplot(alpha = 0.05) +
+  scale_x_continuous(labels = label_dollar())
+
+# Right
+ggplot(diamonds, aes(x = price, y = cut)) +
+  geom_boxplot(alpha = 0.05) +
+  scale_x_continuous(
+    labels = label_dollar(scale = 1/1000, suffix = "K"), 
+    breaks = seq(1000, 19000, by = 6000)
+  )
+```
+
+또 다른 편리한 라벨 함수는 `label_percent()`입니다.
+
+```{r}
+#| fig-alt: |
+#|   투명도(clarity) 수준으로 채워진 컷(cut)의 분할 막대 플롯. y축 
+#|   라벨은 0%에서 시작하여 25%씩 증가해 100%까지 갑니다. y축 라벨 
+#|   이름은 "Percentage"입니다.
+ggplot(diamonds, aes(x = cut, fill = clarity)) +
+  geom_bar(position = "fill") +
+  scale_y_continuous(name = "Percentage", labels = label_percent())
+```
+
+데이터 포인트가 비교적 적을 때 관측치의 정확한 위치를 강조하는 것도 `breaks`의 용도입니다. 각 미국 대통령의 임기 시작과 종료를 나타낸 플롯을 살펴보세요.
+
+```{r}
+#| fig-alt: |
+#|   대통령의 ID 번호 대 재임 시작 연도의 선형 플롯. 시작 연도는 
+#|   거기서 시작하여 재임 기간이 끝날 때 끝나는 점과 세그먼트로 
+#|   표시됩니다. x축 라벨은 아포스트로피('53)로 시작하는 두 자리 연도로 
+#|   형식화되어 있습니다.
+presidential |>
+  mutate(id = 33 + row_number()) |>
+  ggplot(aes(x = start, y = id)) +
+  geom_point() +
+  geom_segment(aes(xend = end, yend = id)) +
+  scale_x_date(name = NULL, breaks = presidential$start, date_labels = "'%y")
+```
+
+`breaks` 인수에는 심미성 매핑을 적용할 수 없으므로 `presidential$start`로 `start` 변수를 벡터로 뽑았습니다(pulled out).
+날짜(date)와 날짜시간(datetime) 스케일의 눈금 및 라벨 지정 방식은 조금 다릅니다.
+
+1. `date_labels`는 `parse_datetime()`과 동일한 형태의 형식 지정(format specification)을 취합니다.
+
+2. `date_breaks`(여기에 표시되지 않음)는 "2 days" 또는 "1 month"와 같은 문자열을 취합니다.
+
+### 범례 레이아웃
+
+축을 조정할 때는 `breaks`와 `labels`를 자주 사용합니다. 두 인수 모두 범례에도 적용되지만 범례에는 몇 가지 다른 기법을 더 자주 씁니다.
+
+범례의 전체적인 위치는 `theme()`으로 정합니다. 이 장의 끝에서 다시 설명하겠지만 테마는 플롯에서 데이터가 아닌(non-data) 부분을 제어합니다. 테마 설정인 `legend.position`은 범례가 그려질 위치를 정합니다.
+
+```{r}
+#| layout-ncol: 2
+#| fig-width: 4
+#| fig-alt: |
+#|   자동차의 class를 기준으로 점의 색상이 지정된 고속도로 연료 효율 대 엔진 크기에 대한 네 개의 
+#|   산점도. 시계 방향으로 범례가 플롯의 
+#|   오른쪽, 왼쪽, 아래쪽, 위쪽에 배치됩니다.
+base <- ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class))
+
+base + theme(legend.position = "right") # the default
+base + theme(legend.position = "left")
+base + 
+  theme(legend.position = "top") +
+  guides(color = guide_legend(nrow = 3))
+base + 
+  theme(legend.position = "bottom") +
+  guides(color = guide_legend(nrow = 3))
+```
+
+플롯이 짧고 넓다면 범례를 위나 아래에, 높고 좁다면 왼쪽이나 오른쪽에 배치합니다. `legend.position = "none"`으로 범례를 완전히 숨길 수도 있습니다.
+
+개별 범례의 표시는 `guides()`를 `guide_legend()`나 `guide_colorbar()`와 함께 써서 제어합니다. 다음 예에는 두 가지 중요한 설정이 나옵니다. `nrow`로 범례의 행 수를 정하고 심미성 하나를 재정의(overriding)해 점을 더 크게 만듭니다. 플롯에 점이 많아 낮은 `alpha`를 사용했을 때 특히 유용합니다.
+
+```{r}
+#| fig-alt: |
+#|   자동차의 class를 기준으로 점의 색상이 지정된 고속도로 연료 효율 대 엔진 크기 
+#|   산점도. 플롯 위에 부드러운 곡선이 
+#|   오버레이되어 있습니다. 범례는 맨 아래에 있고 class는 
+#|   수평으로 두 행으로 나열됩니다. 범례의 점은 
+#|   플롯의 점보다 큽니다.
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class)) +
+  geom_smooth(se = FALSE) +
+  theme(legend.position = "bottom") +
+  guides(color = guide_legend(nrow = 2, override.aes = list(size = 4)))
+```
+
+`guides()`의 인수 이름이 `labs()`에서처럼 심미성의 이름과 일치한다는 점에 유의하세요.
+
+### 스케일 교체하기
+
+세부 사항을 조금 조정하는 데 그치지 않고 스케일을 완전히 교체(replace)하는 방법도 있습니다. 주로 바꾸는 스케일은 연속 위치 스케일(continuous position scales)과 색상 스케일(color scales)입니다. 같은 원리가 다른 모든 심미성에도 적용되므로 위치와 색상을 익히면 나머지 스케일도 빠르게 교체합니다.
+
+변수를 변환(transformations)해서 플롯하면 매우 유용합니다. 예를 들어 `carat`과 `price`를 로그 변환(log transform)하면 두 변수의 관계가 더 분명해집니다.
+
+```{r}
+#| fig-align: default
+#| layout-ncol: 2
+#| fig-width: 3
+#| fig-alt: |
+#|   다이아몬드의 price 대 carat의 두 플롯. 데이터가 구간(bin)으로 나누어져 있고 
+#|   해당 구간에 속하는 점의 수에 기반한 각 구간을 나타내는 직사각형들의 색상입니다. 
+#|   오른쪽 플롯에서 price와 carat 값은 
+#|   로그 변환(logged)되었고 축 라벨은 로그 변환된 값을 표시합니다.
+# Left
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_bin2d()
+
+# Right
+ggplot(diamonds, aes(x = log10(carat), y = log10(price))) +
+  geom_bin2d()
+```
+
+다만 축에도 변환된 값이 표시되어 플롯을 해석하기 어렵다는 단점이 있습니다. 심미성 매핑 대신 스케일에서 변환하면 됩니다.
+그러면 축에 원래 데이터 스케일이 표시된다는 점만 다르고 시각적으로는 같습니다.
+
+```{r}
+#| fig-alt: |
+#|   다이아몬드의 price 대 carat 플롯. 데이터가 구간으로 나누어져 있고 
+#|   해당 구간에 속하는 점의 수에 기반한 각 구간을 나타내는 
+#|   직사각형들의 색상입니다. 축 라벨은 원래 데이터 스케일입니다.
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_bin2d() + 
+  scale_x_log10() + 
+  scale_y_log10()
+```
+
+색상(color) 스케일도 자주 사용자 정의합니다. 기본 범주형 스케일은 색상환(color wheel)에서 간격이 균일한 색상을 고릅니다. 일반적인 유형의 색맹(color blindness)을 고려해 수동으로 조정한 ColorBrewer 스케일이 유용한 대안입니다. 아래 두 플롯은 비슷해 보이지만 적색과 녹색의 색조(shades) 차이가 충분해서 적록 색맹이 있는 사람도 오른쪽 플롯의 점을 쉽게 구별합니다.[^communication-1]
+
+[^communication-1]: 이러한 이미지를 테스트할 때는 색맹을 시뮬레이션하는 SimDaltonism([https://michelf.ca/projects/sim-daltonism/](https://michelf.ca/projects/sim-daltonism/)) 같은 도구를 사용합니다.
+
+```{r}
+#| fig-align: default
+#| layout-ncol: 2
+#| fig-width: 3
+#| fig-alt: |
+#|   구동 유형에 따라 점의 색상이 지정된 고속도로 주행 거리 대 엔진 크기에 대한 
+#|   두 개의 산점도. 왼쪽 플롯은 기본 
+#|   ggplot2 색상 팔레트를 사용하고 오른쪽 플롯은 다른 색상 
+#|   팔레트를 사용합니다.
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = drv))
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = drv)) +
+  scale_color_brewer(palette = "Set1")
+```
+
+접근성(accessibility)을 개선하는 간단한 기법도 잊지 마세요. 색상이 몇 가지뿐이라면 중복(redundant) 모양 매핑을 추가합니다. 그러면 플롯은 흑백으로도 해석됩니다.
+
+```{r}
+#| fig-alt: |
+#|   구동 유형에 따라 점의 색상과 
+#|   모양이 모두 기반이 되는 고속도로 주행 거리 대 엔진 크기 산점도. 색상 팔레트는 기본 
+#|   ggplot2 팔레트가 아닙니다.
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = drv, shape = drv)) +
+  scale_color_brewer(palette = "Set1")
+```
+
+ColorBrewer 스케일의 온라인 문서는 [https://colorbrewer2.org/](https://colorbrewer2.org/)에 있으며 R에서는 Erich Neuwirth의 RColorBrewer 패키지로 사용합니다.
+
+순차적(sequential)(위쪽) 팔레트와 발산형(diverging)(아래쪽) 팔레트는 범주형 값에 순서나 "중간(middle)"이 있을 때 특히 유용합니다. `cut()`으로 연속형 변수를 범주형 변수로 바꾸면 이런 경우가 자주 생깁니다.
+
+```{r}
+#| label: fig-brewer
+#| echo: false
+#| fig-cap: 모든 colorBrewer 스케일.
+#| fig-asp: 2.5
+#| fig-alt: |
+#|   모든 colorBrewer 스케일. 한 그룹은 밝은 색에서 어두운 색으로 이동합니다. 
+#|   다른 그룹은 순서가 없는(non ordinal) 색상 집합입니다. 그리고 마지막 그룹은 
+#|   발산형 스케일(diverging scales)(어두운 색에서 밝은 색으로, 다시 어두운 색으로)을 가집니다. 각 집합 내에는 
+#|   여러 팔레트가 있습니다.
+par(mar = c(0, 3, 0, 0))
+RColorBrewer::display.brewer.all()
+```
+
+값과 색상 사이에 미리 정해진 매핑이 있다면 `scale_color_manual()`을 사용하세요.
+가령 대통령의 소속 정당(party)을 색상에 매핑할 때는 공화당원(Republicans)은 빨간색, 민주당원(Democrats)은 파란색이라는 표준을 따를 것입니다.
+이 색상을 지정하는 한 가지 방법은 16진수 색상 코드(hex color codes)를 사용하는 것입니다.
+
+```{r}
+#| fig-alt: |
+#|   대통령의 ID 번호 대 재임 시작 연도의 선형 플롯. 시작 연도는 
+#|   거기서 시작하여 재임 기간이 끝날 때 끝나는 점과 세그먼트로 
+#|   표시됩니다. 민주당 대통령은 
+#|   파란색으로, 공화당은 빨간색으로 표시됩니다.
+presidential |>
+  mutate(id = 33 + row_number()) |>
+  ggplot(aes(x = start, y = id, color = party)) +
+  geom_point() +
+  geom_segment(aes(xend = end, yend = id)) +
+  scale_color_manual(values = c(Republican = "#E81B23", Democratic = "#00AEF3"))
+```
+
+연속형 색상에는 내장 함수인 `scale_color_gradient()`나 `scale_fill_gradient()`를 사용합니다. 발산형 스케일에는 `scale_color_gradient2()`를 사용해 양수와 음수 값에 서로 다른 색상을 지정합니다.
+평균보다 높거나 낮은 점을 구별할 때도 유용합니다.
+
+viridis 색상 스케일도 선택지입니다. 디자이너 Nathaniel Smith와 Stéfan van der Walt는 여러 형태의 색맹이 있는 사람도 구별하기 쉽고 색상과 흑백 모두에서 지각적으로 균일한(perceptually uniform) 연속형 색상 구성(continuous color schemes)을 세심하게 설계(tailored)했습니다.
+ggplot2에서는 이 스케일을 연속형(`c`), 이산형(`d`), 구간형(`b`) 팔레트로 사용합니다.
+
+```{r}
+#| fig-align: default
+#| layout-ncol: 2
+#| fig-width: 3
+#| fig-asp: 0.75
+#| fig-alt: |
+#|   육각형 구간에 속하는 관측치 수를 육각형의 색상으로 보여주는 
+#|   세 개의 육각형 플롯(hex plots). 첫 번째 플롯은 기본(default) 연속형 
+#|   ggplot2 스케일을 사용합니다. 두 번째 플롯은 viridis 연속형 스케일을 사용하고 
+#|   세 번째 플롯은 viridis 구간형(binned) 스케일을 사용합니다.
+df <- tibble(
+  x = rnorm(10000),
+  y = rnorm(10000)
+)
+
+ggplot(df, aes(x, y)) +
+  geom_hex() +
+  coord_fixed() +
+  labs(title = "Default, continuous", x = NULL, y = NULL)
+
+ggplot(df, aes(x, y)) +
+  geom_hex() +
+  coord_fixed() +
+  scale_fill_viridis_c() +
+  labs(title = "Viridis, continuous", x = NULL, y = NULL)
+
+ggplot(df, aes(x, y)) +
+  geom_hex() +
+  coord_fixed() +
+  scale_fill_viridis_b() +
+  labs(title = "Viridis, binned", x = NULL, y = NULL)
+```
+
+모든 색상 스케일에는 `color`와 `fill` 심미성에 대응하는 `scale_color_*()`와 `scale_fill_*()` 두 종류가 있습니다. 색상 스케일은 영국식과 미국식 철자법(color와 colour)을 모두 지원합니다.
+
+### 확대
+
+플롯 한계(limits)를 제어하는 세 가지 방법이 있습니다.
+
+1. 플롯되는 데이터를 조정합니다.
+2. 각 스케일에서 한계를 설정합니다.
+3. `coord_cartesian()`에서 `xlim` 및 `ylim`을 설정합니다.
+
+이 옵션들을 일련의 플롯으로 살펴보겠습니다. 왼쪽 플롯은 구동계 유형에 따라 색상이 지정된 엔진 크기와 연료 효율의 관계를 나타냅니다. 오른쪽 플롯은 같은 변수를 사용하되 플롯할 데이터를 부분 집합으로 나눕니다(subsets). 데이터를 나누자 매끄러운 곡선뿐 아니라 x와 y 스케일도 달라졌습니다.
+
+```{r}
+#| layout-ncol: 2
+#| fig-width: 4
+#| message: false
+#| fig-alt: |
+#|   왼쪽은 구동 유형에 따라 점이 색상으로 표시된 고속도로 주행 거리 대 
+#|   배기량 산점도입니다. 
+#|   오버레이된 매끄러운 곡선은 하키 스틱처럼 감소하다가 증가하는 추세를 
+#|   나타냅니다. 오른쪽은 배기량의 범위가 5에서 6이고
+#|   고속도로 주행 거리 범위가 10에서 25인 상태로 동일한 변수가 
+#|   플롯되어 있습니다. 오버레이된 매끄러운 곡선은 처음에는 
+#|   약간 증가하다가 감소하는 추세입니다.
+# Left
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = drv)) +
+  geom_smooth()
+
+# Right
+mpg |>
+  filter(displ >= 5 & displ <= 6 & hwy >= 10 & hwy <= 25) |>
+  ggplot(aes(x = displ, y = hwy)) +
+  geom_point(aes(color = drv)) +
+  geom_smooth()
+```
+
+이번에는 왼쪽 플롯의 개별 스케일에 `limits`를 설정하고 오른쪽 플롯은 `coord_cartesian()`에서 같은 한계를 설정해 비교하겠습니다. 스케일의 한계를 줄이는 것은 데이터를 부분 집합으로 나누는 것과 동일(equivalent)합니다. 플롯의 특정 영역만 확대(zoom in)하려면 일반적으로 `coord_cartesian()`을 쓰는 편이 좋습니다.
+
+```{r}
+#| layout-ncol: 2
+#| fig-width: 4
+#| message: false
+#| warning: false
+#| fig-alt: |
+#|   왼쪽은 배기량 범위가 5에서 6이고 고속도로 주행 거리 범위가 
+#|   10에서 25인 고속도로 주행 거리 대 배기량 산점도입니다. 
+#|   오버레이된 매끄러운 곡선은 처음에는 약간 증가하다가 감소하는 
+#|   추세입니다. 오른쪽은 동일한 변수가
+#|   동일한 한계(limits)로 플롯되어 있지만 오버레이된 매끄러운 곡선은
+#|   마지막에 약간 증가하는 비교적 평평한(flat) 추세입니다.
+# Left
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = drv)) +
+  geom_smooth() +
+  scale_x_continuous(limits = c(5, 6)) +
+  scale_y_continuous(limits = c(10, 25))
+
+# Right
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = drv)) +
+  geom_smooth() +
+  coord_cartesian(xlim = c(5, 6), ylim = c(10, 25))
+```
+
+반대로 한계를 확장(expand)할 때는 개별 스케일에 `limits`를 설정하는 편이 대체로 유용합니다. 여러 플롯의 스케일을 맞추는 경우가 대표적입니다.
+예를 들어 두 클래스의 자동차를 추출해 따로 플롯하면 세 스케일(`x`축, `y`축, 색상 심미성)의 범위(ranges)가 모두 달라 비교하기 어렵습니다.
+
+```{r}
+#| layout-ncol: 2
+#| fig-width: 4
+#| fig-alt: |
+#|   왼쪽은 SUV의 고속도로 주행 거리 대 배기량 산점도입니다.
+#|   오른쪽은 소형차(compact cars)에 대한 동일한 변수의 산점도입니다.
+#|   두 플롯 모두 점들이 구동 유형에 따라 색상이 지정되어 있습니다. SUV 중에서는 
+#|   4륜 구동이 더 많고 나머지는 후륜 구동인 반면, 
+#|   소형차 중에서는 전륜 구동이 더 많고 나머지는 
+#|   4륜 구동입니다. SUV 플롯은 고속도로 주행 거리와 배기량 사이에 
+#|   명확한 음의 관계를 보여주는 반면, 소형차 플롯에서는 
+#|   관계가 훨씬 더 평평합니다.
+suv <- mpg |> filter(class == "suv")
+compact <- mpg |> filter(class == "compact")
+
+# Left
+ggplot(suv, aes(x = displ, y = hwy, color = drv)) +
+  geom_point()
+
+# Right
+ggplot(compact, aes(x = displ, y = hwy, color = drv)) +
+  geom_point()
+```
+
+이 문제는 전체 데이터의 `limits`로 스케일을 훈련(training)해 여러 플롯이 같은 스케일을 쓰도록 하면 해결됩니다.
+
+```{r}
+#| layout-ncol: 2
+#| fig-width: 4
+#| fig-alt: |
+#|   왼쪽은 SUV의 고속도로 주행 거리 대 배기량 산점도입니다.
+#|   오른쪽은 소형차에 대한 동일한 변수의 산점도입니다.
+#|   두 플롯 모두 점들이 구동 유형에 따라 색상이 지정되어 있습니다. 두 플롯 모두 
+#|   고속도로 주행 거리, 배기량 및 구동 유형의 스케일이 같으며
+#|   그 결과 전륜 구동 SUV가 없고 후륜 구동 
+#|   소형차가 없음에도 불구하고 두 플롯 모두 세 가지 유형(전륜, 후륜, 
+#|   4륜 구동)을 모두 보여주는 범례가 나타납니다. x 및 y 스케일이 동일하고 
+#|   최소 또는 최대 고속도로 주행 거리 및 배기량을 훨씬 넘어서기 때문에 
+#|   점들이 전체 플롯 영역을 차지하지 않습니다.
+x_scale <- scale_x_continuous(limits = range(mpg$displ))
+y_scale <- scale_y_continuous(limits = range(mpg$hwy))
+col_scale <- scale_color_discrete(limits = unique(mpg$drv))
+
+# Left
+ggplot(suv, aes(x = displ, y = hwy, color = drv)) +
+  geom_point() +
+  x_scale +
+  y_scale +
+  col_scale
+
+# Right
+ggplot(compact, aes(x = displ, y = hwy, color = drv)) +
+  geom_point() +
+  x_scale +
+  y_scale +
+  col_scale
+```
+
+이 사례(particular case)에서는 단순히 패싯(faceting)을 써도 됩니다. 하지만 플롯을 여러 페이지의 보고서에 나눠(spread) 배치할 때는 이 기법이 대체로 유용합니다.
+
+### 연습 문제 (Exercises)
+
+1. 다음 코드가 기본 스케일을 재정의하지 않는 이유는 무엇입니까?
+
+```{r}
+#| fig-show: hide
+df <- tibble(
+  x = rnorm(10000),
+  y = rnorm(10000)
+)
+
+ggplot(df, aes(x, y)) +
+  geom_hex() +
+  scale_color_gradient(low = "white", high = "red") +
+  coord_fixed()
+```
+
+2. 모든 스케일의 첫 번째 인수는 무엇입니까? `labs()`와 어떻게 비교됩니까?
+
+3. 다음과 같이 대통령 임기의 표시를 변경해 보세요.
+  a. 색상과 x축 눈금을 사용자 정의하는 두 가지 변형(variants)을 결합합니다.
+  b. y축의 표시를 개선합니다.
+  c. 각 임기에 대통령의 이름을 라벨로 지정합니다.
+  d. 유익한 정보성 플롯 라벨을 추가합니다.
+  e. 4년마다 눈금을 배치합니다(이것은 보기보다 까다롭습니다!).
+
+4. 먼저 다음 플롯을 만드세요. 그런 다음 범례가 더 잘 보이도록 `override.aes`를 사용해 코드를 수정하세요.
+
+```{r}
+#| fig-show: hide
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(color = cut), alpha = 1/20)
+```
+
+## 테마 (Themes)
+
+마지막으로 테마(theme)를 사용해 플롯에서 데이터가 아닌 요소를 사용자 정의합니다.
+
+```{r}
+#| message: false
+#| fig-alt: |
+#|   자동차의 class를 기준으로 색상이 지정된 고속도로 주행 거리 대 배기량 
+#|   산점도. 플롯 배경은 흰색이며 회색 격자선(grid lines)이 있습니다.
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class)) +
+  geom_smooth(se = FALSE) +
+  theme_bw()
+```
+
+ggplot2에는 8개의 테마가 들어 있으며 기본값은 `theme_gray()`입니다.[^communication-2] Jeffrey Arnold의 ggthemes([https://jrnold.github.io/ggthemes](https://jrnold.github.io/ggthemes)) 같은 애드온 패키지에는 더 많은 테마가 있습니다. 특정 회사나 저널의 스타일에 맞춰 자신만의 테마를 만들어도 됩니다.
+
+[^communication-2]: 많은 사람이 기본 테마에 회색 배경을 둔 이유를 궁금해합니다. 격자선을 유지하면서 데이터를 돋보이게(forward) 하려고 신중하게 선택한 색입니다. 흰색 격자선은 위치 판단에 큰 도움이 될 만큼 잘 보이지만 시각적 영향(visual impact)이 거의 없어 쉽게 무시(tune them out)됩니다. 회색 배경은 플롯에 텍스트와 비슷한 활판 인쇄 색상(typographic color)을 부여합니다. 덕분에 그래픽이 밝은 흰색 배경 위로 튀지 않고 문서의 흐름에 자연스럽게(fit in) 어우러집니다. 회색 배경이 연속된 색상 영역(continuous field of color)을 만들기 때문에 플롯은 하나의 시각적 개체로 인식됩니다.
+
+`y`축에 쓰이는 글꼴의 크기나 색상처럼 테마의 개별 구성 요소(components)도 제어합니다. 앞에서는 `legend.position`으로 범례의 위치를 정했습니다. `theme()`으로 조정할 범례의 측면(aspects)은 다양합니다. 아래 플롯에서는 범례의 방향(direction)을 바꾸고 둘레에 검은색 테두리(border)를 넣습니다. 범례 상자와 플롯 제목 같은 테마 요소는 `element_*()` 함수로 사용자 정의합니다.
+
+이 함수들은 데이터가 아닌 구성 요소의 스타일을 지정합니다. 제목 텍스트는 `element_text()`의 `face` 인수로 굵게 표시하고 범례 테두리 색상은 `element_rect()`의 `color` 인수로 정합니다. 제목과 캡션의 위치는 각각 `plot.title.position`과 `plot.caption.position`으로 제어합니다. 다음 플롯에서는 플롯 패널(기본값)이 아니라 전체 플롯 영역(entire plot area)에 맞춰 정렬하도록 두 값을 `"plot"`으로 설정합니다. 제목과 캡션 텍스트의 배치를 바꾸는 다른 `theme()` 구성 요소도 사용합니다.
+
+```{r}
+#| fig-alt: |
+#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 구동을 기준으로 
+#|   색상이 지정되어 있습니다. 플롯의 제목은 'Larger engine sizes tend to have lower fuel 
+#|   economy'이고 데이터 출처인 fueleconomy.gov를 가리키는 캡션이 있습니다.
+#|   캡션과 제목은 왼쪽 정렬(left justified)되어 있으며 범례는 검은색 테두리가 있는
+#|   상태로 플롯 안쪽에(inside of the plot) 있습니다.
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point() +
+  labs(
+    title = "Larger engine sizes tend to have lower fuel economy",
+    caption = "Source: https://fueleconomy.gov."
+  ) +
+  theme(
+    legend.position = c(0.6, 0.7),
+    legend.direction = "horizontal",
+    legend.box.background = element_rect(color = "black"),
+    plot.title = element_text(face = "bold"),
+    plot.title.position = "plot",
+    plot.caption.position = "plot",
+    plot.caption = element_text(hjust = 0)
+  )
+```
+
+모든 `theme()` 구성 요소의 개요는 `?theme` 도움말에서 확인하세요.
+ggplot2 book([https://ggplot2-book.org/](https://ggplot2-book.org/))에도 테마 설정의 세부 정보가 잘 정리되어 있습니다.
+
+### 연습 문제
+
+1. ggthemes 패키지에서 제공하는 테마를 하나 골라 마지막으로 만든 플롯에 적용하세요.
+2. 플롯의 축 라벨을 파란색이고 굵게(bold) 만드세요.
+
+## 레이아웃
+
+지금까지는 플롯 하나를 만들고 수정하는 방법을 알아봤습니다. 여러 플롯을 특정 방식(certain way)으로 배치하려면 어떻게 해야 할까요? patchwork 패키지는 별도의 플롯을 하나의 그래픽으로 결합합니다. 이 패키지는 장의 앞부분에서 불러왔습니다.
+
+플롯 두 개를 나란히(next to each other) 놓으려면 하나에 다른 하나를 더하면 됩니다. 먼저 플롯을 만들어 객체(objects)로 저장합니다. 다음 예에서는 `p1`과 `p2`라고 부릅니다. 두 객체를 `+`로 연결하면 서로 옆에 배치됩니다.
+
+```{r}
+#| fig-width: 6
+#| fig-asp: 0.5
+#| fig-alt: |
+#|   두 개의 플롯(고속도로 주행 거리 대 엔진 크기 산점도 및 
+#|   고속도로 주행 거리 대 구동계 나란히 놓인 상자 그림)이 
+#|   서로 나란히 배치되어 있습니다.
+p1 <- ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point() + 
+  labs(title = "Plot 1")
+p2 <- ggplot(mpg, aes(x = drv, y = hwy)) + 
+  geom_boxplot() + 
+  labs(title = "Plot 2")
+p1 + p2
+```
+
+위 코드 청크에서는 patchwork 패키지의 새 함수를 사용하지 않았습니다. 패키지가 `+` 연산자에 새로운 기능(functionality)을 추가했기 때문입니다.
+
+patchwork로 더 복잡한 플롯 레이아웃도 만들 수 있습니다. 다음 코드에서 `|`는 `p1`과 `p3`를 나란히 놓고 `/`는 `p2`를 다음 줄(line)로 옮깁니다.
+
+```{r}
+#| fig-width: 6
+#| fig-asp: 0.8
+#| fig-alt: |
+#|   첫 번째와 세 번째 플롯이 나란히 배치되고 
+#|   두 번째 플롯이 그 아래로 늘어지도록 세 개의 플롯이 배치되었습니다. 첫 번째 플롯은 
+#|   고속도로 주행 거리 대 엔진 크기의 산점도, 세 번째 플롯은 
+#|   고속도로 주행 거리 대 도시 주행 거리 산점도이고 두 번째 플롯은
+#|   고속도로 주행 거리 대 구동계 나란히 놓인 상자 그림입니다).
+p3 <- ggplot(mpg, aes(x = cty, y = hwy)) + 
+  geom_point() + 
+  labs(title = "Plot 3")
+(p1 | p3) / p2
+```
+
+patchwork는 여러 플롯의 범례를 하나로 모으고 플롯 차원(dimensions)과 범례 배치를 조정합니다. 공통 제목, 부제, 캡션 등도 추가합니다.
+
+아래에서는 5개의 플롯을 만듭니다.
+
+상자 그림과 산점도에서는 범례를 끕니다(turned off). `& theme(legend.position = "top")`을 사용해 밀도(density) 플롯의 범례를 플롯 맨 위에 하나로 모았습니다(collected). 일반적인 `+` 대신 `&` 연산자를 쓴 이유는 개별 ggplots가 아닌(as opposed to) patchwork 플롯의 테마를 수정하기 때문입니다. 범례는 맨 위 `guide_area()` 안에 놓입니다. 마지막으로 patchwork 구성 요소의 높이도 조정했습니다. 가이드의 높이는 1, 상자 그림은 3, 밀도 플롯은 2, 패싯 산점도는 4입니다. Patchwork는 이 비율대로 할당한(allotted) 면적을 나누고 각 구성 요소를 배치합니다.
+
+```{r}
+#| fig-width: 8
+#| fig-asp: 1
+#| fig-alt: |
+#|   처음 두 플롯이 나란히 배치되도록 5개의 플롯이 배치되어 있습니다. 세 번째 및 
+#|   네 번째 플롯은 그 아래에 있습니다. 그리고 다섯 번째 플롯은 그 아래로 늘어납니다. 
+#|   패치워크된(patchworked) 플롯의 제목은 "City and highway mileage for cars with 
+#|   different drive trains(구동계가 다른 자동차의 도시 및 고속도로 주행 거리)"이고 캡션은 "Source: https://fueleconomy.gov"입니다. 
+#|   처음 두 플롯은 나란히 놓인 상자 그림입니다. 플롯 3과 4는 밀도 
+#|   플롯입니다. 그리고 다섯 번째 플롯은 패싯 산점도입니다. 이러한 각 플롯은 
+#|   구동계에 따라 색상이 지정된 지옴을 보여주지만 패치워크된 플롯에는 
+#|   플롯 위, 제목 아래에 모든 플롯에 적용되는 범례 하나만 있습니다.
+p1 <- ggplot(mpg, aes(x = drv, y = cty, color = drv)) + 
+  geom_boxplot(show.legend = FALSE) + 
+  labs(title = "Plot 1")
+
+p2 <- ggplot(mpg, aes(x = drv, y = hwy, color = drv)) + 
+  geom_boxplot(show.legend = FALSE) + 
+  labs(title = "Plot 2")
+
+p3 <- ggplot(mpg, aes(x = cty, color = drv, fill = drv)) + 
+  geom_density(alpha = 0.5) + 
+  labs(title = "Plot 3")
+
+p4 <- ggplot(mpg, aes(x = hwy, color = drv, fill = drv)) + 
+  geom_density(alpha = 0.5) + 
+  labs(title = "Plot 4")
+
+p5 <- ggplot(mpg, aes(x = cty, y = hwy, color = drv)) + 
+  geom_point(show.legend = FALSE) + 
+  facet_wrap(~drv) +
+  labs(title = "Plot 5")
+
+(guide_area() / (p1 + p2) / (p3 + p4) / p5) +
+  plot_annotation(
+    title = "City and highway mileage for cars with different drive trains",
+    caption = "Source: https://fueleconomy.gov."
+  ) +
+  plot_layout(
+    guides = "collect",
+    heights = c(1, 3, 2, 4)
+    ) &
+  theme(legend.position = "top")
+```
+
+patchwork로 여러 플롯을 결합하고 배치하는 방법은 패키지 웹사이트의 가이드([https://patchwork.data-imaginist.com](https://patchwork.data-imaginist.com))에서 자세히 확인하세요.
+
+### 연습 문제
+
+1. 다음 플롯 레이아웃에서 괄호(parentheses)를 생략하면 어떻게 되나요? 이유를 설명해 보세요.
+
+```{r}
+#| fig-show: hide
+p1 <- ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point() + 
+  labs(title = "Plot 1")
+p2 <- ggplot(mpg, aes(x = drv, y = hwy)) + 
+  geom_boxplot() + 
+  labs(title = "Plot 2")
+p3 <- ggplot(mpg, aes(x = cty, y = hwy)) + 
+  geom_point() + 
+  labs(title = "Plot 3")
+
+(p1 | p2) / p3
+```
+
+2. 이전 연습 문제의 세 플롯을 사용하여 다음 patchwork를 다시 만드세요.
+
+```{r}
+#| fig-width: 7
+#| fig-asp: 0.8
+#| echo: false
+#| fig-alt: |
+#|   세 개의 플롯: Plot 1은 고속도로 주행 거리 대 엔진 크기의 산점도입니다. 
+#|   Plot 2는 고속도로 주행 거리 대 구동계 나란히 놓인 상자 그림입니다. 
+#|   Plot 3은 도시 주행 거리 대 구동계 나란히 놓인 상자 그림입니다. 
+#|   Plot 1은 첫 번째 행에 있습니다. Plot 2와 3은 다음 행에 있으며 
+#|   각각 Plot 1 너비의 절반에 걸쳐 있습니다. Plot 1에는 "Fig. A", Plot 2에는 
+#|   "Fig. B", Plot 3에는 "Fig. C" 라벨이 지정되어 있습니다.
+p1 / (p2 + p3) +
+  plot_annotation(
+    tag_levels = c("A"), 
+    tag_prefix = "Fig. ",
+    tag_suffix = ":"
+  )
+```
+
+<!-- HUMANIZE-SUMMARY
+원본 글자수: 31,756자
+윤문본 글자수: 30,267자
+변경률: 7.2% (마크업 제외, verify_change_rate.py)
+
+카테고리별 탐지 건수(before → after):
+- A-1 "~에 대해" 번역투: 10 → 0
+- A-7 가지다 직역: 0 → 0
+- A-10 가능 표현 남발: 33 → 0
+- A-11 목적절 남발: 11 → 0
+- A-15 본문 추상 주어·만능 동사: 6 → 0
+- C-11 연결어미 뒤 쉼표: 13 → 0
+
+자체검증: 6/6 통과
+1. 고유명사·수치·날짜·인용·내용 앵커 보존: 통과
+2. 변경률 30% 이하: 통과
+3. 장르 유지: 통과
+4. register 유지: 통과
+5. 잔존 S1 패턴 0건: 통과
+6. 새 비유·수사·상투구 없음: 통과
+
+등급: B
+사유: S1·선별 S2 패턴이 남지 않았으나 변경률이 A 기준인 10%에 미달함.
+
+주요 변경 하이라이트:
+- "설명 없이도 이해할 수 있게 만드는 데 노력을 투자" → "설명 없이도 이해되는 형태로 만드는 데 노력을 들임"
+- "백그라운드에서 기본 스케일을 자동으로 추가" → "내부적으로 기본 스케일을 자동으로 추가"
+- "스케일이 정렬되는 변수 유형에 따라 이름이 지정" → "스케일에 대응하는 변수 유형에 따라 이름이 정해짐"
+- "패키지가 추가할 수 있게 해줍니다" → "패키지가 추가합니다"
+-->

@@ -1,0 +1,754 @@
+﻿---
+title: "훑어보기: 데이터 변환"
+---
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+## 소개
+
+> 시각화는 통찰을 창출하는 중요한 도구이지만 원하는 그래프를 만드는 데 필요한 정확한 형태로 데이터를 얻는 경우는 드뭅니다. 
+
+데이터로 질문에 답하려면 새로운 변수나 요약본을 만들어야 할 때도 있습니다. 변수 이름을 바꾸거나 관측치를 재정렬해 데이터를 조금 더 쉽게 다루고 싶을 때도 있을 것입니다.
+
+이 장에서는 이러한 작업들(그리고 더 많은 것들!)을 수행하는 방법을 배웁니다. dplyr 패키지를 이용한 데이터 변환과 2013년에 뉴욕시에서 출발한 비행기의 새 데이터셋을 소개하겠습니다.
+
+이 장의 목표는 데이터 프레임을 변환하는 모든 핵심 도구를 개괄하는 것입니다. 먼저 데이터 프레임의 행(rows)에서 작동하는 함수를 배우고 열(columns)에서 작동하는 함수를 살펴봅니다. 그런 다음 동사(verbs)를 결합하는 중요한 도구인 파이프(pipe)를 자세히 다룹니다.
+
+이어서 그룹 작업 기능(ability to work with groups)을 소개합니다.
+마지막에는 이러한 함수의 작동 방식을 보여주는 사례 연구(case study)가 나옵니다.
+이후 장에서 특정 유형의 데이터(숫자, 문자열, 날짜)를 파헤칠 때 해당 함수들을 다시 자세히 살펴보겠습니다.
+
+### nycflights13
+
+기본적인 dplyr 동사를 살펴볼 때는 `nycflights13::flights`를 사용합니다. 이 데이터셋에는 2013년에 뉴욕시에서 출발한 전체 `r format(nrow(nycflights13::flights), big.mark = ",")`편의 비행이 포함되어 있습니다.
+
+이 데이터는 미국 교통통계국(US Bureau of Transportation Statistics, [https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr](https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr]))에서 가져왔으며 `?flights`에 문서화되어 있습니다.
+
+```{r}
+#| label: setup
+library(nycflights13)
+library(tidyverse)
+
+flights
+```
+
+`flights`는 티블(tibble)입니다. tidyverse에서는 몇 가지 흔한 함정(gotchas)을 피하려고 이 특수한 데이터 프레임을 사용합니다. 티블과 데이터 프레임의 중요한 차이는 인쇄(print) 방식입니다. 티블은 대규모 데이터셋에 맞게 설계되어 처음 몇 행과 한 화면에 들어가는 열만 표시합니다.
+
+모든 내용을 보는 방법은 몇 가지입니다. `print(flights, width = Inf)`로 모든 열을 표시하거나 `glimpse()`를 사용합니다.
+
+```{r}
+glimpse(flights)
+```
+
+두 보기(views) 모두 변수 이름 뒤에 각 변수의 유형(type)을 알려주는 약어가 나옵니다. `<int>`는 정수(integer), `<dbl>`은 더블(double, 즉 실수(real numbers)), `<chr>`은 문자(character, 즉 문자열(strings)), `<dttm>`은 날짜-시간(date-time)을 나타냅니다. 열에서 수행할 작업은 그 "유형"에 크게 좌우되므로 이 정보는 매우 중요합니다.
+
+## dplyr 기초
+
+이제 데이터 조작 문제의 대부분을 해결하는 주요 dplyr 동사(함수)를 배울 차례입니다.
+개별적인 차이를 논의하기 전에 이 동사들의 공통점을 짚어보겠습니다.
+
+1. 첫 번째 인수는 항상 데이터 프레임입니다.
+
+2. 후속 인수들은 일반적으로 따옴표 없이(without quotes) 변수 이름을 사용하여 연산을 수행할 열을 설명합니다.
+
+3. 출력은 항상 새로운 데이터 프레임입니다.
+
+각 동사는 한 가지 일을 잘 수행합니다. 복잡한 문제는 대개 여러 동사를 결합해야 하므로 파이프(`|>`)를 사용합니다. 파이프는 왼쪽에 있는 것을 오른쪽 함수로 전달합니다. 따라서 `x |> f(y)`는 `f(x, y)`와 같고 `x |> f(y) |> g(z)`는 `g(f(x, y), z)`와 같이 작동합니다. 파이프는 "then(그리고 나서)"이라고 읽으면 쉽습니다. 아직 세부 사항을 배우지 않았더라도 다음 코드의 의미가 드러납니다.
+
+```{r}
+#| eval: false
+flights |>
+  filter(dest == "IAH") |> 
+  group_by(year, month, day) |> 
+  summarize(
+    arr_delay = mean(arr_delay, na.rm = TRUE)
+  )
+```
+
+dplyr의 동사는 연산 대상에 따라 4가지 그룹(행, 열, 그룹 또는 테이블)으로 나뉩니다.
+행, 열, 그룹에 쓰는 주요 동사를 먼저 배웁니다. 테이블에서 작동하는 조인 동사(join verbs)는 나중에 다룹니다.
+
+## 행
+
+데이터셋의 행(rows)에 작용하는 주요 동사는 `filter()`와 `arrange()`입니다. `filter()`는 값의 순서를 유지한 채 행을 바꾸고 `arrange()`는 기존 행을 유지한 채 순서를 바꿉니다.
+
+두 함수 모두 행에만 영향을 주며 열은 그대로 둡니다. 고유한 값이 있는 행을 찾는 `distinct()`도 알아보겠습니다. `arrange()`나 `filter()`와 달리 이 함수는 선택적으로 열을 수정할 수도 있습니다.
+
+### `filter()`
+
+`filter()`는 열의 값을 기준으로 행을 유지합니다. 첫 번째 인수는 데이터 프레임입니다. 두 번째와 그 뒤의 인수들은 행을 유지할 때 참(true)이어야 하는 조건(conditions)입니다. 예를 들어 120분(2시간) 이상 늦게 출발한 모든 비행을 찾습니다.
+
+```{r}
+flights |> 
+  filter(dep_delay > 120)
+```
+
+`>`(초과), `>=`(이상), `<`(미만), `<=`(이하), `==`(같음), `!=`(같지 않음)을 사용합니다. `&` 또는 `,`는 조건을 "and(그리고)"(두 조건 모두 확인)로, `|`는 "or(또는)"(두 조건 중 하나 확인)로 결합합니다.
+
+```{r}
+# 1월 1일에 출발한 항공편
+flights |> 
+  filter(month == 1 & day == 1)
+
+# 1월 또는 2월에 출발한 항공편
+flights |> 
+  filter(month == 1 | month == 2)
+```
+
+`|`와 `==`를 결합할 때 유용한 단축키(shortcut)인 `%in%`이 있습니다. 이것은 변수가 오른쪽의 값 중 하나와 같은 행을 유지합니다.
+
+```{r}
+# 1월 또는 2월에 출발한 항공편을 선택하는 더 짧은 방법
+flights |> 
+  filter(month %in% c(1, 2))
+```
+
+`filter()`를 실행하면 dplyr은 필터링한 새 데이터 프레임을 만들어 인쇄(print)합니다. dplyr 함수는 입력값을 수정하지 않으므로 기존 `flights` 데이터셋은 그대로입니다. 결과를 저장하려면 할당 연산자 `<-`를 사용해야 합니다.
+
+```{r}
+jan1 <- flights |> 
+  filter(month == 1 & day == 1)
+```
+
+R을 시작할 때 범하기 쉬운 실수는 동등성(equality)을 테스트할 때 `==` 대신 `=`를 사용하는 것입니다. 이런 일이 발생하면 `filter()`가 여러분에게 알려줄 것입니다.
+
+```{r}
+#| error: true
+flights |> 
+  filter(month = 1)
+```
+
+또 다른 실수는 영어에서 하듯이 "or" 문장을 쓰는 것입니다.
+
+```{r}
+#| eval: false
+flights |> 
+  filter(month == 1 | 2)
+```
+
+이 코드는 오류가 발생하지 않는다는 의미에서는 "작동"합니다. 하지만 `|`가 조건 `month == 1`을 확인한 다음 조건 `2`를 확인하므로 원하는 결과는 나오지 않습니다(`2`는 확인하기에 타당한 조건이 아닙니다). 
+
+### `arrange()`
+
+`arrange()`는 열의 값을 기준으로 행의 순서를 바꿉니다. 이 함수에는 데이터 프레임과 정렬(order by) 기준으로 삼을 일련의 열 이름(또는 더 복잡한 표현식)을 입력합니다.
+
+열 이름을 두 개 이상 입력하면 앞 열의 값이 동일한 경우(tie) 다음 열로 순서를 결정합니다. 예를 들어 다음 코드는 4개 열에 나뉜 출발 시간을 기준으로 정렬합니다. 이른 연도가 먼저 표시되고 같은 연도 안에서는 이른 월 순으로 정렬됩니다.
+
+```{r}
+flights |> 
+  arrange(year, month, day, dep_time)
+```
+
+`arrange()` 내부의 열에 `desc()`를 사용하면 해당 열을 기준으로 데이터 프레임을 내림차순(큰 값부터 작은 값 순으로) 정렬합니다. 예를 들어 이 코드는 지연(delayed) 시간이 긴 비행부터 짧은 비행 순으로 정렬합니다.
+
+```{r}
+flights |> 
+  arrange(desc(dep_delay))
+```
+
+행 수가 변경되지 않았음에 유의하세요. 데이터를 필터링하는 것이 아니라 정렬(arranging)할 뿐입니다.
+
+### `distinct()`
+
+`distinct()`는 데이터셋에서 고유한 행을 모두 찾으므로 엄밀히 말해 기본적으로 행에서 작동합니다. 하지만 대부분은 일부 변수의 고유한 조합(distinct combination)을 찾으므로 열 이름을 선택적으로 지정할 수도 있습니다.
+
+```{r}
+# 중복 행이 있는 경우 제거
+flights |> 
+  distinct()
+
+# 모든 고유한 출발지(origin)와 목적지(dest) 쌍 찾기
+flights |> 
+  distinct(origin, dest)
+```
+
+고유한 행을 필터링하면서 다른 열을 유지하려면 `.keep_all = TRUE` 옵션을 사용합니다.
+
+```{r}
+flights |> 
+  distinct(origin, dest, .keep_all = TRUE)
+```
+
+이 고유한 항공편이 모두 1월 1일에 있다는 것은 우연이 아닙니다. `distinct()`는 데이터셋에서 고유한 행이 처음 나타나는 것을 찾고 나머지는 버립니다.
+
+발생 횟수를 찾으려면 `distinct()` 대신 `count()`를 사용합니다. `sort = TRUE` 인수를 지정하면 발생 횟수의 내림차순으로 정렬됩니다.
+
+```{r}
+flights |>
+  count(origin, dest, sort = TRUE)
+```
+
+### 연습 문제 (Exercises)
+
+1.  각 조건에 대한 단일 파이프라인에서 조건을 충족하는 모든 항공편을 찾으세요.
+    - 도착 지연이 2시간 이상 발생함
+    - 휴스턴(`IAH` 또는 `HOU`)으로 비행함
+    - United, American, Delta에서 운항함
+    - 여름(7월, 8월, 9월)에 출발함
+    - 2시간 이상 늦게 도착했지만 늦게 출발하지는 않음
+    - 최소 1시간 이상 지연되었으나 비행 중 30분 이상을 만회함
+
+2.  `flights`를 정렬하여 출발 지연이 긴 항공편을 찾으세요. 아침에 일찍 출발한 비행기를 찾으세요.
+
+3.  `flights`를 정렬하여 빠른 비행기를 찾으세요. (힌트: 함수 내부에 수학 계산을 포함해 보세요.)
+
+4.  2013년에는 매일 비행기가 있었나요?
+
+5.  어떤 항공편이 먼 거리를 이동했나요? 어떤 비행기가 짧은 거리를 이동했나요?
+
+6.  `filter()`와 `arrange()`를 모두 사용하는 경우 순서가 중요한가요? 왜 중요한가요/왜 중요하지 않나요? 결과와 함수가 해야 할 작업의 양을 생각해 보세요.
+
+## 열 (Columns)
+
+행을 바꾸지 않고 열에 작용하는 주요 동사는 네 가지입니다. `mutate()`는 기존 열에서 파생된 새 열을 만들고 `select()`는 기존 열을 선택하며 `rename()`은 열 이름을, `relocate()`는 열 위치를 변경합니다.
+
+### `mutate()` {#sec-mutate}
+
+`mutate()`는 기존 열에서 계산한 새 열을 추가합니다. 변환(transform) 장에서는 여러 유형의 변수를 조작하는 다양한 함수들을 배울 것입니다.
+지금은 기본적인 대수(algebra)를 고수하여 지연된 항공편이 공중에서 만회한 시간인 `gain`과 시속 마일 단위의 `speed`를 계산해 보겠습니다.
+
+```{r}
+flights |> 
+  mutate(
+    gain = dep_delay - arr_delay,
+    speed = distance / air_time * 60
+  )
+```
+
+기본적으로 `mutate()`는 데이터셋 오른쪽에 새 열을 추가하므로 무슨 일이 일어났는지 확인하기 어렵습니다. `.before` 인수를 사용하면 변수를 왼쪽에 추가합니다[^data-transform-2]:
+
+[^data-transform-2]: RStudio에서 열이 많은 데이터셋을 보는 쉬운 방법은 `View()`를 사용하는 것임을 기억하세요.
+
+```{r}
+flights |> 
+  mutate(
+    gain = dep_delay - arr_delay,
+    speed = distance / air_time * 60,
+    .before = 1
+  )
+```
+
+`.`은 `.before`가 함수의 인수(argument)이며 생성 중인 세 번째 새 변수의 이름이 아님을 나타냅니다. 변수 뒤에 추가할 때는 `.after`를 사용합니다. `.before`와 `.after`에는 위치(position) 대신 변수 이름도 쓸 수 있습니다. 예를 들어 새 변수를 `day` 뒤에 추가합니다.
+
+```{r}
+#| results: false
+flights |> 
+  mutate(
+    gain = dep_delay - arr_delay,
+    speed = distance / air_time * 60,
+    .after = day
+  )
+```
+
+`.keep` 인수로 유지할 변수를 제어할 수도 있습니다. 특히 유용한 `"used"`는 `mutate()` 단계에 관여하거나 이 단계에서 생성된 열만 유지합니다. 예를 들어 다음 출력에는 변수 `dep_delay`, `arr_delay`, `air_time`, `gain`, `hours`, `gain_per_hour`만 포함됩니다.
+
+```{r}
+#| results: false
+flights |> 
+  mutate(
+    gain = dep_delay - arr_delay,
+    hours = air_time / 60,
+    gain_per_hour = gain / hours,
+    .keep = "used"
+  )
+```
+
+위 계산 결과를 `flights`에 다시 할당하지 않았으므로 새 변수 `gain`, `hours`, `gain_per_hour`는 인쇄될 뿐 데이터 프레임에는 저장되지 않습니다. 이 변수를 나중에 사용하려면 결과를 `flights`에 다시 할당해 변수가 훨씬 더 많은 원본 데이터 프레임을 덮어쓸지, 새 객체에 할당할지 신중히 정해야 합니다. 보통은 내용을 드러내는 이름(`delay_gain`)을 붙인 새 객체가 적절하지만 `flights`를 덮어쓸 만한 이유가 있을 수도 있습니다.
+
+### `select()` {#sec-select}
+
+수백 개 또는 수천 개의 변수가 든 데이터셋은 드물지 않습니다. 이때 첫 과제는 보통 관심 있는 변수에 초점을 맞추는 것입니다. `select()`는 변수 이름을 기준으로 연산해 유용한 하위 집합을 빠르게 줌인(zoom in)합니다.
+
+- 이름으로 열 선택:
+
+```{r}
+#| results: false
+flights |> 
+  select(year, month, day)
+```
+
+- year와 day 사이의 모든 열 선택(포함):
+
+```{r}
+#| results: false
+flights |> 
+  select(year:day)
+```
+
+- year부터 day까지를 제외한 모든 열 선택(포함):
+
+```{r}
+#| results: false
+flights |> 
+  select(!year:day)
+```
+
+예전에는 이 연산에 `!` 대신 `-`를 썼으므로 실제 코드(in the wild)에서도 자주 보입니다. 두 연산자의 목적은 같지만 동작에는 미묘한 차이가 있습니다. `!`는 "아님(not)"으로 읽히고 `&`, `|`와 잘 결합되므로 `!`를 권장합니다.
+
+- 문자인 모든 열 선택:
+
+```{r}
+#| results: false
+flights |> 
+  select(where(is.character))
+```
+
+`select()` 안에서 쓸 수 있는 도우미 함수(helper functions)는 몇 가지입니다.
+
+- `starts_with("abc")`: 이름이 "abc"로 시작하는 항목을 찾습니다.
+- `ends_with("xyz")`: 이름이 "xyz"로 끝나는 항목을 찾습니다.
+- `contains("ijk")`: 이름에 "ijk"가 포함된 항목을 찾습니다.
+- `num_range("x", 1:3)`: `x1`, `x2`, `x3`와 일치합니다.
+
+자세한 내용은 `?select`를 참조하세요.
+
+정규식(regular expressions)을 알게 되면 `matches()`를 사용하여 패턴과 일치하는 변수를 선택할 수도 있습니다. 
+
+`select()`에서 `=`를 사용하면 변수 이름을 바꿀 수 있습니다. 새 이름은 `=` 왼쪽에, 기존 변수는 오른쪽에 놓습니다.
+
+```{r}
+flights |> 
+  select(tail_num = tailnum)
+```
+
+### `rename()`
+
+기존 변수를 모두 유지하면서 몇 가지 이름만 바꾸려면 `select()` 대신 `rename()`을 사용합니다.
+
+```{r}
+flights |> 
+  rename(tail_num = tailnum)
+```
+
+이름이 일관되지 않은 열이 많아 모두 수동으로 수정하기 어렵다면 자동 정리(automated cleaning) 기능을 제공하는 `janitor::clean_names()`를 확인해 보세요.
+
+### `relocate()`
+
+변수를 이리저리 옮길 때는 `relocate()`를 사용합니다. 관련 변수를 한데 모으거나 중요한 변수를 맨 앞으로 옮길 때 유용합니다. 기본적으로 `relocate()`는 변수를 앞으로 이동합니다.
+
+```{r}
+flights |> 
+  relocate(time_hour, air_time)
+```
+
+`mutate()`와 마찬가지로 `.before`와 `.after` 인수로 배치할 위치를 지정할 수도 있습니다.
+
+```{r}
+#| results: false
+flights |> 
+  relocate(year:dep_time, .after = time_hour)
+flights |> 
+  relocate(starts_with("arr"), .before = dep_time)
+```
+
+### 연습 문제 (Exercises)
+
+```{r}
+#| eval: false
+#| echo: false
+# 책에 표시된 결과에서는 사용되지 않으며 데이터 확인(checking)용입니다
+flights <- flights |> mutate(
+  dep_time = hour * 60 + minute,
+  arr_time = (arr_time %/% 100) * 60 + (arr_time %% 100),
+  airtime2 = arr_time - dep_time,
+  dep_sched = dep_time + dep_delay
+)
+
+ggplot(flights, aes(x = dep_sched)) + geom_histogram(binwidth = 60)
+ggplot(flights, aes(x = dep_sched %% 60)) + geom_histogram(binwidth = 1)
+ggplot(flights, aes(x = air_time - airtime2)) + geom_histogram()
+```
+
+1. `dep_time`, `sched_dep_time`, `dep_delay`를 비교해 보세요. 이 세 숫자가 어떻게 관련될 것이라고 예상하시나요?
+
+2. `flights`에서 `dep_time`, `dep_delay`, `arr_time`, `arr_delay`를 선택하는 가능한 한 많은 방법을 브레인스토밍하세요.
+
+3. `select()` 호출에서 동일한 변수의 이름을 여러 번 지정하면 어떻게 되나요?
+
+4. `any_of()` 함수는 어떤 역할을 하나요? 이 벡터와 함께 사용할 때 이 함수가 도움이 될 수 있는 이유는 무엇인가요?
+
+```{r}
+variables <- c("year", "month", "day", "dep_delay", "arr_delay")
+```
+
+5. 다음 코드를 실행한 결과가 놀라운가요? 선택(select) 도우미 함수는 기본적으로 대소문자를 어떻게 처리하나요? 해당 기본값을 어떻게 변경할 수 있나요?
+
+```{r}
+#| eval: false
+flights |> select(contains("TIME"))
+```
+
+6. 측정 단위를 나타내기 위해 `air_time`의 이름을 `air_time_min`으로 변경하고 이를 데이터 프레임의 시작 부분으로 옮기세요.
+
+7. 다음이 작동하지 않는 이유는 무엇이며 오류는 무엇을 의미하나요?
+
+```{r}
+#| error: true
+flights |> 
+  select(tailnum) |> 
+  arrange(arr_delay)
+```
+
+## 파이프 (The pipe) {#sec-the-pipe}
+
+위에서 파이프의 간단한 예를 살펴봤지만 진정한 힘은 여러 동사를 결합할 때 나타납니다. 휴스턴의 IAH 공항으로 가는 빠른 항공편을 찾는다고 해 봅시다. `filter()`, `mutate()`, `select()`, `arrange()`를 결합해야 합니다.
+
+```{r}
+flights |> 
+  filter(dest == "IAH") |> 
+  mutate(speed = distance / air_time * 60) |> 
+  select(year:day, dep_time, carrier, flight, speed) |> 
+  arrange(desc(speed))
+```
+
+이 파이프라인은 4단계이지만 동사가 각 줄의 시작에 있어 대강 훑어보기(skim) 쉽습니다. `flights` 데이터에서 시작해 필터(filter), 변이(mutate), 선택(select)을 거쳐 정렬(arrange)합니다.
+
+파이프가 없었다면 어떻게 되었을까요? 이전 호출 안에 각 함수 호출을 중첩할(nest) 수 있습니다.
+
+```{r}
+#| results: false
+arrange(
+  select(
+    mutate(
+      filter(
+        flights, 
+        dest == "IAH"
+      ),
+      speed = distance / air_time * 60
+    ),
+    year:day, dep_time, carrier, flight, speed
+  ),
+  desc(speed)
+)
+```
+
+또는 수많은 중간 객체(intermediate objects)를 사용합니다.
+
+```{r}
+#| results: false
+flights1 <- filter(flights, dest == "IAH")
+flights2 <- mutate(flights1, speed = distance / air_time * 60)
+flights3 <- select(flights2, year:day, dep_time, carrier, flight, speed)
+arrange(flights3, desc(speed))
+```
+
+두 형식 모두 적절한 쓰임새가 있지만 파이프를 사용한 데이터 분석 코드는 대체로 작성하고 읽기 쉽습니다.
+
+## 그룹 (Groups)
+
+지금까지 행과 열에서 작동하는 함수를 배웠습니다. 그룹 작업 기능이 더해지면 dplyr은 훨씬 강력해집니다. 이 섹션에서는 주요 함수인 `group_by()`, `summarize()`, slice 제품군 함수에 집중합니다.
+
+### `group_by()`
+
+데이터셋을 분석에 의미 있는 그룹으로 나누려면 `group_by()`를 사용하세요.
+
+```{r}
+flights |> 
+  group_by(month)
+```
+
+`group_by()`는 데이터를 바꾸지 않습니다. 다만 출력을 자세히 보면 월별로 "그룹화됨(grouped by)"을 나타내는 `Groups: month [12]`가 있습니다. 이후의 연산이 "월별(by month)"로 작동한다는 뜻입니다. `group_by()`는 데이터 프레임에 그룹화 기능(클래스(class)라고 함)을 추가해 후속 동사의 동작을 바꿉니다.
+
+### `summarize()` {#sec-summarize}
+
+주요 그룹화 연산인 요약(summary)은 단일 요약 통계량을 계산할 때 데이터 프레임을 줄여 그룹당 행 하나만 남깁니다. dplyr에서는 `summarize()`[^data-transform-3]가 이 작업을 수행합니다. 다음 예제는 월별 평균 출발 지연을 계산합니다.
+
+[^data-transform-3]: 영국식 영어를 선호한다면 `summarise()`를 써도 됩니다.
+
+```{r}
+flights |> 
+  group_by(month) |> 
+  summarize(
+    avg_delay = mean(dep_delay)
+  )
+```
+
+뭔가 잘못되어 모든 결과가 R의 결측값(missing value) 기호인 `NA`로 나옵니다. 일부 항공편의 지연 열(delay column)에 데이터가 누락되어 있고 이를 포함해 평균을 계산했기 때문입니다. 지금은 `na.rm` 인수를 `TRUE`로 설정해 `mean()` 함수가 모든 결측값을 무시하도록 하겠습니다.
+
+```{r}
+flights |> 
+  group_by(month) |> 
+  summarize(
+    avg_delay = mean(dep_delay, na.rm = TRUE)
+  )
+```
+
+`summarize()`를 한 번 호출(single call)해 원하는 만큼 요약(summaries)을 생성합니다. 각 그룹의 행 수를 반환하는 `n()`도 매우 유용합니다.
+
+```{r}
+flights |> 
+  group_by(month) |> 
+  summarize(
+    avg_delay = mean(dep_delay, na.rm = TRUE), 
+    n = n()
+  )
+```
+
+평균(means)과 카운트(counts)는 데이터 과학에서 놀라울 정도로 요긴하게 쓰입니다!
+
+### `slice_` 함수들 (The `slice_` functions)
+
+각 그룹에서 특정 행을 추출하는 편리한 함수는 5가지입니다.
+
+- `df |> slice_head(n = 1)`은 각 그룹에서 첫 번째 행을 가져옵니다.
+- `df |> slice_tail(n = 1)`은 각 그룹의 마지막 행을 가져옵니다.
+- `df |> slice_min(x, n = 1)`은 `x` 열의 값이 작은 행을 가져옵니다.
+- `df |> slice_max(x, n = 1)`은 `x` 열의 값이 큰 행을 가져옵니다.
+- `df |> slice_sample(n = 1)`은 하나의 무작위 행을 가져옵니다.
+
+`n`을 바꾸면 둘 이상의 행을 선택합니다. `n =` 대신 `prop = 0.1`을 사용하면 각 그룹에서 행의 10%를 선택합니다. 다음 코드는 각 목적지 도착 시 지연된 항공편을 찾습니다.
+
+```{r}
+flights |> 
+  group_by(dest) |> 
+  slice_max(arr_delay, n = 1) |>
+  relocate(dest)
+```
+
+목적지는 105개인데 여기서는 108개의 행이 나옵니다. 어떻게 된 일일까요? `slice_min()`과 `slice_max()`는 동률 값(tied values)을 유지하므로 `n = 1`은 높은 값을 가진 모든 행을 반환하라는 의미입니다. 그룹당 행을 정확히 하나만 남기려면 `with_ties = FALSE`를 설정합니다.
+
+`summarize()`로 최대 지연 시간을 계산하는 것과 비슷하지만 단일 요약 통계량 대신 해당하는 전체 행(또는 동률인 행들)을 얻습니다.
+
+### 여러 변수로 그룹화하기
+
+둘 이상의 변수로 그룹을 만들 수도 있습니다. 예를 들어 날짜별 그룹을 만들 수 있습니다.
+
+```{r}
+daily <- flights |>  
+  group_by(year, month, day)
+daily
+```
+
+둘 이상의 변수로 그룹화한 티블을 요약할 때마다 마지막 그룹이 벗겨집니다(peels off). 돌이켜보면 함수를 작동시키는 좋은 방법은 아니었지만 기존 코드를 깨뜨리지 않고는 바꾸기 어렵습니다. dplyr은 무슨 일이 일어나는지 분명히 하려고 이 동작을 변경하는 방법을 메시지로 알려줍니다.
+
+```{r}
+daily_flights <- daily |> 
+  summarize(n = n())
+```
+
+이 동작에 만족한다면 명시적으로 요청해 메시지를 억제합니다.
+
+```{r}
+#| results: false
+
+daily_flights <- daily |> 
+  summarize(
+    n = n(), 
+    .groups = "drop_last"
+  )
+```
+
+또는 다른 값(모든 그룹화를 삭제하는 `"drop"`, 또는 동일한 그룹을 보존하는 `"keep"`)을 설정하여 기본 동작을 변경하세요.
+
+### 그룹화 해제
+
+`summarize()`를 사용하지 않고 데이터 프레임의 그룹화를 제거할 때도 있습니다.
+이때는 `ungroup()`을 사용합니다.
+
+```{r}
+daily |> 
+  ungroup()
+```
+
+이제 그룹을 해제한 데이터 프레임을 요약하면 어떤 일이 일어나는지 살펴봅시다.
+
+```{r}
+daily |> 
+  ungroup() |>
+  summarize(
+    avg_delay = mean(dep_delay, na.rm = TRUE), 
+    flights = n()
+  )
+```
+
+dplyr은 그룹을 해제한 데이터 프레임의 모든 행을 하나의 그룹으로 취급하므로 행 하나만 반환합니다.
+
+### `.by`
+
+dplyr 1.1.0에는 연산별 그룹화(per-operation grouping)를 위한 새롭고 실험적인 구문인 `.by` 인수가 포함되어 있습니다. `group_by()`와 `ungroup()`이 사라지는 것은 아니지만 이제 `.by` 인수로 단일 연산 안에서 그룹화할 수도 있습니다.
+
+```{r}
+#| results: false
+flights |> 
+  summarize(
+    delay = mean(dep_delay, na.rm = TRUE), 
+    n = n(),
+    .by = month
+  )
+```
+
+또는 여러 변수로 그룹화하려는 경우는 아래와 같습니다.
+
+```{r}
+#| results: false
+flights |> 
+  summarize(
+    delay = mean(dep_delay, na.rm = TRUE), 
+    n = n(),
+    .by = c(origin, dest)
+  )
+```
+
+`.by`는 모든 동사(verbs)와 함께 작동합니다. 그룹화 메시지를 억제하려고 `.groups` 인수를 쓰거나 작업을 마친 뒤 `ungroup()`을 쓸 필요가 없다는 장점이 있습니다.
+
+`.by`에 관한 자세한 내용은 [dplyr 1.1.0 블로그 게시물]([https://www.tidyverse.org/blog/2023/02/dplyr-1-1-0-per-operation-grouping/](https://www.tidyverse.org/blog/2023/02/dplyr-1-1-0-per-operation-grouping/))에서 확인하세요.
+
+### 연습 문제
+
+1.  평균 지연이 심한 항공사(carrier)는 어디인가요? 나쁜 공항의 효과와 나쁜 항공사의 효과를 구분할 수 있나요? 왜 할 수 있나요/왜 할 수 없나요? (힌트: `flights |> group_by(carrier, dest) |> summarize(n())`을 생각해 보세요.)
+
+2.  각 목적지로 출발할 때 지연된 항공편을 찾으세요.
+
+3.  하루 동안 시간이 지남에 따라 지연이 어떻게 변하나요? 답변을 플롯으로 설명하세요.
+
+4.  `slice_min()` 및 관련 함수들에 음수의 `n`을 입력하면 어떻게 되나요?
+
+5.  방금 배운 dplyr 동사의 관점에서 `count()`가 수행하는 작업을 설명하세요. `count()`의 `sort` 인수는 어떤 역할을 하나요?
+
+6.  아주 작은(tiny) 데이터 프레임이 있다고 가정해 보겠습니다.
+
+```{r}
+df <- tibble(
+  x = 1:5,
+  y = c("a", "b", "a", "a", "b"),
+  z = c("K", "K", "L", "L", "K")
+)
+```
+
+a.  출력이 어떻게 나타날지 생각해 보고 적어둔 다음 정답인지 확인하고 `group_by()`가 하는 일을 설명하세요.
+
+```{r}
+#| eval: false 
+df |>
+  group_by(y)
+```
+
+b.  출력이 어떻게 나타날지 생각해 보고 적어둔 다음 정답인지 확인하고 `arrange()`가 하는 일을 설명하세요. 또한 (a) 부분의 `group_by()`와 어떻게 다른지 논평하세요.
+
+```{r}
+#| eval: false
+df |>
+  arrange(y)
+```
+
+c.  출력이 어떻게 나타날지 생각해 보고 적어둔 다음 정답인지 확인하고 파이프라인이 하는 일을 설명하세요.
+
+```{r}
+#| eval: false
+df |>
+  group_by(y) |>
+  summarize(mean_x = mean(x))
+```
+
+d.  출력이 어떻게 나타날지 생각해 보고 적어둔 다음 정답인지 확인하고 파이프라인이 하는 일을 설명하세요. 그런 다음 메시지가 무엇을 의미하는지 논평하세요.
+
+```{r}
+#| eval: false  
+df |>
+  group_by(y, z) |>
+  summarize(mean_x = mean(x))
+```
+
+e. 출력이 어떻게 나타날지 생각해 보고 적어둔 다음 정답인지 확인하고 파이프라인이 하는 일을 설명하세요. (d) 부분의 출력과 어떻게 다른가요?
+
+```{r}
+#| eval: false
+df |>
+  group_by(y, z) |>
+  summarize(mean_x = mean(x), .groups = "drop")
+```
+
+f.  출력이 어떻게 나타날지 생각해 보고 적어둔 다음 정답인지 확인하고 각 파이프라인이 하는 일을 설명하세요. 두 파이프라인의 출력은 어떻게 다른가요?
+
+```{r}
+#| eval: false  
+df |>
+  group_by(y, z) |>
+  summarize(mean_x = mean(x))
+    
+df |>
+  group_by(y, z) |>
+  mutate(mean_x = mean(x))
+```
+
+## 사례 연구: 집계 및 표본 크기 {#sec-sample-size}
+
+집계(aggregation)할 때는 항상 개수(`n()`)를 포함하는 편이 좋습니다. 그러면 아주 적은 데이터를 근거로 결론을 내리는 일을 피합니다. 이를 설명하기 위해 Lahman 패키지의 야구 데이터를 사용하겠습니다. 구체적으로 선수가 안타를 치는 비율(`H`)과 공을 인플레이시키려 시도한 횟수(`AB`)를 비교합니다.
+
+```{r}
+batters <- Lahman::Batting |> 
+  group_by(playerID) |> 
+  summarize(
+    performance = sum(H, na.rm = TRUE) / sum(AB, na.rm = TRUE),
+    n = sum(AB, na.rm = TRUE)
+  )
+batters
+```
+
+타자의 기술(타율인 `performance`로 측정됨)과 공을 칠 기회의 수(타석 수인 `n`으로 측정됨)를 플로팅하면 두 가지 패턴이 나타납니다.
+
+1.  타석 수가 적은 선수들 사이에서 `performance`의 변동(variation)이 더 큽니다. 이 플롯의 모양은 매우 특징적입니다. 평균(또는 다른 요약 통계량)과 그룹 크기를 플로팅하면 표본 크기가 증가할수록 변동이 감소합니다[^data-transform-4].
+
+2.  기술(`performance`)과 공을 칠 기회(`n`) 사이에는 양의 상관관계(positive correlation)가 있습니다. 팀은 최고의 타자에게 공을 칠 기회를 많이 주고 싶어하기 때문입니다.
+
+[^data-transform-4]: 대수의 법칙(law of large numbers)
+
+```{r}
+#| warning: false
+#| fig-alt: |
+#|   타석 기회 대 타석 성과를 나타내는 산점도에 부드러운 곡선이 
+#|   겹쳐져 있습니다. 평균 성과는 n이 ~100일 때 0.2에서 
+#|   n이 ~1000일 때 0.25로 급격히 증가합니다. 평균 성과는 
+#|   훨씬 더 완만한 기울기로 선형적으로 계속 증가하여 
+#|   n이 ~12,000일 때 0.3에 도달합니다.
+batters |> 
+  filter(n > 100) |> 
+  ggplot(aes(x = n, y = performance)) +
+  geom_point(alpha = 1 / 10) + 
+  geom_smooth(se = FALSE)
+```
+
+ggplot2와 dplyr을 결합하는 유용한 패턴에 주목하세요. 데이터셋을 처리하는 `|>`에서 플롯에 레이어를 추가하는 `+`로 전환한다는 점만 기억하면 됩니다.
+
+이 패턴은 순위 매기기(ranking)에도 중요합니다. 단순히 `desc(performance)`로 정렬하면 타율이 좋은 사람들은 공을 인플레이시키려 시도한 횟수가 매우 적고 우연히 안타를 친 사람들일 뿐, 반드시 기술이 뛰어난 선수는 아닙니다.
+
+```{r}
+batters |> 
+  arrange(desc(performance))
+```
+
+이 문제에 대한 훌륭한 설명과 이를 극복하는 방법은 [http://varianceexplained.org/r/empirical_bayes_baseball/](http://varianceexplained.org/r/empirical_bayes_baseball/) 및 [https://www.evanmiller.org/how-not-to-sort-by-average-rating.html](https://www.evanmiller.org/how-not-to-sort-by-average-rating.html)에서 찾을 수 있습니다.
+
+<!-- HUMANIZE-SUMMARY
+원본 글자수: 19,989자
+윤문본 글자수: 18,944자
+변경률: 7.5% (마크업 제외, verify_change_rate.py)
+
+카테고리별 탐지 건수(before → after):
+- A-1 "~에 대해" 번역투: 14 → 2
+- A-7 가지다 직역: 2 → 0
+- A-10 가능 표현 남발: 36 → 3
+- A-11 목적절 남발: 11 → 1
+- C-11 연결어미 뒤 쉼표: 11 → 0
+- D-3 열거 도입 관용구: 1 → 0
+
+자체검증: 6/6 통과
+1. 고유명사·수치·날짜·인용·내용 앵커 보존: 통과
+2. 변경률 30% 이하: 통과
+3. 장르 유지: 통과
+4. register 유지: 통과
+5. 잔존 S1 패턴 0건: 통과
+6. 새 비유·수사·상투구 없음: 통과
+
+등급: B
+사유: S1 잔존이 없고 남은 A-10 3건은 연습 문제의 의미상 필요한 가능 표현이며 자체검증 6항을 모두 통과함.
+
+주요 변경 하이라이트:
+- "작업하기가 조금 더 쉽게 만들고" → "데이터를 조금 더 쉽게 다루고"
+- "개요를 제공하는 것입니다" → "핵심 도구를 개괄하는 것입니다"
+- "그들이 공통적으로 가지고 있는 특징" → "이 동사들의 공통점"
+- "이렇게 작업할 수 있는 기능" → "그룹 작업 기능"
+-->
