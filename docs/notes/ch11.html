@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>중심극한정리를 활용한 가설 검정 수행하기</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6a85eee24a8917aa54068f8feecfb4f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">중심극한정리를 활용한 가설 검정 수행하기</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">중심극한정리를 활용한 가설 검정 수행하기</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="서론" class="level2">
+<h2 class="anchored" data-anchor-id="서론">서론</h2>
+<p>가설 검정(Hypothesis testing)의 개념을 소개했으므로, 이제 이를 조금 더 자세히 파헤쳐 보겠습니다. 구체적으로, 의사 결정 과정의 원동력인 p-값(p-value)을 얻는 방법에 대해 이야기해야 합니다. p-값을 얻는 기술은 많지만, 그 중 대다수는 지루하거나 입문 과정의 범위를 벗어나는 이론적 설명을 필요로 합니다. p-값을 얻는 일반적이고 실제로 더 간단한 방법 중 하나는 중심극한정리(Central limit theorem)를 활용하는 것입니다. 이를 통해 표본 통계량(Sample statistic)을 데이터가 얼마나 희귀한지에 대한 확률로 바꿀 수 있습니다. 하지만 그전에, 정규분포(Normal distribution)와 이 중요한 분포군을 다루는 방법에 대해 조금 더 이야기할 필요가 있습니다.</p>
+</section>
+<section id="정규분포-요약" class="level2">
+<h2 class="anchored" data-anchor-id="정규분포-요약">정규분포 요약</h2>
+<p>시작하기 전에, 이전에 정규분포에 대해 배웠던 내용을 상기해 봅시다. 정규분포는 실제로는 분포들의 집합(Class)으로, 모두 단봉형(Unimodal)이고 대칭이며 종 모양입니다. 정규분포는 함수에 의해 정의되므로, 함수의 모양을 결정하는 두 개의 매개변수(Parameter)인 평균 매개변수 μ와 분산(Variance) 매개변수 σ²<img src="images/B9780128207888000237/si1.png" class="img-fluid" alt="이미지">을 가집니다. 만약 확률 변수 X가 평균 μ와 분산 σ²<img src="images/B9780128207888000237/si1.png" class="img-fluid" alt="이미지">을 갖는 정규분포를 따른다면—X∼N(μ,σ²<span class="math inline">\()\)</span>—X의 모든 가능한 값의 평균은 μ가 되고, X의 모든 가능한 값의 분산은 σ²<img src="images/B9780128207888000237/si1.png" class="img-fluid" alt="이미지">이 됩니다.</p>
+<p>정규분포 중에는 지극히 중요한 한 가지 특수한 경우가 있는데, 바로 표준 정규분포(Standard Normal distribution)입니다. 표준 정규분포는 평균 <span class="math inline">\(\mu=0\)</span>이고 분산 σ²<span class="math inline">\(=1\)</span>인 정규분포입니다. 이 분포는 모든 정규분포를 상대적으로 쉽게 표준 정규분포로 변환할 수 있기 때문에 특히 유용합니다. 변수 X가 평균 μ와 분산 σ²<img src="images/B9780128207888000237/si1.png" class="img-fluid" alt="이미지">인 정규분포를 따른다면, 다음과 같이 새로운 변수 Z를 만들 수 있습니다.</p>
+<p><span class="math display">\[
+Z=X-\mu\sigma.
+\]</span></p>
+<p>그러면 Z는 표준 정규분포를 따르게 됩니다. 이는 가설 검정을 수행하려고 할 때 우리에게 중요해질 것입니다. 정규분포의 또 다른 핵심 속성은 덧셈과 뺄셈을 사용하여 결합될 수 있다는 점이었습니다. 즉, 두 확률 변수 X와 Y가 모두 정규분포를 따른다면, <span class="math inline">\(X+Y\)</span>와 <span class="math inline">\(X-Y\)</span> 또한 정규분포를 따를 것입니다. 즉, 다음과 같습니다.</p>
+<p><span class="math display">\[
+X∼N(\mu_{X},\s^2_{igmaX}),Y∼N(\mu_{Y},\s^2_{igmaY})X+Y∼N(\mu_{X}+\mu_{Y},\s^2_{igmaX}+\s^2_{igmaY})X-Y∼N(\mu_{X}-\mu_{Y},\s^2_{igmaX}+\s^2_{igmaY}).
+\]</span> 이 속성은 가설 검정, 특히 두 모집단(Population)이 유사한지 아니면 어떤 방식으로든 다른지 비교할 때 중요할 것입니다.</p>
+</section>
+<section id="정규분포로부터-확률-구하기" class="level2">
+<h2 class="anchored" data-anchor-id="정규분포로부터-확률-구하기">정규분포로부터 확률 구하기</h2>
+<p>정규분포를 사용하려면 확률(Probability)을 구할 수 있어야 합니다. 정규분포를 정의하는 함수는 확률을 구하기 쉽게 만들어주지 않습니다. 이 때문에 이러한 값을 얻으려면 기술—다시 말해 R—을 사용해야 합니다. 존재하는 다양한 통계 소프트웨어 패키지들은 이 작업을 훨씬 쉽게 만들어줍니다. R에서 모든 정규분포로부터 확률을 얻기 위해 사용하는 함수는 pnorm 함수입니다. pnorm 함수는 우리가 찾고 있는 확률을 완전히 알려주는 네 개의 인자(Argument)를 취하며, 함수의 형식은 다음과 같습니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(q, mean, sd, lower.tail)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>네 개의 인자는 다음과 같습니다.</p>
+<ul>
+<li>• q: 정규분포에서 관심 있는 분위수(Quantile).</li>
+<li>• <span class="math inline">\(mean\)</span>: 해당 정규분포의 평균 μ—기본값은 0.</li>
+<li>• sd: 해당 정규분포의 표준편차(Standard deviation) σ—기본값은 1.</li>
+<li>• <span class="math inline">\(lower.tail\)</span>: 정규분포가 분위수보다 작을 확률에 관심이 있는지 아니면 클 확률에 관심이 있는지를 정의하는 TRUE/FALSE 값—기본값은 TRUE. <span class="math inline">\(P(N(0,1)&lt;q)\)</span>의 경우 <span class="math inline">\(lower.tail=TRUE\)</span>를 사용합니다. <span class="math inline">\(P(N(0,1)&gt;q)\)</span>의 경우 <span class="math inline">\(lower.tail=FALSE\)</span>를 사용합니다.</li>
+</ul>
+<p>우리가 분산 σ²<img src="images/B9780128207888000237/si1.png" class="img-fluid" alt="이미지">을 사용하여 정규분포를 정의한 반면, pnorm 함수는 표준편차 σ를 사용한다는 점에 유의해 주시면 좋습니다. 하지만 분산과 표준편차는 직접적으로 연결되어 있으므로—σ²<span class="math inline">\(=\sigma\)</span>—함수에 무엇을 입력하고 있는지 인지하기만 하면 됩니다.</p>
+<p>예를 들어, <span class="math inline">\(P(N(5,4)&gt;6.46)\)</span>을 원한다고 가정해 봅시다. R에서 이를 얻으려면 다음 코드를 사용합니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">6.46</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>다시 한번, 정규분포의 분산이 σ²<span class="math inline">\(=4\)</span>이고 <span class="math inline">\(4=2\)</span>이므로 <span class="math inline">\(s_{d}=2\)</span>를 사용했음에 유의하십시오. 그러면 R은 확률 0.2326951을 출력합니다.</p>
+<section id="연습-문제" class="level3">
+<h3 class="anchored" data-anchor-id="연습-문제">연습 문제</h3>
+<p>R을 사용하여 다음 확률을 구하십시오.</p>
+<ol type="1">
+<li><span class="math inline">\(P(N(3,6.25)&lt;8)\)</span></li>
+<li><span class="math inline">\(P(N(-2,16)&gt;7)\)</span></li>
+<li><span class="math inline">\(P(N(1.2,15.4)&lt;10)\)</span></li>
+<li><span class="math inline">\(P(N(0,12)&lt;6)\)</span></li>
+<li><span class="math inline">\(P(N(-3,1)&gt;0)\)</span></li>
+</ol>
+</section>
+</section>
+<section id="데이터와-p-값-연결하기" class="level2">
+<h2 class="anchored" data-anchor-id="데이터와-p-값-연결하기">데이터와 p-값 연결하기</h2>
+<p>정규분포의 몇 가지 속성을 검토하고 해당 정규분포로부터 확률을 얻는 방법을 소개했으므로, 이제 가설 검정으로 돌아가야 합니다. 지난 장에서 가설 검정을 소개하면서, 가설 검정의 이면이 되는 아이디어, 구체적으로 우리가 세상의 상태를 가정하고 데이터가 충분히 희귀한 경우에만 이 상태를 기각하는 방법에 대해 논의했습니다. 이러한 희귀함은 귀무 가설(Null hypothesis)이 참이라고 가정할 때 더 극단적인 데이터를 볼 확률인 p-값을 통해 측정됩니다. 이 절차에서 우리가 빠뜨린 핵심 단계가 있습니다. 데이터에서 p-값으로 어떻게 넘어가나요? 우리 데이터가 얼마나 희귀한지 어떻게 계산하나요?</p>
+<p>이 아이디어를 이해하기 위해 이전에 작업하던 예제로 돌아가 보겠습니다. 이 예제에서 우리는 동전을 100번 던지고 앞면의 비율(예를 들어 앞면 60번)을 계산하여 동전이 공정한지 여부를 확인했습니다. 우리는 궁극적으로 귀무 가설이 참일 때 더 극단적인 데이터를 볼 확률인 p-값을 얻고자 합니다.</p>
+<p>확률을 얻으려면 확률 분포가 필요합니다. 구체적으로, 데이터의 확률 분포나 우리가 수집한 데이터로부터 계산된 통계량의 확률 분포가 필요합니다. 다행히 우리에게는 표본 통계량의 분포, 즉 표집 분포(Sampling distribution)가 있습니다. 이 동전 던지기 예제의 경우, 앞면 비율에 대한 표집 분포를 가지고 있습니다. 더 나아가, 우리는 중심극한정리 덕분에 이 분포가 무엇인지 알고 있습니다. 그것은 앞면이 나올 실제 확률(p)을 중심으로 하고, 표본 비율의 표준 오차(Standard error)의 제곱과 동일한 분산을 갖는 정규분포입니다. 즉, 다음과 같습니다.</p>
+<p><span class="math display">\[
+\hat{p}∼N(p,s.e.(\hat{p})²).
+\]</span> 하지만 여기에는 몇 가지 빠진 것이 있습니다. 표본 비율의 표준 오차와 함께 p의 실제 값을 알아야 합니다. p는 모집단 매개변수이므로 그 값을 결코 알 수 없습니다. 그러나 가설 검정에서는 귀무 가설이 참이라고 가정하며, 이는 p 값에 대한 몇 가지 가정을 제공합니다. 우리의 귀무 가설은 동전이 공정하다는 것, 즉 <span class="math inline">\(p=0.5\)</span>입니다. 따라서 귀무 가설이 참이라면, 앞면의 표본 비율에 대한 표집 분포는 다음과 같을 것입니다.</p>
+<p><span class="math display">\[
+\hat{p}∼N(0.5,s.e.(\hat{p})²).
+\]</span> 이제 표본 비율의 표준 오차 <span class="math inline">\(s.e.(\hat{p})\)</span>만 남았습니다. 앞으로 나아가면서 다양한 표본 통계량의 표준 오차가 무엇인지에 대한 공식을 제공할 것입니다. 그러나 이번 장에서는 표집 분포에 대한 표준 오차를 직접 채워 넣을 것입니다.</p>
+<p>우리의 목표는 p-값, 즉 이 표집 분포로부터 더 극단적인 데이터를 볼 확률을 계산하는 것입니다. 다시 말해, 더 극단적인 표본 통계량을 볼 확률이 필요합니다. 우리는 정규분포를 따르는 표본 통계량을 가지고 있으며, 이제 그 확률을 찾는 방법을 알고 있습니다. 이 분포와 현재 우리가 가지고 있는 지식을 바탕으로, “더 극단적인 데이터”가 무엇을 의미하는지 이해하기만 하면 됩니다.</p>
+<p>이 “더 극단적인”에 대한 정의는 대립 가설(Alternative hypothesis)에 따라 달라집니다. 우리의 대립 가설이 HA:<span class="math inline">\(p&gt;0.5\)</span>, 즉 동전이 앞면이 나올 가능성을 더 높게 만든다는 것이라고 가정해 봅시다. 이 대립 가설에 대한 “더 극단적인” 데이터—대립 가설을 지지할 데이터—는 실제로 관찰한 것보다 최소한 그만큼 또는 그보다 더 많은 앞면을 보는 결과를 낳을 것입니다. 따라서 우리의 p-값은 100번의 던지기 시리즈에서 60번 이상의 앞면을 볼 확률—또는 60/100=0.6 이상의 표본 비율을 볼 확률—이 될 것입니다.</p>
+<p>이를 계산하려면 <span class="math inline">\(\hat{p}\)</span>의 전체 표집 분포가 필요합니다. 이 특정 시나리오—100번의 던지기를 사용하여 동전이 공정한지 테스트—에서 <span class="math inline">\(\hat{p}\)</span>의 표준 오차는 0.05이므로, 귀무 가설이 참이라는 가정하에 <span class="math inline">\(\hat{p}\)</span>의 표집 분포는 N(0.5, 0.05²<span class="math inline">\()\)</span>이 됩니다. <span class="math inline">\(p&gt;0.5\)</span>라는 대립 가설을 지지하는 “더 극단적인” 데이터를 보는 것은 0.6 이상의 표본 비율을 보는 것과 동일하므로, 우리의 p-값은 다음과 같습니다.</p>
+<p><span class="math display">\[
+P(N(0.5, 0.05²) \ge  0.6).
+\]</span> 정규분포의 속성에 따라, 정규분포의 평균을 빼고 표준편차로 나누어 이를 표준 정규분포로 변환할 수 있습니다. 확률문 내의 부등식 한쪽에 수행되는 모든 작업은 대수학의 경우와 마찬가지로 다른 쪽에도 수행되어야 합니다. 그렇게 하면 다음과 같습니다.</p>
+<p><span class="math display">\[
+P(N(0.5,0.05²)\ge 0.6)=P(N(0.5,0.05²)-0.50.05\ge 0.6-0.50.05)=P(N(0,1)\ge 2).
+\]</span> R에서 다음 코드를 사용하여 이 확률을 찾을 수 있습니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">2</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>R에서 반환된 결과 확률은 0.0228입니다. 따라서 대립 가설이 <span class="math inline">\(p&gt;0.5\)</span>일 때 100번의 던지기에서 60번의 앞면을 관찰한다면, 우리의 p-값은 0.0228이 될 것입니다. 이 확률은 P(N(0.5, 0.05²) ⩾ <span class="math inline">\(0.6)\)</span>과 동일하며, R에서 다음 코드를 사용하여 확인할 수 있습니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">0.6</span>, <span class="at">mean =</span> <span class="fl">0.5</span>, <span class="at">sd =</span> <span class="fl">0.05</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>만약 그 대립 가설을 바꾼다면 어떻게 될까요? 동전이 뒷면이 나올 가능성을 더 높게 만든다는 것, 즉 HA:<span class="math inline">\(p&lt;0.5\)</span>를 보여주고 싶다면 어떻게 될까요? 이제 더 극단적인 데이터는 우리가 관찰한 것과 같거나 그보다 적은 수의 앞면을 관찰하는 것이 될 것입니다. 따라서 우리의 p-값은 100번의 던지기 시리즈에서 60번 이하의 앞면을 볼 확률—즉, 0.6 미만의 표본 비율을 볼 확률—이 될 것입니다.</p>
+<p>이를 계산하는 것은 이전과 비슷합니다. 이 시나리오에서 <span class="math inline">\(\hat{p}\)</span>의 표준 오차는 여전히 0.05이므로, 귀무 가설이 참일 때 <span class="math inline">\(\hat{p}\)</span>의 표집 분포는 N(0.5, 0.05²<span class="math inline">\()\)</span>로 동일하게 유지됩니다.</p>
+<p>이 경우 “더 극단적인” 데이터는 0.6 이하의 표본 비율을 관찰하는 것이므로, p-값은 P(N(0.5, 0.05²) ⩽ <span class="math inline">\(0.6)\)</span>이 될 것입니다. 다시 한 번, 평균을 빼고 표준편차로 나누어 이 정규분포를 표준 정규분포로 변환할 수 있습니다.</p>
+<p><span class="math display">\[
+P(N(0.5,0.05²)\le 0.6)=P(N(0.5,0.05²)-0.50.05\le 0.6-0.50.05)=P(N(0,1)\le 2).
+\]</span> 다시 R의 pnorm 함수를 사용하여 이 확률을 구합니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">2</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>반환된 확률은 0.9772이며, 이것이 대립 가설 HA:<span class="math inline">\(p&lt;0.5\)</span>에 대한 우리의 p-값이 됩니다.</p>
+<p>우리가 고려해야 할 마지막 대립 가설은 HA:p≠<span class="math inline">\(0.5\)</span>인 경우입니다. 이는 조금 더 생각이 필요한데, 대립 가설을 지지할 데이터는 동전이 앞면이 나올 가능성을 더 높게 만들거나 또는 뒷면이 나올 가능성을 더 높게 만든다는 증거를 보았음을 의미하므로, 이제 극단적인 값은 두 방향에서 오기 때문입니다.</p>
+<p>이런 식으로, “더 극단적인”을 우리가 관찰한 것보다 귀무 가설 값—이 경우 0.5—에서 더 멀리 떨어진 것으로 정의할 수 있습니다. 우리의 예에서 표본 비율의 관찰값은 0.6이며, 이는 0.5에서 0.1만큼 떨어져 있습니다. 반대쪽에서는 0.4가 0.5에서 0.1만큼 떨어져 있습니다. 따라서 더 극단적인 것은 0.6 이상이거나 0.4 이하인 모든 표본 비율이 될 것입니다. 이제 우리의 표본 비율은 중심극한정리에 따라 여전히 N(0.5, 0.05²<span class="math inline">\()\)</span>을 따를 것입니다. 따라서 우리의 p-값은 다음과 같이 마무리될 것입니다.</p>
+<p><span class="math display">\[
+P(N(0.5, 0.05²) \le  0.4) + P(N(0.5, 0.05²) \ge  0.6).
+\]</span> 우리는 여전히 평균을 빼고 표준편차로 나누어 이들 각각의 정규분포를 표준 정규분포로 변환할 수 있습니다.</p>
+<p><span class="math display">\[
+P(N(0.5,0.05²)\le 0.4)+P(N(0.5,0.05²)\ge 0.6)=P(N(0.5,0.05²)-0.50.05\le 0.4-0.50.05)+P(N(0.5,0.05²)-0.50.05\ge 0.6-0.50.05)=P(N(0,1)\le -2)+P(N(0,1)\ge 2).
+\]</span> 이제 p-값을 얻기 위해 여전히 두 개의 확률을 계산해야 합니다. 그러나 이 두 확률을 개별적으로 살펴보겠습니다. 그렇게 하면 <span class="math inline">\(P(N(0,1)\le -2)\)</span>와 <span class="math inline">\(P(N(0,1)\ge 2)\)</span>가 모두 0.02275임을 알 수 있습니다. 이는 우연이 아닙니다. 정규분포는 완벽하게 대칭이며, 이는 양쪽 꼬리 확률이 동일함을 의미합니다. 즉, 다음과 같습니다.</p>
+<p><span class="math display">\[
+P(N(0,1) \le  -a) = P(N(0,1) \ge  a).
+\]</span> 우리는 이를 유리하게 활용하여 두 개의 확률을 하나의 확률로 변환할 수 있습니다.</p>
+<p><span class="math display">\[
+=P(N(0,1)\le -2)+P(N(0,1)\ge 2)=P(N(0,1)\ge 2)+P(N(0,1)\ge 2)=2×P(N(0,1)\ge 2).
+\]</span> R의 pnorm 함수를 사용하여 우리의 p-값이 0.0455임을 찾을 수 있습니다. 대립 가설이 HA:p≠p₀<img src="images/B9780128207888000237/si47.png" class="img-fluid" alt="이미지"> 형태인 모든 경우에 이 변환을 사용할 것입니다. (대립 가설에 관계없이 이러한 모든 p-값을 계산하는 데는 공통적인 맥락이 있습니다. 이 공통 맥락을 확인하기 위해 이러한 p-값이 수작업으로 어떻게 도출되었는지 살펴봐야 합니다. 세 가지 p-값의 계산을 모두 되돌아보면, 모두 같은 지점에서 시작한다는 것을 알 수 있을 것입니다. 즉, 우리의 표집 분포—N(0.5, 0.05²<span class="math inline">\()\)</span>—가 표본 비율—<span class="math inline">\(\hat{p}=0.6\)</span>—과 어떻게 관련되는지 보는 것입니다. 정규분포의 속성 중 하나를 채택한 후, 이는 표준 정규분포가 <span class="math inline">\(t=0.6-0.50.05\)</span>와 어떻게 연결되는지로 바뀝니다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>H_A</th>
+<th>p-값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>p &gt; 0.5</td>
+<td>P(N(0,1) ⩾ t)</td>
+</tr>
+<tr class="even">
+<td>p &lt; 0.5</td>
+<td>P(N(0,1) ⩽ t)</td>
+</tr>
+<tr class="odd">
+<td>p ≠ 0.5</td>
+<td>2 × P(N(0,1) ⩾ abs(t))</td>
+</tr>
+</tbody>
+</table>
+<p>이 값 t는 표본 통계량—이 경우 <span class="math inline">\(\hat{p}\)</span>—귀무 가설 값 p₀<img src="images/B9780128207888000237/si50.png" class="img-fluid" alt="이미지">, 그리고 표준 오차—여기서는 <span class="math inline">\(s.e.(\hat{p})\)</span>—에 대해 우리가 알고 있는 정보를 고려합니다. 구체적으로는 다음과 같습니다.</p>
+<p>t=표본 통계량 – 귀무 가설 값표준 오차 본질적으로, 그것은 가설 검정에 대한 우리의 모든 정보를 완벽하게 포괄합니다. 이 양 t를 검정 통계량(Test statistic)이라고 하며, 표준 오차로 척도화(Scale)하여 표본 통계량이 귀무 가설 값에서 얼마나 떨어져 있는지를 계산합니다. 일반적으로 검정 통계량, 대립 가설, p-값 사이의 관계에 대한 이러한 지식을 사용하여 어떤 대립 가설에 어떤 p-값을 사용해야 하는지 일반화할 수 있습니다. 검정 통계량을 다음과 같이 정의한다면</p>
+<p>t=표본 통계량 – 귀무 가설 값표준 오차, 그러면 우리의 p-값은 오로지 대립 가설에 따라서만 아래 표에 정의된 대로 될 것입니다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>H_A</th>
+<th>p-값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>H_A:p &lt; p₀</td>
+<td>P(N(0,1) ⩽ t)</td>
+</tr>
+<tr class="even">
+<td>H_A:p &gt; p₀</td>
+<td>P(N(0,1) ⩾ t)</td>
+</tr>
+<tr class="odd">
+<td>H_A:p ≠ p₀</td>
+<td>2 × P(N(0,1) ⩾ abs(t))</td>
+</tr>
+</tbody>
+</table>
+<p>우리는 각각의 개별 검정을 진행하면서 이와 유사하게 p-값을 정의하는 표들을 보게 될 것이지만, p-값을 얻는 이 이면의 일반적인 아이디어는 다양한 매개변수와 검정에 걸쳐 유지될 것입니다.</p>
+<section id="연습-문제-1" class="level3">
+<h3 class="anchored" data-anchor-id="연습-문제-1">연습 문제</h3>
+<p>카지노 게임인 룰렛(Roulette)에는 휠에 빨간색, 검은색, 초록색의 세 가지 색상이 있습니다. 여러분이 테이블에서 룰렛을 하고 있는데 휠이 조작되었다고 믿으며, 구체적으로 빨간색이 나올 가능성을 더 낮게 만든다고 믿는다고 가정해 봅시다.</p>
+<ol start="6" type="1">
+<li>일반적인 상황에서 테이블이 공정하다면 빨간색이 나올 확률은 0.47입니다. 이 시나리오에 대한 귀무 가설과 대립 가설은 무엇입니까?</li>
+<li>여러분이 룰렛을 50라운드 동안 플레이했고 빨간색이 20번, 검은색이 28번, 초록색이 2번 나왔다고 가정해 봅시다. 빨간색이 나오는 것에 대한 표본 비율은 얼마입니까?</li>
+<li>이 예제에서 표집 오차에 대한 표준 오차가 <span class="math inline">\(s.e.(\hat{p})=0.07\)</span>이라면, 이 데이터에 대한 검정 통계량은 얼마가 되겠습니까?</li>
+<li>귀무 가설이 참이고 표준 오차가 위와 같이 주어집니다면, <span class="math inline">\(\hat{p}\)</span>에 대한 표집 분포는 무엇이 되겠습니까?</li>
+<li>이전에 정의한 대립 가설에 대해 가설 검정의 p-값은 얼마가 되겠습니까?</li>
+</ol>
+<p>비디오 포커(Video poker)는 일반적으로 이길 확률 측면에서 더 나은 카지노 게임 중 하나로 간주됩니다. “잭스 오어 베터(Jacks or better)”라고 불리는 게임에서 이길 확률—플레이어가 잭 한 쌍 이상의 핸드를 갖는 경우—은 이론적으로 0.4546입니다.</p>
+<ol start="11" type="1">
+<li>비디오 포커 기계가 이길 확률을 더 낮게 만들도록 조작되었는지 테스트하는 데 관심이 있다고 가정해 봅시다. 여러분의 귀무 가설과 대립 가설은 무엇입니까?</li>
+<li>여러분이 포커를 100핸드 동안 플레이했고 42번 이겼다고 가정해 봅시다. 이기는 것에 대한 표본 비율은 얼마입니까?</li>
+<li>이 예제에서 표집 오차에 대한 표준 오차가 <span class="math inline">\(s.e.(\hat{p})=0.05\)</span>이라면, 이 데이터에 대한 검정 통계량은 얼마가 되겠습니까?</li>
+<li>귀무 가설이 참이고 표준 오차가 위와 같이 주어집니다면, <span class="math inline">\(\hat{p}\)</span>에 대한 표집 분포는 무엇이 되겠습니까?</li>
+<li>이전에 정의한 대립 가설에 대해 가설 검정의 p-값은 얼마가 되겠습니까?</li>
+</ol>
+</section>
+</section>
+<section id="중심극한정리를-적용하기-전에-확인할-것" class="level2">
+<h2 class="anchored" data-anchor-id="중심극한정리를-적용하기-전에-확인할-것">중심극한정리를 적용하기 전에 확인할 것</h2>
+<p>중심극한정리(Central Limit Theorem)는 표본 크기가 충분히 크면 표본 평균의 분포가 정규분포에 가까워진다는 강력한 결과입니다. 그러나 이 정리는 모든 문제를 자동으로 해결해 주는 만능 규칙이 아닙니다. 표본이 독립적으로 수집되었는지, 모집단 분포가 지나치게 극단적인 꼬리를 갖지 않는지, 표본 크기가 문제의 맥락에서 충분한지 확인해야 합니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>skewed_means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">5000</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">expr =</span> <span class="fu">mean</span>(<span class="fu">rexp</span>(<span class="dv">40</span>, <span class="at">rate =</span> <span class="dv">1</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(skewed_means, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>이처럼 비대칭 분포에서도 표본 평균은 원자료보다 훨씬 안정적인 분포를 보이는 경향이 있습니다. 하지만 표본 크기가 작거나 관측치 간 의존성이 강하면 정규 근사가 부정확할 수 있습니다. 따라서 중심극한정리를 사용할 때에는 공식에 값을 넣기 전에 데이터 수집 방식과 표본 크기의 타당성을 먼저 설명해야 합니다.</p>
+</section>
+<section id="결론" class="level2">
+<h2 class="anchored" data-anchor-id="결론">결론</h2>
+<p>p-값은 가설 검정 절차의 중요한 부분을 나타냅니다. 궁극적으로 그것들은 우리가 귀무 가설을 기각할지 여부를 결정하는 증거입니다. 그 정의에 따르면 정확하게 계산하기 어려울 수 있습니다. 그러나 앞서 논의한 중심극한정리 덕분에 표집 분포를 p-값에 연결할 수 있습니다. R의 도움을 받으면 이러한 p-값을 계산하는 것은 오직 우리의 대립 가설과 관찰된 데이터에만 의존하는 간단한 작업이 됩니다. 다음 장에서 보게 되겠지만, 중심극한정리의 중요성은 통계적 추론(Statistical inference)의 다른 일반적인 형태로도 확장됩니다.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

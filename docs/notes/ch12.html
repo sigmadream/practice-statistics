@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>구간 추정의 개념</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6a85eee24a8917aa54068f8feecfb4f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">구간 추정의 개념</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">구간 추정의 개념</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="서론" class="level2">
+<h2 class="anchored" data-anchor-id="서론">서론</h2>
+<p>지금까지 통계적 추론(Statistical inference)에 대한 논의에서 우리는 오직 가설 검정(Hypothesis tests)에만 집중해 왔습니다. 또한, 표본에서 통계량을 계산할 때 모집단 모수(Population parameters)에 대한 추정값으로 단일 값을 계산하는 데만 집중했습니다. 그러나 모수에 대한 추정값 중에는 해당 모수에 대해 타당해 보이는 값들의 구간(Interval)을 포함하는 추정법들이 존재합니다. 이 장에서는 이러한 구간 추정(Interval estimates)의 취지와 해석에 대해 이야기할 것입니다.</p>
+</section>
+<section id="점-및-구간-추정값" class="level2">
+<h2 class="anchored" data-anchor-id="점-및-구간-추정값">점 및 구간 추정값</h2>
+<p>통계학에서는 모집단 모수를 추정하기 위해 표본 통계량(Sample statistics)을 계산합니다. 우리가 지금까지 본 것은 점 추정값(Point estimates), 즉 대응하는 모집단 모수를 추정하는 데 사용되는 단일 수치 값입니다. 표본 평균 <span class="math inline">\(\bar{x}\)</span>는 모집단 평균 μ에 대한 점 추정값입니다. 표본 분산 <span class="math inline">\(s^2\)</span>는 모집단 분산 <span class="math inline">\(\sigma^2\)</span>에 대한 점 추정값입니다. 표본 비율 <span class="math inline">\(\hat{p}\)</span>은 모집단 비율 p에 대한 점 추정값입니다. 이 모든 추정값은 모집단 모수의 값에 대한 우리의 “최선의 추측”을 나타냅니다.</p>
+<p>우리의 점 추정값이나 표본 통계량은 상당한 정보를 제공하지만, 우리가 알고 있듯이 표본 통계량은 표본마다 다를 것입니다. 여러 표본을 수집한다면, 모집단 모수에 대해 타당해 보이는 값들을 한 무더기 얻게 될 것입니다. 특정한 상황에서는 단일 추정값보다는 타당한 값들의 범위를 추정값으로 원하는 것이 합리적으로 보입니다. 이러한 유형의 추정치가 바로 구간 추정값이 우리에게 줄 수 있는 것입니다. 구간 추정값(Interval estimate)은 알려지지 않은 모집단 모수를 추정하는 가능한 값들의 구간입니다. 구간 추정값은 정치 여론 조사에서 지지율이나 선거 우위가 종종 구간으로 명시되므로 우리에게 아마 익숙할 것입니다. 이러한 상황에서 구간 추정값은 보통 점 추정값 플러스 마이너스 오차 한계(Margin of error)의 형태로 주어집니다. 오차 한계(Margin of error)는 점 추정값이 얼마나 정밀한지에 대한 아이디어를 제공하며, 통제할 수 없는 오차로 인해 추정값에 존재할 수 있는 변동성의 양을 나타냅니다.</p>
+<p>예를 들어, 2017년 버지니아 주지사 선거 이전에 퀴니피액 대학교(Quinnipiac University)는 여론 조사를 실시하여 민주당 후보 랠프 노덤(Ralph Northam)이 공화당 후보 에드 길레스피(Ed Gillespie)를 9포인트 플러스 마이너스 3.7포인트 차로 앞서고 있음을 발견했습니다 [35]. 이 경우, 노덤의 우위에 대한 점 추정값은 9포인트이고 오차 한계는 3.7포인트입니다. 이는 실제로 노덤이 <span class="math inline">\(9-3.7=5.3\)</span>에서 <span class="math inline">\(9+4.7=12.7\)</span>포인트 사이의 수치로 경선에서 앞서나가는 것이 타당할 수 있음을 의미했습니다.</p>
+<p>이상적인 상황에서 오차 한계는 모집단 모수의 추정값에 대해 우리가 얼마나 확신할 수 있는지에 대한 아이디어를 줄 수 있습니다. 점 추정값은 같지만 오차 한계가 다른 두 구간 추정값 6±<span class="math inline">\(2\)</span>와 6±<span class="math inline">\(4\)</span>가 있다고 해 보겠습니다. 첫 번째 구간 추정값은 모수의 타당한 값이 4에서 8까지임을 의미하는 반면, 두 번째는 2에서 10까지의 범위를 의미합니다. 첫 번째 구간 추정값에서 타당한 값들의 범위가 더 좁기 때문에, 우리는 그 결과를 더 신뢰하는 경향이 있을 것입니다. 그러나 오차 한계에는 데이터에 내재된 변동성의 양, 표본 크기, 그리고 중요하게는 우리의 구간이 “옳을” 확률 등 많은 것들이 들어갑니다.</p>
+</section>
+<section id="구간이-옳을-때" class="level2">
+<h2 class="anchored" data-anchor-id="구간이-옳을-때">구간이 “옳을” 때</h2>
+<p>구간 추정값을 정의할 때, 우리는 그것들이 어떤 종류의 확률론적 해석이나 어떤 종류의 확률 문장을 수반하기를 원합니다. 이상적으로, 이 확률은 우리의 구간이 얼마나 자주 “옳은가”와 연결될 것입니다. 하지만 구간이 “옳다”는 것이 도대체 무엇을 의미할까요? 우리가 “옳은지” 알 수 있을까요?</p>
+<p>우리가 모수와 구간에 대해 알고 있는 것으로 되돌아가 보겠습니다. 우리가 작업하고 있는 패러다임인 통계학의 빈도주의(Frequentist) 패러다임에서 모집단 모수는 고정된, 알려지지 않은 값입니다. 현실적으로 모수에 대해 타당한 값들이 존재하는 것이 아니라 오직 단일 값만이 존재할 뿐입니다. 반면에, 우리의 구간 추정값은 데이터로부터 계산되며, 이는 그것들이 표본의 영향을 받을 것이고 따라서 확률 변수(Random)임을 의미합니다.</p>
+<p>우리는 모수의 참값이 우리의 구간에 의해 덮일 때—또는 구간에 포함될 때—구간이 “옳다”고 말할 것입니다. 임의의 모수의 참값은 알려져 있지 않으므로 이것이 참인지 아닌지 아는 것은 불가능합니다. 따라서 우리는 모든 구간 추정치를 구간이 옳을 확률의 관점에서 표현해야 합니다. 다른 말로 하면, 우리는 구간 추정값의 정확성에 대해 얼마나 확신하는지(Confident) 알아야 합니다.</p>
+</section>
+<section id="신뢰-구간" class="level2">
+<h2 class="anchored" data-anchor-id="신뢰-구간">신뢰 구간</h2>
+<p>이제 구간이 옳다는 것이 무엇을 의미하는지 정의했으므로, “옳을” 확률과 직접적으로 연결된 구간 추정값을 생성해야 합니다. 신뢰 구간(Confidence intervals)은 데이터로부터 계산된 모수에 대한 타당한 값들의 범위를 제공하는 구간 추정값으로, 그 확률론적 해석은 구간이 모수의 참값을 덮는지 여부와 직접적으로 연결됩니다. 표본으로부터 계산된 신뢰 구간은 미리 정해진 비율만큼 모집단 모수의 참값을 덮을 것입니다. 80% 신뢰 구간은 모수의 참값을 80%의 확률로 덮을 것입니다. 95% 신뢰 구간은 모수의 참값을 95%의 확률로 덮을 것입니다. 일반적으로, 우리가 무한한 수의 표본을 추출하고 각각으로부터 $(1-)$100% 신뢰 구간을 계산할 수 있다면, 이 구간들 중 $(1-)$100%가 모수의 참값을 덮을 것입니다. 이 $(1-)$100%로 미리 정해진 커버리지 비율—구간이 “옳을” 확률—을 신뢰 수준(Confidence level)이라고 합니다.</p>
+<p>우리가 모수의 참값을 알고 있는 예시를 살펴보겠습니다. 공정한 동전을 100번 던지고 앞면이 나올 참 확률 p에 대해 95% 신뢰 구간을 생성했다고 하자—이에 대한 자세한 내용은 뒤에 나올 것입니다. 다시 말하지만, 이것은 공정한 동전이므로 <span class="math inline">\(p=0.5\)</span>가 참값입니다. 따라서 우리는 우리의 신뢰 구간이 p의 참값을 덮는지 여부를 알 수 있을 것입니다. 이제 데이터를 수집하고 신뢰 구간을 생성하는 이 과정을 99번 더 반복합니다. 우리의 95% 신뢰 구간이 95%의 확률로 “옳다”고 가정하면, 100개의 구간 중 약 95개가 <span class="math inline">\(p=0.5\)</span>인 참값을 덮는 것을 볼 수 있을 것입니다. [서 이러한 현상을 볼 수 있으며, 100개의 구간 중 정확히 95개가 <span class="math inline">\(p=0.5\)</span>를 덮고 있습니다.</p>
+</section>
+<section id="신뢰-구간-생성하기" class="level2">
+<h2 class="anchored" data-anchor-id="신뢰-구간-생성하기">신뢰 구간 생성하기</h2>
+<p>일반적으로 말해서, 모수에 대한 우리의 신뢰 구간은 위에서 언급한 구간 추정값과 유사하게 다음과 같은 형태가 될 것입니다.</p>
+<p>점 추정값 ± 오차 한계</p>
+<p>우리의 신뢰 구간의 정확한 형태는 어떤 모수에 대해 신뢰 구간을 구하는지에 따라 달라지겠지만, 신뢰 구간을 만드는 과정과 그것들이 어떻게 “옳을” 확률과 연결되는지 볼 수 있습니다. 구체적으로, 우리는 모집단 비율 p에 대한 신뢰 구간을 계산하는 과정을 통해 이를 살펴보겠습니다.</p>
+<p>우리의 신뢰 구간이 $(1-)$100%의 시간 동안 “옳으려면”, 표본으로부터 계산된 하한(Lower bound)과 상한(Upper bound)을 가져서 다음과 같아야 합니다.</p>
+<p>P(하한 &lt; p &lt; 상한) = 1-. 자, 이전에 다루었던 분포인 표준 정규 분포(Standard Normal distribution)부터 시작해 보겠습니다. 표준 정규 분포가 <span class="math inline">\(-z⁎\)</span>와 <span class="math inline">\(z⁎\)</span> 사이에 있을 확률이 <span class="math inline">\(1-\alpha\)</span>가 되도록 하는 값 <span class="math inline">\(z⁎\)</span>를 찾을 수 있습니다. 즉,</p>
+<p><span class="math display">\[
+P(-z⁎ &lt; N(0,1) &lt; z⁎) = 1-\alpha.
+\]</span> 우리는 이 <span class="math inline">\(z⁎\)</span>를 임계값(Critical value)이라고 부를 것입니다. 이제 모집단 비율 p를 표준 정규 분포와 연결하는 무언가를 찾을 수 있다면, 구간을 생성할 수 있을 것입니다. 기억을 되살려 보면, 표본 비율, 모집단 비율, 그리고 표준 정규 분포를 연결하는 중요한 정리가 있습니다. 바로 중심 극한 정리(Central limit theorem)입니다. 이는 표본 크기 n이 충분히 크다면 표본 비율 <span class="math inline">\(\hat{p}\)</span>이 정규 분포를 따를 것임을 명시합니다. 구체적으로는 다음과 같습니다.</p>
+<p><span class="math display">\[
+\hat{p} ∼ N(p, s.e.(\hat{p}_2)).
+\]</span> 가설 검정에서 보았듯이, 평균 p를 빼고 표준 편차 <span class="math inline">\(s.e.(\hat{p})\)</span>로 나누어 이를 표준 정규 분포로 변환할 수 있습니다.</p>
+<p><span class="math display">\[
+\hat{p}-p / s.e.(\hat{p}) ∼ N(0,1).
+\]</span> 그러면 우리의 표준 정규 분포 확률 P(−z⁎ &lt; N(0,1) &lt; z⁎) = <span class="math inline">\(1-\alpha\)</span>로 돌아가 보겠습니다. pˆ−p / s.e.(pˆ) ∼ <span class="math inline">\(N(0,1)\)</span>이므로 <span class="math inline">\(N(0,1)\)</span> 자리에 pˆ−p / <span class="math inline">\(s.e.(\hat{p})\)</span>를 대입할 수 있습니다. 그러면 우리의 표준 정규 분포 확률은 다음과 같이 됩니다.</p>
+<p><span class="math display">\[
+P(-z⁎ &lt; \hat{p}-p / s.e.(\hat{p}) &lt; z⁎) = 1-\alpha.
+\]</span> 이제 <span class="math inline">\(1-\alpha\)</span> 확률과 직접적으로 연결된 확률 문장 안에 모집단 비율 p가 들어 있습니다. 하한과 상한을 찾기 위해—따라서 우리의 구간을 찾기 위해—확률 문장 내부에서 p에 대해 풀어야 합니다.</p>
+<p>P(−z⁎ &lt; pˆ−p / s.e.(pˆ) &lt; z⁎) = 1−α P(−z⁎ s.e.(pˆ) &lt; pˆ−p &lt; z⁎ s.e.(pˆ)) = 1−α P(−pˆ − z⁎ s.e.(pˆ) &lt; −p &lt; −pˆ + z⁎ s.e.(pˆ)) = 1−α <span class="math display">\[
+P(\hat{p} - z⁎ s.e.(\hat{p}) &lt; p &lt; \hat{p} + z⁎ s.e.(\hat{p})) = 1-\alpha.
+\]</span> 따라서 이제 하한 pˆ−z⁎ <span class="math inline">\(s.e.(\hat{p})\)</span>과 상한 pˆ+z⁎ <span class="math inline">\(s.e.(\hat{p})\)</span>을 갖는 구간을 얻었습니다. 이 구간은 데이터로부터 계산되었으므로 확률 변수입니다. 추가적으로, 이 구간은 <span class="math inline">\((1-\alpha)100\)</span>%의 시간 동안 p의 참값을 덮을 것이고—따라서 “옳을” 것이고—이는 우리가 원하는 확률입니다. 이를 염두에 두면, p에 대한 <span class="math inline">\((1-\alpha)100\)</span>% 신뢰 구간은 다음과 같습니다.</p>
+<p><span class="math display">\[
+(\hat{p} - z⁎ s.e.(\hat{p}), \hat{p} + z⁎ s.e.(\hat{p})).
+\]</span> 이제 신뢰 구간을 계산하는 데 세 가지 구성 요소가 남았습니다. 표본 비율 <span class="math inline">\(\hat{p}\)</span>, 표준 오차(Standard error) <span class="math inline">\(s.e.(\hat{p})\)</span>, 그리고 임계값 <span class="math inline">\(z⁎\)</span>입니다. 표본 비율은 앞서 설명한 대로 표본 데이터로부터 계산합니다. 현재로서는 표준 오차가 주어질 것입니다. 나중에 장에서 다양한 표본 통계량에 대한 표준 오차 공식을 보게 될 것입니다. 이제 임계값 <span class="math inline">\(z⁎\)</span>만 남았습니다. 신뢰 구간을 유도할 때, 우리는 다음과 같이 되도록 <span class="math inline">\(z⁎\)</span>를 선택함으로써 구간에 대해 얼마나 확신하고 싶은지에 기초하여 <span class="math inline">\(z⁎\)</span>를 선택한다고 말했습니다.</p>
+<p><span class="math display">\[
+P(-z⁎ &lt; N(0,1) &lt; z⁎) = 1-\alpha.
+\]</span> 이 정의에 기초하여 <span class="math inline">\(z⁎\)</span>를 찾는 것은 답을 얻기 위해 두 개의 확률을 찾아야 하므로 어려울 수 있습니다. 그러나 정규 분포가 대칭이라는 사실에 기초하여 <span class="math inline">\(z⁎\)</span>를 찾는 더 쉬운 방법이 있습니다. P(−z⁎ &lt; N(0,1) &lt; z⁎) = <span class="math inline">\(1-\alpha\)</span>라면 다음과 같음이 밝혀졌습니다.</p>
+<p><span class="math display">\[
+P(N(0,1) &lt; z⁎) = 1 - \alpha/2.
+\]</span> 이를 통해 우리는 단 하나의 확률만 찾아보아도 우리의 <span class="math inline">\(z⁎\)</span>를 찾을 수 있습니다. 실제 상황에서 이를 살펴보겠습니다. p에 대한 95% 신뢰 구간을 계산하고 싶다고 해 보겠습니다. α 값을 찾기 위해 $(1-)$100%=95%를 풀면 <span class="math inline">\(\alpha=0.05\)</span>가 됩니다. <span class="math inline">\(z⁎\)</span>를 찾는 과정에서 이는 다음을 의미합니다.</p>
+<p><span class="math display">\[
+P(N(0,1) &lt; z⁎) = 1 - 0.05/2 = 0.975.
+\]</span> 이 임계값을 얻기 위해 우리는 기술, 구체적으로는 R을 활용합니다. 특정 확률과 연관된 정규 분포의 분위수(Quantile)를 찾기 위해 qnorm 함수를 사용합니다. qnorm 함수는 세 가지 인수를 받습니다. 정규 분포의 평균 <span class="math inline">\(mean\)</span>, 정규 분포의 표준 편차 sd, 그리고 해당 분위수와 연관된 확률 p입니다. 이 함수를 사용하는 코드는 다음과 같습니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(p, mean, sd)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>그러면 R은 P(N(mean, sd) &lt; z⁎) = <span class="math inline">\(p\)</span>를 만족하는 분위수 <span class="math inline">\(z⁎\)</span>를 반환할 것입니다. 우리의 예시—95% 신뢰 구간과 연관된 <span class="math inline">\(z⁎\)</span> 찾기—에서는 다음 코드를 사용할 것입니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.975</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>그러면 R은 1.959964라는 <span class="math inline">\(z⁎\)</span> 값을 반환할 것이며, 우리는 이를 사용하여 95% 신뢰 구간을 구할 수 있습니다. 실제 사례를 하나 살펴보겠습니다. 1996년 미국 종합 사회 조사(United States General Social Survey)에서 96명을 대상으로 직업 만족 여부를 묻는 설문 조사를 실시했습니다 [36, 37]. 그들은 79명이 만족한다고 답했음을 발견했고, 따라서 표본 비율은 <span class="math inline">\(\hat{p}=79/96=0.8229\)</span>가 됩니다. 자신의 직업에 만족하는 사람들의 참 비율에 대한 90% 신뢰 구간<span class="math inline">\((\alpha=0.1\)</span>)을 생성하고 싶다고 해 보겠습니다. 첫 번째 단계는 다음과 같이 되도록 <span class="math inline">\(z⁎\)</span>를 찾는 것입니다.</p>
+<p><span class="math display">\[
+P(N(0,1) &lt; z⁎) = 1 - 0.1/2 = 0.95.
+\]</span> R을 사용하여 다음 코드를 입력하면 z⁎<span class="math inline">\(=1.644854\)</span>라는 값을 얻습니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.95</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>신뢰 구간의 마지막 부분은 <span class="math inline">\(\hat{p}\)</span>의 표준 오차이며, 이 경우 <span class="math inline">\(s.e.(\hat{p})=0.039\)</span>입니다. 이 모든 정보를 취하면, p에 대한 90% 신뢰 구간은 다음과 같습니다.</p>
+<p><span class="math display">\[
+(0.8229 - 1.645 × 0.039, 0.8229 + 1.645 × 0.039) = (0.7585, 0.8871).
+\]</span> ## 신뢰 구간 해석하기</p>
+<p>신뢰 구간의 핵심 부분은 그 의미를 올바르게 해석하는 것입니다. 우리는 앞서 구간이 “옳다”는 것이 무엇을 의미하는지 정의할 때 이에 대해 이야기했습니다. 일반적으로, 어떤 모수에 대해 $(1-)<span class="math inline">\(100% 신뢰 구간을 계산한다면, 이는 우리가 계산된 구간이 해당 모수의 참값을 덮을 것임에 대해—다시 말해, "옳을" 것임에 대해—\)</span>(1-)100$%만큼 확신한다는 것을 의미합니다. 실제 상황에서 이를 살펴보겠습니다. 이전 예시에서 미국인의 직업 만족도에 대한 90% 신뢰 구간이 (0.7585, 0.8871)임을 보았습니다. 우리는 이를 “구간 (0.7585, 0.8871)이 자신의 직업에 만족하는 미국인의 참 비율 p를 덮는다는 것에 대해 90% 확신합니다”라고 해석할 것입니다.</p>
+<p>p-값(p-values)과 마찬가지로, 신뢰 구간에도 흔히 볼 수 있는 잘못된 해석이 많이 존재합니다. 이를 염두에 두고, 이러한 잘못된 해석들을 언급하고 왜 그것들이 틀렸는지 명확히 하는 것이 가치 있을 것입니다.</p>
+<ul>
+<li>• $(1-)$100% 신뢰 구간은 관심 있는 모수가 신뢰 구간의 설정된 범위 내에 존재할 확률이 <span class="math inline">\(1-\alpha\)</span>임을 의미하지 않습니다. 이 해석은 우리의 모수가 고정된 값이 아니라 확률 변수임을 암시합니다. 우리의 모수는 고정되어 있는 반면 신뢰 구간의 경계는 표본으로부터 계산되어 확률 변수이므로, 이는 거짓입니다.</li>
+<li>• $(1-)$100% 신뢰 구간은 모수가 주어진 신뢰 구간에 의해 정의된 구간과 같음을 우리가 $(1-)$100%만큼 확신한다는 것을 의미하지 않습니다. 다시 말하지만, 우리의 모수는 고정된, 알려지지 않은 단일 값이며 구간과 같을 수 없습니다.</li>
+<li>• $(1-)$100% 신뢰 구간은 모집단의 $(1-)$100%가 신뢰 구간의 범위 내에 속함을 의미하지 않습니다. 신뢰 구간은 모집단 내의 개인이 아니라 모집단 모수에 대한 진술을 하는 것입니다.</li>
+<li>• $(1-)$100% 신뢰 구간은 계산된 표본 통계량이 $(1-)$100%의 시간 동안 신뢰 구간 안에 떨어질 것임을 의미하지 않습니다. 다시 말하지만, 신뢰 구간은 모집단 내의 개인이 아니라 모집단 모수에 대한 진술을 하는 것입니다.</li>
+</ul>
+</section>
+<section id="연습-문제" class="level2">
+<h2 class="anchored" data-anchor-id="연습-문제">연습 문제</h2>
+<p>2016년 퓨 리서치 그룹(Pew Research Group)은 미국인들을 대상으로 자신과 반대되는 정당에 대한 의견을 조사했습니다 [38]. 설문 조사에 참여한 미국인의 45%가 상대 정당에 대해 “우호적이지 않은” 견해를 가지고 있었으며, 표준 오차는 <span class="math inline">\(s.e.(\hat{p})=0.007\)</span>이었습니다.</p>
+<ol type="1">
+<li>p에 대한 90% 신뢰 구간을 구하고 해석하시오.</li>
+<li>p에 대한 95% 신뢰 구간을 구하고 해석하시오.</li>
+<li>p에 대한 99% 신뢰 구간을 구하고 해석하시오.</li>
+<li>p에 대한 99.5% 신뢰 구간을 구하고 해석하시오.</li>
+</ol>
+<p>2019년 퓨 리서치 그룹은 미국인들을 대상으로 화석 연료를 확대하는 것보다 재생 에너지에 집중하는 것이 더 중요한 우선순위라고 믿는 비율이 얼마나 되는지 조사했습니다 [87]. 그들은 미국인의 77%가 이러한 견해를 가지고 있음을 발견했으며, 표준 오차는 <span class="math inline">\(s.e.(\hat{p})=0.007\)</span>이었습니다.</p>
+<ol start="5" type="1">
+<li>p에 대한 80% 신뢰 구간을 구하고 해석하시오.</li>
+<li>p에 대한 90% 신뢰 구간을 구하고 해석하시오.</li>
+<li>p에 대한 95% 신뢰 구간을 구하고 해석하시오.</li>
+</ol>
+</section>
+<section id="신뢰-구간을-보고할-때-함께-말해야-할-것" class="level2">
+<h2 class="anchored" data-anchor-id="신뢰-구간을-보고할-때-함께-말해야-할-것">신뢰 구간을 보고할 때 함께 말해야 할 것</h2>
+<p>신뢰 구간(confidence interval)은 하나의 숫자로 결론을 고정하지 않고, 표본 변동성을 반영한 타당한 값들의 범위를 제시합니다. 그러나 구간만 제시하면 해석이 불완전합니다. 어떤 모수에 대한 구간인지, 어떤 신뢰 수준을 사용했는지, 어떤 표준 오차와 분포 근사를 사용했는지 함께 말해야 합니다.</p>
+<p>좋은 보고 문장은 다음 구조를 따릅니다.</p>
+<ol type="1">
+<li>추정하려는 모수를 밝힙니다.</li>
+<li>사용한 표본 통계량과 표준 오차의 의미를 설명합니다.</li>
+<li>신뢰 수준과 구간을 제시합니다.</li>
+<li>연구 맥락에서 그 구간이 허용하는 결론과 허용하지 않는 결론을 구분합니다.</li>
+</ol>
+<p>예를 들어 어느 도시의 지지율에 대한 95% 신뢰 구간이 0.47에서 0.53이라면, 표본은 과반 지지를 단정하기에 충분하지 않을 수 있습니다. 반대로 구간 전체가 정책 결정의 기준선을 넘는다면 단일 추정값보다 더 설득력 있는 근거가 됩니다. 신뢰 구간의 힘은 불확실성을 숨기지 않는 데 있습니다.</p>
+</section>
+<section id="결론" class="level2">
+<h2 class="anchored" data-anchor-id="결론">결론</h2>
+<p>신뢰 구간은 통계적 추론의 또 다른 중요한 구성 요소를 나타냅니다. 주장을 검정하기보다는, 모수가 가질 수 있는 값의 범위를 볼 수 있게 해줍니다. 우리는 이것을 가설 검정과 어떻게 직접적으로 연결할 수 있는지 보게 될 것이지만, 두 추론 방법은 이미 중심 극한 정리를 통해 연결되어 있습니다. 두 기법 모두 우리의 데이터를 모수와 연결하기 위해 이 정리에 의존하며, 이를 통해 우리 모집단의 이러한 중요한 요약치들에 대한 값을 이해할 수 있게 해줍니다. 앞으로 우리는 모집단 평균과 비율에 초점을 맞추어 몇 가지 주요 추론 상황의 세부 사항을 채워 나갈 수 있을 것입니다.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -21,7 +21,6 @@ website:
 
 bibliography: references.bib
 link-citations: true
-csl: apa-single-spaced.csl
 
 # format:
   # pdf:
