@@ -15,9 +15,13 @@ website:
   sidebar:
     style: "docked"
     search: true
-    collapse-level: 2
+    collapse-level: 3
     contents:
       - index.qmd
+      - notes/ch01.qmd
+      - notes/ch02.qmd
+      - notes/ch03.qmd
+      - notes/ch04.qmd
 
 bibliography: references.bib
 link-citations: true

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,16 +68,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../notes/ch03.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6a85eee24a8917aa54068f8feecfb4f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-cf5ee1d16def7895729d1ac812351ea4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -147,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">데이터 추출, 난수, 그리고 무작위 표본 선택</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch04.html">데이터 추출, 난수, 그리고 무작위 표본 선택</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,6 +168,30 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">통계학의 중요성!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 입문</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 수집: 방법 및 고려 사항</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch04.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">데이터 추출, 난수, 그리고 무작위 표본 선택</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -195,24 +220,49 @@ window.Quarto = {
 </header>
 
 
-<section id="서론" class="level2">
-<h2 class="anchored" data-anchor-id="서론">서론</h2>
-<p>이 장에서는 표집 틀(Sampling frame)에서 무작위 표본(Random sample)을 선택하는 방법에 집중할 것입니다. 이를 위해서는 먼저 몇 가지 기술을 익혀야 합니다. 우선 벡터(Vector)와 데이터 프레임(Data frame)을 서브세팅(Subsetting)하는 방법에 대해 이야기하고, 이어서 R이 난수(Random number)를 생성하는 방법에 대한 약간의 정보를 알아보겠습니다. 마지막으로 숫자 표본을 선택하기 위한 sample() 함수에 대해 논의하고, 모든 정보를 종합하여 표집 틀에서 무작위 표본을 선택해 볼 것입니다.</p>
-</section>
+<blockquote class="blockquote">
+<p>우리는 표집 틀(sampling frame)에서 무작위 표본(random sample)을 선택하는 방법에 집중할 것입니다. 이를 위해서는 먼저 몇 가지 기술을 익혀야 합니다. 우선 벡터(vector)와 데이터 프레임(dataframe)을 서브세팅(subsetting)하는 방법에 대해 이야기하고, 이어서 R이 난수(random number)를 생성하는 방법에 대한 약간의 정보를 알아보겠습니다. 마지막으로 숫자 표본을 선택하기 위한 sample() 함수에 대해 논의하고, 모든 정보를 종합하여 표집 틀에서 무작위 표본을 선택해 볼 것입니다.</p>
+</blockquote>
 <section id="서브셋" class="level2">
 <h2 class="anchored" data-anchor-id="서브셋">서브셋</h2>
-<p>R에서 데이터를 다룰 때 많은 경우 벡터나 데이터 프레임 전체가 아니라 단지 그 일부만을 다루고자 합니다. 즉, 데이터의 서브셋(Subset)을 다루고자 하는 것입니다. 먼저 벡터의 서브셋을 선택하는 방법을 살펴보겠습니다. 아래와 같이 정의된 hours 벡터가 있다고 가정해 보겠습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">8.84</span>, <span class="fl">3.26</span>, <span class="fl">2.81</span>, <span class="fl">0.64</span>, <span class="fl">0.60</span>, <span class="fl">0.53</span>, <span class="fl">0.37</span>, <span class="fl">0.35</span>, <span class="fl">0.31</span>, <span class="fl">0.24</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>R은 벡터 뒤에 대괄호 []를 사용하여 데이터를 서브세팅합니다. 벡터의 특정 요소를 선택하기 위해 대괄호 안에 벡터 인덱스(Index)나 논리문(Logical statement)을 넣을 수 있습니다. 예를 들어, hours 벡터의 첫 번째 요소를 알고 싶다면 다음과 같이 입력하시면 됩니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hours[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>그리고 <code>Enter</code>를 누릅니다. R은 8.84라는 값을 반환할 것인데, 이는 많은 시간을 소비하는 활동인 수면 시간의 평균입니다. 이를 염두에 두고, hours 벡터의 여덟 번째 항목, 즉 2019년에 여덟 번째로 인기 있는 일상 활동인 사교 또는 의사소통에 소비된 평균 시간을 찾으려면 어떻게 해야 할까요? hours을 입력하고 <code>Enter</code>를 누르면 됩니다.</p>
-<p>한 줄의 코드로 벡터의 항목을 두 개 이상 찾아보는 것도 가능합니다. 대괄호 안에 단일 숫자 대신 관심 있는 모든 항목이 포함된 벡터를 넣을 수 있습니다. 예를 들어, 인기 있는 활동, 세 번째로 인기 있는 활동, 아홉 번째로 인기 있는 활동(수면, TV 시청, 스포츠·운동 또는 레크리에이션 참여)에 소비된 시간을 선택하려면 다음 코드를 사용합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hours[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>그러면 8.84, 2.81, 0.31이 반환될 것입니다.</p>
-<p>다른 예로 미국 대통령들의 취임 당시 나이가 <code>age</code>라는 벡터에 저장되어 있다고 가정해 보겠습니다. 존 애덤스(2대 대통령)와 존 퀸시 애덤스(6대 대통령) 부자가 취임할 당시의 나이를 찾아보려면 다음과 같이 두 위치를 함께 지정합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>age[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">6</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>R에서 데이터를 다룰 때 많은 경우 벡터나 데이터 프레임 전체가 아니라, 그 일부만을 다루고자 합니다. 즉, 데이터의 서브셋(subset)을 다루고자 하는 것입니다. 먼저 벡터의 서브셋을 선택하는 방법을 살펴보겠습니다. 아래와 같이 정의된 hours 벡터가 있다고 가정해 보겠습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">8.84</span>, <span class="fl">3.26</span>, <span class="fl">2.81</span>, <span class="fl">0.64</span>, <span class="fl">0.60</span>, <span class="fl">0.53</span>, <span class="fl">0.37</span>, <span class="fl">0.35</span>, <span class="fl">0.31</span>, <span class="fl">0.24</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>hours</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 8.84 3.26 2.81 0.64 0.60 0.53 0.37 0.35 0.31 0.24</code></pre>
+</div>
+</div>
+<p>R은 벡터 뒤에 대괄호 <code>[]</code>를 사용하여 데이터를 서브세팅합니다. 벡터의 특정 요소를 선택하기 위해 대괄호 안에 벡터 인덱스(index)나 논리문(logical statement)을 넣을 수 있습니다. 예를 들어, <code>hours</code> 벡터의 첫 번째 요소를 알고 싶다면 다음과 같이 입력하시면 됩니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hours[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.84</code></pre>
+</div>
+</div>
+<p>그리고 <code>Enter</code>를 누릅니다. R은 8.84라는 값을 반환할 것인데, 이는 많은 시간을 소비하는 활동인 수면 시간의 평균입니다. 이를 염두에 두고, <code>hours</code> 벡터의 여덟 번째 항목, 즉 2019년에 여덟 번째로 인기 있는 일상 활동인 사교 또는 의사소통에 소비된 평균 시간을 찾으려면 어떻게 해야 할까요? <code>hours</code>을 입력하고 <code>Enter</code>를 누르면 됩니다.</p>
+<p>한 줄의 코드로 벡터의 항목을 두 개 이상 찾아보는 것도 가능합니다. 대괄호 안에 단일 숫자 대신 원하는 인덱스들을 모은 벡터를 넣으면 됩니다. 예를 들어, 인기 있는 활동, 세 번째로 인기 있는 활동, 아홉 번째로 인기 있는 활동(수면, TV 시청, 스포츠·운동 또는 레크리에이션 참여)에 소비된 평균 시간을 선택하려면 다음 코드를 사용합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>hours[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.84 2.81 0.31</code></pre>
+</div>
+</div>
+<p>예를 들어 미국 대통령들의 취임 당시 나이가 <code>age</code>라는 벡터에 저장되어 있다고 가정해 보겠습니다. 존 애덤스(2대 대통령)와 존 퀸시 애덤스(6대 대통령) 부자가 취임할 당시의 나이를 찾아보려면 다음과 같이 두 위치를 함께 지정합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">57</span>, <span class="dv">61</span>, <span class="dv">57</span>, <span class="dv">57</span>, <span class="dv">58</span>, <span class="dv">57</span>, <span class="dv">61</span>, <span class="dv">52</span>, <span class="dv">69</span>, <span class="dv">38</span>, <span class="dv">48</span>, <span class="dv">51</span>, <span class="dv">49</span>, <span class="dv">64</span>, <span class="dv">50</span>, <span class="dv">47</span>, <span class="dv">55</span>, <span class="dv">42</span>, <span class="dv">51</span>, <span class="dv">56</span>, <span class="dv">55</span>, <span class="dv">51</span>, <span class="dv">54</span>, <span class="dv">68</span>, <span class="dv">51</span>, <span class="dv">52</span>, <span class="dv">67</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>age[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">6</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 61 57</code></pre>
+</div>
+</div>
 <p>마지막으로, 논리문에 근거하여 벡터의 특정 값을 찾을 수 있습니다. 즉, 특정 값보다 크거나(작거나, 같은 등) 한 벡터의 항목들을 구체적으로 찾을 수 있습니다. 예를 들어, 평균 소비 시간이 특별히 1시간보다 큰 활동들을 찾고 싶다면 다음 코드를 사용합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>hours[hours <span class="sc">&gt;</span> <span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>hours[hours <span class="sc">&gt;</span> <span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.84 3.26 2.81</code></pre>
+</div>
+</div>
 <p>그러면 8.84, 3.26, 2.81이 반환될 것인데, 이들은 벡터에서 1보다 큰 유일한 세 값이기 때문입니다. 논리문을 사용하려면 R이 인식하는 논리 연산자(Logical operator)를 알아야 합니다.</p>
 <table class="caption-top table">
 <thead>
@@ -223,48 +273,58 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td>&gt;</td>
+<td><code>&gt;</code></td>
 <td>~보다 큼</td>
 </tr>
 <tr class="even">
-<td>&gt;=</td>
+<td><code>&gt;=</code></td>
 <td>~보다 크거나 같음</td>
 </tr>
 <tr class="odd">
-<td>&lt;</td>
+<td><code>&lt;</code></td>
 <td>~보다 작음</td>
 </tr>
 <tr class="even">
-<td>&lt;=</td>
+<td><code>&lt;=</code></td>
 <td>~보다 작거나 같음</td>
 </tr>
 <tr class="odd">
-<td>==</td>
+<td><code>==</code></td>
 <td>~와 같음</td>
 </tr>
 <tr class="even">
-<td>!=</td>
+<td><code>!=</code></td>
 <td>~와 같지 않음</td>
 </tr>
 <tr class="odd">
-<td>&amp;</td>
+<td><code>&amp;</code></td>
 <td>그리고(And)</td>
 </tr>
 <tr class="even">
-<td><code>&amp;#124;</code></td>
+<td><code>|</code></td>
 <td>또는(Or)</td>
 </tr>
 </tbody>
 </table>
 <p>마지막 두 문장은 데이터를 서브세팅하기 위해 여러 개의 문장을 만드는 데 도움을 줍니다. 예를 들어, 벡터에서 30분에서 45분 사이(즉, 0.5시간보다 크거나 같고 그리고 0.75시간보다 작거나 같은) 평균 소비 시간을 원한다면 다음을 사용합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>hours[hours <span class="sc">&gt;=</span> <span class="fl">0.5</span> <span class="sc">&amp;</span> hours <span class="sc">&lt;=</span> <span class="fl">0.75</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>그러면 0.64, 0.6, 0.53이 반환될 것입니다. 또 다른 예로, 15분(0.25시간) 미만이거나 4시간보다 긴(0.25와 4는 포함하지 않음) 시간을 선택하려면 다음을 사용합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>hours[hours <span class="sc">&lt;</span> <span class="fl">0.25</span> <span class="sc">|</span> hours <span class="sc">&gt;</span> <span class="dv">4</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>그러면 8.84와 0.24가 반환될 것입니다. 그렇다면 이를 염두에 두고, 15분에서 30분 사이(양 끝점 포함)의 시간을 찾으려면 어떤 코드를 사용하면 좋을까요? 0.6과 같거나 2보다 큰(2는 포함하지 않음) 시간은 어떨까요? 첫 번째는 <code>hours[hours &gt;= 0.25 &amp; hours &lt;= 0.5]</code>이고, 두 번째는 <code>hours[hours == 0.6 | hours &gt; 2]</code>입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>hours[hours <span class="sc">&gt;=</span> <span class="fl">0.5</span> <span class="sc">&amp;</span> hours <span class="sc">&lt;=</span> <span class="fl">0.75</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.64 0.60 0.53</code></pre>
+</div>
+</div>
+<p>또 다른 예로, 15분(0.25시간) 미만이거나 4시간보다 긴(0.25와 4는 포함하지 않음) 시간을 선택하려면 다음을 사용합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>hours[hours <span class="sc">&lt;</span> <span class="fl">0.25</span> <span class="sc">|</span> hours <span class="sc">&gt;</span> <span class="dv">4</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.84 0.24</code></pre>
+</div>
+</div>
+<p>그렇다면 이를 염두에 두고, 15분에서 30분 사이(양 끝점 포함)의 시간을 찾으려면 어떤 코드를 사용하면 좋을까요? 0.6과 같거나 2보다 큰(2는 포함하지 않음) 시간은 어떨까요? 첫 번째는 <code>hours[hours &gt;= 0.25 &amp; hours &lt;= 0.5]</code>이고, 두 번째는 <code>hours[hours == 0.6 | hours &gt; 2]</code>입니다.</p>
 </section>
 <section id="데이터-프레임-서브셋" class="level2">
 <h2 class="anchored" data-anchor-id="데이터-프레임-서브셋">데이터 프레임 서브셋</h2>
-<p>데이터 프레임을 서브세팅하는 것은 벡터와 유사하지만 한 가지 차이점이 있습니다. 벡터는 1차원 개체인 반면, 데이터 프레임은 행과 열로 정의된 2차원 개체입니다. 따라서 벡터에 사용했던 index 대신 rowindex, columnindex를 사용해야 합니다. 따라서 행, 열, 또는 둘 다를 사용하여 서브세팅해야 합니다. 둘 다 사용하는 것부터 시작하여 행만 사용하는 것, 마지막으로 열만 사용하는 것(열 이름으로 참조됨) 순으로 살펴보겠습니다. 시작하기 위해, 앞서 보았던 벡터를 구체화하여 10가지 인기 일상 활동의 활동명, 평균 소비 시간, 범주를 포함하는 Activities라는 이름의 데이터 프레임을 생성한다고 가정해 보겠습니다.</p>
+<p>데이터 프레임을 서브세팅하는 것은 벡터와 유사하지만 한 가지 차이점이 있습니다. 벡터는 1차원 개체인 반면, 데이터 프레임은 행과 열로 정의된 2차원 개체입니다. 따라서 벡터에 사용했던 인덱스 대신 행 인덱스(rowindex), 열 인덱스(columnindex)를 사용해야 합니다. 따라서 행, 열, 또는 둘 다를 사용하여 서브세팅해야 합니다. 둘 다 사용하는 것부터 시작하여 행만 사용하는 것, 마지막으로 열만 사용하는 것(열 이름으로 참조됨) 순으로 살펴보겠습니다. 시작하기 위해, 앞서 보았던 벡터를 구체화하여 10가지 인기 일상 활동의 활동명, 평균 소비 시간, 범주를 포함하는 Activities라는 이름의 데이터 프레임을 생성한다고 가정해 보겠습니다.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -326,107 +386,241 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Activities <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">"Sleeping"</span>, <span class="st">"Working"</span>, <span class="st">"Watching Television"</span>, <span class="st">"Socializing"</span>, <span class="st">"Food Preparation"</span>, <span class="st">"Housework"</span>, <span class="st">"Childcare"</span>, <span class="st">"Consumer Goods Purchase"</span>, <span class="st">"Participating in Recreation"</span>, <span class="st">"Attending Class"</span>),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">AverageHours =</span> <span class="fu">c</span>(<span class="fl">8.84</span>, <span class="fl">3.26</span>, <span class="fl">2.81</span>, <span class="fl">0.64</span>, <span class="fl">0.60</span>, <span class="fl">0.53</span>, <span class="fl">0.37</span>, <span class="fl">0.35</span>, <span class="fl">0.31</span>, <span class="fl">0.24</span>),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Category =</span> <span class="fu">c</span>(<span class="st">"Personal Care"</span>, <span class="st">"Work-Related"</span>, <span class="st">"Leisure"</span>, <span class="st">"Leisure"</span>, <span class="st">"Household"</span>, <span class="st">"Household"</span>, <span class="st">"Caring for Household"</span>, <span class="st">"Purchasing"</span>, <span class="st">"Leisure"</span>, <span class="st">"Education"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>이제 데이터 프레임은 기본적으로 행렬과 같으므로, 특정 행-열 조합을 정의하여 데이터 프레임의 요소를 선택할 수 있습니다. 따라서 ’Food Preparation’의 범주를 선택하려면 다음과 같이 데이터 프레임의 다섯 번째 행과 세 번째 열을 선택하면 됩니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Activities[<span class="dv">5</span>, <span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>그러면 “Household”라는 값이 반환됩니다. 그렇다면 아홉 번째로 인기 있는 활동의 이름을 원한다면 어떤 코드를 사용하면 좋을까요? 코드는 다음과 같습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Activities[<span class="dv">9</span>, <span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Activities[<span class="dv">5</span>, <span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Household"</code></pre>
+</div>
+</div>
+<p>그렇다면 아홉 번째로 인기 있는 활동의 이름을 원한다면 어떤 코드를 사용하면 좋을까요? 코드는 다음과 같습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Activities[<span class="dv">9</span>, <span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Participating in Recreation"</code></pre>
+</div>
+</div>
 <p>데이터 프레임의 특정 요소를 선택하는 것 외에도 특정 행을 선택할 수 있습니다. 쉼표 뒤의 열 인덱스를 비워두면 됩니다. 이렇게 하면 행 인덱스에 나열한 행(들)을 반환합니다. 예를 들어, 열 번째 행인 ’Attending Class’에 대한 정보를 원한다면 다음 코드를 사용합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Activities[<span class="dv">10</span>, ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Activities[<span class="dv">10</span>, ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Name AverageHours  Category
+10 Attending Class         0.24 Education</code></pre>
+</div>
+</div>
 <p>그러면 다음과 같은 값을 가진 벡터가 반환됩니다.</p>
 <pre class="text"><code>"Attending Class" 0.24 "Education"</code></pre>
 <p>행 인덱스에 벡터를 사용하여 두 개 이상의 행을 선택할 수도 있습니다. 예를 들어, Sleeping(1행), Socializing(4행), Childcare(7행)에 대한 정보를 원한다면 코드는 다음과 같습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Activities[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>), ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Activities[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>), ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         Name AverageHours             Category
+1    Sleeping         8.84        Personal Care
+4 Socializing         0.64              Leisure
+7   Childcare         0.37 Caring for Household</code></pre>
+</div>
+</div>
 <p>그러면 다음이 반환됩니다.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>이름(Name)</th>
-<th>평균 시간(AverageHours)</th>
-<th>범주(Category)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Sleeping</td>
-<td>8.84</td>
-<td>Personal Care</td>
-</tr>
-<tr class="even">
-<td>Socializing</td>
-<td>0.64</td>
-<td>Leisure</td>
-</tr>
-<tr class="odd">
-<td>Childcare</td>
-<td>0.37</td>
-<td>Caring for Household</td>
-</tr>
-</tbody>
-</table>
-<p>이를 염두에 두고, Watching Television(3행)과 Housework(6행)에 대한 정보를 찾으려면 어떤 코드를 사용하면 좋을까요? 코드는 Activities[c(3, 6), ]입니다.</p>
-<p>지금까지는 행을 사용하여 데이터 프레임을 서브세팅하는 데 집중했습니다. 하지만 데이터 프레임에서는 열을 다룰 수도 있습니다. 앞서 데이터 프레임은 우리가 생성한 이름이 있는 벡터들로 구성된다는 것을 보았습니다. 예를 들어, Activities 데이터 프레임은 Name, AverageHours, Category라는 이름의 세 벡터로 구성됩니다. 우리는 개별 벡터에만 관심이 있을 수도 있습니다. 예를 들어, 이 데이터셋이 주어졌을 때 이러한 활동들의 범주만 보고 싶을 수 있습니다. R에서는 $ 연산자를 사용하여 데이터 프레임 내의 열을 볼 수 있으며, 구체적으로는 다음과 같습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data_frame_name<span class="sc">$</span>variable_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>           Name AverageHours                 Category
+1      Sleeping         8.84            Personal Care
+4     Socializing         0.64                   Leisure
+7       Childcare         0.37 Caring for Household</code></pre>
+<p>이를 염두에 두고, Watching Television(3행)과 Housework(6행)에 대한 정보를 찾으려면 어떤 코드를 사용하면 좋을까요?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Activities[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>), ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 Name AverageHours  Category
+3 Watching Television         2.81   Leisure
+6           Housework         0.53 Household</code></pre>
+</div>
+</div>
+<p>지금까지는 행을 사용하여 데이터 프레임을 서브세팅하는 데 집중했습니다. 하지만 데이터 프레임에서는 열을 다룰 수도 있습니다. 앞서 데이터 프레임은 우리가 생성한 이름이 있는 벡터들로 구성된다는 것을 보았습니다. 예를 들어, <code>Activities</code> 데이터 프레임은 <code>Name</code>, <code>AverageHours</code>, <code>Category</code>라는 이름의 세 벡터로 구성됩니다. 우리는 개별 벡터에만 관심이 있을 수도 있습니다. 예를 들어, 이 데이터셋이 주어졌을 때 이러한 활동들의 범주만 보고 싶을 수 있습니다. R에서는 <code>$</code> 연산자를 사용하여 데이터 프레임 내의 열을 볼 수 있으며, 구체적으로는 다음과 같습니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>data_frame_name<span class="sc">$</span>variable_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>따라서 이러한 인기 있는 일상 활동의 범주를 보려면 다음을 사용합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Activities<span class="sc">$</span>Category</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>그러면 Personal, Work, Leisure 등이 반환됩니다. 이러한 활동에 소비된 평균 시간을 보려면 어떻게 해야 할까요? Activities$AverageHours입니다.</p>
-<p>이 $ 변수 표기법을 사용하면 논리문에 근거하여 행을 선택하는 데 도움이 됩니다. 예를 들어, 매일 1시간 이상 소비되는 모든 활동에 대한 정보를 보고 싶다면 다음을 사용합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Activities[Activities<span class="sc">$</span>AverageHours <span class="sc">&gt;</span> <span class="dv">1</span>, ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>Activities<span class="sc">$</span>Category</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Personal Care"        "Work-Related"         "Leisure"             
+ [4] "Leisure"              "Household"            "Household"           
+ [7] "Caring for Household" "Purchasing"           "Leisure"             
+[10] "Education"           </code></pre>
+</div>
+</div>
+<p>그러면 <code>Personal</code>, <code>Work</code>, <code>Leisure</code> 등이 반환됩니다. 이러한 활동에 소비된 평균 시간을 보려면 어떻게 해야 할까요?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>Activities<span class="sc">$</span>AverageHours</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 8.84 3.26 2.81 0.64 0.60 0.53 0.37 0.35 0.31 0.24</code></pre>
+</div>
+</div>
+<p>이 <code>$</code> 변수 표기법을 사용하면 논리문에 근거하여 행을 선택하는 데 도움이 됩니다. 예를 들어, 매일 1시간 이상 소비되는 모든 활동에 대한 정보를 보고 싶다면 다음을 사용합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>Activities[Activities<span class="sc">$</span>AverageHours <span class="sc">&gt;</span> <span class="dv">1</span>, ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 Name AverageHours      Category
+1            Sleeping         8.84 Personal Care
+2             Working         3.26  Work-Related
+3 Watching Television         2.81       Leisure</code></pre>
+</div>
+</div>
 <p>그러면 다음이 반환됩니다.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>이름(Name)</th>
-<th>평균 시간(AverageHours)</th>
-<th>범주(Category)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Sleeping</td>
-<td>8.84</td>
-<td>Personal Care</td>
-</tr>
-<tr class="even">
-<td>Working</td>
-<td>3.26</td>
-<td>Work-Related</td>
-</tr>
-<tr class="odd">
-<td>Watching Television</td>
-<td>2.81</td>
-<td>Leisure</td>
-</tr>
-</tbody>
-</table>
-<p>범주가 Leisure로 분류되지 않은 모든 활동에 대한 정보를 보려면 어떻게 해야 할까요? Activities[Activities$Category != “Leisure”, ]입니다. Leisure는 문자 값(Character value)이므로 따옴표로 묶어야 함에 유의해 주세요.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>                 Name AverageHours      Category</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>            Sleeping         <span class="fl">8.84</span> Personal Care</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>             Working         <span class="fl">3.26</span>  Work<span class="sc">-</span>Related</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Watching Television         <span class="fl">2.81</span>       Leisure</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>범주가 <code>Leisure</code>로 분류되지 않은 모든 활동에 대한 정보를 보려면 어떻게 해야 할까요? <code>Activities[Activities$Category != "Leisure", ]</code>입니다. <code>Leisure</code>는 문자 값(Character value)이므로 따옴표로 묶어야 함에 유의해 주세요.</p>
 </section>
 <section id="r의-난수" class="level2">
 <h2 class="anchored" data-anchor-id="r의-난수">R의 난수</h2>
 <p>이제 무작위 표본 선택으로 넘어가고 있으므로, 이를 위해 R에서 난수를 생성해야 합니다. 여기서 R이나 다른 프로그램에서 접하는 거의 모든 난수 생성기에 대해 유의해야 할 중요한 점이 있습니다. 그것이 생성하는 숫자는 진정으로 무작위가 아니라는 것입니다. 그것들은 이전 입력값을 받아 새로운 “무작위” 숫자를 출력하는 알고리즘(R은 메르센 트위스터(Mersenne Twister)라는 것을 사용함)을 사용하여 생성됩니다.</p>
 <p>이러한 유사 난수(Pseudo-random number)를 어떻게 신뢰할 수 있을까? 이러한 모든 난수 생성기의 핵심은 자주 반복되지 않는 것입니다. 난수 생성기가 자주 반복되면 대략 “무작위”라고 신뢰할 수 없습니다. R이 사용하는 알고리즘인 메르센 트위스터는 반복되는 데 약 <span class="math inline">\(2^{19937-1}\)</span>번의 실행이 걸리며, 이는 연구에 필요할 수 있는 어떠한 합리적인 표본 크기보다 훨씬 더 많은 실행 횟수입니다.</p>
 <p>이러한 알고리즘이 이전의 “무작위” 숫자를 사용하여 다음 숫자를 생성한다면, 시작을 위한 초기 숫자가 필요하다는 것이 자명합니다. 이 초기 숫자를 시드(Seed)라고 합니다. 이는 사용자가 설정할 수도 있고, R이 시계 시간과 연동된 시드를 기본값으로 설정할 수도 있습니다. 시드를 설정해야 한다면 R 코드는 다음과 같습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>여기서 시드로 사용할 숫자를 제공합니다. 시드를 제공하면 해당 시드를 사용하여 항상 정확히 동일한 일련의 난수를 얻게 됩니다. 예를 들어, 아래의 R 스크린샷에서 시드를 8로 설정한 다음 0과 1 사이의 “무작위” 숫자 10개를 생성하고, 시드를 다시 8로 재설정하고 새로운 “무작위” 숫자 10개를 생성합니다. 두 세트가 동일하다는 것을 알 수 있을 것입니다.</p>
 </section>
 <section id="무작위-표본-선택" class="level2">
 <h2 class="anchored" data-anchor-id="무작위-표본-선택">무작위 표본 선택</h2>
-<p>난수가 어떻게 생성되는지 대략 알았으므로, 이제 무작위 표본을 생성할 수 있습니다. R에는 표집 틀에서 행 번호를 선택하는 특정 함수인 sample.int 함수가 있습니다. R에서 함수는 특정 출력을 반환하는 특정 입력값을 가집니다. sample.int에서 두 가지 입력값은 표집 틀의 대상 수와 표본의 대상 수입니다. 일반적인 코드는 다음과 같습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample.int</span>(<span class="at">n =</span> population_size, <span class="at">size =</span> sample_size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>이는 표본으로 선택될 행 번호 벡터를 반환할 것입니다.</p>
-<p>예를 들어, 야구 분석에서 중요한 데이터셋 중 하나는 PitchF/x 데이터셋입니다. 이 데이터셋에는 투구 속도, 투구 회전수, 투구 유형, 투구가 플레이트를 통과한 위치 등 2007년 이후 메이저리그 베이스볼 정규 시즌에서 던져진 모든 투구에 대한 많은 변수가 포함되어 있으며, 2019년 시즌 종료 후 8,812,107개에 달합니다. 이러한 모든 투구를 분석하는 것은 기껏해야 어려울 것이므로, 이 데이터의 서브셋(예: 1,000개의 투구)을 분석하도록 선택할 수 있습니다. 분석할 1,000개의 투구(즉, 데이터 프레임의 행)를 선택하려면 다음을 사용합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">8812107</span>, <span class="at">size =</span> <span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>난수가 어떻게 생성되는지 대략 알았으므로, 이제 무작위 표본을 생성할 수 있습니다. R에는 표집 틀에서 행 번호를 선택하는 특정 함수인 <code>sample.int</code> 함수가 있습니다. R에서 함수는 특정 출력을 반환하는 특정 입력값을 가집니다. <code>sample.int</code>에서 두 가지 입력값은 표집 틀의 대상 수와 표본의 대상 수입니다. 일반적인 코드는 다음과 같습니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="fu">length</span>(all_data), <span class="at">size =</span> sample_size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>이는 표본으로 선택될 행 번호 벡터를 반환할 것입니다. 예를 들어, 야구 분석에서 중요한 데이터셋 중 하나는 <code>PitchF/x</code> 데이터셋입니다. 이 데이터셋에는 투구 속도, 투구 회전수, 투구 유형, 투구가 플레이트를 통과한 위치 등 2007년 이후 메이저리그 베이스볼 정규 시즌에서 던져진 모든 투구에 대한 많은 변수가 포함되어 있으며, 2019년 시즌 종료 후 8,812,107개에 달합니다. 이러한 모든 투구를 분석하는 것은 기껏해야 어려울 것이므로, 이 데이터의 서브셋(1,000개의 투구)을 분석하도록 선택할 수 있습니다. 분석할 1,000개의 투구를 선택하려면 다음을 사용합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">8812107</span>, <span class="at">size =</span> <span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   [1] 2885231 5954668 8696095 2873658 6380376 6030446 7362540 2171869 6593036
+  [10] 3615973 3081251  748803 3961444  516082 4288685 5366505 3224446 6612293
+  [19] 4396352 6190865 3988381 6874726 2029135 4192833  243933 4546417 1447169
+  [28] 1060436 6658917 7378723 1314101  181790 8168562 3348434 2097428 6914588
+  [37] 1332770 3674913  789612 1162540 3153122 5010122 6035771 5749262 3772966
+  [46] 5435564 7030101  106805 4408095 3417250 3664401  232760 5742947 1439782
+  [55] 2134813 8332740 1184493 4361791  271430 8018131  958717 2809399 1126176
+  [64] 1226950 2822749 8381558 7177590 8459122 3104318  898034 3025785 6989175
+  [73] 4822781 7903255 1653310 5150415 2733256 2688796 1557256 4229300 8655402
+  [82] 6997077 8446514 3436323 8094018  804798 5883844 2519525 8778386  573357
+  [91] 3322935 4054056  100992  760805  137365 3608476 1182712 1459086 5191930
+ [100] 4189786  556758 7411062 1959551 4370597 5716472 6390844 1689058 6990854
+ [109] 4195779 3565671 4073054 1733479 1998133 3779212 2701353 6972425 1576317
+ [118] 5336338  477988 2186463 7915154 5724911 5202846 1262471 3164989 7353466
+ [127] 5022465  626332 3474855  886354 5813978 2020529 6937197 1991534 2164987
+ [136] 4288490 5562131 1686062 7099828 4973912 7334507 3060328 1846486 5116026
+ [145] 7580006 4817896  489196 3511757  392883 6778742 6499046 3523853 6110933
+ [154] 4918239 3213698 2579835 4122605 7786468 7365415 1939715 2427104 5508949
+ [163] 7110292 8298217 8241389 4744233 5241520 7058199  404594 6413465 4556155
+ [172] 7316592 1218928 4293292 1617247 6511068 8287384  107199 5417384 8252847
+ [181] 5472523 6729265 4982977 5605805 5831274 8673826 2058445  977481  378526
+ [190] 2085908 3832648 2057111 6910864 1855252 5120494 3691562 8598753  293944
+ [199] 1405172 6207541 4909706 4173716 7960588 2897504 2105282  534706 2945586
+ [208] 4139239 5083552 3310827 8590028 7618122 7597209 8603702 5168140 6549136
+ [217] 4503602 1235982 3082104 5625135 7283148 2366985 3599370 8310921 1165928
+ [226] 4723805 3161208 6640067 3546923 5281634 6283224 5955408 1873187 6233118
+ [235] 6031341 7166837  504461 5109015 3748815 8361231 5936252 1901275  217096
+ [244] 3424940 6561615 5631371 4132869  447862 7730172 1409551 3071208 4708296
+ [253] 3623576 6243115 5811517 5447114 6086539 3523282 7278008 1776944 7086524
+ [262] 4362699 2321695 2519538 5988746 3919130 7120555 2329287 5587544 6319659
+ [271] 4795938 3683319 5164031  249793 7481495 5849831 6505436 1057849 5695949
+ [280] 4370878 2711863  969951 5880526 6871476 4163114 8393669 5724526 8450567
+ [289] 6108196  752099 4602534 6847085 3446992 2259410 3739346 5384015 8001470
+ [298] 8283602 5204704 2019751 5775419 4472836 4894161 1134953 6336549 3242869
+ [307] 7696032 7377505 3870426 7699920 2858342 2301632 8153540 4707308  950226
+ [316] 5688086  965834 7098311 4928768 7098387 2089995 8296028 6176607 2737535
+ [325] 1370496  407208 5645319 8548831 6875085 6497790 2276588 5110676 1678614
+ [334] 8502079 4345275 8492097  903355 5926683 1046144 4811282 1222217 4244563
+ [343] 1514601 7640869 8512757 6730074 6066704 8141407 3879863  640093  490496
+ [352] 7187063 2939694 3027083 3358517 3399556 3231519 6430057 5755803 6325833
+ [361] 4932900  575390 3141074 7538337 5854301 1831454 3079362 4357561 6218652
+ [370] 5137299  679001 5875756 8427118 5489584 7540522  543647 4148677 4571551
+ [379] 3323730 8492192 5258797  841540 5760721 6269560 3166563 3794084 7799204
+ [388] 2070666 1695501 6517482 6231042 6198854 5221278 1307872 5577427 7170534
+ [397]  474364 8584682 8553486  332018 8273851 2918555 1908671 7680151 7772451
+ [406] 7484538 4390314 5614778  362232 3019158 6041645 4161533 5530788 1698475
+ [415] 5598014 3482324 4705944  733630 6561644 7075979 1940975 4320426 4639403
+ [424] 6307656 2139606 6827082 3389237 6181054 2156040 7271442 1573402 7488377
+ [433] 7531120 6159542 7247632 8309413 3716951 6301777 4086126 7110030 7788458
+ [442] 3517378 6599230 3293890 8329475 5980977 3166677 7932927 2195398 2612165
+ [451] 5770496 4257610 3828481 7115667 3868067 8514906 2017298 4916993 4416631
+ [460]  108711 3440931 3156937 7802160 5341282  634711  538650 6949477 4699787
+ [469] 4443069 2871381 5607222 5814737 7036101 2094943 2503088 2327499 4178925
+ [478] 5175283 8008039 4927279 6552333  642773 3638195 4552469 8263206 3428444
+ [487] 2879848 4875868 5973056 2611433 6533901 1388734 3609290 4274845 3979763
+ [496] 4971362 4008364 5847554 2546291 5385635 4058230 3729133 1788005 8281737
+ [505] 1106767 4751963 5301890 1980603 2070832 6719853 7326573  613944 2994407
+ [514] 8163583 1929553 3936344 4828625 7944240 1927394 5483164 1649107 3602156
+ [523] 8561849 7760702  138565 7216460 8643470 2166896 5161184 2235198 7241872
+ [532] 5218144 1973397  918517 5836083 6845654 8125816 3162126 8782347  610403
+ [541] 1941567 8707089 7626900 3545678 8612683 4297325 2507583 6211257 8157612
+ [550]  624575 1910811 4121448 5018398 6381691 8569390 1272842 6879650 7595588
+ [559]  896609 2235493 2403552 3894649 3087314 5392292 5431980 5886598 3527126
+ [568]  667125 1680261 5193769 5406020 6143218 5627183 2422651 6721640 2603107
+ [577] 5890155  764900 6323134 6225945 8689385 8198678 6481603 8589837 1897129
+ [586] 4871628 7215396 7304507 3643635 8185161 3167723 7664587   65387 6576171
+ [595] 5925700 2861012 5870847 1532058 4825715 3307200  780480 5941493 6325249
+ [604] 1068797 2164189 7406236 2757752 2754243 5221305 6231062 1440805 3091332
+ [613] 6817350 3883351  269480 4660010 2048267 5677487 6661299  579648 4812729
+ [622] 6246270 6875949 6231160 1019374 4355964 1314774  780446 2801261 6587197
+ [631] 1013561 2692303 2334689 4051786  457470 5474985 3559550 6076738 3783498
+ [640] 2985682 1471678 1290639 4506956 6910956 4421354 3142300 5394757 2657598
+ [649] 5218165 6257594  740923 3652612 7699057 2639549 7255456  319771 7250363
+ [658] 5662206 7113819 4696317 8128569 8690433  743611 6599446 1279530 5758199
+ [667]  647740 2731919 6545465 4430710 1426215 3596484 4195864 2747788 6053416
+ [676] 3397458 1820110 7153105 3694582 8731751 4904330 7628259 6963910 8417338
+ [685]  574574 5790914 3849969  949706 2370161 3338306 2562159 8637346 3292338
+ [694] 6684292 2027649 2235140 1956064 8590084 1306918 5197871 3922309 6850952
+ [703] 5771028   40450 4435801 2023835 2956876  229736 2190295 4424176 4984334
+ [712] 7340897  846705 2377042 5594360 4070227 1479402 5178137 7780264 3858022
+ [721] 1218817 7255221 6760612 1627814 8420844  409896 4068999  750414 8330161
+ [730] 2568914 3416089 6441259 4924763 5218288 2510068 4615448 1762708 2413970
+ [739] 6784024 4131479 2123505 1003111 2137232 3598806 6584784  985752 7934786
+ [748] 5247568 2020825 4038651 1540661 8264484 8688970 6901647 7768935 4681478
+ [757] 3534093 4223695 6985550 2017367 3054115 6450924 4686832 7417286 5821957
+ [766]  576197  382130 4752893 1806473 8057329 8454151 3576226 4075561 1398083
+ [775]  987223 6857933 2589726 8495109 5643576  968702  233138 4501936 7313418
+ [784] 7300099  423988 7623905 2786160 5973516 4445570 8362822 7531496 1619534
+ [793] 4470760 3667282 2080754 5237023 2788709 3317520 6722894 2445492 4796007
+ [802] 2508454 6790585 8408178 7983598 7390903 7548505 3596328  108832 4189044
+ [811] 8507624 6036158 3111928 6834974 3278545  701081 8170031 5814888 1213022
+ [820] 3950080 2442935 2962743 4764717 4033259 8551763 3951490 5017604 5485893
+ [829] 2670927  646040 2200926 7308958  183237 6676411 8511301 2460025 2497370
+ [838] 2633517 6915086 4539420 7893186   45841 6378003 6053467 4284873 1703017
+ [847] 5283340 3717962 6224523 7484647 3780768 8233133 8063278 8072265 3360833
+ [856]  315872 1888281 6696968 7149588 4496085 4996227 1834825 5865401  873343
+ [865] 3396426 3425808  254034 2094725 4455119 7465710 6982482 2292031 4812969
+ [874]  570524 6319512 1764420 6715397 7539691 1811017   79428 5056166 1467415
+ [883] 1456721 6189174 1669052 7234219  486803 2346605 7705012 8597352 5523400
+ [892] 4508043 7172539 2193205 6594212 8529824 2544209 7516974 1115157 7854194
+ [901] 6633205 7319532 5425434  498902 7837966 6494874 7702595  455484 8393970
+ [910] 3486465 4285063 5344440 3896838 6669184  149671 8619083 7618141 3512517
+ [919] 8658394  407905 2434981 3055487 5712762 7044455 4248511 7949825 6303178
+ [928]   92899 4043852 7260346 1930798 1783266 2075131 3145986 3955438 2854219
+ [937] 6841724 4960173 1295165 8696319  103526  577680 5226441 2820664 1251871
+ [946] 7417266 6196427 3351883 2112212 8365418 7736106 3047080 5888527 5564611
+ [955] 6600355 7752098 4551833 7989451 1600120 8651737 2921590 4857098 7022633
+ [964] 6629215 3347882 1694017 6641512 2042713 7174971 5819456 7548430 2646961
+ [973] 4656010 4185362 3393825  377072  748342 4447638 2202859 3451558 3246685
+ [982] 4728438 3949249 6987006 3632411 1264131 5025850 1210300 5441161  403969
+ [991] 2675104  604057 2371573 3036737 8424994 1593902 7737856 8143234 7697961
+[1000] 7991750</code></pre>
+</div>
+</div>
 <p>R은 천 단위나 백만 단위를 구분하기 위해 쉼표를 사용하는 것을 허용하지 않음에 유의해 주세요. 이 코드는 어떤 행을 사용할지만 알려줄 뿐입니다. 실제 자료에서는 <code>8812107</code>처럼 전체 행 수를 직접 쓰기보다 <code>nrow(pitch)</code>처럼 데이터에서 행 수를 계산하는 편이 안전합니다. 실제로 우리는 표집 틀에서 해당 특정 행들을 찾아보거나 저장하고 싶을 것입니다. sample.int 함수의 출력을 사용하여 데이터 프레임의 행을 서브세팅함으로써 이를 수행할 수 있습니다. 전체 PitchF/x 데이터셋이 pitch라는 데이터 프레임에 저장되어 있다고 가정하면, 구체적으로 다음과 같이 사용합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pitch[<span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">8812107</span>, <span class="at">size =</span> <span class="dv">1000</span>), ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>pitch[<span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">8812107</span>, <span class="at">size =</span> <span class="dv">1000</span>), ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>선택한 1,000개의 행을 출력합니다. 이제 일반적으로 선택된 행들을 데이터 프레임에 저장하고 싶으므로, R에서 일반적으로 저장하는 방식대로 저장하면 됩니다. 코드는 다음과 같을 수 있습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pitch_sample <span class="ot">&lt;-</span> pitch[<span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">8812107</span>, <span class="at">size =</span> <span class="dv">1000</span>), ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>pitch_sample <span class="ot">&lt;-</span> pitch[<span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">8812107</span>, <span class="at">size =</span> <span class="dv">1000</span>), ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>선택된 행들을 <code>pitch_sample</code>이라는 데이터 프레임에 저장합니다. 만약 <code>pitch</code> 데이터 프레임에서 5,000개의 투구 표본을 선택하고 이를 <code>pitch_sample</code>이라는 데이터 프레임에 저장하고 싶다면 <code>pitch_sample &lt;- pitch[sample.int(n = nrow(pitch), size = 5000), ]</code>처럼 전체 행 수를 직접 세기보다 <code>nrow(pitch)</code>를 사용하는 편이 안전합니다.</p>
 </section>
 <section id="r에서-도움말-얻기" class="level2">
 <h2 class="anchored" data-anchor-id="r에서-도움말-얻기">R에서 도움말 얻기</h2>
 <p>분석을 진행하는 동안 때때로 코드 오류가 발생하거나, 함수가 받는 인자(Argument)를 잊어버리거나, 사용하고 싶은 새로운 함수를 접하게 될 것입니다. 그러한 경우 이러한 함수를 탐색하는 데 도움이 필요할 것입니다. 필요한 정확한 함수를 알지 못한 채 R에서 무엇을 성취하려는지 알고 있다면, 도움을 받는 간단한 방법은 시도하려는 내용을 구글링하는 것입니다. 이는 알 수 없는 오류가 발생한 경우에도 마찬가지입니다. R 온라인 커뮤니티는 방대하고 도움이 되며, Stack Overflow와 같은 웹사이트에는 알 수 없는 오류에 대한 많은 해결책이나 새로운 함수에 대한 도움말이 있습니다.</p>
 <p>R의 특정 함수로 인해 어려움을 겪고 있다면 함수의 인자와 출력에 대한 정보를 얻는 간단한 방법이 있습니다. 즉, help 함수나 그 단축키인 ?를 사용하는 것입니다. help 함수는 여러 인자를 받지만, 핵심적인 것은 도움이 필요한 함수입니다. 예를 들어, sample.int 함수에 대한 도움이 필요하다면 다음 중 한 줄의 코드를 사용할 수 있습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(sample.int)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>?sample.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(sample.int)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>?sample.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>그러면 R은 함수의 설명, 입력 및 출력을 제공하는 창을 열 것입니다. 더 나아가, 이 창에는 여러분의 분석 의도를 더 쉽게 달성할 수 있도록 해주는 샘플 코드가 제공될 것입니다.</p>
 </section>
 <section id="연습-문제" class="level2">
@@ -535,10 +729,10 @@ window.Quarto = {
 </tbody>
 </table>
 <ol type="1">
-<li>Colleges 데이터 프레임에서 TopSalary 벡터의 첫 번째, 세 번째, 열 번째, 열두 번째 항목을 선택하려면 어떤 코드를 사용하면 좋을까요?</li>
-<li>TopSalary가 $400,000보다 큰 MedianSalary 벡터의 요소를 선택하려면 어떤 코드를 사용하면 좋을까요?</li>
-<li>직원 수가 1,000명 이하인 대학의 데이터 프레임 행을 선택하려면 어떤 코드를 사용하면 좋을까요?</li>
-<li>이 데이터 프레임(14개 행이 있음)에서 5개 대학의 표본을 선택하려면 어떤 코드를 사용하면 좋을까요?</li>
+<li><p>Colleges 데이터 프레임에서 TopSalary 벡터의 첫 번째, 세 번째, 열 번째, 열두 번째 항목을 선택하려면 어떤 코드를 사용하면 좋을까요?</p></li>
+<li><p>TopSalary가 $400,000보다 큰 MedianSalary 벡터의 요소를 선택하려면 어떤 코드를 사용하면 좋을까요?</p></li>
+<li><p>직원 수가 1,000명 이하인 대학의 데이터 프레임 행을 선택하려면 어떤 코드를 사용하면 좋을까요?</p></li>
+<li><p>이 데이터 프레임(14개 행이 있음)에서 5개 대학의 표본을 선택하려면 어떤 코드를 사용하면 좋을까요?</p></li>
 </ol>
 <p>다음과 같은 Countries라는 이름의 데이터 프레임이 있다고 가정해 보겠습니다.</p>
 <table class="caption-top table">
@@ -632,9 +826,9 @@ window.Quarto = {
 </tbody>
 </table>
 <ol start="5" type="1">
-<li>1인당 GDP가 10,000 미만이고 아시아(Asia) 지역에 속하지 않는 데이터 프레임의 행을 선택하려면 어떤 코드를 사용하면 좋을까요?</li>
-<li>이 데이터 프레임(10개 행이 있음)에서 3개 국가의 표본을 선택하려면 어떤 코드를 사용하면 좋을까요?</li>
-<li>인구 증가율이 1.5%보다 큰 국가는 어디인지 선택하려면 어떤 코드를 사용하면 좋을까요?</li>
+<li><p>1인당 GDP가 10,000 미만이고 아시아(Asia) 지역에 속하지 않는 데이터 프레임의 행을 선택하려면 어떤 코드를 사용하면 좋을까요?</p></li>
+<li><p>이 데이터 프레임(10개 행이 있음)에서 3개 국가의 표본을 선택하려면 어떤 코드를 사용하면 좋을까요?</p></li>
+<li><p>인구 증가율이 1.5%보다 큰 국가는 어디인지 선택하려면 어떤 코드를 사용하면 좋을까요?</p></li>
 </ol>
 <p>다음과 같은 Olympics라는 이름의 데이터 프레임이 있다고 가정해 보겠습니다.</p>
 <table class="caption-top table">
@@ -796,42 +990,62 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/B9780128207888000146/t0040.png" class="img-fluid figure-img"></p>
-<figcaption>이미지</figcaption>
-</figure>
-</div>
 <ol start="8" type="1">
-<li>개최국이 메달 1위 국가이기도 했던 데이터 프레임의 행을 선택하려면 어떤 코드를 사용하면 좋을까요?</li>
-<li>종목당 참가자 수가 35명보다 많은 데이터 프레임의 행을 선택하려면 어떤 코드를 사용하면 좋을까요?</li>
-<li>동계 올림픽(Winter Olympics) 참가 국가 수가 최소 80개인 데이터 프레임의 행을 선택하려면 어떤 코드를 사용하면 좋을까요?</li>
+<li><p>개최국이 메달 1위 국가이기도 했던 데이터 프레임의 행을 선택하려면 어떤 코드를 사용하면 좋을까요?</p></li>
+<li><p>종목당 참가자 수가 35명보다 많은 데이터 프레임의 행을 선택하려면 어떤 코드를 사용하면 좋을까요?</p></li>
+<li><p>동계 올림픽(Winter Olympics) 참가 국가 수가 최소 80개인 데이터 프레임의 행을 선택하려면 어떤 코드를 사용하면 좋을까요?</p></li>
 </ol>
 </section>
 <section id="tidyverse로-서브세팅과-표본-추출을-읽기-쉽게-쓰기" class="level2">
 <h2 class="anchored" data-anchor-id="tidyverse로-서브세팅과-표본-추출을-읽기-쉽게-쓰기">tidyverse로 서브세팅과 표본 추출을 읽기 쉽게 쓰기</h2>
 <p>대괄호를 이용한 서브세팅은 R의 핵심 문법이므로 반드시 이해해야 합니다. 다만 실제 분석 보고서에서는 행 조건과 열 선택을 더 명확히 드러내기 위해 <code>dplyr</code> 문법을 함께 사용할 수 있습니다. 다음 코드는 앞의 <code>Activities</code> 데이터에서 하루 평균 1시간을 넘는 활동만 남기고, 필요한 열만 선택합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>activities <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Sleeping"</span>, <span class="st">"Working"</span>, <span class="st">"Watching Television"</span>, <span class="st">"Socializing"</span>),</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">average_hours =</span> <span class="fu">c</span>(<span class="fl">8.84</span>, <span class="fl">3.26</span>, <span class="fl">2.81</span>, <span class="fl">0.64</span>),</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">"Personal Care"</span>, <span class="st">"Work-Related"</span>, <span class="st">"Leisure"</span>, <span class="st">"Leisure"</span>)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>activities <span class="sc">|&gt;</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(average_hours <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, average_hours)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.1     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.3     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>activities <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Sleeping"</span>, <span class="st">"Working"</span>, <span class="st">"Watching Television"</span>, <span class="st">"Socializing"</span>),</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">average_hours =</span> <span class="fu">c</span>(<span class="fl">8.84</span>, <span class="fl">3.26</span>, <span class="fl">2.81</span>, <span class="fl">0.64</span>),</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">"Personal Care"</span>, <span class="st">"Work-Related"</span>, <span class="st">"Leisure"</span>, <span class="st">"Leisure"</span>)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>activities <span class="sc">|&gt;</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(average_hours <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, average_hours)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  name                average_hours
+  &lt;chr&gt;                       &lt;dbl&gt;
+1 Sleeping                     8.84
+2 Working                      3.26
+3 Watching Television          2.81</code></pre>
+</div>
+</div>
 <p>무작위 표본 추출도 같은 방식으로 표현할 수 있습니다. <code>sample.int()</code>는 행 번호를 직접 다룰 때 유용하고, <code>slice_sample()</code>은 데이터 프레임에서 행을 바로 뽑을 때 읽기 쉽습니다. 재현 가능한 예제를 만들 때는 표본 추출 직전에 <code>set.seed()</code>를 놓아 같은 결과가 다시 나오도록 합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>activities <span class="sc">|&gt;</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>activities <span class="sc">|&gt;</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  name        average_hours category     
+  &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;        
+1 Sleeping             8.84 Personal Care
+2 Socializing          0.64 Leisure      </code></pre>
+</div>
+</div>
 <p>중요한 점은 <code>set.seed()</code>가 무작위성을 없애는 명령이 아니라, 수업과 보고서에서 같은 표본을 다시 확인할 수 있게 해 주는 장치라는 것입니다. 실제 연구에서는 표본 추출 절차와 시드 사용 여부를 기록하여 분석자가 어떤 우연성을 통제했는지 분명히 남겨야 합니다.</p>
-</section>
-<section id="결론" class="level2">
-<h2 class="anchored" data-anchor-id="결론">결론</h2>
-<p>이전에는 R에 데이터를 입력하는 능력이 있었다면, 이제는 데이터셋 내에서 개별 데이터 값, 열, 행을 선택하는 능력이 추가되었습니다. 이를 통해 궁극적으로 집단들이 어떻게 다른지 확인하기 위해 그들을 비교할 수 있게 될 것입니다. 하지만 현재로서는 여전히 데이터를 직접 입력해야 합니다. 다음 장에서는 csv 파일이나 R용으로 설계된 라이브러리를 통해 미리 입력된 데이터셋을 R로 로드하는 방법을 살펴보겠습니다.</p>
 
 
 </section>
@@ -1237,6 +1451,15 @@ window.Quarto = {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../notes/ch03.html" class="pagination-link" aria-label="데이터 수집: 방법 및 고려 사항">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">데이터 수집: 방법 및 고려 사항</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
