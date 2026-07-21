@@ -155,13 +155,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">데이터 수집: 방법 및 고려 사항</span></a>
+ <span class="menu-text">데이터 수집</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">데이터 추출, 난수, 그리고 무작위 표본 선택</span></a>
+ <span class="menu-text">데이터 추출</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 불러오기</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">탐색적 데이터 분석</span></a>
   </div>
 </li>
     </ul>
@@ -192,7 +204,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>R은 데이터 분석과 그래픽 생성에 널리 사용되는 오픈 소스 프로그래밍 언어입니다. 다양한 학문 분야에 걸쳐 R은 표준 통계 소프트웨어로 자리 잡고 있으며 광범위한 온라인 커뮤니티를 자랑합니다. 따라서 R로 작업하면서 마주칠 수 있는 문제들에 대한 해결책은 빠른 웹 검색을 통해 쉽게 찾을 수 있습니다.</p>
+<blockquote class="blockquote">
+<p>R은 데이터 분석과 그래픽 생성에 널리 사용되는 오픈 소스 프로그래밍 언어입니다. 다양한 학문 분야에 걸쳐 R은 표준 통계 소프트웨어로 자리 잡고 있으며 광범위한 온라인 커뮤니티를 자랑합니다. 따라서 R로 작업하면서 마주칠 수 있는 문제들에 대한 해결책은 빠른 웹 검색을 통해 쉽게 찾을 수 있습니다. 무엇보다, 빠르게 배울 수 있습니다.</p>
+</blockquote>
 <section id="설치-및-환경-설정" class="level2">
 <h2 class="anchored" data-anchor-id="설치-및-환경-설정">설치 및 환경 설정</h2>
 <p>R을 다운로드하려면 CRAN 사이트로 이동하여 각자의 운영 체제(윈도우, 리눅스, macOS)에 맞는 올바른 버전을 선택해야 합니다. 그리고 Posit의 다운로드 페이지에서 RStudio와 같은 통합개발환경을 설치하면 더욱 편리하게 R을 사용할 수 있습니다. 가능하면 R을 쉽게 조작 및 확인할 수 있는 통합개발환경을 구축하는 데 시간을 아끼지 마시고, R 외에도 코드를 작성하고 편집하는 데 좋은 텍스트 편집기를 설치해 두시면 유용합니다.</p>
@@ -201,9 +215,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="r의-라이브러리">R의 라이브러리</h2>
 <p>R은 오픈 소스 소프트웨어이기 때문에 누구나 분석을 더 쉽게 할 수 있도록 사용자 정의 함수 패키지를 만들 수 있습니다. 이러한 패키지를 라이브러리(library)라고 하며 대부분 CRAN에 저장됩니다. 이러한 라이브러리는 R에서 다운로드하여 설치할 수 있으며 언제든지 호출하여 사용할 수 있습니다.</p>
 <p>라이브러리를 설치하는 첫 번째 단계는 라이브러리를 다운로드하고 설치하는 것입니다. 예전에는 운영 체제 메뉴에서 패키지를 설치하는 절차를 길게 따라가는 방식이 흔했습니다. 우리는 동일한 분석 환경을 다시 만들 수 있도록 패키지 설치와 로드를 코드로 남기는 방식을 우선합니다. 시스템 라이브러리에 설치 권한이 없을 때만 관리자 권한 실행이 필요합니다. 그 외에는 보통은 사용자 라이브러리에 설치하면 충분합니다.</p>
-<p>일반적인 패키지 설치 방법은 R-Studio의 상단 메뉴의 “Packages” 탭을 클릭하고 드롭다운 메뉴에서 “Install Packages”를 선택합니다. 라이브러리 설치시 CRAN 미러(mirror)를 선택해야 하는데, 기본적으로 이것은 지속적으로 업데이트되는 CRAN의 어떤 저장된 버전을 사용할지 정의하는 것입니다. CRAN 미러 선택은 대개 패키지 설치에 아무런 영향을 미치지 않습니다.</p>
+<p>일반적인 패키지 설치 방법은 RStudio의 상단 메뉴의 “Packages” 탭을 클릭하고 드롭다운 메뉴에서 “Install Packages”를 선택합니다. 라이브러리 설치시 CRAN 미러(mirror)를 선택해야 하는데, 기본적으로 이것은 지속적으로 업데이트되는 CRAN의 어떤 저장된 버전을 사용할지 정의하는 것입니다. CRAN 미러 선택은 대개 패키지 설치에 아무런 영향을 미치지 않습니다.</p>
 <p>이 작업이 끝나면 R에서 사용할 수 있는 라이브러리의 전체 알파벳순 목록이 표시됩니다. 아래로 스크롤하여 MASS를 선택하고 확인을 클릭합니다. 패키지가 설치되며 사용자가 필요할 때마다 호출할 수 있습니다.</p>
-<p>하지만 R-Studio가 아닌 positron, vscode 사용자는 메뉴 대신 패키지 설치 명령어를 사용해야 합니다. R에서 명령어를 사용해서 설치하기 위해선 <code>install.packages()</code> 명령어를 사용합니다. 예를 들어 MASS 라이브러리를 설치하려면 다음 코드를 사용합니다.</p>
+<p>하지만 RStudio가 아닌 positron, vscode 사용자는 메뉴 대신 패키지 설치 명령어를 사용해야 합니다. R에서 명령어를 사용해서 설치하기 위해선 <code>install.packages()</code> 명령어를 사용합니다. 예를 들어 MASS 라이브러리를 설치하려면 다음 코드를 사용합니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"MASS"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>라이브러리를 호출하여 R에서 사용하려면 <code>library()</code> 명령어를 사용합니다. 예를 들어 MASS 라이브러리를 호출하려면 다음 코드를 사용합니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -251,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">objects</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "x"</code></pre>
+<pre><code>[1] "pandoc_dir"      "quarto_bin_path" "x"              </code></pre>
 </div>
 </div>
 <p>함수를 호출할 때 결과를 객체에 할당하지 않으면 반환된 값이 화면에 표시됩니다. 결과를 객체에 할당하면 해당 값이 저장되지만 화면에 바로 표시되지는 않습니다.</p>
@@ -324,7 +338,7 @@ Levels: forest grassland marsh tundra</code></pre>
 </section>
 <section id="리스트" class="level3">
 <h3 class="anchored" data-anchor-id="리스트">리스트</h3>
-<p>리스트는 일련의 값을 포함하지만 리스트의 값은 서로 다른 유형일 수 있다는 점에서 벡터와 다릅니다. 예를 들어 지역의 이름, 데이터의 개수, 논리값 등을 하나에 담을 수 있습니다. 리스트는 list() 함수로 만들어집니다.</p>
+<p>리스트는 일련의 값을 포함하지만 리스트의 값은 서로 다른 유형일 수 있다는 점에서 벡터와 다릅니다. 예를 들어 지역의 이름, 데이터의 개수, 논리값 등을 하나에 담을 수 있습니다. 리스트는 <code>list()</code> 함수로 만들어집니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"Wyoming"</span>, <span class="dv">42</span>, <span class="cn">TRUE</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>my_list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -349,7 +363,7 @@ Levels: forest grassland marsh tundra</code></pre>
 </section>
 <section id="행렬" class="level3">
 <h3 class="anchored" data-anchor-id="행렬">행렬</h3>
-<p>행렬은 동일한 유형의 값으로 구성된 여러 개의 행과 열을 가집니다. 행렬은 matrix() 함수로 쉽게 생성할 수 있으며 행과 열의 수를 지정할 수 있습니다. 기본적으로 행렬은 열 방향으로 먼저 채워집니다.</p>
+<p>행렬은 동일한 유형의 값으로 구성된 여러 개의 행과 열을 가집니다. 행렬은 <code>matrix()</code> 함수로 쉽게 생성할 수 있으며 행과 열의 수를 지정할 수 있습니다. 기본적으로 행렬은 열 방향으로 먼저 채워집니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">8</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -471,7 +485,7 @@ Levels: forest grassland marsh tundra</code></pre>
 </section>
 <section id="시각화" class="level3">
 <h3 class="anchored" data-anchor-id="시각화">시각화</h3>
-<p>R은 뛰어난 플롯 생성 기능을 가지고 있습니다. 복잡한 플롯도 생성할 수 있으며 시각화를 통해 데이터를 직관적으로 파악할 수 있습니다. 기본적인 도수 분포를 그릴 때는 hist() 함수를 사용합니다.</p>
+<p>R은 뛰어난 플롯 생성 기능을 가지고 있습니다. 복잡한 플롯도 생성할 수 있으며 시각화를 통해 데이터를 직관적으로 파악할 수 있습니다. 기본적인 도수 분포를 그릴 때는 <code>hist()</code> 함수를 사용합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>forests <span class="sc">|&gt;</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> beetle)) <span class="sc">+</span></span>
@@ -544,7 +558,7 @@ These packages will be installed into "~/Works/practice-statistics/renv/library/
 
 # Installing packages --------------------------------------------------------
 [32m✔[0m tidyverse 2.0.0                          [linked from cache]
-Successfully installed 1 package in 1.5 milliseconds.</code></pre>
+Successfully installed 1 package in 1.7 milliseconds.</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -563,7 +577,7 @@ BLAS:   /opt/homebrew/Cellar/openblas/0.3.34/lib/libopenblasp-r0.3.34.dylib
 LAPACK: /opt/homebrew/Cellar/r/4.6.1/lib/R/lib/libRlapack.dylib;  LAPACK version 3.12.1
 
 locale:
-[1] C.UTF-8/C.UTF-8/C.UTF-8/C/C.UTF-8/C.UTF-8
+[1] ko_KR.UTF-8/ko_KR.UTF-8/ko_KR.UTF-8/C/ko_KR.UTF-8/ko_KR.UTF-8
 
 time zone: Asia/Seoul
 tzcode source: internal
@@ -1044,8 +1058,8 @@ loaded via a namespace (and not attached):
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notes/ch03.html" class="pagination-link" aria-label="데이터 수집: 방법 및 고려 사항">
-        <span class="nav-page-text">데이터 수집: 방법 및 고려 사항</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../notes/ch03.html" class="pagination-link" aria-label="데이터 수집">
+        <span class="nav-page-text">데이터 수집</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

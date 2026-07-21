@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R을 이용한 탐색적 데이터 분석(EDA)</title>
+<title>탐색적 분석(실습)</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">R을 이용한 탐색적 데이터 분석(EDA)</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">탐색적 분석(실습)</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,13 +153,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">데이터 수집: 방법 및 고려 사항</span></a>
+ <span class="menu-text">데이터 수집</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">데이터 추출, 난수, 그리고 무작위 표본 선택</span></a>
+ <span class="menu-text">데이터 추출</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 불러오기</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">탐색적 데이터 분석</span></a>
   </div>
 </li>
     </ul>
@@ -173,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">R을 이용한 탐색적 데이터 분석(EDA)</h1>
+<h1 class="title">탐색적 분석(실습)</h1>
 </div>
 
 
@@ -190,13 +202,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="서론" class="level2">
-<h2 class="anchored" data-anchor-id="서론">서론</h2>
+<blockquote class="blockquote">
 <p>이전 R 튜토리얼에서는 R에서 사용할 수 있는 라이브러리를 활용하거나 <code>readr::read_csv()</code>를 사용하여 csv 파일을 작업 공간(Workspace)에 로드하는 방법에 대해 알아보았습니다. 본 튜토리얼에서는 요약 수치를 계산하는 방법과 데이터를 시각화하는 데 사용되는 다양한 그래프를 생성하는 방법에 대해 설명합니다. R 4.6 실습에서는 기본 R 함수의 원리를 먼저 확인하되, 그래프와 파이프라인 예제는 <code>ggplot2</code>와 <code>dplyr</code>을 포함한 tidyverse 문법으로 작성하겠습니다.</p>
+</blockquote>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Ecdat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
 <section id="r에서의-빈도표-및-분할표" class="level2">
 <h2 class="anchored" data-anchor-id="r에서의-빈도표-및-분할표">R에서의 빈도표 및 분할표</h2>
 <p>범주형 변수를 다룰 때 탐색적 분석의 주요 형태는 빈도표(하나의 변수일 경우) 또는 분할표(Contingency table, 두 개의 변수일 경우)입니다. 이 표들로부터 표본 비율(Sample proportion)을 계산하는 것은 간단합니다. R에서는 table 함수 하나로 이 두 가지 유형의 표를 모두 생성할 수 있습니다. 빈도표를 생성하기 위한 table 함수의 코드는 다음과 같습니다.</p>

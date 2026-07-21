@@ -22,6 +22,8 @@ website:
       - notes/ch02.qmd
       - notes/ch03.qmd
       - notes/ch04.qmd
+      - notes/ch05.qmd
+      - notes/ch06.qmd
 
 bibliography: references.bib
 link-citations: true
