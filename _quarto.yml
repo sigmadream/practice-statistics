@@ -24,7 +24,8 @@ website:
       - notes/ch04.qmd
       - notes/ch05.qmd
       - notes/ch06.qmd
-
+      - notes/ch07.qmd
+      
 bibliography: references.bib
 link-citations: true
 
