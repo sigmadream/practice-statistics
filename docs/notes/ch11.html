@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>중심극한정리를 활용한 가설 검정 수행하기</title>
+<title>중심극한정리를 활용한 가설 검정 수행하기 – R과 데이터 분석 입문</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,6 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../notes/ch12.html" rel="next">
+<link href="../notes/ch10.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -136,9 +138,15 @@ window.Quarto = {
 };
 </script>
 
+<meta property="og:title" content="중심극한정리를 활용한 가설 검정 수행하기 – R과 데이터 분석 입문">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="R과 데이터 분석 입문">
+<meta name="twitter:title" content="중심극한정리를 활용한 가설 검정 수행하기 – R과 데이터 분석 입문">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-sidebar docked fullcontent quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -147,7 +155,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">중심극한정리를 활용한 가설 검정 수행하기</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch07.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch11.html">중심극한정리를 활용한 가설 검정 수행하기</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,6 +168,18 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">R과 데이터 분석 입문</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -169,56 +189,190 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 언어</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">R과 데이터 분석</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../notes/ch01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">통계학의 중요성!</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R 입문</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 수집</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 추출</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 불러오기</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">탐색적 데이터 분석</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">확률과 검증</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">탐색적 분석(실습)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">확률에 대한 간략한 소개</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">표집 분포, 또는 탐색적 분석만으로는 충분하지 않은 이유</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">가설 검정의 원리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch11.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">중심극한정리를 활용한 가설 검정 수행하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">구간 추정의 개념</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단일 모수(Single parameter)에 대한 가설 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단일 모수(Single parameter)에 대한 신뢰 구간</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 모수에 대한 가설 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 모수에 대한 신뢰 구간</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">통계적 추론</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">확률과 추론</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 양적 변수에 대한 추론</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단순 선형 회귀</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">몇가지 주제</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#정규분포-요약" id="toc-정규분포-요약" class="nav-link active" data-scroll-target="#정규분포-요약"><span class="header-section-number">1</span> 정규분포 요약</a></li>
+  <li><a href="#정규분포로부터-확률-구하기" id="toc-정규분포로부터-확률-구하기" class="nav-link" data-scroll-target="#정규분포로부터-확률-구하기"><span class="header-section-number">2</span> 정규분포로부터 확률 구하기</a>
+  <ul class="collapse">
+  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">2.1</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#데이터와-p-값-연결하기" id="toc-데이터와-p-값-연결하기" class="nav-link" data-scroll-target="#데이터와-p-값-연결하기"><span class="header-section-number">3</span> 데이터와 <span class="math inline">\(p\)</span>-값 연결하기</a>
+  <ul class="collapse">
+  <li><a href="#연습-문제-1" id="toc-연습-문제-1" class="nav-link" data-scroll-target="#연습-문제-1"><span class="header-section-number">3.1</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#중심극한정리를-적용하기-전에-확인할-것" id="toc-중심극한정리를-적용하기-전에-확인할-것" class="nav-link" data-scroll-target="#중심극한정리를-적용하기-전에-확인할-것"><span class="header-section-number">4</span> 중심극한정리를 적용하기 전에 확인할 것</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch07.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch11.html">중심극한정리를 활용한 가설 검정 수행하기</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">중심극한정리를 활용한 가설 검정 수행하기</h1>
 </div>
@@ -237,178 +391,223 @@ window.Quarto = {
 </header>
 
 
-<section id="서론" class="level2">
-<h2 class="anchored" data-anchor-id="서론">서론</h2>
-<p>가설 검정(Hypothesis testing)의 개념을 소개했으므로, 이제 이를 조금 더 자세히 파헤쳐 보겠습니다. 구체적으로, 의사 결정 과정의 원동력인 p-값(p-value)을 얻는 방법에 대해 이야기해야 합니다. p-값을 얻는 기술은 많지만, 그 중 대다수는 지루하거나 입문 과정의 범위를 벗어나는 이론적 설명을 필요로 합니다. p-값을 얻는 일반적이고 실제로 더 간단한 방법 중 하나는 중심극한정리(Central limit theorem)를 활용하는 것입니다. 이를 통해 표본 통계량(Sample statistic)을 데이터가 얼마나 희귀한지에 대한 확률로 바꿀 수 있습니다. 하지만 그전에, 정규분포(Normal distribution)와 이 중요한 분포군을 다루는 방법에 대해 조금 더 이야기할 필요가 있습니다.</p>
-</section>
-<section id="정규분포-요약" class="level2">
-<h2 class="anchored" data-anchor-id="정규분포-요약">정규분포 요약</h2>
-<p>시작하기 전에, 이전에 정규분포에 대해 배웠던 내용을 상기해 봅시다. 정규분포는 실제로는 분포들의 집합(Class)으로, 모두 단봉형(Unimodal)이고 대칭이며 종 모양입니다. 정규분포는 함수에 의해 정의되므로, 함수의 모양을 결정하는 두 개의 매개변수(Parameter)인 평균 매개변수 μ와 분산(Variance) 매개변수 σ²<img src="images/B9780128207888000237/si1.png" class="img-fluid" alt="이미지">을 가집니다. 만약 확률 변수 X가 평균 μ와 분산 σ²<img src="images/B9780128207888000237/si1.png" class="img-fluid" alt="이미지">을 갖는 정규분포를 따른다면—X∼N(μ,σ²<span class="math inline">\()\)</span>—X의 모든 가능한 값의 평균은 μ가 되고, X의 모든 가능한 값의 분산은 σ²<img src="images/B9780128207888000237/si1.png" class="img-fluid" alt="이미지">이 됩니다.</p>
-<p>정규분포 중에는 지극히 중요한 한 가지 특수한 경우가 있는데, 바로 표준 정규분포(Standard Normal distribution)입니다. 표준 정규분포는 평균 <span class="math inline">\(\mu=0\)</span>이고 분산 σ²<span class="math inline">\(=1\)</span>인 정규분포입니다. 이 분포는 모든 정규분포를 상대적으로 쉽게 표준 정규분포로 변환할 수 있기 때문에 특히 유용합니다. 변수 X가 평균 μ와 분산 σ²<img src="images/B9780128207888000237/si1.png" class="img-fluid" alt="이미지">인 정규분포를 따른다면, 다음과 같이 새로운 변수 Z를 만들 수 있습니다.</p>
+<blockquote class="blockquote">
+<p>앞서 가설 검정(Hypothesis testing)의 기본 개념을 익혔으므로, 이제 그 과정을 조금 더 깊이 파헤쳐 보겠습니다. 구체적으로 통계적 의사 결정의 핵심 지표인 <span class="math inline">\(p\)</span>-값(<span class="math inline">\(p\)</span>-value)을 도출하는 원리를 알아야 합니다. <span class="math inline">\(p\)</span>-값을 계산하는 방법은 매우 다양하지만, 상당수는 과정이 지나치게 복잡하거나 입문 수준을 벗어나는 심도 있는 이론적 지식을 요구합니다. 실무에서 널리 쓰이면서도 비교적 간단한 방법 중 하나는 바로 중심극한정리(Central limit theorem)를 활용하는 것입니다. 이를 통해 표본 통계량(Sample statistic)을 ’데이터가 얼마나 이례적인지’를 나타내는 확률로 변환할 수 있습니다. 그 원리를 다루기에 앞서, 정규분포(Normal distribution)의 속성과 이 중요한 분포군을 다루는 방법에 대해 조금 더 살펴보겠습니다.</p>
+</blockquote>
+<section id="정규분포-요약" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="정규분포-요약"><span class="header-section-number">1</span> 정규분포 요약</h2>
+<p>본격적인 논의에 앞서 정규분포에 대해 배웠던 내용을 상기해 보겠습니다. 정규분포는 사실 단일한 분포가 아니라, 단봉형(Unimodal)이고 대칭이며 종 모양이라는 특징을 공유하는 분포들의 집합(Class)입니다. 정규분포의 형태는 수학적 함수에 의해 결정되며, 그 함수의 모양을 좌우하는 두 개의 매개변수(Parameter)인 평균 <span class="math inline">\(\mu\)</span>와 분산(Variance) <span class="math inline">\(\sigma^2\)</span>을 갖습니다. 확률 변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>와 분산 <span class="math inline">\(\sigma^2\)</span>을 갖는 정규분포를 따른다면 — 즉, <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span> — <span class="math inline">\(X\)</span>가 가질 수 있는 모든 값의 평균은 <span class="math inline">\(\mu\)</span>가 되고, 분산은 <span class="math inline">\(\sigma^2\)</span>이 됩니다.</p>
+<p>정규분포 중에서도 지극히 중요한 특수한 형태가 하나 있는데, 바로 표준 정규분포(Standard Normal distribution)입니다. 표준 정규분포는 평균이 <span class="math inline">\(\mu=0\)</span>이고 분산이 <span class="math inline">\(\sigma^2=1\)</span>인 정규분포를 의미합니다. 이 분포가 특히 유용한 이유는 어떤 정규분포든 비교적 간단한 연산을 통해 표준 정규분포로 변환(표준화)할 수 있기 때문입니다. 만약 변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>, 분산 <span class="math inline">\(\sigma^2\)</span>인 정규분포를 따른다면, 다음과 같이 새로운 변수 <span class="math inline">\(Z\)</span>를 정의할 수 있습니다.</p>
 <p><span class="math display">\[
-Z=X-\mu\sigma.
+Z = \frac{X-\mu}{\sigma}
 \]</span></p>
-<p>그러면 Z는 표준 정규분포를 따르게 됩니다. 이는 가설 검정을 수행하려고 할 때 우리에게 중요해질 것입니다. 정규분포의 또 다른 핵심 속성은 덧셈과 뺄셈을 사용하여 결합될 수 있다는 점이었습니다. 즉, 두 확률 변수 X와 Y가 모두 정규분포를 따른다면, <span class="math inline">\(X+Y\)</span>와 <span class="math inline">\(X-Y\)</span> 또한 정규분포를 따를 것입니다. 즉, 다음과 같습니다.</p>
+<p>이렇게 만들어진 <span class="math inline">\(Z\)</span>는 항상 표준 정규분포를 따릅니다. 이 변환 과정은 잠시 후 가설 검정을 수행할 때 매우 핵심적인 역할을 할 것입니다. 정규분포의 또 다른 놀라운 속성은 두 분포를 더하거나 뺄 때도 그 결과가 정규분포를 유지한다는 점입니다. 두 확률 변수 <span class="math inline">\(X\)</span>와 <span class="math inline">\(Y\)</span>가 모두 정규분포를 따른다면, <span class="math inline">\(X+Y\)</span>와 <span class="math inline">\(X-Y\)</span> 또한 정규분포를 따릅니다. 즉, 다음과 같이 요약할 수 있습니다.</p>
 <p><span class="math display">\[
-X∼N(\mu_{X},\s^2_{igmaX}),Y∼N(\mu_{Y},\s^2_{igmaY})X+Y∼N(\mu_{X}+\mu_{Y},\s^2_{igmaX}+\s^2_{igmaY})X-Y∼N(\mu_{X}-\mu_{Y},\s^2_{igmaX}+\s^2_{igmaY}).
-\]</span> 이 속성은 가설 검정, 특히 두 모집단(Population)이 유사한지 아니면 어떤 방식으로든 다른지 비교할 때 중요할 것입니다.</p>
+X \sim N(\mu_{X}, \sigma_{X}^2), \quad Y \sim N(\mu_{Y}, \sigma_{Y}^2) \\
+X+Y \sim N(\mu_{X}+\mu_{Y}, \sigma_{X}^2+\sigma_{Y}^2) \\
+X-Y \sim N(\mu_{X}-\mu_{Y}, \sigma_{X}^2+\sigma_{Y}^2)
+\]</span></p>
+<p>이러한 덧셈과 뺄셈의 속성은 향후 두 집단(Population) 간의 차이를 비교하는 가설 검정에서 매우 중요하게 쓰일 것입니다.</p>
 </section>
-<section id="정규분포로부터-확률-구하기" class="level2">
-<h2 class="anchored" data-anchor-id="정규분포로부터-확률-구하기">정규분포로부터 확률 구하기</h2>
-<p>정규분포를 사용하려면 확률(Probability)을 구할 수 있어야 합니다. 정규분포를 정의하는 함수는 확률을 구하기 쉽게 만들어주지 않습니다. 이 때문에 이러한 값을 얻으려면 기술—다시 말해 R—을 사용해야 합니다. 존재하는 다양한 통계 소프트웨어 패키지들은 이 작업을 훨씬 쉽게 만들어줍니다. R에서 모든 정규분포로부터 확률을 얻기 위해 사용하는 함수는 pnorm 함수입니다. pnorm 함수는 우리가 찾고 있는 확률을 완전히 알려주는 네 개의 인자(Argument)를 취하며, 함수의 형식은 다음과 같습니다.</p>
+<section id="정규분포로부터-확률-구하기" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="정규분포로부터-확률-구하기"><span class="header-section-number">2</span> 정규분포로부터 확률 구하기</h2>
+<p>정규분포를 실무에 활용하려면 누적 확률(Probability)을 계산할 수 있어야 합니다. 하지만 정규분포를 정의하는 수학 함수를 직접 적분하여 확률을 구하는 것은 매우 번거롭습니다. 2026년 현재 최신 통계 소프트웨어와 AI 코딩 어시스턴트는 이러한 작업을 단 몇 줄의 코드만으로 수월하게 처리하도록 돕습니다.</p>
+<p>R 프로그래밍 환경에서는 모든 정규분포의 확률을 계산하기 위해 <code>pnorm</code> 함수를 사용합니다. <code>pnorm</code> 함수는 계산에 필요한 정보를 정확히 파악하기 위해 다음 네 가지 인자(Argument)를 요구합니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(q, mean, sd, lower.tail)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>네 개의 인자는 다음과 같습니다.</p>
+<p>각 인자의 역할은 다음과 같습니다.</p>
 <ul>
-<li>• q: 정규분포에서 관심 있는 분위수(Quantile).</li>
-<li>• <span class="math inline">\(mean\)</span>: 해당 정규분포의 평균 μ—기본값은 0.</li>
-<li>• sd: 해당 정규분포의 표준편차(Standard deviation) σ—기본값은 1.</li>
-<li>• <span class="math inline">\(lower.tail\)</span>: 정규분포가 분위수보다 작을 확률에 관심이 있는지 아니면 클 확률에 관심이 있는지를 정의하는 TRUE/FALSE 값—기본값은 TRUE. <span class="math inline">\(P(N(0,1)&lt;q)\)</span>의 경우 <span class="math inline">\(lower.tail=TRUE\)</span>를 사용합니다. <span class="math inline">\(P(N(0,1)&gt;q)\)</span>의 경우 <span class="math inline">\(lower.tail=FALSE\)</span>를 사용합니다.</li>
+<li><code>q</code>: 확률을 구하고자 하는 정규분포의 기준 값(분위수, Quantile)</li>
+<li><code>mean</code>: 해당 정규분포의 평균 <span class="math inline">\(\mu\)</span> (기본값은 0)</li>
+<li><code>sd</code>: 해당 정규분포의 표준편차 <span class="math inline">\(\sigma\)</span> (기본값은 1)</li>
+<li><code>lower.tail</code>: 기준 값보다 ‘작을’ 확률을 구할지, ‘클’ 확률을 구할지를 결정하는 논리값(TRUE/FALSE, 기본값은 TRUE)
+<ul>
+<li><span class="math inline">\(P(N(0,1) &lt; q)\)</span>를 구할 때는 <code>lower.tail = TRUE</code>를 사용합니다.</li>
+<li><span class="math inline">\(P(N(0,1) &gt; q)\)</span>를 구할 때는 <code>lower.tail = FALSE</code>를 사용합니다.</li>
+</ul></li>
 </ul>
-<p>우리가 분산 σ²<img src="images/B9780128207888000237/si1.png" class="img-fluid" alt="이미지">을 사용하여 정규분포를 정의한 반면, pnorm 함수는 표준편차 σ를 사용한다는 점에 유의해 주시면 좋습니다. 하지만 분산과 표준편차는 직접적으로 연결되어 있으므로—σ²<span class="math inline">\(=\sigma\)</span>—함수에 무엇을 입력하고 있는지 인지하기만 하면 됩니다.</p>
-<p>예를 들어, <span class="math inline">\(P(N(5,4)&gt;6.46)\)</span>을 원한다고 가정해 봅시다. R에서 이를 얻으려면 다음 코드를 사용합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">6.46</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>다시 한번, 정규분포의 분산이 σ²<span class="math inline">\(=4\)</span>이고 <span class="math inline">\(4=2\)</span>이므로 <span class="math inline">\(s_{d}=2\)</span>를 사용했음에 유의하십시오. 그러면 R은 확률 0.2326951을 출력합니다.</p>
-<section id="연습-문제" class="level3">
-<h3 class="anchored" data-anchor-id="연습-문제">연습 문제</h3>
-<p>R을 사용하여 다음 확률을 구하십시오.</p>
+<p>앞서 우리는 분산 <span class="math inline">\(\sigma^2\)</span>을 사용해 정규분포를 정의했지만, <code>pnorm</code> 함수는 표준편차 <span class="math inline">\(\sigma\)</span>를 입력으로 받는다는 점에 각별히 유의해야 합니다. 분산의 양의 제곱근이 표준편차이므로(<span class="math inline">\(\sigma = \sqrt{\sigma^2}\)</span>), 함수에 입력할 때 값을 적절히 변환해 주기만 하면 됩니다.</p>
+<p>예를 들어, 평균이 5이고 분산이 4인 정규분포에서 6.46보다 큰 값이 나올 확률, 즉 <span class="math inline">\(P(N(5,4) &gt; 6.46)\)</span>을 구하고 싶다고 가정해 봅시다. R에서는 다음 코드를 사용합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">6.46</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2326951</code></pre>
+</div>
+</div>
+<p>정규분포의 분산이 <span class="math inline">\(\sigma^2=4\)</span>이므로 그 제곱근인 표준편차 <span class="math inline">\(\sigma=2\)</span>를 <code>sd</code> 인자에 입력했음을 확인하십시오. 이 코드를 실행하면 R은 약 0.2326951이라는 확률을 출력합니다.</p>
+<section id="연습-문제" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">2.1</span> 연습 문제</h3>
+<p>R을 사용하여 다음 확률들을 직접 계산해 보십시오.</p>
 <ol type="1">
-<li><span class="math inline">\(P(N(3,6.25)&lt;8)\)</span></li>
-<li><span class="math inline">\(P(N(-2,16)&gt;7)\)</span></li>
-<li><span class="math inline">\(P(N(1.2,15.4)&lt;10)\)</span></li>
-<li><span class="math inline">\(P(N(0,12)&lt;6)\)</span></li>
-<li><span class="math inline">\(P(N(-3,1)&gt;0)\)</span></li>
+<li><span class="math inline">\(P(N(3, 6.25) &lt; 8)\)</span></li>
+<li><span class="math inline">\(P(N(-2, 16) &gt; 7)\)</span></li>
+<li><span class="math inline">\(P(N(1.2, 15.4) &lt; 10)\)</span></li>
+<li><span class="math inline">\(P(N(0, 12) &lt; 6)\)</span></li>
+<li><span class="math inline">\(P(N(-3, 1) &gt; 0)\)</span></li>
 </ol>
 </section>
 </section>
-<section id="데이터와-p-값-연결하기" class="level2">
-<h2 class="anchored" data-anchor-id="데이터와-p-값-연결하기">데이터와 p-값 연결하기</h2>
-<p>정규분포의 몇 가지 속성을 검토하고 해당 정규분포로부터 확률을 얻는 방법을 소개했으므로, 이제 가설 검정으로 돌아가야 합니다. 지난 장에서 가설 검정을 소개하면서, 가설 검정의 이면이 되는 아이디어, 구체적으로 우리가 세상의 상태를 가정하고 데이터가 충분히 희귀한 경우에만 이 상태를 기각하는 방법에 대해 논의했습니다. 이러한 희귀함은 귀무 가설(Null hypothesis)이 참이라고 가정할 때 더 극단적인 데이터를 볼 확률인 p-값을 통해 측정됩니다. 이 절차에서 우리가 빠뜨린 핵심 단계가 있습니다. 데이터에서 p-값으로 어떻게 넘어가나요? 우리 데이터가 얼마나 희귀한지 어떻게 계산하나요?</p>
-<p>이 아이디어를 이해하기 위해 이전에 작업하던 예제로 돌아가 보겠습니다. 이 예제에서 우리는 동전을 100번 던지고 앞면의 비율(예를 들어 앞면 60번)을 계산하여 동전이 공정한지 여부를 확인했습니다. 우리는 궁극적으로 귀무 가설이 참일 때 더 극단적인 데이터를 볼 확률인 p-값을 얻고자 합니다.</p>
-<p>확률을 얻으려면 확률 분포가 필요합니다. 구체적으로, 데이터의 확률 분포나 우리가 수집한 데이터로부터 계산된 통계량의 확률 분포가 필요합니다. 다행히 우리에게는 표본 통계량의 분포, 즉 표집 분포(Sampling distribution)가 있습니다. 이 동전 던지기 예제의 경우, 앞면 비율에 대한 표집 분포를 가지고 있습니다. 더 나아가, 우리는 중심극한정리 덕분에 이 분포가 무엇인지 알고 있습니다. 그것은 앞면이 나올 실제 확률(p)을 중심으로 하고, 표본 비율의 표준 오차(Standard error)의 제곱과 동일한 분산을 갖는 정규분포입니다. 즉, 다음과 같습니다.</p>
+<section id="데이터와-p-값-연결하기" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="데이터와-p-값-연결하기"><span class="header-section-number">3</span> 데이터와 <span class="math inline">\(p\)</span>-값 연결하기</h2>
+<p>정규분포의 기본 속성과 확률을 계산하는 방법을 익혔으니, 다시 가설 검정으로 돌아가겠습니다. 이전 장에서는 가설 검정의 핵심 원리에 대해 논의했습니다. 즉, 세상의 상태(귀무 가설)를 참이라고 일단 가정한 뒤, 현재 관찰된 데이터가 그 가정하에서 ‘충분히 희귀한’ 경우에만 그 가정을 기각한다는 논리였습니다. 여기서 ’희귀함’은 귀무 가설이 참일 때 우리가 관찰한 데이터만큼, 혹은 그보다 더 극단적인 데이터가 나타날 확률인 <span class="math inline">\(p\)</span>-값을 통해 수치화됩니다. 그렇다면 관찰된 표본 데이터에서 어떻게 이 <span class="math inline">\(p\)</span>-값을 도출해 낼 수 있을까요?</p>
+<p>이 과정을 이해하기 위해 이전의 동전 던지기 예제로 돌아가 보겠습니다. 동전을 100번 던져 앞면이 나온 비율(앞면 60번)을 계산하고, 이 동전이 공정한지 여부를 검증하고자 합니다. 우리의 최종 목표는 귀무 가설이 참일 때 이보다 더 극단적인 결과가 관찰될 확률, 즉 <span class="math inline">\(p\)</span>-값을 구하는 것입니다.</p>
+<p>확률을 계산하려면 반드시 확률 분포가 필요합니다. 보다 정확히 말해, 우리가 수집한 표본 데이터로부터 계산된 ’통계량의 확률 분포’가 필요합니다. 다행히 우리는 앞서 표본 통계량의 분포, 즉 표집 분포(Sampling distribution)에 대해 배웠습니다. 동전 던지기의 경우, 중심극한정리 덕분에 앞면 비율 <span class="math inline">\(\hat{p}\)</span>의 표집 분포가 어떤 형태인지 이미 알고 있습니다. 그것은 앞면이 나올 실제 확률 <span class="math inline">\(p\)</span>를 중심으로 하고, 표본 비율의 표준 오차(Standard error) 제곱을 분산으로 갖는 정규분포입니다. 수학적으로는 다음과 같습니다.</p>
 <p><span class="math display">\[
-\hat{p}∼N(p,s.e.(\hat{p})²).
-\]</span> 하지만 여기에는 몇 가지 빠진 것이 있습니다. 표본 비율의 표준 오차와 함께 p의 실제 값을 알아야 합니다. p는 모집단 매개변수이므로 그 값을 결코 알 수 없습니다. 그러나 가설 검정에서는 귀무 가설이 참이라고 가정하며, 이는 p 값에 대한 몇 가지 가정을 제공합니다. 우리의 귀무 가설은 동전이 공정하다는 것, 즉 <span class="math inline">\(p=0.5\)</span>입니다. 따라서 귀무 가설이 참이라면, 앞면의 표본 비율에 대한 표집 분포는 다음과 같을 것입니다.</p>
+\hat{p} \sim N\left(p, \text{s.e.}(\hat{p})^2\right)
+\]</span></p>
+<p>그러나 이 공식만으로는 확률을 계산할 수 없습니다. <span class="math inline">\(p\)</span>의 실제 값을 알아야 하기 때문입니다. <span class="math inline">\(p\)</span>는 우리가 알고자 하는 미지의 모집단 모수이므로 현실에서 그 진짜 값을 알 수는 없습니다. 하지만 가설 검정에서는 우선 ’귀무 가설이 참’이라고 가정하므로, 이 가정이 <span class="math inline">\(p\)</span>의 값을 제공해 줍니다. 동전이 공정하다는 우리의 귀무 가설에 따르면 <span class="math inline">\(p=0.5\)</span>입니다. 따라서 귀무 가설이 참이라면 표본 비율의 표집 분포는 다음과 같이 확정됩니다.</p>
 <p><span class="math display">\[
-\hat{p}∼N(0.5,s.e.(\hat{p})²).
-\]</span> 이제 표본 비율의 표준 오차 <span class="math inline">\(s.e.(\hat{p})\)</span>만 남았습니다. 앞으로 나아가면서 다양한 표본 통계량의 표준 오차가 무엇인지에 대한 공식을 제공할 것입니다. 그러나 이번 장에서는 표집 분포에 대한 표준 오차를 직접 채워 넣을 것입니다.</p>
-<p>우리의 목표는 p-값, 즉 이 표집 분포로부터 더 극단적인 데이터를 볼 확률을 계산하는 것입니다. 다시 말해, 더 극단적인 표본 통계량을 볼 확률이 필요합니다. 우리는 정규분포를 따르는 표본 통계량을 가지고 있으며, 이제 그 확률을 찾는 방법을 알고 있습니다. 이 분포와 현재 우리가 가지고 있는 지식을 바탕으로, “더 극단적인 데이터”가 무엇을 의미하는지 이해하기만 하면 됩니다.</p>
-<p>이 “더 극단적인”에 대한 정의는 대립 가설(Alternative hypothesis)에 따라 달라집니다. 우리의 대립 가설이 HA:<span class="math inline">\(p&gt;0.5\)</span>, 즉 동전이 앞면이 나올 가능성을 더 높게 만든다는 것이라고 가정해 봅시다. 이 대립 가설에 대한 “더 극단적인” 데이터—대립 가설을 지지할 데이터—는 실제로 관찰한 것보다 최소한 그만큼 또는 그보다 더 많은 앞면을 보는 결과를 낳을 것입니다. 따라서 우리의 p-값은 100번의 던지기 시리즈에서 60번 이상의 앞면을 볼 확률—또는 60/100=0.6 이상의 표본 비율을 볼 확률—이 될 것입니다.</p>
-<p>이를 계산하려면 <span class="math inline">\(\hat{p}\)</span>의 전체 표집 분포가 필요합니다. 이 특정 시나리오—100번의 던지기를 사용하여 동전이 공정한지 테스트—에서 <span class="math inline">\(\hat{p}\)</span>의 표준 오차는 0.05이므로, 귀무 가설이 참이라는 가정하에 <span class="math inline">\(\hat{p}\)</span>의 표집 분포는 N(0.5, 0.05²<span class="math inline">\()\)</span>이 됩니다. <span class="math inline">\(p&gt;0.5\)</span>라는 대립 가설을 지지하는 “더 극단적인” 데이터를 보는 것은 0.6 이상의 표본 비율을 보는 것과 동일하므로, 우리의 p-값은 다음과 같습니다.</p>
+\hat{p} \sim N\left(0.5, \text{s.e.}(\hat{p})^2\right)
+\]</span></p>
+<p>이제 표본 비율의 표준 오차 <span class="math inline">\(\text{s.e.}(\hat{p})\)</span>만 구하면 됩니다. 향후 장들에서 다양한 통계량에 대한 표준 오차 공식을 다루겠지만, 이번 장에서는 논의를 간결하게 하기 위해 표준 오차 값을 직접 주어지는 것으로 대체하겠습니다.</p>
+<p>우리의 목표는 이 표집 분포를 바탕으로 더 극단적인 표본 통계량이 관찰될 확률인 <span class="math inline">\(p\)</span>-값을 계산하는 것입니다. 이제 우리는 정규분포를 따르는 통계량과 확률 계산법을 모두 알고 있습니다. 남은 과제는 ’더 극단적인 데이터’라는 말이 구체적으로 어떤 범위를 의미하는지 파악하는 것뿐입니다.</p>
+<p>‘더 극단적인’ 방향은 우리가 설정한 대립 가설(Alternative hypothesis)에 따라 달라집니다. 대립 가설이 <span class="math inline">\(H_A : p &gt; 0.5\)</span>, 즉 동전이 앞면이 더 잘 나오도록 조작되었다는 주장이라고 가정해 봅시다. 이 가설을 강력하게 지지하는 ‘더 극단적인’ 데이터란 우리가 실제로 관찰한 앞면 횟수보다 같거나 더 많은 앞면이 나오는 상황입니다. 따라서 <span class="math inline">\(p\)</span>-값은 100번 던져 60번 이상 앞면이 나올 확률, 혹은 표본 비율이 <span class="math inline">\(60/100 = 0.6\)</span> 이상일 확률이 됩니다.</p>
+<p>이를 계산하기 위해 전체 표집 분포를 완성해 봅시다. 이 시나리오에서 <span class="math inline">\(\hat{p}\)</span>의 표준 오차가 <span class="math inline">\(0.05\)</span>라고 한다면, 귀무 가설하에서 <span class="math inline">\(\hat{p}\)</span>의 표집 분포는 <span class="math inline">\(N(0.5, 0.05^2)\)</span>이 됩니다. 0.6 이상의 비율을 관찰할 확률이 바로 <span class="math inline">\(p\)</span>-값이므로 수식으로는 다음과 같습니다.</p>
 <p><span class="math display">\[
-P(N(0.5, 0.05²) \ge  0.6).
-\]</span> 정규분포의 속성에 따라, 정규분포의 평균을 빼고 표준편차로 나누어 이를 표준 정규분포로 변환할 수 있습니다. 확률문 내의 부등식 한쪽에 수행되는 모든 작업은 대수학의 경우와 마찬가지로 다른 쪽에도 수행되어야 합니다. 그렇게 하면 다음과 같습니다.</p>
+P(N(0.5, 0.05^2) \ge 0.6)
+\]</span></p>
+<p>정규분포의 표준화 속성을 이용해, 양변에서 평균을 빼고 표준편차로 나누어 표준 정규분포 확률로 변환할 수 있습니다.</p>
 <p><span class="math display">\[
-P(N(0.5,0.05²)\ge 0.6)=P(N(0.5,0.05²)-0.50.05\ge 0.6-0.50.05)=P(N(0,1)\ge 2).
-\]</span> R에서 다음 코드를 사용하여 이 확률을 찾을 수 있습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">2</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>R에서 반환된 결과 확률은 0.0228입니다. 따라서 대립 가설이 <span class="math inline">\(p&gt;0.5\)</span>일 때 100번의 던지기에서 60번의 앞면을 관찰한다면, 우리의 p-값은 0.0228이 될 것입니다. 이 확률은 P(N(0.5, 0.05²) ⩾ <span class="math inline">\(0.6)\)</span>과 동일하며, R에서 다음 코드를 사용하여 확인할 수 있습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">0.6</span>, <span class="at">mean =</span> <span class="fl">0.5</span>, <span class="at">sd =</span> <span class="fl">0.05</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>만약 그 대립 가설을 바꾼다면 어떻게 될까요? 동전이 뒷면이 나올 가능성을 더 높게 만든다는 것, 즉 HA:<span class="math inline">\(p&lt;0.5\)</span>를 보여주고 싶다면 어떻게 될까요? 이제 더 극단적인 데이터는 우리가 관찰한 것과 같거나 그보다 적은 수의 앞면을 관찰하는 것이 될 것입니다. 따라서 우리의 p-값은 100번의 던지기 시리즈에서 60번 이하의 앞면을 볼 확률—즉, 0.6 미만의 표본 비율을 볼 확률—이 될 것입니다.</p>
-<p>이를 계산하는 것은 이전과 비슷합니다. 이 시나리오에서 <span class="math inline">\(\hat{p}\)</span>의 표준 오차는 여전히 0.05이므로, 귀무 가설이 참일 때 <span class="math inline">\(\hat{p}\)</span>의 표집 분포는 N(0.5, 0.05²<span class="math inline">\()\)</span>로 동일하게 유지됩니다.</p>
-<p>이 경우 “더 극단적인” 데이터는 0.6 이하의 표본 비율을 관찰하는 것이므로, p-값은 P(N(0.5, 0.05²) ⩽ <span class="math inline">\(0.6)\)</span>이 될 것입니다. 다시 한 번, 평균을 빼고 표준편차로 나누어 이 정규분포를 표준 정규분포로 변환할 수 있습니다.</p>
+P(N(0.5, 0.05^2) \ge 0.6) = P\left(\frac{N(0.5, 0.05^2) - 0.5}{0.05} \ge \frac{0.6 - 0.5}{0.05}\right) = P(N(0, 1) \ge 2)
+\]</span></p>
+<p>R에서 이 확률은 다음과 같이 구합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">2</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02275013</code></pre>
+</div>
+</div>
+<p>반환된 결과는 0.0228입니다. 즉, <span class="math inline">\(p &gt; 0.5\)</span>라는 대립 가설하에서 100번 중 60번 앞면이 나왔을 때의 <span class="math inline">\(p\)</span>-값은 0.0228입니다. 참고로 표준화 과정을 생략하고 원래 분포를 그대로 사용해도 결과는 동일합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">0.6</span>, <span class="at">mean =</span> <span class="fl">0.5</span>, <span class="at">sd =</span> <span class="fl">0.05</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02275013</code></pre>
+</div>
+</div>
+<p>만약 대립 가설 방향을 바꿔 동전이 뒷면이 더 잘 나오도록 조작되었다는 것, 즉 <span class="math inline">\(H_A : p &lt; 0.5\)</span>를 검정한다면 어떨까요? 이때 ‘더 극단적인’ 데이터는 앞면이 우리가 관찰한 것(60번)과 같거나 그보다 적게 나오는 상황입니다. 따라서 <span class="math inline">\(p\)</span>-값은 100번 중 60번 이하로 앞면이 나올 확률, 즉 표본 비율이 0.6 이하일 확률이 됩니다.</p>
+<p>표집 분포는 <span class="math inline">\(N(0.5, 0.05^2)\)</span>로 동일합니다. <span class="math inline">\(p\)</span>-값은 <span class="math inline">\(P(N(0.5, 0.05^2) \le 0.6)\)</span>이 되며, 이를 표준화하면 다음과 같습니다.</p>
 <p><span class="math display">\[
-P(N(0.5,0.05²)\le 0.6)=P(N(0.5,0.05²)-0.50.05\le 0.6-0.50.05)=P(N(0,1)\le 2).
-\]</span> 다시 R의 pnorm 함수를 사용하여 이 확률을 구합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">2</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>반환된 확률은 0.9772이며, 이것이 대립 가설 HA:<span class="math inline">\(p&lt;0.5\)</span>에 대한 우리의 p-값이 됩니다.</p>
-<p>우리가 고려해야 할 마지막 대립 가설은 HA:p≠<span class="math inline">\(0.5\)</span>인 경우입니다. 이는 조금 더 생각이 필요한데, 대립 가설을 지지할 데이터는 동전이 앞면이 나올 가능성을 더 높게 만들거나 또는 뒷면이 나올 가능성을 더 높게 만든다는 증거를 보았음을 의미하므로, 이제 극단적인 값은 두 방향에서 오기 때문입니다.</p>
-<p>이런 식으로, “더 극단적인”을 우리가 관찰한 것보다 귀무 가설 값—이 경우 0.5—에서 더 멀리 떨어진 것으로 정의할 수 있습니다. 우리의 예에서 표본 비율의 관찰값은 0.6이며, 이는 0.5에서 0.1만큼 떨어져 있습니다. 반대쪽에서는 0.4가 0.5에서 0.1만큼 떨어져 있습니다. 따라서 더 극단적인 것은 0.6 이상이거나 0.4 이하인 모든 표본 비율이 될 것입니다. 이제 우리의 표본 비율은 중심극한정리에 따라 여전히 N(0.5, 0.05²<span class="math inline">\()\)</span>을 따를 것입니다. 따라서 우리의 p-값은 다음과 같이 마무리될 것입니다.</p>
+P(N(0.5, 0.05^2) \le 0.6) = P\left(\frac{N(0.5, 0.05^2) - 0.5}{0.05} \le \frac{0.6 - 0.5}{0.05}\right) = P(N(0, 1) \le 2)
+\]</span></p>
+<p>R에서는 <code>lower.tail = TRUE</code>를 사용하여 구합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">2</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9772499</code></pre>
+</div>
+</div>
+<p>계산된 확률은 0.9772이며, 이것이 <span class="math inline">\(H_A : p &lt; 0.5\)</span>일 때의 <span class="math inline">\(p\)</span>-값입니다. 데이터가 대립 가설을 전혀 지지하지 않으므로 <span class="math inline">\(p\)</span>-값이 매우 높게 나옵니다.</p>
+<p>마지막으로 살펴볼 대립 가설은 양측 검정인 <span class="math inline">\(H_A : p \neq 0.5\)</span>입니다. 이는 다소 주의를 요합니다. 동전이 앞면으로든 뒷면으로든 조작되었다는 증거를 모두 극단적인 것으로 간주해야 하기 때문입니다. 즉, 양쪽 방향의 꼬리 확률을 모두 고려해야 합니다.</p>
+<p>이 경우 ’극단적’이라는 의미는 관찰된 값이 귀무 가설의 기준값(0.5)으로부터 멀어진 정도를 뜻합니다. 관찰값 0.6은 기준값 0.5로부터 0.1만큼 떨어져 있습니다. 반대 방향으로 0.1만큼 떨어진 값은 0.4입니다. 따라서 기준값으로부터 이만큼(혹은 더 많이) 떨어진 모든 경우는 0.6 이상이거나 0.4 이하인 관찰값이 됩니다. 표집 분포는 여전히 <span class="math inline">\(N(0.5, 0.05^2)\)</span>이므로, 양측 <span class="math inline">\(p\)</span>-값은 다음과 같이 표현됩니다.</p>
 <p><span class="math display">\[
-P(N(0.5, 0.05²) \le  0.4) + P(N(0.5, 0.05²) \ge  0.6).
-\]</span> 우리는 여전히 평균을 빼고 표준편차로 나누어 이들 각각의 정규분포를 표준 정규분포로 변환할 수 있습니다.</p>
+P(N(0.5, 0.05^2) \le 0.4) + P(N(0.5, 0.05^2) \ge 0.6)
+\]</span></p>
+<p>이 두 확률을 각각 표준화하면 다음과 같습니다.</p>
 <p><span class="math display">\[
-P(N(0.5,0.05²)\le 0.4)+P(N(0.5,0.05²)\ge 0.6)=P(N(0.5,0.05²)-0.50.05\le 0.4-0.50.05)+P(N(0.5,0.05²)-0.50.05\ge 0.6-0.50.05)=P(N(0,1)\le -2)+P(N(0,1)\ge 2).
-\]</span> 이제 p-값을 얻기 위해 여전히 두 개의 확률을 계산해야 합니다. 그러나 이 두 확률을 개별적으로 살펴보겠습니다. 그렇게 하면 <span class="math inline">\(P(N(0,1)\le -2)\)</span>와 <span class="math inline">\(P(N(0,1)\ge 2)\)</span>가 모두 0.02275임을 알 수 있습니다. 이는 우연이 아닙니다. 정규분포는 완벽하게 대칭이며, 이는 양쪽 꼬리 확률이 동일함을 의미합니다. 즉, 다음과 같습니다.</p>
+P\left(\frac{N(0.5, 0.05^2) - 0.5}{0.05} \le \frac{0.4 - 0.5}{0.05}\right) + P\left(\frac{N(0.5, 0.05^2) - 0.5}{0.05} \ge \frac{0.6 - 0.5}{0.05}\right) = P(N(0, 1) \le -2) + P(N(0, 1) \ge 2)
+\]</span></p>
+<p>각각의 확률을 계산해 보면 <span class="math inline">\(P(N(0,1) \le -2)\)</span>와 <span class="math inline">\(P(N(0,1) \ge 2)\)</span>가 모두 0.02275임을 알 수 있습니다. 이는 결코 우연이 아닙니다. 정규분포는 중심을 기준으로 완벽하게 대칭이므로 양쪽 꼬리의 확률 면적이 같습니다.</p>
 <p><span class="math display">\[
-P(N(0,1) \le  -a) = P(N(0,1) \ge  a).
-\]</span> 우리는 이를 유리하게 활용하여 두 개의 확률을 하나의 확률로 변환할 수 있습니다.</p>
+P(N(0, 1) \le -a) = P(N(0, 1) \ge a)
+\]</span></p>
+<p>이 대칭성을 활용하면 식을 단순화할 수 있습니다.</p>
 <p><span class="math display">\[
-=P(N(0,1)\le -2)+P(N(0,1)\ge 2)=P(N(0,1)\ge 2)+P(N(0,1)\ge 2)=2×P(N(0,1)\ge 2).
-\]</span> R의 pnorm 함수를 사용하여 우리의 p-값이 0.0455임을 찾을 수 있습니다. 대립 가설이 HA:p≠p₀<img src="images/B9780128207888000237/si47.png" class="img-fluid" alt="이미지"> 형태인 모든 경우에 이 변환을 사용할 것입니다. (대립 가설에 관계없이 이러한 모든 p-값을 계산하는 데는 공통적인 맥락이 있습니다. 이 공통 맥락을 확인하기 위해 이러한 p-값이 수작업으로 어떻게 도출되었는지 살펴봐야 합니다. 세 가지 p-값의 계산을 모두 되돌아보면, 모두 같은 지점에서 시작한다는 것을 알 수 있을 것입니다. 즉, 우리의 표집 분포—N(0.5, 0.05²<span class="math inline">\()\)</span>—가 표본 비율—<span class="math inline">\(\hat{p}=0.6\)</span>—과 어떻게 관련되는지 보는 것입니다. 정규분포의 속성 중 하나를 채택한 후, 이는 표준 정규분포가 <span class="math inline">\(t=0.6-0.50.05\)</span>와 어떻게 연결되는지로 바뀝니다.</p>
+P(N(0, 1) \le -2) + P(N(0, 1) \ge 2) = 2 \times P(N(0, 1) \ge 2)
+\]</span></p>
+<p>R을 이용해 계산하면 최종 <span class="math inline">\(p\)</span>-값은 약 0.0455가 됩니다. 대립 가설이 <span class="math inline">\(H_A : p \neq p_0\)</span> 형태인 양측 검정에서는 항상 이와 같이 단일 꼬리 확률에 2를 곱하는 방식을 취합니다.</p>
+<p>대립 가설의 방향과 무관하게, <span class="math inline">\(p\)</span>-값을 도출하는 과정에는 일관된 수학적 맥락이 존재합니다. 세 가지 계산 과정을 되짚어 보면 모두 하나의 출발점, 즉 ’관찰된 통계량(<span class="math inline">\(\hat{p}=0.6\)</span>)을 평균(<span class="math inline">\(0.5\)</span>)과 표준 오차(<span class="math inline">\(0.05\)</span>)를 이용해 표준 정규분포 상의 특정 위치(<span class="math inline">\(t = 2\)</span>)로 변환하는 작업’에서 시작했습니다.</p>
+<p>이러한 관계를 표로 정리하면 다음과 같습니다.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>H_A</th>
-<th>p-값</th>
+<th><span class="math inline">\(H_A\)</span></th>
+<th><span class="math inline">\(p\)</span>-값</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>p &gt; 0.5</td>
-<td>P(N(0,1) ⩾ t)</td>
+<td><span class="math inline">\(p &gt; 0.5\)</span></td>
+<td><span class="math inline">\(P(N(0, 1) \ge t)\)</span></td>
 </tr>
 <tr class="even">
-<td>p &lt; 0.5</td>
-<td>P(N(0,1) ⩽ t)</td>
+<td><span class="math inline">\(p &lt; 0.5\)</span></td>
+<td><span class="math inline">\(P(N(0, 1) \le t)\)</span></td>
 </tr>
 <tr class="odd">
-<td>p ≠ 0.5</td>
-<td>2 × P(N(0,1) ⩾ abs(t))</td>
+<td><span class="math inline">\(p \neq 0.5\)</span></td>
+<td><span class="math inline">\(2 \times P(N(0, 1) \ge \vert t \vert)\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>이 값 t는 표본 통계량—이 경우 <span class="math inline">\(\hat{p}\)</span>—귀무 가설 값 p₀<img src="images/B9780128207888000237/si50.png" class="img-fluid" alt="이미지">, 그리고 표준 오차—여기서는 <span class="math inline">\(s.e.(\hat{p})\)</span>—에 대해 우리가 알고 있는 정보를 고려합니다. 구체적으로는 다음과 같습니다.</p>
-<p>t=표본 통계량 – 귀무 가설 값표준 오차 본질적으로, 그것은 가설 검정에 대한 우리의 모든 정보를 완벽하게 포괄합니다. 이 양 t를 검정 통계량(Test statistic)이라고 하며, 표준 오차로 척도화(Scale)하여 표본 통계량이 귀무 가설 값에서 얼마나 떨어져 있는지를 계산합니다. 일반적으로 검정 통계량, 대립 가설, p-값 사이의 관계에 대한 이러한 지식을 사용하여 어떤 대립 가설에 어떤 p-값을 사용해야 하는지 일반화할 수 있습니다. 검정 통계량을 다음과 같이 정의한다면</p>
-<p>t=표본 통계량 – 귀무 가설 값표준 오차, 그러면 우리의 p-값은 오로지 대립 가설에 따라서만 아래 표에 정의된 대로 될 것입니다.</p>
+<p>여기서 <span class="math inline">\(t\)</span> 값은 표본 통계량(<span class="math inline">\(\hat{p}\)</span>), 귀무 가설의 기준값(<span class="math inline">\(p_0\)</span>), 그리고 표준 오차(<span class="math inline">\(\text{s.e.}(\hat{p})\)</span>)를 종합하여 도출된 수치입니다.</p>
+<p><span class="math display">\[
+t = \frac{\hat{p} - p_0}{\text{s.e.}(\hat{p})}
+\]</span></p>
+<p>본질적으로 이 <span class="math inline">\(t\)</span> 값은 관측 데이터가 귀무 가설로부터 표준 오차의 몇 배만큼 떨어져 있는지를 보여주는 지표로, 가설 검정에 필요한 모든 핵심 정보를 담고 있습니다. 이 수치를 검정 통계량(Test statistic)이라고 부릅니다. 검정 통계량을 일반화하면 다음과 같습니다.</p>
+<p><span class="math display">\[
+t = \frac{\text{표본 통계량} - \text{귀무 가설 값}}{\text{표준 오차}}
+\]</span></p>
+<p>이 검정 통계량이 주어지면, <span class="math inline">\(p\)</span>-값은 오직 대립 가설의 방향에 따라 아래 표와 같이 결정됩니다.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>H_A</th>
-<th>p-값</th>
+<th>대립 가설(<span class="math inline">\(H_A\)</span>)</th>
+<th><span class="math inline">\(p\)</span>-값 공식</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>H_A:p &lt; p₀</td>
-<td>P(N(0,1) ⩽ t)</td>
+<td><span class="math inline">\(H_A : p &lt; p_0\)</span></td>
+<td><span class="math inline">\(P(N(0, 1) \le t)\)</span></td>
 </tr>
 <tr class="even">
-<td>H_A:p &gt; p₀</td>
-<td>P(N(0,1) ⩾ t)</td>
+<td><span class="math inline">\(H_A : p &gt; p_0\)</span></td>
+<td><span class="math inline">\(P(N(0, 1) \ge t)\)</span></td>
 </tr>
 <tr class="odd">
-<td>H_A:p ≠ p₀</td>
-<td>2 × P(N(0,1) ⩾ abs(t))</td>
+<td><span class="math inline">\(H_A : p \neq p_0\)</span></td>
+<td><span class="math inline">\(2 \times P(N(0, 1) \ge \vert t \vert)\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>우리는 각각의 개별 검정을 진행하면서 이와 유사하게 p-값을 정의하는 표들을 보게 될 것이지만, p-값을 얻는 이 이면의 일반적인 아이디어는 다양한 매개변수와 검정에 걸쳐 유지될 것입니다.</p>
-<section id="연습-문제-1" class="level3">
-<h3 class="anchored" data-anchor-id="연습-문제-1">연습 문제</h3>
-<p>카지노 게임인 룰렛(Roulette)에는 휠에 빨간색, 검은색, 초록색의 세 가지 색상이 있습니다. 여러분이 테이블에서 룰렛을 하고 있는데 휠이 조작되었다고 믿으며, 구체적으로 빨간색이 나올 가능성을 더 낮게 만든다고 믿는다고 가정해 봅시다.</p>
+<p>앞으로 다양한 유형의 검정을 배울 때마다 이와 유사한 표들을 마주하겠지만, <span class="math inline">\(p\)</span>-값을 구하는 이 근본적인 원리만큼은 어떤 검정에서든 동일하게 적용될 것입니다.</p>
+<section id="연습-문제-1" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="연습-문제-1"><span class="header-section-number">3.1</span> 연습 문제</h3>
+<p>카지노의 룰렛(Roulette) 게임 휠에는 빨간색, 검은색, 초록색 칸이 있습니다. 여러분이 카지노에서 룰렛을 하던 중 휠이 조작되었다고 의심하기 시작했습니다. 구체적으로, 딜러가 빨간색이 나올 확률을 교묘하게 낮추었다고 믿습니다.</p>
 <ol start="6" type="1">
-<li>일반적인 상황에서 테이블이 공정하다면 빨간색이 나올 확률은 0.47입니다. 이 시나리오에 대한 귀무 가설과 대립 가설은 무엇입니까?</li>
-<li>여러분이 룰렛을 50라운드 동안 플레이했고 빨간색이 20번, 검은색이 28번, 초록색이 2번 나왔다고 가정해 봅시다. 빨간색이 나오는 것에 대한 표본 비율은 얼마입니까?</li>
-<li>이 예제에서 표집 오차에 대한 표준 오차가 <span class="math inline">\(s.e.(\hat{p})=0.07\)</span>이라면, 이 데이터에 대한 검정 통계량은 얼마가 되겠습니까?</li>
-<li>귀무 가설이 참이고 표준 오차가 위와 같이 주어집니다면, <span class="math inline">\(\hat{p}\)</span>에 대한 표집 분포는 무엇이 되겠습니까?</li>
-<li>이전에 정의한 대립 가설에 대해 가설 검정의 p-값은 얼마가 되겠습니까?</li>
+<li>정상적이고 공정한 룰렛 휠에서 빨간색이 나올 실제 확률은 0.47입니다. 여러분의 의심을 검증하기 위한 귀무 가설과 대립 가설은 각각 무엇입니까?</li>
+<li>여러분이 룰렛 게임을 50라운드 관찰한 결과, 빨간색이 20번, 검은색이 28번, 초록색이 2번 나왔습니다. 이 표본에서 빨간색이 나온 표본 비율은 얼마입니까?</li>
+<li>만약 표집 분포의 표준 오차가 <span class="math inline">\(s.e.(\hat{p}) = 0.07\)</span>이라고 가정한다면, 이 데이터로부터 도출되는 검정 통계량 <span class="math inline">\(t\)</span>는 얼마입니까?</li>
+<li>귀무 가설이 참이고 위의 표준 오차가 주어졌을 때, 표본 비율 <span class="math inline">\(\hat{p}\)</span>의 표집 분포는 수식으로 어떻게 표현됩니까?</li>
+<li>여러분이 설정한 대립 가설에 기초하여 도출되는 최종 <span class="math inline">\(p\)</span>-값은 얼마입니까?</li>
 </ol>
-<p>비디오 포커(Video poker)는 일반적으로 이길 확률 측면에서 더 나은 카지노 게임 중 하나로 간주됩니다. “잭스 오어 베터(Jacks or better)”라고 불리는 게임에서 이길 확률—플레이어가 잭 한 쌍 이상의 핸드를 갖는 경우—은 이론적으로 0.4546입니다.</p>
+<p>비디오 포커(Video poker)는 카지노 게임 중 플레이어가 이길 확률이 상대적으로 높은 게임으로 알려져 있습니다. 특정 “잭스 오어 베터(Jacks or better)” 게임 기계에서 플레이어가 이길 확률은 이론적으로 0.4546입니다.</p>
 <ol start="11" type="1">
-<li>비디오 포커 기계가 이길 확률을 더 낮게 만들도록 조작되었는지 테스트하는 데 관심이 있다고 가정해 봅시다. 여러분의 귀무 가설과 대립 가설은 무엇입니까?</li>
-<li>여러분이 포커를 100핸드 동안 플레이했고 42번 이겼다고 가정해 봅시다. 이기는 것에 대한 표본 비율은 얼마입니까?</li>
-<li>이 예제에서 표집 오차에 대한 표준 오차가 <span class="math inline">\(s.e.(\hat{p})=0.05\)</span>이라면, 이 데이터에 대한 검정 통계량은 얼마가 되겠습니까?</li>
-<li>귀무 가설이 참이고 표준 오차가 위와 같이 주어집니다면, <span class="math inline">\(\hat{p}\)</span>에 대한 표집 분포는 무엇이 되겠습니까?</li>
-<li>이전에 정의한 대립 가설에 대해 가설 검정의 p-값은 얼마가 되겠습니까?</li>
+<li>여러분은 카지노 측이 기계를 조작해 이길 확률을 고의로 낮추었는지 테스트하고자 합니다. 귀무 가설과 대립 가설은 무엇입니까?</li>
+<li>여러분이 100핸드의 포커를 플레이하여 42번 이겼습니다. 이 표본 데이터의 승리 비율은 얼마입니까?</li>
+<li>표준 오차가 <span class="math inline">\(s.e.(\hat{p}) = 0.05\)</span>일 때, 관찰된 데이터의 검정 통계량 <span class="math inline">\(t\)</span>는 얼마입니까?</li>
+<li>귀무 가설이 참일 때, 이 표본 비율 <span class="math inline">\(\hat{p}\)</span>의 표집 분포는 어떻게 됩니까?</li>
+<li>여러분이 설정한 대립 가설 방향에 따른 이 가설 검정의 <span class="math inline">\(p\)</span>-값은 얼마입니까?</li>
 </ol>
 </section>
 </section>
-<section id="중심극한정리를-적용하기-전에-확인할-것" class="level2">
-<h2 class="anchored" data-anchor-id="중심극한정리를-적용하기-전에-확인할-것">중심극한정리를 적용하기 전에 확인할 것</h2>
-<p>중심극한정리(Central Limit Theorem)는 표본 크기가 충분히 크면 표본 평균의 분포가 정규분포에 가까워진다는 강력한 결과입니다. 그러나 이 정리는 모든 문제를 자동으로 해결해 주는 만능 규칙이 아닙니다. 표본이 독립적으로 수집되었는지, 모집단 분포가 지나치게 극단적인 꼬리를 갖지 않는지, 표본 크기가 문제의 맥락에서 충분한지 확인해야 합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>skewed_means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">5000</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">expr =</span> <span class="fu">mean</span>(<span class="fu">rexp</span>(<span class="dv">40</span>, <span class="at">rate =</span> <span class="dv">1</span>))</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(skewed_means, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>이처럼 비대칭 분포에서도 표본 평균은 원자료보다 훨씬 안정적인 분포를 보이는 경향이 있습니다. 하지만 표본 크기가 작거나 관측치 간 의존성이 강하면 정규 근사가 부정확할 수 있습니다. 따라서 중심극한정리를 사용할 때에는 공식에 값을 넣기 전에 데이터 수집 방식과 표본 크기의 타당성을 먼저 설명해야 합니다.</p>
-</section>
-<section id="결론" class="level2">
-<h2 class="anchored" data-anchor-id="결론">결론</h2>
-<p>p-값은 가설 검정 절차의 중요한 부분을 나타냅니다. 궁극적으로 그것들은 우리가 귀무 가설을 기각할지 여부를 결정하는 증거입니다. 그 정의에 따르면 정확하게 계산하기 어려울 수 있습니다. 그러나 앞서 논의한 중심극한정리 덕분에 표집 분포를 p-값에 연결할 수 있습니다. R의 도움을 받으면 이러한 p-값을 계산하는 것은 오직 우리의 대립 가설과 관찰된 데이터에만 의존하는 간단한 작업이 됩니다. 다음 장에서 보게 되겠지만, 중심극한정리의 중요성은 통계적 추론(Statistical inference)의 다른 일반적인 형태로도 확장됩니다.</p>
+<section id="중심극한정리를-적용하기-전에-확인할-것" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="중심극한정리를-적용하기-전에-확인할-것"><span class="header-section-number">4</span> 중심극한정리를 적용하기 전에 확인할 것</h2>
+<p>중심극한정리(Central Limit Theorem)는 표본 크기가 충분히 크기만 하다면 표본 평균의 분포가 정규분포에 수렴한다는 매우 강력한 수학적 결과입니다. 그러나 이 정리는 분석 과정을 무조건 자동화해 주는 만능 치트키가 아닙니다. 머신러닝이나 통계 분석에 앞서 반드시 데이터 수집 과정의 독립성, 모집단 분포의 극단적 이상치 여부, 그리고 주어진 맥락에서 표본 크기가 충분한지를 면밀히 점검해야 합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>skewed_means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">5000</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">expr =</span> <span class="fu">mean</span>(<span class="fu">rexp</span>(<span class="dv">40</span>, <span class="at">rate =</span> <span class="dv">1</span>))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(skewed_means, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     2.5%       50%     97.5% 
+0.7100011 0.9895275 1.3413097 </code></pre>
+</div>
+</div>
+<p>위의 예시 코드에서 보듯 원래 데이터가 심하게 비대칭인 분포를 따르더라도, 표본 평균은 원자료보다 훨씬 안정적인 정규분포 형태를 띠게 됩니다. 하지만 표본 크기가 부족하거나 데이터 관측치 간에 강한 의존성이 존재한다면 정규 근사는 심각한 오류를 낳을 수 있습니다. 따라서 중심극한정리를 실무에 적용할 때에는 단순히 공식에 숫자를 대입하기 전에 데이터 수집 메커니즘과 표본 크기의 타당성을 꼼꼼히 입증하는 습관을 들여야 합니다.</p>
 
 
 </section>
@@ -814,6 +1013,18 @@ P(N(0,1) \le  -a) = P(N(0,1) \ge  a).
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../notes/ch10.html" class="pagination-link" aria-label="가설 검정의 원리">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">가설 검정의 원리</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../notes/ch12.html" class="pagination-link" aria-label="구간 추정의 개념">
+        <span class="nav-page-text">구간 추정의 개념</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

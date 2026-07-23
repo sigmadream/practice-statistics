@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>구간 추정의 개념</title>
+<title>구간 추정의 개념 – R과 데이터 분석 입문</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,6 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../notes/ch13.html" rel="next">
+<link href="../notes/ch11.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -136,9 +138,15 @@ window.Quarto = {
 };
 </script>
 
+<meta property="og:title" content="구간 추정의 개념 – R과 데이터 분석 입문">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="R과 데이터 분석 입문">
+<meta name="twitter:title" content="구간 추정의 개념 – R과 데이터 분석 입문">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-sidebar docked fullcontent quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -147,7 +155,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">구간 추정의 개념</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch07.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch12.html">구간 추정의 개념</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,6 +168,18 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">R과 데이터 분석 입문</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -169,56 +189,188 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 언어</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">R과 데이터 분석</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../notes/ch01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">통계학의 중요성!</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R 입문</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 수집</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 추출</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 불러오기</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">탐색적 데이터 분석</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">확률과 검증</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">탐색적 분석(실습)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">확률에 대한 간략한 소개</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">표집 분포, 또는 탐색적 분석만으로는 충분하지 않은 이유</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">가설 검정의 원리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">중심극한정리를 활용한 가설 검정 수행하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch12.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">구간 추정의 개념</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단일 모수(Single parameter)에 대한 가설 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단일 모수(Single parameter)에 대한 신뢰 구간</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 모수에 대한 가설 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 모수에 대한 신뢰 구간</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">통계적 추론</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">확률과 추론</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 양적 변수에 대한 추론</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단순 선형 회귀</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">몇가지 주제</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#점-및-구간-추정값" id="toc-점-및-구간-추정값" class="nav-link active" data-scroll-target="#점-및-구간-추정값"><span class="header-section-number">1</span> 점 및 구간 추정값</a></li>
+  <li><a href="#구간이-옳을-때" id="toc-구간이-옳을-때" class="nav-link" data-scroll-target="#구간이-옳을-때"><span class="header-section-number">2</span> 구간이 “옳을” 때</a></li>
+  <li><a href="#신뢰-구간" id="toc-신뢰-구간" class="nav-link" data-scroll-target="#신뢰-구간"><span class="header-section-number">3</span> 신뢰 구간</a></li>
+  <li><a href="#신뢰-구간-생성하기" id="toc-신뢰-구간-생성하기" class="nav-link" data-scroll-target="#신뢰-구간-생성하기"><span class="header-section-number">4</span> 신뢰 구간 생성하기</a></li>
+  <li><a href="#신뢰-구간-해석하기" id="toc-신뢰-구간-해석하기" class="nav-link" data-scroll-target="#신뢰-구간-해석하기"><span class="header-section-number">5</span> 신뢰 구간 해석하기</a></li>
+  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">6</span> 연습 문제</a></li>
+  <li><a href="#신뢰-구간을-보고할-때-함께-말해야-할-것" id="toc-신뢰-구간을-보고할-때-함께-말해야-할-것" class="nav-link" data-scroll-target="#신뢰-구간을-보고할-때-함께-말해야-할-것"><span class="header-section-number">7</span> 신뢰 구간을 보고할 때 함께 말해야 할 것</a></li>
+  <li><a href="#r을-활용한-실습-신뢰-구간-계산" id="toc-r을-활용한-실습-신뢰-구간-계산" class="nav-link" data-scroll-target="#r을-활용한-실습-신뢰-구간-계산"><span class="header-section-number">8</span> R을 활용한 실습: 신뢰 구간 계산</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch07.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch12.html">구간 추정의 개념</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">구간 추정의 개념</h1>
 </div>
@@ -237,114 +389,197 @@ window.Quarto = {
 </header>
 
 
-<section id="서론" class="level2">
-<h2 class="anchored" data-anchor-id="서론">서론</h2>
-<p>지금까지 통계적 추론(Statistical inference)에 대한 논의에서 우리는 오직 가설 검정(Hypothesis tests)에만 집중해 왔습니다. 또한, 표본에서 통계량을 계산할 때 모집단 모수(Population parameters)에 대한 추정값으로 단일 값을 계산하는 데만 집중했습니다. 그러나 모수에 대한 추정값 중에는 해당 모수에 대해 타당해 보이는 값들의 구간(Interval)을 포함하는 추정법들이 존재합니다. 이 장에서는 이러한 구간 추정(Interval estimates)의 취지와 해석에 대해 이야기할 것입니다.</p>
+<blockquote class="blockquote">
+<p>지금까지 다룬 통계적 추론(Statistical inference) 논의에서는 주로 가설 검정(Hypothesis tests)에만 초점을 맞추었습니다. 더불어 표본으로부터 통계량을 계산할 때, 모집단 모수(Population parameters)를 추정하기 위해 단일 수치만을 도출하는 데 집중했습니다. 그러나 모수에 대한 추정 방식 중에는 ‘타당해 보이는 값들의 범위(구간, Interval)’ 전체를 제시하는 강력한 방법론들이 존재합니다. 본 장에서는 이러한 구간 추정(Interval estimates)의 필요성과 그 정확한 해석 방법에 대해 다루겠습니다.</p>
+</blockquote>
+<section id="점-및-구간-추정값" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="점-및-구간-추정값"><span class="header-section-number">1</span> 점 및 구간 추정값</h2>
+<p>통계학에서는 알 수 없는 모집단 모수를 추정하기 위해 표본 통계량(Sample statistics)을 계산합니다. 지금까지 우리가 살펴본 것은 점 추정값(Point estimates)입니다. 점 추정값은 대응하는 모집단 모수를 추정하기 위해 사용하는 단 하나의 수치입니다. 예를 들어 표본 평균 <span class="math inline">\(\bar{x}\)</span>는 모집단 평균 <span class="math inline">\(\mu\)</span>에 대한 점 추정값이고, 표본 분산 <span class="math inline">\(s^2\)</span>은 모집단 분산 <span class="math inline">\(\sigma^2\)</span>에 대한 점 추정값이며, 표본 비율 <span class="math inline">\(\hat{p}\)</span>은 모집단 비율 <span class="math inline">\(p\)</span>에 대한 점 추정값입니다. 이 모든 점 추정값들은 모집단 모수의 실제 값에 대한 우리의 ’최선의 단일 추측치’를 나타냅니다.</p>
+<p>점 추정값이나 표본 통계량은 유용한 정보를 제공하지만, 무작위 추출의 본질상 표본을 새로 뽑을 때마다 그 값이 달라질 수밖에 없습니다. 여러 번 표본을 수집한다면, 모집단 모수로 타당해 보이는 다양한 값들의 무더기를 얻게 될 것입니다. 따라서 특정한 상황에서는 단일 수치보다 ’타당한 값들의 범위’를 통째로 추정값으로 제시하는 것이 훨씬 합리적입니다. 구간 추정값(Interval estimate)이 바로 이러한 역할을 수행합니다. 구간 추정값이란 알려지지 않은 모집단 모수가 포함될 것으로 기대되는 값들의 구간을 의미합니다. 2026년 실시간 선거 예측 모델이나 정치 여론 조사에서 지지율 우위가 단일 숫자가 아닌 특정 범위(구간)로 명시되는 것을 자주 접해보셨을 텐데, 이것이 바로 구간 추정의 대표적인 예입니다.</p>
+<p>실무에서 구간 추정값은 보통 ’점 추정값 <span class="math inline">\(\pm\)</span> 오차 한계(Margin of error)’의 형태로 보고됩니다. 오차 한계는 점 추정값이 얼마나 정밀한지를 보여주는 지표로, 통제할 수 없는 표본 추출의 우연성 때문에 추정값에 발생할 수 있는 변동성의 최대 허용치를 나타냅니다.</p>
+<p>예를 들어 2017년 버지니아 주지사 선거를 앞두고 퀴니피액 대학교(Quinnipiac University)가 실시한 여론조사에서, 민주당 랠프 노덤(Ralph Northam) 후보가 공화당 에드 길레스피(Ed Gillespie) 후보를 ‘9포인트 <span class="math inline">\(\pm\)</span> 3.7포인트’ 차이로 앞서고 있다는 결과가 발표되었습니다 [35]. 이 경우 지지율 격차에 대한 점 추정값은 9포인트이고 오차 한계는 3.7포인트입니다. 이는 노덤 후보가 실제로는 <span class="math inline">\(9 - 3.7 = 5.3\)</span>포인트에서 <span class="math inline">\(9 + 3.7 = 12.7\)</span>포인트 사이의 격차로 앞서고 있다고 보는 것이 통계적으로 타당하다는 뜻입니다.</p>
+<p>이상적인 상황에서 오차 한계는 우리가 모집단 모수의 추정 범위를 얼마나 확신할 수 있는지 직관적으로 알려줍니다. 점 추정값은 6으로 같지만 오차 한계가 각각 다른 두 구간 추정값, <span class="math inline">\(6 \pm 2\)</span>와 <span class="math inline">\(6 \pm 4\)</span>가 있다고 상상해 보십시오. 첫 번째 구간은 모수의 타당한 범위가 4에서 8까지임을 의미하고, 두 번째는 2에서 10까지임을 의미합니다. 첫 번째 구간의 범위가 훨씬 좁고 구체적이므로, 우리는 첫 번째 추정 결과를 더 신뢰하는 경향이 있습니다. 그러나 오차 한계의 크기는 단순히 데이터 자체의 변동성뿐만 아니라 표본의 크기, 그리고 가장 중요하게는 ‘우리가 설정한 구간이 맞을 확률’ 등 여러 복합적인 요인에 의해 결정됩니다.</p>
 </section>
-<section id="점-및-구간-추정값" class="level2">
-<h2 class="anchored" data-anchor-id="점-및-구간-추정값">점 및 구간 추정값</h2>
-<p>통계학에서는 모집단 모수를 추정하기 위해 표본 통계량(Sample statistics)을 계산합니다. 우리가 지금까지 본 것은 점 추정값(Point estimates), 즉 대응하는 모집단 모수를 추정하는 데 사용되는 단일 수치 값입니다. 표본 평균 <span class="math inline">\(\bar{x}\)</span>는 모집단 평균 μ에 대한 점 추정값입니다. 표본 분산 <span class="math inline">\(s^2\)</span>는 모집단 분산 <span class="math inline">\(\sigma^2\)</span>에 대한 점 추정값입니다. 표본 비율 <span class="math inline">\(\hat{p}\)</span>은 모집단 비율 p에 대한 점 추정값입니다. 이 모든 추정값은 모집단 모수의 값에 대한 우리의 “최선의 추측”을 나타냅니다.</p>
-<p>우리의 점 추정값이나 표본 통계량은 상당한 정보를 제공하지만, 우리가 알고 있듯이 표본 통계량은 표본마다 다를 것입니다. 여러 표본을 수집한다면, 모집단 모수에 대해 타당해 보이는 값들을 한 무더기 얻게 될 것입니다. 특정한 상황에서는 단일 추정값보다는 타당한 값들의 범위를 추정값으로 원하는 것이 합리적으로 보입니다. 이러한 유형의 추정치가 바로 구간 추정값이 우리에게 줄 수 있는 것입니다. 구간 추정값(Interval estimate)은 알려지지 않은 모집단 모수를 추정하는 가능한 값들의 구간입니다. 구간 추정값은 정치 여론 조사에서 지지율이나 선거 우위가 종종 구간으로 명시되므로 우리에게 아마 익숙할 것입니다. 이러한 상황에서 구간 추정값은 보통 점 추정값 플러스 마이너스 오차 한계(Margin of error)의 형태로 주어집니다. 오차 한계(Margin of error)는 점 추정값이 얼마나 정밀한지에 대한 아이디어를 제공하며, 통제할 수 없는 오차로 인해 추정값에 존재할 수 있는 변동성의 양을 나타냅니다.</p>
-<p>예를 들어, 2017년 버지니아 주지사 선거 이전에 퀴니피액 대학교(Quinnipiac University)는 여론 조사를 실시하여 민주당 후보 랠프 노덤(Ralph Northam)이 공화당 후보 에드 길레스피(Ed Gillespie)를 9포인트 플러스 마이너스 3.7포인트 차로 앞서고 있음을 발견했습니다 [35]. 이 경우, 노덤의 우위에 대한 점 추정값은 9포인트이고 오차 한계는 3.7포인트입니다. 이는 실제로 노덤이 <span class="math inline">\(9-3.7=5.3\)</span>에서 <span class="math inline">\(9+4.7=12.7\)</span>포인트 사이의 수치로 경선에서 앞서나가는 것이 타당할 수 있음을 의미했습니다.</p>
-<p>이상적인 상황에서 오차 한계는 모집단 모수의 추정값에 대해 우리가 얼마나 확신할 수 있는지에 대한 아이디어를 줄 수 있습니다. 점 추정값은 같지만 오차 한계가 다른 두 구간 추정값 6±<span class="math inline">\(2\)</span>와 6±<span class="math inline">\(4\)</span>가 있다고 해 보겠습니다. 첫 번째 구간 추정값은 모수의 타당한 값이 4에서 8까지임을 의미하는 반면, 두 번째는 2에서 10까지의 범위를 의미합니다. 첫 번째 구간 추정값에서 타당한 값들의 범위가 더 좁기 때문에, 우리는 그 결과를 더 신뢰하는 경향이 있을 것입니다. 그러나 오차 한계에는 데이터에 내재된 변동성의 양, 표본 크기, 그리고 중요하게는 우리의 구간이 “옳을” 확률 등 많은 것들이 들어갑니다.</p>
+<section id="구간이-옳을-때" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="구간이-옳을-때"><span class="header-section-number">2</span> 구간이 “옳을” 때</h2>
+<p>구간 추정값을 정의할 때, 우리는 이 구간이 확률적으로 어떤 의미를 갖는지 명확히 하고 싶어 합니다. 가장 이상적인 해석은 “이 구간이 모수를 정확히 맞출 확률이 얼마인가?”일 것입니다. 그렇다면 통계학에서 구간이 ’옳다(맞다)’는 것은 도대체 무엇을 의미하며, 현실에서 우리가 그것을 확인할 수 있을까요?</p>
+<p>우리가 모수와 구간에 대해 알고 있는 근본적인 전제로 돌아가 보겠습니다. 고전 통계학(빈도주의, Frequentist) 패러다임에서 모집단 모수는 비록 우리가 알 수는 없지만 ’고정된 단일 상수’입니다. 즉, 현실 세계에서 모수는 여러 타당한 값들을 가지는 것이 아니라 오직 하나의 진짜 값(True value)만을 가집니다. 반면 우리가 계산하는 구간 추정값은 수집된 표본 데이터로부터 산출되므로, 표본이 바뀔 때마다 그 위치와 너비가 달라지는 ’확률 변수(Random variable)’입니다.</p>
+<p>우리는 이 변동하는 구간 추정값이 모수의 고정된 참값을 덮을 때(포함할 때), 해당 구간이 ’옳다’고 정의합니다. 물론 현실에서는 모수의 참값을 결코 알 수 없으므로, 특정 표본에서 계산된 단일 구간이 진짜로 옳은지 틀린지 확인하는 것은 불가능합니다. 따라서 우리는 특정한 하나의 구간에 집착하는 대신, ’이러한 방식으로 구간을 계산했을 때 그 구간이 참값을 덮을 확률’이라는 관점에서 접근해야 합니다. 즉, 우리의 구간 산출 방식이 얼마나 믿을 만한지, 그 정확성에 대해 ’얼마나 확신하는지(Confident)’를 수치화해야 합니다.</p>
 </section>
-<section id="구간이-옳을-때" class="level2">
-<h2 class="anchored" data-anchor-id="구간이-옳을-때">구간이 “옳을” 때</h2>
-<p>구간 추정값을 정의할 때, 우리는 그것들이 어떤 종류의 확률론적 해석이나 어떤 종류의 확률 문장을 수반하기를 원합니다. 이상적으로, 이 확률은 우리의 구간이 얼마나 자주 “옳은가”와 연결될 것입니다. 하지만 구간이 “옳다”는 것이 도대체 무엇을 의미할까요? 우리가 “옳은지” 알 수 있을까요?</p>
-<p>우리가 모수와 구간에 대해 알고 있는 것으로 되돌아가 보겠습니다. 우리가 작업하고 있는 패러다임인 통계학의 빈도주의(Frequentist) 패러다임에서 모집단 모수는 고정된, 알려지지 않은 값입니다. 현실적으로 모수에 대해 타당한 값들이 존재하는 것이 아니라 오직 단일 값만이 존재할 뿐입니다. 반면에, 우리의 구간 추정값은 데이터로부터 계산되며, 이는 그것들이 표본의 영향을 받을 것이고 따라서 확률 변수(Random)임을 의미합니다.</p>
-<p>우리는 모수의 참값이 우리의 구간에 의해 덮일 때—또는 구간에 포함될 때—구간이 “옳다”고 말할 것입니다. 임의의 모수의 참값은 알려져 있지 않으므로 이것이 참인지 아닌지 아는 것은 불가능합니다. 따라서 우리는 모든 구간 추정치를 구간이 옳을 확률의 관점에서 표현해야 합니다. 다른 말로 하면, 우리는 구간 추정값의 정확성에 대해 얼마나 확신하는지(Confident) 알아야 합니다.</p>
+<section id="신뢰-구간" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="신뢰-구간"><span class="header-section-number">3</span> 신뢰 구간</h2>
+<p>이제 ’구간이 옳다’는 것의 정의를 내렸으므로, 그 ’옳을 확률’과 직접적으로 연결되는 구간 추정값을 만들어야 합니다. 신뢰 구간(Confidence intervals)은 데이터로부터 산출된 모수의 타당한 범위로, 그 확률론적 해석이 ’구간 산출 방식이 모수의 참값을 덮어낼 확률’과 수학적으로 직결되는 특별한 구간 추정값입니다.</p>
+<p>표본으로부터 계산된 신뢰 구간은 사전에 약속된 특정 비율만큼 모집단 모수의 참값을 포함하도록 설계됩니다. 예를 들어 80% 신뢰 구간을 산출하는 방식은 80%의 확률로 모수의 참값을 덮어냅니다. 95% 신뢰 구간은 95%의 확률로 참값을 덮어냅니다. 일반화하자면, 우리가 무수히 많은 표본을 반복 추출하여 각각으로부터 <span class="math inline">\((1-\alpha) \times 100\%\)</span> 신뢰 구간을 계산한다면, 그 무수한 구간들 중 정확히 <span class="math inline">\((1-\alpha) \times 100\%\)</span>가 모수의 참값을 포함하게 됩니다. 이 <span class="math inline">\((1-\alpha) \times 100\%\)</span>라는 사전에 정해진 포함 비율(구간 산출 방식이 옳을 확률)을 바로 신뢰 수준(Confidence level)이라고 부릅니다. 2025년 첨단 의료 인공지능이 질병 진단율을 발표할 때도 이 신뢰 수준 개념은 모델의 안정성을 입증하는 핵심 지표로 사용됩니다.</p>
+<p>이해를 돕기 위해 예외적으로 모수의 참값을 이미 알고 있는 시뮬레이션 상황을 가정해 보겠습니다. 공정한 동전(앞면이 나올 참 확률 <span class="math inline">\(p=0.5\)</span>)을 100번 던진 뒤, 그 결과를 바탕으로 <span class="math inline">\(p\)</span>에 대한 95% 신뢰 구간을 생성한다고 가정해 보십시오. 데이터를 새로 수집하여 신뢰 구간을 생성하는 이 동일한 과정을 총 100번 반복합니다. 95% 신뢰 구간 방식은 95%의 확률로 ‘옳게’ 설계되었으므로, 우리가 생성한 100개의 각기 다른 구간들 중 대략 95개 정도가 <span class="math inline">\(p=0.5\)</span>라는 참값을 성공적으로 덮고(포함하고) 있는 것을 확인할 수 있을 것입니다.</p>
 </section>
-<section id="신뢰-구간" class="level2">
-<h2 class="anchored" data-anchor-id="신뢰-구간">신뢰 구간</h2>
-<p>이제 구간이 옳다는 것이 무엇을 의미하는지 정의했으므로, “옳을” 확률과 직접적으로 연결된 구간 추정값을 생성해야 합니다. 신뢰 구간(Confidence intervals)은 데이터로부터 계산된 모수에 대한 타당한 값들의 범위를 제공하는 구간 추정값으로, 그 확률론적 해석은 구간이 모수의 참값을 덮는지 여부와 직접적으로 연결됩니다. 표본으로부터 계산된 신뢰 구간은 미리 정해진 비율만큼 모집단 모수의 참값을 덮을 것입니다. 80% 신뢰 구간은 모수의 참값을 80%의 확률로 덮을 것입니다. 95% 신뢰 구간은 모수의 참값을 95%의 확률로 덮을 것입니다. 일반적으로, 우리가 무한한 수의 표본을 추출하고 각각으로부터 $(1-)$100% 신뢰 구간을 계산할 수 있다면, 이 구간들 중 $(1-)$100%가 모수의 참값을 덮을 것입니다. 이 $(1-)$100%로 미리 정해진 커버리지 비율—구간이 “옳을” 확률—을 신뢰 수준(Confidence level)이라고 합니다.</p>
-<p>우리가 모수의 참값을 알고 있는 예시를 살펴보겠습니다. 공정한 동전을 100번 던지고 앞면이 나올 참 확률 p에 대해 95% 신뢰 구간을 생성했다고 하자—이에 대한 자세한 내용은 뒤에 나올 것입니다. 다시 말하지만, 이것은 공정한 동전이므로 <span class="math inline">\(p=0.5\)</span>가 참값입니다. 따라서 우리는 우리의 신뢰 구간이 p의 참값을 덮는지 여부를 알 수 있을 것입니다. 이제 데이터를 수집하고 신뢰 구간을 생성하는 이 과정을 99번 더 반복합니다. 우리의 95% 신뢰 구간이 95%의 확률로 “옳다”고 가정하면, 100개의 구간 중 약 95개가 <span class="math inline">\(p=0.5\)</span>인 참값을 덮는 것을 볼 수 있을 것입니다. [서 이러한 현상을 볼 수 있으며, 100개의 구간 중 정확히 95개가 <span class="math inline">\(p=0.5\)</span>를 덮고 있습니다.</p>
-</section>
-<section id="신뢰-구간-생성하기" class="level2">
-<h2 class="anchored" data-anchor-id="신뢰-구간-생성하기">신뢰 구간 생성하기</h2>
-<p>일반적으로 말해서, 모수에 대한 우리의 신뢰 구간은 위에서 언급한 구간 추정값과 유사하게 다음과 같은 형태가 될 것입니다.</p>
-<p>점 추정값 ± 오차 한계</p>
-<p>우리의 신뢰 구간의 정확한 형태는 어떤 모수에 대해 신뢰 구간을 구하는지에 따라 달라지겠지만, 신뢰 구간을 만드는 과정과 그것들이 어떻게 “옳을” 확률과 연결되는지 볼 수 있습니다. 구체적으로, 우리는 모집단 비율 p에 대한 신뢰 구간을 계산하는 과정을 통해 이를 살펴보겠습니다.</p>
-<p>우리의 신뢰 구간이 $(1-)$100%의 시간 동안 “옳으려면”, 표본으로부터 계산된 하한(Lower bound)과 상한(Upper bound)을 가져서 다음과 같아야 합니다.</p>
-<p>P(하한 &lt; p &lt; 상한) = 1-. 자, 이전에 다루었던 분포인 표준 정규 분포(Standard Normal distribution)부터 시작해 보겠습니다. 표준 정규 분포가 <span class="math inline">\(-z⁎\)</span>와 <span class="math inline">\(z⁎\)</span> 사이에 있을 확률이 <span class="math inline">\(1-\alpha\)</span>가 되도록 하는 값 <span class="math inline">\(z⁎\)</span>를 찾을 수 있습니다. 즉,</p>
+<section id="신뢰-구간-생성하기" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="신뢰-구간-생성하기"><span class="header-section-number">4</span> 신뢰 구간 생성하기</h2>
+<p>일반적으로 모수에 대한 신뢰 구간은 앞서 언급한 바와 같이 다음과 같은 기본 형태를 띱니다.</p>
 <p><span class="math display">\[
-P(-z⁎ &lt; N(0,1) &lt; z⁎) = 1-\alpha.
-\]</span> 우리는 이 <span class="math inline">\(z⁎\)</span>를 임계값(Critical value)이라고 부를 것입니다. 이제 모집단 비율 p를 표준 정규 분포와 연결하는 무언가를 찾을 수 있다면, 구간을 생성할 수 있을 것입니다. 기억을 되살려 보면, 표본 비율, 모집단 비율, 그리고 표준 정규 분포를 연결하는 중요한 정리가 있습니다. 바로 중심 극한 정리(Central limit theorem)입니다. 이는 표본 크기 n이 충분히 크다면 표본 비율 <span class="math inline">\(\hat{p}\)</span>이 정규 분포를 따를 것임을 명시합니다. 구체적으로는 다음과 같습니다.</p>
+\text{점 추정값} \pm \text{오차 한계}
+\]</span></p>
+<p>신뢰 구간의 정확한 수학적 형태는 추정하고자 하는 모수가 무엇인지에 따라 조금씩 달라집니다. 하지만 신뢰 구간을 도출하는 과정과 그것이 어떻게 ’옳을 확률’과 연결되는지에 대한 기본 논리는 동일합니다. 여기서는 가장 대표적인 모집단 비율 <span class="math inline">\(p\)</span>에 대한 신뢰 구간을 도출하는 과정을 통해 그 원리를 살펴보겠습니다.</p>
+<p>우리가 산출하는 신뢰 구간이 <span class="math inline">\((1-\alpha) \times 100\%\)</span>의 확률로 참값을 포함(옳음)하려면, 표본으로부터 계산될 하한(Lower bound)과 상한(Upper bound)이 다음 조건을 만족해야 합니다.</p>
 <p><span class="math display">\[
-\hat{p} ∼ N(p, s.e.(\hat{p}_2)).
-\]</span> 가설 검정에서 보았듯이, 평균 p를 빼고 표준 편차 <span class="math inline">\(s.e.(\hat{p})\)</span>로 나누어 이를 표준 정규 분포로 변환할 수 있습니다.</p>
+P(\text{하한} &lt; p &lt; \text{상한}) = 1-\alpha
+\]</span></p>
+<p>이를 유도하기 위해 이전 장에서 다루었던 표준 정규분포(Standard Normal distribution)를 활용해 보겠습니다. 표준 정규분포 곡선 아래의 면적 중 중앙의 <span class="math inline">\((1-\alpha)\)</span>만큼을 차지하게 만드는 대칭적인 경계값 <span class="math inline">\(-z^*\)</span>와 <span class="math inline">\(z^*\)</span>를 찾을 수 있습니다. 즉,</p>
 <p><span class="math display">\[
-\hat{p}-p / s.e.(\hat{p}) ∼ N(0,1).
-\]</span> 그러면 우리의 표준 정규 분포 확률 P(−z⁎ &lt; N(0,1) &lt; z⁎) = <span class="math inline">\(1-\alpha\)</span>로 돌아가 보겠습니다. pˆ−p / s.e.(pˆ) ∼ <span class="math inline">\(N(0,1)\)</span>이므로 <span class="math inline">\(N(0,1)\)</span> 자리에 pˆ−p / <span class="math inline">\(s.e.(\hat{p})\)</span>를 대입할 수 있습니다. 그러면 우리의 표준 정규 분포 확률은 다음과 같이 됩니다.</p>
+P(-z^* &lt; N(0,1) &lt; z^*) = 1-\alpha
+\]</span></p>
+<p>이 <span class="math inline">\(z^*\)</span> 값을 우리는 임계값(Critical value)이라고 부릅니다. 이제 우리가 추정하려는 모집단 비율 <span class="math inline">\(p\)</span>를 이 표준 정규분포와 수학적으로 연결할 수만 있다면 구간을 완성할 수 있습니다. 기억을 되살려 보면, 표본 비율, 모집단 비율, 그리고 정규분포를 이어주는 강력한 이론이 있었습니다. 바로 중심극한정리(Central limit theorem)입니다. 표본 크기 <span class="math inline">\(n\)</span>이 충분히 크다면 표본 비율 <span class="math inline">\(\hat{p}\)</span>은 다음과 같은 정규분포를 따릅니다.</p>
 <p><span class="math display">\[
-P(-z⁎ &lt; \hat{p}-p / s.e.(\hat{p}) &lt; z⁎) = 1-\alpha.
-\]</span> 이제 <span class="math inline">\(1-\alpha\)</span> 확률과 직접적으로 연결된 확률 문장 안에 모집단 비율 p가 들어 있습니다. 하한과 상한을 찾기 위해—따라서 우리의 구간을 찾기 위해—확률 문장 내부에서 p에 대해 풀어야 합니다.</p>
-<p>P(−z⁎ &lt; pˆ−p / s.e.(pˆ) &lt; z⁎) = 1−α P(−z⁎ s.e.(pˆ) &lt; pˆ−p &lt; z⁎ s.e.(pˆ)) = 1−α P(−pˆ − z⁎ s.e.(pˆ) &lt; −p &lt; −pˆ + z⁎ s.e.(pˆ)) = 1−α <span class="math display">\[
-P(\hat{p} - z⁎ s.e.(\hat{p}) &lt; p &lt; \hat{p} + z⁎ s.e.(\hat{p})) = 1-\alpha.
-\]</span> 따라서 이제 하한 pˆ−z⁎ <span class="math inline">\(s.e.(\hat{p})\)</span>과 상한 pˆ+z⁎ <span class="math inline">\(s.e.(\hat{p})\)</span>을 갖는 구간을 얻었습니다. 이 구간은 데이터로부터 계산되었으므로 확률 변수입니다. 추가적으로, 이 구간은 <span class="math inline">\((1-\alpha)100\)</span>%의 시간 동안 p의 참값을 덮을 것이고—따라서 “옳을” 것이고—이는 우리가 원하는 확률입니다. 이를 염두에 두면, p에 대한 <span class="math inline">\((1-\alpha)100\)</span>% 신뢰 구간은 다음과 같습니다.</p>
+\hat{p} \sim N\left(p, \text{s.e.}(\hat{p})^2\right)
+\]</span></p>
+<p>가설 검정에서 보았듯이, 여기서 평균 <span class="math inline">\(p\)</span>를 빼고 표준 오차 <span class="math inline">\(\text{s.e.}(\hat{p})\)</span>로 나누면 이를 표준 정규분포로 변환할 수 있습니다.</p>
 <p><span class="math display">\[
-(\hat{p} - z⁎ s.e.(\hat{p}), \hat{p} + z⁎ s.e.(\hat{p})).
-\]</span> 이제 신뢰 구간을 계산하는 데 세 가지 구성 요소가 남았습니다. 표본 비율 <span class="math inline">\(\hat{p}\)</span>, 표준 오차(Standard error) <span class="math inline">\(s.e.(\hat{p})\)</span>, 그리고 임계값 <span class="math inline">\(z⁎\)</span>입니다. 표본 비율은 앞서 설명한 대로 표본 데이터로부터 계산합니다. 현재로서는 표준 오차가 주어질 것입니다. 나중에 장에서 다양한 표본 통계량에 대한 표준 오차 공식을 보게 될 것입니다. 이제 임계값 <span class="math inline">\(z⁎\)</span>만 남았습니다. 신뢰 구간을 유도할 때, 우리는 다음과 같이 되도록 <span class="math inline">\(z⁎\)</span>를 선택함으로써 구간에 대해 얼마나 확신하고 싶은지에 기초하여 <span class="math inline">\(z⁎\)</span>를 선택한다고 말했습니다.</p>
+\frac{\hat{p}-p}{\text{s.e.}(\hat{p})} \sim N(0,1)
+\]</span></p>
+<p>이제 처음 작성했던 표준 정규분포 확률 식 <span class="math inline">\(P(-z^* &lt; N(0,1) &lt; z^*) = 1-\alpha\)</span>로 돌아가 보겠습니다. <span class="math inline">\(N(0,1)\)</span> 자리에 위에서 구한 <span class="math inline">\(\frac{\hat{p}-p}{\text{s.e.}(\hat{p})}\)</span>를 그대로 대입하면 식은 다음과 같이 변합니다.</p>
 <p><span class="math display">\[
-P(-z⁎ &lt; N(0,1) &lt; z⁎) = 1-\alpha.
-\]</span> 이 정의에 기초하여 <span class="math inline">\(z⁎\)</span>를 찾는 것은 답을 얻기 위해 두 개의 확률을 찾아야 하므로 어려울 수 있습니다. 그러나 정규 분포가 대칭이라는 사실에 기초하여 <span class="math inline">\(z⁎\)</span>를 찾는 더 쉬운 방법이 있습니다. P(−z⁎ &lt; N(0,1) &lt; z⁎) = <span class="math inline">\(1-\alpha\)</span>라면 다음과 같음이 밝혀졌습니다.</p>
+P\left(-z^* &lt; \frac{\hat{p}-p}{\text{s.e.}(\hat{p})} &lt; z^*\right) = 1-\alpha
+\]</span></p>
+<p>이제 <span class="math inline">\(1-\alpha\)</span>라는 확률을 보장하는 부등식 한가운데에 미지의 모집단 모수 <span class="math inline">\(p\)</span>가 자리 잡게 되었습니다. 하한과 상한을 구하기 위해 부등식을 조작하여 가운데에 <span class="math inline">\(p\)</span>만 남겨 보겠습니다.</p>
 <p><span class="math display">\[
-P(N(0,1) &lt; z⁎) = 1 - \alpha/2.
-\]</span> 이를 통해 우리는 단 하나의 확률만 찾아보아도 우리의 <span class="math inline">\(z⁎\)</span>를 찾을 수 있습니다. 실제 상황에서 이를 살펴보겠습니다. p에 대한 95% 신뢰 구간을 계산하고 싶다고 해 보겠습니다. α 값을 찾기 위해 $(1-)$100%=95%를 풀면 <span class="math inline">\(\alpha=0.05\)</span>가 됩니다. <span class="math inline">\(z⁎\)</span>를 찾는 과정에서 이는 다음을 의미합니다.</p>
+\begin{aligned}
+P\left(-z^* &lt; \frac{\hat{p}-p}{\text{s.e.}(\hat{p})} &lt; z^*\right) &amp;= 1-\alpha \\
+P\left(-z^* \cdot \text{s.e.}(\hat{p}) &lt; \hat{p}-p &lt; z^* \cdot \text{s.e.}(\hat{p})\right) &amp;= 1-\alpha \\
+P\left(-\hat{p} - z^* \cdot \text{s.e.}(\hat{p}) &lt; -p &lt; -\hat{p} + z^* \cdot \text{s.e.}(\hat{p})\right) &amp;= 1-\alpha \\
+P\left(\hat{p} - z^* \cdot \text{s.e.}(\hat{p}) &lt; p &lt; \hat{p} + z^* \cdot \text{s.e.}(\hat{p})\right) &amp;= 1-\alpha
+\end{aligned}
+\]</span></p>
+<p>(참고: 마지막 단계에서 부등식 전체에 -1을 곱하여 부등호 방향이 바뀌었지만, 좌우 대칭이므로 최종 형태는 위와 같이 정리됩니다.)</p>
+<p>이렇게 해서 우리는 하한이 <span class="math inline">\(\hat{p} - z^* \cdot \text{s.e.}(\hat{p})\)</span>이고 상한이 <span class="math inline">\(\hat{p} + z^* \cdot \text{s.e.}(\hat{p})\)</span>인 훌륭한 구간을 얻어냈습니다. 이 구간의 양 끝값은 표본 데이터(<span class="math inline">\(\hat{p}\)</span>)로부터 계산되므로 표본에 따라 변하는 확률 변수입니다. 그리고 이 구간 산출 방식은 정확히 <span class="math inline">\((1-\alpha) \times 100\%\)</span>의 확률로 참값 <span class="math inline">\(p\)</span>를 포함하게 됩니다. 결론적으로, 모집단 비율 <span class="math inline">\(p\)</span>에 대한 <span class="math inline">\((1-\alpha) \times 100\%\)</span> 신뢰 구간의 공식은 다음과 같습니다.</p>
 <p><span class="math display">\[
-P(N(0,1) &lt; z⁎) = 1 - 0.05/2 = 0.975.
-\]</span> 이 임계값을 얻기 위해 우리는 기술, 구체적으로는 R을 활용합니다. 특정 확률과 연관된 정규 분포의 분위수(Quantile)를 찾기 위해 qnorm 함수를 사용합니다. qnorm 함수는 세 가지 인수를 받습니다. 정규 분포의 평균 <span class="math inline">\(mean\)</span>, 정규 분포의 표준 편차 sd, 그리고 해당 분위수와 연관된 확률 p입니다. 이 함수를 사용하는 코드는 다음과 같습니다.</p>
+\left(\hat{p} - z^* \cdot \text{s.e.}(\hat{p}), \;\; \hat{p} + z^* \cdot \text{s.e.}(\hat{p})\right)
+\]</span></p>
+<p>공식을 보면 신뢰 구간을 계산하기 위해 세 가지 요소가 필요함을 알 수 있습니다. 표본 비율 <span class="math inline">\(\hat{p}\)</span>, 표준 오차 <span class="math inline">\(\text{s.e.}(\hat{p})\)</span>, 그리고 임계값 <span class="math inline">\(z^*\)</span>입니다. 표본 비율은 수집한 데이터에서 직접 계산합니다. 표준 오차를 계산하는 구체적인 공식은 향후 장들에서 다룰 예정이며, 당분간은 문제에서 값이 주어질 것입니다. 남은 것은 임계값 <span class="math inline">\(z^*\)</span>를 구하는 방법입니다. <span class="math inline">\(z^*\)</span>는 우리가 원하는 신뢰 수준(얼마나 확신하고 싶은지)에 따라 다음 조건을 만족하도록 선택됩니다.</p>
+<p><span class="math display">\[
+P(-z^* &lt; N(0,1) &lt; z^*) = 1-\alpha
+\]</span></p>
+<p>이 정의대로라면 <span class="math inline">\(z^*\)</span>를 찾기 위해 양쪽 꼬리의 확률을 동시에 고려해야 하므로 다소 번거롭습니다. 하지만 정규분포가 완벽히 대칭이라는 사실을 이용하면, 위 조건은 다음 조건과 수학적으로 완전히 동일해집니다.</p>
+<p><span class="math display">\[
+P(N(0,1) &lt; z^*) = 1 - \alpha/2
+\]</span></p>
+<p>이 단순화된 식을 이용하면 누적 확률 하나만 조회하여 쉽게 <span class="math inline">\(z^*\)</span>를 찾을 수 있습니다. 실제 상황에 적용해 보겠습니다. <span class="math inline">\(p\)</span>에 대한 95% 신뢰 구간을 구하고 싶다고 합시다. <span class="math inline">\((1-\alpha) \times 100\% = 95\%\)</span>이므로 <span class="math inline">\(\alpha = 0.05\)</span>가 됩니다. 이를 식에 대입하면 다음과 같습니다.</p>
+<p><span class="math display">\[
+P(N(0,1) &lt; z^*) = 1 - 0.05/2 = 0.975
+\]</span></p>
+<p>이 임계값 <span class="math inline">\(z^*\)</span>를 구하기 위해 우리는 R과 같은 통계 소프트웨어를 활용합니다. 특정 누적 확률에 해당하는 정규분포의 분위수(Quantile)를 찾을 때는 <code>qnorm</code> 함수를 사용합니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(p, mean, sd)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>그러면 R은 P(N(mean, sd) &lt; z⁎) = <span class="math inline">\(p\)</span>를 만족하는 분위수 <span class="math inline">\(z⁎\)</span>를 반환할 것입니다. 우리의 예시—95% 신뢰 구간과 연관된 <span class="math inline">\(z⁎\)</span> 찾기—에서는 다음 코드를 사용할 것입니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.975</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>그러면 R은 1.959964라는 <span class="math inline">\(z⁎\)</span> 값을 반환할 것이며, 우리는 이를 사용하여 95% 신뢰 구간을 구할 수 있습니다. 실제 사례를 하나 살펴보겠습니다. 1996년 미국 종합 사회 조사(United States General Social Survey)에서 96명을 대상으로 직업 만족 여부를 묻는 설문 조사를 실시했습니다 [36, 37]. 그들은 79명이 만족한다고 답했음을 발견했고, 따라서 표본 비율은 <span class="math inline">\(\hat{p}=79/96=0.8229\)</span>가 됩니다. 자신의 직업에 만족하는 사람들의 참 비율에 대한 90% 신뢰 구간<span class="math inline">\((\alpha=0.1\)</span>)을 생성하고 싶다고 해 보겠습니다. 첫 번째 단계는 다음과 같이 되도록 <span class="math inline">\(z⁎\)</span>를 찾는 것입니다.</p>
+<p>이 함수는 누적 확률이 <code>p</code>가 되는 지점의 분위수 <span class="math inline">\(z^*\)</span>를 반환합니다. 95% 신뢰 구간에 필요한 <span class="math inline">\(z^*\)</span>를 찾으려면 다음 코드를 실행합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.975</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.959964</code></pre>
+</div>
+</div>
+<p>R은 1.959964라는 값을 반환하며, 우리는 이 값을 반올림하여 1.96으로 사용하는 경우가 많습니다.</p>
+<p>실제 연구 사례를 통해 이 과정을 완성해 보겠습니다. 1996년 미국 종합 사회 조사(General Social Survey)에서 96명을 무작위로 추출하여 직업 만족 여부를 물었습니다 [36, 37]. 79명이 만족한다고 응답했으므로, 표본 비율은 <span class="math inline">\(\hat{p} = 79/96 \approx 0.8229\)</span>입니다. 전체 미국인 중 직업에 만족하는 사람들의 참 비율 <span class="math inline">\(p\)</span>에 대해 90% 신뢰 구간(<span class="math inline">\(\alpha=0.1\)</span>)을 생성하고자 합니다.</p>
+<p>첫 번째 단계로, 누적 확률이 <span class="math inline">\(1 - 0.1/2 = 0.95\)</span>가 되는 임계값 <span class="math inline">\(z^*\)</span>를 찾습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.95</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.644854</code></pre>
+</div>
+</div>
+<p>계산 결과 <span class="math inline">\(z^* \approx 1.644854\)</span>(보통 1.645로 사용)를 얻습니다. 이 데이터의 표준 오차는 <span class="math inline">\(s.e.(\hat{p}) = 0.039\)</span>로 주어졌다고 가정합시다. 모든 정보를 공식에 대입하면 90% 신뢰 구간은 다음과 같이 계산됩니다.</p>
 <p><span class="math display">\[
-P(N(0,1) &lt; z⁎) = 1 - 0.1/2 = 0.95.
-\]</span> R을 사용하여 다음 코드를 입력하면 z⁎<span class="math inline">\(=1.644854\)</span>라는 값을 얻습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.95</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>신뢰 구간의 마지막 부분은 <span class="math inline">\(\hat{p}\)</span>의 표준 오차이며, 이 경우 <span class="math inline">\(s.e.(\hat{p})=0.039\)</span>입니다. 이 모든 정보를 취하면, p에 대한 90% 신뢰 구간은 다음과 같습니다.</p>
-<p><span class="math display">\[
-(0.8229 - 1.645 × 0.039, 0.8229 + 1.645 × 0.039) = (0.7585, 0.8871).
-\]</span> ## 신뢰 구간 해석하기</p>
-<p>신뢰 구간의 핵심 부분은 그 의미를 올바르게 해석하는 것입니다. 우리는 앞서 구간이 “옳다”는 것이 무엇을 의미하는지 정의할 때 이에 대해 이야기했습니다. 일반적으로, 어떤 모수에 대해 $(1-)<span class="math inline">\(100% 신뢰 구간을 계산한다면, 이는 우리가 계산된 구간이 해당 모수의 참값을 덮을 것임에 대해—다시 말해, "옳을" 것임에 대해—\)</span>(1-)100$%만큼 확신한다는 것을 의미합니다. 실제 상황에서 이를 살펴보겠습니다. 이전 예시에서 미국인의 직업 만족도에 대한 90% 신뢰 구간이 (0.7585, 0.8871)임을 보았습니다. 우리는 이를 “구간 (0.7585, 0.8871)이 자신의 직업에 만족하는 미국인의 참 비율 p를 덮는다는 것에 대해 90% 확신합니다”라고 해석할 것입니다.</p>
-<p>p-값(p-values)과 마찬가지로, 신뢰 구간에도 흔히 볼 수 있는 잘못된 해석이 많이 존재합니다. 이를 염두에 두고, 이러한 잘못된 해석들을 언급하고 왜 그것들이 틀렸는지 명확히 하는 것이 가치 있을 것입니다.</p>
+(0.8229 - 1.645 \times 0.039, \; 0.8229 + 1.645 \times 0.039) = (0.7585, \; 0.8871)
+\]</span></p>
+</section>
+<section id="신뢰-구간-해석하기" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="신뢰-구간-해석하기"><span class="header-section-number">5</span> 신뢰 구간 해석하기</h2>
+<p>신뢰 구간을 성공적으로 계산했다면, 남은 것은 그 의미를 올바르게 해석하는 것입니다. 앞서 우리는 구간이 ’옳다’는 개념을 확률적으로 정의했습니다. 일반적으로 어떤 모수에 대해 <span class="math inline">\((1-\alpha) \times 100\%\)</span> 신뢰 구간을 산출했다면, 이는 ’우리가 방금 계산한 이 구체적인 구간이 모수의 참값을 포함하고 있을 것이라고 <span class="math inline">\((1-\alpha) \times 100\%\)</span>만큼 확신한다(Confident)’는 뜻입니다.</p>
+<p>방금 구한 미국인 직업 만족도 비율에 대한 90% 신뢰 구간 <span class="math inline">\((0.7585, \; 0.8871)\)</span>을 예로 들어 해석해 보겠습니다. 우리는 이 결과를 “구간 (0.7585, 0.8871)이 자신의 직업에 만족하는 전체 미국인의 참 비율 <span class="math inline">\(p\)</span>를 포함하고 있다는 것에 대해 90% 확신합니다”라고 명확히 서술해야 합니다.</p>
+<p><span class="math inline">\(p\)</span>-값과 마찬가지로, 신뢰 구간에도 실무자들이 흔히 저지르는 치명적인 오역들이 존재합니다. 통계적 엄밀성을 지키기 위해, 자주 등장하는 잘못된 해석들을 짚어보고 왜 틀렸는지 분명히 하겠습니다.</p>
 <ul>
-<li>• $(1-)$100% 신뢰 구간은 관심 있는 모수가 신뢰 구간의 설정된 범위 내에 존재할 확률이 <span class="math inline">\(1-\alpha\)</span>임을 의미하지 않습니다. 이 해석은 우리의 모수가 고정된 값이 아니라 확률 변수임을 암시합니다. 우리의 모수는 고정되어 있는 반면 신뢰 구간의 경계는 표본으로부터 계산되어 확률 변수이므로, 이는 거짓입니다.</li>
-<li>• $(1-)$100% 신뢰 구간은 모수가 주어진 신뢰 구간에 의해 정의된 구간과 같음을 우리가 $(1-)$100%만큼 확신한다는 것을 의미하지 않습니다. 다시 말하지만, 우리의 모수는 고정된, 알려지지 않은 단일 값이며 구간과 같을 수 없습니다.</li>
-<li>• $(1-)$100% 신뢰 구간은 모집단의 $(1-)$100%가 신뢰 구간의 범위 내에 속함을 의미하지 않습니다. 신뢰 구간은 모집단 내의 개인이 아니라 모집단 모수에 대한 진술을 하는 것입니다.</li>
-<li>• $(1-)$100% 신뢰 구간은 계산된 표본 통계량이 $(1-)$100%의 시간 동안 신뢰 구간 안에 떨어질 것임을 의미하지 않습니다. 다시 말하지만, 신뢰 구간은 모집단 내의 개인이 아니라 모집단 모수에 대한 진술을 하는 것입니다.</li>
+<li><strong>오류 1</strong>: “참 모수 값이 이 구간(0.7585 ~ 0.8871) 안에 존재할 확률이 90%이다.”
+<ul>
+<li><strong>이유</strong>: 매우 흔한 착각입니다. 모수 <span class="math inline">\(p\)</span>는 이미 세상에 고정되어 있는 단일 상수이며 주사위처럼 확률적으로 변하지 않습니다. 특정 구간(숫자)이 주어졌을 때 모수가 그 안에 있거나(확률 100%) 없거나(확률 0%) 둘 중 하나일 뿐입니다. ’90%의 확률’은 모수가 아니라 우리의 ’구간 산출 방식(표본 추출 과정)’에 부여되는 것입니다.</li>
+</ul></li>
+<li><strong>오류 2</strong>: “모수 값이 제시된 구간과 일치할 것이라고 90% 확신한다.”
+<ul>
+<li><strong>이유</strong>: 모수는 특정한 ‘하나의 값’이며, 범위 형태인 구간과 ’같을(Equal)’ 수는 없습니다. 모수는 구간 안에 ’포함’되는 것입니다.</li>
+</ul></li>
+<li><strong>오류 3</strong>: “전체 모집단 개인 중 90%가 이 구간 안의 값을 가진다.”
+<ul>
+<li><strong>이유</strong>: 신뢰 구간은 모집단에 속한 ’개인들의 분포’를 나타내는 것이 아니라, 전체를 요약하는 ’단 하나의 모집단 모수(전체 평균이나 비율)’가 어디쯤 있을지 추정하는 도구입니다.</li>
+</ul></li>
+<li><strong>오류 4</strong>: “앞으로 표본 통계량을 다시 계산하면 90%의 경우 이 구간(0.7585 ~ 0.8871) 안에 들어올 것이다.”
+<ul>
+<li><strong>이유</strong>: 미래에 추출될 표본 통계량의 변동 범위를 예측하는 것은 ’예측 구간(Prediction interval)’의 역할입니다. 신뢰 구간은 ’참 모수’의 위치를 추정하기 위한 것입니다.</li>
+</ul></li>
 </ul>
 </section>
-<section id="연습-문제" class="level2">
-<h2 class="anchored" data-anchor-id="연습-문제">연습 문제</h2>
-<p>2016년 퓨 리서치 그룹(Pew Research Group)은 미국인들을 대상으로 자신과 반대되는 정당에 대한 의견을 조사했습니다 [38]. 설문 조사에 참여한 미국인의 45%가 상대 정당에 대해 “우호적이지 않은” 견해를 가지고 있었으며, 표준 오차는 <span class="math inline">\(s.e.(\hat{p})=0.007\)</span>이었습니다.</p>
+<section id="연습-문제" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">6</span> 연습 문제</h2>
+<p>2016년 퓨 리서치 센터(Pew Research Center)는 미국인들을 대상으로 반대 정당에 대한 의견을 묻는 설문 조사를 실시했습니다. 조사 결과 응답자의 45%가 상대 정당에 대해 “우호적이지 않은(Unfavorable)” 견해를 가지고 있었으며, 이 표본 비율에 대한 표준 오차는 <span class="math inline">\(s.e.(\hat{p}) = 0.007\)</span>이었습니다.</p>
 <ol type="1">
-<li>p에 대한 90% 신뢰 구간을 구하고 해석하시오.</li>
-<li>p에 대한 95% 신뢰 구간을 구하고 해석하시오.</li>
-<li>p에 대한 99% 신뢰 구간을 구하고 해석하시오.</li>
-<li>p에 대한 99.5% 신뢰 구간을 구하고 해석하시오.</li>
+<li>전체 미국인 비율 <span class="math inline">\(p\)</span>에 대한 90% 신뢰 구간을 계산하고, 그 결과를 올바른 형식으로 해석하십시오.</li>
+<li><span class="math inline">\(p\)</span>에 대한 95% 신뢰 구간을 계산하고 해석하십시오.</li>
+<li><span class="math inline">\(p\)</span>에 대한 99% 신뢰 구간을 계산하고 해석하십시오.</li>
+<li><span class="math inline">\(p\)</span>에 대한 99.5% 신뢰 구간을 계산하고 해석하십시오.</li>
 </ol>
-<p>2019년 퓨 리서치 그룹은 미국인들을 대상으로 화석 연료를 확대하는 것보다 재생 에너지에 집중하는 것이 더 중요한 우선순위라고 믿는 비율이 얼마나 되는지 조사했습니다 [87]. 그들은 미국인의 77%가 이러한 견해를 가지고 있음을 발견했으며, 표준 오차는 <span class="math inline">\(s.e.(\hat{p})=0.007\)</span>이었습니다.</p>
+<p>2019년 퓨 리서치 센터는 미국인들을 대상으로 “화석 연료 생산 확대보다 재생 에너지원 개발에 집중하는 것이 더 중요한 국가적 우선순위인가?”라고 묻는 조사를 진행했습니다 [87]. 그 결과 77%가 그렇다고 응답했으며, 표준 오차는 <span class="math inline">\(s.e.(\hat{p}) = 0.007\)</span>이었습니다.</p>
 <ol start="5" type="1">
-<li>p에 대한 80% 신뢰 구간을 구하고 해석하시오.</li>
-<li>p에 대한 90% 신뢰 구간을 구하고 해석하시오.</li>
-<li>p에 대한 95% 신뢰 구간을 구하고 해석하시오.</li>
+<li>이 견해를 가진 미국인의 참 비율 <span class="math inline">\(p\)</span>에 대한 80% 신뢰 구간을 구하고 해석하십시오.</li>
+<li><span class="math inline">\(p\)</span>에 대한 90% 신뢰 구간을 구하고 해석하십시오.</li>
+<li><span class="math inline">\(p\)</span>에 대한 95% 신뢰 구간을 구하고 해석하십시오.</li>
 </ol>
 </section>
-<section id="신뢰-구간을-보고할-때-함께-말해야-할-것" class="level2">
-<h2 class="anchored" data-anchor-id="신뢰-구간을-보고할-때-함께-말해야-할-것">신뢰 구간을 보고할 때 함께 말해야 할 것</h2>
-<p>신뢰 구간(confidence interval)은 하나의 숫자로 결론을 고정하지 않고, 표본 변동성을 반영한 타당한 값들의 범위를 제시합니다. 그러나 구간만 제시하면 해석이 불완전합니다. 어떤 모수에 대한 구간인지, 어떤 신뢰 수준을 사용했는지, 어떤 표준 오차와 분포 근사를 사용했는지 함께 말해야 합니다.</p>
-<p>좋은 보고 문장은 다음 구조를 따릅니다.</p>
+<section id="신뢰-구간을-보고할-때-함께-말해야-할-것" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="신뢰-구간을-보고할-때-함께-말해야-할-것"><span class="header-section-number">7</span> 신뢰 구간을 보고할 때 함께 말해야 할 것</h2>
+<p>신뢰 구간(Confidence interval)은 결론을 단 하나의 불확실한 숫자로 고정하지 않고, 표본 추출에 따른 내재적 변동성을 정직하게 반영하여 ’타당한 값들의 범위’를 통째로 제시하는 훌륭한 도구입니다. 그러나 단순히 숫자 두 개로 이루어진 구간만 덩그러니 제시하면 정보로서의 가치가 떨어집니다. 어떤 모수를 추정하기 위한 구간인지, 신뢰 수준은 얼마로 설정했는지, 어떤 표본 통계량과 표준 오차를 기반으로 산출했는지를 반드시 함께 명시해야 합니다.</p>
+<p>전문적인 통계 분석 보고서는 보통 다음의 구조를 따릅니다.</p>
 <ol type="1">
-<li>추정하려는 모수를 밝힙니다.</li>
-<li>사용한 표본 통계량과 표준 오차의 의미를 설명합니다.</li>
-<li>신뢰 수준과 구간을 제시합니다.</li>
-<li>연구 맥락에서 그 구간이 허용하는 결론과 허용하지 않는 결론을 구분합니다.</li>
+<li><strong>목표 명시</strong>: 추정하고자 하는 모집단 모수(전체 유권자의 참 지지율)가 무엇인지 명확히 밝힙니다.</li>
+<li><strong>방법론 요약</strong>: 사용한 표본 통계량과 표준 오차, 그리고 적용된 정규 근사 등의 방법론적 근거를 간략히 설명합니다.</li>
+<li><strong>결과 제시</strong>: 사전에 설정한 신뢰 수준과 계산된 신뢰 구간을 명확하게 제시합니다.</li>
+<li><strong>맥락적 해석</strong>: 연구나 비즈니스 맥락에서 그 구간이 허용하는 타당한 결론과, 오역으로 이어질 수 있는 잘못된 결론을 주의 깊게 분리하여 서술합니다.</li>
 </ol>
-<p>예를 들어 어느 도시의 지지율에 대한 95% 신뢰 구간이 0.47에서 0.53이라면, 표본은 과반 지지를 단정하기에 충분하지 않을 수 있습니다. 반대로 구간 전체가 정책 결정의 기준선을 넘는다면 단일 추정값보다 더 설득력 있는 근거가 됩니다. 신뢰 구간의 힘은 불확실성을 숨기지 않는 데 있습니다.</p>
+<p>예를 들어, 어느 대도시에 도입될 새로운 모빌리티 정책의 찬성 비율에 대한 95% 신뢰 구간이 47%에서 53%(0.47 ~ 0.53)로 나타났다고 가정해 봅시다. 이 경우 구간 내에 50% 미만의 값이 포함되어 있으므로, 단순히 과반이 찬성한다고 단정 짓기에는 증거가 불충분합니다. 반대로 신뢰 구간 전체가 50%를 훌쩍 넘는다면, 이는 단일 점 추정값(찬성 55%) 하나를 제시할 때보다 훨씬 강력하고 설득력 있는 정책 추진 근거가 됩니다. 신뢰 구간의 진정한 힘은 불확실성을 감추는 데 있는 것이 아니라, 그 불확실성의 크기를 과학적으로 수치화하여 투명하게 드러내는 데 있습니다.</p>
 </section>
-<section id="결론" class="level2">
-<h2 class="anchored" data-anchor-id="결론">결론</h2>
-<p>신뢰 구간은 통계적 추론의 또 다른 중요한 구성 요소를 나타냅니다. 주장을 검정하기보다는, 모수가 가질 수 있는 값의 범위를 볼 수 있게 해줍니다. 우리는 이것을 가설 검정과 어떻게 직접적으로 연결할 수 있는지 보게 될 것이지만, 두 추론 방법은 이미 중심 극한 정리를 통해 연결되어 있습니다. 두 기법 모두 우리의 데이터를 모수와 연결하기 위해 이 정리에 의존하며, 이를 통해 우리 모집단의 이러한 중요한 요약치들에 대한 값을 이해할 수 있게 해줍니다. 앞으로 우리는 모집단 평균과 비율에 초점을 맞추어 몇 가지 주요 추론 상황의 세부 사항을 채워 나갈 수 있을 것입니다.</p>
+<section id="r을-활용한-실습-신뢰-구간-계산" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="r을-활용한-실습-신뢰-구간-계산"><span class="header-section-number">8</span> R을 활용한 실습: 신뢰 구간 계산</h2>
+<p>R을 활용하여 비율에 대한 신뢰 구간을 계산하는 방법을 알아보겠습니다. 앞서 다룬 1996년 미국 종합 사회 조사(General Social Survey) 예제를 R 코드로 구현해 보겠습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 수동으로 신뢰 구간 계산하기</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">96</span>           <span class="co"># 표본 크기</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">79</span>           <span class="co"># 만족한다고 응답한 사람 수</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> x <span class="sc">/</span> n    <span class="co"># 표본 비율</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.1</span>      <span class="co"># 유의 수준 (90% 신뢰 수준)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 임계값 z* 계산</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 표준 오차(SE) 계산 (비율의 표준 오차 공식 사용)</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_hat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat) <span class="sc">/</span> n)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 오차 한계(Margin of Error) 계산</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>margin_of_error <span class="ot">&lt;-</span> z_star <span class="sc">*</span> se</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 신뢰 구간 하한과 상한</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>lower_bound <span class="ot">&lt;-</span> p_hat <span class="sc">-</span> margin_of_error</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>upper_bound <span class="ot">&lt;-</span> p_hat <span class="sc">+</span> margin_of_error</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"90% 신뢰 구간: ("</span>, <span class="fu">round</span>(lower_bound, <span class="dv">4</span>), <span class="st">", "</span>, <span class="fu">round</span>(upper_bound, <span class="dv">4</span>), <span class="st">")</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>90% 신뢰 구간: ( 0.7588 ,  0.887 )</code></pre>
+</div>
+</div>
+<p>위 코드는 수식을 그대로 코드로 옮긴 것입니다. R에서는 <code>prop.test()</code> 함수를 사용하여 더 간단하게 비율에 대한 신뢰 구간과 가설 검정을 동시에 수행할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. prop.test() 함수를 활용한 신뢰 구간 계산</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">prop.test</span>(<span class="at">x =</span> <span class="dv">79</span>, <span class="at">n =</span> <span class="dv">96</span>, <span class="at">conf.level =</span> <span class="fl">0.90</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>result<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7502477 0.8778831
+attr(,"conf.level")
+[1] 0.9</code></pre>
+</div>
+</div>
+<p><code>prop.test()</code>의 출력 결과에 포함된 <code>conf.int</code> 속성을 통해 90% 신뢰 구간을 쉽게 확인할 수 있습니다. <code>correct = FALSE</code>는 연속성 수정(Yates’ continuity correction)을 적용하지 않음을 의미하며, 이 경우 수동으로 계산한 근사적인 정규분포 기반 신뢰 구간과 매우 유사한 결과를 얻게 됩니다. 실무에서는 분석 목적과 표본 크기에 따라 연속성 수정 적용 여부를 결정합니다.</p>
 
 
 </section>
@@ -750,6 +985,18 @@ P(N(0,1) &lt; z⁎) = 1 - 0.1/2 = 0.95.
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../notes/ch11.html" class="pagination-link" aria-label="중심극한정리를 활용한 가설 검정 수행하기">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">중심극한정리를 활용한 가설 검정 수행하기</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../notes/ch13.html" class="pagination-link" aria-label="단일 모수(Single parameter)에 대한 가설 검정">
+        <span class="nav-page-text">단일 모수(Single parameter)에 대한 가설 검정</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

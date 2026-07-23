@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>탐색적 분석(실습)</title>
+<title>탐색적 분석(실습) – R과 데이터 분석 입문</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,6 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../notes/ch08.html" rel="next">
 <link href="../notes/ch06.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -107,10 +108,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="탐색적 분석(실습) – R과 데이터 분석 입문">
+<meta property="og:description" content="">
+<meta property="og:image" content="ch07_files/figure-html/unnamed-chunk-11-1.png">
+<meta property="og:site_name" content="R과 데이터 분석 입문">
+<meta name="twitter:title" content="탐색적 분석(실습) – R과 데이터 분석 입문">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="ch07_files/figure-html/unnamed-chunk-11-1.png">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-sidebar docked fullcontent quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -119,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch07.html">탐색적 분석(실습)</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch07.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch07.html">탐색적 분석(실습)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -132,6 +170,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">R과 데이터 분석 입문</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -141,56 +191,201 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 언어</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">R과 데이터 분석</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../notes/ch01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">통계학의 중요성!</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R 입문</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 수집</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 추출</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 불러오기</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">탐색적 데이터 분석</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">확률과 검증</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch07.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">탐색적 분석(실습)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">확률에 대한 간략한 소개</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">표집 분포, 또는 탐색적 분석만으로는 충분하지 않은 이유</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">가설 검정의 원리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">중심극한정리를 활용한 가설 검정 수행하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">구간 추정의 개념</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단일 모수(Single parameter)에 대한 가설 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단일 모수(Single parameter)에 대한 신뢰 구간</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 모수에 대한 가설 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 모수에 대한 신뢰 구간</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">통계적 추론</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">확률과 추론</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 양적 변수에 대한 추론</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단순 선형 회귀</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">몇가지 주제</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#r에서의-빈도표-및-분할표" id="toc-r에서의-빈도표-및-분할표" class="nav-link active" data-scroll-target="#r에서의-빈도표-및-분할표"><span class="header-section-number">1</span> R에서의 빈도표 및 분할표</a></li>
+  <li><a href="#r에서의-수치적-탐색-분석" id="toc-r에서의-수치적-탐색-분석" class="nav-link" data-scroll-target="#r에서의-수치적-탐색-분석"><span class="header-section-number">2</span> R에서의 수치적 탐색 분석</a>
+  <ul class="collapse">
+  <li><a href="#변수의-중심-경향-요약" id="toc-변수의-중심-경향-요약" class="nav-link" data-scroll-target="#변수의-중심-경향-요약"><span class="header-section-number">2.1</span> 변수의 중심 경향 요약</a></li>
+  <li><a href="#변수의-산포-요약" id="toc-변수의-산포-요약" class="nav-link" data-scroll-target="#변수의-산포-요약"><span class="header-section-number">2.2</span> 변수의 산포 요약</a></li>
+  <li><a href="#두-양적-변수-간의-연관성-요약" id="toc-두-양적-변수-간의-연관성-요약" class="nav-link" data-scroll-target="#두-양적-변수-간의-연관성-요약"><span class="header-section-number">2.3</span> 두 양적 변수 간의 연관성 요약</a></li>
+  </ul></li>
+  <li><a href="#결측-데이터" id="toc-결측-데이터" class="nav-link" data-scroll-target="#결측-데이터"><span class="header-section-number">3</span> 결측 데이터</a>
+  <ul class="collapse">
+  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">3.1</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#r에서의-시각적-탐색-분석" id="toc-r에서의-시각적-탐색-분석" class="nav-link" data-scroll-target="#r에서의-시각적-탐색-분석"><span class="header-section-number">4</span> R에서의 시각적 탐색 분석</a>
+  <ul class="collapse">
+  <li><a href="#산점도" id="toc-산점도" class="nav-link" data-scroll-target="#산점도"><span class="header-section-number">4.1</span> 산점도</a></li>
+  <li><a href="#히스토그램" id="toc-히스토그램" class="nav-link" data-scroll-target="#히스토그램"><span class="header-section-number">4.2</span> 히스토그램</a></li>
+  </ul></li>
+  <li><a href="#상자-그림" id="toc-상자-그림" class="nav-link" data-scroll-target="#상자-그림"><span class="header-section-number">5</span> 상자 그림</a>
+  <ul class="collapse">
+  <li><a href="#연습-문제-1" id="toc-연습-문제-1" class="nav-link" data-scroll-target="#연습-문제-1"><span class="header-section-number">5.1</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#tidyverse로-eda-파이프라인-구성하기" id="toc-tidyverse로-eda-파이프라인-구성하기" class="nav-link" data-scroll-target="#tidyverse로-eda-파이프라인-구성하기"><span class="header-section-number">6</span> tidyverse로 EDA 파이프라인 구성하기</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch07.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch07.html">탐색적 분석(실습)</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">탐색적 분석(실습)</h1>
 </div>
@@ -210,14 +405,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <blockquote class="blockquote">
-<p>이전 R 튜토리얼에서는 R에서 사용할 수 있는 라이브러리를 활용하거나 <code>readr::read_csv()</code>를 사용하여 csv 파일을 작업 공간(Workspace)에 로드하는 방법에 대해 알아보았습니다. 본 튜토리얼에서는 요약 수치를 계산하는 방법과 데이터를 시각화하는 데 사용되는 다양한 그래프를 생성하는 방법에 대해 설명합니다. R 4.6 실습에서는 기본 R 함수의 원리를 먼저 확인하되, 그래프와 파이프라인 예제는 <code>ggplot2</code>와 <code>dplyr</code>을 포함한 tidyverse 문법으로 작성하겠습니다.</p>
+<p>이전 R 튜토리얼에서는 R 환경에서 사용할 수 있는 다양한 라이브러리를 호출하고, <code>readr::read_csv()</code>를 활용하여 로컬 csv 파일을 작업 공간(Workspace)에 안전하게 로드하는 방법에 대해 알아보았습니다. 본 튜토리얼에서는 실제 데이터셋을 바탕으로 핵심적인 요약 수치를 계산하고, 데이터의 직관적 이해를 돕는 다양한 시각화 그래프를 생성하는 실습을 진행하겠습니다. 2026년 현재 고도화된 R 4.6 실습 환경에서는 베이스 R 함수의 근본 원리를 먼저 확실히 이해하되, 복잡한 그래프와 파이프라인 예제는 최신 <code>ggplot2</code>와 <code>dplyr</code>을 포함한 Tidyverse 문법으로 세련되게 작성하는 것이 표준입니다.</p>
 </blockquote>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Ecdat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-다음의 패키지를 부착합니다: 'Ecdat'</code></pre>
+Attaching package: 'Ecdat'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>The following object is masked from 'package:MASS':
@@ -246,12 +441,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 </div>
-<section id="r에서의-빈도표-및-분할표" class="level2">
-<h2 class="anchored" data-anchor-id="r에서의-빈도표-및-분할표">R에서의 빈도표 및 분할표</h2>
-<p>범주형 변수를 다룰 때 탐색적 분석의 주요 형태는 빈도표(하나의 변수일 경우) 또는 분할표(Contingency table, 두 개의 변수일 경우)입니다. 이 표들로부터 표본 비율(Sample proportion)을 계산하는 것은 간단합니다. R에서는 table 함수 하나로 이 두 가지 유형의 표를 모두 생성할 수 있습니다. 빈도표를 생성하기 위한 table 함수의 코드는 다음과 같습니다.</p>
+<section id="r에서의-빈도표-및-분할표" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="r에서의-빈도표-및-분할표"><span class="header-section-number">1</span> R에서의 빈도표 및 분할표</h2>
+<p>범주형 변수를 다룰 때 탐색적 분석의 가장 기본적인 형태는 단일 변수에 대한 빈도표(Frequency table)와 두 변수의 교차를 보여주는 분할표(Contingency table)를 작성하는 것입니다. 이 표들로부터 표본 비율(Sample proportion)을 계산하는 과정은 매우 간단합니다. R에서는 내장된 <code>table()</code> 함수 하나로 이 두 가지 유형의 표를 모두 신속하게 생성할 수 있습니다. 먼저 빈도표를 생성하기 위한 코드는 다음과 같습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(variable)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>위 코드를 입력한 후 <code>Enter</code>를 누릅니다. 여기서 “Variable”은 입력된 벡터(Vector)의 이름이거나, $ 기호를 사용하여 더 큰 데이터 프레임(Data frame)에서 선택한 변수일 수 있습니다. 그러면 R은 table 문에 지정한 변수의 빈도표를 반환합니다.</p>
-<p>MASS 라이브러리에 포함된 quine 데이터셋을 살펴보겠습니다. 이 데이터는 호주 학생들의 결석에 대한 조사 결과로, 각 학생의 인종(원주민 또는 비원주민), 성별(남성 또는 여성), 학습 능력(평균 학습자 또는 느린 학습자) 등의 데이터가 포함되어 있습니다. 설문에서 정의된 인종별 분포를 알고 싶다면(quine 데이터 프레임의 Eth 변수), 아래 코드를 사용하여 원주민 학생이 69명, 비원주민 학생이 77명임을 확인할 수 있습니다.</p>
+<p>위 코드를 입력한 후 <code>Enter</code> 키를 누르십시오. 여기서 <code>variable</code>은 메모리에 입력된 벡터(Vector)의 이름이거나, <code>$</code> 기호를 사용하여 더 큰 데이터 프레임(Data frame)에서 특정 열을 선택한 결과일 수 있습니다. R은 지정된 변수의 빈도표를 즉시 반환합니다.</p>
+<p><code>MASS</code> 라이브러리에 포함된 <code>quine</code> 데이터셋을 살펴보겠습니다. 이 데이터는 호주 학생들의 결석 일수에 대한 조사 결과로, 각 학생의 인종(원주민 또는 비원주민), 성별(남성 또는 여성), 학습 능력(평균 학습자 또는 느린 학습자) 등의 인구통계학적 데이터가 포함되어 있습니다. 설문에서 응답한 인종별 학생 분포를 파악하고 싶다면(<code>quine</code> 데이터 프레임의 <code>Eth</code> 변수), 아래 코드를 실행하여 원주민 학생이 69명, 비원주민 학생이 77명임을 즉시 확인할 수 있습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(quine<span class="sc">$</span>Eth)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -260,9 +455,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 69 77 </code></pre>
 </div>
 </div>
-<p>분할표의 경우, 표에 변수가 하나가 아니라 두 개가 들어간다는 점을 제외하면 코드는 거의 동일하며 다음과 같이 바뀝니다.</p>
+<p>분할표의 경우, 함수 내부에 변수가 하나가 아니라 두 개가 들어간다는 점을 제외하면 코드는 거의 동일합니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(variable1, variable2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>마찬가지로, 이 변수들은 입력된 벡터이거나 더 큰 데이터 프레임에서 선택된 변수일 수 있습니다. 동일한 quine 데이터셋을 사용하여 학생의 인종(quine 데이터 프레임의 Eth 변수)과 학습 능력(quine 데이터 프레임의 Lrn 변수)에 대한 분할표를 살펴볼 수 있습니다. 코드는 다음과 같습니다.</p>
+<p>마찬가지로 이 변수들은 단일 벡터이거나 데이터 프레임에서 추출된 변수입니다. 동일한 <code>quine</code> 데이터셋을 활용하여 학생의 인종(<code>Eth</code> 변수)과 학습 능력(<code>Lrn</code> 변수)이 교차하는 분할표를 생성해 보겠습니다. 코드는 다음과 같습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(quine<span class="sc">$</span>Eth, quine<span class="sc">$</span>Lrn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -272,7 +467,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   N 43 34</code></pre>
 </div>
 </div>
-<p>이 코드를 실행하면 아래와 같은 분할표를 얻을 수 있습니다.</p>
+<p>이 코드를 실행하면 아래와 같은 2차원 분할표를 얻을 수 있습니다.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -294,32 +489,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>R은 행이나 열의 주변 합계(Marginal total) 또는 표의 전체 합계를 기본적으로 제공하지 않는다는 점에 유의해 주세요. 이러한 값들은 필요에 따라 적절한 행과 열을 더하거나, addmargins와 같은 R의 다른 함수를 활용하여 구할 수 있습니다.</p>
+<p>다만 베이스 R의 <code>table()</code> 함수는 행이나 열의 주변 합계(Marginal total) 또는 표의 전체 합계를 기본적으로 제공하지 않는다는 점에 유의해 주십시오. 이러한 총계 값들은 필요에 따라 <code>addmargins()</code>와 같은 R의 추가 함수를 덧씌워 계산할 수 있습니다.</p>
 </section>
-<section id="r에서의-수치적-탐색-분석" class="level2">
-<h2 class="anchored" data-anchor-id="r에서의-수치적-탐색-분석">R에서의 수치적 탐색 분석</h2>
-<p>이 섹션에서는 R에서 양적 변수의 요약 수치를 계산하는 방법을 살펴보겠습니다. 따라서 단일 양적 변수의 중심(Center)과 산포(Spread)에 대한 요약 수치를 구하는 것과 두 양적 변수 간의 상관관계(Correlation)를 구하는 것에 집중할 것입니다. 시각적 요약은 이후 섹션에서 다루겠습니다.</p>
-<section id="변수의-중심-경향-요약" class="level3">
-<h3 class="anchored" data-anchor-id="변수의-중심-경향-요약">변수의 중심 경향 요약</h3>
-<p>먼저, 이전에 학습한 변수의 중심을 나타내는 두 가지 주요 요약 수치인 표본 평균(Sample mean)과 표본 중앙값(Sample median)을 상기해 보겠습니다. R에서는 벡터에 저장된 변수에 대해 이러한 수치들을 쉽게 계산할 수 있습니다. 평균을 계산하는 코드는 다음과 같습니다.</p>
+<section id="r에서의-수치적-탐색-분석" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="r에서의-수치적-탐색-분석"><span class="header-section-number">2</span> R에서의 수치적 탐색 분석</h2>
+<p>이 섹션에서는 R에서 양적 변수(수치형 변수)의 요약 수치를 계산하는 방법론을 살펴보겠습니다. 단일 양적 변수의 데이터가 뭉쳐 있는 중심(Center)과 흩어진 정도인 산포(Spread)를 측정하는 수치, 그리고 두 양적 변수 간의 통계적 상관관계(Correlation)를 도출하는 것에 집중하겠습니다.</p>
+<section id="변수의-중심-경향-요약" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="변수의-중심-경향-요약"><span class="header-section-number">2.1</span> 변수의 중심 경향 요약</h3>
+<p>먼저, 이론 장에서 학습한 변수의 중심을 나타내는 두 가지 대표적인 요약 수치인 표본 평균(Sample mean)과 표본 중앙값(Sample median)을 상기해 보겠습니다. R에서는 벡터에 저장된 숫자들에 대해 이 수치들을 눈 깜짝할 사이에 계산합니다. 평균을 계산하는 코드는 다음과 같습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(variable, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>그리고 중앙값을 계산하는 코드는 다음과 같습니다.</p>
+<p>중앙값을 계산하는 코드는 다음과 같습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(variable, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>두 경우 모두 “Variable”은 직접 입력한 벡터에 저장되어 있거나 데이터 프레임 내에 저장되어 있을 수 있습니다. 예를 들어, Ecdat 라이브러리의 Housing 데이터셋[12,29]을 살펴보겠습니다. 이 데이터셋은 윈저(Windsor)시의 주택 특성과 판매 가격을 다루겠습니다. 주택 판매 가격(price 변수)의 평균을 구하고 싶다면 다음을 사용합니다.</p>
+<p>두 경우 모두 인자로 주어지는 변수는 직접 생성한 벡터이거나 데이터 프레임의 특정 열입니다. 예를 들어, <code>Ecdat</code> 라이브러리의 <code>Housing</code> 데이터셋을 살펴보겠습니다. 이 데이터셋은 캐나다 윈저(Windsor)시의 주택 물리적 특성과 실제 판매 가격을 상세히 다루고 있습니다. 주택 판매 가격(<code>price</code> 변수)의 산술 평균을 구하고 싶다면 다음 코드를 실행해 주십시오.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Housing<span class="sc">$</span>price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 68121.6</code></pre>
 </div>
 </div>
-<p>중앙값의 경우 다음과 같습니다.</p>
+<p>중앙값의 경우는 다음과 같습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(Housing<span class="sc">$</span>price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 62000</code></pre>
 </div>
 </div>
-<p>실행 결과 평균 판매 가격은 68,121.6이고 중앙값은 62,000임을 알 수 있습니다. 또한 mean 및 median 함수를 벡터 서브세팅(Subsetting)과 함께 사용하여 여러 그룹의 평균과 중앙값을 비교할 수도 있습니다. 예를 들어, 선호 지역(prefarea 변수, “yes” 또는 “no” 값을 가짐)에 따른 주택의 평균 판매 가격을 비교하고 싶다면 다음과 같이 입력하시면 됩니다.</p>
+<p>실행 결과, 이 지역 주택의 평균 판매 가격은 68,121.6달러이고 중앙값은 62,000달러임을 알 수 있습니다. 또한 <code>mean()</code> 및 <code>median()</code> 함수를 강력한 벡터 서브세팅(Subsetting) 기술과 결합하여 여러 하위 그룹의 통계량을 직접 비교할 수도 있습니다. 예를 들어, 선호 지역(<code>prefarea</code> 변수, “yes” 또는 “no”)에 따른 주택의 평균 판매 가격 차이를 확인하고 싶다면 다음과 같이 논리문을 삽입해 주십시오.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Housing<span class="sc">$</span>price[Housing<span class="sc">$</span>prefarea <span class="sc">==</span> <span class="st">"yes"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -330,20 +525,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 63263.49</code></pre>
 </div>
 </div>
-<p>결과를 통해 선호 지역의 평균 판매 가격은 83,986.37이고, 비선호 지역은 63,263.49임을 확인할 수 있습니다. 중앙값을 비교할 때도 mean 함수 대신 median 함수를 사용하면 코드는 유사합니다.</p>
+<p>결과를 통해 선호 지역에 위치한 주택의 평균 판매 가격은 83,986.37달러로, 비선호 지역의 63,263.49달러에 비해 월등히 높음을 확증할 수 있습니다.</p>
 </section>
-<section id="변수의-산포-요약" class="level3">
-<h3 class="anchored" data-anchor-id="변수의-산포-요약">변수의 산포 요약</h3>
-<p>변수의 산포를 살펴볼 때 우리는 범위(Range), 분산(Variance), 표준 편차(Standard deviation), 사분위수 범위(Interquartile range, IQR)라는 네 가지 요약 수치에 집중했습니다. 이러한 각 요약 수치는 R에서 단 한 줄의 코드로 각각 계산할 수 있습니다. 범위와 사분위수 범위부터 시작하겠습니다. 복습하자면, 범위는 최댓값에서 최솟값을 뺀 값이고, 사분위수 범위는 제3사분위수(Q3)에서 제1사분위수(Q1)를 뺀 값입니다. 이 네 가지 값에 중앙값을 더하면 변수의 다섯 수치 요약(Five-number summary)이 됩니다. 따라서 다섯 수치 요약을 구할 수 있다면 이 두 가지 요약 수치를 모두 얻을 수 있습니다. R에서 직접 입력한 벡터나 데이터 프레임에 저장된 변수의 다섯 수치 요약은 다음 코드로 구할 수 있습니다.</p>
+<section id="변수의-산포-요약" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="변수의-산포-요약"><span class="header-section-number">2.2</span> 변수의 산포 요약</h3>
+<p>변수의 산포(퍼짐)를 살펴볼 때 우리는 범위(Range), 분산(Variance), 표준 편차(Standard deviation), 사분위수 범위(Interquartile range, IQR)라는 네 가지 핵심 요약 수치에 집중했습니다. R에서는 이 수치들을 단 한 줄의 코드로 계산해 냅니다. 범위와 사분위수 범위부터 시작하겠습니다. 복습하자면, 범위는 최댓값에서 최솟값을 뺀 절댓값이고, 사분위수 범위는 제3사분위수(Q3)에서 제1사분위수(Q1)를 뺀 값입니다. 이 네 가지 경계값에 중앙값을 더하면 변수의 완벽한 다섯 수치 요약(Five-number summary)이 완성됩니다. R에서 <code>summary()</code> 함수를 호출하면 이 값들을 한 번에 얻을 수 있습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Variable)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>이 코드는 변수의 최솟값, 제1사분위수, 중앙값, 제3사분위수, 최댓값에 더해 평균까지 제공합니다. 이를 통해 범위와 IQR을 계산할 수 있습니다. 또는 range 함수를 사용하여 변수의 최솟값과 최댓값을 구하거나, IQR 함수를 사용하여 IQR을 직접 계산할 수도 있습니다.</p>
+<p>이 코드는 변수의 최솟값, 제1사분위수, 중앙값, 제3사분위수, 최댓값에 더해 산술 평균까지 친절하게 제공합니다. 이를 통해 연구자는 범위와 IQR을 손쉽게 도출할 수 있습니다. 혹은 명시적인 함수인 <code>range()</code>와 <code>IQR()</code>을 사용하여 해당 값만 곧바로 반환받을 수도 있습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(variable, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(variable, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>summary 함수에는 분산이나 표준 편차가 포함되어 있지 않지만, 두 가지 모두 R을 사용하여 간단히 계산할 수 있습니다. 분산은 var 함수를 사용하여 다음과 같이 구할 수 있습니다.</p>
+<p><code>summary()</code> 함수의 반환값에는 분산이나 표준 편차가 포함되어 있지 않지만, 역시 전용 함수를 통해 즉각 계산할 수 있습니다. 분산은 <code>var()</code> 함수를 사용합니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(variable, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>표준 편차는 sd 함수를 사용하여 다음과 같이 구합니다.</p>
+<p>표준 편차는 <code>sd()</code> 함수를 사용하여 다음과 같이 구합니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(variable, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>이러한 모든 옵션을 설명하기 위해 MASS 라이브러리의 Pima.te 데이터셋[10,30]을 살펴볼 수 있습니다. 이 데이터는 피마(Pima) 인디언 부족 여성들의 당뇨병 지표를 다루겠습니다. 예를 들어, 혈장 포도당 수치(glu 변수)의 범위와 IQR을 구하고 싶다면, 먼저 다음 코드를 사용하여 다섯 수치 요약을 구합니다.</p>
+<p>이러한 수치 요약 옵션들을 종합적으로 설명하기 위해 <code>MASS</code> 라이브러리의 <code>Pima.te</code> 데이터셋을 분석해 보겠습니다. 이 데이터는 당뇨병 발병 예측 AI 모델의 고전적인 벤치마크로 쓰이는 피마(Pima) 인디언 부족 여성들의 생체 지표를 담고 있습니다. 혈장 포도당 수치(<code>glu</code> 변수)의 특성을 파악하기 위해, 먼저 다음 코드를 사용하여 다섯 수치 요약을 출력해 주십시오.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Pima.te<span class="sc">$</span>glu)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -351,7 +546,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    65.0    96.0   112.0   119.3   136.2   197.0 </code></pre>
 </div>
 </div>
-<p>이 변수의 다섯 수치 요약은 다음과 같습니다.</p>
+<p>이 변수의 다섯 수치 요약은 콘솔에 다음과 같이 나타납니다.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -372,93 +567,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>이를 통해 범위는 197−65=132이고 IQR은 136.2−96=40.2임을 알 수 있습니다. 범위와 IQR은 다음 코드를 사용하여 확인할 수 있습니다.</p>
+<p>이를 바탕으로 우리는 범위가 <span class="math inline">\(197-65=132\)</span>이고 IQR이 <span class="math inline">\(136.2-96=40.2\)</span>임을 계산할 수 있습니다.</p>
+<p>분산을 구하려면 콘솔에 다음과 같이 입력하십시오.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(Pima.te<span class="sc">$</span>glu)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  65 197</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(Pima.te<span class="sc">$</span>glu)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 40.25</code></pre>
-</div>
-</div>
-<p>분산을 구하려면 다음과 같이 입력하시면 됩니다.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Pima.te<span class="sc">$</span>glu)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Pima.te<span class="sc">$</span>glu)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 930.3194</code></pre>
 </div>
 </div>
-<p>그 결과 s2=930.32임을 확인할 수 있고, 표준 편차를 구하려면 다음을 사용합니다.</p>
+<p>그 결과 표본 분산 <span class="math inline">\(s^2=930.32\)</span>임을 확인할 수 있고, 표준 편차를 구하려면 다음을 실행합니다.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Pima.te<span class="sc">$</span>glu)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Pima.te<span class="sc">$</span>glu)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 30.50114</code></pre>
 </div>
 </div>
-<p>결과로 s=30.5를 얻습니다. s는 분산과 표준 편차의 정의에 따라 s2의 제곱근이라는 점에 유의해 주세요.</p>
+<p>결과로 표준 편차 <span class="math inline">\(s=30.5\)</span>를 얻습니다. 수학적 정의에 따라 <span class="math inline">\(s\)</span>는 반드시 <span class="math inline">\(s^2\)</span>의 양의 제곱근이 된다는 점을 명심해 주십시오.</p>
 </section>
-<section id="두-양적-변수-간의-연관성-요약" class="level3">
-<h3 class="anchored" data-anchor-id="두-양적-변수-간의-연관성-요약">두 양적 변수 간의 연관성 요약</h3>
-<p>두 양적 변수 간의 연관성을 나타내는 하나의 수치 요약은 상관관계입니다. 수작업으로 상관관계를 계산하는 것은 여러 단계의 복잡한 절차와 많은 잠재적 오류가 따르는 과정입니다. R에서는 cor 함수를 사용하여 다음과 같은 코드로 상관관계를 계산합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Variable1, Variable2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>여기서 두 변수는 모두 입력된 벡터이거나 데이터 프레임에 저장된 것일 수 있습니다. 예시로 R 기본 환경에 저장된 cars 데이터셋을 살펴보겠습니다. 이 데이터셋은 1920년대 자동차의 속도와 그에 따른 제동 거리 사이의 관계를 다루겠습니다. 속도(speed 변수에 저장됨)와 제동 거리(dist에 저장됨) 사이의 상관관계를 계산하려면 다음과 같이 입력하시면 됩니다.</p>
+<section id="두-양적-변수-간의-연관성-요약" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="두-양적-변수-간의-연관성-요약"><span class="header-section-number">2.3</span> 두 양적 변수 간의 연관성 요약</h3>
+<p>두 양적 변수 간의 선형적 연관성(Association)을 단일 수치로 압축하여 나타내는 것이 피어슨 상관계수(Correlation)입니다. 수작업으로 Z-점수 곱의 평균을 계산하는 것은 무수한 오류를 유발하므로, R에서는 <code>cor()</code> 함수를 사용하여 즉각적이고 정확하게 상관계수를 도출합니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Variable1, Variable2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>R 기본 환경에 내장된 <code>cars</code> 데이터셋을 살펴보겠습니다. 이 데이터는 1920년대 구형 자동차들의 주행 속도와 그에 따른 제동 거리를 기록하고 있습니다. 속도(<code>speed</code>)와 제동 거리(<code>dist</code>) 사이의 상관계수를 계산하려면 다음과 같이 작성해 주십시오.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(cars<span class="sc">$</span>speed, cars<span class="sc">$</span>dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(cars<span class="sc">$</span>speed, cars<span class="sc">$</span>dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8068949</code></pre>
 </div>
 </div>
-<p>상관관계 r=0.8069를 얻을 수 있으며, 이는 속도와 제동 거리 사이에 직관적으로 강한 양의 관계가 있음을 나타냅니다. 변수의 순서가 바뀌어도 상관관계는 동일하게 유지된다는 점에 유의해 주세요. 또한, 상관관계는 두 변수 사이의 관계가 선형일 때만 해석이 가능하다는 점을 상기해 보겠습니다. 이는 산점도를 통해 시각적으로 확인할 수 있습니다. 다음 섹션에서는 데이터로부터 정보를 얻기 위해 사용할 수 있는 다양한 도표와 시각화 방법에 대해 알아보겠습니다.</p>
+<p>계산 결과 <span class="math inline">\(r=0.8069\)</span>를 얻을 수 있으며, 이는 속도와 제동 거리 사이에 매우 강한 양(+)의 선형 관계가 존재함을 시사합니다. 인자로 전달되는 두 변수의 순서가 바뀌어도 상관계수는 수학적 대칭성에 의해 동일하게 유지된다는 점에 유의해 주십시오. 또한, 이 상관계수는 두 변수 사이의 관계가 진정 ’선형’일 때만 유효하게 해석될 수 있습니다. 선형성 여부는 반드시 산점도를 통해 시각적으로 교차 검증해야 합니다.</p>
 </section>
 </section>
-<section id="결측-데이터" class="level2">
-<h2 class="anchored" data-anchor-id="결측-데이터">결측 데이터</h2>
-<p>사용 중인 데이터셋에 따라 평균, 중앙값 또는 기타 수치 요약 결과가 NA로 반환되는 경우를 발견할 수 있습니다. 이는 해당 변수의 일부 값이 어떤 이유로 누락되었기 때문입니다. 응답자가 질문에 답하지 않았거나, 데이터가 손실되었거나, 기타 여러 가능성이 있을 수 있습니다. 수작업으로 계산할 때는 보통 누락되지 않은 다른 데이터 값들만으로 원하는 요약 수치를 계산하겠지만, R은 이를 스스로 수행하지 않습니다. 대신, 결측값을 무시하도록 R에 지시해야 합니다.</p>
-<p>위에서 언급한 많은 함수를 포함하여 R의 대부분의 함수는 na.rm 옵션을 사용할 수 있도록 허용합니다. 이는 계산 시 NA 값을 무시하도록 R에 지시하는 TRUE/FALSE 옵션입니다. 예를 들어, NA 값이 포함된 것을 알고 있는 변수의 평균을 구하려는 경우 다음과 같은 코드를 사용합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(variable, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>이 과정은 median, var, sd를 포함한 다른 많은 함수에서도 유사합니다. 한 가지 주목할 만한 차이점은 cor 함수입니다. 이 함수에는 두 개의 변수가 관여하므로, 결측값이 없는 관측치, 즉 완전한 관측치(Complete observation)만 사용하고자 합니다. 이 경우 cor 함수에 use = “complete.obs”를 추가하며, 결과는 다음과 같습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(variable1, variable2, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>na.rm 및 use 옵션은 mean이나 cor의 모든 인스턴스에 포함될 수 있지만, 결측된 관측치가 없는 경우에는 이러한 옵션이 결과 계산에 아무런 영향을 미치지 않는다는 점에 유의해 주시면 좋습니다.</p>
-<section id="연습-문제" class="level3">
-<h3 class="anchored" data-anchor-id="연습-문제">연습 문제</h3>
-<p>MASS 라이브러리에서 leuk 데이터셋을 로드해 주세요. 이 데이터셋은 생존 시간(time), 백혈구 수(wbc), 백혈구의 형태학적 특성 존재 여부(ag)를 포함하고 있습니다.</p>
+<section id="결측-데이터" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="결측-데이터"><span class="header-section-number">3</span> 결측 데이터</h2>
+<p>실제 2026년의 방대한 빅데이터 환경에서는 센서 통신 장애나 응답 누락으로 인해 텅 빈 값, 즉 결측 데이터(Missing data)가 빈번하게 발생합니다. R에서 이러한 값들은 <code>NA</code>(Not Available)로 표기되며, 결측값이 단 하나라도 섞인 벡터에 대해 평균이나 중앙값을 계산하면 R은 엄격한 논리에 따라 <code>NA</code>를 반환합니다.</p>
+<p>수작업 계산 시에는 인간이 알아서 빈칸을 무시하고 계산하겠지만, 컴퓨터 프로그래밍에서는 결측값을 계산 과정에서 제외하라는 명시적인 지시를 내려야 합니다. R의 대다수 통계 함수는 <code>na.rm</code> (NA remove) 옵션을 지원합니다. 이를 <code>TRUE</code>로 설정하면 R은 내부적으로 결측값을 안전하게 걸러낸 뒤 통계량을 계산합니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(variable, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>이 규칙은 <code>median()</code>, <code>var()</code>, <code>sd()</code> 등 거의 모든 단일 변수 요약 함수에 공통으로 적용됩니다. 그러나 <code>cor()</code> 함수의 경우는 두 개의 변수가 한 쌍으로 움직이므로 처리 방식이 약간 다릅니다. 쌍을 이루는 두 값 중 하나라도 결측치라면 그 관측치(행) 전체를 분석에서 제외하는 완전 관측치(Complete observation) 제거 방식을 취해야 합니다. 이 경우 <code>cor()</code> 함수에는 <code>use = "complete.obs"</code> 인자를 명시해 주십시오.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(variable1, variable2, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>데이터에 애초에 결측값이 존재하지 않는다면 이 옵션들을 추가해도 연산 결과나 성능에 아무런 악영향을 미치지 않으므로, 방어적 프로그래밍 차원에서 습관적으로 포함하는 것도 훌륭한 실무 기법입니다.</p>
+<section id="연습-문제" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">3.1</span> 연습 문제</h3>
+<p><code>MASS</code> 라이브러리에서 급성 백혈병 환자 데이터인 <code>leuk</code> 데이터셋을 로드해 주십시오. 생존 시간(<code>time</code>), 백혈구 수(<code>wbc</code>), 백혈구의 형태학적 특성 존재 여부(<code>ag</code>)를 포함하고 있습니다.</p>
 <ol type="1">
-<li>형태학적 특성 존재 여부에 대한 빈도표를 생성해 보세요.</li>
-<li>생존 시간에 대한 중앙값과 평균을 구해 보세요.</li>
-<li>백혈구 수에 대한 범위, IQR, 분산, 표준 편차를 구해 보세요.</li>
-<li>백혈구 수와 생존 시간 사이의 상관관계를 구해 보세요.</li>
+<li>형태학적 특성 존재 여부(<code>ag</code>)에 대한 빈도표를 생성해 보십시오.</li>
+<li>생존 시간(<code>time</code>)에 대한 중앙값과 평균을 정확히 계산해 보십시오.</li>
+<li>백혈구 수(<code>wbc</code>)에 대한 범위, IQR, 분산, 표준 편차를 차례대로 도출해 보십시오.</li>
+<li>백혈구 수와 생존 시간 사이의 피어슨 상관관계를 도출해 보십시오.</li>
 </ol>
-<p>MASS 라이브러리에서 survey 데이터셋을 로드해 주세요. 이 데이터셋은 대학생 한 반의 설문 응답을 포함하고 있습니다.</p>
+<p><code>MASS</code> 라이브러리에서 <code>survey</code> 데이터셋을 로드해 주십시오. 대학생들의 생활 습관 설문 응답을 담고 있습니다.</p>
 <ol start="5" type="1">
-<li>학생의 흡연 여부(Smoke)와 학생의 운동 요법(Exer)에 대한 분할표를 생성해 보세요.</li>
-<li>학생의 심박수(Pulse)의 평균과 중앙값을 구해 보세요.</li>
-<li>학생의 연령(Age)에 대한 범위, IQR, 분산, 표준 편차를 구해 보세요.</li>
-<li>학생의 주로 쓰는 손의 너비(Wr.Hnd)와 반대쪽 손의 너비(NW.Hnd) 사이의 상관관계를 구해 보세요.</li>
+<li>학생의 흡연 여부(<code>Smoke</code>)와 운동 요법 빈도(<code>Exer</code>)가 만나는 분할표를 생성해 보십시오.</li>
+<li>학생의 심박수(<code>Pulse</code>)의 평균과 중앙값을 계산해 주십시오. (결측치 처리에 유의하십시오.)</li>
+<li>학생 연령(<code>Age</code>)의 범위, IQR, 분산, 표준 편차를 구해 보십시오.</li>
+<li>주로 쓰는 손의 너비(<code>Wr.Hnd</code>)와 반대쪽 손의 너비(<code>NW.Hnd</code>) 사이의 상관계수를 계산해 주십시오.</li>
 </ol>
-<p>Ecdat 라이브러리에서 Housing 데이터셋을 로드해 주세요. 이 데이터셋은 주택 판매 가격에 영향을 미치는 변수들을 다루겠습니다.</p>
+<p><code>Ecdat</code> 라이브러리의 <code>Housing</code> 데이터셋을 사용하여 다음을 수행하십시오.</p>
 <ol start="9" type="1">
-<li>주택에 오락실(recroom)이 있는지 여부와 주택에 전체 지하실(fullbase)이 있는지 여부에 대한 분할표를 생성해 보세요.</li>
-<li>주택 대지 크기(lotsize)의 평균과 중앙값을 구해 보세요.</li>
-<li>판매 가격(price)에 대한 범위, IQR, 분산, 표준 편차를 구해 보세요.</li>
-<li>주택 판매 가격(price)과 침실 수(bedrooms) 사이의 상관관계를 구해 보세요.</li>
+<li>오락실(<code>recroom</code>) 보유 여부와 전체 지하실(<code>fullbase</code>) 보유 여부의 교차 분할표를 생성해 주십시오.</li>
+<li>대지 크기(<code>lotsize</code>)의 평균과 중앙값을 도출해 보십시오.</li>
+<li>판매 가격(<code>price</code>)의 범위, IQR, 분산, 표준 편차를 계산해 주십시오.</li>
+<li>판매 가격(<code>price</code>)과 침실 수(<code>bedrooms</code>)의 상관계수를 파악해 보십시오.</li>
 </ol>
 </section>
 </section>
-<section id="r에서의-시각적-탐색-분석" class="level2">
-<h2 class="anchored" data-anchor-id="r에서의-시각적-탐색-분석">R에서의 시각적 탐색 분석</h2>
-<p>통계학에서 탐색적 분석을 시작하는 간단하고 일반적인 방법 중 하나는 어떤 형태의 그래프를 통하는 것입니다. 지난 장에서 산점도, 상자 그림, 히스토그램이라는 세 가지 그래프에 대해 이야기했습니다. R에서 이 세 가지 도표는 모두 생성하기 간단하며, 각 함수에는 필요에 따라 도표를 수정할 수 있는 여러 옵션이 있습니다.</p>
-<section id="산점도" class="level3">
-<h3 class="anchored" data-anchor-id="산점도">산점도</h3>
-<p>산점도는 두 양적 변수 사이의 관계를 결정하는 데 사용됩니다. 이는 앞서 언급한 상관관계 해석에 필요한 선형 관계를 식별하는 것을 포함하여 여러 가지 이유로 중요합니다. 두 변수에 대한 산점도를 생성하는 데 사용하는 기본 코드는 다음과 같습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x_variable, <span class="at">y =</span> y_variable)) <span class="sc">+</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>여기서 “X-variable”은 x축을 따라 플로팅하려는 변수이고, “Y-variable”은 y축을 따라 플로팅하려는 변수입니다. 예를 들어, cars 데이터셋에서 속도와 제동 거리 사이의 관계의 선형성을 확인하고 싶다고 가정해 보겠습니다. 사용할 코드는 다음과 같습니다.</p>
+<section id="r에서의-시각적-탐색-분석" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="r에서의-시각적-탐색-분석"><span class="header-section-number">4</span> R에서의 시각적 탐색 분석</h2>
+<p>숫자로 된 요약 통계량의 한계를 보완하고 데이터의 전체적인 윤곽을 파악하기 위해 통계학자들은 시각화를 최우선으로 수행합니다. 앞서 다룬 산점도, 상자 그림, 히스토그램은 탐색적 분석의 강력한 삼총사입니다. 2026년 실무에서는 베이스 R의 플롯 함수보다 문법적 일관성과 미적 완성도가 압도적으로 뛰어난 <code>ggplot2</code> 패키지를 데이터 시각화의 절대적인 표준으로 사용합니다.</p>
+<section id="산점도" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="산점도"><span class="header-section-number">4.1</span> 산점도</h3>
+<p>산점도는 두 양적 변수 사이의 관계, 특히 상관계수 계산의 전제 조건인 선형성의 유무를 육안으로 검증하는 핵심 도구입니다. <code>ggplot2</code>를 사용하여 산점도를 구축하는 뼈대 코드는 다음과 같습니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x_variable, <span class="at">y =</span> y_variable)) <span class="sc">+</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>cars</code> 데이터셋의 속도(<code>speed</code>)와 제동 거리(<code>dist</code>) 관계를 <code>ggplot2</code>로 구현해 보겠습니다. 코드는 다음과 같이 작성됩니다.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">|&gt;</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch07_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>이 코드는 가장 기본적인 산점도를 렌더링합니다. 하지만 실제 보고서나 프레젠테이션에 사용하기에는 다소 투박하므로, <code>ggplot2</code>의 강력한 레이어(Layer) 시스템을 활용하여 도표를 전문가 수준으로 다듬어 보겠습니다.</p>
+<ol type="1">
+<li><code>labs(x = ..., y = ..., title = ...)</code>: X축, Y축 라벨과 전체 제목을 명시적으로 부여합니다.</li>
+<li><code>geom_point(shape = ...)</code>: 점의 기하학적 모양을 변경합니다. (기본값 16번 외에 1~25번까지의 고유 형상이 존재합니다.)</li>
+<li><code>color</code>: 데이터 포인트의 테두리나 내부 색상을 지정합니다.</li>
+<li><code>size</code>, <code>alpha</code>: 점의 절대적 크기와 투명도를 조절합니다. 딥러닝 모델의 출력처럼 수십만 개의 데이터 포인트가 몰려 있을 때 <code>alpha</code>를 낮추면 밀도(Density)를 시각적으로 파악하기 매우 용이해집니다.</li>
+<li><code>coord_cartesian(xlim = ..., ylim = ...)</code>: 데이터 자체를 삭제하지 않고 오직 뷰포트(화면)에 표시되는 축의 줌(Zoom) 범위만을 안전하게 제어합니다.</li>
+</ol>
+<p>아울러 추세선을 추가하는 <code>geom_smooth(method = "lm")</code> 레이어를 덧대어 완성한 고품질 산점도 코드는 다음과 같습니다. 시각적으로 보았을 때 두 변수는 뚜렷한 선형 관계를 따름을 확신할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Speed"</span>,</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Stopping Distance"</span>,</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Speed vs. Stopping Distance"</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -467,28 +682,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>이 코드는 왼쪽 도표를 생성합니다. 보시다시피 소박한 도표이며 읽기가 다소 어렵습니다. <code>ggplot2</code>에서는 도표의 모양과 가독성을 개선하기 위해 층과 옵션을 명시적으로 더합니다.</p>
-<ol type="1">
-<li><code>labs(x = ..., y = ..., title = ...)</code>: x축, y축, 제목을 지정합니다.</li>
-<li><code>geom_point(shape = ...)</code>: 점의 모양을 지정합니다. 기본 점 모양은 16이며, 필요하면 1부터 25까지의 숫자 중 하나를 사용할 수 있습니다.</li>
-<li><code>color</code>: 플로팅된 점의 색상입니다. 이 값은 문자열(<code>"red"</code>)이나 HTML 16진수 코드(<code>"#8B1F41"</code>)로 입력할 수 있습니다.</li>
-<li><code>size</code>, <code>alpha</code>: 각각 점의 크기와 투명도를 지정합니다. 많은 점이 겹칠 때 <code>alpha</code>를 낮추면 밀집 정도를 더 쉽게 볼 수 있습니다.</li>
-<li><code>coord_cartesian(xlim = ..., ylim = ...)</code>: 각각 x축과 y축의 표시 범위를 지정합니다. 데이터를 잘라내지 않고 화면에 보이는 범위만 조정할 때 유용합니다.</li>
-</ol>
-<p>이 모든 옵션을 사용하여 속도 및 제동 거리 도표를 개선해 보겠습니다. 결과는 오른쪽 도표에서 볼 수 있습니다. 보시다시피 속도와 제동 거리 사이의 선형성 가정이 데이터를 고려할 때 타당해 보입니다.</p>
+</section>
+<section id="히스토그램" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="히스토그램"><span class="header-section-number">4.2</span> 히스토그램</h3>
+<p>단일 수치형 변수의 전반적인 분포 형태(Shape)와 이상치를 검토하기 위해서는 히스토그램이 제격입니다. <code>ggplot2</code>에서 히스토그램을 그리는 뼈대 코드는 다음과 같습니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> variable)) <span class="sc">+</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>앞서 언급된 <code>geyser</code> 데이터셋을 활용하여 올드 페이스풀 간헐천의 분출 대기 시간(<code>waiting</code>) 히스토그램을 생성해 보겠습니다.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">|&gt;</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Speed"</span>,</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Stopping Distance"</span>,</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Speed vs. Stopping Distance"</span></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>geyser <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> waiting)) <span class="sc">+</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">"white"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -497,17 +701,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section>
-<section id="히스토그램" class="level3">
-<h3 class="anchored" data-anchor-id="히스토그램">히스토그램</h3>
-<p>히스토그램은 데이터의 형태(Shape)를 설명하는 데 도움을 주기 위해 사용됩니다. R 4.6 실습에서는 <code>ggplot2::geom_histogram()</code>을 사용하여 히스토그램을 생성하며 기본 코드는 다음과 같습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> variable)) <span class="sc">+</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>예를 들어, R의 MASS 패키지에 있는 geyser 데이터셋을 살펴볼 수 있습니다. 이 데이터셋은 지난 장에서 다룬 올드 페이스풀(Old Faithful) 간헐천의 분출 대기 시간과 지속 시간입니다. 분출 사이의 대기 시간(geyser 데이터 프레임의 wait 변수)에 대한 히스토그램을 생성하려면 다음과 같이 입력하시면 됩니다.</p>
+<p>출력된 히스토그램을 관찰하면, 대기 시간은 봉우리가 확연히 두 개인 이봉형(Bimodal) 분포를 띠며 각각 약 50분과 80분 근처에 집중되어 있음을 알 수 있습니다. 히스토그램 역시 풍부한 옵션으로 튜닝이 가능합니다.</p>
+<ol type="1">
+<li><code>bins</code> 또는 <code>binwidth</code>: 막대의 총개수를 직접 지정하거나, 막대 하나의 물리적 너비를 지정합니다. (둘 중 하나만 사용하십시오.)</li>
+<li><code>fill</code>, <code>color</code>: 막대 내부를 채우는 색상(<code>fill</code>)과 막대의 윤곽선 색상(<code>color</code>)을 구분하여 지정합니다.</li>
+</ol>
+<p>다음은 이 옵션들을 조합하여 훨씬 더 정교하게 다듬은 히스토그램 코드입니다.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>geyser <span class="sc">|&gt;</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> waiting)) <span class="sc">+</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">"white"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>geyser <span class="sc">|&gt;</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> waiting)) <span class="sc">+</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Wait Time (minutes)"</span>,</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency Count"</span>,</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Time Between Eruptions"</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -516,23 +724,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>대기 시간 변수는 봉우리가 두 개인 이봉형(Bimodal)이고 대칭이며 70을 중심으로 분포하는 것으로 보입니다. 산점도와 마찬가지로 히스토그램에도 히스토그램의 모양이나 가독성에 영향을 줄 수 있는 여러 옵션이 있습니다.</p>
-<ol type="1">
-<li><code>bins</code>, <code>binwidth</code>: 막대의 개수 또는 막대 하나의 폭을 지정합니다. 두 옵션 중 하나만 명시하면 충분합니다.</li>
-<li><code>labs(x = ..., y = ..., title = ...)</code>: x축, y축, 제목을 지정합니다.</li>
-<li><code>fill</code>, <code>color</code>: 각각 막대 내부 색상과 테두리 색상을 지정합니다. 문자열(<code>"red"</code>)이나 HTML 16진수 코드(<code>"#8B1F41"</code>)를 사용할 수 있습니다.</li>
-<li><code>coord_cartesian(xlim = ..., ylim = ...)</code>: x축과 y축의 표시 범위를 조정합니다.</li>
-</ol>
-<p>이러한 히스토그램 옵션을 사용하여 기본 히스토그램을 다음 코드로 개선할 수 있으며, 그 결과는 동일한 그림의 오른쪽 히스토그램과 같습니다.</p>
+</section>
+</section>
+<section id="상자-그림" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="상자-그림"><span class="header-section-number">5</span> 상자 그림</h2>
+<p>상자 그림(Boxplot)은 단일 수치형 변수의 이상치를 족집게처럼 찾아내거나, 범주형 예측 변수(X)의 그룹별로 양적 반응 변수(Y)의 분포 차이를 나란히 비교할 때 압도적인 위력을 발휘합니다. 단일 변수에 대한 기본 코드는 축 방향만 바꾸어 다음과 같이 작성합니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">y =</span> variable)) <span class="sc">+</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>MASS</code> 패키지의 <code>birthwt</code> 데이터셋을 사용하여 신생아의 출생 체중(<code>bwt</code>) 상자 그림을 단독으로 그려보겠습니다.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>geyser <span class="sc">|&gt;</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> waiting)) <span class="sc">+</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Wait Time"</span>,</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span>,</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Histogram of Time Between Eruptions"</span></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>birthwt <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> bwt)) <span class="sc">+</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -541,18 +744,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="상자-그림" class="level2">
-<h2 class="anchored" data-anchor-id="상자-그림">상자 그림</h2>
-<p>상자 그림을 사용할 때, 단일 변수에 대한 상자 그림을 만들거나 범주형 예측 변수(Predictor)와 양적 반응 변수(Response) 사이의 연관성을 탐색하는 병렬 상자 그림(Side-by-side boxplot)을 만들 수 있습니다. 이 두 가지 목표는 <code>ggplot2::geom_boxplot()</code>으로 모두 달성할 수 있습니다. 단일 변수에 대한 상자 그림을 생성하는 기본 코드는 다음과 같습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">y =</span> variable)) <span class="sc">+</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>예를 들어, R의 MASS 패키지에 있는 birthwt 데이터셋을 살펴볼 수 있습니다. 이 데이터셋은 신생아의 저체중을 나타낼 수 있는 몇 가지 가능한 지표를 살펴보고 있습니다. 이 피험자들의 출생 체중(birthwt 데이터 프레임의 bwt 변수)만 보고 싶다면 코드는 다음과 같습니다.</p>
+<p>상자 그림의 레이어 또한 미적으로 완벽하게 통제할 수 있습니다.</p>
+<ol type="1">
+<li><code>outlier.shape</code>: 이상치를 표시하는 점의 모양을 특별히 지정하여 강조할 수 있습니다.</li>
+</ol>
+<p>그룹 간 비교를 위해 X축에 범주형 변수를 투입하는 확장 코드는 다음과 같습니다. 산부인과 연구에서 어머니의 흡연 여부(<code>smoke</code>)가 출생 체중에 미치는 타격을 시각적으로 증명해 보겠습니다.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>birthwt <span class="sc">|&gt;</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> bwt)) <span class="sc">+</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>birthwt <span class="sc">|&gt;</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(smoke), <span class="at">y =</span> bwt)) <span class="sc">+</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -561,19 +761,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>이전 도표들과 마찬가지로 상자 그림에도 도표를 개선할 수 있는 여러 옵션이 있습니다.</p>
-<ol type="1">
-<li><code>outlier.shape</code>: 이상점(Outlier)의 점 모양을 지정합니다.</li>
-<li><code>labs(x = ..., y = ..., title = ...)</code>: x축, y축, 제목을 지정합니다.</li>
-<li><code>coord_cartesian(xlim = ..., ylim = ...)</code>: x축과 y축의 표시 범위를 조정합니다.</li>
-<li><code>fill</code>, <code>color</code>: 상자 내부 색상과 테두리 색상을 지정합니다.</li>
-</ol>
-<p>이러한 옵션을 사용하여 다음 코드로 기본 상자 그림을 수정할 수 있습니다. 결과는 동일한 그림의 오른쪽 상자 그림이 될 것입니다.</p>
+<p>다만 <code>smoke</code> 변수는 0과 1이라는 숫자로 입력되어 있어 라벨이 불친절합니다. 최신 파이프라인 기법에서는 <code>ggplot()</code>을 호출하기 직전에 <code>mutate()</code> 함수로 데이터를 전처리하여 의미 있는 팩터(Factor)로 둔갑시키는 것이 원칙입니다. 이렇게 하면 그래프의 가독성이 비약적으로 상승합니다.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>birthwt <span class="sc">|&gt;</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> bwt)) <span class="sc">+</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Birth Weight"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>birthwt <span class="sc">|&gt;</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">smoke_status =</span> <span class="fu">factor</span>(smoke, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Nonsmoker"</span>, <span class="st">"Smoker"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> smoke_status, <span class="at">y =</span> bwt)) <span class="sc">+</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="dv">16</span>, <span class="at">fill =</span> <span class="st">"lightgray"</span>) <span class="sc">+</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Mother's Smoking Status"</span>,</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Birth Weight (grams)"</span>,</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Effect of Maternal Smoking on Birth Weight"</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -582,70 +780,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>양적 반응 변수와 범주형 예측 변수 사이의 관계를 평가하기 위해, x축에 범주형 예측 변수를 추가합니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response)) <span class="sc">+</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>여기서 “Response”는 반응 변수이고 “Predictor”는 예측 변수입니다. 예를 들어, 어머니의 흡연 여부(birthwt 데이터 프레임의 smoke 변수)가 자녀의 출생 체중에 미치는 영향을 살펴보고 싶다면 코드는 다음과 같습니다.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>birthwt <span class="sc">|&gt;</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(smoke), <span class="at">y =</span> bwt)) <span class="sc">+</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ch07_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>상자 그림의 기본 코드는 단일 변수 상자 그림과 동일한 옵션으로 수정할 수 있습니다. 또한 범주의 표시 이름을 바꾸고 싶다면 원자료의 값을 먼저 의미 있는 팩터(factor)로 변환하는 편이 좋습니다. 이름을 도표 함수 안에서 임시로 바꾸기보다, 분석 데이터에 <code>smoke_status</code>처럼 해석 가능한 변수를 남겨 두면 이후 표와 그래프에서 같은 이름을 재사용할 수 있습니다.</p>
-<p>이러한 옵션을 사용하여 기본 상자 그림을 수정할 수 있으며, 그 결과는 동일한 그림의 오른쪽 상자 그림과 같습니다. names 인수에 입력한 “Nonsmoker”와 “Smoker”라는 값이 smoke 변수의 0과 1 값에 해당하도록 순서를 맞추었음에 유의해 주세요.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>birthwt <span class="sc">|&gt;</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">smoke_status =</span> <span class="fu">factor</span>(smoke, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Nonsmoker"</span>, <span class="st">"Smoker"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> smoke_status, <span class="at">y =</span> bwt)) <span class="sc">+</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Mother's Smoking Status"</span>,</span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Birth Weight"</span></span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ch07_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="연습-문제-1" class="level3">
-<h3 class="anchored" data-anchor-id="연습-문제-1">연습 문제</h3>
-<p>Ecdat 라이브러리에서 Star 데이터셋을 로드해 주세요. 이 데이터셋은 학급 규모가 학생 학습에 미치는 영향을 다루겠습니다.</p>
+<section id="연습-문제-1" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="연습-문제-1"><span class="header-section-number">5.1</span> 연습 문제</h3>
+<p><code>Ecdat</code> 라이브러리의 <code>Star</code> 데이터셋을 활용하여 다음 과제를 수행해 주십시오. 학급 규모가 학업 성취도에 미치는 영향을 추적한 귀중한 데이터입니다.</p>
 <ol start="13" type="1">
-<li>학생의 수학 점수 tmathssk와 독해 점수 treadssk의 산점도를 생성해 보세요.</li>
-<li>교직 경력 년수 totexpk의 히스토그램을 생성해 보세요.</li>
-<li>Star 데이터셋에 학생의 수학 점수 tmathssk와 독해 점수 treadssk의 합계인 totalscore라는 새로운 변수를 생성해 보세요.</li>
-<li>학급 규모 유형 classk별로 나눈 학생의 총점 totalscore의 상자 그림을 생성해 보세요.</li>
+<li>학생의 수학 점수(<code>tmathssk</code>)를 X축에, 독해 점수(<code>treadssk</code>)를 Y축에 배치한 산점도를 생성하고 적절히 꾸며 보십시오.</li>
+<li>교직 경력 년수(<code>totexpk</code>) 분포를 한눈에 볼 수 있는 히스토그램을 생성해 보십시오.</li>
+<li><code>mutate()</code> 함수를 활용하여 <code>Star</code> 데이터셋 내에 수학 점수와 독해 점수를 합산한 <code>totalscore</code>라는 새로운 파생 변수를 창출해 보십시오.</li>
+<li>학급 규모 유형(<code>classk</code>)을 그룹으로 하여 방금 만든 총점(<code>totalscore</code>)의 상자 그림을 나란히 그려 보십시오.</li>
 </ol>
-<p>MASS 라이브러리에서 survey 데이터셋을 로드해 주세요[10,86]. 이 데이터셋은 대학생 한 반의 설문 응답을 포함하고 있습니다.</p>
+<p><code>MASS</code> 라이브러리의 <code>survey</code> 데이터셋에 대한 시각화 과제입니다.</p>
 <ol start="17" type="1">
-<li>학생의 키 Height와 주로 쓰는 손의 너비 Wr.Hnd의 산점도를 생성해 보세요.</li>
-<li>학생의 연령 Age에 대한 히스토그램을 생성해 보세요.</li>
-<li>학생의 운동 요법 Exer별로 나눈 학생의 심박수 Pulse의 상자 그림을 생성해 보세요.</li>
+<li>학생의 키(<code>Height</code>)와 손 너비(<code>Wr.Hnd</code>) 간의 선형성을 확인하는 산점도를 그려 보십시오.</li>
+<li>연령(<code>Age</code>)의 극단치를 확인하기 위한 히스토그램을 작성해 주십시오.</li>
+<li>운동 요법의 강도(<code>Exer</code>)를 X축으로 하여 심박수(<code>Pulse</code>)의 차이를 보여주는 비교 상자 그림을 생성해 주십시오.</li>
 </ol>
 </section>
 </section>
-<section id="tidyverse로-eda-파이프라인-구성하기" class="level2">
-<h2 class="anchored" data-anchor-id="tidyverse로-eda-파이프라인-구성하기">tidyverse로 EDA 파이프라인 구성하기</h2>
-<p>앞에서 소개한 <code>table()</code>, <code>mean()</code>, <code>hist()</code>, <code>boxplot()</code>은 R의 기본 원리를 이해하는 데 좋습니다. 실제 프로젝트에서는 같은 분석을 데이터 불러오기, 전처리, 요약, 시각화가 이어지는 파이프라인으로 작성하면 더 읽기 쉽습니다. 예를 들어 <code>quine</code> 데이터셋의 인종과 학습 수준 분할표는 다음처럼 만들 수 있습니다.</p>
+<section id="tidyverse로-eda-파이프라인-구성하기" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="tidyverse로-eda-파이프라인-구성하기"><span class="header-section-number">6</span> tidyverse로 EDA 파이프라인 구성하기</h2>
+<p>이전 챕터에서 다룬 베이스 R의 기본 함수들은 R의 내부 생리를 이해하는 데는 필수적입니다. 그러나 실제 데이터 과학 및 AI 전처리 실무 현장에서는, 데이터의 로딩부터 변형(전처리), 요약 통계량 도출, 그리고 최종 시각화까지 물 흐르듯 이어지는 <code>tidyverse</code> 파이프라인(<code>|&gt;</code>) 문법을 구사하는 것이 절대적 표준입니다. 파이프라인을 사용하면 코드가 인간이 글을 읽는 사고의 흐름과 완벽히 일치하게 됩니다.</p>
+<p>예를 들어, 앞서 살펴보았던 <code>quine</code> 데이터셋의 인종 및 학습 수준 분할표를 파이프라인으로 재구성하면 다음과 같은 직관적인 코드가 탄생합니다.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>quine <span class="sc">|&gt;</span></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Eth, Lrn) <span class="sc">|&gt;</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Eth) <span class="sc">|&gt;</span></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_within_eth =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>quine <span class="sc">|&gt;</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Eth, Lrn) <span class="sc">|&gt;</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Eth) <span class="sc">|&gt;</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_within_eth =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
   Eth   Lrn       n prop_within_eth
@@ -656,44 +820,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 4 N     SL       34           0.442</code></pre>
 </div>
 </div>
-<p>수치형 변수의 요약도 <code>summarise()</code>와 <code>.by</code>를 사용하면 집단 기준을 코드 안에서 직접 드러낼 수 있습니다. dplyr 1.1 이상에서는 <code>.by</code>를 사용할 수 있으므로, 한 번의 요약을 위해 별도의 <code>group_by()</code>와 <code>ungroup()</code>을 길게 유지하지 않아도 됩니다.</p>
+<p>수치형 변수의 다면적인 요약 역시 파이프라인의 <code>summarise()</code> 함수를 사용하면 매우 깔끔하게 정리됩니다. 최신 <code>dplyr 1.1</code> 버전부터는 임시 그룹화를 위해 별도의 <code>group_by()</code>를 사용할 필요 없이, <code>.by</code> 인자를 활용하여 코드를 더욱 경량화할 수 있습니다.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>Housing <span class="sc">|&gt;</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_price =</span> <span class="fu">mean</span>(price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_price =</span> <span class="fu">median</span>(price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">iqr_price =</span> <span class="fu">IQR</span>(price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> prefarea</span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>Housing <span class="sc">|&gt;</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_price =</span> <span class="fu">mean</span>(price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_price =</span> <span class="fu">median</span>(price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">iqr_price =</span> <span class="fu">IQR</span>(price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> prefarea</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  prefarea mean_price median_price iqr_price
 1       no   63263.49        58500     26375
 2      yes   83986.37        79750     30025</code></pre>
 </div>
 </div>
-<p>그래프는 <code>ggplot2</code>를 사용하면 산점도, 히스토그램, 상자 그림을 같은 문법으로 연결할 수 있습니다.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">|&gt;</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"속도"</span>,</span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"정지 거리"</span>,</span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"속도와 정지 거리의 관계"</span></span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ch07_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>이 파이프라인은 계산 결과를 바꾸기 위한 장식이 아닙니다. 표본을 어떤 기준으로 나누었는지, 결측값을 어떻게 처리했는지, 어떤 변수로 그래프를 만들었는지를 코드가 그대로 설명하게 만드는 방식입니다.</p>
+<p>이렇게 구축된 파이프라인은 단순히 코드를 세련되게 치장하는 장식품이 아닙니다. 이 데이터가 어떠한 경로로 흘러들어와 결측치가 어떻게 안전하게 우회되었으며, 최종적으로 어떤 통계량으로 요약되었는지를 코드가 스스로 완벽하게 서술하게(Self-documenting) 만드는 현대 데이터 과학의 뼈대입니다. 이러한 명증한 기록은 훗날 코드의 재현성을 100% 보장하며, 복잡한 통계적 추론의 출발점을 튼튼하게 다져줄 것입니다.</p>
 
 
 </section>
@@ -1106,6 +1248,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../notes/ch08.html" class="pagination-link" aria-label="확률에 대한 간략한 소개">
+        <span class="nav-page-text">확률에 대한 간략한 소개</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
