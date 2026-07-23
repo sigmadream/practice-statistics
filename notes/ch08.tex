@@ -1,0 +1,642 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{scrbook}
+\usepackage{xcolor}
+\usepackage[left=20mm,top=20mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{KoPubBatang-Light}
+  \setsansfont[]{KoPubBatang-Light}
+  \setmonofont[]{D2Coding}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\usepackage{kotex}
+\usepackage{indentfirst}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{makeidx}
+\usepackage{tikz}
+\setstretch{1.15}
+\makeindex
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{HTML}{e8e8e8}}{}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, breakable, enhanced, frame hidden, interior hidden, sharp corners]}{\end{tcolorbox}}\fi
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={확률에 대한 간략한 소개},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{확률에 대한 간략한 소개}
+\author{}
+\date{}
+\begin{document}
+\frontmatter
+\maketitle
+
+
+\mainmatter
+\begin{quote}
+데이터 요약 방법을 익혔으므로, 이제 이러한 요약 수치를 바탕으로 통계적
+추론(Statistical inference)을 활용해 주어진 질문에 답해 보겠습니다.
+통계적 추론을 올바르게 수행하려면 확률(Probability)에 대한 기본적인
+이해가 필수적입니다. 많은 통계적 추론 과정이 결국 ``특정 가설이 참일 때,
+우리가 이보다 더 극단적인 데이터를 관찰할 가능성은 얼마입니까?''라는
+질문으로 귀결되기 때문입니다. 바로 그 가능성을 정량화하기 위해 확률이
+필요합니다.
+\end{quote}
+
+확률론은 현대 통계학과 달리 1600년대부터 학문적 토대를 다져왔습니다.
+초기에는 도박과 관련된 문제를 해결하기 위해 여러 규칙과 정리가
+고안되었으나, 파스칼(Pascal), 페르마(Fermat), 베르누이(Bernoulli),
+가우스(Gauss) 등 수학사에서 중요한 학자들이 참여하며 분야가 크게
+발전했습니다.
+
+우리는 일상에서 흔히 확률을 접합니다. 일기 예보에서 비나 눈이 올 확률을
+확인하고, 스포츠 경기 전후로 특정 팀의 승리 확률을 논합니다. 물론
+확률론의 기원이라 할 수 있는 도박에서도 크랩스, 포커, 룰렛, 블랙잭의
+배당률 형태로 확률을 마주합니다. 그럼에도 불구하고 확률과 그 기저에 있는
+일반적인 개념에 관해서는 종종 오해가 발생합니다. 본 장에서는 통계적
+추론에서 다시 다루게 될 확률의 기초와 핵심 개념들을 소개하겠습니다.
+무작위 현상(Random phenomena), 확률 변수(Random variables), 확률의 역할,
+그리고 확률의 규칙에 내재된 개념부터 차례로 살펴보겠습니다.
+
+\section{무작위 현상, 확률, 그리고 대수의
+법칙}\label{uxbb34uxc791uxc704-uxd604uxc0c1-uxd655uxb960-uxadf8uxb9acuxace0-uxb300uxc218uxc758-uxbc95uxce59}
+
+본격적인 논의에 앞서, 확률이 왜 필요하며 어떤 역할을 하는지 짚고
+넘어가야 합니다. 간단히 말해, 확률은 무작위 현상을 설명하는 데
+유용합니다. 무작위 현상(Random phenomenon)이란 결과를 미리 알 수 없는
+모든 사건을 의미합니다. 동전 던지기부터 개인의 키, 혹은 최근 생성형 AI가
+특정 프롬프트에 대해 어떤 단어를 다음 토큰으로 예측할지에 이르기까지 그
+범위는 매우 넓습니다. 사건의 결과를 미리 확정할 수 없다면 그것은 무작위
+현상입니다. 그리고 확률(Probability)은 이러한 무작위 현상의 결과가
+나타날 가능성을 정량화하는 방법론입니다.
+
+확률을 해석하는 관점에는 주관적 확률(Subjective probability), 고전적
+확률(Classical probability), 빈도주의적 확률(Frequentist probability) 등
+여러 가지가 있습니다. 주관적 확률은 결과 발생 가능성에 대한 개인의
+주관적인 믿음에 근거합니다. 이 관점에서는 확률이 사람마다 다르게 평가될
+수 있습니다. 흥미로운 철학적 논의가 많지만, 본 교재에서는 깊이 다루지
+않겠습니다.
+
+두 번째는 고전적 확률입니다. 고전적 확률에서 특정 사건의 확률은 그
+사건에 속하는 가능한 결과들의 비율로 정의됩니다. 구조가 단순한
+상황에서는 매우 유용하지만, 가능한 모든 결과가 발생할 확률이 동일하다는
+가정을 전제로 한다는 한계가 있습니다. 현실에서는 이러한 가정이 성립하기
+어려운 경우가 많으므로, 이 가정을 요구하지 않는 빈도주의적 확률 해석이
+등장하게 됩니다.
+
+가장 널리 쓰이는 해석은 빈도주의적 확률 모델입니다. 이 관점의 핵심은
+무작위 현상을 무수히 반복하면, 사건 발생 비율이 실제 참 확률에 점점 더
+가까워진다는 것입니다. 이를 확률에 대한 장기적 비율 관점(Long-run
+proportion view)이라고도 부릅니다.
+
+동전을 던져 앞면이 나올 확률을 알고 싶다고 가정해 보겠습니다. 동전이
+공정하다면 앞면이 나올 확률은 0.5여야 합니다. 동전을 반복해서 계속
+던지면, 앞면이 나온 횟수의 비율은 결국 0.5에 수렴할 것입니다.
+
+이러한 장기적 비율 관점이 성립하는 이유는 통계학의 대수의 법칙(Law of
+Large Numbers) 때문입니다. 이 법칙은 표본 크기가 커질수록(즉,
+\(n \to \infty\)), 표본 평균(Sample mean) \(\bar{x}\)가 실제
+모평균(Mean) \(\mu\)에 수렴한다는 것을 의미합니다. 마찬가지로 표본
+크기가 커질수록 표본 비율(Sample proportion) \(\hat{p}\) 역시 실제 비율
+\(p\)에 수렴합니다. 수학적으로는 다음과 같이 표현합니다.
+
+\[
+\lim_{n\to\infty} \bar{x} = \mu \quad \lim_{n\to\infty} \hat{p} = p
+\]
+
+예를 들어, 공정한 6면체 주사위를 굴려 특정 숫자가 나올 확률은 1/6입니다.
+굴리는 횟수가 무한대로 커지면 3이 나올 비율 역시 1/6에 수렴합니다.
+
+\section{추론에서 확률의 역할은
+무엇입니까?}\label{uxcd94uxb860uxc5d0uxc11c-uxd655uxb960uxc758-uxc5eduxd560uxc740-uxbb34uxc5c7uxc785uxb2c8uxae4c}
+
+이제 확률의 정의와 일반적인 쓰임새를 알게 되었습니다. 그렇다면 통계적
+추론에서 확률은 어떤 역할을 할까요? 확률은 무작위 현상을 설명함으로써
+불확실성을 정량화하는 데 도움을 줍니다. 2025년 현재 AI가
+환각(Hallucination) 없이 정확한 답변을 생성할 가능성을 평가할 때처럼,
+확률은 우리가 내린 결론에 대해 얼마나 확신할 수 있는지를 수치로
+나타냅니다.
+
+다음 상황을 상상해 보십시오. 상대방과 각각 5달러를 걸고 게임을 합니다.
+상대방이 주사위를 굴려 6이 나오면 그가 돈을 가져가고, 다른 숫자가 나오면
+여러분이 이깁니다. 일반적으로는 여러분이 이길 확률이 5배 높으므로 매우
+유리한 게임입니다. 그런데 상대방이 5번 연속으로 6을 던져 25달러를
+따냈다고 가정해 보겠습니다. 두세 번 연속 6이 나왔을 때는 그저 운이
+좋았다고 생각할 수 있습니다. 하지만 다섯 번 연속이라면 주사위가
+조작되었거나 상대방이 속임수를 썼다고 의심하게 될 것입니다. 이러한
+의심은 합리적입니다. 공정한 주사위와 정당한 게임 환경에서 5번 연속 6이
+나올 확률은 1/7776으로, 극히 희박한 사건이기 때문입니다.
+
+비슷한 예로, 공정하다고 믿는 동전을 20번 던져 앞면이 나오는 횟수를 세어
+보겠습니다. 완전히 공정하다면 앞면이 10번 나올 것으로 예상합니다. 그런데
+12번이 나왔다면 어떨까요? 혹은 14번이라면 동전이 불공정하다고 의심할 수
+있을까요? 앞면이 몇 번 이상 나와야 의심이 확신으로 바뀔까요? 이것이 바로
+통계적 추론의 핵심 논리입니다. 즉, 세상의 특정 상태를 가정하고, 데이터를
+수집한 뒤, 그 데이터가 애초의 가정을 기각할 만큼 충분히 극단적인지
+평가하는 것입니다. 확률은 이 판단 과정을 수치화해 주며, 이후 장에서 더욱
+자세히 다루겠습니다.
+
+\section{확률 계산과 확률의
+공리}\label{uxd655uxb960-uxacc4uxc0b0uxacfc-uxd655uxb960uxc758-uxacf5uxb9ac}
+
+확률을 논할 때는 실제 무작위 현상에서 특정 결과(Outcome)가 발생할
+가능성을 계산하는 과정이 수반됩니다. 가능성을 정확히 계산하려면, 해당
+무작위 현상에서 나타날 수 있는 모든 결과의 전체 목록을 파악해야 합니다.
+이 전체 목록을 표본 공간(Sample space)이라고 하며, 보통 \(S\)로
+표기합니다. 예를 들어 동전을 한 번 던질 때 표본 공간은 앞면과 뒷면, 즉
+\(S=\{H, T\}\)입니다. 동전을 두 번 던진다면 표본 공간은
+\(S=\{HH, HT, TH, TT\}\)로 확장됩니다. 마찬가지로 주사위 두 개를 굴려 그
+합을 관찰한다면 표본 공간은 \(S=\{2, 3, 4, \dots, 10, 11, 12\}\)가
+됩니다.
+
+모든 가능성을 나열하고 나면, 임의의 사건(Event)에 대한 확률을 계산할 수
+있습니다. 사건은 표본 공간의 부분 집합을 의미하며, 주로 대문자 알파벳(A,
+B 등)으로 표기합니다. 동전을 두 번 던지는
+현상(\(S=\{HH, HT, TH, TT\}\))에서, 앞면이 정확히 한 번 나오는 사건은
+\(A=\{HT, TH\}\)가 되며, 적어도 한 번 뒷면이 나오는 사건은
+\(B=\{TH, HT, TT\}\)가 됩니다.
+
+고전적 확률에서는 표본 공간 \(S\) 내의 각 개별 결과가 동일한 발생 확률을
+가진다고 가정합니다. 이때 사건 \(A\)가 일어날 확률은 \(A\)에 속한 결과의
+수를 \(S\)의 전체 결과 수로 나눈 값입니다. 즉,
+
+\[
+P(A) = \frac{\text{# of outcomes in } A}{\text{# of outcomes in } S}
+\]
+
+두 주사위를 굴려 합을 구하는 크랩스 게임의 예로 돌아가 보겠습니다. 첫
+번째 주사위와 두 번째 주사위의 조합은 총 36가지이며, 아래 표에 모든
+경우의 수가 정리되어 있습니다.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllllll@{}}
+\toprule\noalign{}
+& 1 & 2 & 3 & 4 & 5 & 6 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+5 & 6 & 7 & 8 & 9 & 10 & 11 \\
+6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+\end{longtable}
+}
+
+주사위가 공정하다면 36가지 결과 각각이 나타날 확률은 같습니다. 이를 통해
+고전적 확률을 쉽게 연습할 수 있습니다. 7 또는 11이 나오는 사건을
+\(A\)라고 할 때, 표에서 7이나 11에 해당하는 칸은 총 8개입니다. 따라서
+사건 \(A\)가 발생할 확률은 \(P(A) = 8/36 \approx 0.2222\)입니다. 2, 3,
+12가 나오는 사건을 \(B\)라고 한다면, 해당 칸은 4개이므로
+\(P(B) = 4/36 \approx 0.1111\)이 됩니다.
+
+때로는 특정 사건 \(A\)가 일어날 확률보다, 일어나지 않을 확률에 더 관심이
+생깁니다. 사건 \(A\)가 발생하지 않는 사건을 \(A\)의
+여사건(Complement)이라고 하며 \(A^C\)로 표기합니다. 여사건 \(A^C\)는
+표본 공간 \(S\) 중에서 \(A\)에 속하지 않는 모든 결과들로 구성됩니다.
+
+숫자 1부터 3까지 적힌 공을 두 번 뽑는 단순한 복권을 생각해 보겠습니다.
+표본 공간은 \(S=\{11, 12, 13, 21, 22, 23, 31, 32, 33\}\)입니다. 당첨
+조합에 2가 적어도 하나 포함되는 사건을 \(A\)라고 하면, 여사건 \(A^C\)는
+2가 전혀 포함되지 않는 경우이므로 \(A^C=\{11, 13, 31, 33\}\)가 됩니다.
+
+사건 \(A\)와 여사건 \(A^C\)를 합치면 항상 전체 표본 공간 \(S\)가
+완성됩니다. 이 원리를 확장하면 1933년 러시아의 수학자 안드레이
+콜모고로프(Andrey Kolmogorov)가 정립한 확률의 공리(Axioms of
+Probability)를 정의할 수 있습니다.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(P(A) \ge 0\)
+\item
+  \(P(S) = 1\)
+\item
+  두 사건 \(A\)와 \(B\)가 서로소 집합(Disjoint sets, 즉 겹치는 결과가
+  없는 사건)인 경우, \(P(A \text{ or } B) = P(A) + P(B)\)입니다.
+\end{enumerate}
+
+이 공리들은 어떤 확률 패러다임을 따르더라도 항상 성립합니다. 또한
+이로부터 다음과 같은 추가적인 성질들을 도출할 수 있습니다.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(P(A^C) = 1 - P(A)\) (여사건의 규칙)
+\item
+  사건 \(A\)가 사건 \(B\)의 모든 결과를 포함한다면, \(P(A) \ge P(B)\)
+\item
+  \(A\)가 공집합(어떤 결과도 포함하지 않는 불가능한 사건)이라면,
+  \(P(A) = 0\)
+\end{enumerate}
+
+\section{확률 변수와 확률
+분포}\label{uxd655uxb960-uxbcc0uxc218uxc640-uxd655uxb960-uxbd84uxd3ec}
+
+지금까지는 개별 사건과 범주형 무작위 현상(앞면/뒷면, 승리/패배 등)을
+중심으로 확률을 다루었습니다. 하지만 수학적 분석을 위해서는 현상을
+수치화하는 과정이 필요합니다. 범주형 현상이든 수치적 현상이든 무작위
+현상을 통합적으로 다루기 위해 새로운 개념을 도입해야 합니다.
+
+이때 등장하는 것이 확률 변수(Random variable)입니다. 확률 변수는 무작위
+현상의 결과를 수치적으로 나타내거나 요약한 것입니다. 주사위 눈의 수처럼
+이미 결과가 수치인 현상은 확률 변수 자체로 쉽게 사용할 수 있습니다. 반면
+동전 던지기 같은 범주형 현상은 변환이 필요합니다. 동전을 두 번 던지는
+현상에서 단순히 표본 공간 \(S=\{HH, HT, TH, TT\}\)를 관찰하는 대신,
+'나온 앞면의 수'라는 수치적 요약을 정의할 수 있습니다. 이렇게 하면
+범주형 현상이 수치적 확률 변수로 변환되어 분석이 훨씬 수월해집니다.
+
+일반적으로 확률 변수는 대문자 \(X\), \(Y\), \(Z\)로 표기하며, 그 확률
+변수가 실제로 취한 관측값은 소문자 \(x\), \(y\), \(z\)로 표기합니다.
+
+0, 00, 그리고 1부터 36까지 번호가 매겨진 38칸 룰렛 게임을 상상해
+보십시오. 룰렛을 다섯 번 돌려 짝수가 몇 번 나오는지 관심을 가진다면,
+확률 변수 \(X\)는 '다섯 번의 회전 중 짝수가 나온 횟수'로 정의됩니다.
+실제 결과가 5, 11, 6, 21, 32였다면 짝수는 6과 32, 두 번 나왔으므로
+관측값은 \(x=2\)가 됩니다.
+
+확률 변수에는 이산형(Discrete)과 연속형(Continuous)의 두 가지 유형이
+있습니다. 이산 확률 변수는 결과의 수를 셀 수 있는 변수입니다. 동전 두 번
+던지기에서 앞면의 수는 0, 1, 2로 명확히 나열할 수 있으므로 이산형입니다.
+첫 번째 앞면이 나올 때까지 동전을 던진 횟수 역시 1, 2, 3, \ldots{} 과
+같이 이론적으로는 무한하지만 하나씩 셀 수 있으므로 이산 확률 변수에
+해당합니다.
+
+반면 연속 확률 변수는 결과의 수를 개별적으로 셀 수 없는 변수입니다.
+1마일을 달리는 데 걸리는 시간을 측정한다고 할 때, 측정 정밀도를 무한히
+높이면 이론적으로 0 이상의 모든 실수가 가능합니다. 이 값들을 하나씩
+나열하는 것은 불가능하므로 연속 확률 변수로 분류합니다. 오늘날
+인공지능이 생성한 음성의 주파수 파형을 분석할 때도 연속 확률 변수의
+개념이 광범위하게 활용됩니다.
+
+확률 변수 역시 사건처럼 확률을 계산할 수 있습니다. 특히 확률
+분포(Probability distribution)를 이용하면 확률 변수의 특성을 쉽게 파악할
+수 있습니다. 확률 분포는 확률 변수가 가질 수 있는 모든 값과 그 값이
+나타날 확률을 연결해 주는 함수 또는 표입니다. 분포를 정의하는 함수는
+대개 매개변수(Parameters)를 가집니다. 매개변수의 값에 따라 분포의 형태가
+결정되고 각 결과의 확률이 달라집니다.
+
+무수히 많은 분포 중에서도 통계학에서 가장 널리 쓰이는 이항 분포와 정규
+분포에 대해 간략히 살펴보겠습니다.
+
+\section{이항 분포}\label{uxc774uxd56d-uxbd84uxd3ec}
+
+동전을 한 번 던질 때 결과는 앞면이나 뒷면 두 가지뿐입니다. 동전이
+공정하다면 앞면이 나올 확률은 \(p=0.5\)입니다. 이 과정을 총 10번
+반복한다고 가정할 때, 가장 관심 있는 확률 변수 \(X\)는 '10번의 던지기 중
+앞면이 나온 횟수'가 될 것입니다.
+
+이항 분포(Binomial distribution)는 정확히 이러한 상황을 모델링하기 위해
+고안되었습니다. 이 이산형 분포는 \(n\)번의 독립적인 시행에서 관찰된
+`성공'(성공의 정의는 문제마다 다름) 횟수 \(X\)를 설명합니다. \(X\)가
+가질 수 있는 값은 \(0, 1, 2, \dots, n\)이므로 명백한 이산 확률
+분포입니다.
+
+이항 분포는 전체 시행 횟수 \(n\)과 개별 시행의 성공 확률 \(p\)라는 두
+가지 매개변수에 의해 그 형태가 결정됩니다. 앞선 예시에서 동전 던지기는
+10회의 시행과 앞면 확률 0.5를 가지므로, 앞면의 수 \(X\)는 이항 분포를
+따르며 이를 \(X \sim \text{Bin}(10, 0.5)\)로 표기합니다.
+
+이항 분포의 매개변수를 이용하면 평균적으로 몇 번의 성공을 기대할 수
+있는지도 쉽게 계산할 수 있습니다. \(X \sim \text{Bin}(n, p)\)일 때,
+예상되는(평균적인) 성공 횟수는 \(n \times p\)입니다. 즉,
+\(X \sim \text{Bin}(10, 0.5)\)인 동전 던지기에서는
+\(10 \times 0.5 = 5\)번의 앞면이 나올 것으로 기대합니다. 이러한 기댓값을
+바탕으로 실제 관측된 데이터가 일반적인지, 아니면 이례적인지를 판단하게
+됩니다.
+
+\section{정규 분포}\label{uxc815uxaddc-uxbd84uxd3ec}
+
+정규 분포(Normal distributions)는 통계학에서 가장 중심적인 역할을 하는
+연속 확률 분포입니다. 향후 자세히 다루겠지만, 우선 기본적인 성질을
+파악해 두어야 합니다. 정규 분포는 종 모양(Bell-shaped)의 곡선을 그리며,
+좌우 대칭이고 중심에 하나의 봉우리(Unimodal)를 가집니다. 연속 확률
+변수를 다루므로 값의 범위는 \(-\infty\)에서 \(\infty\)까지 이어집니다.
+정규 분포는 평균 매개변수 \(\mu\)와 분산 매개변수 \(\sigma^2\)라는 두
+개의 매개변수에 의해 완전히 결정됩니다.
+
+평균 매개변수 \(\mu\)는 정규 분포의 중심 위치를 정합니다. 확률 변수가
+정규 분포를 따른다면, 그 분포에서 무수히 많은 표본을 추출하여 평균을
+내었을 때 결국 \(\mu\)에 가까워진다는 것을 의미합니다.
+
+분산 매개변수 \(\sigma^2\)는 분포가 얼마나 퍼져 있는지를 결정합니다.
+\(\sigma^2\)가 클수록 데이터가 넓게 흩어지고 종 모양이 평평해지며,
+작을수록 평균 근처에 밀집되어 뾰족한 형태를 띱니다. 평균 \(\mu\)가
+변하면 종 모양은 그대로 유지된 채 좌우로만 이동하지만, 분산
+\(\sigma^2\)가 변하면 종의 퍼짐 정도가 달라집니다.
+
+다양한 정규 분포 중에서도 특별히 평균이 \(\mu = 0\)이고 분산이
+\(\sigma^2 = 1\)인 분포를 표준 정규 분포(Standard Normal
+distribution)라고 부릅니다. 이 분포가 중요한 이유는, 평균과 분산이 어떤
+값이든 간에 모든 정규 분포를 이 표준 정규 분포로 변환(표준화)할 수 있기
+때문입니다. 확률 변수 \(X\)가 평균 \(\mu\), 분산 \(\sigma^2\)인 정규
+분포를 따른다면(\(X \sim N(\mu, \sigma^2)\)), 다음과 같이 확률 변수
+\(Z\)를 정의할 수 있습니다.
+
+\[
+Z = \frac{X - \mu}{\sigma}
+\]
+
+이렇게 만들어진 \(Z\)는 항상 표준 정규 분포를 따릅니다. 예를 들어 미국
+남성의 키가 대략 \(\mu = 68\)인치, \(\sigma^2 = 9\)(즉 \(\sigma = 3\))인
+정규 분포를 따른다고 할 때, 이를 표준 정규 분포로 변환하려면 다음과 같이
+계산합니다.
+
+\[
+Z = \frac{X - 68}{3}
+\]
+
+이러한 표준화 과정은 통계적 가설 검정이나 추론 과정에서 여러 데이터를
+비교 가능한 형태로 만드는 핵심 도구가 됩니다. 2026년 방대한 머신러닝
+데이터 파이프라인에서 입력 피처들을 정규화(Normalization)할 때도 이
+원리가 널리 쓰입니다. 정규 분포는 또한 변수들끼리의 덧셈과 뺄셈에
+대해서도 닫혀있다는 훌륭한 성질을 지닙니다. \(X\)가
+\(N(\mu_X, \sigma_X^2)\)를 따르고, \(Y\)가 \(N(\mu_Y, \sigma_Y^2)\)를
+따른다고 할 때, 두 변수를 더한 \(X+Y\) 역시 정규 분포를 따릅니다.
+
+\[
+X \sim N(\mu_X, \sigma_X^2), \quad Y \sim N(\mu_Y, \sigma_Y^2) \implies X+Y \sim N(\mu_X+\mu_Y, \sigma_X^2+\sigma_Y^2)
+\]
+
+예를 들어 \(X \sim N(6, 16)\)이고 \(Y \sim N(3, 4)\)일 때, \(X+Y\)는
+평균이 \(6+3=9\)이고 분산이 \(16+4=20\)인 정규 분포 \(N(9, 20)\)을
+따릅니다.
+
+두 정규 분포를 빼는 경우도 유사합니다. 단, 분산은 더해야 함에 주의해야
+합니다.
+
+\[
+X \sim N(\mu_X, \sigma_X^2), \quad Y \sim N(\mu_Y, \sigma_Y^2) \implies X-Y \sim N(\mu_X-\mu_Y, \sigma_X^2+\sigma_Y^2)
+\]
+
+앞선 예시에 적용하면, \(X-Y\)는 평균이 \(6-3=3\)이고 분산이
+\(16+4=20\)인 정규 분포 \(N(3, 20)\)을 따르게 됩니다.
+
+\section{연습 문제}\label{uxc5f0uxc2b5-uxbb38uxc81c}
+
+확률의 공리는 논리적으로 매우 엄밀하지만, 처음 접할 때는 장기
+상대도수(Long-run relative frequency)가 어떻게 안정되는지 직접
+시뮬레이션해 보는 것이 직관을 얻는 데 큰 도움이 됩니다. 공정한 동전을
+던질 때 앞면의 확률이 0.5라는 말은 10번 던졌을 때 정확히 5번이 나온다는
+뜻이 아니라, 던지는 횟수가 무한히 커질수록 앞면이 나온 비율이 0.5에
+수렴한다는 뜻입니다.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2026}\NormalTok{)}
+
+\NormalTok{coin\_flips }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"앞면"}\NormalTok{, }\StringTok{"뒷면"}\NormalTok{), }\AttributeTok{size =} \DecValTok{10000}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{mean}\NormalTok{(coin\_flips }\SpecialCharTok{==} \StringTok{"앞면"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.499
+\end{verbatim}
+
+위 코드가 확률의 법칙을 엄밀하게 증명하는 것은 아니지만, 확률 모형이
+실제 데이터 생성 과정을 어떻게 설명하는지 잘 보여줍니다. 이후 장에서
+표집 분포와 \(p\)-값을 다룰 때도 이와 같은 장기적 빈도주의 사고방식이
+그대로 이어집니다. 우리는 단 하나의 관측 데이터만 보는 것이 아니라, 특정
+가정이 참일 때 장기적으로 관찰될 수 있는 데이터 분포를 상상하고 그
+속에서 현재 데이터가 얼마나 극단적인 위치에 있는지를 평가합니다.
+
+\section{이항 분포와 정규 분포 확률 계산
+실습}\label{uxc774uxd56d-uxbd84uxd3ecuxc640-uxc815uxaddc-uxbd84uxd3ec-uxd655uxb960-uxacc4uxc0b0-uxc2e4uxc2b5}
+
+앞서 시뮬레이션을 통해 장기적 상대도수를 확인해보았다면, 이제 R에 내장된
+확률 함수들을 통해 특정 사건이 발생할 이론적 확률을 직접 계산해
+보겠습니다. \texttt{dbinom()}과 \texttt{pnorm()} 같은 함수들은 복잡한
+수식을 직접 계산할 필요 없이 정확한 확률 값을 제공합니다.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 1. 이항 분포 (Binomial Distribution)}
+\CommentTok{\# 10번의 동전 던지기 중 앞면이 정확히 6번 나올 확률 계산}
+\NormalTok{prob\_binom }\OtherTok{\textless{}{-}} \FunctionTok{dbinom}\NormalTok{(}\AttributeTok{x =} \DecValTok{6}\NormalTok{, }\AttributeTok{size =} \DecValTok{10}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.5}\NormalTok{)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"동전 10번 중 앞면이 6번 나올 확률:"}\NormalTok{, prob\_binom, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+동전 10번 중 앞면이 6번 나올 확률: 0.2050781 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 2. 정규 분포 (Normal Distribution)}
+\CommentTok{\# 평균이 68, 표준편차가 3인 정규 분포에서 값이 72 이하일 확률 계산}
+\NormalTok{prob\_norm }\OtherTok{\textless{}{-}} \FunctionTok{pnorm}\NormalTok{(}\AttributeTok{q =} \DecValTok{72}\NormalTok{, }\AttributeTok{mean =} \DecValTok{68}\NormalTok{, }\AttributeTok{sd =} \DecValTok{3}\NormalTok{)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"키가 72인치 이하일 확률:"}\NormalTok{, prob\_norm, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+키가 72인치 이하일 확률: 0.9087888 
+\end{verbatim}
+
+\texttt{dbinom()}은 이산형 확률 변수의 특정 값에 대한 확률을 계산할 때
+사용하며, \texttt{pnorm()}은 연속형 정규 분포에서 특정 누적 확률을 구할
+때 유용합니다. 이러한 함수들은 통계적 가설 검정과 \(p\)-값 계산의 토대가
+됩니다.
+
+
+\backmatter
+
+
+\end{document}

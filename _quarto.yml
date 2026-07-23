@@ -1,42 +1,120 @@
 project:
   type: website
   output-dir: docs
+  preview:
+    port: 9999
+    browser: false  
   render:
+    - "index.qmd"
     - "notes/"
 
+execute:
+  freeze: auto
+  eval: true
+  cache: true    
+
 website:
+  title: "R과 데이터 분석 입문"
+  reader-mode: true
+  twitter-card: true
+  open-graph: true
   page-navigation: true
-  # navbar:
-  #   background: primary
-  #   search: true
-  #   left:
-  #     - text: "Home"
-  #       href: index.qmd
   sidebar:
     style: "docked"
     search: true
-    collapse-level: 3
+    collapse-level: 1
     contents:
       - index.qmd
-      - notes/ch01.qmd
-      - notes/ch02.qmd
-      - notes/ch03.qmd
-      - notes/ch04.qmd
-      - notes/ch05.qmd
-      - notes/ch06.qmd
-      - notes/ch07.qmd
-      
-bibliography: references.bib
-link-citations: true
+      - section: "R과 데이터 분석"
+        contents:        
+        - notes/ch01.qmd
+        - notes/ch02.qmd
+        - notes/ch03.qmd
+        - notes/ch04.qmd
+        - notes/ch05.qmd
+        - notes/ch06.qmd
+      - section: "확률과 검증"
+        contents:
+        - notes/ch07.qmd
+        - notes/ch08.qmd
+        - notes/ch09.qmd
+        - notes/ch10.qmd
+        - notes/ch11.qmd
+        - notes/ch12.qmd
+        - notes/ch13.qmd
+        - notes/ch14.qmd
+        - notes/ch15.qmd
+        - notes/ch16.qmd
+        - notes/ch17.qmd
+      - section: "확률과 추론"
+        contents:
+        - notes/ch18.qmd
+        - notes/ch19.qmd
+        - notes/ch20.qmd
 
-# format:
+book:
+  title: "R과 데이터 분석 입문"
+  author: "Sangkon Han(sd)"
+  date: today
+  chapters:
+    - index.qmd
+    - part: "R과 데이터 분석"
+      chapters:
+        - notes/ch01.qmd
+        - notes/ch02.qmd
+        - notes/ch03.qmd
+        - notes/ch04.qmd
+        - notes/ch05.qmd
+        - notes/ch06.qmd
+        - notes/ch07.qmd
+    - part: "확률과 검증"
+      chapters:
+        - notes/ch08.qmd
+        - notes/ch09.qmd
+        - notes/ch10.qmd
+        - notes/ch11.qmd
+        - notes/ch12.qmd
+        - notes/ch13.qmd
+        - notes/ch14.qmd
+        - notes/ch15.qmd
+        - notes/ch16.qmd
+        - notes/ch17.qmd
+    - part: "확률과 추론"
+      chapters:
+        - notes/ch18.qmd
+        - notes/ch19.qmd
+        - notes/ch20.qmd
+    - references.qmd
+
+
+bibliography: references.bib
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
   # pdf:
-  #   documentclass: scrreprt
-  #   papersize: a4
-  #   toc: true
-  #   toc-depth: 2
-  #   number-sections: true
-  #   colorlinks: true
-  #   include-in-header: 
-  #     text: |
-  #       \usepackage{kotex}
+  #   documentclass: scrbook
+  #   mainfont: "KoPubBatang-Light"
+  #   sansfont: "KoPubBatang-Light"
+  #   monofont: "D2Coding"
+  #   pdf-engine: xelatex
+  #   paper: a4paper
+  #   code-cap-location: bottom
+  #   code-block-border-left: "#e8e8e8"
+  #   highlight-style: pygments
+  #   geometry:      
+  #     - left=20mm
+  #     - top=20mm 
+  #   titlepage: false
+  #   include-in-header:
+  #     - text: |
+  #         \usepackage{kotex}
+  #         \usepackage{indentfirst}
+  #         \usepackage{setspace}
+  #         \usepackage{hyperref}
+  #         \usepackage{makeidx}
+  #         \usepackage{tikz}
+  #         \setstretch{1.15}
+  #         \makeindex

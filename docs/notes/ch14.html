@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>단일 모수(Single parameter)에 대한 신뢰 구간</title>
+<title>단일 모수(Single parameter)에 대한 신뢰 구간 – R과 데이터 분석 입문</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,6 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../notes/ch15.html" rel="next">
+<link href="../notes/ch13.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -136,9 +138,19 @@ window.Quarto = {
 };
 </script>
 
+<meta property="og:title" content="단일 모수(Single parameter)에 대한 신뢰 구간 – R과 데이터 분석 입문">
+<meta property="og:description" content="">
+<meta property="og:image" content="images/B9780128207888000274/si21.png">
+<meta property="og:site_name" content="R과 데이터 분석 입문">
+<meta property="og:image:alt" content="이미지">
+<meta name="twitter:title" content="단일 모수(Single parameter)에 대한 신뢰 구간 – R과 데이터 분석 입문">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="images/B9780128207888000274/si21.png">
+<meta name="twitter:image:alt" content="이미지">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-sidebar docked fullcontent quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -147,7 +159,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">단일 모수(Single parameter)에 대한 신뢰 구간</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch07.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch14.html">단일 모수(Single parameter)에 대한 신뢰 구간</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,6 +172,18 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">R과 데이터 분석 입문</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -169,56 +193,198 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 언어</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">R과 데이터 분석</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../notes/ch01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">통계학의 중요성!</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R 입문</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 수집</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 추출</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 불러오기</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">탐색적 데이터 분석</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">확률과 검증</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">탐색적 분석(실습)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">확률에 대한 간략한 소개</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">표집 분포, 또는 탐색적 분석만으로는 충분하지 않은 이유</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">가설 검정의 원리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">중심극한정리를 활용한 가설 검정 수행하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">구간 추정의 개념</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단일 모수(Single parameter)에 대한 가설 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch14.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">단일 모수(Single parameter)에 대한 신뢰 구간</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 모수에 대한 가설 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 모수에 대한 신뢰 구간</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">통계적 추론</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">확률과 추론</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 양적 변수에 대한 추론</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단순 선형 회귀</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">몇가지 주제</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#p에-대한-신뢰-구간" id="toc-p에-대한-신뢰-구간" class="nav-link active" data-scroll-target="#p에-대한-신뢰-구간"><span class="header-section-number">1</span> p에 대한 신뢰 구간</a>
+  <ul class="collapse">
+  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">1.1</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#μ에-대한-신뢰-구간" id="toc-μ에-대한-신뢰-구간" class="nav-link" data-scroll-target="#μ에-대한-신뢰-구간"><span class="header-section-number">2</span> μ에 대한 신뢰 구간</a>
+  <ul class="collapse">
+  <li><a href="#연습-문제-1" id="toc-연습-문제-1" class="nav-link" data-scroll-target="#연습-문제-1"><span class="header-section-number">2.1</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#신뢰-구간의-다른-용도" id="toc-신뢰-구간의-다른-용도" class="nav-link" data-scroll-target="#신뢰-구간의-다른-용도"><span class="header-section-number">3</span> 신뢰 구간의 다른 용도</a>
+  <ul class="collapse">
+  <li><a href="#p에-대한-신뢰-구간과-표본-크기-계산" id="toc-p에-대한-신뢰-구간과-표본-크기-계산" class="nav-link" data-scroll-target="#p에-대한-신뢰-구간과-표본-크기-계산"><span class="header-section-number">3.1</span> p에 대한 신뢰 구간과 표본 크기 계산</a></li>
+  <li><a href="#연습-문제-2" id="toc-연습-문제-2" class="nav-link" data-scroll-target="#연습-문제-2"><span class="header-section-number">3.2</span> 연습 문제</a></li>
+  <li><a href="#μ에-대한-신뢰-구간과-가설-검정" id="toc-μ에-대한-신뢰-구간과-가설-검정" class="nav-link" data-scroll-target="#μ에-대한-신뢰-구간과-가설-검정"><span class="header-section-number">3.3</span> μ에 대한 신뢰 구간과 가설 검정</a></li>
+  <li><a href="#연습-문제-3" id="toc-연습-문제-3" class="nav-link" data-scroll-target="#연습-문제-3"><span class="header-section-number">3.4</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#구간-추정과-검정-결과를-함께-읽기" id="toc-구간-추정과-검정-결과를-함께-읽기" class="nav-link" data-scroll-target="#구간-추정과-검정-결과를-함께-읽기"><span class="header-section-number">4</span> 구간 추정과 검정 결과를 함께 읽기</a></li>
+  <li><a href="#r을-활용한-실습-단일-모수-가설-검정과-신뢰-구간" id="toc-r을-활용한-실습-단일-모수-가설-검정과-신뢰-구간" class="nav-link" data-scroll-target="#r을-활용한-실습-단일-모수-가설-검정과-신뢰-구간"><span class="header-section-number">5</span> R을 활용한 실습: 단일 모수 가설 검정과 신뢰 구간</a></li>
+  <li><a href="#결론" id="toc-결론" class="nav-link" data-scroll-target="#결론"><span class="header-section-number">6</span> 결론</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch07.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch14.html">단일 모수(Single parameter)에 대한 신뢰 구간</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">단일 모수(Single parameter)에 대한 신뢰 구간</h1>
 </div>
@@ -237,170 +403,234 @@ window.Quarto = {
 </header>
 
 
-<section id="서론" class="level2">
-<h2 class="anchored" data-anchor-id="서론">서론</h2>
-<p>이전 장에서 우리는 구간 추정(Interval estimation)과 신뢰 구간(Confidence interval)에 대한 일반적인 개념을 소개했습니다. 이 장에서는 신뢰 구간을 더욱 확장하여 p와 μ에 대한 구간을 계산할 뿐만 아니라, 단순히 타당한 값의 범위를 제공하는 것 이상의 추가적인 용도를 제공할 것입니다.</p>
-</section>
-<section id="p에-대한-신뢰-구간" class="level2">
-<h2 class="anchored" data-anchor-id="p에-대한-신뢰-구간">p에 대한 신뢰 구간</h2>
-<p>p에 대한 $(1-)$100% 신뢰 구간을 생성할 때, 이전에 우리는 다음과 같은 공식을 도출했습니다.</p>
+<blockquote class="blockquote">
+<p>이전 장에서는 구간 추정(Interval estimation)과 신뢰 구간(Confidence interval)의 일반적인 개념을 살펴보았습니다. 이번 장에서는 최근 생성형 AI(Generative AI) 기반의 자동화된 데이터 분석 환경에서도 널리 쓰이는 신뢰 구간의 활용을 더욱 확장해 보겠습니다. 단순히 모비율 p와 모평균 μ의 타당한 범위를 계산하는 것을 넘어, 데이터 기반 의사결정에 필요한 다각적인 용도를 소개합니다.</p>
+</blockquote>
+<section id="p에-대한-신뢰-구간" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="p에-대한-신뢰-구간"><span class="header-section-number">1</span> p에 대한 신뢰 구간</h2>
+<p>p에 관한 <span class="math inline">\((1-\alpha)\)</span> 100% 신뢰 구간을 생성할 때, 우리는 앞서 다음과 같은 공식을 도출했습니다.</p>
 <p><span class="math display">\[
-(\hat{p}-z⁎s.e.(\hat{p}),\hat{p}+z⁎s.e.(\hat{p}))
-\]</span> 여기서 <span class="math inline">\(\hat{p}\)</span>은 표본 비율(Sample proportion)이고, <span class="math inline">\(z⁎\)</span>는 P(N(0,1)&lt;z⁎<span class="math inline">\()=1-\alpha/2\)</span>가 되도록 선택된 임계값(Critical value)이며, <span class="math inline">\(s.e.(\hat{p})\)</span>은 표본 비율의 표준 오차(Standard error)다. 우리는 데이터로부터 표본 비율을 계산할 수 있고 R을 사용하여 임계값을 찾을 수 있으므로, 공식에 표준 오차만 채우면 됩니다. 가설 검정과 마찬가지로, 이는 중심 극한 정리(Central limit theorem)의 결과로 귀결됩니다. 가설 검정 단계를 유도하면서, 우리는 중심 극한 정리에 의해 다음과 같음을 확인했습니다.</p>
+(\hat{p}-z^*s.e.(\hat{p}),\hat{p}+z^*s.e.(\hat{p}))
+\]</span></p>
+<p>여기서 <span class="math inline">\(\hat{p}\)</span>은 표본 비율(Sample proportion)이며, <span class="math inline">\(z^*\)</span>는 <span class="math inline">\(P(N(0,1)&lt;z^*) = 1-\alpha/2\)</span>가 되도록 선택한 임계값(Critical value)입니다. 또한 <span class="math inline">\(s.e.(\hat{p})\)</span>은 표본 비율의 표준 오차(Standard error)를 나타냅니다. 현대 데이터 분석 환경에서는 R이나 파이썬 같은 도구를 이용해 임계값을 손쉽게 찾을 수 있으므로, 공식에 표준 오차만 대입하면 됩니다. 가설 검정과 마찬가지로 이 과정은 중심 극한 정리(Central limit theorem)를 기반으로 합니다. 가설 검정 단계를 유도하며 중심 극한 정리에 의해 다음과 같은 성질을 확인했습니다.</p>
 <p><span class="math display">\[
 \hat{p}∼N(p,p(1-p)n)
-\]</span> 여기서 p는 모집단 비율(Population proportion)의 참값입니다. 이는 <span class="math inline">\(\hat{p}\)</span>의 표준 오차가 <span class="math inline">\(s.e.(\hat{p})=p(1-p)n\)</span>임을 의미합니다. 그러나 모집단 비율은 모수(Parameter)이며 알려지지 않은 것으로 가정하기 때문에 우리는 p의 참값을 알지 못합니다. 궁극적으로 모집단 비율 p를 추정하는 표준 오차 공식에 다른 것을 대입해야 합니다. 우리는 표본 비율 <span class="math inline">\(\hat{p}\)</span>이 모집단 비율 p를 추정한다는 것을 알고 있으므로, 표준 오차의 p 대신 <span class="math inline">\(\hat{p}\)</span>을 대입할 수 있습니다. 그 결과는 다음과 같습니다.</p>
+\]</span></p>
+<p>여기서 p는 모집단 비율(Population proportion)의 참값입니다. 이는 <span class="math inline">\(\hat{p}\)</span>의 표준 오차가 <span class="math inline">\(s.e.(\hat{p})=p(1-p)n\)</span>임을 의미합니다. 그러나 모집단 비율은 모수(Parameter)이며 보통 알려지지 않은 값으로 간주하므로 우리는 p의 참값을 알지 못합니다. 따라서 모집단 비율 p를 추정하는 표준 오차 공식에 다른 값을 대입해야 합니다. 우리는 표본 비율 <span class="math inline">\(\hat{p}\)</span>이 모집단 비율 p를 추정한다는 사실을 알고 있으므로, 표준 오차의 p 대신 <span class="math inline">\(\hat{p}\)</span>을 대입할 수 있습니다. 그 결과는 다음과 같습니다.</p>
 <p><span class="math display">\[
 s.e.(\hat{p})=\hat{p}(1-\hat{p})n.
 \]</span></p>
-<p>이러한 변경을 통해, p에 대한 $(1-)$100% 신뢰 구간은 다음과 같이 됩니다.</p>
+<p>이러한 변경을 통해, p에 대한 <span class="math inline">\((1-\alpha)\)</span> 100% 신뢰 구간은 다음과 같이 도출됩니다.</p>
 <p><span class="math display">\[
-(\hat{p}-z⁎\hat{p}(1-\hat{p})n,\hat{p}+z⁎\hat{p}(1-\hat{p})n)
-\]</span> 여기서 <span class="math inline">\(\hat{p}\)</span>은 표본 비율, n은 표본 크기, 그리고 <span class="math inline">\(z⁎\)</span>는 P(N(0,1)&lt;z⁎<span class="math inline">\()=1-\alpha/2\)</span>가 되도록 선택된 임계값입니다. 신뢰 구간의 마지막 부분은 해석이며, 이는 이전에 논의했습니다. 우리는 우리가 계산한 구간이 p의 참값을 포함할 것이라고 <span class="math inline">\((1-\alpha)100\)</span>% 확신합니다(Confident)고 말함으로써 신뢰 구간을 해석합니다.</p>
-<p>가설 검정과 유사하게 신뢰 구간을 생성할 때도 핵심적인 가정이 있습니다. 임계값 <span class="math inline">\(z⁎\)</span>와 신뢰 구간을 얻기 위해 정규 분포를 사용하려면 중심 극한 정리가 성립해야 합니다. 중심 극한 정리가 성립하려면 표본 크기가 충분히 커야 하며(일반적으로 <span class="math inline">\(n\ge 30\)</span>), 표본에 충분한 수의 성공과 실패(각각 최소 10개 이상)가 있어야 한다고 명시했습니다. 따라서 신뢰 구간이 유효하려면 충분히 큰 표본 크기와 표본 내에 충분한 성공 및 실패 횟수가 필요합니다.</p>
-<p>예를 들어, 스테판 커리(Steph Curry)는 2016년에 362개의 자유투 중 325개를 성공시켰습니다. 스테판 커리가 자유투를 성공시킬 실제 확률 p에 대한 99% 신뢰 구간<span class="math inline">\((\alpha=0.01\)</span>)을 만들어 보겠습니다. 첫 번째 단계는 P(N(0,1)&lt;z⁎<span class="math inline">\()=1-0.01/2=0.995\)</span>가 되는 임계값 <span class="math inline">\(z⁎\)</span>를 찾는 것입니다. R 코드를 사용하면</p>
+(\hat{p}-z^*\hat{p}(1-\hat{p})n,\hat{p}+z^*\hat{p}(1-\hat{p})n)
+\]</span></p>
+<p>여기서 <span class="math inline">\(\hat{p}\)</span>은 표본 비율, n은 표본 크기, 그리고 <span class="math inline">\(z^*\)</span>는 <span class="math inline">\(P(N(0,1)&lt;z^*) = 1-\alpha/2\)</span>가 되도록 선택된 임계값입니다. 신뢰 구간의 마지막 부분은 해석이며, 이는 이전에 논의한 바와 같습니다. 우리는 “계산한 구간이 p의 참값을 포함할 것이라고 <span class="math inline">\((1-\alpha)\)</span> 100% 확신(Confident)한다”고 말함으로써 신뢰 구간을 해석합니다.</p>
+<p>가설 검정과 마찬가지로 신뢰 구간을 생성할 때도 핵심적인 가정이 존재합니다. 임계값 <span class="math inline">\(z^*\)</span>와 신뢰 구간을 얻기 위해 정규 분포를 사용하려면 중심 극한 정리가 성립해야 합니다. 중심 극한 정리가 성립하려면 표본 크기가 충분히 커야 하며(일반적으로 <span class="math inline">\(n\ge 30\)</span>), 표본에 충분한 수의 성공과 실패(각각 최소 10개 이상)가 있어야 합니다. 즉, 신뢰 구간이 유효하려면 충분히 큰 표본 크기와 표본 내에 충분한 성공 및 실패 횟수를 확보해야 합니다.</p>
+<p>예를 들어, 스테판 커리(Steph Curry)는 2016년에 362개의 자유투 중 325개를 성공시켰습니다. 스테판 커리가 자유투를 성공시킬 실제 확률 p에 대한 99% 신뢰 구간(<span class="math inline">\(\alpha=0.01\)</span>)을 만들어 보겠습니다. 첫 번째 단계는 <span class="math inline">\(P(N(0,1)&lt;z^*)\)</span>=1-0.01/2=0.995$가 되는 임계값 <span class="math inline">\(z^*\)</span>를 찾는 것입니다. R 코드를 사용하면 다음과 같습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.995</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>임계값이 z⁎<span class="math inline">\(=2.576\)</span>임을 알 수 있습니다. 임계값, 표본 비율 <span class="math inline">\(\hat{p}=325362\)</span>, 그리고 표본 크기 <span class="math inline">\(n=362\)</span>를 사용하면 p에 대한 99% 신뢰 구간은 다음과 같습니다.</p>
+<p>임계값이 <span class="math inline">\(z^*=2.576\)</span>임을 알 수 있습니다. 임계값, 표본 비율 <span class="math inline">\(\hat{p}=325362\)</span>, 그리고 표본 크기 <span class="math inline">\(n=362\)</span>를 사용하면 p에 대한 99% 신뢰 구간은 다음과 같이 계산됩니다.</p>
 <p><span class="math display">\[
 (0.898-2.5750.898(1-0.898)362,0.898+2.5750.898(1-0.898)362)(0.857,0.939).
 \]</span></p>
-<p>우리는 (0.857, <span class="math inline">\(0.939)\)</span> 구간이 스테판 커리가 자유투를 성공시킬 참 확률을 포함한다고 99% 확신합니다. 또한, 표본 크기가 충분히 크고<span class="math inline">\((n=369\)</span>) 성공과 실패 횟수(성공 325회, 실패 362−325=37회<img src="images/B9780128207888000274/si21.png" class="img-fluid" alt="이미지">)가 충분하므로 결과를 신뢰할 수 있습니다.</p>
-<p>앞서 언급한 prop.test 함수에는 p에 대한 신뢰 구간을 계산하는 기능이 있습니다. 이전과 같이 데이터를 입력하고 conf.level 옵션을 원하는 신뢰 수준으로 변경하면 p에 대한 (1−α)100%<img src="images/B9780128207888000274/si22.png" class="img-fluid" alt="이미지"> 신뢰 구간을 얻을 수 있습니다. 이 함수에 대한 자세한 내용과 예시는 <a href="../notes/ch17.html">17장</a>에서 다루겠습니다.</p>
-<section id="연습-문제" class="level3">
-<h3 class="anchored" data-anchor-id="연습-문제">연습 문제</h3>
+<p>우리는 (0.857, 0.939) 구간이 스테판 커리가 자유투를 성공시킬 참 확률을 포함한다고 99% 확신합니다. 또한, 표본 크기가 충분히 크고(<span class="math inline">\(n=369\)</span>) 성공과 실패 횟수(성공 325회, 실패 362−325=37회<img src="images/B9780128207888000274/si21.png" class="img-fluid" alt="이미지">)가 충분하므로 도출된 결과를 신뢰할 수 있습니다.</p>
+<p>앞서 언급한 prop.test 함수에는 p에 대한 신뢰 구간을 계산하는 기능이 포함되어 있습니다. 이전과 같이 데이터를 입력하고 conf.level 옵션을 원하는 신뢰 수준으로 변경하면 p에 대한 (1−α)100%<img src="images/B9780128207888000274/si22.png" class="img-fluid" alt="이미지"> 신뢰 구간을 얻을 수 있습니다. 이 함수에 관한 자세한 내용과 예시는 <a href="ch17.md">17장</a>에서 다루겠습니다.</p>
+<section id="연습-문제" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">1.1</span> 연습 문제</h3>
 <ol type="1">
-<li>마이크 트라웃(Mike Trout)은 2017년에 507번의 타석에서 224번 출루했습니다. 마이크 트라웃이 출루할 참 확률 p에 대한 95% 신뢰 구간을 구하고 해석해 보세요.</li>
-<li>크랩스(Craps) 게임에서 한 개인이 패스 라인(Pass line)에 베팅하여 20번의 게임 중 8번을 이겼습니다. 패스 라인에 베팅하여 이길 참 확률 p에 대한 99% 신뢰 구간을 구하고 해석해 보세요.</li>
-<li>780명의 여성 표본에서 349명이 자원봉사에 참여한 것으로 나타났습니다 [88]. 자원봉사에 참여하는 여성의 실제 비율에 대한 90% 신뢰 구간을 구하고 해석해 보세요.</li>
+<li>마이크 트라웃(Mike Trout)은 2017년에 507번의 타석에서 224번 출루했습니다. 마이크 트라웃이 출루할 참 확률 p에 대한 95% 신뢰 구간을 구하고 해석해 보십시오.</li>
+<li>크랩스(Craps) 게임에서 한 개인이 패스 라인(Pass line)에 베팅하여 20번의 게임 중 8번을 이겼습니다. 패스 라인에 베팅하여 이길 참 확률 p에 대한 99% 신뢰 구간을 구하고 해석해 보십시오.</li>
+<li>780명의 여성 표본에서 349명이 자원봉사에 참여한 것으로 나타났습니다 [88]. 자원봉사에 참여하는 여성의 실제 비율에 대한 90% 신뢰 구간을 구하고 해석해 보십시오.</li>
 </ol>
 </section>
 </section>
-<section id="μ에-대한-신뢰-구간" class="level2">
-<h2 class="anchored" data-anchor-id="μ에-대한-신뢰-구간">μ에 대한 신뢰 구간</h2>
-<p>모평균(Population mean) μ에 대한 신뢰 구간을 생성할 때, p에 대한 신뢰 구간을 도출할 때와 동일한 단계를 많이 거칠 수 있습니다. μ에 대한 <span class="math inline">\((1-\alpha)100\)</span>% 신뢰 구간을 계산하는 목적은 다음과 같이 되는 구간 추정치 (lower, <span class="math inline">\(upper)\)</span>를 만드는 것입니다.</p>
+<section id="μ에-대한-신뢰-구간" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="μ에-대한-신뢰-구간"><span class="header-section-number">2</span> μ에 대한 신뢰 구간</h2>
+<p>모평균(Population mean) μ에 대한 신뢰 구간을 생성할 때는 p에 대한 신뢰 구간을 도출할 때와 동일한 단계를 다수 거치게 됩니다. μ에 대한 <span class="math inline">\((1-\alpha)\)</span> 100% 신뢰 구간을 계산하는 목적은 다음과 같이 되는 구간 추정치 (lower, upper)를 도출하는 것입니다.</p>
 <p><span class="math display">\[
 P(Lower&lt;\mu&lt;Upper)=1-\alpha.
 \]</span></p>
-<p>이를 위해서는 μ를 확률 분포와 연결해야 합니다. 가설 검정에서 우리는 다음과 같음을 발견했습니다.</p>
+<p>이를 위해서는 μ를 확률 분포와 연결해야 합니다. 앞서 가설 검정에서 우리는 다음과 같은 성질을 확인했습니다.</p>
 <p><span class="math display">\[
 \bar{x}-\mu_{s}/n∼tn-1.
-\]</span> 이를 염두에 두고 <span class="math inline">\(tn-1\)</span> 분포와 관련된 확률 문장부터 시작해 보겠습니다. 다음과 같이 되도록 하는 <span class="math inline">\(t^*\)</span>(마찬가지로 임계값이라 부름) 값을 선택해 보겠습니다.</p>
+\]</span></p>
+<p>이를 염두에 두고 <span class="math inline">\(tn-1\)</span> 분포와 관련된 확률 문장부터 시작해 보겠습니다. 다음과 같이 되도록 하는 <span class="math inline">\(t^*\)</span>(마찬가지로 임계값이라 부름) 값을 선택합니다.</p>
 <p><span class="math display">\[
-P(-t⁎&lt;tn-1&lt;t⁎)=1-\alpha.
-\]</span> 이제 x¯−μs/n∼<span class="math inline">\(tn-1\)</span>이므로, 확률 문장의 <span class="math inline">\(tn-1\)</span> 대신 <span class="math inline">\(\bar{x}-\mu_{s}/n\)</span>을 대입할 수 있으며, 그 결과는 다음과 같습니다.</p>
+P(-t^*&lt;tn-1&lt;t^*)=1-\alpha.
+\]</span></p>
+<p>이제 x¯−μs/n∼<span class="math inline">\(tn-1\)</span>이므로, 확률 문장의 <span class="math inline">\(tn-1\)</span> 대신 <span class="math inline">\(\bar{x}-\mu_{s}/n\)</span>을 대입할 수 있으며, 그 결과는 다음과 같습니다.</p>
 <p><span class="math display">\[
-P(-t⁎&lt;\bar{x}-\mu_{s}/n&lt;t⁎)=1-\alpha.
-\]</span> 이 시점에서 확률 문장 내부의 대수학(Algebra)을 사용하여 μ에 대해 풀면, 우리가 원하는 확률적 특성을 가진 구간 추정치를 얻게 될 것입니다.</p>
+P(-t^*&lt;\bar{x}-\mu_{s}/n&lt;t^*)=1-\alpha.
+\]</span></p>
+<p>이 시점에서 확률 문장 내부의 대수학(Algebra)을 사용하여 μ에 관해 풀면, 우리가 원하는 확률적 특성을 가진 구간 추정치를 얻게 됩니다.</p>
 <p><span class="math display">\[
-P(-t⁎&lt;\bar{x}-\mu_{s}/n&lt;t⁎)=1-\alphaP(-t⁎sn&lt;\bar{x}-\mu&lt;t⁎sn)=1-\alphaP(-\bar{x}-t⁎sn&lt;-\mu&lt;-\bar{x}+t⁎sn)=1-\alphaP(\bar{x}-t⁎sn&lt;\mu&lt;\bar{x}+t⁎sn)=1-\alpha.
-\]</span> 이제 우리는 <span class="math inline">\(P(Lower&lt;\mu&lt;Upper)=1-\alpha\)</span>를 만족하는 구간 (Lower, <span class="math inline">\(Upper)\)</span>을 갖게 되었습니다. 이는 결과적으로 μ에 대한 $(1-)$100% 신뢰 구간이 다음과 같음을 의미합니다.</p>
+P(-t^*&lt;\bar{x}-\mu_{s}/n&lt;t^*)=1-\alphaP(-t^*sn&lt;\bar{x}-\mu&lt;t^*sn)=1-\alphaP(-\bar{x}-t^*sn&lt;-\mu&lt;-\bar{x}+t^*sn)=1-\alphaP(\bar{x}-t^*sn&lt;\mu&lt;\bar{x}+t^*sn)=1-\alpha.
+\]</span></p>
+<p>이제 우리는 <span class="math inline">\(P(Lower&lt;\mu&lt;Upper)=1-\alpha\)</span>를 만족하는 구간 (Lower, Upper)을 확보했습니다. 이는 결과적으로 μ에 대한 <span class="math inline">\((1-\alpha)\)</span> 100% 신뢰 구간이 다음과 같음을 의미합니다.</p>
 <p><span class="math display">\[
-(\bar{x}-t⁎sn,\bar{x}+t⁎sn).
-\]</span> 따라서 μ에 대한 신뢰 구간을 계산하려면 표본 평균 <span class="math inline">\(\bar{x}\)</span>, 표본 표준 편차 s, 그리고 표본 크기 n을 얻어야 하며, 이 모든 것은 표본에서 가져옵니다. 이제 임계값 <span class="math inline">\(t^*\)</span>를 찾는 것만 남았습니다. p에 대한 신뢰 구간과 마찬가지로, 정의된 대로 <span class="math inline">\(t^*\)</span>(P(−t⁎&lt;tn−1&lt;t⁎<span class="math inline">\()=1-\alpha\)</span>가 되도록 <span class="math inline">\(t^*\)</span>를 선택함)를 찾는 것은 두 개의 확률을 구하는 과정이 포함되므로 문제가 될 수 있습니다. 그러나 t-분포는 대칭이므로 다음과 같이 <span class="math inline">\(t^*\)</span>를 선택하는 데 사용되는 확률을 조정할 수 있습니다.</p>
+(\bar{x}-t^*sn,\bar{x}+t^*sn).
+\]</span></p>
+<p>따라서 μ에 대한 신뢰 구간을 계산하려면 표본에서 표본 평균 <span class="math inline">\(\bar{x}\)</span>, 표본 표준 편차 s, 그리고 표본 크기 n을 얻어야 합니다. 이제 임계값 <span class="math inline">\(t^*\)</span>를 찾는 일만 남았습니다. p에 대한 신뢰 구간과 마찬가지로, 정의된 대로 <span class="math inline">\(t^*\)</span>(<span class="math inline">\(P(-t^* &lt; t_{n-1} &lt; t^*) = 1-\alpha\)</span>가 되도록 <span class="math inline">\(t^*\)</span>를 선택함)를 찾는 과정은 두 개의 확률을 구하는 과정이 포함되므로 까다로울 수 있습니다. 그러나 <span class="math inline">\(t\)</span>-분포는 대칭이므로 다음과 같이 <span class="math inline">\(t^*\)</span>를 선택하는 데 사용하는 확률을 조정할 수 있습니다.</p>
 <p><span class="math display">\[
-P(tn-1&lt;t⁎)=1-\alpha/2.
-\]</span> <span class="math inline">\(t^*\)</span> 값을 찾기 위해 다시 R로 눈을 돌려 보겠습니다. pnorm 함수에 대응하는 t-분포 함수로 pt 함수가 있었듯이, 정규 분포에서 임계값을 찾는 데 사용된 qnorm 함수에 대응하는 t-분포 함수로 qt 함수가 있습니다. qt 함수는 주어진 확률과 t-분포의 자유도(Degrees of freedom)를 기반으로 t-분포의 임계값을 찾습니다. 임계값과 관련된 확률 p와 자유도 ν의 두 값이 qt 함수의 입력값이며, 코드는 아래와 같습니다.</p>
+$P(t_{n-1} &lt; t^*)$=1-\alpha/2.
+\]</span></p>
+<p><span class="math inline">\(t^*\)</span> 값을 찾기 위해 다시 R을 활용해 보겠습니다. pnorm 함수에 대응하는 <span class="math inline">\(t\)</span>-분포 함수로 pt 함수가 있었듯이, 정규 분포에서 임계값을 찾는 데 사용한 qnorm 함수에 대응하는 <span class="math inline">\(t\)</span>-분포 함수로 qt 함수가 존재합니다. qt 함수는 주어진 확률과 <span class="math inline">\(t\)</span>-분포의 자유도(Degrees of freedom)를 바탕으로 <span class="math inline">\(t\)</span>-분포의 임계값을 찾아줍니다. 임계값과 관련된 확률 p와 자유도 ν의 두 값이 qt 함수의 입력값이 되며, 코드는 아래와 같습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> p_value, <span class="at">df =</span> df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>다른 모든 신뢰 구간과 마찬가지로, 신뢰 구간을 해석하는 것은 신뢰 구간 추론의 중요한 측면입니다. p에 대한 신뢰 구간과 마찬가지로, μ에 대한 신뢰 구간은 해당 구간이 “맞는지”, 즉 모수 μ의 참값을 포함하는지에 대한 우리의 확신 관점에서 해석됩니다. 이 경우 μ에 대한 <span class="math inline">\((1-\alpha)100\)</span>% 신뢰 구간을 해석하기 위해, 우리가 계산한 구간이 모평균 μ의 참값을 포함한다고 <span class="math inline">\((1-\alpha)100\)</span>% 확신한다고 말합니다.</p>
-<p>마지막으로, p에 대한 신뢰 구간 및 가설 검정과 마찬가지로 μ에 대한 신뢰 구간에도 중요한 가정이 내재되어 있습니다. 우리의 신뢰 구간은 중심 극한 정리가 성립한다는 것을 암묵적으로 가정하며, 이는 표본 크기가 충분히 크거나 데이터가 정규 분포를 따른다는 것을 의미합니다. 신뢰 구간 결과가 유지되려면(즉, 평균에 대해 중심 극한 정리가 성립하려면) 표본 크기가 <span class="math inline">\(n\ge 30\)</span>이거나 데이터가 정규 분포를 따라야 합니다.</p>
-<p>우리가 케일(Kale)에서 발견되는 백만분율(ppm) 단위의 DDT [10, 49] 양인 μ에 대한 96% 신뢰 구간을 계산하는 데 관심이 있다고 해 보겠습니다. R의 MASS 라이브러리에 있는 DDT 데이터셋은 바로 이를 측정하며, 15개의 서로 다른 실험실에서 케일 표본의 DDT 양을 추정했습니다. 표본 평균은 <span class="math inline">\(\bar{x}=3.328\)</span>이고 표본 표준 편차는 <span class="math inline">\(s=0.4372\)</span>다. 이제 임계값 <span class="math inline">\(t^*\)</span>만 남았습니다. 96% 신뢰 구간을 계산하는 경우 (1−0.04)100%=96%<img src="images/B9780128207888000274/si41.png" class="img-fluid" alt="이미지">이므로 α 수준은 0.04다. 이는 P(t15−1&lt;t⁎<span class="math inline">\()=1-0.04/2=0.98\)</span>가 되도록 <span class="math inline">\(t^*\)</span>를 선택해야 함을 의미합니다. 아래의 R 코드를 사용하면</p>
+<p>다른 모든 신뢰 구간과 마찬가지로, 신뢰 구간을 해석하는 것은 신뢰 구간 추론의 중요한 측면입니다. p에 대한 신뢰 구간과 동일하게 μ에 대한 신뢰 구간 역시 해당 구간이 “맞는지”, 즉 모수 μ의 참값을 포함하는지에 대한 우리의 확신 관점에서 해석합니다. 이 경우 μ에 대한 <span class="math inline">\((1-\alpha)\)</span> 100% 신뢰 구간을 해석하기 위해, “우리가 계산한 구간이 모평균 μ의 참값을 포함한다고 <span class="math inline">\((1-\alpha)\)</span> 100% 확신한다”고 말합니다.</p>
+<p>마지막으로, p에 대한 신뢰 구간 및 가설 검정과 마찬가지로 μ에 대한 신뢰 구간에도 중요한 가정이 내재되어 있습니다. 우리의 신뢰 구간은 중심 극한 정리가 성립한다는 것을 암묵적으로 가정하며, 이는 표본 크기가 충분히 크거나 데이터가 정규 분포를 따른다는 것을 뜻합니다. 신뢰 구간 결과가 유지되려면(즉, 평균에 대해 중심 극한 정리가 성립하려면) 표본 크기가 <span class="math inline">\(n\ge 30\)</span>이거나 데이터가 정규 분포를 따라야 합니다. 최근 AI 기반 이상탐지 모델에서도 이러한 기본 가정은 피처 엔지니어링 단계에서 매우 중요하게 작용합니다.</p>
+<p>우리가 케일(Kale)에서 발견되는 백만분율(ppm) 단위의 DDT [10, 49] 양인 μ에 대한 96% 신뢰 구간을 계산하는 데 관심이 있다고 가정해 보겠습니다. R의 MASS 라이브러리에 있는 DDT 데이터셋은 바로 이를 측정하며, 15개의 서로 다른 실험실에서 케일 표본의 DDT 양을 추정했습니다. 표본 평균은 <span class="math inline">\(\bar{x}=3.328\)</span>이고 표본 표준 편차는 <span class="math inline">\(s=0.4372\)</span>입니다. 이제 임계값 <span class="math inline">\(t^*\)</span>만 찾으면 됩니다. 96% 신뢰 구간을 계산하는 경우 (1−0.04)100%=96%<img src="images/B9780128207888000274/si41.png" class="img-fluid" alt="이미지">이므로 α 수준은 0.04입니다. 이는 <span class="math inline">\(P(t_{15-1} &lt; t^*) = 1-0.04/2=0.98\)</span>가 되도록 <span class="math inline">\(t^*\)</span>를 선택해야 함을 뜻합니다. 아래의 R 코드를 사용해 보겠습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.98</span>, <span class="at">df =</span> <span class="dv">14</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>t⁎<span class="math inline">\(=2.263781\)</span>임을 알 수 있습니다. 이 모든 것을 종합하면, 케일 표본의 DDT 모평균 양에 대한 96% 신뢰 구간은 다음과 같습니다.</p>
+<p>계산 결과 <span class="math inline">\(t^*=2.263781\)</span>임을 알 수 있습니다. 이 모든 것을 종합하면, 케일 표본의 DDT 모평균 양에 대한 96% 신뢰 구간은 다음과 같이 도출됩니다.</p>
 <p><span class="math display">\[
 3.328±2.2640.437215=(3.0724,3.5836).
-\]</span> 우리는 (3.0724, <span class="math inline">\(3.5836)\)</span> 구간이 μ의 참값을 포함한다고 96% 확신합니다. 그러나 표본 크기가 30보다 작으므로 결과에 대한 우려가 있을 수 있음을 유의해 주시면 좋습니다. 하지만 데이터의 히스토그램을 확인하면 데이터가 대칭적임을 보여주며, 이는 합리적인 정규성을 시사하고 중심 극한 정리가 여전히 성립함을 의미합니다. 따라서 우리의 결과는 신뢰할 수 있습니다. (prop.test 함수를 사용하여 p에 대한 신뢰 구간을 얻을 수 있는 것과 마찬가지로, <span class="math inline">\(t.test\)</span> 함수를 사용하여 μ에 대한 신뢰 구간을 얻을 수 있습니다. 이전과 마찬가지로 이 구간을 얻기 위해 원하는 신뢰 수준에 대한 정보만 추가하면 됩니다.</p>
-<section id="연습-문제-1" class="level3">
-<h3 class="anchored" data-anchor-id="연습-문제-1">연습 문제</h3>
+\]</span></p>
+<p>우리는 (3.0724, 3.5836) 구간이 μ의 참값을 포함한다고 96% 확신합니다. 그러나 표본 크기가 30보다 작으므로 결과에 대한 우려가 있을 수 있음을 유의해야 합니다. 하지만 데이터의 히스토그램을 확인하면 데이터가 대칭적임을 보여주며, 이는 합리적인 정규성을 시사하고 중심 극한 정리가 여전히 성립함을 뒷받침합니다. 따라서 우리의 결과는 신뢰할 만합니다. (prop.test 함수를 사용하여 p에 대한 신뢰 구간을 얻을 수 있는 것과 마찬가지로, <span class="math inline">\(t.test\)</span> 함수를 사용하여 μ에 대한 신뢰 구간을 얻을 수 있습니다. 이전과 마찬가지로 이 구간을 얻기 위해 원하는 신뢰 수준에 관한 정보만 추가하면 됩니다.)</p>
+<section id="연습-문제-1" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="연습-문제-1"><span class="header-section-number">2.1</span> 연습 문제</h3>
 <ol start="4" type="1">
-<li>뉴욕시에서는 시의 대기 질에 대한 데이터를 매일 수집합니다 [50]. 116건의 관측치에서 오존 ppm의 평균은 <span class="math inline">\(\bar{x}=42.13\)</span>이었고 표본 표준 편차는 <span class="math inline">\(s=32.99\)</span>이었습니다. μ에 대한 99% 신뢰 구간을 계산하고 해석하십시오.</li>
-<li>한 연구에서 182명에게 키를 물어본 다음 실제 키를 측정하고 두 값의 차이를 계산했습니다 [89]. 표본 평균은 <span class="math inline">\(\bar{x}=2.07\)</span>(실제 키가 보고된 키보다 2.07cm 더 컸음)였고 표본 표준 편차는 <span class="math inline">\(s=2.08\)</span>이었습니다. μ에 대한 90% 신뢰 구간을 계산하고 해석하십시오.</li>
-<li>심장마비를 경험한 <span class="math inline">\(n=1295\)</span>명의 여성 중에서 표본 평균 연령은 <span class="math inline">\(\bar{x}=60.92\)</span>였고 표준 편차는 <span class="math inline">\(s=7.042\)</span>였습니다. μ에 대한 95% 신뢰 구간을 계산하고 해석해 보세요 [23].</li>
+<li>뉴욕시에서는 시의 대기 질에 관한 데이터를 매일 수집합니다 [50]. 116건의 관측치에서 오존 ppm의 평균은 <span class="math inline">\(\bar{x}=42.13\)</span>이었고 표본 표준 편차는 <span class="math inline">\(s=32.99\)</span>이었습니다. μ에 대한 99% 신뢰 구간을 계산하고 해석해 보십시오.</li>
+<li>한 연구에서 182명에게 키를 물어본 다음 실제 키를 측정하고 두 값의 차이를 계산했습니다 [89]. 표본 평균은 <span class="math inline">\(\bar{x}=2.07\)</span>(실제 키가 보고된 키보다 2.07cm 더 컸음)였고 표본 표준 편차는 <span class="math inline">\(s=2.08\)</span>이었습니다. μ에 대한 90% 신뢰 구간을 계산하고 해석해 보십시오.</li>
+<li>심장마비를 경험한 <span class="math inline">\(n=1295\)</span>명의 여성 중에서 표본 평균 연령은 <span class="math inline">\(\bar{x}=60.92\)</span>였고 표준 편차는 <span class="math inline">\(s=7.042\)</span>였습니다. μ에 대한 95% 신뢰 구간을 계산하고 해석해 보십시오 [23].</li>
 </ol>
 </section>
 </section>
-<section id="신뢰-구간의-다른-용도" class="level2">
-<h2 class="anchored" data-anchor-id="신뢰-구간의-다른-용도">신뢰 구간의 다른 용도</h2>
-<p>지금까지 우리의 신뢰 구간은 통계적 추론의 두 번째 형태로서 가설 검정을 보완하여 타당한 값의 범위를 제공하는 데 사용되었습니다. 하지만 신뢰 구간의 형태와 도출 과정은 통계적 과정의 다른 측면에도 사용될 수 있음이 밝혀졌습니다. 신뢰 구간은 향후 연구에 필요한 표본 크기를 결정하는 데 도움이 될 뿐만 아니라, 가설 검정 결과와 직접적인 연결 고리를 제공할 수 있습니다.</p>
-<section id="p에-대한-신뢰-구간과-표본-크기-계산" class="level3">
-<h3 class="anchored" data-anchor-id="p에-대한-신뢰-구간과-표본-크기-계산">p에 대한 신뢰 구간과 표본 크기 계산</h3>
-<p>연구를 설계하고 데이터를 수집할 때 큰 과제 중 하나는 연구 질문에 답하기에 충분한 표본 크기가 얼마인지 결정하는 것입니다. 우리가 보았듯이, 표본 크기는 표준 오차, 신뢰 구간, 가설 검정에 영향을 미칩니다. 많은 경우 표본 크기는 연구 리소스에 의해 결정되며, 예산이 많을수록 더 많은 개인을 조사할 수 있습니다. 그러나 신뢰 구간은 표본 크기에 대한 결정을 안내할 수도 있습니다. 처음 구간 추정치를 정의할 때, 기본적인 구간 추정치는 다음과 같이 정의된다고 했습니다.</p>
+<section id="신뢰-구간의-다른-용도" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="신뢰-구간의-다른-용도"><span class="header-section-number">3</span> 신뢰 구간의 다른 용도</h2>
+<p>지금까지 우리의 신뢰 구간은 통계적 추론의 두 번째 형태로서 가설 검정을 보완하여 타당한 값의 범위를 제공하는 데 사용되었습니다. 하지만 신뢰 구간의 형태와 도출 과정은 통계적 과정의 다른 측면에도 사용할 수 있습니다. 신뢰 구간은 향후 연구에 필요한 표본 크기를 결정하는 데 도움이 될 뿐만 아니라, 가설 검정 결과와 직접적인 연결 고리를 제공합니다. 딥페이크 탐지 모델 훈련을 위한 적정 데이터 수집량을 산정할 때도 이 원리가 동일하게 적용됩니다.</p>
+<section id="p에-대한-신뢰-구간과-표본-크기-계산" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="p에-대한-신뢰-구간과-표본-크기-계산"><span class="header-section-number">3.1</span> p에 대한 신뢰 구간과 표본 크기 계산</h3>
+<p>연구를 설계하고 데이터를 수집할 때 직면하는 큰 과제 중 하나는 연구 질문에 답하기에 충분한 표본 크기가 얼마인지 결정하는 일입니다. 우리가 살펴본 바와 같이, 표본 크기는 표준 오차, 신뢰 구간, 가설 검정에 영향을 미칩니다. 대다수 경우 표본 크기는 연구 리소스에 의해 결정되며, 예산이 넉넉할수록 더 많은 대상을 조사할 수 있습니다. 그러나 신뢰 구간은 표본 크기에 관한 결정을 안내하는 훌륭한 지표가 됩니다. 처음 구간 추정치를 정의할 때, 기본적인 구간 추정치는 다음과 같이 정의된다고 설명했습니다.</p>
 <p>점 추정치(Point Estimate) ± 오차 한계(Margin of Error)</p>
 <p>이를 p에 대한 신뢰 구간의 관점에서 정의해 보겠습니다. 다시 상기해 보면, p에 대한 신뢰 구간은 다음과 같습니다.</p>
 <p><span class="math display">\[
-\hat{p}±z⁎\hat{p}(1-\hat{p})n.
-\]</span> 모비율 p의 경우, 해당 모집단 모수의 점 추정치는 표본 비율 <span class="math inline">\(\hat{p}\)</span>이며 오차 한계는 m=z⁎<span class="math inline">\(\hat{p}(1-\hat{p})n\)</span>입니다. 오차 한계는 표본 크기 n, <span class="math inline">\(z⁎\)</span>를 통해 결정되는 신뢰 수준, 그리고 표본 비율 <span class="math inline">\(\hat{p}\)</span>을 아는 것을 전제로 합니다. 만약 우리가 표본 크기를 알고 싶고, 오차 한계 m, 표본 비율 <span class="math inline">\(\hat{p}\)</span>, 그리고 추정치에서 얻고자 하는 신뢰 수준<span class="math inline">\((z⁎\)</span>를 통해 전달됨)을 알고 있다고 가정해 보겠습니다. 오차 한계 방정식을 사용하여 약간의 대수학을 통해 n에 대해 풀면 다음과 같습니다.</p>
+\hat{p}±z^*\hat{p}(1-\hat{p})n.
+\]</span></p>
+<p>모비율 p의 경우, 해당 모집단 모수의 점 추정치는 표본 비율 <span class="math inline">\(\hat{p}\)</span>이며 오차 한계는 <span class="math inline">\(m = z^* \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</span>입니다. 오차 한계는 표본 크기 n, <span class="math inline">\(z^*\)</span>를 통해 결정되는 신뢰 수준, 그리고 표본 비율 <span class="math inline">\(\hat{p}\)</span>을 아는 것을 전제로 합니다. 만약 우리가 표본 크기를 알고 싶고, 오차 한계 m, 표본 비율 <span class="math inline">\(\hat{p}\)</span>, 그리고 추정치에서 얻고자 하는 신뢰 수준(<span class="math inline">\(z^*\)</span>를 통해 전달됨)을 알고 있다고 가정해 보겠습니다. 오차 한계 방정식을 사용하여 약간의 대수학을 거쳐 n에 관해 풀면 다음과 같습니다.</p>
 <p><span class="math display">\[
-n=(z⁎)2\hat{p}(1-\hat{p})m2.
-\]</span> 그렇다면 이 방정식을 연구 설계에 어떻게 활용할 수 있을까? 이는 데이터가 수집된 후에야 결정되는 많은 정보를 아는 것에 의존합니다. 그러나 연구 전에 이 중 많은 부분에 대해 결정을 내릴 수 있습니다. 모집단 비율을 특정 오차 한계 내에서 추정하고 싶다고 정할 수 있으므로, m 값을 알 수 있습니다. 또한, 구간 추정치에 대해 얼마나 확신하고 싶은지(기본적으로 구간 추정치가 “맞을” 빈도를 설정함)를 정확히 정할 수 있습니다. 이는 어떤 <span class="math inline">\(z⁎\)</span> 값을 원하는지 아는 것과 같으며, R의 qnorm 함수를 사용하여 해당 임계값을 찾을 수 있습니다. 마지막으로 표본 크기 계산을 완료하기 위해 빠진 것은 표본 비율 <span class="math inline">\(\hat{p}\)</span>뿐입니다.</p>
-<p>우리가 어떤 표본 비율을 보게 될지 미리 정할 수 없기 때문에, 이것이 공식에서 설명하기 어려운 부분처럼 보일 수 있습니다. 그러나 어떤 경우에는 <span class="math inline">\(\hat{p}\)</span>이 어떠할지에 대한 정보를 가지고 있을 수 있습니다. 많은 경우, 연구는 과거 연구에서 반복된 질문을 던집니다. 따라서 과거 연구의 표본 비율이 얼마였는지 알 수도 있습니다. 그것을 우리 연구에서 보게 될 것이라고 생각하는 <span class="math inline">\(\hat{p}\)</span>의 대용치(Proxy)로 사용할 수 있습니다.</p>
-<p>하지만 이전 연구가 존재하지 않는 경우도 많습니다. 그런 경우 우리는 무엇을 할 수 있을까요? 이전 조사가 존재하지 않다면 “최악의 시나리오”를 가정해야 합니다. 즉, 필요한 표본 크기를 크게 만드는 값을 표본 비율로 가정하는 것입니다. 오차 한계와 신뢰 수준이 일정한 값이라면, 큰 표본 크기는 <span class="math inline">\(\hat{p}=0.5\)</span>일 때 발생합니다. 미적분학을 이용하거나 다양한 <span class="math inline">\(\hat{p}\)</span> 값에 대해 표본 크기가 얼마가 될지 계산해 봄으로써 이를 확인할 수 있습니다. 결과적으로 모집단 비율을 오차 한계 m 이내에서 <span class="math inline">\((1-\alpha)100\)</span>% 신뢰도로 추정하고 싶다면, 표본 크기는 다음과 같아야 합니다.</p>
+n=(z^*)2\hat{p}(1-\hat{p})m2.
+\]</span></p>
+<p>그렇다면 이 방정식을 연구 설계에 어떻게 활용할 수 있을까요? 이는 데이터 수집 후에야 결정되는 많은 정보를 아는 것에 의존합니다. 그러나 연구 전에 이 중 상당 부분에 관해 결정을 내릴 수 있습니다. 모집단 비율을 특정 오차 한계 내에서 추정하고 싶다고 정할 수 있으므로, m 값을 알 수 있습니다. 또한, 구간 추정치에 관해 얼마나 확신하고 싶은지(기본적으로 구간 추정치가 “맞을” 빈도를 설정함)를 정확히 정할 수 있습니다. 이는 어떤 <span class="math inline">\(z^*\)</span> 값을 원하는지 아는 것과 같으며, R의 qnorm 함수를 사용하여 해당 임계값을 쉽게 찾을 수 있습니다. 마지막으로 표본 크기 계산을 완료하기 위해 빠진 것은 표본 비율 <span class="math inline">\(\hat{p}\)</span>뿐입니다.</p>
+<p>우리가 어떤 표본 비율을 마주하게 될지 미리 확정할 수 없기 때문에, 이것이 공식에서 설명하기 까다로운 부분처럼 보일 수 있습니다. 그러나 특정 사례에서는 <span class="math inline">\(\hat{p}\)</span>이 어떠할지에 관한 정보를 미리 파악할 수 있습니다. 예를 들어, 많은 연구가 과거 연구에서 반복된 질문을 다시 던집니다. 따라서 과거 연구의 표본 비율이 얼마였는지 참고할 수 있으며, 이를 우리 연구에서 마주하게 될 <span class="math inline">\(\hat{p}\)</span>의 대용치(Proxy)로 활용할 수 있습니다.</p>
+<p>하지만 이전 연구가 존재하지 않는 상황도 흔합니다. 그런 경우 우리는 어떻게 대처해야 할까요? 이전 조사가 없다면 “최악의 시나리오”를 가정해야 합니다. 즉, 필요한 표본 크기를 가장 크게 만드는 값을 표본 비율로 가정하는 방식입니다. 오차 한계와 신뢰 수준이 일정하다면, 표본 크기는 <span class="math inline">\(\hat{p}=0.5\)</span>일 때 최대가 됩니다. 미적분학을 이용하거나 다양한 <span class="math inline">\(\hat{p}\)</span> 값에 대해 표본 크기를 직접 계산해 봄으로써 이를 증명할 수 있습니다. 결과적으로 모집단 비율을 오차 한계 m 이내에서 <span class="math inline">\((1-\alpha)\)</span> 100% 신뢰도로 추정하고 싶다면, 표본 크기는 다음과 같아야 합니다.</p>
 <p><span class="math display">\[
-n\ge (z⁎)2p˜(1-p˜)m2.
-\]</span> 여기서 P(N(0,1)&lt;z⁎<span class="math inline">\()=1-\alpha/2\)</span>가 되도록 <span class="math inline">\(z⁎\)</span>를 설정하고, <span class="math inline">\(\tilde{p}\)</span>는 이전 연구가 있다면 그에 기반하여 설정하고, 없다면 최악의 시나리오를 바탕으로 설정합니다.</p>
-<p>p˜={이전 연구가 존재한다면 해당 연구의 이전 연구가 존재하지 않다면 0.5 이 필요한 표본 크기를 계산할 때 종종 n은 정수가 아닌 값으로 나올 것입니다. 물론 반 명의 사람을 표본으로 추출할 수는 없으므로, 계산된 n보다 크거나 같은 다음 정수로 올림해야 합니다. 내림하면 표본 크기로 인해 원하는 것보다 더 큰 오차 한계가 발생하게 됩니다. 올림함으로써 우리의 신뢰 구간이 처음 원했던 것보다 약간 더 작은 오차 한계를 갖도록 보장할 수 있습니다.</p>
-<p>예를 들어, 50년 전보다 오늘날 자신과 같은 사람들의 삶이 더 나아졌다고 믿는 미국인의 실제 비율 p를 추정하고 싶다고 해 보겠습니다. 조사를 설계하기 위해 p를 0.04의 오차 한계 내에서 99.5% 신뢰도로 추정하기로 결정합니다. 우선 오차 한계가 <span class="math inline">\(m=0.04\)</span>임을 알 수 있습니다. 다음으로 임계값 <span class="math inline">\(z⁎\)</span>를 찾아야 합니다. 99.5% 신뢰도의 경우 α 값은 <span class="math inline">\(\alpha=0.005\)</span>이므로, P(N(0,1)&gt;z⁎<span class="math inline">\()=1-0.005/2=0.9975\)</span>가 되도록 <span class="math inline">\(z⁎\)</span>를 선택합니다. R에서 <code>qnorm(p = 0.9975, mean = 0, sd = 1)</code> 코드를 사용하면 z⁎<span class="math inline">\(=2.807\)</span>임을 알 수 있습니다.</p>
-<p>마지막으로 빠진 조각은 <span class="math inline">\(\tilde{p}\)</span>다. 이전 연구에서 표본 비율에 대한 아이디어가 없다고 가정하면, 최악의 시나리오를 가정하여 p˜<span class="math inline">\(=0.5\)</span>로 설정해야 합니다. 이 모든 것을 종합하면, p를 0.04의 오차 한계 내에서 99.5% 신뢰도로 추정할 최소 표본 크기는 다음과 같습니다.</p>
+n\ge (z^*)2p˜(1-p˜)m2.
+\]</span></p>
+<p>여기서 <span class="math inline">\(P(N(0,1)&lt;z^*) = 1-\alpha/2\)</span>가 되도록 <span class="math inline">\(z^*\)</span>를 설정하고, <span class="math inline">\(\tilde{p}\)</span>는 이전 연구가 있다면 그에 기반하여 설정하되, 없다면 최악의 시나리오(0.5)를 바탕으로 설정합니다.</p>
+<p>p˜ = {이전 연구가 존재한다면 해당 연구의 , 이전 연구가 존재하지 않다면 0.5}</p>
+<p>필요한 표본 크기를 계산할 때 종종 n은 정수가 아닌 값으로 산출됩니다. 물론 반 명의 사람을 표본으로 추출할 수는 없으므로, 계산된 n보다 크거나 같은 다음 정수로 올림해야 합니다. 내림하면 표본 크기 부족으로 인해 원하는 것보다 더 큰 오차 한계가 발생하게 됩니다. 올림을 적용함으로써 우리의 신뢰 구간이 처음 목표했던 것보다 약간 더 작은 안정적인 오차 한계를 갖도록 보장할 수 있습니다.</p>
+<p>예를 들어, 50년 전보다 오늘날 자신과 같은 사람들의 삶이 더 나아졌다고 믿는 미국인의 실제 비율 p를 추정하고 싶다고 가정해 보겠습니다. 조사를 설계하기 위해 p를 0.04의 오차 한계 내에서 99.5% 신뢰도로 추정하기로 결정합니다. 우선 오차 한계가 <span class="math inline">\(m=0.04\)</span>임을 알 수 있습니다. 다음으로 임계값 <span class="math inline">\(z^*\)</span>를 찾아야 합니다. 99.5% 신뢰도의 경우 α 값은 <span class="math inline">\(\alpha=0.005\)</span>이므로, <span class="math inline">\(P(N(0,1)&gt;z^*)\)</span>=1-0.005/2=0.9975$가 되도록 <span class="math inline">\(z^*\)</span>를 선택합니다. R에서 <code>qnorm(p = 0.9975, mean = 0, sd = 1)</code> 코드를 실행하면 <span class="math inline">\(z^*\)</span>=2.807$임을 확인할 수 있습니다.</p>
+<p>마지막으로 남은 요소는 <span class="math inline">\(\tilde{p}\)</span>입니다. 이전 연구에서 표본 비율에 대한 사전 지식이 없다고 가정하면, 최악의 시나리오를 적용하여 p˜<span class="math inline">\(=0.5\)</span>로 설정해야 합니다. 이 모든 것을 종합하면, p를 0.04의 오차 한계 내에서 99.5% 신뢰도로 추정할 최소 표본 크기는 다음과 같습니다.</p>
 <p><span class="math display">\[
 n\ge (2.807)20.5(1-0.5)0.042=1231.133.
 \]</span></p>
-<p>따라서 최소 1232명의 피험자가 필요할 것입니다. 반면에 조금 조사를 해보니 2017년 퓨 리서치 설문 조사(Pew Research Survey) [51]에서 <span class="math inline">\(\hat{p}=0.37\)</span>을 발견했다고 해 보겠습니다. 이 경우 p˜<span class="math inline">\(=0.37\)</span>이며 표본 크기 계산은 다음과 같이 바뀝니다.</p>
+<p>따라서 최소 1232명의 피험자가 필요합니다. 반면에 문헌 조사를 통해 2017년 퓨 리서치 설문 조사(Pew Research Survey) [51]에서 <span class="math inline">\(\hat{p}=0.37\)</span>을 발견했다고 가정해 보겠습니다. 이 경우 p˜<span class="math inline">\(=0.37\)</span>이 되며 표본 크기 계산은 다음과 같이 수정됩니다.</p>
 <p><span class="math display">\[
 n=(2.807)20.37(1-0.37)0.042=1147.908.
 \]</span></p>
-<p>따라서 표본 크기는 1148명이 되어야 합니다. 필요한 표본 크기가 최악의 시나리오보다 낮은데, 이는 표본 크기가 p˜<span class="math inline">\(=0.5\)</span>에서 최대화되기 때문에 예상되는 결과입니다.</p>
+<p>따라서 표본 크기는 1148명이 되어야 합니다. 필요한 표본 크기가 최악의 시나리오보다 줄어들었는데, 이는 표본 크기가 p˜<span class="math inline">\(=0.5\)</span>에서 최대화되기 때문에 당연히 예상되는 결과입니다.</p>
 </section>
-<section id="연습-문제-2" class="level3">
-<h3 class="anchored" data-anchor-id="연습-문제-2">연습 문제</h3>
+<section id="연습-문제-2" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="연습-문제-2"><span class="header-section-number">3.2</span> 연습 문제</h3>
 <ol start="7" type="1">
-<li>온라인 괴롭힘을 경험한 미국 성인의 실제 비율을 <span class="math inline">\(m=0.1\)</span>의 오차 한계 내에서 90% 신뢰도로 추정하고 싶다고 해 보겠습니다. 이전 연구 [52]에서는 <span class="math inline">\(\hat{p}=0.41\)</span>임을 발견했습니다. 여러분의 연구를 위해 어떤 표본 크기가 필요할까요?</li>
-<li>그리스에서 외국 대학의 대학 교육을 마친 사람의 실제 비율을 <span class="math inline">\(m=0.05\)</span>의 오차 한계와 99% 신뢰도로 추정하고 싶다고 해 보겠습니다. 여러분의 연구를 위해 어떤 표본 크기가 필요할까요?</li>
+<li>온라인 괴롭힘을 경험한 미국 성인의 실제 비율을 <span class="math inline">\(m=0.1\)</span>의 오차 한계 내에서 90% 신뢰도로 추정하고 싶다고 가정해 보겠습니다. 이전 연구 [52]에서는 <span class="math inline">\(\hat{p}=0.41\)</span>임을 발견했습니다. 여러분의 연구를 위해 어떤 표본 크기가 필요할까요?</li>
+<li>그리스에서 외국 대학의 대학 교육을 마친 사람의 실제 비율을 <span class="math inline">\(m=0.05\)</span>의 오차 한계와 99% 신뢰도로 추정하고 싶다고 가정해 보겠습니다. 여러분의 연구를 위해 어떤 표본 크기가 필요할까요?</li>
 <li>고등학교에서 심화 수업(Honors classes)을 들은 고등학생의 실제 비율을 <span class="math inline">\(m=0.01\)</span>의 오차 한계와 95% 신뢰도로 추정하고 싶다고 가정해 보겠습니다. 여러분의 연구를 위해 어떤 표본 크기가 필요할까요?</li>
 </ol>
 </section>
-<section id="μ에-대한-신뢰-구간과-가설-검정" class="level3">
-<h3 class="anchored" data-anchor-id="μ에-대한-신뢰-구간과-가설-검정">μ에 대한 신뢰 구간과 가설 검정</h3>
-<p>가설 검정과 신뢰 구간은 우리의 두 가지 통계적 추론 형태입니다. 관련된 공식들, 특히 평균에 대한 검정과 구간을 살펴보면 둘 사이에 어떤 연결 고리가 있는 것처럼 보입니다. 신뢰 구간과 가설 검정 모두 중심 극한 정리에 근거하며, 둘 다 표본 평균 <span class="math inline">\(\bar{x}\)</span>을 포함하고 표준 오차 <span class="math inline">\(s.e.(\bar{x})=sn\)</span>를 포함합니다. 이것이 단지 우연이라고 하기에는 너무나 많은 유사점이 있습니다. 사실, μ에 대한 <span class="math inline">\((1-\alpha)100\)</span>% 신뢰 구간과 하나의 특정 가설 검정 결과 사이에는 직접적인 연결 고리가 있음이 밝혀졌습니다. 바로 대립 가설이 HA:μ≠<span class="math inline">\(\mu_0\)</span>인 경우입니다.</p>
-<p>가설 검정에서 우리의 목표는 대립 가설을 지지하여 귀무 가설을 기각할지(Reject) 아니면 기각하지 못할지(Fail to reject) 결정하는 것입니다. 귀무 가설을 기각하려면 p-값이 유의 수준 α보다 작아야 합니다. 대립 가설 HA:μ≠<span class="math inline">\(\mu_0\)</span>의 경우, 다음과 같은 경우 귀무 가설을 기각함을 의미합니다.</p>
-<p>2×P(tn-1|t|)&lt;또는P(tn-1|t|)&lt;/2 여기서 t는 검정 통계량(Test statistic)이며 <span class="math inline">\(t=\bar{x}-\mu_0s/n\)</span>입니다. 이것이 참이고 귀무 가설을 기각한다면, 이는 <span class="math inline">\(|t|&gt;t^*\)</span>임을 의미하며, 여기서 <span class="math inline">\(t^*\)</span>는 P(tn−1⩾t⁎<span class="math inline">\()=\alpha/2\)</span>가 되도록 설정됩니다. 서 이를 확인할 수 있는데, 왼쪽 그림에서 곡선 아래 면적<span class="math inline">\((\alpha/2\)</span>와 같음)은 P(tn−1⩾t⁎<span class="math inline">\()\)</span>이고 아래쪽에서 곡선 아래 면적(기각된 귀무 가설에 대한 p-값과 같음)은 P(tn−1⩾|t|<span class="math inline">\()\)</span>입니다. (따라서 P(tn−1⩾t⁎<span class="math inline">\()=\alpha/2\)</span>인 경우 <span class="math inline">\(|t|&gt;t^*\)</span>이면 HA:μ≠<span class="math inline">\(\mu_0\)</span>를 지지하여 H0:<span class="math inline">\(\mu=\mu_0\)</span>를 기각할 것입니다. P(tn−1⩾t⁎<span class="math inline">\()=\alpha/2\)</span>라면, 이는 P(tn−1⩽t⁎<span class="math inline">\()=1-\alpha/2\)</span>임을 의미합니다. 이것이 귀무 가설을 기각하는 규칙이라면, 반대 경우로 다른 가능한 결정을 정의할 수 있습니다. 즉, P(tn−1⩽t⁎<span class="math inline">\()=1-\alpha/2\)</span>가 되도록 <span class="math inline">\(t^*\)</span>를 선택했을 때 <span class="math inline">\(|t|&lt;t^*\)</span>이면 H0:<span class="math inline">\(\mu=\mu_0\)</span>를 기각하는 데 실패할 것입니다. 가설 검정에서 계산하는 검정 통계량을 써넣음으로써 이를 좀 더 구체적으로 확장할 수 있습니다. 그렇게 하면 다음과 같은 경우 귀무 가설을 기각하는 데 실패하게 됩니다.</p>
+<section id="μ에-대한-신뢰-구간과-가설-검정" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="μ에-대한-신뢰-구간과-가설-검정"><span class="header-section-number">3.3</span> μ에 대한 신뢰 구간과 가설 검정</h3>
+<p>가설 검정과 신뢰 구간은 우리의 두 가지 핵심 통계적 추론 형태입니다. 관련된 공식들, 특히 평균에 대한 검정과 구간을 살펴보면 둘 사이에 구조적인 연결 고리가 존재함을 짐작할 수 있습니다. 신뢰 구간과 가설 검정 모두 중심 극한 정리에 근거하며, 둘 다 표본 평균 <span class="math inline">\(\bar{x}\)</span>을 포함하고 표준 오차 <span class="math inline">\(s.e.(\bar{x})=sn\)</span>를 활용합니다. 이것이 단지 우연이라고 하기에는 너무나 많은 유사점이 발견됩니다. 사실, μ에 대한 <span class="math inline">\((1-\alpha)\)</span> 100% 신뢰 구간과 하나의 특정 가설 검정 결과 사이에는 직접적인 수학적 연결 고리가 존재합니다. 바로 대립 가설이 HA:μ≠<span class="math inline">\(\mu_0\)</span>인 양측 검정의 경우입니다.</p>
+<p>가설 검정에서 우리의 목표는 대립 가설을 지지하여 귀무 가설을 기각할지(Reject) 아니면 기각하지 못할지(Fail to reject) 결정하는 것입니다. 귀무 가설을 기각하려면 <span class="math inline">\(p\)</span>-값이 유의 수준 α보다 작아야 합니다. 대립 가설 HA:μ≠<span class="math inline">\(\mu_0\)</span>의 경우, 다음과 같은 조건에서 귀무 가설을 기각함을 의미합니다.</p>
+<p>2×P(tn-1|t|)&lt;또는 P(tn-1|t|)&lt;/2</p>
+<p>여기서 t는 검정 통계량(Test statistic)이며 <span class="math inline">\(t=\bar{x}-\mu_0s/n\)</span>입니다. 이 조건이 참이고 귀무 가설을 기각한다면, 이는 <span class="math inline">\(|t|&gt;t^*\)</span>임을 뜻하며, 여기서 <span class="math inline">\(t^*\)</span>는 <span class="math inline">\(P(t_{n-1} \ge t^*) = \alpha/2\)</span>가 되도록 설정됩니다. 곡선 아래 면적<span class="math inline">\((\alpha/2\)</span>와 같음)은 <span class="math inline">\(P(t_{n-1} \ge t^*)\)</span>이고 아래쪽에서 곡선 아래 면적(기각된 귀무 가설에 대한 <span class="math inline">\(p\)</span>-값과 같음)은 <span class="math inline">\(P(t_{n-1} \ge |t|)\)</span>입니다. (따라서 <span class="math inline">\(P(t_{n-1} \ge t^*) = \alpha/2\)</span>인 경우 <span class="math inline">\(|t|&gt;t^*\)</span>이면 HA:μ≠<span class="math inline">\(\mu_0\)</span>를 지지하여 H0:<span class="math inline">\(\mu=\mu_0\)</span>를 기각합니다.) <span class="math inline">\(P(t_{n-1} \ge t^*) = \alpha/2\)</span>라면, 이는 <span class="math inline">\(P(t_{n-1} \le t^*) = 1-\alpha/2\)</span>임을 뜻합니다. 이것이 귀무 가설을 기각하는 규칙이라면, 반대 경우로 다른 가능한 결정을 정의할 수 있습니다. 즉, <span class="math inline">\(P(t_{n-1} \le t^*) = 1-\alpha/2\)</span>가 되도록 <span class="math inline">\(t^*\)</span>를 선택했을 때 <span class="math inline">\(|t|&lt;t^*\)</span>이면 H0:<span class="math inline">\(\mu=\mu_0\)</span>를 기각하는 데 실패할 것입니다. 가설 검정에서 계산하는 검정 통계량을 대입함으로써 이를 좀 더 구체적으로 확장할 수 있습니다. 그렇게 하면 다음과 같은 경우 귀무 가설을 기각하는 데 실패하게 됩니다.</p>
 <p><span class="math display">\[
-|\bar{x}-\mu_0s/n|&lt;t⁎.
-\]</span> <span class="math inline">\(\bar{x}\)</span>, s, n 값은 우리가 선택한 검정과 상관없이 연구에서 변하지 않을 것입니다. 마찬가지로 <span class="math inline">\(t^*\)</span>는 유의 수준 α를 설정하면 변하지 않을 것입니다. 사실 이러한 검정들 전반에서 변할 수 있는 유일한 것은 <span class="math inline">\(\mu_0\)</span>의 값입니다. 사실 표본과 정해진 유의 수준이 주어지면, <span class="math inline">\(\mu_0\)</span> 값이 기각으로 이어질지 기각 실패로 이어질지 결정할 수 있습니다. 위의 방정식에서 <span class="math inline">\(\mu_0\)</span>에 대해 풀면 이를 수행할 수 있습니다. 첫 번째 단계는 <span class="math inline">\(|t|&lt;t^*\)</span>라면 이는 <span class="math inline">\(-t^*&lt;t&lt;t^*\)</span>를 의미한다는 점을 인식하는 것입니다. 이를 염두에 두고 위의 방정식을 다시 쓰고 약간의 대수학을 사용하여 <span class="math inline">\(\mu_0\)</span>에 대해 풀 수 있습니다. 이는 어떤 조건 하에서(즉, 어떤 <span class="math inline">\(\mu_0\)</span> 값에 대해) 귀무 가설 기각에 실패할지를 정의할 것입니다.</p>
+|\bar{x}-\mu_0s/n|&lt;t^*.
+\]</span></p>
+<p><span class="math inline">\(\bar{x}\)</span>, s, n 값은 우리가 선택한 검정과 상관없이 연구 내내 고정된 값입니다. 마찬가지로 <span class="math inline">\(t^*\)</span>는 유의 수준 α를 설정하면 변하지 않습니다. 사실 이러한 검정들 전반에서 변할 수 있는 유일한 매개변수는 <span class="math inline">\(\mu_0\)</span>의 값뿐입니다. 즉, 표본과 정해진 유의 수준이 주어지면, <span class="math inline">\(\mu_0\)</span> 값이 기각으로 이어질지 기각 실패로 이어질지 결정할 수 있습니다. 위의 방정식에서 <span class="math inline">\(\mu_0\)</span>에 관해 풀면 이를 손쉽게 수행할 수 있습니다. 첫 번째 단계는 <span class="math inline">\(|t|&lt;t^*\)</span>라면 이는 <span class="math inline">\(-t^*&lt;t&lt;t^*\)</span>를 의미한다는 점을 파악하는 것입니다. 이를 염두에 두고 위의 방정식을 다시 쓰고 약간의 대수학을 사용하여 <span class="math inline">\(\mu_0\)</span>에 관해 풉니다. 이는 어떤 조건 하에서(즉, 어떤 <span class="math inline">\(\mu_0\)</span> 값에 대해) 귀무 가설 기각에 실패할지를 명확히 정의해 줍니다.</p>
 <p><span class="math display">\[
--t⁎&lt;\bar{x}-\mu_0s/n&lt;t⁎-t⁎sn&lt;\bar{x}-\mu_0&lt;t⁎sn-\bar{x}-t⁎sn&lt;-\mu_0&lt;-\bar{x}+t⁎sn\bar{x}-\bar{x}-t⁎sn&lt;\mu_0&lt;\bar{x}+t⁎sn.
-\]</span> 이는 <span class="math inline">\(\mu_0\)</span>가 다음 구간에 있다면 귀무 가설을 기각하는 데 실패함을 의미합니다.</p>
+-t^*&lt;\bar{x}-\mu_0s/n&lt;t^*-t^*sn&lt;\bar{x}-\mu_0&lt;t^*sn-\bar{x}-t^*sn&lt;-\mu_0&lt;-\bar{x}+t^*sn\bar{x}-\bar{x}-t^*sn&lt;\mu_0&lt;\bar{x}+t^*sn.
+\]</span></p>
+<p>이는 <span class="math inline">\(\mu_0\)</span>가 다음 구간에 위치한다면 귀무 가설을 기각하는 데 실패함을 의미합니다.</p>
 <p><span class="math display">\[
-(\bar{x}-t⁎sn,\bar{x}+t⁎sn)
-\]</span> 여기서 P(tn−1⩽t⁎<span class="math inline">\()=1-\alpha/2\)</span>가 되도록 <span class="math inline">\(t^*\)</span>를 선택합니다. 자세히 살펴보면 이 구간이 μ에 대한 우리의 $(1-)$100% 신뢰 구간임을 알 수 있을 것입니다. 이것은 우연이 아닙니다. μ에 대한 $(1-)<span class="math inline">\(100% 신뢰 구간을 생성한 다음, 동일한 α 유의 수준에서 H0:\)</span>=_0$ 대 HA:μ≠<span class="math inline">\(\mu_0\)</span>의 가설 검정을 수행하려는 경우, <span class="math inline">\(\mu_0\)</span>가 우리의 $(1-)$100% 신뢰 구간에 포함되어 있다면 귀무 가설을 기각하는 데 실패할 것입니다. 반면 <span class="math inline">\(\mu_0\)</span>가 $(1-)$100% 신뢰 구간에 포함되어 있지 않다면, α 유의 수준에서 귀무 가설을 기각할 것입니다.</p>
-<p>실제로 신뢰 구간을 계산하고 이 결과를 적용한 뒤 가설 검정을 통해 확인해 보겠습니다. 와셔(Washer)를 제조하는 공장에서 와셔 크기의 모집단 평균이 4와 어떤 식으로든 다른지 테스트하고 싶어 했던 이전 예시 [45, 46]를 떠올려 보겠습니다. 20개 와셔의 표본 평균은 3.9865였고 표본 표준 편차는 <span class="math inline">\(s=0.073\)</span>이었습니다. 95% 신뢰 구간을 생성하려면 <code>qt(p = 0.975, df = 19)</code>를 사용하여 <span class="math inline">\(t^*\)</span>가 2.093임을 알 수 있습니다. 이것과 표본 데이터를 종합하면 μ에 대한 95% 신뢰 구간은 다음과 같습니다.</p>
+(\bar{x}-t^*sn,\bar{x}+t^*sn)
+\]</span></p>
+<p>여기서 <span class="math inline">\(P(t_{n-1} \le t^*) = 1-\alpha/2\)</span>가 되도록 <span class="math inline">\(t^*\)</span>를 선택합니다. 자세히 살펴보면 이 구간이 바로 μ에 대한 우리의 <span class="math inline">\((1-\alpha)\)</span> 100% 신뢰 구간과 정확히 일치함을 알 수 있습니다. 이것은 단순한 우연이 아닙니다. μ에 대한 <span class="math inline">\((1-\alpha)\)</span> 100% 신뢰 구간을 생성한 다음, 동일한 α 유의 수준에서 H0:<span class="math inline">\(\mu=\mu_0\)</span> 대 HA:μ≠<span class="math inline">\(\mu_0\)</span>의 가설 검정을 수행하려는 경우, <span class="math inline">\(\mu_0\)</span>가 우리의 <span class="math inline">\((1-\alpha)\)</span> 100% 신뢰 구간에 포함되어 있다면 귀무 가설을 기각하는 데 실패하게 됩니다. 반면 <span class="math inline">\(\mu_0\)</span>가 <span class="math inline">\((1-\alpha)\)</span> 100% 신뢰 구간 바깥에 존재한다면, 해당 α 유의 수준에서 귀무 가설을 단호히 기각할 것입니다.</p>
+<p>실제로 신뢰 구간을 계산하고 이 결과를 적용한 뒤 가설 검정을 통해 직접 확인해 보겠습니다. 와셔(Washer)를 제조하는 공장에서 와셔 크기의 모집단 평균이 4와 의미 있게 다른지 테스트하고자 했던 이전 예시 [45, 46]를 떠올려 보십시오. 20개 와셔의 표본 평균은 3.9865였고 표본 표준 편차는 <span class="math inline">\(s=0.073\)</span>이었습니다. 95% 신뢰 구간을 생성하려면 <code>qt(p = 0.975, df = 19)</code>를 사용하여 <span class="math inline">\(t^*\)</span>가 2.093임을 도출합니다. 이것과 표본 데이터를 종합하면 μ에 대한 95% 신뢰 구간은 다음과 같습니다.</p>
 <p><span class="math display">\[
 3.9865±2.093×0.07320=(3.952,4.021).
-\]</span> 이를 염두에 두고 <span class="math inline">\(\alpha=0.05\)</span>에서 H0:<span class="math inline">\(\mu=4\)</span> 대 HA:μ≠<span class="math inline">\(4\)</span>를 테스트한다면, 95% 신뢰 구간에 대한 α 수준이 <span class="math inline">\(\alpha=0.05\)</span>이므로 단지 95% 신뢰 구간만 살펴보면 됩니다. 4는 구간 (3.952, 4.021)(우리의 μ에 대한 95% 신뢰 구간)에 포함되어 있으므로 귀무 가설을 기각하는 데 실패할 것입니다. 이전 장을 되돌아보면 이 검정에 대한 p-값이 0.4185027임을 확인했습니다. 이는 귀무 가설을 기각하는 데 실패해야 함을 분명히 의미하며, 신뢰 구간에 기반한 우리의 결론과 일치합니다.</p>
+\]</span></p>
+<p>이를 염두에 두고 <span class="math inline">\(\alpha=0.05\)</span>에서 H0:<span class="math inline">\(\mu=4\)</span> 대 HA:<span class="math inline">\(\mu \neq 4\)</span>를 테스트한다면, 95% 신뢰 구간에 대한 α 수준이 <span class="math inline">\(\alpha=0.05\)</span>이므로 단지 95% 신뢰 구간만 확인하면 충분합니다. 4는 구간 (3.952, 4.021)(우리의 μ에 대한 95% 신뢰 구간)에 포함되어 있으므로 귀무 가설을 기각하는 데 실패할 것입니다. 이전 장을 되돌아보면 이 검정에 대한 <span class="math inline">\(p\)</span>-값이 0.4185027임을 확인했습니다. 이는 귀무 가설을 기각하는 데 실패해야 함을 명확히 보여주며, 신뢰 구간에 기반한 우리의 결론과 완벽하게 일치합니다. 대규모 언어 모델(LLM)이 생성한 텍스트의 신뢰도 점수를 평가할 때도 이처럼 신뢰 구간과 가설 검정의 쌍대성을 활용하여 평가의 일관성을 검증할 수 있습니다.</p>
 </section>
-<section id="연습-문제-3" class="level3">
-<h3 class="anchored" data-anchor-id="연습-문제-3">연습 문제</h3>
-<p>영양 정보에 따르면 통밀가루에서 4.1mg의 구리가 발견될 것으로 예상됩니다. 이를 테스트하기 위해 연구자는 28개의 통밀가루 표본에 대한 데이터를 수집합니다. 그들은 구리의 표본 평균이 <span class="math inline">\(\bar{x}=4.28\)</span>이고 표본 표준 편차는 <span class="math inline">\(s=5.297\)</span>임을 발견했습니다 [53].</p>
+<section id="연습-문제-3" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="연습-문제-3"><span class="header-section-number">3.4</span> 연습 문제</h3>
+<p>영양 정보에 따르면 통밀가루에서 4.1mg의 구리가 발견될 것으로 예상됩니다. 이를 테스트하기 위해 연구자는 28개의 통밀가루 표본에 대한 데이터를 수집합니다. 분석 결과 구리의 표본 평균이 <span class="math inline">\(\bar{x}=4.28\)</span>이고 표본 표준 편차는 <span class="math inline">\(s=5.297\)</span>임을 발견했습니다 [53].</p>
 <ol start="10" type="1">
-<li>μ에 대한 90% 신뢰 구간을 계산해 보세요. <span class="math inline">\(\alpha=0.1\)</span> 수준에서 H0:<span class="math inline">\(\mu=4\)</span> 대 HA:μ≠<span class="math inline">\(4\)</span>의 검정에서 귀무 가설을 기각하시겠습니까?</li>
-<li>μ에 대한 95% 신뢰 구간을 생성했다고 해 보겠습니다. <span class="math inline">\(\alpha=0.05\)</span> 수준에서 H0:<span class="math inline">\(\mu=2\)</span> 대 HA:μ≠<span class="math inline">\(2\)</span>의 검정에서 귀무 가설을 기각하시겠습니까?</li>
-<li>μ에 대한 99% 신뢰 구간을 생성했다고 해 보겠습니다. <span class="math inline">\(\alpha=0.005\)</span> 수준에서 H0:<span class="math inline">\(\mu=4\)</span> 대 HA:μ≠<span class="math inline">\(4\)</span>의 검정에서 귀무 가설을 기각하시겠습니까?</li>
+<li>μ에 대한 90% 신뢰 구간을 계산해 보십시오. <span class="math inline">\(\alpha=0.1\)</span> 수준에서 H0:<span class="math inline">\(\mu=4\)</span> 대 HA:<span class="math inline">\(\mu \neq 4\)</span>의 검정에서 귀무 가설을 기각하시겠습니까?</li>
+<li>μ에 대한 95% 신뢰 구간을 생성했다고 가정해 보겠습니다. <span class="math inline">\(\alpha=0.05\)</span> 수준에서 H0:<span class="math inline">\(\mu=2\)</span> 대 HA:<span class="math inline">\(\mu \neq 2\)</span>의 검정에서 귀무 가설을 기각하시겠습니까?</li>
+<li>μ에 대한 99% 신뢰 구간을 생성했다고 가정해 보겠습니다. <span class="math inline">\(\alpha=0.005\)</span> 수준에서 H0:<span class="math inline">\(\mu=4\)</span> 대 HA:<span class="math inline">\(\mu \neq 4\)</span>의 검정에서 귀무 가설을 기각하시겠습니까?</li>
 </ol>
 </section>
 </section>
-<section id="구간-추정과-검정-결과를-함께-읽기" class="level2">
-<h2 class="anchored" data-anchor-id="구간-추정과-검정-결과를-함께-읽기">구간 추정과 검정 결과를 함께 읽기</h2>
-<p>단일 모수에 대한 신뢰 구간은 같은 문제에 대한 가설 검정과 밀접하게 연결됩니다. 예를 들어 양측 검정에서 유의수준이 0.05이고 95% 신뢰 구간이 귀무값을 포함하지 않는다면, 같은 자료로 수행한 양측 검정은 대체로 귀무가설을 기각합니다. 반대로 신뢰 구간이 귀무값을 포함하면 그 유의수준에서는 귀무가설을 기각하기 어렵습니다.</p>
-<p>그러나 두 절차의 목적은 다릅니다. 검정은 귀무값 하나와 데이터가 얼마나 충돌하는지 묻고, 신뢰 구간은 데이터와 양립 가능한 값들의 범위를 제시합니다. 보고서에서는 두 관점을 함께 쓰는 편이 좋습니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="fl">12.1</span>, <span class="fl">11.8</span>, <span class="fl">12.4</span>, <span class="fl">12.0</span>, <span class="fl">11.9</span>),</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mu =</span> <span class="dv">12</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">conf.level =</span> <span class="fl">0.95</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>이 출력에서 p-값은 귀무값 12와의 충돌 정도를 보여 주고, 신뢰 구간은 평균의 plausible한 범위를 보여 줍니다. 특히 교육·의료·정책 자료에서는 통계적 유의성보다 구간의 폭과 위치가 더 중요한 해석 단서를 제공할 수 있습니다.</p>
+<section id="구간-추정과-검정-결과를-함께-읽기" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="구간-추정과-검정-결과를-함께-읽기"><span class="header-section-number">4</span> 구간 추정과 검정 결과를 함께 읽기</h2>
+<p>단일 모수에 대한 신뢰 구간은 같은 문제에 대한 가설 검정과 밀접하게 연결되어 있습니다. 예를 들어 양측 검정에서 유의수준이 0.05이고 95% 신뢰 구간이 귀무값을 포함하지 않는다면, 같은 데이터로 수행한 양측 검정은 대체로 귀무가설을 기각하게 됩니다. 반대로 신뢰 구간이 귀무값을 포함하면 해당 유의수준에서는 귀무가설을 기각하기 어렵습니다.</p>
+<p>그러나 두 절차의 근본적인 목적은 다릅니다. 검정은 특정 귀무값 하나와 데이터가 얼마나 충돌하는지 평가하는 반면, 신뢰 구간은 주어진 데이터와 양립 가능한 타당한 값들의 전체 범위를 제시합니다. 실무 분석 보고서에서는 이 두 가지 관점을 함께 서술하는 편이 훨씬 권장됩니다.</p>
 </section>
-<section id="결론" class="level2">
-<h2 class="anchored" data-anchor-id="결론">결론</h2>
-<p>단일 모수에 대한 신뢰 구간은 가설 검정과 동일한 가정 및 기초 정리에서 비롯됩니다. 그 중심에는 다시 한번 데이터를 모수와 연결할 수 있게 해주는 중심 극한 정리가 있습니다. 이러한 연결은 신뢰 구간에 추가적인 용도를 가져와서, 신뢰 구간으로 테스트할 수 있게 할 뿐만 아니라 향후 연구를 위한 표본 크기를 결정할 수 있게 합니다. 이 모든 것은 신뢰 구간의 주요 용도인 모수에 대한 타당한 값의 범위를 제공하는 것 외에 추가된 것입니다. 가설 검정과 마찬가지로, 신뢰 구간 절차는 모집단 평균과 비율에 대한 구간 모두에서 일관되게 유지됩니다. 그룹들이 유사한지 확인하기 위해 그룹들을 비교하기 시작하면서 이러한 일관성이 계속되는 것을 보게 될 것입니다.</p>
+<section id="r을-활용한-실습-단일-모수-가설-검정과-신뢰-구간" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="r을-활용한-실습-단일-모수-가설-검정과-신뢰-구간"><span class="header-section-number">5</span> R을 활용한 실습: 단일 모수 가설 검정과 신뢰 구간</h2>
+<p>앞서 다룬 가설 검정과 신뢰 구간의 쌍대성을 R 코드로 확인해 보겠습니다. <code>t.test()</code> 함수는 이 두 가지 결과를 동시에 제공합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 임의의 데이터 생성</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">12.1</span>, <span class="fl">11.8</span>, <span class="fl">12.4</span>, <span class="fl">12.0</span>, <span class="fl">11.9</span>, <span class="fl">12.5</span>, <span class="fl">11.7</span>, <span class="fl">12.2</span>, <span class="fl">11.9</span>, <span class="fl">12.1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 모평균이 12인지 확인하는 양측 검정 및 95% 신뢰 구간 계산</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> sample_data,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">mu =</span> <span class="dv">12</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">conf.level =</span> <span class="fl">0.95</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 결과 출력</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  sample_data
+t = 0.74485, df = 9, p-value = 0.4754
+alternative hypothesis: true mean is not equal to 12
+95 percent confidence interval:
+ 11.87778 12.24222
+sample estimates:
+mean of x 
+    12.06 </code></pre>
+</div>
+</div>
+<p>이 출력에서 <code>p.value</code>는 귀무값(12)과의 충돌 정도를 보여주며, <code>conf.int</code>는 모평균의 타당한 범위를 제시합니다. 만약 95% 신뢰 구간 안에 12가 포함된다면, 유의수준 0.05에서 귀무가설을 기각할 수 없다는 결론과 일치합니다.</p>
+<p>또한, 모비율 추정을 위한 적정 표본 크기를 R로 직접 계산해 볼 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 표본 크기 계산 함수 정의</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>calculate_sample_size <span class="ot">&lt;-</span> <span class="cf">function</span>(margin_error, conf_level, <span class="at">p_est =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  alpha <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> conf_level</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  z_star <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> (z_star<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> p_est <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_est)) <span class="sc">/</span> margin_error<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">ceiling</span>(n)) <span class="co"># 정수로 올림</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 오차 한계 0.04, 99.5% 신뢰 수준, 사전 정보 없음(p=0.5)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>n_required <span class="ot">&lt;-</span> <span class="fu">calculate_sample_size</span>(<span class="at">margin_error =</span> <span class="fl">0.04</span>, <span class="at">conf_level =</span> <span class="fl">0.995</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"필요한 최소 표본 크기:"</span>, n_required, <span class="st">"명</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>필요한 최소 표본 크기: 1232 명</code></pre>
+</div>
+</div>
+<p>이렇게 함수를 작성해두면, 분석 과정에서 신뢰 수준이나 오차 한계 요구사항이 변경될 때마다 필요한 표본 크기를 신속하고 정확하게 재계산할 수 있습니다.</p>
+<p>이 출력에서 <span class="math inline">\(p\)</span>-값은 귀무값 12와의 충돌 정도를 직관적으로 보여주며, 신뢰 구간은 평균의 타당한(plausible) 범위를 제시합니다. 특히 현대의 의료 데이터 분석이나 정책 효과성 검증 자료에서는 단순한 통계적 유의성 여부보다 신뢰 구간의 폭과 위치가 실질적인 의사결정에 더 중요한 단서를 제공합니다.</p>
+</section>
+<section id="결론" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="결론"><span class="header-section-number">6</span> 결론</h2>
+<p>단일 모수에 대한 신뢰 구간은 가설 검정과 동일한 기본 가정 및 기초 수학적 정리에서 출발합니다. 그 중심에는 늘 데이터를 모수와 안정적으로 연결해 주는 중심 극한 정리가 자리 잡고 있습니다. 이러한 구조적 연결은 신뢰 구간에 풍부한 추가 용도를 부여하며, 단순한 타당성 범위를 넘어 가설을 기각하거나 향후 연구를 위한 최적의 표본 크기를 산출할 수 있게 돕습니다. 가설 검정과 마찬가지로, 신뢰 구간 절차는 모집단 평균과 비율에 대한 구간 모두에서 놀라운 일관성을 유지합니다. 이어지는 장에서 여러 그룹이 유사한지 비교분석하는 과정에서도 이러한 통계적 일관성이 굳건하게 이어지는 것을 확인하실 수 있습니다.</p>
 
 
 </section>
@@ -806,6 +1036,18 @@ n=(2.807)20.37(1-0.37)0.042=1147.908.
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../notes/ch13.html" class="pagination-link" aria-label="단일 모수(Single parameter)에 대한 가설 검정">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">단일 모수(Single parameter)에 대한 가설 검정</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../notes/ch15.html" class="pagination-link" aria-label="두 모수에 대한 가설 검정">
+        <span class="nav-page-text">두 모수에 대한 가설 검정</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

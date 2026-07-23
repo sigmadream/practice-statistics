@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>확률에 대한 간략한 소개</title>
+<title>확률에 대한 간략한 소개 – R과 데이터 분석 입문</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,6 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../notes/ch09.html" rel="next">
+<link href="../notes/ch07.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -136,9 +138,15 @@ window.Quarto = {
 };
 </script>
 
+<meta property="og:title" content="확률에 대한 간략한 소개 – R과 데이터 분석 입문">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="R과 데이터 분석 입문">
+<meta name="twitter:title" content="확률에 대한 간략한 소개 – R과 데이터 분석 입문">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-sidebar docked fullcontent quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -147,7 +155,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">확률에 대한 간략한 소개</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch07.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch08.html">확률에 대한 간략한 소개</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,6 +168,18 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">R과 데이터 분석 입문</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -169,56 +189,188 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 언어</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">R과 데이터 분석</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../notes/ch01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">통계학의 중요성!</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R 입문</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 수집</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 추출</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 불러오기</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">탐색적 데이터 분석</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">확률과 검증</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">탐색적 분석(실습)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch08.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">확률에 대한 간략한 소개</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">표집 분포, 또는 탐색적 분석만으로는 충분하지 않은 이유</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">가설 검정의 원리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">중심극한정리를 활용한 가설 검정 수행하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">구간 추정의 개념</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단일 모수(Single parameter)에 대한 가설 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단일 모수(Single parameter)에 대한 신뢰 구간</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 모수에 대한 가설 검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 모수에 대한 신뢰 구간</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">통계적 추론</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">확률과 추론</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">두 양적 변수에 대한 추론</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">단순 선형 회귀</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">몇가지 주제</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#무작위-현상-확률-그리고-대수의-법칙" id="toc-무작위-현상-확률-그리고-대수의-법칙" class="nav-link active" data-scroll-target="#무작위-현상-확률-그리고-대수의-법칙"><span class="header-section-number">1</span> 무작위 현상, 확률, 그리고 대수의 법칙</a></li>
+  <li><a href="#추론에서-확률의-역할은-무엇입니까" id="toc-추론에서-확률의-역할은-무엇입니까" class="nav-link" data-scroll-target="#추론에서-확률의-역할은-무엇입니까"><span class="header-section-number">2</span> 추론에서 확률의 역할은 무엇입니까?</a></li>
+  <li><a href="#확률-계산과-확률의-공리" id="toc-확률-계산과-확률의-공리" class="nav-link" data-scroll-target="#확률-계산과-확률의-공리"><span class="header-section-number">3</span> 확률 계산과 확률의 공리</a></li>
+  <li><a href="#확률-변수와-확률-분포" id="toc-확률-변수와-확률-분포" class="nav-link" data-scroll-target="#확률-변수와-확률-분포"><span class="header-section-number">4</span> 확률 변수와 확률 분포</a></li>
+  <li><a href="#이항-분포" id="toc-이항-분포" class="nav-link" data-scroll-target="#이항-분포"><span class="header-section-number">5</span> 이항 분포</a></li>
+  <li><a href="#정규-분포" id="toc-정규-분포" class="nav-link" data-scroll-target="#정규-분포"><span class="header-section-number">6</span> 정규 분포</a></li>
+  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">7</span> 연습 문제</a></li>
+  <li><a href="#이항-분포와-정규-분포-확률-계산-실습" id="toc-이항-분포와-정규-분포-확률-계산-실습" class="nav-link" data-scroll-target="#이항-분포와-정규-분포-확률-계산-실습"><span class="header-section-number">8</span> 이항 분포와 정규 분포 확률 계산 실습</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch07.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch08.html">확률에 대한 간략한 소개</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">확률에 대한 간략한 소개</h1>
 </div>
@@ -237,40 +389,39 @@ window.Quarto = {
 </header>
 
 
-<section id="서론" class="level2">
-<h2 class="anchored" data-anchor-id="서론">서론</h2>
-<p>이제 데이터를 요약할 수 있게 되었으므로, 이러한 요약을 바탕으로 통계적 추론(Statistical inference)을 사용하여 질문에 답하고자 합니다. 궁극적으로 통계적 추론을 사용하기 위해서는 확률(Probability)에 대한 기본적인 이해가 필요합니다. 이는 많은 통계적 추론이 “특정 가설이 참일 때, 우리가 더 극단적인 데이터를 관찰할 가능성은 얼마입니까?”라는 질문으로 귀결되기 때문입니다. 그 가능성을 정량화하기 위해서는 확률이 필요합니다.</p>
-<p>통계학(Statistics)과 달리, 연구 분야로서의 확률은 1600년대부터 존재해 왔습니다. 원래 많은 규칙과 정리는 도박과 관련된 문제를 해결하기 위해 설계되었으나, 초기 분야는 파스칼(Pascal), 페르마(Fermat), 베르누이(Bernoulli), 가우스(Gauss)를 포함하여 수학에서 중요한 이름들로 가득 차 있습니다.</p>
-<p>우리는 일상생활에서 가끔 확률을 접합니다. 일기 예보에서 비나 눈이 올 확률을 봅니다. 스포츠에서는 경기 전과 경기 중에 팀이 이길 확률에 대해 이야기합니다. 그리고 물론 확률의 아버지인 도박이 있으며, 크랩스, 포커, 룰렛, 블랙잭에는 배당률이 있습니다. 그럼에도 불구하고 확률과 그 이면에 있는 일반적인 개념에 대해 오해나 착각이 종종 발생합니다. (이 장에서는 확률의 기초와 통계적 추론에서 다시 다루게 될 일반적인 개념들을 소개할 것입니다. 무작위 현상(Random phenomena), 확률 변수(Random variables), 확률의 역할, 그리고 확률의 규칙에 내재된 개념부터 시작하겠습니다.</p>
-</section>
-<section id="무작위-현상-확률-그리고-대수의-법칙" class="level2">
-<h2 class="anchored" data-anchor-id="무작위-현상-확률-그리고-대수의-법칙">무작위 현상, 확률, 그리고 대수의 법칙</h2>
-<p>시작하기에 앞서, 왜 확률이 필요한지 그리고 확률이 무엇을 하는지 논의해야 합니다. 간단히 말해서, 확률은 무작위 현상을 설명하는 데 도움을 줍니다. 무작위 현상(Random phenomenon)은 결과를 미리 알 수 없는 모든 사건을 말합니다. 이는 동전 던지기부터 개인의 키에 이르기까지 무엇이든 될 수 있습니다. 사건의 결과를 알 수 없는 한, 그것은 무작위 현상에 해당합니다. 그리고 확률(Probability)은 무작위 현상의 결과에 대한 가능성을 정량화하는 방법론입니다.</p>
-<p>확률에는 주관적 확률(Subjective probability), 고전적 확률(Classical probability), 빈도주의적 확률(Frequentist probability)을 포함한 여러 해석이 있습니다. 주관적 확률은 결과가 발생할 가능성에 대한 개인적인 믿음에 근거합니다. 이 공식에서 확률은 당연히 주관적이며 개인마다 다릅니다. 이 해석에는 흥미로운 결과가 많지만, 이 교재에서는 다루지 않을 것입니다.</p>
-<p>논의할 확률의 두 번째 해석은 고전적 확률입니다. 고전적 확률에서 특정 사건의 확률은 해당 사건에 속하는 가능한 결과의 비율입니다. 고전적 확률은 단순한 상황에서 유용하지만(나중에 확률의 규칙을 논의할 때 이에 대해 이야기할 것입니다), 각 가능한 결과가 발생할 확률이 동일하다는 가정에 의해 제한됩니다. 이는 실제로는 드문 경우이므로, 그러한 가정이 없는 마지막 확률 해석으로 이어집니다.</p>
-<p>확률의 일반적인 해석은 빈도주의적 확률 모델입니다. 이 해석의 일반적인 개념은 무작위 현상을 아주 많이 반복하면, 사건이 발생할 실제 확률에 점점 더 가까워진다는 것입니다. 이는 때때로 확률에 대한 장기적 비율 관점(Long-run proportion view)이라고도 불립니다.</p>
-<p>동전을 던져 앞면이 나올 확률을 알고 싶다고 가정해 보겠습니다. 동전이 공정하다고 가정하면, 앞면이 나올 확률은 0.5여야 합니다. 동전을 반복해서 던지면, 앞면의 비율이 0.5에 점점 더 가까워져야 합니다.</p>
-<p>왜 이러한 장기적 확률 관점이 작동할까요? 그 이유는 대수의 법칙(Law of Large Numbers)이라는 통계적 정리 때문입니다. 이 법칙은 표본 크기가 커질수록(즉, <span class="math inline">\(n \to \infty\)</span>), 우리가 취하는 모든 표본의 표본 평균(Sample mean) <span class="math inline">\(\bar{x}\)</span>이 평균(Mean) μ의 참값(True value)으로 수렴한다는 것을 명시합니다. 마찬가지로 표본 크기가 커질수록 표본 비율(Sample proportion) <span class="math inline">\(\hat{p}\)</span>은 비율 p의 참값으로 수렴할 것입니다. 수학적으로는 다음과 같이 쓸 수 있습니다.</p>
+<blockquote class="blockquote">
+<p>데이터 요약 방법을 익혔으므로, 이제 이러한 요약 수치를 바탕으로 통계적 추론(Statistical inference)을 활용해 주어진 질문에 답해 보겠습니다. 통계적 추론을 올바르게 수행하려면 확률(Probability)에 대한 기본적인 이해가 필수적입니다. 많은 통계적 추론 과정이 결국 “특정 가설이 참일 때, 우리가 이보다 더 극단적인 데이터를 관찰할 가능성은 얼마입니까?”라는 질문으로 귀결되기 때문입니다. 바로 그 가능성을 정량화하기 위해 확률이 필요합니다.</p>
+</blockquote>
+<p>확률론은 현대 통계학과 달리 1600년대부터 학문적 토대를 다져왔습니다. 초기에는 도박과 관련된 문제를 해결하기 위해 여러 규칙과 정리가 고안되었으나, 파스칼(Pascal), 페르마(Fermat), 베르누이(Bernoulli), 가우스(Gauss) 등 수학사에서 중요한 학자들이 참여하며 분야가 크게 발전했습니다.</p>
+<p>우리는 일상에서 흔히 확률을 접합니다. 일기 예보에서 비나 눈이 올 확률을 확인하고, 스포츠 경기 전후로 특정 팀의 승리 확률을 논합니다. 물론 확률론의 기원이라 할 수 있는 도박에서도 크랩스, 포커, 룰렛, 블랙잭의 배당률 형태로 확률을 마주합니다. 그럼에도 불구하고 확률과 그 기저에 있는 일반적인 개념에 관해서는 종종 오해가 발생합니다. 본 장에서는 통계적 추론에서 다시 다루게 될 확률의 기초와 핵심 개념들을 소개하겠습니다. 무작위 현상(Random phenomena), 확률 변수(Random variables), 확률의 역할, 그리고 확률의 규칙에 내재된 개념부터 차례로 살펴보겠습니다.</p>
+<section id="무작위-현상-확률-그리고-대수의-법칙" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="무작위-현상-확률-그리고-대수의-법칙"><span class="header-section-number">1</span> 무작위 현상, 확률, 그리고 대수의 법칙</h2>
+<p>본격적인 논의에 앞서, 확률이 왜 필요하며 어떤 역할을 하는지 짚고 넘어가야 합니다. 간단히 말해, 확률은 무작위 현상을 설명하는 데 유용합니다. 무작위 현상(Random phenomenon)이란 결과를 미리 알 수 없는 모든 사건을 의미합니다. 동전 던지기부터 개인의 키, 혹은 최근 생성형 AI가 특정 프롬프트에 대해 어떤 단어를 다음 토큰으로 예측할지에 이르기까지 그 범위는 매우 넓습니다. 사건의 결과를 미리 확정할 수 없다면 그것은 무작위 현상입니다. 그리고 확률(Probability)은 이러한 무작위 현상의 결과가 나타날 가능성을 정량화하는 방법론입니다.</p>
+<p>확률을 해석하는 관점에는 주관적 확률(Subjective probability), 고전적 확률(Classical probability), 빈도주의적 확률(Frequentist probability) 등 여러 가지가 있습니다. 주관적 확률은 결과 발생 가능성에 대한 개인의 주관적인 믿음에 근거합니다. 이 관점에서는 확률이 사람마다 다르게 평가될 수 있습니다. 흥미로운 철학적 논의가 많지만, 본 교재에서는 깊이 다루지 않겠습니다.</p>
+<p>두 번째는 고전적 확률입니다. 고전적 확률에서 특정 사건의 확률은 그 사건에 속하는 가능한 결과들의 비율로 정의됩니다. 구조가 단순한 상황에서는 매우 유용하지만, 가능한 모든 결과가 발생할 확률이 동일하다는 가정을 전제로 한다는 한계가 있습니다. 현실에서는 이러한 가정이 성립하기 어려운 경우가 많으므로, 이 가정을 요구하지 않는 빈도주의적 확률 해석이 등장하게 됩니다.</p>
+<p>가장 널리 쓰이는 해석은 빈도주의적 확률 모델입니다. 이 관점의 핵심은 무작위 현상을 무수히 반복하면, 사건 발생 비율이 실제 참 확률에 점점 더 가까워진다는 것입니다. 이를 확률에 대한 장기적 비율 관점(Long-run proportion view)이라고도 부릅니다.</p>
+<p>동전을 던져 앞면이 나올 확률을 알고 싶다고 가정해 보겠습니다. 동전이 공정하다면 앞면이 나올 확률은 0.5여야 합니다. 동전을 반복해서 계속 던지면, 앞면이 나온 횟수의 비율은 결국 0.5에 수렴할 것입니다.</p>
+<p>이러한 장기적 비율 관점이 성립하는 이유는 통계학의 대수의 법칙(Law of Large Numbers) 때문입니다. 이 법칙은 표본 크기가 커질수록(즉, <span class="math inline">\(n \to \infty\)</span>), 표본 평균(Sample mean) <span class="math inline">\(\bar{x}\)</span>가 실제 모평균(Mean) <span class="math inline">\(\mu\)</span>에 수렴한다는 것을 의미합니다. 마찬가지로 표본 크기가 커질수록 표본 비율(Sample proportion) <span class="math inline">\(\hat{p}\)</span> 역시 실제 비율 <span class="math inline">\(p\)</span>에 수렴합니다. 수학적으로는 다음과 같이 표현합니다.</p>
 <p><span class="math display">\[
 \lim_{n\to\infty} \bar{x} = \mu \quad \lim_{n\to\infty} \hat{p} = p
 \]</span></p>
-<p>예를 들어, 공정한 6면체 주사위를 굴려 어떤 숫자가 나올 확률은 1/6입니다. 따라서 표본 크기가 무한대로 감에 따라 3이 나올 비율은 1/6으로 수렴할 것입니다.</p>
+<p>예를 들어, 공정한 6면체 주사위를 굴려 특정 숫자가 나올 확률은 1/6입니다. 굴리는 횟수가 무한대로 커지면 3이 나올 비율 역시 1/6에 수렴합니다.</p>
 </section>
-<section id="추론에서-확률의-역할은-무엇입니까" class="level2">
-<h2 class="anchored" data-anchor-id="추론에서-확률의-역할은-무엇입니까">추론에서 확률의 역할은 무엇입니까?</h2>
-<p>우리는 이제 확률이 무엇이며 일반적으로 어떻게 도움이 되는지 알고 있습니다. 그러나 우리가 관심을 갖는 것은 통계적 추론에서 확률의 역할을 정의하는 것입니다. 무작위 현상을 설명함으로써 확률은 불확실성을 측정하는 데 도움을 줍니다. 달리 말하면, 확률은 추론을 통해 내린 결론에 대해 우리가 얼마나 확신하는지 정량화하는 데 도움을 줄 수 있습니다.</p>
-<p>다음 시나리오를 생각해 보세요. 여러분은 상대방과 각각 5달러를 걸고 게임을 합니다. 상대방이 주사위 하나를 굴려 6이 나오면 상대방이 내기에서 이깁니다. 그렇지 않으면 여러분이 이깁니다. 일반적으로 이 게임은 상대방보다 5배 더 자주 이겨야 하므로 여러분에게 유리한 게임처럼 보입니다. 그런데 상대방이 5번 연속으로 6을 던져 25달러를 땄다고 가정해 보겠습니다. 여러분은 대개 어떻게 생각하실 수 있을까요? 두 번 혹은 세 번 연속으로 6이 나온 후에는 상대방이 정말 운이 좋았다고 생각할 수도 있습니다. 다섯 번째 연속으로 6이 나올 때쯤이면, 상대방이 부정행위를 했거나 주사위가 공정하지 않았거나 둘 다라고 생각할 것입니다. 그렇게 생각하는 것이 근거 없는 것은 아닙니다. 주사위가 공정하고 상대방이 부정행위를 하지 않았다면, 5번 연속으로 6이 나올 확률은 1/7776으로 희박한 사건입니다.</p>
-<p>비슷한 질문으로, 여러분이 공정하다고 가정하는 동전을 20번 던져 앞면이 나오는 횟수를 센다고 가정해 보겠습니다. 동전이 공정하다면 10번의 앞면이 나올 것으로 예상할 것입니다. 20번의 던지기 중 12번의 앞면이 나왔다면, 동전이 불공정하다고 의심하기 시작할 수 있을까요? 14번은 어떨까요? 동전이 불공정하다고 의심하기 시작하려면 몇 번의 앞면을 보아야 할까요? 이것이 통계적 추론의 일반적인 개념입니다. 즉, 세상의 특정 상태를 가정하고, 데이터를 수집하며, 그 데이터가 여러분의 가정이 틀렸다고 생각하게 만드는지 고려하는 것입니다. 확률은 이를 정량화하는 데 도움을 줄 것이며, 이후 장에서 이 주제에 대해 더 자세히 다루겠습니다.</p>
+<section id="추론에서-확률의-역할은-무엇입니까" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="추론에서-확률의-역할은-무엇입니까"><span class="header-section-number">2</span> 추론에서 확률의 역할은 무엇입니까?</h2>
+<p>이제 확률의 정의와 일반적인 쓰임새를 알게 되었습니다. 그렇다면 통계적 추론에서 확률은 어떤 역할을 할까요? 확률은 무작위 현상을 설명함으로써 불확실성을 정량화하는 데 도움을 줍니다. 2025년 현재 AI가 환각(Hallucination) 없이 정확한 답변을 생성할 가능성을 평가할 때처럼, 확률은 우리가 내린 결론에 대해 얼마나 확신할 수 있는지를 수치로 나타냅니다.</p>
+<p>다음 상황을 상상해 보십시오. 상대방과 각각 5달러를 걸고 게임을 합니다. 상대방이 주사위를 굴려 6이 나오면 그가 돈을 가져가고, 다른 숫자가 나오면 여러분이 이깁니다. 일반적으로는 여러분이 이길 확률이 5배 높으므로 매우 유리한 게임입니다. 그런데 상대방이 5번 연속으로 6을 던져 25달러를 따냈다고 가정해 보겠습니다. 두세 번 연속 6이 나왔을 때는 그저 운이 좋았다고 생각할 수 있습니다. 하지만 다섯 번 연속이라면 주사위가 조작되었거나 상대방이 속임수를 썼다고 의심하게 될 것입니다. 이러한 의심은 합리적입니다. 공정한 주사위와 정당한 게임 환경에서 5번 연속 6이 나올 확률은 1/7776으로, 극히 희박한 사건이기 때문입니다.</p>
+<p>비슷한 예로, 공정하다고 믿는 동전을 20번 던져 앞면이 나오는 횟수를 세어 보겠습니다. 완전히 공정하다면 앞면이 10번 나올 것으로 예상합니다. 그런데 12번이 나왔다면 어떨까요? 혹은 14번이라면 동전이 불공정하다고 의심할 수 있을까요? 앞면이 몇 번 이상 나와야 의심이 확신으로 바뀔까요? 이것이 바로 통계적 추론의 핵심 논리입니다. 즉, 세상의 특정 상태를 가정하고, 데이터를 수집한 뒤, 그 데이터가 애초의 가정을 기각할 만큼 충분히 극단적인지 평가하는 것입니다. 확률은 이 판단 과정을 수치화해 주며, 이후 장에서 더욱 자세히 다루겠습니다.</p>
 </section>
-<section id="확률-계산과-확률의-공리" class="level2">
-<h2 class="anchored" data-anchor-id="확률-계산과-확률의-공리">확률 계산과 확률의 공리</h2>
-<p>확률을 논의할 때, 우리는 실제 무작위 현상에 대해 어떤 결과(Outcome)가 발생할 가능성을 논의하고 있는 것입니다. 하지만 그 가능성을 실제로 계산하려면, 해당 무작위 현상에 대한 모든 가능한 결과의 전체 목록을 알아야 합니다. 무작위 현상에 대한 모든 결과의 전체 목록을 표본 공간(Sample space)이라고 하며, 보통 S로 표기합니다. 예를 들어, 동전을 단 한 번 던진다면 표본 공간은 앞면과 뒷면, 즉 <span class="math inline">\(S=\{H, T\}\)</span>가 됩니다. 이를 동전을 두 번 던지는 것으로 확장하면, 표본 공간은 두 번 모두 앞면, 두 번 모두 뒷면, 앞면 후 뒷면, 뒷면 후 앞면, 즉 <span class="math inline">\(S=\{HH, HT, TH, TT\}\)</span>가 됩니다. 마찬가지로 주사위 두 개를 굴려 그 결과를 합산한다면, 표본 공간은 <span class="math inline">\(S=\{2, 3, 4, \dots, 10, 11, 12\}\)</span>가 됩니다.</p>
-<p>무작위 현상에 대한 모든 가능성을 나열한 후에는, 임의의 사건(Event)의 확률을 고려할 수 있습니다. 사건은 표본 공간의 임의의 부분 집합입니다. 종종 이러한 사건은 대문자 라틴 문자(A, B 등)로 표기됩니다. 예를 들어, 동전을 두 번 던지는 무작위 현상(<span class="math inline">\(S=\{HH, HT, TH, TT\}\)</span>)에 대해 고려할 수 있는 사건은 두 번의 던지기 중 정확히 한 번의 앞면이 나타나는 사건(<span class="math inline">\(A=\{HT, TH\}\)</span>) 또는 두 번의 던지기 중 적어도 한 번의 뒷면이 나타나는 사건(<span class="math inline">\(A=\{TH, HT, TT\}\)</span>) 등이 있습니다.</p>
-<p>고전적 확률에서 어떤 사건 A의 확률을 계산할 때, 우리는 표본 공간 S의 각 개별 결과가 발생할 확률이 동일하다고 가정합니다. 이 경우 사건 A가 발생할 확률은 A의 결과 수를 S의 결과 수로 나눈 값입니다. 즉,</p>
+<section id="확률-계산과-확률의-공리" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="확률-계산과-확률의-공리"><span class="header-section-number">3</span> 확률 계산과 확률의 공리</h2>
+<p>확률을 논할 때는 실제 무작위 현상에서 특정 결과(Outcome)가 발생할 가능성을 계산하는 과정이 수반됩니다. 가능성을 정확히 계산하려면, 해당 무작위 현상에서 나타날 수 있는 모든 결과의 전체 목록을 파악해야 합니다. 이 전체 목록을 표본 공간(Sample space)이라고 하며, 보통 <span class="math inline">\(S\)</span>로 표기합니다. 예를 들어 동전을 한 번 던질 때 표본 공간은 앞면과 뒷면, 즉 <span class="math inline">\(S=\{H, T\}\)</span>입니다. 동전을 두 번 던진다면 표본 공간은 <span class="math inline">\(S=\{HH, HT, TH, TT\}\)</span>로 확장됩니다. 마찬가지로 주사위 두 개를 굴려 그 합을 관찰한다면 표본 공간은 <span class="math inline">\(S=\{2, 3, 4, \dots, 10, 11, 12\}\)</span>가 됩니다.</p>
+<p>모든 가능성을 나열하고 나면, 임의의 사건(Event)에 대한 확률을 계산할 수 있습니다. 사건은 표본 공간의 부분 집합을 의미하며, 주로 대문자 알파벳(A, B 등)으로 표기합니다. 동전을 두 번 던지는 현상(<span class="math inline">\(S=\{HH, HT, TH, TT\}\)</span>)에서, 앞면이 정확히 한 번 나오는 사건은 <span class="math inline">\(A=\{HT, TH\}\)</span>가 되며, 적어도 한 번 뒷면이 나오는 사건은 <span class="math inline">\(B=\{TH, HT, TT\}\)</span>가 됩니다.</p>
+<p>고전적 확률에서는 표본 공간 <span class="math inline">\(S\)</span> 내의 각 개별 결과가 동일한 발생 확률을 가진다고 가정합니다. 이때 사건 <span class="math inline">\(A\)</span>가 일어날 확률은 <span class="math inline">\(A\)</span>에 속한 결과의 수를 <span class="math inline">\(S\)</span>의 전체 결과 수로 나눈 값입니다. 즉,</p>
 <p><span class="math display">\[
 P(A) = \frac{\text{# of outcomes in } A}{\text{# of outcomes in } S}
 \]</span></p>
-<p>주사위 두 개를 굴려 합산하는 예시(본질적으로 크랩스라는 도박 게임)를 다시 생각해 보세요. 첫 번째 주사위와 두 번째 주사위의 조합은 총 36가지이며, 아래 표에 첫 번째 주사위는 행으로, 두 번째 주사위는 열로 정의되어 있습니다.</p>
+<p>두 주사위를 굴려 합을 구하는 크랩스 게임의 예로 돌아가 보겠습니다. 첫 번째 주사위와 두 번째 주사위의 조합은 총 36가지이며, 아래 표에 모든 경우의 수가 정리되어 있습니다.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -340,79 +491,98 @@ P(A) = \frac{\text{# of outcomes in } A}{\text{# of outcomes in } S}
 </tr>
 </tbody>
 </table>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/B9780128207888000201/t0010.png" class="img-fluid figure-img"></p>
-<figcaption>이미지</figcaption>
-</figure>
-</div>
-<p>주사위가 공정하다고 가정할 때 이 36가지 결과 각각이 발생할 확률은 동일합니다. 이는 이 게임을 고전적 확률을 연습할 기회로 만듭니다. 우리가 7 또는 11이 나오는 사건 A에 관심이 있다고 가정해 보겠습니다. 격자에는 7 또는 11이 8개 있으므로, 사건 A가 발생할 확률은 <span class="math inline">\(P(A) = 8/36\)</span> 즉 0.2222입니다. 이제 우리가 2, 3, 또는 12가 나오는 사건 B의 확률을 알고 싶다고 가정해 보겠습니다. 2, 3, 또는 12는 4개이므로 <span class="math inline">\(P(B) = 4/36 = 0.1111\)</span>이 됩니다.</p>
-<p>때때로 우리는 어떤 사건 A가 발생하는 것보다 발생하지 않을 확률에 더 관심이 있습니다. 이 사건, 즉 A가 발생하지 않는 사건을 A의 여사건(Complement) 또는 <span class="math inline">\(A^C\)</span>라고 합니다. 여사건 A는 표본 공간 S의 요소 중 A에 속하지 않는 모든 요소로 구성됩니다.</p>
-<p>가능한 숫자가 1부터 3까지인 공 두 개를 뽑는 간단한 복권을 운영한다고 가정해 보겠습니다. 표본 공간은 <span class="math inline">\(S=\{11, 12, 13, 21, 22, 23, 31, 32, 33\}\)</span>가 될 것입니다. 만약 사건 A가 당첨 조합에 적어도 하나의 2가 포함되는 경우라면, <span class="math inline">\(A^C\)</span>는 무엇입니까? <span class="math inline">\(A^C=\{11, 13, 31, 33\}\)</span>가 됩니다.</p>
-<p>A와 <span class="math inline">\(A^C\)</span>를 합치면 전체 표본 공간 S를 얻게 된다는 것을 알 수 있습니다. 이를 인지하면, 1933년에 확률의 공리를 정립한 러시아의 확률학자 안드레이 콜모고로프(Andrey Kolmogorov)의 이름을 딴 확률의 공리(Axioms of Probability) 또는 콜모고로프 공리(Kolmogorov Axioms)라고 불리는 확률의 기본 규칙을 정의할 수 있습니다.</p>
+<p>주사위가 공정하다면 36가지 결과 각각이 나타날 확률은 같습니다. 이를 통해 고전적 확률을 쉽게 연습할 수 있습니다. 7 또는 11이 나오는 사건을 <span class="math inline">\(A\)</span>라고 할 때, 표에서 7이나 11에 해당하는 칸은 총 8개입니다. 따라서 사건 <span class="math inline">\(A\)</span>가 발생할 확률은 <span class="math inline">\(P(A) = 8/36 \approx 0.2222\)</span>입니다. 2, 3, 12가 나오는 사건을 <span class="math inline">\(B\)</span>라고 한다면, 해당 칸은 4개이므로 <span class="math inline">\(P(B) = 4/36 \approx 0.1111\)</span>이 됩니다.</p>
+<p>때로는 특정 사건 <span class="math inline">\(A\)</span>가 일어날 확률보다, 일어나지 않을 확률에 더 관심이 생깁니다. 사건 <span class="math inline">\(A\)</span>가 발생하지 않는 사건을 <span class="math inline">\(A\)</span>의 여사건(Complement)이라고 하며 <span class="math inline">\(A^C\)</span>로 표기합니다. 여사건 <span class="math inline">\(A^C\)</span>는 표본 공간 <span class="math inline">\(S\)</span> 중에서 <span class="math inline">\(A\)</span>에 속하지 않는 모든 결과들로 구성됩니다.</p>
+<p>숫자 1부터 3까지 적힌 공을 두 번 뽑는 단순한 복권을 생각해 보겠습니다. 표본 공간은 <span class="math inline">\(S=\{11, 12, 13, 21, 22, 23, 31, 32, 33\}\)</span>입니다. 당첨 조합에 2가 적어도 하나 포함되는 사건을 <span class="math inline">\(A\)</span>라고 하면, 여사건 <span class="math inline">\(A^C\)</span>는 2가 전혀 포함되지 않는 경우이므로 <span class="math inline">\(A^C=\{11, 13, 31, 33\}\)</span>가 됩니다.</p>
+<p>사건 <span class="math inline">\(A\)</span>와 여사건 <span class="math inline">\(A^C\)</span>를 합치면 항상 전체 표본 공간 <span class="math inline">\(S\)</span>가 완성됩니다. 이 원리를 확장하면 1933년 러시아의 수학자 안드레이 콜모고로프(Andrey Kolmogorov)가 정립한 확률의 공리(Axioms of Probability)를 정의할 수 있습니다.</p>
 <ol type="1">
 <li><span class="math inline">\(P(A) \ge 0\)</span></li>
 <li><span class="math inline">\(P(S) = 1\)</span></li>
-<li>사건 A와 B가 서로소 집합(Disjoint sets)인 경우(즉, 겹치는 부분이 없는 경우), <span class="math inline">\(P(A \text{ or } B) = P(A) + P(B)\)</span>입니다.</li>
+<li>두 사건 <span class="math inline">\(A\)</span>와 <span class="math inline">\(B\)</span>가 서로소 집합(Disjoint sets, 즉 겹치는 결과가 없는 사건)인 경우, <span class="math inline">\(P(A \text{ or } B) = P(A) + P(B)\)</span>입니다.</li>
 </ol>
-<p>이러한 공리는 고려되는 확률의 패러다임에 관계없이 유지됩니다. 또한 이러한 결과로부터 추가적인 속성을 도출할 수 있습니다.</p>
-<ul>
-<li>• <span class="math inline">\(P(A^C) = 1 - P(A)\)</span>이며, 이는 여사건 규칙(Complement rule)으로 알려져 있습니다.</li>
-<li>• 사건 A가 사건 B의 모든 요소를 포함하면, <span class="math inline">\(P(A) \ge P(B)\)</span>입니다.</li>
-<li>• A가 공집합(요소가 없는 사건)이면, <span class="math inline">\(P(A) = 0\)</span>입니다.</li>
-</ul>
+<p>이 공리들은 어떤 확률 패러다임을 따르더라도 항상 성립합니다. 또한 이로부터 다음과 같은 추가적인 성질들을 도출할 수 있습니다.</p>
+<ol type="1">
+<li><span class="math inline">\(P(A^C) = 1 - P(A)\)</span> (여사건의 규칙)</li>
+<li>사건 <span class="math inline">\(A\)</span>가 사건 <span class="math inline">\(B\)</span>의 모든 결과를 포함한다면, <span class="math inline">\(P(A) \ge P(B)\)</span></li>
+<li><span class="math inline">\(A\)</span>가 공집합(어떤 결과도 포함하지 않는 불가능한 사건)이라면, <span class="math inline">\(P(A) = 0\)</span></li>
+</ol>
 </section>
-<section id="확률-변수와-확률-분포" class="level2">
-<h2 class="anchored" data-anchor-id="확률-변수와-확률-분포">확률 변수와 확률 분포</h2>
-<p>확률의 기초에 대해 이야기했지만, 이제 확률의 또 다른 핵심 개념에 대해 이야기하고자 합니다. 지금까지는 사건과 무작위 현상의 관점에서 확률을 이야기해 왔습니다. 이러한 현상은 동전 던지기(앞면/뒷면)나 게임 결과(승리/패배)와 같이 많은 경우 범주형 값(Categorical values)으로 정의됩니다. 일반적으로 수학은 수치 값을 다루는 것을 좋아하므로, 범주형 결과나 수치 결과에 관계없이 무작위 현상을 정말로 일반화하기 위한 또 다른 정의가 필요합니다.</p>
-<p>여기서 확률 변수가 등장합니다. 확률 변수(Random variable)는 무작위 현상에 대한 수치적 측정 또는 요약입니다. 주사위 굴리기와 같이 수치적 결과를 갖는 무작위 현상의 경우, 확률 변수는 무작위 현상과 동일할 수 있습니다. 그러나 범주형 무작위 현상의 경우 약간의 조정이 필요합니다. 표본 공간이 <span class="math inline">\(S=\{HH, HT, TH, TT\}\)</span>인 동전 두 번 던지기의 결과를 보는 대신, 두 번의 동전 던지기에서 나타난 앞면의 수라는 수치적 측정을 만들 수 있습니다. 이것은 범주형 현상을 수치적 요약으로 변환하여 다루기 쉽게 만듭니다.</p>
-<p>일반적으로 우리가 정의하는 확률 변수는 대문자 X, 때로는 Y 또는 Z로 표기하며, 확률 변수의 관측값은 소문자 x, y, 또는 z를 사용하여 표기합니다.</p>
-<p>0, 00, 그리고 1부터 36까지 번호가 매겨진 38가지 옵션이 있는 바퀴를 돌리는 룰렛 게임을 한다고 가정해 보겠습니다. 다섯 번의 회전에서 나오는 짝수의 수에 관심이 있다고 가정해 보겠습니다. 우리의 확률 변수는 X=다섯 번의 회전 중 짝수의 수가 될 것입니다. 이제 5, 11, 6, 21, 32라는 다섯 번의 회전 결과를 관찰했다면, 확률 변수의 관측값은 <span class="math inline">\(x=2\)</span>가 됩니다.</p>
-<p>확률 변수에는 이산형과 연속형의 두 가지 유형이 있습니다. 이산 확률 변수(Discrete random variable)는 결과의 수를 셀 수 있는 변수입니다. 간단히 말해, 확률 변수에 대한 모든 단일 결과를 나열할 수 있다면 그것은 이산 확률 변수입니다. 앞서 언급한 동전 두 번 던지기에서 앞면의 수라는 예시는 가능한 결과가 0, 1, 또는 2개의 앞면이므로 이산형입니다. 이산 확률 변수의 또 다른 예는 첫 번째 앞면이 나올 때까지 동전을 던져야 하는 횟수입니다. 한 번, 두 번, 혹은 이론적으로는 무한한 횟수의 던지기가 필요할 수 있습니다. 하지만 우리는 그것들을 모두 나열할 수 있습니다: <span class="math inline">\(1, 2, 3, \dots\)</span>.</p>
-<p>연속 확률 변수(Continuous random variable)는 결과의 수를 셀 수 없는 확률 변수로, 모든 결과를 나열할 수 없음을 의미합니다. 예를 들어, 확률 변수가 1마일을 달리는 데 걸리는 시간이라고 가정해 보겠습니다. 정확한 시간을 측정할 수 있다면, 이는 이론적으로 0에서 무한대 사이의 어떤 숫자라도 될 수 있습니다. 이러한 숫자 각각을 적는 것은 불가능하므로, 이것은 연속 확률 변수가 됩니다.</p>
-<p>사건에 대해 했던 것처럼 이러한 확률 변수에 대한 확률을 계산할 수 있습니다. 그러나 확률 변수는 범주형 현상과 수치적 현상 전반에 걸쳐 더 보편적으로 정의되므로, 특히 확률 분포를 통해 확률의 요약을 얻기가 더 쉽습니다. 확률 분포(Probability distribution)는 확률 변수의 모든 가능한 값과 그 값이 발생할 확률을 제공하는 확률 변수의 요약입니다. 이러한 확률은 함수에 의해 정의되거나 연구자에 의해 지정될 수 있습니다. 종종 확률 분포가 함수에 의해 정의될 때, 확률 분포는 매개변수(Parameters)라고 불리는 것을 갖습니다. 이러한 매개변수는 확률 분포가 어떻게 보이는지, 따라서 각 결과의 확률이 무엇인지에 영향을 미치는 값입니다.</p>
-<p>무한히 많은 가능한 확률 분포가 있지만, 일반적인 두 가지 확률 분포인 이항 분포와 정규 분포에 대해 간략히 이야기해 보겠습니다.</p>
+<section id="확률-변수와-확률-분포" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="확률-변수와-확률-분포"><span class="header-section-number">4</span> 확률 변수와 확률 분포</h2>
+<p>지금까지는 개별 사건과 범주형 무작위 현상(앞면/뒷면, 승리/패배 등)을 중심으로 확률을 다루었습니다. 하지만 수학적 분석을 위해서는 현상을 수치화하는 과정이 필요합니다. 범주형 현상이든 수치적 현상이든 무작위 현상을 통합적으로 다루기 위해 새로운 개념을 도입해야 합니다.</p>
+<p>이때 등장하는 것이 확률 변수(Random variable)입니다. 확률 변수는 무작위 현상의 결과를 수치적으로 나타내거나 요약한 것입니다. 주사위 눈의 수처럼 이미 결과가 수치인 현상은 확률 변수 자체로 쉽게 사용할 수 있습니다. 반면 동전 던지기 같은 범주형 현상은 변환이 필요합니다. 동전을 두 번 던지는 현상에서 단순히 표본 공간 <span class="math inline">\(S=\{HH, HT, TH, TT\}\)</span>를 관찰하는 대신, ’나온 앞면의 수’라는 수치적 요약을 정의할 수 있습니다. 이렇게 하면 범주형 현상이 수치적 확률 변수로 변환되어 분석이 훨씬 수월해집니다.</p>
+<p>일반적으로 확률 변수는 대문자 <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, <span class="math inline">\(Z\)</span>로 표기하며, 그 확률 변수가 실제로 취한 관측값은 소문자 <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, <span class="math inline">\(z\)</span>로 표기합니다.</p>
+<p>0, 00, 그리고 1부터 36까지 번호가 매겨진 38칸 룰렛 게임을 상상해 보십시오. 룰렛을 다섯 번 돌려 짝수가 몇 번 나오는지 관심을 가진다면, 확률 변수 <span class="math inline">\(X\)</span>는 ’다섯 번의 회전 중 짝수가 나온 횟수’로 정의됩니다. 실제 결과가 5, 11, 6, 21, 32였다면 짝수는 6과 32, 두 번 나왔으므로 관측값은 <span class="math inline">\(x=2\)</span>가 됩니다.</p>
+<p>확률 변수에는 이산형(Discrete)과 연속형(Continuous)의 두 가지 유형이 있습니다. 이산 확률 변수는 결과의 수를 셀 수 있는 변수입니다. 동전 두 번 던지기에서 앞면의 수는 0, 1, 2로 명확히 나열할 수 있으므로 이산형입니다. 첫 번째 앞면이 나올 때까지 동전을 던진 횟수 역시 1, 2, 3, … 과 같이 이론적으로는 무한하지만 하나씩 셀 수 있으므로 이산 확률 변수에 해당합니다.</p>
+<p>반면 연속 확률 변수는 결과의 수를 개별적으로 셀 수 없는 변수입니다. 1마일을 달리는 데 걸리는 시간을 측정한다고 할 때, 측정 정밀도를 무한히 높이면 이론적으로 0 이상의 모든 실수가 가능합니다. 이 값들을 하나씩 나열하는 것은 불가능하므로 연속 확률 변수로 분류합니다. 오늘날 인공지능이 생성한 음성의 주파수 파형을 분석할 때도 연속 확률 변수의 개념이 광범위하게 활용됩니다.</p>
+<p>확률 변수 역시 사건처럼 확률을 계산할 수 있습니다. 특히 확률 분포(Probability distribution)를 이용하면 확률 변수의 특성을 쉽게 파악할 수 있습니다. 확률 분포는 확률 변수가 가질 수 있는 모든 값과 그 값이 나타날 확률을 연결해 주는 함수 또는 표입니다. 분포를 정의하는 함수는 대개 매개변수(Parameters)를 가집니다. 매개변수의 값에 따라 분포의 형태가 결정되고 각 결과의 확률이 달라집니다.</p>
+<p>무수히 많은 분포 중에서도 통계학에서 가장 널리 쓰이는 이항 분포와 정규 분포에 대해 간략히 살펴보겠습니다.</p>
 </section>
-<section id="이항-분포" class="level2">
-<h2 class="anchored" data-anchor-id="이항-분포">이항 분포</h2>
-<p>동전을 한 번 던진다고 가정해 보겠습니다. 이 경우 앞면과 뒷면이라는 두 가지 가능한 결과가 있습니다. 개별 던지기에서 앞면을 관찰할 특정 확률이 있다는 것을 알고 있으며, 이를 p라고 부르고 동전이 공정하다면 0.5라고 가정합니다. 이제 이 과정을 총 10번 반복한다고 가정해 보겠습니다. 이 시나리오에서 일반적인 확률 변수는 10번의 던지기 중 관찰되는 앞면의 수가 될 것입니다.</p>
-<p>이항 분포(Binomial distribution)는 이 특정 시나리오를 위해 설계된 확률 분포입니다. 이 이산 분포는 n번의 독립적인 시행에서 관찰된 성공(성공이 어떻게 정의되든 간에) 횟수 X를 설명합니다. 제한된 횟수의 시행에서 성공 횟수를 보고 있으므로, X의 가능한 값은 <span class="math inline">\(0, 1, 2, \dots, n\)</span>이 되며, 이는 이산 확률 변수에 대한 확률 분포가 됩니다.</p>
-<p>이항 분포는 함수에 의해 확률이 정의되는데, 이는 함수의 모양과 값을 설명하는 매개변수가 있음을 의미합니다. 이항 분포에는 반복 시행 횟수 n과 개별 시행에서의 성공 확률 p라는 두 가지 매개변수가 있습니다. 따라서 이 절의 시작 부분에 있는 예시는 성공 확률이 0.5인 동전을 10번 던지는 시나리오를 설명했습니다. 이는 관찰된 앞면의 수(이 경우 앞면이 성공으로 간주됨) X가 10회의 시행과 <span class="math inline">\(p=0.5\)</span>를 갖는 이항 분포를 따름을 의미하며, <span class="math inline">\(X \sim \text{Bin}(10, 0.5)\)</span>로 표기합니다.</p>
-<p>이항 분포의 매개변수는 또한 n번의 시행에서 얼마나 많은 성공을 기대할 수 있는지에 대한 정보를 제공할 수 있습니다. 일반적으로 <span class="math inline">\(X \sim \text{Bin}(n, p)\)</span>이면, n번의 시행에서 예상되는(또는 평균적인) 성공 횟수는 <span class="math inline">\(n \times p\)</span>가 됩니다. 예를 들어, 앞면의 수 X가 <span class="math inline">\(X \sim \text{Bin}(10, 0.5)\)</span>를 따르는 10번의 동전 던지기라는 초기 예시를 생각해 보세요. 이는 이 10번의 던지기에서 우리가 기대할 수 있는 앞면의 예상 또는 평균 횟수가 <span class="math inline">\(10 \times 0.5 = 5\)</span>임을 의미합니다. 이러한 지식은 관찰된 결과가 예상되어야 하는 것보다 높은지 낮은지 이해하는 데 도움이 될 수 있습니다.</p>
+<section id="이항-분포" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="이항-분포"><span class="header-section-number">5</span> 이항 분포</h2>
+<p>동전을 한 번 던질 때 결과는 앞면이나 뒷면 두 가지뿐입니다. 동전이 공정하다면 앞면이 나올 확률은 <span class="math inline">\(p=0.5\)</span>입니다. 이 과정을 총 10번 반복한다고 가정할 때, 가장 관심 있는 확률 변수 <span class="math inline">\(X\)</span>는 ’10번의 던지기 중 앞면이 나온 횟수’가 될 것입니다.</p>
+<p>이항 분포(Binomial distribution)는 정확히 이러한 상황을 모델링하기 위해 고안되었습니다. 이 이산형 분포는 <span class="math inline">\(n\)</span>번의 독립적인 시행에서 관찰된 ‘성공’(성공의 정의는 문제마다 다름) 횟수 <span class="math inline">\(X\)</span>를 설명합니다. <span class="math inline">\(X\)</span>가 가질 수 있는 값은 <span class="math inline">\(0, 1, 2, \dots, n\)</span>이므로 명백한 이산 확률 분포입니다.</p>
+<p>이항 분포는 전체 시행 횟수 <span class="math inline">\(n\)</span>과 개별 시행의 성공 확률 <span class="math inline">\(p\)</span>라는 두 가지 매개변수에 의해 그 형태가 결정됩니다. 앞선 예시에서 동전 던지기는 10회의 시행과 앞면 확률 0.5를 가지므로, 앞면의 수 <span class="math inline">\(X\)</span>는 이항 분포를 따르며 이를 <span class="math inline">\(X \sim \text{Bin}(10, 0.5)\)</span>로 표기합니다.</p>
+<p>이항 분포의 매개변수를 이용하면 평균적으로 몇 번의 성공을 기대할 수 있는지도 쉽게 계산할 수 있습니다. <span class="math inline">\(X \sim \text{Bin}(n, p)\)</span>일 때, 예상되는(평균적인) 성공 횟수는 <span class="math inline">\(n \times p\)</span>입니다. 즉, <span class="math inline">\(X \sim \text{Bin}(10, 0.5)\)</span>인 동전 던지기에서는 <span class="math inline">\(10 \times 0.5 = 5\)</span>번의 앞면이 나올 것으로 기대합니다. 이러한 기댓값을 바탕으로 실제 관측된 데이터가 일반적인지, 아니면 이례적인지를 판단하게 됩니다.</p>
 </section>
-<section id="정규-분포" class="level2">
-<h2 class="anchored" data-anchor-id="정규-분포">정규 분포</h2>
-<p>정규 분포(Normal distributions)는 통계학에서 중요하지는 않더라도 중요한 확률 분포 중 하나입니다. 정규 분포에 대해서는 나중에 더 자세히 다루겠지만, 지금은 최소한 소개해 두고자 합니다. (정규 분포는 앞서 언급한 종 모양의 데이터와 유사한 “종 모양(Bell-shaped)”의 분포입니다. 정규 분포는 대칭적이고 단봉형(Unimodal)이며 종 모양입니다. 정규 분포로 정의되는 확률 변수는 −∞에서 ∞까지의 값을 가질 수 있으므로, 연속 확률 변수를 위한 확률 분포가 됩니다. 정규 분포의 모양은 특정 함수에 의해 정의되며, 따라서 정규 분포에는 해당 함수를 정의하는 매개변수가 있습니다. 정규 분포의 경우 평균 매개변수 μ와 분산 매개변수 <span class="math inline">\(\sigma^2\)</span>라는 두 가지 매개변수가 있습니다.</p>
-<p>첫 번째 매개변수인 평균 매개변수 μ는 정규 분포의 중심을 정의합니다. 확률 변수가 평균 매개변수가 μ인 정규 분포에 의해 정의되거나 이를 따른다면, 해당 확률 변수의 평균값은 μ가 될 것입니다. 즉, 해당 정규 분포에서 모든 단일 값을 수집하여 평균을 낼 수 있다면, 그 평균은 μ임을 알 수 있습니다.</p>
-<p>두 번째 매개변수인 분산 매개변수 <span class="math inline">\(\sigma^2\)</span>은 정규 분포의 퍼짐 정도(Spread)를 정의합니다. 확률 변수가 분산 매개변수가 <span class="math inline">\(\sigma^2\)</span>인 정규 분포에 의해 정의되거나 이를 따른다면, 해당 확률 변수의 분산(Variance)은 <span class="math inline">\(\sigma^2\)</span>가 될 것입니다. 다시 말하지만, 해당 정규 분포에서 모든 단일 값을 수집하여 분산을 계산할 수 있다면, 그 평균은 <span class="math inline">\(\sigma^2\)</span>임을 알 수 있습니다.</p>
-<p>평균 μ가 변하면 확률 분포가 왼쪽이나 오른쪽으로 이동하지만, 궁극적으로 분포는 μ 값을 중심으로 배치되며 모두 동일한 분산(즉, 퍼짐 정도)을 갖게 됩니다. 만약 분산 <span class="math inline">\(\sigma^2\)</span>가 증가하거나 감소하면, 확률 분포는 전체적인 종 모양을 유지하고 여전히 평균 μ를 중심으로 하면서 늘어나거나 압축될 것입니다.</p>
-<p>다양한 정규 분포 중에서 통계학에서 중요한 분포인 표준 정규 분포(Standard Normal distribution)가 있습니다. 이는 평균 매개변수가 <span class="math inline">\(\mu = 0\)</span>이고 분산 매개변수가 <span class="math inline">\(\sigma^2 = 1\)</span>인 정규 분포입니다. 왜 이 특정 정규 분포가 그렇게 중요합니까? 임의의 평균과 분산 값을 갖는 모든 정규 분포를 표준 정규 분포로 변환할 수 있기 때문입니다. 만약 확률 변수 X가 평균이 μ이고 분산이 <span class="math inline">\(\sigma^2\)</span>인 정규 분포를 따른다면—<span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>로 표기—다음과 같은 확률 변수 Z를 만들 경우</p>
+<section id="정규-분포" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="정규-분포"><span class="header-section-number">6</span> 정규 분포</h2>
+<p>정규 분포(Normal distributions)는 통계학에서 가장 중심적인 역할을 하는 연속 확률 분포입니다. 향후 자세히 다루겠지만, 우선 기본적인 성질을 파악해 두어야 합니다. 정규 분포는 종 모양(Bell-shaped)의 곡선을 그리며, 좌우 대칭이고 중심에 하나의 봉우리(Unimodal)를 가집니다. 연속 확률 변수를 다루므로 값의 범위는 <span class="math inline">\(-\infty\)</span>에서 <span class="math inline">\(\infty\)</span>까지 이어집니다. 정규 분포는 평균 매개변수 <span class="math inline">\(\mu\)</span>와 분산 매개변수 <span class="math inline">\(\sigma^2\)</span>라는 두 개의 매개변수에 의해 완전히 결정됩니다.</p>
+<p>평균 매개변수 <span class="math inline">\(\mu\)</span>는 정규 분포의 중심 위치를 정합니다. 확률 변수가 정규 분포를 따른다면, 그 분포에서 무수히 많은 표본을 추출하여 평균을 내었을 때 결국 <span class="math inline">\(\mu\)</span>에 가까워진다는 것을 의미합니다.</p>
+<p>분산 매개변수 <span class="math inline">\(\sigma^2\)</span>는 분포가 얼마나 퍼져 있는지를 결정합니다. <span class="math inline">\(\sigma^2\)</span>가 클수록 데이터가 넓게 흩어지고 종 모양이 평평해지며, 작을수록 평균 근처에 밀집되어 뾰족한 형태를 띱니다. 평균 <span class="math inline">\(\mu\)</span>가 변하면 종 모양은 그대로 유지된 채 좌우로만 이동하지만, 분산 <span class="math inline">\(\sigma^2\)</span>가 변하면 종의 퍼짐 정도가 달라집니다.</p>
+<p>다양한 정규 분포 중에서도 특별히 평균이 <span class="math inline">\(\mu = 0\)</span>이고 분산이 <span class="math inline">\(\sigma^2 = 1\)</span>인 분포를 표준 정규 분포(Standard Normal distribution)라고 부릅니다. 이 분포가 중요한 이유는, 평균과 분산이 어떤 값이든 간에 모든 정규 분포를 이 표준 정규 분포로 변환(표준화)할 수 있기 때문입니다. 확률 변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>, 분산 <span class="math inline">\(\sigma^2\)</span>인 정규 분포를 따른다면(<span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>), 다음과 같이 확률 변수 <span class="math inline">\(Z\)</span>를 정의할 수 있습니다.</p>
 <p><span class="math display">\[
 Z = \frac{X - \mu}{\sigma}
 \]</span></p>
-<p>Z는 표준 정규 분포를 따르게 됩니다. 예를 들어 미국 남성의 키는 대략 평균 <span class="math inline">\(\mu = 68\)</span>인치, 분산 <span class="math inline">\(\sigma^2 = 9\)</span>인 정규 분포를 따릅니다. Z가 표준 정규 분포를 따르도록 이것을 확률 변수 Z로 변환하고 싶다면, 다음과 같이 할 것입니다.</p>
+<p>이렇게 만들어진 <span class="math inline">\(Z\)</span>는 항상 표준 정규 분포를 따릅니다. 예를 들어 미국 남성의 키가 대략 <span class="math inline">\(\mu = 68\)</span>인치, <span class="math inline">\(\sigma^2 = 9\)</span>(즉 <span class="math inline">\(\sigma = 3\)</span>)인 정규 분포를 따른다고 할 때, 이를 표준 정규 분포로 변환하려면 다음과 같이 계산합니다.</p>
 <p><span class="math display">\[
 Z = \frac{X - 68}{3}
 \]</span></p>
-<p>임의의 정규 분포를 표준 정규 분포로 변환할 수 있다는 이 능력은 사소한 사실처럼 보이지만, 통계적 추론을 수행할 때 주장을 테스트하는 데 중요해질 것입니다. 정규 분포를 공통 표준 정규 분포로 변환할 수 있을 뿐만 아니라, 정규 분포는 덧셈과 뺄셈을 통해 결합될 수 있습니다. 두 확률 변수가 있다고 가정해 보겠습니다. X는 평균 <span class="math inline">\(\mu_X\)</span>와 분산 <span class="math inline">\(\sigma_X^2\)</span>인 정규 분포를 따르고, Y는 평균 <span class="math inline">\(\mu_Y\)</span>와 분산 <span class="math inline">\(\sigma_Y^2\)</span>인 정규 분포를 따릅니다. 이 두 변수의 합 <span class="math inline">\(X+Y\)</span> 또한 평균 <span class="math inline">\(\mu_X + \mu_Y\)</span>와 분산 <span class="math inline">\(\sigma_X^2 + \sigma_Y^2\)</span>인 정규 분포를 따를 것입니다. 즉,</p>
+<p>이러한 표준화 과정은 통계적 가설 검정이나 추론 과정에서 여러 데이터를 비교 가능한 형태로 만드는 핵심 도구가 됩니다. 2026년 방대한 머신러닝 데이터 파이프라인에서 입력 피처들을 정규화(Normalization)할 때도 이 원리가 널리 쓰입니다. 정규 분포는 또한 변수들끼리의 덧셈과 뺄셈에 대해서도 닫혀있다는 훌륭한 성질을 지닙니다. <span class="math inline">\(X\)</span>가 <span class="math inline">\(N(\mu_X, \sigma_X^2)\)</span>를 따르고, <span class="math inline">\(Y\)</span>가 <span class="math inline">\(N(\mu_Y, \sigma_Y^2)\)</span>를 따른다고 할 때, 두 변수를 더한 <span class="math inline">\(X+Y\)</span> 역시 정규 분포를 따릅니다.</p>
 <p><span class="math display">\[
 X \sim N(\mu_X, \sigma_X^2), \quad Y \sim N(\mu_Y, \sigma_Y^2) \implies X+Y \sim N(\mu_X+\mu_Y, \sigma_X^2+\sigma_Y^2)
 \]</span></p>
-<p>예를 들어 <span class="math inline">\(X \sim N(6, 16)\)</span> 및 <span class="math inline">\(Y \sim N(3, 4)\)</span>라고 가정해 보겠습니다. X와 Y를 더하면 <span class="math inline">\(X+Y\)</span>는 평균이 <span class="math inline">\(6+3=9\)</span>이고 분산이 <span class="math inline">\(16+4=20\)</span>인 정규 분포를 따를 것입니다. 즉 <span class="math inline">\(X+Y \sim N(9, 20)\)</span>입니다.</p>
-<p>두 정규 분포를 빼는 경우에도 비슷한 속성이 유지됩니다. X가 평균 <span class="math inline">\(\mu_X\)</span>와 분산 <span class="math inline">\(\sigma_X^2\)</span>인 정규 분포를 따르고, Y가 평균 <span class="math inline">\(\mu_Y\)</span>와 분산 <span class="math inline">\(\sigma_Y^2\)</span>인 정규 분포를 따른다면, 두 변수의 차이 <span class="math inline">\(X-Y\)</span> 또한 평균 <span class="math inline">\(\mu_X - \mu_Y\)</span>와 분산 <span class="math inline">\(\sigma_X^2 + \sigma_Y^2\)</span>인 정규 분포를 따를 것입니다. 즉,</p>
+<p>예를 들어 <span class="math inline">\(X \sim N(6, 16)\)</span>이고 <span class="math inline">\(Y \sim N(3, 4)\)</span>일 때, <span class="math inline">\(X+Y\)</span>는 평균이 <span class="math inline">\(6+3=9\)</span>이고 분산이 <span class="math inline">\(16+4=20\)</span>인 정규 분포 <span class="math inline">\(N(9, 20)\)</span>을 따릅니다.</p>
+<p>두 정규 분포를 빼는 경우도 유사합니다. 단, 분산은 더해야 함에 주의해야 합니다.</p>
 <p><span class="math display">\[
 X \sim N(\mu_X, \sigma_X^2), \quad Y \sim N(\mu_Y, \sigma_Y^2) \implies X-Y \sim N(\mu_X-\mu_Y, \sigma_X^2+\sigma_Y^2)
 \]</span></p>
-<p>위와 동일한 예인 <span class="math inline">\(X \sim N(6, 16)\)</span> 및 <span class="math inline">\(Y \sim N(3, 4)\)</span>를 취해 보겠습니다. 그러면 차이 <span class="math inline">\(X-Y\)</span>는 평균이 <span class="math inline">\(6-3=3\)</span>이고 분산이 <span class="math inline">\(16+4=20\)</span>인 정규 분포를 따를 것입니다. 즉 <span class="math inline">\(X-Y \sim N(3, 20)\)</span>입니다.</p>
+<p>앞선 예시에 적용하면, <span class="math inline">\(X-Y\)</span>는 평균이 <span class="math inline">\(6-3=3\)</span>이고 분산이 <span class="math inline">\(16+4=20\)</span>인 정규 분포 <span class="math inline">\(N(3, 20)\)</span>을 따르게 됩니다.</p>
 </section>
-<section id="연습-문제" class="level2">
-<h2 class="anchored" data-anchor-id="연습-문제">연습 문제</h2>
-<p>확률의 공리는 논리적으로 엄밀하지만, 처음 배울 때에는 장기 상대도수(Long-run relative frequency)가 어떻게 안정되는지 직접 확인하는 것이 도움이 됩니다. 예를 들어 공정한 동전을 던질 때 앞면의 확률이 0.5라는 말은 매번 정확히 절반이 앞면이라는 뜻이 아니라, 시행 횟수가 커질수록 앞면의 비율이 0.5 근처로 안정된다는 뜻입니다.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<section id="연습-문제" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">7</span> 연습 문제</h2>
+<p>확률의 공리는 논리적으로 매우 엄밀하지만, 처음 접할 때는 장기 상대도수(Long-run relative frequency)가 어떻게 안정되는지 직접 시뮬레이션해 보는 것이 직관을 얻는 데 큰 도움이 됩니다. 공정한 동전을 던질 때 앞면의 확률이 0.5라는 말은 10번 던졌을 때 정확히 5번이 나온다는 뜻이 아니라, 던지는 횟수가 무한히 커질수록 앞면이 나온 비율이 0.5에 수렴한다는 뜻입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>coin_flips <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"앞면"</span>, <span class="st">"뒷면"</span>), <span class="at">size =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(coin_flips <span class="sc">==</span> <span class="st">"앞면"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>이 코드는 확률을 증명하지는 않지만, 확률 모형이 데이터 생성 과정을 어떻게 설명하는지 보여줍니다. 이후 장에서 표집 분포와 p-값을 다룰 때에도 같은 사고가 반복됩니다. 우리는 관측된 데이터 하나만 보는 것이 아니라, 어떤 가정이 참일 때 장기적으로 어떤 데이터들이 나올 수 있는지를 상상하고 그중 현재 데이터의 위치를 평가합니다.</p>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.499</code></pre>
+</div>
+</div>
+<p>위 코드가 확률의 법칙을 엄밀하게 증명하는 것은 아니지만, 확률 모형이 실제 데이터 생성 과정을 어떻게 설명하는지 잘 보여줍니다. 이후 장에서 표집 분포와 <span class="math inline">\(p\)</span>-값을 다룰 때도 이와 같은 장기적 빈도주의 사고방식이 그대로 이어집니다. 우리는 단 하나의 관측 데이터만 보는 것이 아니라, 특정 가정이 참일 때 장기적으로 관찰될 수 있는 데이터 분포를 상상하고 그 속에서 현재 데이터가 얼마나 극단적인 위치에 있는지를 평가합니다.</p>
+</section>
+<section id="이항-분포와-정규-분포-확률-계산-실습" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="이항-분포와-정규-분포-확률-계산-실습"><span class="header-section-number">8</span> 이항 분포와 정규 분포 확률 계산 실습</h2>
+<p>앞서 시뮬레이션을 통해 장기적 상대도수를 확인해보았다면, 이제 R에 내장된 확률 함수들을 통해 특정 사건이 발생할 이론적 확률을 직접 계산해 보겠습니다. <code>dbinom()</code>과 <code>pnorm()</code> 같은 함수들은 복잡한 수식을 직접 계산할 필요 없이 정확한 확률 값을 제공합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 이항 분포 (Binomial Distribution)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 10번의 동전 던지기 중 앞면이 정확히 6번 나올 확률 계산</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>prob_binom <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="dv">6</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"동전 10번 중 앞면이 6번 나올 확률:"</span>, prob_binom, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>동전 10번 중 앞면이 6번 나올 확률: 0.2050781 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 정규 분포 (Normal Distribution)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 평균이 68, 표준편차가 3인 정규 분포에서 값이 72 이하일 확률 계산</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>prob_norm <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">72</span>, <span class="at">mean =</span> <span class="dv">68</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"키가 72인치 이하일 확률:"</span>, prob_norm, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>키가 72인치 이하일 확률: 0.9087888 </code></pre>
+</div>
+</div>
+<p><code>dbinom()</code>은 이산형 확률 변수의 특정 값에 대한 확률을 계산할 때 사용하며, <code>pnorm()</code>은 연속형 정규 분포에서 특정 누적 확률을 구할 때 유용합니다. 이러한 함수들은 통계적 가설 검정과 <span class="math inline">\(p\)</span>-값 계산의 토대가 됩니다.</p>
 
 
 </section>
@@ -818,6 +988,18 @@ X \sim N(\mu_X, \sigma_X^2), \quad Y \sim N(\mu_Y, \sigma_Y^2) \implies X-Y \sim
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../notes/ch07.html" class="pagination-link" aria-label="탐색적 분석(실습)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">탐색적 분석(실습)</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../notes/ch09.html" class="pagination-link" aria-label="표집 분포, 또는 탐색적 분석만으로는 충분하지 않은 이유">
+        <span class="nav-page-text">표집 분포, 또는 탐색적 분석만으로는 충분하지 않은 이유</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
