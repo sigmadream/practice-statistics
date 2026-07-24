@@ -68,8 +68,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../notes/ch15.html" rel="next">
-<link href="../notes/ch13.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -140,14 +138,10 @@ window.Quarto = {
 
 <meta property="og:title" content="단일 모수에 대한 신뢰 구간 – R과 데이터 분석 입문">
 <meta property="og:description" content="">
-<meta property="og:image" content="images/B9780128207888000274/si41.png">
 <meta property="og:site_name" content="R과 데이터 분석 입문">
-<meta property="og:image:alt" content="이미지">
 <meta name="twitter:title" content="단일 모수에 대한 신뢰 구간 – R과 데이터 분석 입문">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="images/B9780128207888000274/si41.png">
-<meta name="twitter:image:alt" content="이미지">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -159,7 +153,9 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch09.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch14.html">단일 모수에 대한 신뢰 구간</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      R과 데이터 분석 입문
+      </li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -248,106 +244,6 @@ window.Quarto = {
  <span class="menu-text">탐색적 분석(실습)</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notes/ch08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">확률</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">확률과 검증</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notes/ch09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">표집 분포, 또는 탐색적 분석만으로는 충분하지 않은 이유</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notes/ch10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">가설 검정의 원리</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notes/ch11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">중심극한정리를 활용한 가설 검정 수행하기</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notes/ch12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">구간 추정의 개념</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notes/ch13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">단일 모수(Single parameter)에 대한 가설 검정</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notes/ch14.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">단일 모수에 대한 신뢰 구간</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notes/ch15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">두 모수에 대한 가설 검정</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notes/ch16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">두 모수에 대한 신뢰 구간</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notes/ch17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">통계적 추론</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">확률과 추론</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notes/ch18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">두 양적 변수에 대한 추론</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notes/ch19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">단순 선형 회귀</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notes/ch20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">몇가지 주제</span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -384,7 +280,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch09.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch14.html">단일 모수에 대한 신뢰 구간</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">단일 모수에 대한 신뢰 구간</h1>
 </div>
@@ -468,7 +364,7 @@ P(-t^*&lt;\bar{x}-\mu_{s}/n&lt;t^*)=1-\alpha.
 \]</span></p>
 <p>이 시점에서 확률 문장 내부의 대수학(Algebra)을 사용하여 μ에 관해 풀면, 우리가 원하는 확률적 특성을 가진 구간 추정치를 얻게 됩니다.</p>
 <p><span class="math display">\[
-P(-t^*&lt;\bar{x}-\mu_{s}/n&lt;t^*)=1-\alphaP(-t^*sn&lt;\bar{x}-\mu&lt;t^*sn)=1-\alphaP(-\bar{x}-t^*sn&lt;-\mu&lt;-\bar{x}+t^*sn)=1-\alphaP(\bar{x}-t^*sn&lt;\mu&lt;\bar{x}+t^*sn)=1-\alpha.
+P(-t^*&lt;\bar{x}-\mu_{s}/n&lt;t^*)=1-\alpha P(-t^*sn&lt;\bar{x}-\mu&lt;t^*sn)=1-\alpha  P(-\bar{x}-t^*sn&lt;-\mu&lt;-\bar{x}+t^*sn)=1-\alpha P(\bar{x}-t^*sn&lt;\mu&lt;\bar{x}+t^*sn)=1-\alpha.
 \]</span></p>
 <p>이제 우리는 <span class="math inline">\(P(Lower&lt;\mu&lt;Upper)=1-\alpha\)</span>를 만족하는 구간 (Lower, Upper)을 확보했습니다. 이는 결과적으로 μ에 대한 <span class="math inline">\((1-\alpha)\)</span> 100% 신뢰 구간이 다음과 같음을 의미합니다.</p>
 <p><span class="math display">\[
@@ -476,13 +372,13 @@ P(-t^*&lt;\bar{x}-\mu_{s}/n&lt;t^*)=1-\alphaP(-t^*sn&lt;\bar{x}-\mu&lt;t^*sn)=1-
 \]</span></p>
 <p>따라서 μ에 대한 신뢰 구간을 계산하려면 표본에서 표본 평균 <span class="math inline">\(\bar{x}\)</span>, 표본 표준 편차 s, 그리고 표본 크기 n을 얻어야 합니다. 이제 임계값 <span class="math inline">\(t^*\)</span>를 찾는 일만 남았습니다. p에 대한 신뢰 구간과 마찬가지로, 정의된 대로 <span class="math inline">\(t^*\)</span>(<span class="math inline">\(P(-t^* &lt; t_{n-1} &lt; t^*) = 1-\alpha\)</span>가 되도록 <span class="math inline">\(t^*\)</span>를 선택함)를 찾는 과정은 두 개의 확률을 구하는 과정이 포함되므로 까다로울 수 있습니다. 그러나 <span class="math inline">\(t\)</span>-분포는 대칭이므로 다음과 같이 <span class="math inline">\(t^*\)</span>를 선택하는 데 사용하는 확률을 조정할 수 있습니다.</p>
 <p><span class="math display">\[
-$P(t_{n-1} &lt; t^*)$=1-\alpha/2.
+P(t_{n-1} &lt; t^*) = 1-\alpha/2
 \]</span></p>
 <p><span class="math inline">\(t^*\)</span> 값을 찾기 위해 다시 R을 활용해 보겠습니다. pnorm 함수에 대응하는 <span class="math inline">\(t\)</span>-분포 함수로 pt 함수가 있었듯이, 정규 분포에서 임계값을 찾는 데 사용한 qnorm 함수에 대응하는 <span class="math inline">\(t\)</span>-분포 함수로 qt 함수가 존재합니다. qt 함수는 주어진 확률과 <span class="math inline">\(t\)</span>-분포의 자유도(Degrees of freedom)를 바탕으로 <span class="math inline">\(t\)</span>-분포의 임계값을 찾아줍니다. 임계값과 관련된 확률 p와 자유도 ν의 두 값이 qt 함수의 입력값이 되며, 코드는 아래와 같습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> p_value, <span class="at">df =</span> df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>다른 모든 신뢰 구간과 마찬가지로, 신뢰 구간을 해석하는 것은 신뢰 구간 추론의 중요한 측면입니다. p에 대한 신뢰 구간과 동일하게 μ에 대한 신뢰 구간 역시 해당 구간이 “맞는지”, 즉 모수 μ의 참값을 포함하는지에 대한 우리의 확신 관점에서 해석합니다. 이 경우 μ에 대한 <span class="math inline">\((1-\alpha)\)</span> 100% 신뢰 구간을 해석하기 위해, “우리가 계산한 구간이 모평균 μ의 참값을 포함한다고 <span class="math inline">\((1-\alpha)\)</span> 100% 확신한다”고 말합니다.</p>
 <p>마지막으로, p에 대한 신뢰 구간 및 가설 검정과 마찬가지로 μ에 대한 신뢰 구간에도 중요한 가정이 내재되어 있습니다. 우리의 신뢰 구간은 중심 극한 정리가 성립한다는 것을 암묵적으로 가정하며, 이는 표본 크기가 충분히 크거나 데이터가 정규 분포를 따른다는 것을 뜻합니다. 신뢰 구간 결과가 유지되려면(즉, 평균에 대해 중심 극한 정리가 성립하려면) 표본 크기가 <span class="math inline">\(n\ge 30\)</span>이거나 데이터가 정규 분포를 따라야 합니다. 최근 AI 기반 이상탐지 모델에서도 이러한 기본 가정은 피처 엔지니어링 단계에서 매우 중요하게 작용합니다.</p>
-<p>우리가 케일(Kale)에서 발견되는 백만분율(ppm) 단위의 DDT [10, 49] 양인 μ에 대한 96% 신뢰 구간을 계산하는 데 관심이 있다고 가정해 보겠습니다. R의 MASS 라이브러리에 있는 DDT 데이터셋은 바로 이를 측정하며, 15개의 서로 다른 실험실에서 케일 표본의 DDT 양을 추정했습니다. 표본 평균은 <span class="math inline">\(\bar{x}=3.328\)</span>이고 표본 표준 편차는 <span class="math inline">\(s=0.4372\)</span>입니다. 이제 임계값 <span class="math inline">\(t^*\)</span>만 찾으면 됩니다. 96% 신뢰 구간을 계산하는 경우 (1−0.04)100%=96%<img src="images/B9780128207888000274/si41.png" class="img-fluid" alt="이미지">이므로 α 수준은 0.04입니다. 이는 <span class="math inline">\(P(t_{15-1} &lt; t^*) = 1-0.04/2=0.98\)</span>가 되도록 <span class="math inline">\(t^*\)</span>를 선택해야 함을 뜻합니다. 아래의 R 코드를 사용해 보겠습니다.</p>
+<p>우리가 케일(Kale)에서 발견되는 백만분율(ppm) 단위의 DDT [10, 49] 양인 μ에 대한 96% 신뢰 구간을 계산하는 데 관심이 있다고 가정해 보겠습니다. R의 MASS 라이브러리에 있는 DDT 데이터셋은 바로 이를 측정하며, 15개의 서로 다른 실험실에서 케일 표본의 DDT 양을 추정했습니다. 표본 평균은 <span class="math inline">\(\bar{x}=3.328\)</span>이고 표본 표준 편차는 <span class="math inline">\(s=0.4372\)</span>입니다. 이제 임계값 <span class="math inline">\(t^*\)</span>만 찾으면 됩니다. 96% 신뢰 구간을 계산하는 경우 (1−0.04)100%=96%!이므로 α 수준은 0.04입니다. 이는 <span class="math inline">\(P(t_{15-1} &lt; t^*) = 1-0.04/2=0.98\)</span>가 되도록 <span class="math inline">\(t^*\)</span>를 선택해야 함을 뜻합니다. 아래의 R 코드를 사용해 보겠습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.98</span>, <span class="at">df =</span> <span class="dv">14</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>계산 결과 <span class="math inline">\(t^*=2.263781\)</span>임을 알 수 있습니다. 이 모든 것을 종합하면, 케일 표본의 DDT 모평균 양에 대한 96% 신뢰 구간은 다음과 같이 도출됩니다.</p>
 <p><span class="math display">\[
@@ -520,7 +416,7 @@ n=({z^*})2\hat{p}(1-\hat{p})m2.
 n\ge ({z^*})2p˜(1-p˜)m2.
 \]</span></p>
 <p>여기서 <span class="math inline">\(P(N(0,1)&lt;{z^*}) = 1-\alpha/2\)</span>가 되도록 <span class="math inline">\({z^*}\)</span>를 설정하고, <span class="math inline">\(\tilde{p}\)</span>는 이전 연구가 있다면 그에 기반하여 설정하되, 없다면 최악의 시나리오(0.5)를 바탕으로 설정합니다.</p>
-<p>p˜ = {이전 연구가 존재한다면 해당 연구의 , 이전 연구가 존재하지 않다면 0.5}</p>
+<p><span class="math inline">\(p˜ = {이전 연구가 존재한다면 해당 연구의 \hat{p}, 이전 연구가 존재하지 않다면 0.5}\)</span></p>
 <p>필요한 표본 크기를 계산할 때 종종 n은 정수가 아닌 값으로 산출됩니다. 물론 반 명의 사람을 표본으로 추출할 수는 없으므로, 계산된 n보다 크거나 같은 다음 정수로 올림해야 합니다. 내림하면 표본 크기 부족으로 인해 원하는 것보다 더 큰 오차 한계가 발생하게 됩니다. 올림을 적용함으로써 우리의 신뢰 구간이 처음 목표했던 것보다 약간 더 작은 안정적인 오차 한계를 갖도록 보장할 수 있습니다.</p>
 <p>예를 들어, 50년 전보다 오늘날 자신과 같은 사람들의 삶이 더 나아졌다고 믿는 미국인의 실제 비율 p를 추정하고 싶다고 가정해 보겠습니다. 조사를 설계하기 위해 p를 0.04의 오차 한계 내에서 99.5% 신뢰도로 추정하기로 결정합니다. 우선 오차 한계가 <span class="math inline">\(m=0.04\)</span>임을 알 수 있습니다. 다음으로 임계값 <span class="math inline">\({z^*}\)</span>를 찾아야 합니다. 99.5% 신뢰도의 경우 α 값은 <span class="math inline">\(\alpha=0.005\)</span>이므로, <span class="math inline">\(P(N(0,1)&gt;{z^*})\)</span>=1-0.005/2=0.9975$가 되도록 <span class="math inline">\({z^*}\)</span>를 선택합니다. R에서 <code>qnorm(p = 0.9975, mean = 0, sd = 1)</code> 코드를 실행하면 <span class="math inline">\({z^*}\)</span>=2.807$임을 확인할 수 있습니다.</p>
 <p>마지막으로 남은 요소는 <span class="math inline">\(\tilde{p}\)</span>입니다. 이전 연구에서 표본 비율에 대한 사전 지식이 없다고 가정하면, 최악의 시나리오를 적용하여 p˜<span class="math inline">\(=0.5\)</span>로 설정해야 합니다. 이 모든 것을 종합하면, p를 0.04의 오차 한계 내에서 99.5% 신뢰도로 추정할 최소 표본 크기는 다음과 같습니다.</p>
@@ -1041,18 +937,6 @@ mean of x
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../notes/ch13.html" class="pagination-link" aria-label="단일 모수(Single parameter)에 대한 가설 검정">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">단일 모수(Single parameter)에 대한 가설 검정</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../notes/ch15.html" class="pagination-link" aria-label="두 모수에 대한 가설 검정">
-        <span class="nav-page-text">두 모수에 대한 가설 검정</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

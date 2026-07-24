@@ -44,8 +44,8 @@ prop.test(x = x, n = n, p = p, alternative = alternative, correct = correct)
 
 $$
 \begin{aligned}
-H_0:\rho \eq 0.14
-H_A:\rho \neq 0.14
+H_0: \rho = 0.14
+H_A: \rho \neq 0.14
 \end{aligned}
 $$
 

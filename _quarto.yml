@@ -34,23 +34,23 @@ website:
         - notes/ch05.qmd
         - notes/ch06.qmd
         - notes/ch07.qmd
-        - notes/ch08.qmd
-      - section: "확률과 검증"
-        contents:
-        - notes/ch09.qmd
-        - notes/ch10.qmd
-        - notes/ch11.qmd
-        - notes/ch12.qmd
-        - notes/ch13.qmd
-        - notes/ch14.qmd
-        - notes/ch15.qmd
-        - notes/ch16.qmd
-        - notes/ch17.qmd
-      - section: "확률과 추론"
-        contents:
-        - notes/ch18.qmd
-        - notes/ch19.qmd
-        - notes/ch20.qmd
+      # - section: "확률과 검증"
+      #   contents:
+      #   - notes/ch08.qmd        
+      #   - notes/ch09.qmd
+      #   - notes/ch10.qmd
+      #   - notes/ch11.qmd
+      #   - notes/ch12.qmd
+      #   - notes/ch13.qmd
+      #   - notes/ch14.qmd
+      #   - notes/ch15.qmd
+      #   - notes/ch16.qmd
+      #   - notes/ch17.qmd
+      # - section: "확률과 추론"
+      #   contents:
+      #   - notes/ch18.qmd
+      #   - notes/ch19.qmd
+      #   - notes/ch20.qmd
 
 book:
   title: "R과 데이터 분석 입문"
@@ -67,23 +67,23 @@ book:
         - notes/ch05.qmd
         - notes/ch06.qmd
         - notes/ch07.qmd
-    - part: "확률과 검증"
-      chapters:
-        - notes/ch08.qmd
-        - notes/ch09.qmd
-        - notes/ch10.qmd
-        - notes/ch11.qmd
-        - notes/ch12.qmd
-        - notes/ch13.qmd
-        - notes/ch14.qmd
-        - notes/ch15.qmd
-        - notes/ch16.qmd
-        - notes/ch17.qmd
-    - part: "확률과 추론"
-      chapters:
-        - notes/ch18.qmd
-        - notes/ch19.qmd
-        - notes/ch20.qmd
+    # - part: "확률과 검증"
+    #   chapters:
+    #     - notes/ch08.qmd
+    #     - notes/ch09.qmd
+    #     - notes/ch10.qmd
+    #     - notes/ch11.qmd
+    #     - notes/ch12.qmd
+    #     - notes/ch13.qmd
+    #     - notes/ch14.qmd
+    #     - notes/ch15.qmd
+    #     - notes/ch16.qmd
+    #     - notes/ch17.qmd
+    # - part: "확률과 추론"
+    #   chapters:
+    #     - notes/ch18.qmd
+    #     - notes/ch19.qmd
+    #     - notes/ch20.qmd
     - references.qmd
 
 
