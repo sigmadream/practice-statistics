@@ -33,10 +33,10 @@ website:
         - notes/ch04.qmd
         - notes/ch05.qmd
         - notes/ch06.qmd
-      - section: "확률과 검증"
-        contents:
         - notes/ch07.qmd
         - notes/ch08.qmd
+      - section: "확률과 검증"
+        contents:
         - notes/ch09.qmd
         - notes/ch10.qmd
         - notes/ch11.qmd
