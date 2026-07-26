@@ -2,20 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>표집 분포, 또는 탐색적 분석만으로는 충분하지 않은 이유 – R과 데이터 분석 입문</title>
+<title>탐색적 분석 이후 – R과 데이터 분석 입문</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -74,10 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-cf5ee1d16def7895729d1ac812351ea4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-05671fd07ca6d6876311839a4a0c21df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -136,11 +139,11 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="표집 분포, 또는 탐색적 분석만으로는 충분하지 않은 이유 – R과 데이터 분석 입문">
+<meta property="og:title" content="탐색적 분석 이후 – R과 데이터 분석 입문">
 <meta property="og:description" content="">
 <meta property="og:image" content="ch09_files/figure-html/unnamed-chunk-2-1.png">
 <meta property="og:site_name" content="R과 데이터 분석 입문">
-<meta name="twitter:title" content="표집 분포, 또는 탐색적 분석만으로는 충분하지 않은 이유 – R과 데이터 분석 입문">
+<meta name="twitter:title" content="탐색적 분석 이후 – R과 데이터 분석 입문">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="ch09_files/figure-html/unnamed-chunk-2-1.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -259,10 +262,10 @@ window.Quarto = {
    
   <ul>
   <li><a href="#표집-분포" id="toc-표집-분포" class="nav-link active" data-scroll-target="#표집-분포"><span class="header-section-number">1</span> 표집 분포</a></li>
-  <li><a href="#표집-분포의-성질과-중심-극한-정리" id="toc-표집-분포의-성질과-중심-극한-정리" class="nav-link" data-scroll-target="#표집-분포의-성질과-중심-극한-정리"><span class="header-section-number">2</span> 표집 분포의 성질과 중심 극한 정리</a></li>
+  <li><a href="#중심-극한-정리" id="toc-중심-극한-정리" class="nav-link" data-scroll-target="#중심-극한-정리"><span class="header-section-number">2</span> 중심 극한 정리</a></li>
   <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">3</span> 연습 문제</a></li>
-  <li><a href="#표집-분포를-코드로-생각하기" id="toc-표집-분포를-코드로-생각하기" class="nav-link" data-scroll-target="#표집-분포를-코드로-생각하기"><span class="header-section-number">4</span> 표집 분포를 코드로 생각하기</a></li>
-  <li><a href="#중심-극한-정리의-시각화-실습" id="toc-중심-극한-정리의-시각화-실습" class="nav-link" data-scroll-target="#중심-극한-정리의-시각화-실습"><span class="header-section-number">5</span> 중심 극한 정리의 시각화 실습</a></li>
+  <li><a href="#실습-표집-분포" id="toc-실습-표집-분포" class="nav-link" data-scroll-target="#실습-표집-분포"><span class="header-section-number">4</span> 실습: 표집 분포</a></li>
+  <li><a href="#실습-중심-극한-정리" id="toc-실습-중심-극한-정리" class="nav-link" data-scroll-target="#실습-중심-극한-정리"><span class="header-section-number">5</span> 실습: 중심 극한 정리</a></li>
   </ul>
 </nav>
     </div>
@@ -271,7 +274,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">표집 분포, 또는 탐색적 분석만으로는 충분하지 않은 이유</h1>
+<h1 class="title">탐색적 분석 이후</h1>
 </div>
 
 
@@ -289,13 +292,14 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p>이전 장들에서 살펴보았듯이, 탐색적 데이터 분석(Exploratory Data Analysis)은 데이터셋 내 변수들에 관해 유용한 통찰을 제공합니다. 이 기법을 통해 수치형 데이터의 중심 위치와 분포 형태, 범주형 데이터의 비율, 그리고 변수 간의 연관성을 파악할 수 있습니다. 하지만 최근 발전한 자동화된 AI 분석 도구가 데이터를 아무리 잘 요약해 주더라도, 탐색적 분석만으로는 우리가 던지는 근본적인 질문에 완벽히 답하기 어렵습니다. 본 장에서는 그 이유를 살펴보고, 나아가 통계적 추론(Statistical Inference)의 기저에 깔린 핵심 아이디어로 논의를 확장하겠습니다.</p>
+<p>탐색적 데이터 분석(Exploratory Data Analysis)은 데이터셋 내 변수들에 관해 유용한 통찰을 제공합니다. 탐색적 분석만으로는 우리가 던지는 근본적인 질문에 완벽히 답하기 어렵습니다. 통계적 추론(Statistical Inference)의 기저에 깔린 핵심 아이디어를 살펴보겠습니다.</p>
 </blockquote>
 <section id="표집-분포" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="표집-분포"><span class="header-section-number">1</span> 표집 분포</h2>
-<p>지금까지 우리는 표본(Sample)으로부터 통계량을 계산하는 작업을 주로 다루었습니다. 하지만 단순히 통계량을 계산하는 것 자체가 우리의 최종 목적은 아님을 기억해야 합니다. 우리의 진정한 목표는 모수(Parameters)에 대해 타당한 추론을 내리는 것입니다. 따라서 모수와 통계량의 정의를 간략히 짚고 넘어가겠습니다. 모수는 우리가 관심을 갖는 전체 모집단(Population)의 특성을 설명하는 수치입니다. 반면, 통계량(Statistics)은 표본으로부터 계산된 수치이며, 일반적으로 모수를 추정하는 데 사용됩니다. 예를 들어, 표본 평균 <span class="math inline">\(\bar{x}\)</span>는 모평균 <span class="math inline">\(\mu\)</span>를 추정하고, 표본 비율 <span class="math inline">\(\hat{p}\)</span>는 모비율 <span class="math inline">\(p\)</span>를 추정하며, 표본 분산 <span class="math inline">\(s^2\)</span>은 모분산 <span class="math inline">\(\sigma^2\)</span>을 추정합니다. 이 쌍들에서 앞의 기호는 표본에서 구한 통계량이고, 뒤의 기호는 모집단의 모수입니다.</p>
-<p>표본 통계량을 계산할 때 우리는 정확한 값을 알 수 없는 모집단 모수에 대한 일종의 추정치를 얻게 됩니다. 고전 통계학의 근본적인 가정 중 하나는 모든 모집단 모수가 비록 그 값은 알 수 없을지라도 고정된 상수(Fixed quantity)라는 점입니다. 만약 우리가 모수를 이미 완벽히 알고 있다면, 복잡한 통계적 추론 과정을 굳이 거칠 필요가 없을 것입니다.</p>
-<p>설령 모집단 모수를 안다고 가정하더라도, 특정 표본에서 구한 통계량이 그 모수와 정확히 일치하는 경우는 매우 드뭅니다. 왜냐하면 표본 통계량은 어떤 표본이 추출되느냐에 따라 달라지는 확률적 수치(Random quantity)이기 때문입니다. 이해를 돕기 위해 모집단 크기가 작고 모수를 이미 알고 있는 단순한 상황을 가정해 보겠습니다.</p>
+<p>지금까지 우리는 표본(Sample)으로부터 통계량을 계산하는 작업을 주로 다루었습니다. 통계량 계산 자체가 우리의 최종 목적은 아닙니다. 우리의 진정한 목표는 모수(Parameters)에 대해 타당한 추론을 내리는 것입니다. 따라서 모수와 통계량의 정의를 간략히 짚고 넘어가겠습니다.</p>
+<p>모수는 우리가 관심을 갖는 전체 모집단(Population)의 특성을 설명하는 수치입니다. 통계량(Statistics)은 표본으로부터 계산된 수치이며, 일반적으로 모수를 추정하는 데 사용됩니다. 예를 들어, 표본 평균 <span class="math inline">\(\bar{x}\)</span>는 모평균 <span class="math inline">\(\mu\)</span>를 추정하고, 표본 비율 <span class="math inline">\(\hat{p}\)</span>는 모비율 <span class="math inline">\(p\)</span>를 추정하며, 표본 분산 <span class="math inline">\(s^2\)</span>은 모분산 <span class="math inline">\(\sigma^2\)</span>을 추정합니다. 이 쌍들에서 앞의 기호는 표본에서 구한 통계량이고, 뒤의 기호는 모집단의 모수입니다.</p>
+<p>표본 통계량을 계산할 때 우리는 정확한 값을 알 수 없는 모집단 모수에 대한 일종의 추정치를 얻게 됩니다. 고전 통계학의 근본적인 가정 중 하나는 모든 모집단 모수가 비록 그 값은 알 수 없을지라도 고정된 상수(fixed quantity)라는 점입니다. 우리가 모수를 이미 완벽히 알고 있다면, 복잡한 통계적 추론 과정을 굳이 거칠 필요가 없을 것입니다.</p>
+<p>설령 모집단 모수를 안다고 가정하더라도, 특정 표본에서 구한 통계량이 그 모수와 정확히 일치하는 경우는 매우 드뭅니다. 왜냐하면 표본 통계량은 어떤 표본이 추출되느냐에 따라 달라지는 확률적 수치(random quantity)이기 때문입니다. 이해를 돕기 위해 모집단 크기가 작고 모수를 이미 알고 있는 단순한 상황을 가정해 보겠습니다.</p>
 <p>5명의 학생으로 구성된 소규모 모집단이 있고, 이들이 한 학기 동안 수강하는 평균 학점을 추정하고자 합니다. 학생들의 학점은 아래 표와 같습니다.</p>
 <table class="caption-top table">
 <thead>
@@ -370,10 +374,10 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>실제 모평균은 14.6이지만, 어떤 표본이 뽑히느냐에 따라 표본 평균은 다양하게 나타납니다. 결과적으로 표본 평균을 비롯한 모든 표본 통계량은 무작위 추출 과정에 의존하므로 그 자체로 확률 변수(Random variable)가 됩니다. 앞서 다루었듯 확률 변수란 결과를 미리 알 수 없는 무작위 현상(이 경우 표본 추출)의 수치적 요약을 뜻합니다. 통계량 역시 확률 변수이므로 특정한 확률 분포를 따르게 됩니다. 이처럼 크기가 <span class="math inline">\(n\)</span>인 표본으로부터 계산된 표본 통계량의 확률 분포를 표집 분포(Sampling distribution)라고 부릅니다. 모든 표본 통계량은 저마다의 표집 분포를 가지며, 이 분포는 우리가 수집한 데이터가 우연에 의한 것인지 아니면 통계적으로 유의미한지(비정상적인지)를 판단하는 기준이 됩니다.</p>
-<p>표집 분포의 중심 위치뿐만 아니라, 표본 통계량에 얼마나 많은 변동성(Variability)이 존재하는지도 중요한 관심사입니다. 변동성이 크다는 것은 표본을 뽑을 때마다 통계량의 값이 크게 요동칠 수 있음을 의미합니다. 데이터 자체의 변동성을 파악하기 위해 분산과 표준 편차를 계산하듯, 표본 통계량에 대해서도 분산이나 표준 편차를 계산할 수 있습니다. 이처럼 ’표본 통계량의 표준 편차’를 우리는 특별히 표준 오차(Standard error)라고 부르며, 흔히 <span class="math inline">\(s.e.(\text{Statistic})\)</span>로 표기합니다.</p>
-<p>위에서 다룬 <span class="math inline">\(n=2\)</span>인 학점 예시를 다시 살펴보겠습니다. 10개의 가능한 표본 평균들의 평균은 모평균과 동일한 14.6이 됩니다. 그리고 이 10개 표본 평균값들이 중심(14.6)으로부터 얼마나 흩어져 있는지를 계산해 보면, 이 표본 평균의 표준 오차는 <span class="math inline">\(s.e.(\bar{x})=1.26\)</span>이 됩니다.</p>
-<p>표집 분포는 크기가 <span class="math inline">\(n\)</span>인 표본에 기반하므로, 표본 크기에 따라 그 형태가 달라진다는 점을 쉽게 유추할 수 있습니다. 분포가 표본 크기의 영향을 받는다면 통계량의 표준 오차 또한 영향을 받습니다. 우리는 대수의 법칙(Law of Large Numbers)을 통해 표본 크기가 커질수록 표본 통계량이 실제 모수 값에 점점 더 수렴한다는 사실을 알고 있습니다. 그렇다면 표준 오차는 어떻게 될까요?</p>
+<p>실제 모평균은 14.6이지만, 어떤 표본이 뽑히느냐에 따라 표본 평균은 다양하게 나타납니다. 결과적으로 표본 평균을 비롯한 모든 표본 통계량은 무작위 추출 과정에 의존하므로 그 자체로 확률 변수(random variable)가 됩니다. 앞서 다루었듯 확률 변수란 결과를 미리 알 수 없는 무작위 현상(이 경우 표본 추출)의 수치적 요약을 뜻합니다. 통계량 역시 확률 변수이므로 특정한 확률 분포를 따르게 됩니다. 이처럼 크기가 <span class="math inline">\(n\)</span>인 표본으로부터 계산된 표본 통계량의 확률 분포를 표집 분포(sampling distribution)라고 부릅니다. 모든 표본 통계량은 저마다의 표집 분포를 가지며, 이 분포는 우리가 수집한 데이터가 우연에 의한 것인지 아니면 통계적으로 유의미한지(비정상적인지)를 판단하는 기준이 됩니다.</p>
+<p>표집 분포의 중심 위치뿐만 아니라, 표본 통계량에 얼마나 많은 변동성(variability)이 존재하는지도 중요한 관심사입니다. 변동성이 크다는 것은 표본을 뽑을 때마다 통계량의 값이 크게 요동칠 수 있음을 의미합니다. 데이터 자체의 변동성을 파악하기 위해 분산과 표준 편차를 계산하듯, 표본 통계량에 대해서도 분산이나 표준 편차를 계산할 수 있습니다. 이처럼 ’표본 통계량의 표준 편차’를 우리는 특별히 표준 오차(standard error)라고 부르며, 흔히 <span class="math inline">\(\text{s.e.}\)</span>로 표기합니다.</p>
+<p>위에서 다룬 <span class="math inline">\(n=2\)</span>인 학점 예시를 다시 살펴보겠습니다. 10개의 가능한 표본 평균들의 평균은 모평균과 동일한 14.6이 됩니다. 그리고 이 10개 표본 평균값들이 중심(14.6)으로부터 얼마나 흩어져 있는지를 계산해 보면, 이 표본 평균의 표준 오차는 <span class="math inline">\(\text{s.e.}(\bar{x})=1.26\)</span>이 됩니다.</p>
+<p>표집 분포는 크기가 <span class="math inline">\(n\)</span>인 표본에 기반하므로, 표본 크기에 따라 그 형태가 달라진다는 점을 쉽게 유추할 수 있습니다. 분포가 표본 크기의 영향을 받는다면 통계량의 표준 오차 또한 영향을 받습니다. 우리는 대수의 법칙(law of large numbers)을 통해 표본 크기가 커질수록 표본 통계량이 실제 모수 값에 점점 더 수렴한다는 사실을 알고 있습니다. 그렇다면 표준 오차는 어떻게 될까요?</p>
 <p>표본 크기를 <span class="math inline">\(n=4\)</span>로 늘려 동일한 모집단에서 표본을 추출한다고 가정해 보겠습니다. 5명 중 4명을 뽑는 조합은 총 5가지이며, 각각의 표본 평균은 아래와 같습니다.</p>
 <table class="caption-top table">
 <thead>
@@ -407,16 +411,16 @@ window.Quarto = {
 </table>
 <p>이 5가지 표본 평균들의 평균은 여전히 14.6입니다. 하지만 이번에는 표본 평균들이 중심에 더 가깝게 모여 있어, 표준 오차를 계산하면 <span class="math inline">\(s.e.(\bar{x})=0.515\)</span>로 줄어듭니다. 즉, 표본 크기가 증가할수록 표준 오차는 감소합니다. 직관적으로 생각해 보아도 당연한 결과입니다. 만약 전체 모집단을 모두 표본으로 조사할 수 있다면(<span class="math inline">\(n=N\)</span>), 오직 하나의 표본 평균(모평균과 동일한 값)만을 얻게 될 것이며 이때 변동성은 0이 될 것입니다. 극한의 개념을 빌리면 다음과 같이 표현할 수 있습니다.</p>
 <p><span class="math display">\[
-\lim_{n \to \infty} s.e.(\text{Statistic}) = 0
+\lim_{n \to \infty} \text{s.e.} = 0
 \]</span></p>
 <p>결론적으로 표본 크기가 커지면 표본 통계량의 변동성(표준 오차)이 줄어들고, 이는 곧 표집 분포가 중심 주위로 더욱 뾰족하게 압축된다는 것을 의미합니다. 2026년 첨단 스마트 모빌리티 시스템에서 수집된 한 회사의 직원 20명의 통근 시간 데이터를 예로 들어 보겠습니다. 모든 직원의 통근 시간을 알고 있을 때, 표본 크기를 <span class="math inline">\(n=5\)</span>, <span class="math inline">\(n=10\)</span>, <span class="math inline">\(n=15\)</span>로 늘려가며 가능한 모든 표본 조합을 구해보면 표본 크기가 커질수록 분포의 폭이 눈에 띄게 줄어드는 것을 확인할 수 있습니다.</p>
 <p>요약하자면 표본 통계량은 무작위 추출이라는 본질적 특성 때문에 그 자체로 확률 변수입니다. 따라서 확률 분포인 표집 분포(Sampling distribution)와 변동성을 나타내는 표준 오차(Standard error)를 동반합니다. 표본 크기가 증가할수록 변동성은 감소하고 분포는 더욱 좁아집니다.</p>
 </section>
-<section id="표집-분포의-성질과-중심-극한-정리" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="표집-분포의-성질과-중심-극한-정리"><span class="header-section-number">2</span> 표집 분포의 성질과 중심 극한 정리</h2>
+<section id="중심-극한-정리" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="중심-극한-정리"><span class="header-section-number">2</span> 중심 극한 정리</h2>
 <p>위에서 설명한 표집 분포의 개념은 무척 논리적이지만, 현실적인 제약이 하나 있습니다. 이론적인 표집 분포를 완벽히 구성하려면 가능한 모든 표본 조합을 조사해야 한다는 점입니다. 현실에서는 단 하나의 표본을 제대로 수집하는 것조차 많은 비용과 시간이 소요되는데, 모든 표본을 수집하는 것은 실무적으로 불가능에 가깝습니다.</p>
 <p>이러한 한계에도 불구하고 우리가 통계적 추론을 수행할 수 있는 이유는, 수학적으로 증명된 표집 분포의 몇 가지 강력한 성질 덕분입니다. 첫째, 표본 통계량의 표집 분포는 실제 모집단 모수를 중심으로 형성됩니다. 즉, 가능한 모든 표본 통계량의 평균을 구하면 실제 모수와 정확히 일치합니다. 둘째, 표집 분포의 퍼짐 정도는 앞서 다룬 표준 오차를 통해 계산할 수 있습니다.</p>
-<p>가장 놀랍고 중요한 세 번째 성질은 표본 비율과 표본 평균의 표집 분포 형태에 관한 것입니다. 앞서 통근 시간의 표집 분포를 시각화해 본다면 그 모양이 점차 종 모양(Bell-shaped)에 가까워진다는 것을 발견할 수 있습니다. 표본 비율의 경우도 마찬가지입니다.</p>
+<p>가장 놀랍고 중요한 세 번째 성질은 표본 비율과 표본 평균의 표집 분포 형태에 관한 것입니다. 앞서 통근 시간의 표집 분포를 시각화해 본다면 그 모양이 점차 종 모양(bell-shaped)에 가까워진다는 것을 발견할 수 있습니다. 표본 비율의 경우도 마찬가지입니다.</p>
 <p>동전을 100번 던져 앞면이 나온 비율을 계산하는 과정을 10,000번 반복한다고 상상해 보십시오. 이 시뮬레이션을 통해 얻은 앞면 비율들의 표집 분포는 완벽에 가까운 종 모양을 띠게 됩니다.</p>
 <p>이러한 종 모양 특성은 단순한 우연이 아닙니다. 수학적으로 표본 크기가 무한대에 가까워짐에 따라, 표본 평균의 표집 분포는 중심이 실제 모평균 <span class="math inline">\(\mu\)</span>이고 분산이 표준 오차의 제곱인 정규 분포(Normal distribution)로 수렴한다는 사실이 증명되어 있습니다.</p>
 <p><span class="math display">\[
@@ -435,14 +439,14 @@ window.Quarto = {
 <section id="연습-문제" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">3</span> 연습 문제</h2>
 <ol type="1">
-<li>공정한 동전(앞면과 뒷면이 나올 확률이 각각 50%)을 50번 던져 뒷면이 나온 비율을 계산한다고 가정해 보겠습니다. 이 과정을 아주 여러 번 반복한다면, 뒷면 비율의 표집 분포는 대략 어떤 값을 중심으로 하는 정규 분포를 띠게 될까요?</li>
-<li>여러분은 특정 모집단에서 <span class="math inline">\(n=100\)</span> 크기의 표본을 추출하고, 동료는 동일한 모집단에서 <span class="math inline">\(n=500\)</span> 크기의 표본을 추출했습니다. 두 사람 중 누구의 표본 통계량이 더 작은 표준 오차를 가질까요?</li>
-<li>임의의 모집단에서 추출한 표본을 바탕으로 표본 평균을 계산합니다. 표본 크기가 점점 커짐에 따라, 표본 평균의 표집 분포는 어떤 형태의 분포로 수렴하게 됩니까?</li>
-<li>사람들의 보폭 길이를 조사하여 표본 평균 보폭을 계산한다고 가정해 보겠습니다. 더 많은 사람을 조사할수록(표본 크기가 커질수록) 표본 평균 보폭의 표준 오차는 어떻게 변합니까? 또한 표집 분포의 모양은 어떤 분포에 가까워질까요?</li>
+<li><p>공정한 동전(앞면과 뒷면이 나올 확률이 각각 50%)을 50번 던져 뒷면이 나온 비율을 계산한다고 가정해 보겠습니다. 이 과정을 아주 여러 번 반복한다면, 뒷면 비율의 표집 분포는 대략 어떤 값을 중심으로 하는 정규 분포를 띠게 될까요?</p></li>
+<li><p>여러분은 특정 모집단에서 <span class="math inline">\(n=100\)</span> 크기의 표본을 추출하고, 동료는 동일한 모집단에서 <span class="math inline">\(n=500\)</span> 크기의 표본을 추출했습니다. 두 사람 중 누구의 표본 통계량이 더 작은 표준 오차를 가질까요?</p></li>
+<li><p>임의의 모집단에서 추출한 표본을 바탕으로 표본 평균을 계산합니다. 표본 크기가 점점 커짐에 따라, 표본 평균의 표집 분포는 어떤 형태의 분포로 수렴하게 됩니까?</p></li>
+<li><p>사람들의 보폭 길이를 조사하여 표본 평균 보폭을 계산한다고 가정해 보겠습니다. 더 많은 사람을 조사할수록(표본 크기가 커질수록) 표본 평균 보폭의 표준 오차는 어떻게 변합니까? 또한 표집 분포의 모양은 어떤 분포에 가까워질까요?</p></li>
 </ol>
 </section>
-<section id="표집-분포를-코드로-생각하기" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="표집-분포를-코드로-생각하기"><span class="header-section-number">4</span> 표집 분포를 코드로 생각하기</h2>
+<section id="실습-표집-분포" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="실습-표집-분포"><span class="header-section-number">4</span> 실습: 표집 분포</h2>
 <p>표집 분포(Sampling distribution)는 단일 표본에서 관찰되는 데이터의 분포가 아니라, 동일한 조건에서 표본을 반복적으로 추출했을 때 우리가 구하고자 하는 ’통계량’이 어떻게 변동하는지를 보여주는 분포입니다. 이 개념이 중요한 이유는 단 하나의 표본 평균이나 표본 비율만으로는 오차의 불확실성을 정확히 측정할 수 없기 때문입니다. 같은 모집단에서 동일한 크기의 표본을 다시 뽑더라도 평균값은 매번 미세하게 달라집니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
@@ -463,23 +467,33 @@ window.Quarto = {
 </div>
 <p>위 코드는 1부터 6까지의 주사위 눈 평균이라는 아주 단순한 상황을 시뮬레이션하지만, 여기에 담긴 핵심 논리는 현대의 복잡한 추론 문제에도 똑같이 적용됩니다. 선거 여론조사의 지지율(표본 비율), 신약 임상시험의 치료 효과 차이, 복잡한 머신러닝 회귀분석에서의 기울기 추정량 등 그 어떤 통계량도 표본이 바뀌면 변동합니다. 통계적 추론이란 바로 이 피할 수 없는 ’변동성’을 무시하는 것이 아니라, 오히려 계산의 중심에 두고 불확실성을 과학적으로 다루는 절차입니다.</p>
 </section>
-<section id="중심-극한-정리의-시각화-실습" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="중심-극한-정리의-시각화-실습"><span class="header-section-number">5</span> 중심 극한 정리의 시각화 실습</h2>
+<section id="실습-중심-극한-정리" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="실습-중심-극한-정리"><span class="header-section-number">5</span> 실습: 중심 극한 정리</h2>
 <p>앞서 언급한 표집 분포의 특성과 중심 극한 정리를 R의 시각화 도구를 통해 눈으로 직접 확인해 보겠습니다. 다음 코드는 균등 분포에서 표본을 추출하여 표본 평균의 분포가 정규 분포 형태(종 모양)에 근접해지는 과정을 보여줍니다.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 균등 분포(Uniform distribution)에서 10,000번의 표본 평균 추출 시뮬레이션</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 각 표본의 크기는 n = 30</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>sample_means_n30 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">10000</span>, </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">10</span>))</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 표집 분포 히스토그램 시각화</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample_means_n30, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">col =</span> <span class="st">"skyblue"</span>, </span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"표본 평균의 표집 분포 (n=30)"</span>, </span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"표본 평균"</span>, <span class="at">ylab =</span> <span class="st">"빈도수"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(showtext)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: sysfonts</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: showtextdb</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">font_add_google</span>(<span class="st">"Nanum Gothic Coding"</span>, <span class="st">"NanumGothicCoding"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 균등 분포(Uniform distribution)에서 10,000번의 표본 평균 추출 시뮬레이션</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 각 표본의 크기는 n = 30</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>sample_means_n30 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="dv">10000</span>, </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">10</span>))</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 표집 분포 히스토그램 시각화</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample_means_n30, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">col =</span> <span class="st">"skyblue"</span>, </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"표본 평균의 표집 분포 (n=30)"</span>, </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"표본 평균"</span>, <span class="at">ylab =</span> <span class="st">"빈도수"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

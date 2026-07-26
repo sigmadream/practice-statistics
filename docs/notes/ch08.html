@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -74,10 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-cf5ee1d16def7895729d1ac812351ea4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-05671fd07ca6d6876311839a4a0c21df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -256,7 +259,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#무작위-현상" id="toc-무작위-현상" class="nav-link active" data-scroll-target="#무작위-현상"><span class="header-section-number">1</span> 무작위 현상</a>
+  <li><a href="#무작위" id="toc-무작위" class="nav-link active" data-scroll-target="#무작위"><span class="header-section-number">1</span> 무작위</a>
   <ul class="collapse">
   <li><a href="#추론에서-확률" id="toc-추론에서-확률" class="nav-link" data-scroll-target="#추론에서-확률"><span class="header-section-number">1.1</span> 추론에서 확률</a></li>
   <li><a href="#확률-계산과-확률의-공리" id="toc-확률-계산과-확률의-공리" class="nav-link" data-scroll-target="#확률-계산과-확률의-공리"><span class="header-section-number">1.2</span> 확률 계산과 확률의 공리</a></li>
@@ -298,8 +301,8 @@ window.Quarto = {
 </blockquote>
 <p>확률론은 현대 통계학과 달리 1600년대부터 학문적 토대를 다져왔습니다. 초기에는 도박과 관련된 문제를 해결하기 위해 여러 규칙과 정리가 고안되었으나, 파스칼(Pascal), 페르마(Fermat), 베르누이(Bernoulli), 가우스(Gauss) 등 수학사에서 중요한 학자들이 참여하며 분야가 크게 발전했습니다.</p>
 <p>우리는 일상에서 흔히 확률을 접합니다. 일기 예보에서 비나 눈이 올 확률을 확인하고, 스포츠 경기 전후로 특정 팀의 승리 확률을 논합니다. 물론 확률론의 기원이라 할 수 있는 도박에서도 크랩스, 포커, 룰렛, 블랙잭의 배당률 형태로 확률을 마주합니다. 그럼에도 불구하고 확률과 그 기저에 있는 일반적인 개념에 관해서는 종종 오해가 발생합니다. 본 장에서는 통계적 추론에서 다시 다루게 될 확률의 기초와 핵심 개념들을 소개하겠습니다. 무작위 현상(random phenomena), 확률 변수(random variables), 확률의 역할, 그리고 확률의 규칙에 내재된 개념부터 차례로 살펴보겠습니다.</p>
-<section id="무작위-현상" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="무작위-현상"><span class="header-section-number">1</span> 무작위 현상</h2>
+<section id="무작위" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="무작위"><span class="header-section-number">1</span> 무작위</h2>
 <p>본격적인 논의에 앞서, 확률이 왜 필요하며 어떤 역할을 하는지 짚고 넘어가야 합니다. 확률은 무작위 현상을 설명하는 데 유용합니다. 무작위 현상(random phenomenon)이란 결과를 미리 알 수 없는 모든 사건을 의미합니다. 동전 던지기부터 개인의 키, 혹은 최근 생성형 AI가 특정 프롬프트에 대해 어떤 단어를 다음 토큰으로 예측할지에 이르기까지 그 범위는 매우 넓습니다. 사건의 결과를 미리 확정할 수 없다면 그것은 무작위 현상입니다. 그리고 확률(probability)은 이러한 무작위 현상의 결과가 나타날 가능성을 정량화하는 방법론입니다.</p>
 <p>확률을 해석하는 관점에는 주관적 확률(subjective probability), 고전적 확률(classical probability), 빈도주의적 확률(frequentist probability) 등 여러 가지가 있습니다. 주관적 확률은 결과 발생 가능성에 대한 개인의 주관적인 믿음에 근거합니다.</p>
 <p>고전적 확률에서 특정 사건의 확률은 그 사건에 속하는 가능한 결과들의 비율로 정의됩니다. 구조가 단순한 상황에서는 매우 유용하지만, 가능한 모든 결과가 발생할 확률이 동일하다는 가정을 전제로 한다는 한계가 있습니다. 현실에서는 이러한 가정이 성립하기 어려운 경우가 많으므로, 이 가정을 요구하지 않는 빈도주의적 확률 해석이 등장하게 됩니다.</p>
