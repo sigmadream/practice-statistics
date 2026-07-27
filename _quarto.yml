@@ -34,12 +34,12 @@ website:
         - notes/ch05.qmd
         - notes/ch06.qmd
         - notes/ch07.qmd
-      # - section: "확률과 검증"
-      #   contents:
-      #   - notes/ch08.qmd        
-      #   - notes/ch09.qmd
-      #   - notes/ch10.qmd
-      #   - notes/ch11.qmd
+      - section: "확률과 검증"
+        contents:
+        - notes/ch08.qmd        
+        - notes/ch09.qmd
+        - notes/ch10.qmd
+        - notes/ch11.qmd
       #   - notes/ch12.qmd
       #   - notes/ch13.qmd
       #   - notes/ch14.qmd

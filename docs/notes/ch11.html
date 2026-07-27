@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>중심극한정리를 활용한 가설 검정 수행하기 – R과 데이터 분석 입문</title>
+<title>중심극한정리 – R과 데이터 분석 입문</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -71,6 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../notes/ch10.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -80,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-05671fd07ca6d6876311839a4a0c21df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d55203e86ba1a699a1ae3c3642d34712.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -139,10 +140,10 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="중심극한정리를 활용한 가설 검정 수행하기 – R과 데이터 분석 입문">
+<meta property="og:title" content="중심극한정리 – R과 데이터 분석 입문">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="R과 데이터 분석 입문">
-<meta name="twitter:title" content="중심극한정리를 활용한 가설 검정 수행하기 – R과 데이터 분석 입문">
+<meta name="twitter:title" content="중심극한정리 – R과 데이터 분석 입문">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -156,9 +157,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      R과 데이터 분석 입문
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch08.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch11.html">중심극한정리</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -249,6 +248,41 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">확률과 검증</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">확률</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">탐색적 분석 이후</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">가설 검정의 원리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch11.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">중심극한정리</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -275,9 +309,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch08.html">확률과 검증</a></li><li class="breadcrumb-item"><a href="../notes/ch11.html">중심극한정리</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">중심극한정리를 활용한 가설 검정 수행하기</h1>
+<h1 class="title">중심극한정리</h1>
 </div>
 
 
@@ -295,27 +329,30 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p>앞서 가설 검정(Hypothesis testing)의 기본 개념을 익혔으므로, 이제 그 과정을 조금 더 깊이 파헤쳐 보겠습니다. 구체적으로 통계적 의사 결정의 핵심 지표인 <span class="math inline">\(p\)</span>-값(<span class="math inline">\(p\)</span>-value)을 도출하는 원리를 알아야 합니다. <span class="math inline">\(p\)</span>-값을 계산하는 방법은 매우 다양하지만, 상당수는 과정이 지나치게 복잡하거나 입문 수준을 벗어나는 심도 있는 이론적 지식을 요구합니다. 실무에서 널리 쓰이면서도 비교적 간단한 방법 중 하나는 바로 중심극한정리(Central limit theorem)를 활용하는 것입니다. 이를 통해 표본 통계량(Sample statistic)을 ’데이터가 얼마나 이례적인지’를 나타내는 확률로 변환할 수 있습니다. 그 원리를 다루기에 앞서, 정규분포(Normal distribution)의 속성과 이 중요한 분포군을 다루는 방법에 대해 조금 더 살펴보겠습니다.</p>
+<p>중심극한정리(central limit theorem)는 통계적 추론의 핵심 도구로, 표본 통계량을 ’데이터가 얼마나 이례적인지’를 나타내는 확률로 변환할 수 있습니다. 이를 위해 정규분포(normal distribution)의 속성과 이 중요한 분포군을 다루는 방법에 대해 조금 더 살펴보겠습니다.</p>
 </blockquote>
+<p><span class="math inline">\(p\)</span>-값(<span class="math inline">\(p\)</span>-value)은 통계적 의사 결정의 핵심 지표입니다. <span class="math inline">\(p\)</span>-값을 계산하는 방법은 매우 다양하지만, 상당수는 과정이 지나치게 복잡하거나 입문 수준을 벗어나는 심도 있는 이론적 지식을 요구합니다.</p>
 <section id="정규분포-요약" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="정규분포-요약"><span class="header-section-number">1</span> 정규분포 요약</h2>
-<p>본격적인 논의에 앞서 정규분포에 대해 배웠던 내용을 상기해 보겠습니다. 정규분포는 사실 단일한 분포가 아니라, 단봉형(Unimodal)이고 대칭이며 종 모양이라는 특징을 공유하는 분포들의 집합(Class)입니다. 정규분포의 형태는 수학적 함수에 의해 결정되며, 그 함수의 모양을 좌우하는 두 개의 매개변수(Parameter)인 평균 <span class="math inline">\(\mu\)</span>와 분산(Variance) <span class="math inline">\(\sigma^2\)</span>을 갖습니다. 확률 변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>와 분산 <span class="math inline">\(\sigma^2\)</span>을 갖는 정규분포를 따른다면 — 즉, <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span> — <span class="math inline">\(X\)</span>가 가질 수 있는 모든 값의 평균은 <span class="math inline">\(\mu\)</span>가 되고, 분산은 <span class="math inline">\(\sigma^2\)</span>이 됩니다.</p>
-<p>정규분포 중에서도 지극히 중요한 특수한 형태가 하나 있는데, 바로 표준 정규분포(Standard Normal distribution)입니다. 표준 정규분포는 평균이 <span class="math inline">\(\mu=0\)</span>이고 분산이 <span class="math inline">\(\sigma^2=1\)</span>인 정규분포를 의미합니다. 이 분포가 특히 유용한 이유는 어떤 정규분포든 비교적 간단한 연산을 통해 표준 정규분포로 변환(표준화)할 수 있기 때문입니다. 만약 변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>, 분산 <span class="math inline">\(\sigma^2\)</span>인 정규분포를 따른다면, 다음과 같이 새로운 변수 <span class="math inline">\(Z\)</span>를 정의할 수 있습니다.</p>
+<p>정규분포는 단봉형(unimodal)이고 대칭이며 종 모양이라는 특징을 공유하는 분포들의 집합(class)입니다. 정규분포의 형태는 수학적 함수에 의해 결정되며, 그 함수의 모양을 좌우하는 두 개의 매개변수(parameter)인 평균 <span class="math inline">\(\mu\)</span>와 분산(variance) <span class="math inline">\(\sigma^2\)</span>을 갖습니다. 어떤 확률 변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>와 분산 <span class="math inline">\(\sigma^2\)</span>을 갖는 정규분포를 따른다면 — 즉, <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span> — <span class="math inline">\(X\)</span>가 가질 수 있는 모든 값의 평균은 <span class="math inline">\(\mu\)</span>가 되고, 분산은 <span class="math inline">\(\sigma^2\)</span>이 됩니다.</p>
+<p>정규분포 중에서도 중요한 특수한 형태가 하나 있는데, 바로 표준 정규분포(standard normal distribution)입니다. 표준 정규분포는 평균이 <span class="math inline">\(\mu=0\)</span>이고 분산이 <span class="math inline">\(\sigma^2=1\)</span>인 정규분포를 의미합니다. 이 분포가 특히 유용한 이유는 어떤 정규분포든 비교적 간단한 연산을 통해 표준 정규분포로 변환(표준화)할 수 있기 때문입니다.</p>
+<p>어떤 확률 변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>, 분산 <span class="math inline">\(\sigma^2\)</span>인 정규분포를 따른다면, 다음과 같이 새로운 확률 변수 <span class="math inline">\(Z\)</span>를 정의할 수 있습니다.</p>
 <p><span class="math display">\[
 Z = \frac{X-\mu}{\sigma}
 \]</span></p>
-<p>이렇게 만들어진 <span class="math inline">\(Z\)</span>는 항상 표준 정규분포를 따릅니다. 이 변환 과정은 잠시 후 가설 검정을 수행할 때 매우 핵심적인 역할을 할 것입니다. 정규분포의 또 다른 놀라운 속성은 두 분포를 더하거나 뺄 때도 그 결과가 정규분포를 유지한다는 점입니다. 두 확률 변수 <span class="math inline">\(X\)</span>와 <span class="math inline">\(Y\)</span>가 모두 정규분포를 따른다면, <span class="math inline">\(X+Y\)</span>와 <span class="math inline">\(X-Y\)</span> 또한 정규분포를 따릅니다. 즉, 다음과 같이 요약할 수 있습니다.</p>
+<p>이렇게 만들어진 <span class="math inline">\(Z\)</span>는 항상 표준 정규분포를 따릅니다. 이 변환 과정은 잠시 후 가설 검정을 수행할 때 핵심적인 역할을 할 것입니다. 정규분포의 또 다른 놀라운 속성은 두 분포를 더하거나 뺄 때도 그 결과가 정규분포를 유지한다는 점입니다. 두 확률 변수 <span class="math inline">\(X\)</span>와 <span class="math inline">\(Y\)</span>가 모두 정규분포를 따른다면, <span class="math inline">\(X+Y\)</span>와 <span class="math inline">\(X-Y\)</span> 또한 정규분포를 따릅니다. 즉, 다음과 같이 요약할 수 있습니다.</p>
 <p><span class="math display">\[
+\begin{align*}
 X \sim N(\mu_{X}, \sigma_{X}^2), \quad Y \sim N(\mu_{Y}, \sigma_{Y}^2) \\
-X+Y \sim N(\mu_{X}+\mu_{Y}, \sigma_{X}^2+\sigma_{Y}^2) \\
-X-Y \sim N(\mu_{X}-\mu_{Y}, \sigma_{X}^2+\sigma_{Y}^2)
+\implies X+Y \sim N(\mu_{X}+\mu_{Y}, \sigma_{X}^2+\sigma_{Y}^2) \\
+\implies X-Y \sim N(\mu_{X}-\mu_{Y}, \sigma_{X}^2+\sigma_{Y}^2)
+\end{align*}
 \]</span></p>
 <p>이러한 덧셈과 뺄셈의 속성은 향후 두 집단(Population) 간의 차이를 비교하는 가설 검정에서 매우 중요하게 쓰일 것입니다.</p>
 </section>
 <section id="정규분포로부터-확률-구하기" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="정규분포로부터-확률-구하기"><span class="header-section-number">2</span> 정규분포로부터 확률 구하기</h2>
-<p>정규분포를 실무에 활용하려면 누적 확률(Probability)을 계산할 수 있어야 합니다. 하지만 정규분포를 정의하는 수학 함수를 직접 적분하여 확률을 구하는 것은 매우 번거롭습니다. 2026년 현재 최신 통계 소프트웨어와 AI 코딩 어시스턴트는 이러한 작업을 단 몇 줄의 코드만으로 수월하게 처리하도록 돕습니다.</p>
-<p>R 프로그래밍 환경에서는 모든 정규분포의 확률을 계산하기 위해 <code>pnorm</code> 함수를 사용합니다. <code>pnorm</code> 함수는 계산에 필요한 정보를 정확히 파악하기 위해 다음 네 가지 인자(Argument)를 요구합니다.</p>
+<p>정규분포를 실무에 활용하려면 누적 확률을 계산할 수 있어야 합니다. 하지만 확률을 정의하는 수학 함수를 직접 적분하여 확률을 구하는 것은 매우 번거롭습니다. R 프로그래밍 환경에서는 모든 정규분포의 확률을 계산하기 위해 <code>pnorm()</code> 함수를 사용합니다. <code>pnorm()</code> 함수는 계산에 필요한 정보를 정확히 파악하기 위해 다음 네 가지 인자(Argument)를 요구합니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(q, mean, sd, lower.tail)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>각 인자의 역할은 다음과 같습니다.</p>
 <ul>
@@ -328,7 +365,7 @@ X-Y \sim N(\mu_{X}-\mu_{Y}, \sigma_{X}^2+\sigma_{Y}^2)
 <li><span class="math inline">\(P(N(0,1) &gt; q)\)</span>를 구할 때는 <code>lower.tail = FALSE</code>를 사용합니다.</li>
 </ul></li>
 </ul>
-<p>앞서 우리는 분산 <span class="math inline">\(\sigma^2\)</span>을 사용해 정규분포를 정의했지만, <code>pnorm</code> 함수는 표준편차 <span class="math inline">\(\sigma\)</span>를 입력으로 받는다는 점에 각별히 유의해야 합니다. 분산의 양의 제곱근이 표준편차이므로(<span class="math inline">\(\sigma = \sqrt{\sigma^2}\)</span>), 함수에 입력할 때 값을 적절히 변환해 주기만 하면 됩니다.</p>
+<p>앞서 우리는 분산 <span class="math inline">\(\sigma^2\)</span>을 사용해 정규분포를 정의했지만, <code>pnorm()</code> 함수는 표준편차 <span class="math inline">\(\sigma\)</span>를 입력으로 받는다는 점에 각별히 유의해야 합니다. 분산의 양의 제곱근이 표준편차이므로(<span class="math inline">\(\sigma = \sqrt{\sigma^2}\)</span>), 함수에 입력할 때 값을 적절히 변환해 주기만 하면 됩니다.</p>
 <p>예를 들어, 평균이 5이고 분산이 4인 정규분포에서 6.46보다 큰 값이 나올 확률, 즉 <span class="math inline">\(P(N(5,4) &gt; 6.46)\)</span>을 구하고 싶다고 가정해 봅시다. R에서는 다음 코드를 사용합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">6.46</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -341,11 +378,11 @@ X-Y \sim N(\mu_{X}-\mu_{Y}, \sigma_{X}^2+\sigma_{Y}^2)
 <h3 data-number="2.1" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">2.1</span> 연습 문제</h3>
 <p>R을 사용하여 다음 확률들을 직접 계산해 보십시오.</p>
 <ol type="1">
-<li><span class="math inline">\(P(N(3, 6.25) &lt; 8)\)</span></li>
-<li><span class="math inline">\(P(N(-2, 16) &gt; 7)\)</span></li>
-<li><span class="math inline">\(P(N(1.2, 15.4) &lt; 10)\)</span></li>
-<li><span class="math inline">\(P(N(0, 12) &lt; 6)\)</span></li>
-<li><span class="math inline">\(P(N(-3, 1) &gt; 0)\)</span></li>
+<li><p><span class="math inline">\(P(N(3, 6.25) &lt; 8)\)</span></p></li>
+<li><p><span class="math inline">\(P(N(-2, 16) &gt; 7)\)</span></p></li>
+<li><p><span class="math inline">\(P(N(1.2, 15.4) &lt; 10)\)</span></p></li>
+<li><p><span class="math inline">\(P(N(0, 12) &lt; 6)\)</span></p></li>
+<li><p><span class="math inline">\(P(N(-3, 1) &gt; 0)\)</span></p></li>
 </ol>
 </section>
 </section>
@@ -353,7 +390,8 @@ X-Y \sim N(\mu_{X}-\mu_{Y}, \sigma_{X}^2+\sigma_{Y}^2)
 <h2 data-number="3" class="anchored" data-anchor-id="데이터와-p-값-연결하기"><span class="header-section-number">3</span> 데이터와 <span class="math inline">\(p\)</span>-값 연결하기</h2>
 <p>정규분포의 기본 속성과 확률을 계산하는 방법을 익혔으니, 다시 가설 검정으로 돌아가겠습니다. 이전 장에서는 가설 검정의 핵심 원리에 대해 논의했습니다. 즉, 세상의 상태(귀무 가설)를 참이라고 일단 가정한 뒤, 현재 관찰된 데이터가 그 가정하에서 ‘충분히 희귀한’ 경우에만 그 가정을 기각한다는 논리였습니다. 여기서 ’희귀함’은 귀무 가설이 참일 때 우리가 관찰한 데이터만큼, 혹은 그보다 더 극단적인 데이터가 나타날 확률인 <span class="math inline">\(p\)</span>-값을 통해 수치화됩니다. 그렇다면 관찰된 표본 데이터에서 어떻게 이 <span class="math inline">\(p\)</span>-값을 도출해 낼 수 있을까요?</p>
 <p>이 과정을 이해하기 위해 이전의 동전 던지기 예제로 돌아가 보겠습니다. 동전을 100번 던져 앞면이 나온 비율(앞면 60번)을 계산하고, 이 동전이 공정한지 여부를 검증하고자 합니다. 우리의 최종 목표는 귀무 가설이 참일 때 이보다 더 극단적인 결과가 관찰될 확률, 즉 <span class="math inline">\(p\)</span>-값을 구하는 것입니다.</p>
-<p>확률을 계산하려면 반드시 확률 분포가 필요합니다. 보다 정확히 말해, 우리가 수집한 표본 데이터로부터 계산된 ’통계량의 확률 분포’가 필요합니다. 다행히 우리는 앞서 표본 통계량의 분포, 즉 표집 분포(Sampling distribution)에 대해 배웠습니다. 동전 던지기의 경우, 중심극한정리 덕분에 앞면 비율 <span class="math inline">\(\hat{p}\)</span>의 표집 분포가 어떤 형태인지 이미 알고 있습니다. 그것은 앞면이 나올 실제 확률 <span class="math inline">\(p\)</span>를 중심으로 하고, 표본 비율의 표준 오차(Standard error) 제곱을 분산으로 갖는 정규분포입니다. 수학적으로는 다음과 같습니다.</p>
+<p>확률을 계산하려면 반드시 확률 분포가 필요합니다. 보다 정확히 말해, 우리가 수집한 표본 데이터로부터 계산된 ’통계량의 확률 분포’가 필요합니다. 다행히 우리는 앞서 표본 통계량의 분포, 즉 표집 분포(sampling distribution)에 대해 배웠습니다.</p>
+<p>동전 던지기의 경우, 중심극한정리 덕분에 앞면 비율 <span class="math inline">\(\hat{p}\)</span>의 표집 분포가 어떤 형태인지 이미 알고 있습니다. 그것은 앞면이 나올 실제 확률 <span class="math inline">\(p\)</span>를 중심으로 하고, 표본 비율의 표준 오차(Standard Error) 제곱을 분산으로 갖는 정규분포입니다. 수학적으로는 다음과 같습니다.</p>
 <p><span class="math display">\[
 \hat{p} \sim N\left(p, \text{s.e.}(\hat{p})^2\right)
 \]</span></p>
@@ -406,7 +444,10 @@ P(N(0.5, 0.05^2) \le 0.4) + P(N(0.5, 0.05^2) \ge 0.6)
 \]</span></p>
 <p>이 두 확률을 각각 표준화하면 다음과 같습니다.</p>
 <p><span class="math display">\[
-P\left(\frac{N(0.5, 0.05^2) - 0.5}{0.05} \le \frac{0.4 - 0.5}{0.05}\right) + P\left(\frac{N(0.5, 0.05^2) - 0.5}{0.05} \ge \frac{0.6 - 0.5}{0.05}\right) = P(N(0, 1) \le -2) + P(N(0, 1) \ge 2)
+\begin{align*}
+&amp;P\left(\frac{N(0.5, 0.05^2) - 0.5}{0.05} \le \frac{0.4 - 0.5}{0.05}\right) + P\left(\frac{N(0.5, 0.05^2) - 0.5}{0.05} \ge \frac{0.6 - 0.5}{0.05}\right) \\
+&amp;= P(N(0, 1) \le -2) + P(N(0, 1) \ge 2)
+\end{align*}
 \]</span></p>
 <p>각각의 확률을 계산해 보면 <span class="math inline">\(P(N(0,1) \le -2)\)</span>와 <span class="math inline">\(P(N(0,1) \ge 2)\)</span>가 모두 0.02275임을 알 수 있습니다. 이는 결코 우연이 아닙니다. 정규분포는 중심을 기준으로 완벽하게 대칭이므로 양쪽 꼬리의 확률 면적이 같습니다.</p>
 <p><span class="math display">\[
@@ -477,19 +518,19 @@ t = \frac{\text{표본 통계량} - \text{귀무 가설 값}}{\text{표준 오�
 <h3 data-number="3.1" class="anchored" data-anchor-id="연습-문제-1"><span class="header-section-number">3.1</span> 연습 문제</h3>
 <p>카지노의 룰렛(Roulette) 게임 휠에는 빨간색, 검은색, 초록색 칸이 있습니다. 여러분이 카지노에서 룰렛을 하던 중 휠이 조작되었다고 의심하기 시작했습니다. 구체적으로, 딜러가 빨간색이 나올 확률을 교묘하게 낮추었다고 믿습니다.</p>
 <ol start="6" type="1">
-<li>정상적이고 공정한 룰렛 휠에서 빨간색이 나올 실제 확률은 0.47입니다. 여러분의 의심을 검증하기 위한 귀무 가설과 대립 가설은 각각 무엇입니까?</li>
-<li>여러분이 룰렛 게임을 50라운드 관찰한 결과, 빨간색이 20번, 검은색이 28번, 초록색이 2번 나왔습니다. 이 표본에서 빨간색이 나온 표본 비율은 얼마입니까?</li>
-<li>만약 표집 분포의 표준 오차가 <span class="math inline">\(s.e.(\hat{p}) = 0.07\)</span>이라고 가정한다면, 이 데이터로부터 도출되는 검정 통계량 <span class="math inline">\(t\)</span>는 얼마입니까?</li>
-<li>귀무 가설이 참이고 위의 표준 오차가 주어졌을 때, 표본 비율 <span class="math inline">\(\hat{p}\)</span>의 표집 분포는 수식으로 어떻게 표현됩니까?</li>
-<li>여러분이 설정한 대립 가설에 기초하여 도출되는 최종 <span class="math inline">\(p\)</span>-값은 얼마입니까?</li>
+<li><p>정상적이고 공정한 룰렛 휠에서 빨간색이 나올 실제 확률은 0.47입니다. 여러분의 의심을 검증하기 위한 귀무 가설과 대립 가설은 각각 무엇입니까?</p></li>
+<li><p>여러분이 룰렛 게임을 50라운드 관찰한 결과, 빨간색이 20번, 검은색이 28번, 초록색이 2번 나왔습니다. 이 표본에서 빨간색이 나온 표본 비율은 얼마입니까?</p></li>
+<li><p>만약 표집 분포의 표준 오차가 <span class="math inline">\(s.e.(\hat{p}) = 0.07\)</span>이라고 가정한다면, 이 데이터로부터 도출되는 검정 통계량 <span class="math inline">\(t\)</span>는 얼마입니까?</p></li>
+<li><p>귀무 가설이 참이고 위의 표준 오차가 주어졌을 때, 표본 비율 <span class="math inline">\(\hat{p}\)</span>의 표집 분포는 수식으로 어떻게 표현됩니까?</p></li>
+<li><p>여러분이 설정한 대립 가설에 기초하여 도출되는 최종 <span class="math inline">\(p\)</span>-값은 얼마입니까?</p></li>
 </ol>
 <p>비디오 포커(Video poker)는 카지노 게임 중 플레이어가 이길 확률이 상대적으로 높은 게임으로 알려져 있습니다. 특정 “잭스 오어 베터(Jacks or better)” 게임 기계에서 플레이어가 이길 확률은 이론적으로 0.4546입니다.</p>
 <ol start="11" type="1">
-<li>여러분은 카지노 측이 기계를 조작해 이길 확률을 고의로 낮추었는지 테스트하고자 합니다. 귀무 가설과 대립 가설은 무엇입니까?</li>
-<li>여러분이 100핸드의 포커를 플레이하여 42번 이겼습니다. 이 표본 데이터의 승리 비율은 얼마입니까?</li>
-<li>표준 오차가 <span class="math inline">\(s.e.(\hat{p}) = 0.05\)</span>일 때, 관찰된 데이터의 검정 통계량 <span class="math inline">\(t\)</span>는 얼마입니까?</li>
-<li>귀무 가설이 참일 때, 이 표본 비율 <span class="math inline">\(\hat{p}\)</span>의 표집 분포는 어떻게 됩니까?</li>
-<li>여러분이 설정한 대립 가설 방향에 따른 이 가설 검정의 <span class="math inline">\(p\)</span>-값은 얼마입니까?</li>
+<li><p>여러분은 카지노 측이 기계를 조작해 이길 확률을 고의로 낮추었는지 테스트하고자 합니다. 귀무 가설과 대립 가설은 무엇입니까?</p></li>
+<li><p>여러분이 100핸드의 포커를 플레이하여 42번 이겼습니다. 이 표본 데이터의 승리 비율은 얼마입니까?</p></li>
+<li><p>표준 오차가 <span class="math inline">\(s.e.(\hat{p}) = 0.05\)</span>일 때, 관찰된 데이터의 검정 통계량 <span class="math inline">\(t\)</span>는 얼마입니까?</p></li>
+<li><p>귀무 가설이 참일 때, 이 표본 비율 <span class="math inline">\(\hat{p}\)</span>의 표집 분포는 어떻게 됩니까?</p></li>
+<li><p>여러분이 설정한 대립 가설 방향에 따른 이 가설 검정의 <span class="math inline">\(p\)</span>-값은 얼마입니까?</p></li>
 </ol>
 </section>
 </section>
@@ -916,6 +957,15 @@ t = \frac{\text{표본 통계량} - \text{귀무 가설 값}}{\text{표준 오�
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../notes/ch10.html" class="pagination-link" aria-label="가설 검정의 원리">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">가설 검정의 원리</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
