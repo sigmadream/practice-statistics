@@ -331,7 +331,7 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p>우리는 모집단의 목록인 표집 틀(Sampling frame)에서 무작위 표본(Random sample)을 선택하는 기법에 초점을 맞추겠습니다. 이를 원활하게 수행하기 위해서는 먼저 몇 가지 핵심적인 R 프로그래밍 기술을 익혀야 합니다. 우선 벡터(Vector)와 데이터 프레임(Dataframe)에서 원하는 부분만을 추출하는 서브세팅(Subsetting) 방법을 살펴보고, 이어서 R이 컴퓨터 내부적으로 난수(Random number)를 생성하는 원리를 간략히 알아보겠습니다. 마지막으로 특정 개수의 표본을 무작위로 뽑아주는 <code>sample()</code> 함수를 학습하고, 이 모든 지식을 종합하여 방대한 표집 틀에서 실제 분석에 사용할 무작위 표본을 직접 추출해 보겠습니다.</p>
+<p>우리는 모집단의 목록인 표집 틀(Sampling frame)에서 무작위 표본(Random sample)을 선택하는 기법에 초점을 맞추겠습니다. 이를 원활하게 수행하기 위해서는 먼저 몇 가지 핵심적인 R 프로그래밍 기술을 익혀야 합니다. 우선 벡터(Vector)와 데이터 프레임(Dataframe)에서 원하는 부분만을 추출하는 서브세팅(Subsetting) 방법을 살펴보고, 이어서 R이 컴퓨터 내부적으로 난수(Random number)를 생성하는 원리를 간략히 알아보겠습니다. 마지막으로 특정 개수의 표본을 무작위로 뽑아주는 <code>sample.int()</code> 함수를 학습하고, 이 모든 지식을 종합하여 방대한 표집 틀에서 실제 분석에 사용할 무작위 표본을 직접 추출해 보겠습니다.</p>
 </blockquote>
 <section id="서브셋" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="서브셋"><span class="header-section-number">1</span> 서브셋</h2>
@@ -360,7 +360,7 @@ window.Quarto = {
 </div>
 <p>또 다른 예를 살펴보겠습니다. 역대 미국 대통령들의 취임 당시 나이가 순서대로 <code>age</code>라는 벡터에 저장되어 있다고 가정해 보겠습니다. 2대 대통령인 존 애덤스와 6대 대통령인 존 퀸시 애덤스 부자의 취임 나이를 동시에 확인하려면, 다음과 같이 그들의 순서(2와 6)를 함께 지정해 주시면 됩니다.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">57</span>, <span class="dv">61</span>, <span class="dv">57</span>, <span class="dv">57</span>, <span class="dv">58</span>, <span class="dv">57</span>, <span class="dv">61</span>, <span class="dv">52</span>, <span class="dv">69</span>, <span class="dv">38</span>, <span class="dv">48</span>, <span class="dv">51</span>, <span class="dv">49</span>, <span class="dv">64</span>, <span class="dv">50</span>, <span class="dv">47</span>, <span class="dv">55</span>, <span class="dv">42</span>, <span class="dv">51</span>, <span class="dv">56</span>, <span class="dv">55</span>, <span class="dv">51</span>, <span class="dv">54</span>, <span class="dv">68</span>, <span class="dv">51</span>, <span class="dv">52</span>, <span class="dv">67</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">57</span>, <span class="dv">61</span>, <span class="dv">57</span>, <span class="dv">57</span>, <span class="dv">58</span>, <span class="dv">57</span>, <span class="dv">61</span>, <span class="dv">54</span>, <span class="dv">68</span>, <span class="dv">51</span>, <span class="dv">49</span>, <span class="dv">64</span>, <span class="dv">50</span>, <span class="dv">48</span>, <span class="dv">65</span>, <span class="dv">52</span>, <span class="dv">56</span>, <span class="dv">46</span>, <span class="dv">54</span>, <span class="dv">49</span>, <span class="dv">51</span>, <span class="dv">47</span>, <span class="dv">55</span>, <span class="dv">55</span>, <span class="dv">54</span>, <span class="dv">42</span>, <span class="dv">51</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>age[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">6</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 61 57</code></pre>
@@ -576,15 +576,15 @@ window.Quarto = {
 <section id="r의-난수" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="r의-난수"><span class="header-section-number">2</span> R의 난수</h2>
 <p>이제 무작위 표본을 추출하는 본론으로 들어가기에 앞서, R이 어떻게 난수를 생성하는지 짚고 넘어가겠습니다. R을 비롯한 거의 모든 컴퓨터 프로그램이 생성하는 난수는 진정한 의미의 ’자연적 무작위(True random)’가 아닙니다. 컴퓨터는 수학적 알고리즘을 통해 이전의 입력값을 바탕으로 다음 숫자를 계산하여 무작위처럼 보이는 숫자를 출력합니다. R은 기본적으로 메르센 트위스터(Mersenne Twister)라는 검증된 알고리즘을 사용합니다. 이를 유사 난수(Pseudo-random number)라고 부릅니다.</p>
-<p>이러한 유사 난수를 학술 연구나 AI 모델 학습의 기준으로 신뢰할 수 있는 이유는 무엇이겠습니까? 핵심은 이 알고리즘이 생성하는 숫자의 패턴이 ’자주 반복되지 않는다’는 데 있습니다. 메르센 트위스터 알고리즘은 약 <span class="math inline">\(2^{19937-1}\)</span>번을 실행해야 비로소 초기 패턴이 반복됩니다. 이는 인류가 수행할 수 있는 어떠한 초대형 데이터 분석에서도 결코 난수 패턴이 중복되지 않음을 수학적으로 보장하는 천문학적인 수치입니다.</p>
-<p>이처럼 알고리즘이 연쇄적인 계산을 통해 다음 난수를 만들어낸다면, 맨 처음 계산을 시작하기 위한 ’최초의 입력값’이 반드시 필요합니다. 이 시작 값을 척도라는 의미로 시드(Seed)라고 부릅니다. 시드를 지정하지 않으면 R은 컴퓨터의 현재 시각 데이터를 가져와 매번 다른 시드를 자동 설정합니다. 하지만 분석의 재현성(Reproducibility)을 위해 고정된 시드를 부여해야 할 때는 다음 코드를 사용하십시오.</p>
+<p>이러한 유사 난수를 학술 연구나 AI 모델 학습의 기준으로 신뢰할 수 있는 이유는 무엇이겠습니까? 핵심은 이 알고리즘이 생성하는 숫자의 패턴이 ’자주 반복되지 않는다’는 데 있습니다. 메르센 트위스터 알고리즘은 무려 <span class="math inline">\(2^{19937}-1\)</span>번을 실행해야 비로소 초기 패턴이 반복됩니다. 이는 인류가 수행할 수 있는 어떠한 초대형 데이터 분석에서도 결코 난수 패턴이 중복되지 않음을 수학적으로 보장하는 천문학적인 수치입니다.</p>
+<p>이처럼 알고리즘이 연쇄적인 계산을 통해 다음 난수를 만들어낸다면, 맨 처음 계산을 시작하기 위한 ’최초의 입력값’이 반드시 필요합니다. 이 시작 값을 씨앗이라는 의미로 시드(Seed)라고 부릅니다. 하나의 씨앗에서 정해진 난수열이 자라나듯, 같은 시드를 지정하면 언제나 똑같은 난수열이 재현됩니다. 시드를 지정하지 않으면 R은 컴퓨터의 현재 시각 데이터를 가져와 매번 다른 시드를 자동 설정합니다. 하지만 분석의 재현성(Reproducibility)을 위해 고정된 시드를 부여해야 할 때는 다음 코드를 사용하십시오.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>괄호 안에 원하는 숫자를 시드로 지정해 주시면 됩니다. 고정된 시드를 제공하면 컴퓨터는 난수 알고리즘의 출발점을 동일하게 맞추게 되므로, 이후 실행되는 난수 생성 함수는 언제나 100% 동일한 숫자의 나열을 반환합니다. 이는 특히 생성형 AI 시대에서 모델의 학습 초기 상태나 샘플링 과정을 동료 연구자가 완벽하게 재현하고 검증할 수 있게 해주는 필수적인 장치입니다.</p>
 <section id="무작위-표본-선택" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="무작위-표본-선택"><span class="header-section-number">2.1</span> 무작위 표본 선택</h3>
-<p>난수 생성 원리를 이해하셨으니 이제 방대한 표집 틀에서 무작위 표본의 위치(행 번호)를 선택해 보겠습니다. R에는 지정된 범위 안에서 정수 형태의 난수를 중복 없이 뽑아주는 <code>sample.int</code>라는 유용한 함수가 있습니다. <code>sample.int</code> 함수에는 크게 두 가지 핵심 인자(입력값)가 필요합니다. 하나는 표집 틀의 전체 대상 수(<code>n</code>)이고, 다른 하나는 추출하고자 하는 표본의 수(<code>size</code>)입니다. 기본적인 형태는 다음과 같습니다.</p>
+<p>난수 생성 원리를 이해하셨으니 이제 방대한 표집 틀에서 무작위 표본의 위치(행 번호)를 선택해 보겠습니다. R에는 지정된 범위 안에서 정수 형태의 난수를 중복 없이 뽑아주는 <code>sample.int</code>라는 유용한 함수가 있습니다. 참고로 범용 함수인 <code>sample()</code>은 벡터의 원소를 직접 섞거나 뽑을 때 쓰이며, <code>sample.int()</code>는 그중 “1부터 n까지의 정수”를 뽑는 데 특화된 형태라고 이해하시면 됩니다. <code>sample.int</code> 함수에는 크게 두 가지 핵심 인자(입력값)가 필요합니다. 하나는 표집 틀의 전체 대상 수(<code>n</code>)이고, 다른 하나는 추출하고자 하는 표본의 수(<code>size</code>)입니다. 기본적인 형태는 다음과 같습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>sample_rows <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> 전체_데이터_크기, <span class="at">size =</span> 원하는_표본_크기)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>이 함수는 무작위로 선택된 행 번호들을 담은 벡터를 반환합니다. 실전 예제를 들어보겠습니다. 현대 야구 데이터 분석에서 빼놓을 수 없는 방대한 데이터셋 중 하나가 바로 투구 궤적 시스템인 <code>PitchF/x</code> 데이터입니다. 이 안에는 구속, 회전수, 투구 유형, 스트라이크존 통과 좌표 등 2007년부터 누적된 수많은 투구 정보가 기록되어 있으며, 2019년 시즌 종료 기준으로 무려 8,812,107개의 행을 가지고 있습니다. 이 어마어마한 데이터를 한 번에 모델링하면 연산 과부하가 걸리기 쉬우므로, 무작위로 1,000개의 투구만을 추출하여 소규모 테스트 모델을 만들어보고자 합니다. 880만 개 중 1,000개의 행 번호를 무작위로 뽑으려면 다음 코드를 실행하십시오.</p>
 <div class="cell">
@@ -827,7 +827,7 @@ window.Quarto = {
 </table>
 <ol type="1">
 <li><p><code>Colleges</code> 데이터 프레임에서 <code>TopSalary</code> 벡터만 따로 뽑아낸 뒤, 그중 첫 번째, 세 번째, 열 번째, 열두 번째 항목만을 추출하는 R 코드를 작성해 보십시오.</p></li>
-<li><p>최고 급여(<code>TopSalary</code>)가 $400,000를 초과하는 대학들로 한정하여, 그 대학들의 중앙값 급여(<code>MedianSalary</code>) 벡터 요소들을 추출하는 논리문 서브세팅 코드를 작성해 주십시오.</p></li>
+<li><p>최고 급여(<code>TopSalary</code>)가 40만 달러를 초과하는 대학들로 한정하여, 그 대학들의 중앙값 급여(<code>MedianSalary</code>) 벡터 요소들을 추출하는 논리문 서브세팅 코드를 작성해 주십시오.</p></li>
 <li><p>데이터 프레임 전체를 대상으로, 직원 수가 1,000명 이하인 소규모 대학들의 ’행(Row) 전체 정보’를 필터링하는 코드를 작성해 주십시오.</p></li>
 <li><p>이 데이터 프레임(총 14개 행)에서 5개 대학의 표본을 편향 없이 무작위로 추출하여 반환하는 코드를 작성해 보십시오.</p></li>
 </ol>

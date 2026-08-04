@@ -334,25 +334,25 @@ window.Quarto = {
 <p><span class="math inline">\(p\)</span>-값(<span class="math inline">\(p\)</span>-value)은 통계적 의사 결정의 핵심 지표입니다. <span class="math inline">\(p\)</span>-값을 계산하는 방법은 매우 다양하지만, 상당수는 과정이 지나치게 복잡하거나 입문 수준을 벗어나는 심도 있는 이론적 지식을 요구합니다.</p>
 <section id="정규분포-요약" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="정규분포-요약"><span class="header-section-number">1</span> 정규분포 요약</h2>
-<p>정규분포는 단봉형(unimodal)이고 대칭이며 종 모양이라는 특징을 공유하는 분포들의 집합(class)입니다. 정규분포의 형태는 수학적 함수에 의해 결정되며, 그 함수의 모양을 좌우하는 두 개의 매개변수(parameter)인 평균 <span class="math inline">\(\mu\)</span>와 분산(variance) <span class="math inline">\(\sigma^2\)</span>을 갖습니다. 어떤 확률 변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>와 분산 <span class="math inline">\(\sigma^2\)</span>을 갖는 정규분포를 따른다면 — 즉, <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span> — <span class="math inline">\(X\)</span>가 가질 수 있는 모든 값의 평균은 <span class="math inline">\(\mu\)</span>가 되고, 분산은 <span class="math inline">\(\sigma^2\)</span>이 됩니다.</p>
+<p>정규분포는 단봉형(unimodal)이고 대칭이며 종 모양이라는 특징을 공유하는 분포들의 집합(class)입니다. 정규분포의 형태는 수학적 함수에 의해 결정되며, 그 함수의 모양을 좌우하는 두 개의 모수(parameter)인 평균 <span class="math inline">\(\mu\)</span>와 분산(variance) <span class="math inline">\(\sigma^2\)</span>을 갖습니다. 어떤 확률 변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>와 분산 <span class="math inline">\(\sigma^2\)</span>을 갖는 정규분포를 따른다면 — 즉, <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span> — <span class="math inline">\(X\)</span>가 가질 수 있는 모든 값의 평균은 <span class="math inline">\(\mu\)</span>가 되고, 분산은 <span class="math inline">\(\sigma^2\)</span>이 됩니다.</p>
 <p>정규분포 중에서도 중요한 특수한 형태가 하나 있는데, 바로 표준 정규분포(standard normal distribution)입니다. 표준 정규분포는 평균이 <span class="math inline">\(\mu=0\)</span>이고 분산이 <span class="math inline">\(\sigma^2=1\)</span>인 정규분포를 의미합니다. 이 분포가 특히 유용한 이유는 어떤 정규분포든 비교적 간단한 연산을 통해 표준 정규분포로 변환(표준화)할 수 있기 때문입니다.</p>
 <p>어떤 확률 변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>, 분산 <span class="math inline">\(\sigma^2\)</span>인 정규분포를 따른다면, 다음과 같이 새로운 확률 변수 <span class="math inline">\(Z\)</span>를 정의할 수 있습니다.</p>
 <p><span class="math display">\[
 Z = \frac{X-\mu}{\sigma}
 \]</span></p>
-<p>이렇게 만들어진 <span class="math inline">\(Z\)</span>는 항상 표준 정규분포를 따릅니다. 이 변환 과정은 잠시 후 가설 검정을 수행할 때 핵심적인 역할을 할 것입니다. 정규분포의 또 다른 놀라운 속성은 두 분포를 더하거나 뺄 때도 그 결과가 정규분포를 유지한다는 점입니다. 두 확률 변수 <span class="math inline">\(X\)</span>와 <span class="math inline">\(Y\)</span>가 모두 정규분포를 따른다면, <span class="math inline">\(X+Y\)</span>와 <span class="math inline">\(X-Y\)</span> 또한 정규분포를 따릅니다. 즉, 다음과 같이 요약할 수 있습니다.</p>
+<p>이렇게 만들어진 <span class="math inline">\(Z\)</span>는 항상 표준 정규분포를 따릅니다. 이 변환 과정은 잠시 후 가설 검정을 수행할 때 핵심적인 역할을 할 것입니다. 정규분포의 또 다른 놀라운 속성은 두 분포를 더하거나 뺄 때도 그 결과가 정규분포를 유지한다는 점입니다. <strong>서로 독립인</strong> 두 확률 변수 <span class="math inline">\(X\)</span>와 <span class="math inline">\(Y\)</span>가 모두 정규분포를 따른다면, <span class="math inline">\(X+Y\)</span>와 <span class="math inline">\(X-Y\)</span> 또한 정규분포를 따릅니다. 즉, 다음과 같이 요약할 수 있습니다.</p>
 <p><span class="math display">\[
-\begin{align*}
-X \sim N(\mu_{X}, \sigma_{X}^2), \quad Y \sim N(\mu_{Y}, \sigma_{Y}^2) \\
-\implies X+Y \sim N(\mu_{X}+\mu_{Y}, \sigma_{X}^2+\sigma_{Y}^2) \\
-\implies X-Y \sim N(\mu_{X}-\mu_{Y}, \sigma_{X}^2+\sigma_{Y}^2)
-\end{align*}
+\begin{aligned}
+&amp;X \sim N(\mu_{X}, \sigma_{X}^2), \quad Y \sim N(\mu_{Y}, \sigma_{Y}^2), \quad X \perp Y \\
+&amp;\implies X+Y \sim N(\mu_{X}+\mu_{Y}, \sigma_{X}^2+\sigma_{Y}^2) \\
+&amp;\implies X-Y \sim N(\mu_{X}-\mu_{Y}, \sigma_{X}^2+\sigma_{Y}^2)
+\end{aligned}
 \]</span></p>
-<p>이러한 덧셈과 뺄셈의 속성은 향후 두 집단(Population) 간의 차이를 비교하는 가설 검정에서 매우 중요하게 쓰일 것입니다.</p>
+<p>여기서 독립 가정은 반드시 필요합니다. 두 변수가 독립이 아니라면 분산은 일반적으로 <span class="math inline">\(\text{Var}(X \pm Y) = \sigma_X^2 + \sigma_Y^2 \pm 2\,\text{Cov}(X,Y)\)</span>가 되어 위 공식이 성립하지 않습니다. 이러한 덧셈과 뺄셈의 속성은 향후 두 집단(population) 간의 차이를 비교하는 가설 검정에서 매우 중요하게 쓰일 것입니다. 그 검정들이 두 표본의 독립성을 전제로 하는 이유도 바로 여기에 있습니다.</p>
 </section>
 <section id="정규분포로부터-확률-구하기" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="정규분포로부터-확률-구하기"><span class="header-section-number">2</span> 정규분포로부터 확률 구하기</h2>
-<p>정규분포를 실무에 활용하려면 누적 확률을 계산할 수 있어야 합니다. 하지만 확률을 정의하는 수학 함수를 직접 적분하여 확률을 구하는 것은 매우 번거롭습니다. R 프로그래밍 환경에서는 모든 정규분포의 확률을 계산하기 위해 <code>pnorm()</code> 함수를 사용합니다. <code>pnorm()</code> 함수는 계산에 필요한 정보를 정확히 파악하기 위해 다음 네 가지 인자(Argument)를 요구합니다.</p>
+<p>정규분포를 실무에 활용하려면 누적 확률을 계산할 수 있어야 합니다. 하지만 확률을 정의하는 수학 함수를 직접 적분하여 확률을 구하는 것은 매우 번거롭습니다. R 프로그래밍 환경에서는 모든 정규분포의 확률을 계산하기 위해 <code>pnorm()</code> 함수를 사용합니다. <code>pnorm()</code> 함수는 계산에 필요한 정보를 정확히 파악하기 위해 다음 네 가지 인자(argument)를 받습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(q, mean, sd, lower.tail)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>각 인자의 역할은 다음과 같습니다.</p>
 <ul>
@@ -361,8 +361,8 @@ X \sim N(\mu_{X}, \sigma_{X}^2), \quad Y \sim N(\mu_{Y}, \sigma_{Y}^2) \\
 <li><code>sd</code>: 해당 정규분포의 표준편차 <span class="math inline">\(\sigma\)</span> (기본값은 1)</li>
 <li><code>lower.tail</code>: 기준 값보다 ‘작을’ 확률을 구할지, ‘클’ 확률을 구할지를 결정하는 논리값(TRUE/FALSE, 기본값은 TRUE)
 <ul>
-<li><span class="math inline">\(P(N(0,1) &lt; q)\)</span>를 구할 때는 <code>lower.tail = TRUE</code>를 사용합니다.</li>
-<li><span class="math inline">\(P(N(0,1) &gt; q)\)</span>를 구할 때는 <code>lower.tail = FALSE</code>를 사용합니다.</li>
+<li><span class="math inline">\(P(X &lt; q)\)</span>를 구할 때는 <code>lower.tail = TRUE</code>를 사용합니다.</li>
+<li><span class="math inline">\(P(X &gt; q)\)</span>를 구할 때는 <code>lower.tail = FALSE</code>를 사용합니다.</li>
 </ul></li>
 </ul>
 <p>앞서 우리는 분산 <span class="math inline">\(\sigma^2\)</span>을 사용해 정규분포를 정의했지만, <code>pnorm()</code> 함수는 표준편차 <span class="math inline">\(\sigma\)</span>를 입력으로 받는다는 점에 각별히 유의해야 합니다. 분산의 양의 제곱근이 표준편차이므로(<span class="math inline">\(\sigma = \sqrt{\sigma^2}\)</span>), 함수에 입력할 때 값을 적절히 변환해 주기만 하면 됩니다.</p>
@@ -444,10 +444,10 @@ P(N(0.5, 0.05^2) \le 0.4) + P(N(0.5, 0.05^2) \ge 0.6)
 \]</span></p>
 <p>이 두 확률을 각각 표준화하면 다음과 같습니다.</p>
 <p><span class="math display">\[
-\begin{align*}
+\begin{aligned}
 &amp;P\left(\frac{N(0.5, 0.05^2) - 0.5}{0.05} \le \frac{0.4 - 0.5}{0.05}\right) + P\left(\frac{N(0.5, 0.05^2) - 0.5}{0.05} \ge \frac{0.6 - 0.5}{0.05}\right) \\
 &amp;= P(N(0, 1) \le -2) + P(N(0, 1) \ge 2)
-\end{align*}
+\end{aligned}
 \]</span></p>
 <p>각각의 확률을 계산해 보면 <span class="math inline">\(P(N(0,1) \le -2)\)</span>와 <span class="math inline">\(P(N(0,1) \ge 2)\)</span>가 모두 0.02275임을 알 수 있습니다. 이는 결코 우연이 아닙니다. 정규분포는 중심을 기준으로 완벽하게 대칭이므로 양쪽 꼬리의 확률 면적이 같습니다.</p>
 <p><span class="math display">\[
@@ -458,7 +458,7 @@ P(N(0, 1) \le -a) = P(N(0, 1) \ge a)
 P(N(0, 1) \le -2) + P(N(0, 1) \ge 2) = 2 \times P(N(0, 1) \ge 2)
 \]</span></p>
 <p>R을 이용해 계산하면 최종 <span class="math inline">\(p\)</span>-값은 약 0.0455가 됩니다. 대립 가설이 <span class="math inline">\(H_A : p \neq p_0\)</span> 형태인 양측 검정에서는 항상 이와 같이 단일 꼬리 확률에 2를 곱하는 방식을 취합니다.</p>
-<p>대립 가설의 방향과 무관하게, <span class="math inline">\(p\)</span>-값을 도출하는 과정에는 일관된 수학적 맥락이 존재합니다. 세 가지 계산 과정을 되짚어 보면 모두 하나의 출발점, 즉 ’관찰된 통계량(<span class="math inline">\(\hat{p}=0.6\)</span>)을 평균(<span class="math inline">\(0.5\)</span>)과 표준 오차(<span class="math inline">\(0.05\)</span>)를 이용해 표준 정규분포 상의 특정 위치(<span class="math inline">\(t = 2\)</span>)로 변환하는 작업’에서 시작했습니다.</p>
+<p>대립 가설의 방향과 무관하게, <span class="math inline">\(p\)</span>-값을 도출하는 과정에는 일관된 수학적 맥락이 존재합니다. 세 가지 계산 과정을 되짚어 보면 모두 하나의 출발점, 즉 ’관찰된 통계량(<span class="math inline">\(\hat{p}=0.6\)</span>)을 평균(<span class="math inline">\(0.5\)</span>)과 표준 오차(<span class="math inline">\(0.05\)</span>)를 이용해 표준 정규분포 상의 특정 위치(<span class="math inline">\(z = 2\)</span>)로 변환하는 작업’에서 시작했습니다.</p>
 <p>이러한 관계를 표로 정리하면 다음과 같습니다.</p>
 <table class="caption-top table">
 <thead>
@@ -470,25 +470,25 @@ P(N(0, 1) \le -2) + P(N(0, 1) \ge 2) = 2 \times P(N(0, 1) \ge 2)
 <tbody>
 <tr class="odd">
 <td><span class="math inline">\(p &gt; 0.5\)</span></td>
-<td><span class="math inline">\(P(N(0, 1) \ge t)\)</span></td>
+<td><span class="math inline">\(P(N(0, 1) \ge z)\)</span></td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(p &lt; 0.5\)</span></td>
-<td><span class="math inline">\(P(N(0, 1) \le t)\)</span></td>
+<td><span class="math inline">\(P(N(0, 1) \le z)\)</span></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(p \neq 0.5\)</span></td>
-<td><span class="math inline">\(2 \times P(N(0, 1) \ge \vert t \vert)\)</span></td>
+<td><span class="math inline">\(2 \times P(N(0, 1) \ge \vert z \vert)\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>여기서 <span class="math inline">\(t\)</span> 값은 표본 통계량(<span class="math inline">\(\hat{p}\)</span>), 귀무 가설의 기준값(<span class="math inline">\(p_0\)</span>), 그리고 표준 오차(<span class="math inline">\(\text{s.e.}(\hat{p})\)</span>)를 종합하여 도출된 수치입니다.</p>
+<p>여기서 <span class="math inline">\(z\)</span> 값은 표본 통계량(<span class="math inline">\(\hat{p}\)</span>), 귀무 가설의 기준값(<span class="math inline">\(p_0\)</span>), 그리고 표준 오차(<span class="math inline">\(\text{s.e.}(\hat{p})\)</span>)를 종합하여 도출된 수치입니다.</p>
 <p><span class="math display">\[
-t = \frac{\hat{p} - p_0}{\text{s.e.}(\hat{p})}
+z = \frac{\hat{p} - p_0}{\text{s.e.}(\hat{p})}
 \]</span></p>
-<p>본질적으로 이 <span class="math inline">\(t\)</span> 값은 관측 데이터가 귀무 가설로부터 표준 오차의 몇 배만큼 떨어져 있는지를 보여주는 지표로, 가설 검정에 필요한 모든 핵심 정보를 담고 있습니다. 이 수치를 검정 통계량(Test statistic)이라고 부릅니다. 검정 통계량을 일반화하면 다음과 같습니다.</p>
+<p>본질적으로 이 <span class="math inline">\(z\)</span> 값은 관측 데이터가 귀무 가설로부터 표준 오차의 몇 배만큼 떨어져 있는지를 보여주는 지표로, 가설 검정에 필요한 모든 핵심 정보를 담고 있습니다. 이 수치를 검정 통계량(test statistic)이라고 부릅니다. 표준 정규분포와 직접 비교하므로 관례에 따라 <span class="math inline">\(z\)</span>로 표기하며, 이후 모집단 표준편차를 모르는 평균 검정에서는 같은 구조의 통계량을 <span class="math inline">\(t\)</span>로 표기하고 <span class="math inline">\(t\)</span>-분포와 비교하게 됩니다. 검정 통계량을 일반화하면 다음과 같습니다.</p>
 <p><span class="math display">\[
-t = \frac{\text{표본 통계량} - \text{귀무 가설 값}}{\text{표준 오차}}
+z = \frac{\text{표본 통계량} - \text{귀무 가설 값}}{\text{표준 오차}}
 \]</span></p>
 <p>이 검정 통계량이 주어지면, <span class="math inline">\(p\)</span>-값은 오직 대립 가설의 방향에 따라 아래 표와 같이 결정됩니다.</p>
 <table class="caption-top table">
@@ -501,15 +501,15 @@ t = \frac{\text{표본 통계량} - \text{귀무 가설 값}}{\text{표준 오�
 <tbody>
 <tr class="odd">
 <td><span class="math inline">\(H_A : p &lt; p_0\)</span></td>
-<td><span class="math inline">\(P(N(0, 1) \le t)\)</span></td>
+<td><span class="math inline">\(P(N(0, 1) \le z)\)</span></td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(H_A : p &gt; p_0\)</span></td>
-<td><span class="math inline">\(P(N(0, 1) \ge t)\)</span></td>
+<td><span class="math inline">\(P(N(0, 1) \ge z)\)</span></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(H_A : p \neq p_0\)</span></td>
-<td><span class="math inline">\(2 \times P(N(0, 1) \ge \vert t \vert)\)</span></td>
+<td><span class="math inline">\(2 \times P(N(0, 1) \ge \vert z \vert)\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -520,7 +520,7 @@ t = \frac{\text{표본 통계량} - \text{귀무 가설 값}}{\text{표준 오�
 <ol start="6" type="1">
 <li><p>정상적이고 공정한 룰렛 휠에서 빨간색이 나올 실제 확률은 0.47입니다. 여러분의 의심을 검증하기 위한 귀무 가설과 대립 가설은 각각 무엇입니까?</p></li>
 <li><p>여러분이 룰렛 게임을 50라운드 관찰한 결과, 빨간색이 20번, 검은색이 28번, 초록색이 2번 나왔습니다. 이 표본에서 빨간색이 나온 표본 비율은 얼마입니까?</p></li>
-<li><p>만약 표집 분포의 표준 오차가 <span class="math inline">\(s.e.(\hat{p}) = 0.07\)</span>이라고 가정한다면, 이 데이터로부터 도출되는 검정 통계량 <span class="math inline">\(t\)</span>는 얼마입니까?</p></li>
+<li><p>만약 표집 분포의 표준 오차가 <span class="math inline">\(\text{s.e.}(\hat{p}) = 0.07\)</span>이라고 가정한다면, 이 데이터로부터 도출되는 검정 통계량 <span class="math inline">\(z\)</span>는 얼마입니까?</p></li>
 <li><p>귀무 가설이 참이고 위의 표준 오차가 주어졌을 때, 표본 비율 <span class="math inline">\(\hat{p}\)</span>의 표집 분포는 수식으로 어떻게 표현됩니까?</p></li>
 <li><p>여러분이 설정한 대립 가설에 기초하여 도출되는 최종 <span class="math inline">\(p\)</span>-값은 얼마입니까?</p></li>
 </ol>
@@ -528,7 +528,7 @@ t = \frac{\text{표본 통계량} - \text{귀무 가설 값}}{\text{표준 오�
 <ol start="11" type="1">
 <li><p>여러분은 카지노 측이 기계를 조작해 이길 확률을 고의로 낮추었는지 테스트하고자 합니다. 귀무 가설과 대립 가설은 무엇입니까?</p></li>
 <li><p>여러분이 100핸드의 포커를 플레이하여 42번 이겼습니다. 이 표본 데이터의 승리 비율은 얼마입니까?</p></li>
-<li><p>표준 오차가 <span class="math inline">\(s.e.(\hat{p}) = 0.05\)</span>일 때, 관찰된 데이터의 검정 통계량 <span class="math inline">\(t\)</span>는 얼마입니까?</p></li>
+<li><p>표준 오차가 <span class="math inline">\(\text{s.e.}(\hat{p}) = 0.05\)</span>일 때, 관찰된 데이터의 검정 통계량 <span class="math inline">\(z\)</span>는 얼마입니까?</p></li>
 <li><p>귀무 가설이 참일 때, 이 표본 비율 <span class="math inline">\(\hat{p}\)</span>의 표집 분포는 어떻게 됩니까?</p></li>
 <li><p>여러분이 설정한 대립 가설 방향에 따른 이 가설 검정의 <span class="math inline">\(p\)</span>-값은 얼마입니까?</p></li>
 </ol>

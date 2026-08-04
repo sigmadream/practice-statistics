@@ -374,7 +374,7 @@ p_1 = p_2
 \]</span></p>
 <p>여기서 <span class="math inline">\(p_1\)</span>은 모집단 1의 실제 모집단 비율이고 <span class="math inline">\(p_2\)</span>는 모집단 2의 실제 모집단 비율입니다. 그러나 가설의 일반적인 형태는 모수(또는 모수들의 조합)가 특정 수치와 같다는 구조를 취합니다. 만약 두 모집단 비율이 같다면, 즉 <span class="math inline">\(p_1 = p_2\)</span>라면 이는 다음 수식과 동일합니다.</p>
 <p><span class="math display">\[
-p_1 - p _2 = 0
+p_1 - p_2 = 0
 \]</span></p>
 <p>이는 두 모수—<span class="math inline">\(p_1\)</span>과 <span class="math inline">\(p_2\)</span>—의 결합이 특정 수치(이 경우에는 0)와 같다는 형태입니다. 이것이 우리의 귀무 가설이 되며, 두 모집단이 동일한 비율을 갖는다는 뜻을 담고 있습니다.</p>
 <p><span class="math display">\[
@@ -395,8 +395,8 @@ H_A: p_1 - p_2 \neq 0
 <p>이러한 단계들을 보다 구체적으로 이해하기 위해 실증적 예시를 살펴보겠습니다. 2018년 퓨 리서치(Pew Research)는 우주 탐사에 관한 미국인의 태도를 조사하는 연구를 수행했습니다. 핵심 질문 중 하나는 “미국이 우주 탐사 분야에서 계속해서 세계적인 리더 자리를 유지하는 것이 필수적입니까?”였습니다. 연구진은 세대 간 의견 차이를 확인하기 위해 응답을 세대별로 분류했습니다. 미국이 우주 탐사의 리더로 남는 것이 필수적이라고 믿는 사람의 비율이 밀레니얼 세대(Millennials)와 X세대(Gen Xers) 간에 동일한지, 아니면 차이가 있는지 검정한다고 가정해 보겠습니다. 이 검정을 위한 우리의 가설은 다음과 같이 설정됩니다.</p>
 <p><span class="math display">\[
 \begin{aligned}
-H_0: &amp;p_{\texttt{Millenial}} - p_{\texttt{GenX}} = 0 \\
-H_A: &amp;p_{\texttt{Millenial}} - p_{\texttt{GenX}} \neq 0
+H_0: &amp;p_{\text{Millennial}} - p_{\text{GenX}} = 0 \\
+H_A: &amp;p_{\text{Millennial}} - p_{\text{GenX}} \neq 0
 \end{aligned}
 \]</span></p>
 </section>
@@ -407,7 +407,7 @@ H_A: &amp;p_{\texttt{Millenial}} - p_{\texttt{GenX}} \neq 0
 <section id="데이터-수집-및-요약" class="level3" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="데이터-수집-및-요약"><span class="header-section-number">1.3</span> 데이터 수집 및 요약</h3>
 <p>비율에 관한 단일 표본 검정에서는 통계적 추론을 수행하기 위해 단일 표본의 표본 비율(sample proportion) <span class="math inline">\(\hat{p}\)</span>과 표본 크기(sample size) <span class="math inline">\(n\)</span>만 필요했습니다. 그러나 여기서는 고려해야 할 집단이 두 개이므로, 두 표본 모두에서 이 수치들을 확보해야 합니다. 즉, 모집단 1과 2에서 추출한 표본 비율, 각각 <span class="math inline">\(\hat{p}_1\)</span>과 <span class="math inline">\(\hat{p}_2\)</span>, 그리고 표본 크기, 각각 <span class="math inline">\(n_1\)</span>과 <span class="math inline">\(n_2\)</span>가 필요합니다. 이 요약 정보 외에 표본 데이터 자체에 관해 더 깊이 알아야 할 사항은 없습니다.</p>
-<p>우주 탐사 설문 조사에서 밀레니얼 세대 667명 중 467명이 미국이 우주 탐사의 리더가 되는 것이 중요하다고 응답했으며, X세대 558명 중 407명도 동일하게 응답했습니다. 따라서 우리의 표본 비율은 <span class="math inline">\(\hat{p}_{\texttt{Millenial}}=467/667\approx 0.7001\)</span>이고 <span class="math inline">\(\hat{p}_{\texttt{GenX}}=407/558\approx 0.7293\)</span>으로 계산됩니다.</p>
+<p>우주 탐사 설문 조사에서 밀레니얼 세대 667명 중 467명이 미국이 우주 탐사의 리더가 되는 것이 중요하다고 응답했으며, X세대 558명 중 407명도 동일하게 응답했습니다. 따라서 우리의 표본 비율은 <span class="math inline">\(\hat{p}_{\text{Millennial}}=467/667\approx 0.7001\)</span>이고 <span class="math inline">\(\hat{p}_{\text{GenX}}=407/558\approx 0.7294\)</span>로 계산됩니다. 이후 계산에서는 반올림 전의 원값을 사용합니다.</p>
 </section>
 <section id="검정-통계량-계산" class="level3" data-number="1.4">
 <h3 data-number="1.4" class="anchored" data-anchor-id="검정-통계량-계산"><span class="header-section-number">1.4</span> 검정 통계량 계산</h3>
@@ -427,20 +427,20 @@ t = \frac{(\hat{p}_1 - \hat{p}_2) - \text{귀무 가설 값}}{\text{표준 오�
 <p><span class="math display">\[
 t = \frac{\hat{p}_1 - \hat{p}_2}{\text{표준 오차}}
 \]</span></p>
-<p>검정 통계량의 마지막 구성 요소는 <span class="math inline">\(\hat{p}_1 - \hat{p}_2\)</span>의 표준 오차(standard Error), 즉 <span class="math inline">\(\text{s.e.}(\hat{p}_1 - \hat{p}_2)\)</span>를 구하는 것입니다. 다른 여러 표준 오차를 구할 때와 마찬가지로, 여기서도 중심 극한 정리(central limit theorem)의 도움을 받습니다. 중심 극한 정리에 따르면 표본 크기가 충분히 클 때 표본 비율은 정규 분포(normal distribution)를 따릅니다. 구체적으로는 다음과 같습니다.</p>
+<p>검정 통계량의 마지막 구성 요소는 <span class="math inline">\(\hat{p}_1 - \hat{p}_2\)</span>의 표준 오차(standard error), 즉 <span class="math inline">\(\text{s.e.}(\hat{p}_1 - \hat{p}_2)\)</span>를 구하는 것입니다. 다른 여러 표준 오차를 구할 때와 마찬가지로, 여기서도 중심극한정리(central limit theorem)의 도움을 받습니다. 중심극한정리에 따르면 표본 크기가 충분히 클 때 표본 비율은 정규분포(normal distribution)를 따릅니다. 구체적으로는 다음과 같습니다.</p>
 <p><span class="math display">\[
-\hat{p} ∼ N(p, \frac{p(1-p)}{n})
+\hat{p} \sim N\left(p, \frac{p(1-p)}{n}\right)
 \]</span></p>
-<p>이러한 원리는 표본 크기 및 성공 횟수 조건을 충족하는 모든 표본 비율에 유효하게 적용됩니다. 따라서 두 그룹의 표본 크기가 충분히 크다고 전제하면, 이 논리를 두 표본에 각각 적용할 수 있습니다. 중심 극한 정리에 의해 다음 수식이 성립합니다.</p>
+<p>이러한 원리는 표본 크기 및 성공 횟수 조건을 충족하는 모든 표본 비율에 유효하게 적용됩니다. 따라서 두 그룹의 표본 크기가 충분히 크다고 전제하면, 이 논리를 두 표본에 각각 적용할 수 있습니다. 중심극한정리에 의해 다음 수식이 성립합니다.</p>
 <p><span class="math display">\[
 \begin{aligned}
-\hat{p}_1 ∼ &amp;N(p_1, \frac{p_1(1-p_1)}{n_1}) \\
-\hat{p}_2 ∼ &amp;N(p_2, \frac{p_2(1-p_2)}{n_2})
+\hat{p}_1 \sim &amp;N\left(p_1, \frac{p_1(1-p_1)}{n_1}\right) \\
+\hat{p}_2 \sim &amp;N\left(p_2, \frac{p_2(1-p_2)}{n_2}\right)
 \end{aligned}
 \]</span></p>
-<p>여기서 <span class="math inline">\(p_1\)</span>과 <span class="math inline">\(p_2\)</span>는 두 모집단의 실제 비율이고 <span class="math inline">\(n_1\)</span>과 <span class="math inline">\(n_2\)</span>는 두 표본의 크기입니다. 이제 표준 오차를 도출하려면 <span class="math inline">\(\hat{p}_1-\hat{p}_2\)</span>의 분포 형태를 파악해야 합니다. <span class="math inline">\(\hat{p}_1\)</span>과 <span class="math inline">\(\hat{p}_2\)</span>가 충분한 표본 크기를 확보하여 정규 분포를 따른다는 사실과 정규 분포의 결합 속성을 종합하면, <span class="math inline">\(\hat{p}_1-\hat{p}_2\)</span> 역시 정규 분포를 따른다는 점이 증명됩니다. 구체적인 분포는 다음과 같습니다.</p>
+<p>여기서 <span class="math inline">\(p_1\)</span>과 <span class="math inline">\(p_2\)</span>는 두 모집단의 실제 비율이고 <span class="math inline">\(n_1\)</span>과 <span class="math inline">\(n_2\)</span>는 두 표본의 크기입니다. 이제 표준 오차를 도출하려면 <span class="math inline">\(\hat{p}_1-\hat{p}_2\)</span>의 분포 형태를 파악해야 합니다. <span class="math inline">\(\hat{p}_1\)</span>과 <span class="math inline">\(\hat{p}_2\)</span>가 충분한 표본 크기를 확보하여 정규분포를 따른다는 사실과 정규분포의 결합 속성을 종합하면, <span class="math inline">\(\hat{p}_1-\hat{p}_2\)</span> 역시 정규분포를 따른다는 점이 증명됩니다. 구체적인 분포는 다음과 같습니다.</p>
 <p><span class="math display">\[
-\hat{p}_1-\hat{p}_2 ∼ N(p_1-p_2, \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2})
+\hat{p}_1-\hat{p}_2 \sim N\left(p_1-p_2, \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}\right)
 \]</span></p>
 <p>따라서 <span class="math inline">\(\hat{p}_1-\hat{p}_2\)</span>의 표준 오차는 다음과 같이 도출됩니다.</p>
 <p><span class="math display">\[
@@ -464,12 +464,12 @@ z = \frac{\hat{p}_1-\hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})\left(\frac{1}{n_1} + \fr
 \]</span></p>
 <p>다시 우주 탐사 설문 조사 예시로 돌아가 합동 비율 <span class="math inline">\(\hat{p}\)</span>을 구하겠습니다. 데이터를 적용하면 <span class="math inline">\(\hat{p} = (467+407) / (667+558) = 0.7135\)</span>가 도출됩니다. 이를 나머지 표본 데이터와 함께 대입하면 최종 검정 통계량을 다음과 같이 계산할 수 있습니다.</p>
 <p><span class="math display">\[
-t = \frac{0.7001 - 0.7293}{\sqrt{0.7135 (1-0.7135) \left(\frac{1}{667} + \frac{1}{558}\right)}} = -1.1273
+z = \frac{0.7001 - 0.7294}{\sqrt{0.7135 (1-0.7135) \left(\frac{1}{667} + \frac{1}{558}\right)}} = -1.1273
 \]</span></p>
 </section>
 <section id="p-값-계산" class="level3" data-number="1.5">
 <h3 data-number="1.5" class="anchored" data-anchor-id="p-값-계산"><span class="header-section-number">1.5</span> <span class="math inline">\(p\)</span>-값 계산</h3>
-<p>단일 표본 p 검정에서 우리는 귀무 가설이 참이라고 가정할 때 검정 통계량이 표준 정규 분포(Standard Normal distribution)를 따른다는 사실을 확인했습니다. 비율에 대한 이표본 검정의 검정 통계량 역시 귀무 가설이 참일 때 표준 정규 분포를 따르므로 동일한 원리가 적용됩니다. 이를 바탕으로 대립 가설에 부합하는 <span class="math inline">\(p\)</span>-값(<span class="math inline">\(p\)</span>-value)을 산출할 수 있습니다.</p>
+<p>단일 표본 비율 검정에서 우리는 귀무 가설이 참이라고 가정할 때 검정 통계량이 표준 정규분포(standard normal distribution)를 따른다는 사실을 확인했습니다. 비율에 대한 이표본 검정의 검정 통계량 역시 귀무 가설이 참일 때 표준 정규분포를 따르므로 동일한 원리가 적용됩니다. 이를 바탕으로 대립 가설에 부합하는 <span class="math inline">\(p\)</span>-값(<span class="math inline">\(p\)</span>-value)을 산출할 수 있습니다.</p>
 <p>각 <span class="math inline">\(p\)</span>-값—귀무 가설이 참일 때 현재 관찰된 데이터보다 “더 극단적인” 데이터가 나타날 확률—을 해석하는 논리는 단일 표본의 경우와 완전히 동일합니다. 유사하게 <span class="math inline">\(p\)</span>-값을 계산하기 위해 R의 <code>pnorm()</code> 함수를 활용합니다. 상세한 계산 논리는 이전 장에서 다루었으므로 여기서는 표로 정리하여 제시합니다.</p>
 <table class="caption-top table">
 <thead>
@@ -481,20 +481,20 @@ t = \frac{0.7001 - 0.7293}{\sqrt{0.7135 (1-0.7135) \left(\frac{1}{667} + \frac{1
 <tbody>
 <tr class="odd">
 <td><span class="math inline">\(H_A:p_1 - p_2 &lt; 0\)</span></td>
-<td><span class="math inline">\(P(N(0,1) \le t)\)</span></td>
+<td><span class="math inline">\(P(N(0,1) \le z)\)</span></td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(H_A:p_1 - p_2 &gt; 0\)</span></td>
-<td><span class="math inline">\(P(N(0,1) \ge t)\)</span></td>
+<td><span class="math inline">\(P(N(0,1) \ge z)\)</span></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(H_A:p_1 - p_2 \neq 0\)</span></td>
-<td><span class="math inline">\(2 \times P(N(0,1) \ge |t|)\)</span></td>
+<td><span class="math inline">\(2 \times P(N(0,1) \ge \vert z \vert)\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>다시 강조하지만, <span class="math inline">\(p\)</span>-값 계산에 정규 분포를 적용하려면 중심 극한 정리가 반드시 성립해야 하며, 이는 전적으로 표본 크기에 의존합니다. 두 표본 크기 <span class="math inline">\(n_1\)</span>과 <span class="math inline">\(n_2\)</span>가 모두 최소 30 이상이어야 하고, 각 표본에서 최소 10번 이상의 성공과 실패가 관찰되어야 합니다. 최신 AI 기반 데이터 자동화 파이프라인에서도 이러한 전제 조건 검증은 모델 훈련 전 필수적인 데이터 정합성 확인 단계로 간주됩니다.</p>
-<p>우주 탐사 예시에서 대립 가설은 <span class="math inline">\(H_A:p_1 - p_2 \neq 0\)</span>이고 검정 통계량은 <span class="math inline">\(t=-1.1273\)</span>이므로, <span class="math inline">\(p\)</span>-값은 <span class="math inline">\(2 \times P(N(0,1) \ge |-1.1273|)\)</span>으로 정의됩니다. <code>pnorm()</code> 함수를 호출하는 아래 코드를 실행하면 <span class="math inline">\(p\)</span>-값이 0.2596임을 확인할 수 있습니다.</p>
+<p>다시 강조하지만, <span class="math inline">\(p\)</span>-값 계산에 정규분포를 적용하려면 중심극한정리가 반드시 성립해야 하며, 이는 전적으로 표본 크기에 의존합니다. 두 표본 크기 <span class="math inline">\(n_1\)</span>과 <span class="math inline">\(n_2\)</span>가 모두 최소 30 이상이어야 하고, 각 표본에서 최소 10번 이상의 성공과 실패가 관찰되어야 합니다. 최신 AI 기반 데이터 자동화 파이프라인에서도 이러한 전제 조건 검증은 모델 훈련 전 필수적인 데이터 정합성 확인 단계로 간주됩니다.</p>
+<p>우주 탐사 예시에서 대립 가설은 <span class="math inline">\(H_A:p_1 - p_2 \neq 0\)</span>이고 검정 통계량은 <span class="math inline">\(z=-1.1273\)</span>이므로, <span class="math inline">\(p\)</span>-값은 <span class="math inline">\(2 \times P(N(0,1) \ge \vert -1.1273 \vert)\)</span>으로 정의됩니다. <code>pnorm()</code> 함수를 호출하는 아래 코드를 실행하면 <span class="math inline">\(p\)</span>-값이 0.2596임을 확인할 수 있습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">1.1273</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -505,7 +505,7 @@ t = \frac{0.7001 - 0.7293}{\sqrt{0.7135 (1-0.7135) \left(\frac{1}{667} + \frac{1
 <section id="결론" class="level3" data-number="1.6">
 <h3 data-number="1.6" class="anchored" data-anchor-id="결론"><span class="header-section-number">1.6</span> 결론</h3>
 <p><span class="math inline">\(p\)</span>-값을 확보했다면 마침내 결론을 내릴 차례입니다. 기존과 동일하게 <span class="math inline">\(p\)</span>-값이 유의 수준 <span class="math inline">\(\alpha\)</span>보다 작으면 귀무 가설을 기각(reject)하고 대립 가설을 지지하는 결론을 내립니다. 반대로 <span class="math inline">\(p\)</span>-값이 크다면 귀무 가설 기각에 실패(fail to reject)하며, 두 모집단 비율이 동일하다는 주장이 여전히 타당하다고 결론 내립니다.</p>
-<p>선거 예시를 요약하자면, 산출된 <span class="math inline">\(p\)</span>-값 0.2596이 설정한 유의 수준 <span class="math inline">\(\alpha=0.1\)</span>보다 크기 때문에 우리는 귀무 가설 기각에 실패합니다. 따라서 “미국이 우주 탐사의 리더로 남는 것이 중요하다”고 믿는 개인의 비율은 밀레니얼 세대와 X세대 간에 차이가 없다고 판단하는 것이 합리적입니다.</p>
+<p>우주 탐사 예시를 요약하자면, 산출된 <span class="math inline">\(p\)</span>-값 0.2596이 설정한 유의 수준 <span class="math inline">\(\alpha=0.1\)</span>보다 크기 때문에 우리는 귀무 가설 기각에 실패합니다. 따라서 “미국이 우주 탐사의 리더로 남는 것이 중요하다”고 믿는 개인의 비율이 밀레니얼 세대와 X세대 간에 차이가 있다는 통계적 증거를 찾지 못했다고 결론 내립니다.</p>
 </section>
 <section id="종합-예제" class="level3" data-number="1.7">
 <h3 data-number="1.7" class="anchored" data-anchor-id="종합-예제"><span class="header-section-number">1.7</span> 종합 예제</h3>
@@ -518,16 +518,16 @@ H_A: &amp;p_1 - p_2 &gt; 0
 \]</span></p>
 <p>여기서 유의 수준은 <span class="math inline">\(\alpha=0.05\)</span>로 고정하겠습니다. 데이터를 수집하고 요약하면 표본 비율은 <span class="math inline">\(\hat{p}_1=137/352=0.3892\)</span> 및 <span class="math inline">\(\hat{p}_2=190/528=0.3598\)</span>입니다. 아울러 검정 통계량 계산을 위해 합동 비율 <span class="math inline">\(\hat{p} = (137+190) / (352+528) = 0.3716\)</span>을 산출합니다. 이제 검정 통계량을 계산하면 아래와 같은 결과를 얻습니다.</p>
 <p><span class="math display">\[
-t = \frac{\hat{p}_1-\hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}} = \frac{0.3892-0.3598}{\sqrt{0.3716 (1-0.3716) \left(\frac{1}{352} + \frac{1}{528}\right)}} = 0.8829
+z = \frac{\hat{p}_1-\hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}} = \frac{0.3892-0.3598}{\sqrt{0.3716 (1-0.3716) \left(\frac{1}{352} + \frac{1}{528}\right)}} = 0.8829
 \]</span></p>
-<p>따라서 대립 가설에 근거할 때 <span class="math inline">\(p\)</span>-값은 <span class="math inline">\(P(N(0,1)&gt;0.889)\)</span>가 됩니다. 다음 R 코드를 실행하여 해당 확률(<span class="math inline">\(p\)</span>-값)이 0.1887과 같음을 구합니다.</p>
+<p>따라서 대립 가설에 근거할 때 <span class="math inline">\(p\)</span>-값은 <span class="math inline">\(P(N(0,1)&gt;0.8829)\)</span>가 됩니다. 다음 R 코드를 실행하여 해당 확률(<span class="math inline">\(p\)</span>-값)이 0.1887과 같음을 구합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">0.8829</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1886452</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(p\)</span>-값이 <span class="math inline">\(\alpha=0.05\)</span>보다 크므로 우리는 귀무 가설 기각에 실패합니다. 결국 “끊임없이” 온라인에 접속하는 비율은 18~29세와 30~49세 간에 통계적으로 유의미한 차이가 없다고 결론 내립니다. 앞서 소개한 <code>prop.test</code> 함수를 통해서도 이표본 비율 검정을 손쉽게 수행할 수 있습니다. 단일 표본 정보에 두 번째 표본 정보를 추가로 입력하기만 하면 됩니다. 함수는 이전과 동일하게 정확한 검정 통계량과 <span class="math inline">\(p\)</span>-값을 반환합니다.</p>
+<p><span class="math inline">\(p\)</span>-값이 <span class="math inline">\(\alpha=0.05\)</span>보다 크므로 우리는 귀무 가설 기각에 실패합니다. 결국 “끊임없이” 온라인에 접속하는 비율이 18~29세와 30~49세 간에 다르다는 통계적으로 유의한 증거를 찾지 못했다고 결론 내립니다. 앞서 소개한 <code>prop.test</code> 함수를 통해서도 이표본 비율 검정을 손쉽게 수행할 수 있습니다. 단일 표본 정보에 두 번째 표본 정보를 추가로 입력하기만 하면 됩니다. 함수는 이전과 동일하게 정확한 검정 통계량과 <span class="math inline">\(p\)</span>-값을 반환합니다.</p>
 </section>
 <section id="연습-문제" class="level3" data-number="1.8">
 <h3 data-number="1.8" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">1.8</span> 연습 문제</h3>
@@ -551,7 +551,7 @@ t = \frac{\hat{p}_1-\hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})\left(\frac{1}{n_1} + \fr
 </section>
 <section id="평균에-대한-이표본-t-검정" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="평균에-대한-이표본-t-검정"><span class="header-section-number">2</span> 평균에 대한 이표본 <span class="math inline">\(t\)</span>-검정</h2>
-<p>우리가 다룰 두 번째 이표본 가설 검정 기법은 평균에 대한 이표본 <span class="math inline">\(t\)</span>-검정(two-sample t-test for means)입니다. 이 검정은 두 모집단의 평균이 동일한지 아니면 유의미한 차이가 있는지 검증할 때 사용합니다. 질문 자체가 모집단 평균에 집중되므로 반응 변수는 양적(quantitative) 데이터를 띠게 됩니다. 양적 반응 변수를 다룬다는 점은 곧 다룰 대응표본 <span class="math inline">\(t\)</span>-검정(paired t-test for means)과 동일합니다. 따라서 우리는 두 검정을 구별할 명확한 기준이 필요합니다.</p>
+<p>우리가 다룰 두 번째 이표본 가설 검정 기법은 평균에 대한 이표본 <span class="math inline">\(t\)</span>-검정(two-sample t-test for means)입니다. 이 검정은 두 모집단의 평균이 동일한지 아니면 유의한 차이가 있는지 검증할 때 사용합니다. 질문 자체가 모집단 평균에 집중되므로 반응 변수는 양적(quantitative) 데이터를 띠게 됩니다. 양적 반응 변수를 다룬다는 점은 곧 다룰 대응표본 <span class="math inline">\(t\)</span>-검정(paired t-test for means)과 동일합니다. 따라서 우리는 두 검정을 구별할 명확한 기준이 필요합니다.</p>
 <p>이표본 <span class="math inline">\(t\)</span>-검정과 대응표본 <span class="math inline">\(t\)</span>-검정을 가르는 핵심 기준은 이표본 <span class="math inline">\(t\)</span>-검정의 두 표본이 서로 완벽하게 독립적이라는 점입니다. 다시 말해 두 표본 사이에 겹치는 대상이 없으며 서로 어떠한 영향도 주고받지 않아야 합니다. 반면 대응표본 검정은 두 표본 사이에 교집합이나 강한 상호작용이 존재하며, 이 부분은 대응표본 검정 섹션에서 상세히 다루겠습니다.</p>
 <p>이표본 <span class="math inline">\(t\)</span>-검정의 수행 단계 역시 단일 표본 검정에서 보았던 구조와 흡사합니다. 이 단계들을 체계적으로 설명하기 위해 다음 사례를 살펴보겠습니다. 한 사회 심리학자가 개인이 자신보다 지위가 높거나 낮은 사람의 의견에 동조(conformity)하는 정도가 다른지 알아보기 위해 실험을 설계했습니다. 연구자는 실험 참가자가 지위가 높은 인물 또는 낮은 인물과 의견 불일치를 겪는 조작된 40가지 시나리오를 마련했습니다. 우리가 항상 시작했던 첫 번째 단계부터 차근차근 밟아가 보겠습니다.</p>
 <section id="가설-설정-1" class="level3" data-number="2.1">
@@ -575,8 +575,8 @@ H_A: \mu_1 - \mu_2 \neq 0
 <p>동조(conformity) 실험 예시로 돌아가서, 지위가 높은 파트너가 지위가 낮은 파트너보다 더 높은 수준의 동조를 유도하는지 검정하고 싶다고 가정해 보겠습니다. 이 경우 우리의 가설은 아래와 같이 설정됩니다.</p>
 <p><span class="math display">\[
 \begin{aligned}
-H_0: &amp;\mu_{\texttt{High}} - \mu_{\texttt{Low}} = 0 \\
-H_A: &amp;\mu_{\texttt{High}} - \mu_{\texttt{Low}} &gt; 0
+H_0: &amp;\mu_{\text{High}} - \mu_{\text{Low}} = 0 \\
+H_A: &amp;\mu_{\text{High}} - \mu_{\text{Low}} &gt; 0
 \end{aligned}
 \]</span></p>
 </section>
@@ -587,7 +587,7 @@ H_A: &amp;\mu_{\texttt{High}} - \mu_{\texttt{Low}} &gt; 0
 </section>
 <section id="데이터-수집-및-요약-1" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="데이터-수집-및-요약-1"><span class="header-section-number">2.3</span> 데이터 수집 및 요약</h3>
-<p>평균에 관한 단일 표본 <span class="math inline">\(t\)</span>-검정에서는 검정 통계량과 <span class="math inline">\(p\)</span>-값을 도출하기 위해 표본 평균 <span class="math inline">\(\bar{x}\)</span>, 표본 표준 편차 s, 표본 크기 n이라는 요약 수치가 필요했습니다. 이제 분석 대상이 두 개의 독립된 표본으로 확장되었으므로 이 두 그룹 모두에서 요약 정보가 요구됩니다. 모집단 1과 2에서 추출한 표본 평균—각각 <span class="math inline">\(\bar{x}_{1}\)</span>과 <span class="math inline">\(\bar{x}_{2}\)</span>—과 두 표본의 표본 분산—각각 <span class="math inline">\(s_1^2\)</span>와 <span class="math inline">\(s_2^2\)</span>—그리고 두 표본 크기—<span class="math inline">\(n_1\)</span>과 <span class="math inline">\(n_2\)</span>—에 주목해야 합니다.</p>
+<p>평균에 관한 단일 표본 <span class="math inline">\(t\)</span>-검정에서는 검정 통계량과 <span class="math inline">\(p\)</span>-값을 도출하기 위해 표본 평균 <span class="math inline">\(\bar{x}\)</span>, 표본 표준편차 s, 표본 크기 n이라는 요약 수치가 필요했습니다. 이제 분석 대상이 두 개의 독립된 표본으로 확장되었으므로 이 두 그룹 모두에서 요약 정보가 요구됩니다. 모집단 1과 2에서 추출한 표본 평균—각각 <span class="math inline">\(\bar{x}_{1}\)</span>과 <span class="math inline">\(\bar{x}_{2}\)</span>—과 두 표본의 표본 분산—각각 <span class="math inline">\(s_1^2\)</span>와 <span class="math inline">\(s_2^2\)</span>—그리고 두 표본 크기—<span class="math inline">\(n_1\)</span>과 <span class="math inline">\(n_2\)</span>—에 주목해야 합니다.</p>
 <p>동조 예시 데이터를 살펴보면, 23명의 피험자가 높은 지위의 파트너와 상호작용했으며, 이 집단의 평균 동조 응답 횟수는 <span class="math inline">\(\bar{x}_{High}=14.217\)</span>, 분산은 <span class="math inline">\(s^2_{High}=19.087\)</span>이었습니다. 반면 22명의 피험자는 낮은 지위의 파트너와 상호작용했고, 이 집단의 평균 동조 응답 횟수는 <span class="math inline">\(\bar{x}_{Low}=9.955\)</span>, 분산은 <span class="math inline">\(s^2_{Low}=27.855\)</span>로 나타났습니다.</p>
 </section>
 <section id="검정-통계량-계산-1" class="level3" data-number="2.4">
@@ -604,18 +604,18 @@ H_0: \mu_1 - \mu_2 = 0
 <p><span class="math display">\[
 t = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{\text{표준 오차}}
 \]</span></p>
-<p>이제 해결해야 할 유일한 과제는 표본 통계량의 표준 오차를 계산하는 일입니다. 비율에 대한 이표본 검정 때와 마찬가지로 표준 오차를 도출하기 위해 다시 한번 중심 극한 정리의 강력한 원리를 빌려옵니다. 중심 극한 정리에 따르면, 표본 크기가 충분히 크거나(<span class="math inline">\(n\ge 30\)</span>) 원시 데이터가 정규 분포를 띠는 경우 표본 평균은 정규 분포를 따릅니다.</p>
+<p>이제 해결해야 할 유일한 과제는 표본 통계량의 표준 오차를 계산하는 일입니다. 비율에 대한 이표본 검정 때와 마찬가지로 표준 오차를 도출하기 위해 다시 한번 중심극한정리의 강력한 원리를 빌려옵니다. 중심극한정리에 따르면, 표본 크기가 충분히 크거나(<span class="math inline">\(n\ge 30\)</span>) 원시 데이터가 정규분포를 띠는 경우 표본 평균은 정규분포를 따릅니다.</p>
 <p><span class="math display">\[
 \bar{x} \sim N\left(\mu, \frac{\sigma^2}{n}\right)
 \]</span></p>
-<p>이러한 수학적 성질을 두 독립 표본에 각각 적용하면, 각 표본 평균이 고유의 정규 분포를 형성한다는 결론에 이릅니다.</p>
+<p>이러한 수학적 성질을 두 독립 표본에 각각 적용하면, 각 표본 평균이 고유의 정규분포를 형성한다는 결론에 이릅니다.</p>
 <p><span class="math display">\[
 \begin{aligned}
 \bar{x}_1 &amp;\sim N\left(\mu_1, \frac{\sigma_1^2}{n_1}\right) \\
 \bar{x}_2 &amp;\sim N\left(\mu_2, \frac{\sigma_2^2}{n_2}\right)
 \end{aligned}
 \]</span></p>
-<p>그러나 우리가 진정으로 필요로 하는 것은 <span class="math inline">\(\bar{x}_{1}-\bar{x}_{2}\)</span>의 표준 오차입니다. 독립적인 두 정규 분포를 결합하는 통계적 법칙에 따르면 <span class="math inline">\(\bar{x}_{1}-\bar{x}_{2}\)</span> 역시 새로운 형태의 정규 분포를 따르게 됩니다.</p>
+<p>그러나 우리가 진정으로 필요로 하는 것은 <span class="math inline">\(\bar{x}_{1}-\bar{x}_{2}\)</span>의 표준 오차입니다. 독립적인 두 정규분포를 결합하는 통계적 법칙에 따르면 <span class="math inline">\(\bar{x}_{1}-\bar{x}_{2}\)</span> 역시 새로운 형태의 정규분포를 따르게 됩니다.</p>
 <p><span class="math display">\[
 \bar{x}_{1}-\bar{x}_{2} \sim N\left(\mu_1-\mu_2, \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}\right)
 \]</span></p>
@@ -682,16 +682,16 @@ t = \frac{14.217-9.955}{\sqrt{23.37 \left(\frac{1}{23} + \frac{1}{22}\right)}} =
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(H_A: \mu_1 - \mu_2 \neq 0\)</span></td>
-<td><span class="math inline">\(2 \times P(t_\nu \ge |t|)\)</span></td>
+<td><span class="math inline">\(2 \times P(t_\nu \ge \vert t \vert)\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>여기서 <span class="math inline">\(\nu\)</span>는 등분산 혹은 이분산 가정에 따라 동적으로 결정된 자유도입니다. 이러한 분석 논리는 중심 극한 정리가 유효하게 작동할 때만 타당성을 지닙니다. 즉, 두 표본 크기가 모두 30을 상회하거나(<span class="math inline">\(n_1\ge 30, n_2\ge 30\)</span>), 원시 데이터 자체가 철저히 정규 분포를 띠어야(<span class="math inline">\(x_{1,i}\sim N(\mu_1,\sigma_1^2), x_{2,i}\sim N(\mu_2,\sigma_2^2)\)</span>) 분석 결과를 온전히 신뢰할 수 있습니다.</p>
+<p>여기서 <span class="math inline">\(\nu\)</span>는 등분산 혹은 이분산 가정에 따라 동적으로 결정된 자유도입니다. 이러한 분석 논리는 중심극한정리가 유효하게 작동할 때만 타당성을 지닙니다. 즉, 두 표본 크기가 모두 30을 상회하거나(<span class="math inline">\(n_1\ge 30, n_2\ge 30\)</span>), 원시 데이터 자체가 철저히 정규분포를 띠어야(<span class="math inline">\(x_{1,i}\sim N(\mu_1,\sigma_1^2), x_{2,i}\sim N(\mu_2,\sigma_2^2)\)</span>) 분석 결과를 온전히 신뢰할 수 있습니다.</p>
 <p>동조 예시에서는 등분산 가정이 타당하다고 결론 내렸습니다. 따라서 검정 통계량은 자유도 <span class="math inline">\(\nu=n_1+n_2-2=23+22-2=43\)</span>인 <span class="math inline">\(t\)</span>-분포를 엄격히 따릅니다. 이를 대립 가설 <span class="math inline">\(H_A:\mu_{High}-\mu_{Low}&gt;0\)</span>와 결합하면, <span class="math inline">\(p\)</span>-값은 <span class="math inline">\(P(t_{43}&gt;2.956)\)</span> 영역의 넓이가 됩니다. R 코드 <code>pt(q = 2.956, df = 43, lower.tail = FALSE)</code>를 실행하면 <span class="math inline">\(p\)</span>-값이 0.00252임을 최종적으로 확인할 수 있습니다.</p>
 </section>
 <section id="결론-1" class="level3" data-number="2.6">
 <h3 data-number="2.6" class="anchored" data-anchor-id="결론-1"><span class="header-section-number">2.6</span> 결론</h3>
-<p>가설 검정의 여정을 마무리하는 결론 단계는 결코 변하지 않습니다. 산출된 <span class="math inline">\(p\)</span>-값이 사전에 설정한 유의 수준 <span class="math inline">\(\alpha\)</span>보다 작으면 귀무 가설을 과감히 기각하고, 그렇지 않으면 기각에 실패합니다. 동조 예시에서 <span class="math inline">\(p\)</span>-값 0.00266(또는 0.00252)은 유의 수준 <span class="math inline">\(\alpha=0.01\)</span>보다 명확히 작으므로, 우리는 귀무 가설을 기각하고 “지위가 높은 파트너가 지위가 낮은 파트너보다 월등히 높은 수준의 동조를 유도한다”고 결론 내립니다. 단, 두 집단 모두 표본 크기가 30보다 작고 데이터 히스토그램에서 약간의 비대칭성이 관찰되므로, 이 검정 결과는 실무 적용 전 전문가의 면밀한 교차 검증을 거치는 편이 좋습니다.</p>
+<p>가설 검정의 여정을 마무리하는 결론 단계는 결코 변하지 않습니다. 산출된 <span class="math inline">\(p\)</span>-값이 사전에 설정한 유의 수준 <span class="math inline">\(\alpha\)</span>보다 작으면 귀무 가설을 과감히 기각하고, 그렇지 않으면 기각에 실패합니다. 동조 예시에서 <span class="math inline">\(p\)</span>-값 0.00252은 유의 수준 <span class="math inline">\(\alpha=0.01\)</span>보다 명확히 작으므로, 우리는 귀무 가설을 기각하고 “지위가 높은 파트너가 지위가 낮은 파트너보다 월등히 높은 수준의 동조를 유도한다”고 결론 내립니다. 단, 두 집단 모두 표본 크기가 30보다 작고 데이터 히스토그램에서 약간의 비대칭성이 관찰되므로, 이 검정 결과는 실무 적용 전 전문가의 면밀한 교차 검증을 거치는 편이 좋습니다.</p>
 </section>
 <section id="종합-예제-1" class="level3" data-number="2.7">
 <h3 data-number="2.7" class="anchored" data-anchor-id="종합-예제-1"><span class="header-section-number">2.7</span> 종합 예제</h3>
@@ -703,7 +703,7 @@ H_0: &amp;\mu_{soybean} - \mu_{sunflower} = 0 \\
 H_A: &amp;\mu_{soybean} - \mu_{sunflower} \neq 0
 \end{aligned}
 \]</span></p>
-<p>보수적인 <span class="math inline">\(\alpha=0.05\)</span> 수준에서 검정을 진행해 보겠습니다. 꼼꼼한 데이터 수집 결과, 해바라기 식단을 섭취한 12마리 병아리 표본의 평균 체중 증가량은 <span class="math inline">\(\bar{x}_{sunflower}=328.92\)</span>, 표본 분산은 <span class="math inline">\(s^2_{sunflower}=2384.99\)</span>로 나타났습니다. 반면 대두 식단을 섭취한 14마리 표본의 평균 증가량은 <span class="math inline">\(\bar{x}_{soybean}=246.43\)</span>, 표본 분산은 <span class="math inline">\(s^2_{soybean}=2929.96\)</span>이었습니다. 분산 비율 <span class="math inline">\(s^2_{sunflower}/s^2_{soybean}=0.814\)</span>는 경험적 기준을 통과하므로 등분산 가정이 충분히 합리적입니다. 이 근거를 바탕으로 합동 표본 분산을 <span class="math inline">\(s^2_p = \frac{(12-1)(2384.99) + (14-1)(2929.96)}{12+14-2} = 2680.182\)</span>로 도출합니다. 데이터에 기반하여 검정 통계량을 끈기 있게 계산하면 다음과 같습니다.</p>
+<p>표준적인 <span class="math inline">\(\alpha=0.05\)</span> 수준에서 검정을 진행해 보겠습니다. 꼼꼼한 데이터 수집 결과, 해바라기 식단을 섭취한 12마리 병아리 표본의 평균 체중 증가량은 <span class="math inline">\(\bar{x}_{sunflower}=328.92\)</span>, 표본 분산은 <span class="math inline">\(s^2_{sunflower}=2384.99\)</span>로 나타났습니다. 반면 대두 식단을 섭취한 14마리 표본의 평균 증가량은 <span class="math inline">\(\bar{x}_{soybean}=246.43\)</span>, 표본 분산은 <span class="math inline">\(s^2_{soybean}=2929.96\)</span>이었습니다. 분산 비율 <span class="math inline">\(s^2_{sunflower}/s^2_{soybean}=0.814\)</span>는 경험적 기준을 통과하므로 등분산 가정이 충분히 합리적입니다. 이 근거를 바탕으로 합동 표본 분산을 <span class="math inline">\(s^2_p = \frac{(12-1)(2384.99) + (14-1)(2929.96)}{12+14-2} = 2680.182\)</span>로 도출합니다. 데이터에 기반하여 검정 통계량을 끈기 있게 계산하면 다음과 같습니다.</p>
 <p><span class="math display">\[
 t = \frac{246.43-328.92}{\sqrt{2680.182 \left(\frac{1}{14} + \frac{1}{12}\right)}} = -4.050
 \]</span></p>
@@ -723,7 +723,7 @@ t = \frac{246.43-328.92}{\sqrt{2680.182 \left(\frac{1}{14} + \frac{1}{12}\right)
 <ol start="13" type="1">
 <li>화이트칼라 직업이 블루칼라 직업과 동일한 대우를 받는지 아니면 명백히 더 높은 품격을 지닌 것으로 평가받는지에 대한 가설을 세우고, <span class="math inline">\(\alpha=0.1\)</span> 수준에서 심층적으로 검정해 보십시오.</li>
 </ol>
-<p>뻐꾸기는 둥지를 짓지 않고 다른 종의 둥지에 알을 낳아 새끼를 대신 기르게 하는 독특한 탁란 습성을 지녔습니다. 진화 생물학자는 숙주가 ’밭종다리(Meadow pipit)’일 경우, 뻐꾸기 알의 길이가 숙주 본연의 알 길이와 차이를 보이는지 통계적으로 식별하고자 합니다. 수집된 45개의 뻐꾸기 알 표본은 평균 길이 <span class="math inline">\(\bar{x}_{C}=22.3\)</span>, 표준 편차 <span class="math inline">\(s_{C}=0.89\)</span>를 기록했습니다. 반면 74개의 밭종다리 알은 평균 길이 <span class="math inline">\(\bar{x}_{MP}=19.7\)</span>, 표준 편차 <span class="math inline">\(s_{MP}=1.25\)</span>였습니다.</p>
+<p>뻐꾸기는 둥지를 짓지 않고 다른 종의 둥지에 알을 낳아 새끼를 대신 기르게 하는 독특한 탁란 습성을 지녔습니다. 진화 생물학자는 숙주가 ’밭종다리(Meadow pipit)’일 경우, 뻐꾸기 알의 길이가 숙주 본연의 알 길이와 차이를 보이는지 통계적으로 식별하고자 합니다. 수집된 45개의 뻐꾸기 알 표본은 평균 길이 <span class="math inline">\(\bar{x}_{C}=22.3\)</span>, 표준편차 <span class="math inline">\(s_{C}=0.89\)</span>를 기록했습니다. 반면 74개의 밭종다리 알은 평균 길이 <span class="math inline">\(\bar{x}_{MP}=19.7\)</span>, 표준편차 <span class="math inline">\(s_{MP}=1.25\)</span>였습니다.</p>
 <ol start="14" type="1">
 <li>뻐꾸기 알의 평균 길이가 숙주인 밭종다리 알과 완벽히 일치하는지, 아니면 미세한 생물학적 차이가 존재하는지에 대한 가설을 <span class="math inline">\(\alpha=0.05\)</span> 수준에서 신중히 검정해 보십시오.</li>
 </ol>
@@ -743,7 +743,7 @@ t = \frac{246.43-328.92}{\sqrt{2680.182 \left(\frac{1}{14} + \frac{1}{12}\right)
 <p><span class="math display">\[
 H_0:\mu_{D}=0
 \]</span></p>
-<p>대립 가설은 분석가의 의도에 따라 세 가지 친숙한 형태 중 하나로 구체화됩니다. 모집단 평균 차이가 0보다 작은지, 0보다 큰지, 혹은 방향을 배제하고 단순히 0이 아닌 유의미한 차이인지에 따라 다음의 옵션들이 주어집니다.</p>
+<p>대립 가설은 분석가의 의도에 따라 세 가지 친숙한 형태 중 하나로 구체화됩니다. 모집단 평균 차이가 0보다 작은지, 0보다 큰지, 혹은 방향을 배제하고 단순히 0이 아닌 유의한 차이인지에 따라 다음의 옵션들이 주어집니다.</p>
 <p><span class="math display">\[
 \begin{aligned}
 H_A:&amp;\mu_{D} &lt; 0 \\
@@ -754,8 +754,8 @@ H_A:&amp;\mu_{D} \neq 0
 <p>아침 시리얼 예시로 돌아가 두 측정 기법 간에 유의미한 수치적 차이가 존재하는지만 단순 테스트하고 싶다고 가정해 보겠습니다. 이 상황에 부합하는 양측 검정 가설은 아래와 같이 정의됩니다.</p>
 <p><span class="math display">\[
 \begin{aligned}
-H_0:\mu_{D} = 0 \\
-H_A:\mu_{D} \neq 0
+H_0: &amp;\ \mu_{D} = 0 \\
+H_A: &amp;\ \mu_{D} \neq 0
 \end{aligned}
 \]</span></p>
 </section>
@@ -798,8 +798,8 @@ H_A:\mu_{D} \neq 0
 </tr>
 </tbody>
 </table>
-<p>이렇게 모든 샘플 쌍의 개별 차이를 도출하고 나면, 남은 작업은 이 파생된 ’차이 데이터셋’의 표본 평균 <span class="math inline">\(\bar{x}_{D}\)</span>, 차이의 표본 표준 편차 <span class="math inline">\(s_{D}\)</span>, 그리고 총 샘플 개수 <span class="math inline">\(n\)</span>을 요약하는 일뿐입니다.</p>
-<p>실제 시리얼 성분 분석 데이터를 취합한 결과, 연구원은 100개의 샘플에서 각 방식에 따른 설탕 함량 차이를 성공적으로 계산했습니다. 이렇게 생성된 100개의 차이값(크로마토그래피 빼기 애널라이저)을 바탕으로 도출된 표본 평균은 <span class="math inline">\(\bar{x}_{D}=-0.622\)</span>, 표본 표준 편차는 <span class="math inline">\(s_{D}=1.988\)</span>이었습니다.</p>
+<p>이렇게 모든 샘플 쌍의 개별 차이를 도출하고 나면, 남은 작업은 이 파생된 ’차이 데이터셋’의 표본 평균 <span class="math inline">\(\bar{x}_{D}\)</span>, 차이의 표본 표준편차 <span class="math inline">\(s_{D}\)</span>, 그리고 총 샘플 개수 <span class="math inline">\(n\)</span>을 요약하는 일뿐입니다.</p>
+<p>실제 시리얼 성분 분석 데이터를 취합한 결과, 연구원은 100개의 샘플에서 각 방식에 따른 설탕 함량 차이를 성공적으로 계산했습니다. 이렇게 생성된 100개의 차이값(크로마토그래피 빼기 애널라이저)을 바탕으로 도출된 표본 평균은 <span class="math inline">\(\bar{x}_{D}=-0.622\)</span>, 표본 표준편차는 <span class="math inline">\(s_{D}=1.988\)</span>이었습니다.</p>
 </section>
 <section id="검정-통계량-계산-2" class="level3" data-number="3.4">
 <h3 data-number="3.4" class="anchored" data-anchor-id="검정-통계량-계산-2"><span class="header-section-number">3.4</span> 검정 통계량 계산</h3>
@@ -807,7 +807,7 @@ H_A:\mu_{D} \neq 0
 <p><span class="math display">\[
 t = \frac{\bar{x}-\mu_0}{s/\sqrt{n}}
 \]</span></p>
-<p>단일 표본 <span class="math inline">\(t\)</span>-검정의 뼈대를 대응표본 <span class="math inline">\(t\)</span>-검정의 맥락에 맞게 몇 가지 핵심 변수만 조율하면 즉시 활용이 가능합니다. 임의의 표본 평균 <span class="math inline">\(\bar{x}\)</span> 대신 차이 데이터의 표본 평균 <span class="math inline">\(\bar{x}_{D}\)</span>를, 임의의 표본 표준 편차 s 대신 차이의 표본 표준 편차 <span class="math inline">\(s_{D}\)</span>를 대입합니다. 무엇보다 평균에 대한 대응표본 <span class="math inline">\(t\)</span>-검정의 귀무 가설은 항상 <span class="math inline">\(H_0:\mu_{D}=0\)</span>이라는 확고한 전제를 지니므로, 비교 기준점인 <span class="math inline">\(\mu_0\)</span> 값은 언제나 0으로 수렴합니다. 이 논리를 충실히 반영하여 단일 표본 공식을 재구성하면 다음과 같은 대응표본 전용 공식을 얻습니다.</p>
+<p>단일 표본 <span class="math inline">\(t\)</span>-검정의 뼈대를 대응표본 <span class="math inline">\(t\)</span>-검정의 맥락에 맞게 몇 가지 핵심 변수만 조율하면 즉시 활용이 가능합니다. 임의의 표본 평균 <span class="math inline">\(\bar{x}\)</span> 대신 차이 데이터의 표본 평균 <span class="math inline">\(\bar{x}_{D}\)</span>를, 임의의 표본 표준편차 s 대신 차이의 표본 표준편차 <span class="math inline">\(s_{D}\)</span>를 대입합니다. 무엇보다 평균에 대한 대응표본 <span class="math inline">\(t\)</span>-검정의 귀무 가설은 항상 <span class="math inline">\(H_0:\mu_{D}=0\)</span>이라는 확고한 전제를 지니므로, 비교 기준점인 <span class="math inline">\(\mu_0\)</span> 값은 언제나 0으로 수렴합니다. 이 논리를 충실히 반영하여 단일 표본 공식을 재구성하면 다음과 같은 대응표본 전용 공식을 얻습니다.</p>
 <p><span class="math display">\[
 t = \frac{\bar{x}_{D}}{\frac{s_{D}}{\sqrt{n}}}
 \]</span></p>
@@ -842,7 +842,7 @@ t = \frac{-0.622}{\frac{1.988}{\sqrt{100}}} = -3.129
 </tr>
 </tbody>
 </table>
-<p>다른 수많은 통계 모델과 마찬가지로, 이 세련된 논리 체계는 오직 중심 극한 정리가 무리 없이 성립할 때만 그 권위를 인정받습니다. 검정 결과를 한 치의 의심 없이 신뢰하려면 쌍으로 묶인 표본의 크기 n이 충분히 크거나(통상적으로 <span class="math inline">\(n\ge 30\)</span>), 파생된 차이 데이터셋 자체가 본질적으로 정규 분포를 형성해야 합니다.</p>
+<p>다른 수많은 통계 모델과 마찬가지로, 이 세련된 논리 체계는 오직 중심극한정리가 무리 없이 성립할 때만 그 권위를 인정받습니다. 검정 결과를 한 치의 의심 없이 신뢰하려면 쌍으로 묶인 표본의 크기 n이 충분히 크거나(통상적으로 <span class="math inline">\(n\ge 30\)</span>), 파생된 차이 데이터셋 자체가 본질적으로 정규분포를 형성해야 합니다.</p>
 <p>다시 아침 시리얼 예시로 시선을 돌리면 대립 가설은 <span class="math inline">\(H_A:\mu_D \neq 0\)</span>인 양측 검정 구조이므로, 탐색해야 할 <span class="math inline">\(p\)</span>-값은 <span class="math inline">\(2 \times P(t_{99}&gt;|-3.129|)\)</span> 영역입니다. R 통계 패키지에서 다음의 코드를 실행하면 <span class="math inline">\(p\)</span>-값이 0.0023이라는 희박한 확률임을 단숨에 도출해 냅니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="at">q =</span> <span class="fl">3.129</span>, <span class="at">df =</span> <span class="dv">99</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -863,31 +863,31 @@ t = \frac{-0.622}{\frac{1.988}{\sqrt{100}}} = -3.129
 <p>이 과학적 호기심을 대변하는 가설은 명확합니다.</p>
 <p><span class="math display">\[
 \begin{aligned}
-H_0:\mu_{D} = 0 \\
-H_A:\mu_{D} \neq 0
+H_0: &amp;\ \mu_{D} = 0 \\
+H_A: &amp;\ \mu_{D} \neq 0
 \end{aligned}
 \]</span></p>
-<p>이 역사적 검정은 보수적인 <span class="math inline">\(\alpha=0.1\)</span> 수준에서 진행하겠습니다. 10명의 피험자가 보인 수면 시간의 평균 차이(덱스트로 섭취 기록에서 레보 섭취 기록을 차감한 값)는 <span class="math inline">\(\bar{x}_{D}=-1.58\)</span> 시간, 표본 표준 편차는 <span class="math inline">\(s_{D}=1.23\)</span> 시간으로 집계되었습니다. 축적된 데이터를 바탕으로 검정 통계량을 직관적으로 계산합니다.</p>
+<p>이 역사적 검정은 상대적으로 관대한 <span class="math inline">\(\alpha=0.1\)</span> 수준에서 진행하겠습니다. 10명의 피험자가 보인 수면 시간의 평균 차이(덱스트로 섭취 기록에서 레보 섭취 기록을 차감한 값)는 <span class="math inline">\(\bar{x}_{D}=-1.58\)</span> 시간, 표본 표준편차는 <span class="math inline">\(s_{D}=1.23\)</span> 시간으로 집계되었습니다. 축적된 데이터를 바탕으로 검정 통계량을 직관적으로 계산합니다.</p>
 <p><span class="math display">\[
-t = \frac{-1.58}{\frac{1.23}{\sqrt{10}}} = -4.06.
+t = \frac{-1.58}{\frac{1.23}{\sqrt{10}}} = -4.06
 \]</span></p>
 <p>양방향의 차이를 모두 감안하는 양측 검정을 채택했으므로 <span class="math inline">\(p\)</span>-값은 <span class="math inline">\(2 \times P(t_{10-1}&gt;|-4.06|)\)</span>로 표현됩니다. R 환경에서 <code>pt(q = 4.06, df = 9, lower.tail = FALSE)</code> 코드를 수행하면 상위 꼬리 확률이 0.00142임을 얻고, 이를 대칭성에 따라 두 배 하여 최종 <span class="math inline">\(p\)</span>-값 0.00284를 확보합니다.</p>
-<p>이 <span class="math inline">\(p\)</span>-값은 사전에 설정한 임계값 <span class="math inline">\(\alpha=0.1\)</span>의 벽을 아득히 밑돌기 때문에 우리는 귀무 가설을 주저 없이 기각합니다. 결국 두 약물 중 어느 하나가 더 탁월한 수면 유도 효과를 지닌다고 합리적으로 추론합니다. 비록 10명이라는 표본 크기는 통계적 이상향에는 못 미치지만, 수면 시간 차이를 시각화한 히스토그램이 기적처럼 종 모양의 정규 분포 곡선을 그리고 있어 이 검정 결과의 통계적 당위성을 한층 배가시켜 줍니다.</p>
+<p>이 <span class="math inline">\(p\)</span>-값은 사전에 설정한 임계값 <span class="math inline">\(\alpha=0.1\)</span>의 벽을 아득히 밑돌기 때문에 우리는 귀무 가설을 주저 없이 기각합니다. 결국 두 약물 중 어느 하나가 더 탁월한 수면 유도 효과를 지닌다고 합리적으로 추론합니다. 비록 10명이라는 표본 크기는 통계적 이상향에는 못 미치지만, 수면 시간 차이를 시각화한 히스토그램이 기적처럼 종 모양의 정규분포 곡선을 그리고 있어 이 검정 결과의 통계적 당위성을 한층 배가시켜 줍니다.</p>
 <p>R의 내장 함수인 <code>t.test</code>는 독립표본 검정뿐만 아니라 대응표본 검정, 나아가 등분산 및 이분산 가정에까지 완벽히 적응하는 다재다능한 분석 도구입니다. 두 그룹의 데이터를 빠짐없이 입력한 뒤 함수의 핵심 옵션—특히 <code>paired</code> 및 <code>var.equal</code> 파라미터—을 능숙하게 조작함으로써, 우리가 지금껏 논의한 모든 다채로운 검정 기법을 클릭 몇 번으로 우아하게 호출할 수 있습니다.</p>
 </section>
 <section id="연습-문제-2" class="level3" data-number="3.8">
 <h3 data-number="3.8" class="anchored" data-anchor-id="연습-문제-2"><span class="header-section-number">3.8</span> 연습 문제</h3>
-<p>환경 역학 연구진은 납 제련 공장 등 관련 산업에 종사하는 부모를 둔 자녀들이 일반 가정 자녀보다 체내 혈중 납 농도가 통계적으로 더 높은 위험 수치에 노출되어 있는지 심각한 우려를 표했습니다. 각기 다른 거주 환경이 유발하는 교란 변수(confounding variable)를 철저히 통제하기 위해, 연구진은 표본 내 33명의 위험군 자녀 각각을 부모가 납 관련 산업에 종사하지 않는 동일 동네 거주 자녀와 정밀하게 1:1 매칭(pairing)했습니다. 이들이 수집한 혈중 납 농도 데이터 쌍(노출군 수치 빼기 대조군 수치)의 분석 결과, 표본 평균 차이는 <span class="math inline">\(\bar{x}_{D}=15.97\)</span>, 표본 표준 편차는 <span class="math inline">\(s_{D}=15.86\)</span>으로 측정되었습니다.</p>
+<p>환경 역학 연구진은 납 제련 공장 등 관련 산업에 종사하는 부모를 둔 자녀들이 일반 가정 자녀보다 체내 혈중 납 농도가 통계적으로 더 높은 위험 수치에 노출되어 있는지 심각한 우려를 표했습니다. 각기 다른 거주 환경이 유발하는 교란 변수(confounding variable)를 철저히 통제하기 위해, 연구진은 표본 내 33명의 위험군 자녀 각각을 부모가 납 관련 산업에 종사하지 않는 동일 동네 거주 자녀와 정밀하게 1:1 매칭(pairing)했습니다. 이들이 수집한 혈중 납 농도 데이터 쌍(노출군 수치 빼기 대조군 수치)의 분석 결과, 표본 평균 차이는 <span class="math inline">\(\bar{x}_{D}=15.97\)</span>, 표본 표준편차는 <span class="math inline">\(s_{D}=15.86\)</span>으로 측정되었습니다.</p>
 <ol start="15" type="1">
 <li>이 엄중한 역학 조사를 이끌어갈 통계적 가설을 명확히 설정해 주십시오.</li>
 <li>수집된 데이터를 바탕으로 본 연구의 검정 통계량을 도출해 보십시오.</li>
 <li>검정 통계량을 활용하여 귀무 가설 하에서의 <span class="math inline">\(p\)</span>-값을 계산해 보십시오.</li>
 <li>의료 통계의 엄격한 기준인 유의 수준 <span class="math inline">\(\alpha=0.01\)</span>을 적용할 때, 정책 입안자에게 제출할 여러분의 통계적 결론은 무엇입니까?</li>
 </ol>
-<p>한 원예학자는 재배 환경 중 일조량(그늘 대 직사광선)이 그레이프프루트 내부의 고형분(solids) 비율을 극대화하는 데 어떤 영향을 미치는지 과학적으로 입증하고자 합니다. 그늘과 햇빛이 정확히 절반씩 교차하는 위치에 열린 25개의 그레이프프루트를 선별 수확한 뒤, 열매의 노출된 반구와 그늘진 반구 각각의 고형분 비율을 독립적으로 측정했습니다. 측정한 차이값 집합(그늘진 쪽 비율 빼기 노출된 쪽 비율)의 통계를 낸 결과, 표본 평균 차이는 <span class="math inline">\(\bar{x}_{D}=0.1936\)</span>, 표준 편차는 <span class="math inline">\(s_{D}=0.3066\)</span>으로 나타났습니다.</p>
+<p>한 원예학자는 재배 환경 중 일조량(그늘 대 직사광선)이 그레이프프루트 내부의 고형분(solids) 비율을 극대화하는 데 어떤 영향을 미치는지 과학적으로 입증하고자 합니다. 그늘과 햇빛이 정확히 절반씩 교차하는 위치에 열린 25개의 그레이프프루트를 선별 수확한 뒤, 열매의 노출된 반구와 그늘진 반구 각각의 고형분 비율을 독립적으로 측정했습니다. 측정한 차이값 집합(그늘진 쪽 비율 빼기 노출된 쪽 비율)의 통계를 낸 결과, 표본 평균 차이는 <span class="math inline">\(\bar{x}_{D}=0.1936\)</span>, 표준편차는 <span class="math inline">\(s_{D}=0.3066\)</span>으로 나타났습니다.</p>
 <p>흥미롭게도 차이값의 히스토그램은 봉우리가 두 개인 양봉(bimodal) 패턴을 암시하고 있습니다.</p>
 <ol start="19" type="1">
-<li>그레이프프루트 한 알 내에서 그늘진 부위와 노출된 부위의 모집단 평균 고형분 비율이 생물학적으로 동일한지 혹은 유의미한 차이가 있는지 <span class="math inline">\(\alpha=0.05\)</span> 수준에서 심층 검정해 보십시오.</li>
+<li>그레이프프루트 한 알 내에서 그늘진 부위와 노출된 부위의 모집단 평균 고형분 비율이 생물학적으로 동일한지 혹은 유의한 차이가 있는지 <span class="math inline">\(\alpha=0.05\)</span> 수준에서 심층 검정해 보십시오.</li>
 </ol>
 <p>진화론의 창시자 찰스 다윈(Charles Darwin)은 1876년, 진화의 우월성을 입증하고자 교배 수분된(cross-pollinated) 옥수수 개체의 성장 높이가 자가 수분된(self-pollinated) 개체의 높이와 구조적 차이를 보이는지 실험했습니다. 모든 옥수수는 철저한 통제하에 동일한 화분에서 한 쌍씩 자랐습니다. 다윈이 세심하게 기록한 <span class="math inline">\(n=15\)</span>쌍의 관측치에서 식물 높이의 표본 평균 차이(교배 수분 높이 빼기 자가 수분 높이)는 <span class="math inline">\(\bar{x}_{D}=2.617\)</span>인치, 표본 차이 분산은 <span class="math inline">\(s^2_{D}=22.26\)</span>으로 도출되었습니다. 이 차이값들의 히스토그램은 분포의 꼬리가 왼쪽으로 쏠린 비대칭(skewed left) 형태를 나타냈습니다.</p>
 <ol start="20" type="1">
