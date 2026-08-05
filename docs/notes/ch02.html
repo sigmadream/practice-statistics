@@ -318,16 +318,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <blockquote class="blockquote">
-<p>R은 데이터 분석과 그래픽 생성에 널리 사용되는 강력한 오픈 소스 프로그래밍 언어입니다. 다양한 학문 분야에 걸쳐 R은 표준 통계 소프트웨어로 자리 잡고 있으며, 전 세계적인 규모의 커뮤니티를 자랑합니다. 2025년 이후 생성형 AI가 보편화된 시대에서도, R로 작성된 스크립트는 AI가 생성한 분석 결과의 환각(hallucination) 현상을 검증하고 재현 가능성을 확보하는 핵심 도구로 쓰입니다. 무엇보다도 빠르고 직관적으로 배울 수 있다는 점이 큰 장점입니다.</p>
+<p>R은 데이터 분석과 그래픽 생성에 널리 사용되는 강력한 오픈 소스 프로그래밍 언어입니다. 다양한 학문 분야에 걸쳐 R은 표준 통계 소프트웨어로 자리 잡고 있으며, 전 세계적인 규모의 커뮤니티를 자랑합니다. 분석 과정을 코드로 남겨 재현 가능성을 확보할 수 있다는 점, 그리고 빠르고 직관적으로 배울 수 있다는 점이 큰 장점입니다.</p>
 </blockquote>
 <section id="설치-및-환경-설정" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="설치-및-환경-설정"><span class="header-section-number">1</span> 설치 및 환경 설정</h2>
-<p>R을 다운로드하려면 CRAN 사이트로 이동하여 각자의 운영 체제(윈도우, 리눅스, macOS)에 맞는 버전을 선택해야 합니다. 아울러 Posit의 다운로드 페이지에서 RStudio나 Positron 같은 통합개발환경(IDE)을 함께 설치하면 R을 더욱 편리하게 사용할 수 있습니다. 코드를 쉽게 작성하고 실행 결과를 즉각적으로 확인할 수 있는 훌륭한 분석 환경을 구축하는 데 충분한 시간을 투자하시기 바랍니다.</p>
+<p>R을 다운로드하려면 CRAN 사이트로 이동하여 각자의 운영 체제(윈도우, 리눅스, macOS)에 맞는 버전을 선택해야 합니다. 아울러 Posit의 다운로드 페이지에서 RStudio나 Positron 같은 통합개발환경(IDE)을 함께 설치하면 R을 더욱 편리하게 사용할 수 있습니다. 코드를 쉽게 작성하고 실행 결과를 즉각적으로 확인할 수 있는 분석 환경을 구축하는 데 충분한 시간을 투자하시기 바랍니다.</p>
 </section>
 <section id="r의-라이브러리" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="r의-라이브러리"><span class="header-section-number">2</span> R의 라이브러리</h2>
 <p>R은 오픈 소스 소프트웨어이므로, 누구나 데이터 분석을 돕는 사용자 정의 함수 패키지를 개발하여 공유할 수 있습니다. 이러한 패키지들의 모음을 라이브러리(library)라고 부르며, 대부분 CRAN 저장소를 통해 배포됩니다. 필요한 라이브러리를 다운로드하여 설치해 두면, 분석 과정에서 언제든지 호출하여 사용할 수 있습니다.</p>
-<p>자동화된 AI 분석이 보조하는 오늘날에도, 동일한 분석 환경을 완벽하게 재현하기 위해 패키지 설치와 로드 과정을 명시적인 코드로 남기는 방식을 권장합니다. 시스템 폴더에 쓰기 권한이 없는 특수한 경우를 제외하면, 일반적으로는 사용자 권한으로 라이브러리를 설치하는 것으로 충분합니다.</p>
+<p>동일한 분석 환경을 재현할 수 있도록, 패키지 설치와 로드 과정을 명시적인 코드로 남기는 방식을 권장합니다. 시스템 폴더에 쓰기 권한이 없는 특수한 경우를 제외하면, 일반적으로는 사용자 권한으로 라이브러리를 설치하는 것으로 충분합니다.</p>
 <p>가장 기본적인 패키지 설치 방법은 RStudio 상단 메뉴의 “Tools”에서 “Install Packages…”를 선택하는 것입니다(우하단 Packages 패널의 “Install” 버튼을 눌러도 같은 대화상자가 열립니다). 설치 과정에서 CRAN 미러(mirror)를 선택하라는 안내가 나타날 수 있는데, 이는 지속적으로 업데이트되는 CRAN 저장소 중 어느 위치의 서버를 사용할지 지정하는 과정입니다. 대개 어떤 미러를 선택하더라도 설치에는 지장이 없습니다.</p>
 <p>대화상자의 입력창에 <code>MASS</code>를 입력하면 자동완성 목록이 뜨며, 이를 선택하고 “Install”을 누르면 설치가 진행됩니다. 설치가 끝나면 해당 패키지가 Packages 패널의 목록에 알파벳순으로 추가됩니다. 한 번 설치된 패키지는 필요할 때마다 자유롭게 불러올 수 있습니다.</p>
 <p>메뉴를 사용하지 않고 코드로 직접 설치하려면 <code>install.packages()</code> 명령어를 사용합니다. 예컨대 <code>MASS</code> 라이브러리를 설치하고자 한다면 다음 코드를 실행해 주십시오.</p>
@@ -355,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>위 코드를 실행하면 6을 반환합니다. 괄호를 적절히 사용하여 연산 순서를 명확하게 통제하는 것이 좋습니다. 단, 여는 괄호와 닫는 괄호의 짝이 반드시 맞아야 합니다. 닫는 괄호가 누락되면 R은 결과를 반환하지 않고 계속해서 입력을 기다리는 상태에 머무르게 됩니다.</p>
-<p>주석(comment)은 해시 기호(<code>#</code>)로 시작하며, 해당 줄에서 기호 뒤에 오는 내용은 코드로 실행되지 않습니다. 다른 분석가나 AI 코딩 어시스턴트가 코드를 쉽게 이해할 수 있도록, 공백과 주석을 적극적으로 활용하여 가독성을 높여 주십시오.</p>
+<p>주석(comment)은 해시 기호(<code>#</code>)로 시작하며, 해당 줄에서 기호 뒤에 오는 내용은 코드로 실행되지 않습니다. 다른 분석가나 미래의 자신이 코드를 쉽게 이해할 수 있도록, 공백과 주석을 적극적으로 활용하여 가독성을 높여 주십시오.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">5</span> <span class="co"># 이 줄은 10을 계산하여 x에 할당합니다.</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -389,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 9</code></pre>
 </div>
 </div>
-<p>함수의 정확한 사용법이 궁금하다면 <code>help()</code> 함수를 사용하거나 함수 이름 앞에 물음표(<code>?</code>)를 붙여 도움말 문서를 확인해 보십시오. 도움말 페이지는 함수의 작동 원리와 다양한 예제 코드를 상세히 제공하므로, 분석 역량을 키우는 훌륭한 길잡이가 됩니다. 인자는 위치 순서대로 전달할 수도 있고, 인자의 이름을 명시하여 전달할 수도 있습니다. 이름을 명시하면 순서를 외울 필요가 없고 코드의 의미가 훨씬 명확해집니다.</p>
+<p>함수의 정확한 사용법이 궁금하다면 <code>help()</code> 함수를 사용하거나 함수 이름 앞에 물음표(<code>?</code>)를 붙여 도움말 문서를 확인해 보십시오. 도움말 페이지는 함수의 작동 원리와 다양한 예제 코드를 상세히 제공하므로, 분석 역량을 키우는 데 큰 도움이 됩니다. 인자는 위치 순서대로 전달할 수도 있고, 인자의 이름을 명시하여 전달할 수도 있습니다. 이름을 명시하면 순서를 외울 필요가 없고 코드의 의미가 훨씬 명확해집니다.</p>
 </section>
 <section id="데이터-구조" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="데이터-구조"><span class="header-section-number">5</span> 데이터 구조</h2>
@@ -598,7 +598,7 @@ Levels: forest grassland marsh tundra</code></pre>
 </section>
 <section id="시각화" class="level3" data-number="7.2">
 <h3 data-number="7.2" class="anchored" data-anchor-id="시각화"><span class="header-section-number">7.2</span> 시각화</h3>
-<p>R이 오랫동안 데이터 과학 분야에서 사랑받아 온 이유 중 하나는 압도적인 시각화 성능입니다. 탐색적 데이터 분석 과정에서 시각화는 텍스트나 숫자만으로는 발견하기 어려운 통찰을 제공합니다. 데이터의 대략적인 분포를 파악하고자 할 때는 먼저 <code>hist()</code> 함수를 통해 히스토그램을 그려봅니다.</p>
+<p>R이 오랫동안 데이터 과학 분야에서 사랑받아 온 이유 중 하나는 뛰어난 시각화 기능입니다. 탐색적 데이터 분석 과정에서 시각화는 텍스트나 숫자만으로는 발견하기 어려운 통찰을 제공합니다. 데이터의 대략적인 분포를 파악하고자 할 때는 먼저 <code>hist()</code> 함수를 통해 히스토그램을 그려봅니다.</p>
 <p>최근에는 분석의 일관성을 위해 <code>ggplot2</code> 패키지를 더 자주 활용합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>forests <span class="sc">|&gt;</span></span>
@@ -629,7 +629,7 @@ Levels: forest grassland marsh tundra</code></pre>
 </div>
 </div>
 </div>
-<p>기본 그래픽 시스템을 사용할 때는 <code>xlab</code>, <code>ylab</code>, <code>main</code> 인자를 통해 축의 이름과 그래프의 제목을 지정하고, <code>col</code> 인자로 색상을 변경합니다. 완성된 훌륭한 시각화 결과물은 <code>pdf()</code>나 <code>ggsave()</code> 함수를 활용하여 고해상도 파일로 저장하실 수 있습니다.</p>
+<p>기본 그래픽 시스템을 사용할 때는 <code>xlab</code>, <code>ylab</code>, <code>main</code> 인자를 통해 축의 이름과 그래프의 제목을 지정하고, <code>col</code> 인자로 색상을 변경합니다. 완성된 시각화 결과물은 <code>pdf()</code>나 <code>ggsave()</code> 함수를 활용하여 고해상도 파일로 저장하실 수 있습니다.</p>
 </section>
 </section>
 <section id="연습-문제" class="level2" data-number="8">
@@ -661,7 +661,7 @@ Levels: forest grassland marsh tundra</code></pre>
 </section>
 <section id="현대적-작업-습관" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="현대적-작업-습관"><span class="header-section-number">9</span> 현대적 작업 습관</h2>
-<p>이 교재는 2026년 4월에 릴리스된 R 4.6.0 버전을 기준으로 집필되었습니다. 새로운 분석 환경을 구축할 때는 항상 CRAN에서 최신 안정화 버전을 설치하시기 바랍니다. 아울러 분석 결과를 리포트로 작성할 때는 자신이 사용한 R 버전과 주요 패키지 버전을 명시하여, 딥페이크나 위조 데이터가 범람하는 환경 속에서도 연구의 재현성과 신뢰성을 철저히 담보하는 습관을 들이는 것이 좋습니다. R 공식 문서와 안내는 <a href="https://www.r-project.org/">R Project</a> 및 <a href="https://cran.r-project.org/">CRAN</a>에서 확인하실 수 있습니다.</p>
+<p>이 교재는 2026년 4월에 릴리스된 R 4.6.0 버전을 기준으로 집필되었습니다. 새로운 분석 환경을 구축할 때는 항상 CRAN에서 최신 안정화 버전을 설치하시기 바랍니다. 아울러 분석 결과를 리포트로 작성할 때는 자신이 사용한 R 버전과 주요 패키지 버전을 명시하여 재현성을 담보하는 습관을 들이는 것이 좋습니다. R 공식 문서와 안내는 <a href="https://www.r-project.org/">R Project</a> 및 <a href="https://cran.r-project.org/">CRAN</a>에서 확인하실 수 있습니다.</p>
 <p>현대적인 R 프로그래밍 실무에서는 매번 작업 디렉터리를 수동으로 지정하기보다, 독립된 프로젝트 폴더를 구성하고 그 내부에서 데이터, 스크립트, 결과물을 상대 경로로 관리합니다. 예를 들어 <code>data/my_data.csv</code>처럼 경로를 설정해 두면, 다른 컴퓨터로 프로젝트를 이동하더라도 구조가 깨지지 않습니다. 또한 R 4.1 버전부터 정식 도입된 기본 파이프 연산자(<code>|&gt;</code>)를 사용하면 연산의 흐름을 왼쪽에서 오른쪽으로 직관적으로 서술할 수 있어 코드가 한결 깔끔해집니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyverse")</span></span>
@@ -756,7 +756,7 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 </div>
-<p>이러한 도구의 전환에서 진정으로 중요한 것은 특정 패키지의 사용법 그 자체가 아니라, 데이터를 바라보는 구조적인 사고방식입니다. 데이터를 깔끔한 표(tidy data) 형태로 다듬고, 의미를 담아 열 이름을 짓고, 전처리 과정을 투명한 코드로 기록하며, 축과 제목을 누구나 이해할 수 있는 언어로 표현하는 꼼꼼한 습관이야말로, 앞으로 다룰 복잡한 통계적 추론 과정을 지탱하는 굳건한 뼈대가 될 것입니다.</p>
+<p>이러한 도구의 전환에서 진정으로 중요한 것은 특정 패키지의 사용법 그 자체가 아니라, 데이터를 바라보는 구조적인 사고방식입니다. 데이터를 깔끔한 표(tidy data) 형태로 다듬고, 의미를 담아 열 이름을 짓고, 전처리 과정을 투명한 코드로 기록하며, 축과 제목을 누구나 이해할 수 있는 언어로 표현하는 꼼꼼한 습관이야말로, 앞으로 다룰 복잡한 통계적 추론 과정을 지탱하는 뼈대가 될 것입니다.</p>
 
 
 </section>

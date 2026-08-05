@@ -373,7 +373,7 @@ H_A &amp;: p \neq 0.14
 <section id="단계-유의-수준-설정" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="단계-유의-수준-설정"><span class="header-section-number">1.2</span> 2단계: 유의 수준 설정</h3>
 <p>유의 수준(significance level) <span class="math inline">\(\alpha\)</span>는 가설 검정의 최종 결론을 판가름하는 기준선이자, 귀무 가설을 기각하기 위한 ’합리적인 의심’의 허들입니다. <span class="math inline">\(\alpha\)</span>를 낮게 설정하면 증거가 매우 강력해야만 귀무 가설을 기각할 수 있고, <span class="math inline">\(\alpha\)</span>가 높으면 상대적으로 쉽게 기각할 수 있습니다. 유의 수준은 귀무 가설이 실제로 참임에도 불구하고 실수로 기각해 버리는 제1종 오류(Type I error)를 범할 최대 허용 확률입니다. 학문 분야에 따라 기준이 다를 수 있으나, 일반적으로는 <span class="math inline">\(\alpha = 0.05\)</span>를 널리 사용합니다.</p>
-<p>중요한 점은 유의 수준 <span class="math inline">\(\alpha\)</span>를 데이터 수집이나 분석을 시작하기 ‘전에’ 미리 확정해야 한다는 것입니다. 데이터를 먼저 들여다본 뒤 결과가 유의미하게 나오도록 <span class="math inline">\(\alpha\)</span>를 사후에 조정하는 행위는 심각한 연구 부정행위(p-hacking)에 해당하며 분석의 신뢰성을 완전히 무너뜨립니다. 2026년 첨단 AI 알고리즘의 성능 평가에서도 평가지표와 임계값은 실험 전 사전 등록(preregistration)을 통해 엄격하게 고정하는 것이 표준입니다. 스위트 브라이어 대학 예시에서는 1종 오류가 초래할 특별히 치명적인 비용이 없으므로 표준적인 <span class="math inline">\(\alpha = 0.05\)</span>를 사용하겠습니다.</p>
+<p>중요한 점은 유의 수준 <span class="math inline">\(\alpha\)</span>를 데이터 수집이나 분석을 시작하기 ‘전에’ 미리 확정해야 한다는 것입니다. 데이터를 먼저 들여다본 뒤 결과가 유의미하게 나오도록 <span class="math inline">\(\alpha\)</span>를 사후에 조정하는 행위는 심각한 연구 부정행위(p-hacking)에 해당하며 분석의 신뢰성을 완전히 무너뜨립니다. 이를 막기 위해 여러 분야에서는 분석 계획과 임계값을 실험 전에 공개 등록하는 사전 등록(preregistration) 제도를 운영합니다. 스위트 브라이어 대학 예시에서는 1종 오류가 초래할 특별히 치명적인 비용이 없으므로 표준적인 <span class="math inline">\(\alpha = 0.05\)</span>를 사용하겠습니다.</p>
 </section>
 <section id="단계-데이터-수집-및-요약" class="level3" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="단계-데이터-수집-및-요약"><span class="header-section-number">1.3</span> 3단계: 데이터 수집 및 요약</h3>
@@ -486,7 +486,7 @@ z = \frac{0.1519 - 0.14}{\sqrt{\frac{0.14(1-0.14)}{79}}} \approx 0.3048
 <li><p>대립 가설의 방향에 맞는 <span class="math inline">\(p\)</span>-값을 도출하십시오.</p></li>
 <li><p><span class="math inline">\(\alpha=0.05\)</span>일 때 어떤 최종 결론을 내릴 수 있습니까?</p></li>
 </ol>
-<p>일반적으로 전체 이메일 트래픽의 약 50%가 스팸으로 분류된다고 알려져 있습니다. 2026년 생성형 AI 기반의 고도화된 스팸 발송 자동화로 인해 이 비율에 어떤 ’변화(증가든 감소든)’가 생겼는지 검증하고 싶습니다.</p>
+<p>일반적으로 전체 이메일 트래픽의 약 50%가 스팸으로 분류된다고 알려져 있습니다. 최근 이 비율에 어떤 ’변화(증가든 감소든)’가 생겼는지 검증하고 싶습니다.</p>
 <ol start="6" type="1">
 <li><p>귀무 가설과 대립 가설을 수식으로 표현하십시오.</p></li>
 <li><p>276통의 샘플 이메일을 조사한 결과 122통이 스팸이었습니다. 표본 비율은 얼마입니까?</p></li>
@@ -596,7 +596,7 @@ t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \sim t_{n-1}
 <section id="단계-결론-도출-1" class="level3" data-number="2.6">
 <h3 data-number="2.6" class="anchored" data-anchor-id="단계-결론-도출-1"><span class="header-section-number">2.6</span> 6단계: 결론 도출</h3>
 <p>비율 검정과 마찬가지로 정당화, 통계적 결정, 현실 맥락의 세 가지 요소를 포함해 결론을 작성합니다.</p>
-<p>슬롯 머신 데이터 분석 결과, 산출된 <span class="math inline">\(p\)</span>-값(<span class="math inline">\(1.377 \times 10^{-242}\)</span>)은 유의 수준 <span class="math inline">\(\alpha = 0.05\)</span>보다 압도적으로 작습니다(정당화). 따라서 귀무 가설을 강력히 기각합니다(결정). 결론적으로 카지노 측 비디오 슬롯 머신의 실제 평균 지급액은 법적 기준인 <span class="math inline">\(\$13.13\)</span>보다 고의로 적게 조작되었다는 통계적으로 매우 유의한 증거가 존재합니다(맥락).</p>
+<p>슬롯 머신 데이터 분석 결과, 산출된 <span class="math inline">\(p\)</span>-값(<span class="math inline">\(1.377 \times 10^{-242}\)</span>)은 유의 수준 <span class="math inline">\(\alpha = 0.05\)</span>보다 훨씬 작습니다(정당화). 따라서 귀무 가설을 강력히 기각합니다(결정). 결론적으로 카지노 측 비디오 슬롯 머신의 실제 평균 지급액은 법적 기준인 <span class="math inline">\(\$13.13\)</span>보다 고의로 적게 조작되었다는 통계적으로 매우 유의한 증거가 존재합니다(맥락).</p>
 <p>제조업 품질 관리 예시를 통해 과정을 다시 빠르게 요약해 보겠습니다. 정밀 금속 와셔(washer)의 직경을 4.0mm로 맞추는 공정이 있습니다. 규격(4.0)을 벗어나면 기계를 정비해야 합니다. <span class="math inline">\(n=20\)</span>개의 표본을 검사한 결과 <span class="math inline">\(\bar{x} = 3.9865\)</span>, <span class="math inline">\(s = 0.073\)</span>이었습니다.</p>
 <ol type="1">
 <li>가설 설정: <span class="math inline">\(H_0 : \mu = 4.0\)</span>, <span class="math inline">\(H_A : \mu \neq 4.0\)</span> (어느 방향이든 규격 미달)</li>
@@ -640,7 +640,7 @@ t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \sim t_{n-1}
 </section>
 <section id="단일-모수-검정에서-효과-크기를-함께-보기" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="단일-모수-검정에서-효과-크기를-함께-보기"><span class="header-section-number">3</span> 단일 모수 검정에서 효과 크기를 함께 보기</h2>
-<p>가설 검정을 통한 <span class="math inline">\(p\)</span>-값 도출은 관측된 데이터와 귀무 가설 간의 불일치 정도를 판별하는 객관적 도구입니다. 하지만 <span class="math inline">\(p\)</span>-값 하나만으로는 표본 통계량과 귀무 가설 기준값 간 차이의 ’실제적 크기’를 가늠하기 어렵습니다. 2026년 빅데이터 환경처럼 표본 크기 <span class="math inline">\(n\)</span>이 수백만 건에 달하면, 현실에서는 아무 의미 없는 미세한 차이도 <span class="math inline">\(p\)</span>-값은 극도로 낮게(유의하게) 산출될 수 있습니다. 반대로 표본이 너무 작으면 실질적으로 중대한 차이가 있음에도 통계적으로는 유의하지 않다는 결론이 나올 수 있습니다.</p>
+<p>가설 검정을 통한 <span class="math inline">\(p\)</span>-값 도출은 관측된 데이터와 귀무 가설 간의 불일치 정도를 판별하는 객관적 도구입니다. 하지만 <span class="math inline">\(p\)</span>-값 하나만으로는 표본 통계량과 귀무 가설 기준값 간 차이의 ’실제적 크기’를 가늠하기 어렵습니다. 표본 크기 <span class="math inline">\(n\)</span>이 수백만 건에 달하면, 현실에서는 아무 의미 없는 미세한 차이도 <span class="math inline">\(p\)</span>-값은 극도로 낮게(유의하게) 산출될 수 있습니다. 반대로 표본이 너무 작으면 실질적으로 중대한 차이가 있음에도 통계적으로는 유의하지 않다는 결론이 나올 수 있습니다.</p>
 <p>이러한 함정을 피하기 위해, 단일 모수 검정 결과를 보고할 때는 다음의 입체적인 기준들을 반드시 함께 고려해야 합니다.</p>
 <ol type="1">
 <li><p>점 추정값 확인: 표본 통계량(<span class="math inline">\(\hat{p}\)</span>나 <span class="math inline">\(\bar{x}\)</span>)이 귀무 가설 기준값과 숫자상으로 정확히 얼마나 차이가 나는지 직관적으로 확인합니다.</p></li>
@@ -656,7 +656,7 @@ t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \sim t_{n-1}
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">correct =</span> <span class="cn">FALSE</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>통계 소프트웨어는 사람을 대신해 기계적으로 결정을 내려주는 인공지능이 아닙니다. 오직 표본 데이터가 귀무 가설과 얼마나 부합하는지를 수학적으로 요약해 주는 정교한 도구일 뿐입니다. 최종적인 해석과 판단의 책임은 언제나 데이터를 들여다보는 분석가에게 있습니다.</p>
+<p>통계 소프트웨어는 사람을 대신해 기계적으로 결정을 내려주는 장치가 아닙니다. 오직 표본 데이터가 귀무 가설과 얼마나 부합하는지를 수학적으로 요약해 주는 정교한 도구일 뿐입니다. 최종적인 해석과 판단의 책임은 언제나 데이터를 들여다보는 분석가에게 있습니다.</p>
 </section>
 <section id="결론" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="결론"><span class="header-section-number">4</span> 결론</h2>

@@ -436,7 +436,7 @@ P(t_{n-1} &lt; t^*) = 1-\alpha/2
 <p><span class="math inline">\(t^*\)</span> 값을 찾기 위해 다시 R을 활용해 보겠습니다. pnorm 함수에 대응하는 <span class="math inline">\(t\)</span>-분포 함수로 pt 함수가 있었듯이, 정규분포에서 임계값을 찾는 데 사용한 qnorm 함수에 대응하는 <span class="math inline">\(t\)</span>-분포 함수로 qt 함수가 존재합니다. <code>qt</code> 함수는 주어진 확률과 <span class="math inline">\(t\)</span>-분포의 자유도(degrees of freedom)를 바탕으로 <span class="math inline">\(t\)</span>-분포의 임계값을 찾아줍니다. 임계값과 관련된 확률 <span class="math inline">\(p\)</span>와 자유도 <span class="math inline">\(\nu\)</span>의 두 값이 <code>qt</code> 함수의 입력값이 되며, 코드는 아래와 같습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> prob, <span class="at">df =</span> df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>다른 모든 신뢰 구간과 마찬가지로, 신뢰 구간을 해석하는 것은 신뢰 구간 추론의 중요한 측면입니다. <span class="math inline">\(p\)</span>에 대한 신뢰 구간과 동일하게 <span class="math inline">\(\mu\)</span>에 대한 신뢰 구간 역시 해당 구간이 “맞는지”, 즉 모수 <span class="math inline">\(\mu\)</span>의 참값을 포함하는지에 대한 우리의 확신 관점에서 해석합니다. 이 경우 <span class="math inline">\(\mu\)</span>에 대한 <span class="math inline">\((1-\alpha) \times 100\%\)</span> 신뢰 구간을 해석하기 위해, “우리가 계산한 구간이 모평균 <span class="math inline">\(\mu\)</span>의 참값을 포함한다고 <span class="math inline">\((1-\alpha) \times 100\%\)</span> 확신한다”고 말합니다.</p>
-<p>마지막으로, <span class="math inline">\(p\)</span>에 대한 신뢰 구간 및 가설 검정과 마찬가지로 <span class="math inline">\(\mu\)</span>에 대한 신뢰 구간에도 중요한 가정이 내재되어 있습니다. 우리의 신뢰 구간은 중심극한정리가 성립한다는 것을 암묵적으로 가정하며, 이는 표본 크기가 충분히 크거나 데이터가 정규분포를 따른다는 것을 뜻합니다. 신뢰 구간 결과가 유지되려면(즉, 평균에 대해 중심극한정리가 성립하려면) 표본 크기가 <span class="math inline">\(n\ge 30\)</span>이거나 데이터가 정규분포를 따라야 합니다. 최근 AI 기반 이상탐지 모델에서도 이러한 기본 가정은 피처 엔지니어링 단계에서 매우 중요하게 작용합니다.</p>
+<p>마지막으로, <span class="math inline">\(p\)</span>에 대한 신뢰 구간 및 가설 검정과 마찬가지로 <span class="math inline">\(\mu\)</span>에 대한 신뢰 구간에도 중요한 가정이 내재되어 있습니다. 우리의 신뢰 구간은 중심극한정리가 성립한다는 것을 암묵적으로 가정하며, 이는 표본 크기가 충분히 크거나 데이터가 정규분포를 따른다는 것을 뜻합니다. 신뢰 구간 결과가 유지되려면(즉, 평균에 대해 중심극한정리가 성립하려면) 표본 크기가 <span class="math inline">\(n\ge 30\)</span>이거나 데이터가 정규분포를 따라야 합니다.</p>
 <p>우리가 케일(Kale)에서 발견되는 백만분율(ppm) 단위의 DDT 양인 <span class="math inline">\(\mu\)</span>에 대한 96% 신뢰 구간을 계산하는 데 관심이 있다고 가정해 보겠습니다. R의 MASS 라이브러리에 있는 DDT 데이터셋은 바로 이를 측정하며, 15개의 서로 다른 실험실에서 케일 표본의 DDT 양을 추정했습니다. 표본 평균은 <span class="math inline">\(\bar{x}=3.328\)</span>이고 표본 표준편차는 <span class="math inline">\(s=0.4372\)</span>입니다. 이제 임계값 <span class="math inline">\(t^*\)</span>만 찾으면 됩니다. 96% 신뢰 구간을 계산하는 경우 <span class="math inline">\((1-0.04)\times 100\% = 96\%\)</span>이므로 <span class="math inline">\(\alpha\)</span> 수준은 0.04입니다. 이는 <span class="math inline">\(P(t_{15-1} &lt; t^*) = 1-0.04/2=0.98\)</span>가 되도록 <span class="math inline">\(t^*\)</span>를 선택해야 함을 뜻합니다. 아래의 R 코드를 사용해 보겠습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.98</span>, <span class="at">df =</span> <span class="dv">14</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -460,10 +460,10 @@ P(t_{n-1} &lt; t^*) = 1-\alpha/2
 </section>
 <section id="신뢰-구간의-다른-용도" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="신뢰-구간의-다른-용도"><span class="header-section-number">3</span> 신뢰 구간의 다른 용도</h2>
-<p>지금까지 우리의 신뢰 구간은 통계적 추론의 두 번째 형태로서 가설 검정을 보완하여 타당한 값의 범위를 제공하는 데 사용되었습니다. 하지만 신뢰 구간의 형태와 도출 과정은 통계적 과정의 다른 측면에도 사용할 수 있습니다. 신뢰 구간은 향후 연구에 필요한 표본 크기를 결정하는 데 도움이 될 뿐만 아니라, 가설 검정 결과와 직접적인 연결 고리를 제공합니다. 딥페이크 탐지 모델 훈련을 위한 적정 데이터 수집량을 산정할 때도 이 원리가 동일하게 적용됩니다.</p>
+<p>지금까지 우리의 신뢰 구간은 통계적 추론의 두 번째 형태로서 가설 검정을 보완하여 타당한 값의 범위를 제공하는 데 사용되었습니다. 하지만 신뢰 구간의 형태와 도출 과정은 통계적 과정의 다른 측면에도 사용할 수 있습니다. 신뢰 구간은 향후 연구에 필요한 표본 크기를 결정하는 데 도움이 될 뿐만 아니라, 가설 검정 결과와 직접적인 연결 고리를 제공합니다.</p>
 <section id="p에-대한-신뢰-구간과-표본-크기-계산" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="p에-대한-신뢰-구간과-표본-크기-계산"><span class="header-section-number">3.1</span> <span class="math inline">\(p\)</span>에 대한 신뢰 구간과 표본 크기 계산</h3>
-<p>연구를 설계하고 데이터를 수집할 때 직면하는 큰 과제 중 하나는 연구 질문에 답하기에 충분한 표본 크기가 얼마인지 결정하는 일입니다. 우리가 살펴본 바와 같이, 표본 크기는 표준 오차, 신뢰 구간, 가설 검정에 영향을 미칩니다. 대다수 경우 표본 크기는 연구 리소스에 의해 결정되며, 예산이 넉넉할수록 더 많은 대상을 조사할 수 있습니다. 그러나 신뢰 구간은 표본 크기에 관한 결정을 안내하는 훌륭한 지표가 됩니다. 처음 구간 추정치를 정의할 때, 기본적인 구간 추정치는 다음과 같이 정의된다고 설명했습니다.</p>
+<p>연구를 설계하고 데이터를 수집할 때 직면하는 큰 과제 중 하나는 연구 질문에 답하기에 충분한 표본 크기가 얼마인지 결정하는 일입니다. 우리가 살펴본 바와 같이, 표본 크기는 표준 오차, 신뢰 구간, 가설 검정에 영향을 미칩니다. 대다수 경우 표본 크기는 연구 리소스에 의해 결정되며, 예산이 넉넉할수록 더 많은 대상을 조사할 수 있습니다. 그러나 신뢰 구간은 표본 크기를 결정하는 유용한 지표가 됩니다. 처음 구간 추정치를 정의할 때, 기본적인 구간 추정치는 다음과 같이 정의된다고 설명했습니다.</p>
 <p><span class="math display">\[
 \text{점 추정치 (Point Estimate)} \pm \text{오차 한계 (Margin of Error)}
 \]</span></p>
@@ -555,7 +555,7 @@ P(t_{n-1} \ge |t|) &lt; \alpha/2
 \]</span></p>
 <p>이를 염두에 두고 <span class="math inline">\(\alpha=0.05\)</span>에서 <span class="math inline">\(H_0: \mu=4\)</span> 대 <span class="math inline">\(H_A: \mu \neq 4\)</span>를 테스트한다면, 95% 신뢰 구간에 대한 <span class="math inline">\(\alpha\)</span> 수준이 <span class="math inline">\(\alpha=0.05\)</span>이므로 단지 95% 신뢰 구간만 확인하면 충분합니다.</p>
 <p>4는 구간 (3.952, 4.021)(우리의 <span class="math inline">\(\mu\)</span>에 대한 95% 신뢰 구간)에 포함되어 있으므로 귀무 가설을 기각하는 데 실패할 것입니다. 이전 장을 되돌아보면 이 검정에 대한 <span class="math inline">\(p\)</span>-값이 0.4185027임을 확인했습니다. 이는 귀무 가설을 기각하는 데 실패해야 함을 명확히 보여주며, 신뢰 구간에 기반한 우리의 결론과 완벽하게 일치합니다.</p>
-<p>대규모 언어 모델(LLM)이 생성한 텍스트의 신뢰도 점수를 평가할 때도 이처럼 신뢰 구간과 가설 검정의 쌍대성을 활용하여 평가의 일관성을 검증할 수 있습니다.</p>
+<p>이처럼 신뢰 구간과 가설 검정의 쌍대성을 활용하면 두 절차의 결론이 서로 일치하는지 교차 검증할 수 있습니다.</p>
 </section>
 <section id="연습-문제-3" class="level3" data-number="3.4">
 <h3 data-number="3.4" class="anchored" data-anchor-id="연습-문제-3"><span class="header-section-number">3.4</span> 연습 문제</h3>
@@ -626,7 +626,7 @@ mean of x
 </section>
 <section id="결론" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="결론"><span class="header-section-number">6</span> 결론</h2>
-<p>단일 모수에 대한 신뢰 구간은 가설 검정과 동일한 기본 가정 및 기초 수학적 정리에서 출발합니다. 그 중심에는 늘 데이터를 모수와 안정적으로 연결해 주는 중심극한정리가 자리 잡고 있습니다. 이러한 구조적 연결은 신뢰 구간에 풍부한 추가 용도를 부여하며, 단순한 타당성 범위를 넘어 가설을 기각하거나 향후 연구를 위한 최적의 표본 크기를 산출할 수 있게 돕습니다. 가설 검정과 마찬가지로, 신뢰 구간 절차는 모집단 평균과 비율에 대한 구간 모두에서 놀라운 일관성을 유지합니다. 이어지는 장에서 여러 그룹이 유사한지 비교분석하는 과정에서도 이러한 통계적 일관성이 굳건하게 이어지는 것을 확인하실 수 있습니다.</p>
+<p>단일 모수에 대한 신뢰 구간은 가설 검정과 동일한 기본 가정 및 기초 수학적 정리에서 출발합니다. 그 중심에는 늘 데이터를 모수와 안정적으로 연결해 주는 중심극한정리가 자리 잡고 있습니다. 이러한 구조적 연결은 신뢰 구간에 풍부한 추가 용도를 부여하며, 단순한 타당성 범위를 넘어 가설을 기각하거나 향후 연구를 위한 최적의 표본 크기를 산출할 수 있게 돕습니다. 가설 검정과 마찬가지로, 신뢰 구간 절차는 모집단 평균과 비율에 대한 구간 모두에서 놀라운 일관성을 유지합니다. 이어지는 장에서 여러 그룹이 유사한지 비교분석하는 과정에서도 이러한 통계적 일관성이 그대로 이어지는 것을 확인하실 수 있습니다.</p>
 
 
 </section>

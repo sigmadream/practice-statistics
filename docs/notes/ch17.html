@@ -335,7 +335,7 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p>2025-2026년 현재, 생성형 AI(Generative AI)가 쏟아내는 텍스트 로그나 수백만 건의 사용자 상호작용(interaction) 데이터를 다루는 현대의 실무 환경에서는 데이터 세트가 매우 방대하고 복잡합니다. 수십만 개의 관측값(observation)을 손으로 직접 계산하여 추론하는 것은 사실상 불가능에 가깝습니다. 다행히도 R 통계 소프트웨어는 탐색적 데이터 분석(exploratory data analysis)과 시각화 도구를 제공할 뿐만 아니라, 우리가 논의한 모든 가설 검정과 신뢰 구간에 대해 확률과 <span class="math inline">\(p\)</span>-값(<span class="math inline">\(p\)</span>-value)을 눈 깜짝할 사이에 계산해 줍니다.</p>
+<p>실무에서 다루는 데이터 세트는 매우 방대하고 복잡합니다. 수십만 개의 관측값(observation)을 손으로 직접 계산하여 추론하는 것은 사실상 불가능에 가깝습니다. 다행히도 R 통계 소프트웨어는 탐색적 데이터 분석(exploratory data analysis)과 시각화 도구를 제공할 뿐만 아니라, 우리가 논의한 모든 가설 검정과 신뢰 구간에 대해 확률과 <span class="math inline">\(p\)</span>-값(<span class="math inline">\(p\)</span>-value)을 눈 깜짝할 사이에 계산해 줍니다.</p>
 </blockquote>
 <section id="올바른-검정-선택하기" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="올바른-검정-선택하기"><span class="header-section-number">1</span> 올바른 검정 선택하기</h2>
@@ -387,7 +387,7 @@ H_0&amp;: p = 0.14 \\
 H_A&amp;: p \neq 0.14
 \end{aligned}
 \]</span></p>
-<p>이 검정을 R에서 수행하려면 성공 횟수 <span class="math inline">\(x=12\)</span>, 표본 크기 <span class="math inline">\(n=79\)</span>, 귀무 값 <span class="math inline">\(p=0.14\)</span>, 그리고 대립 가설 <code>alternative = "two.sided"</code>가 필요합니다. 실무에서는 자동화된 데이터 파이프라인에서 추출한 csv 파일을 R로 불러온 뒤 <code>table</code> 함수를 이용해 성공 횟수를 동적으로 집계하는 방식이 흔히 쓰입니다. 여기서는 직접 값을 입력하여 검정을 수행해 보겠습니다.</p>
+<p>이 검정을 R에서 수행하려면 성공 횟수 <span class="math inline">\(x=12\)</span>, 표본 크기 <span class="math inline">\(n=79\)</span>, 귀무 값 <span class="math inline">\(p=0.14\)</span>, 그리고 대립 가설 <code>alternative = "two.sided"</code>가 필요합니다. 실무에서는 csv 파일을 R로 불러온 뒤 <code>table</code> 함수로 성공 횟수를 집계하는 방식이 흔히 쓰입니다. 여기서는 직접 값을 입력하여 검정을 수행해 보겠습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">12</span>,</span>
@@ -466,7 +466,7 @@ sample estimates:
 </section>
 <section id="평균에-대한-추론" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="평균에-대한-추론"><span class="header-section-number">3</span> 평균에 대한 추론</h2>
-<p>비율 검정과 더불어, 우리는 모집단 평균과 관련된 단일 표본 <span class="math inline">\(t\)</span>-검정, 두 표본 <span class="math inline">\(t\)</span>-검정, 그리고 대응표본 <span class="math inline">\(t\)</span>-검정이라는 핵심 추론 기법들을 마스터했습니다. 비율 검정 시 <code>prop.test</code> 하나로 모든 변형을 포괄했던 것처럼, 평균과 관련된 모든 추론 역시 R의 <code>t.test</code>라는 단일 함수로 우아하게 해결할 수 있습니다. 각 검정 상황에 맞추어 <code>t.test</code> 함수의 코드를 어떻게 변형하여 적용하는지 체계적으로 살펴보겠습니다.</p>
+<p>비율 검정과 더불어, 우리는 모집단 평균과 관련된 단일 표본 <span class="math inline">\(t\)</span>-검정, 두 표본 <span class="math inline">\(t\)</span>-검정, 그리고 대응표본 <span class="math inline">\(t\)</span>-검정이라는 핵심 추론 기법들을 마스터했습니다. 비율 검정 시 <code>prop.test</code> 하나로 모든 변형을 포괄했던 것처럼, 평균과 관련된 모든 추론 역시 R의 <code>t.test</code>라는 단일 함수로 해결할 수 있습니다. 각 검정 상황에 맞추어 <code>t.test</code> 함수의 코드를 어떻게 변형하여 적용하는지 체계적으로 살펴보겠습니다.</p>
 <section id="단일-평균에-대한-추론" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="단일-평균에-대한-추론"><span class="header-section-number">3.1</span> 단일 평균에 대한 추론</h3>
 <p>평균에 대한 단일 표본 <span class="math inline">\(t\)</span>-검정 상황에서 <code>t.test</code> 함수는 세 가지 필수 인자를 요구합니다. 분석할 원시 데이터가 담긴 표본 벡터 <code>x</code>, 귀무 가설이 주장하는 수치인 <code>mu</code>, 그리고 대립 가설의 논리적 방향성을 지시하는 <code>alternative</code>입니다.</p>
@@ -546,9 +546,9 @@ mean of x
 </section>
 <section id="두-평균에-대한-추론" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="두-평균에-대한-추론"><span class="header-section-number">3.2</span> 두 평균에 대한 추론</h3>
-<p>평균에 대한 두 표본 <span class="math inline">\(t\)</span>-검정의 핵심 목표는 두 집단의 모집단 평균 간에 통계적으로 유의한 차이가 존재하는지 판별하는 것입니다. R에서는 단일 표본 <code>t.test</code> 코드에 몇 가지 인자를 영리하게 덧붙이는 것만으로 이 복잡한 검정을 즉각 수행할 수 있습니다. 추가되는 핵심 인자는 두 번째 집단의 데이터를 담을 벡터 <code>y</code>, 귀무값 0의 생략(두 표본 검정에서는 차이가 0이라는 점이 기본값이므로), 그리고 두 집단의 분산(variance) 동일성 여부를 R 엔진에 알려주는 <code>var.equal</code> (TRUE/FALSE) 논리 인자입니다.</p>
+<p>평균에 대한 두 표본 <span class="math inline">\(t\)</span>-검정의 핵심 목표는 두 집단의 모집단 평균 간에 통계적으로 유의한 차이가 존재하는지 판별하는 것입니다. R에서는 단일 표본 <code>t.test</code> 코드에 몇 가지 인자를 덧붙이는 것만으로 이 복잡한 검정을 즉각 수행할 수 있습니다. 추가되는 핵심 인자는 두 번째 집단의 데이터를 담을 벡터 <code>y</code>, 귀무값 0의 생략(두 표본 검정에서는 차이가 0이라는 점이 기본값이므로), 그리고 두 집단의 분산(variance) 동일성 여부를 R 엔진에 알려주는 <code>var.equal</code> (TRUE/FALSE) 논리 인자입니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">alternative =</span> alternative, <span class="at">var.equal =</span> var_equal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>구체적인 응용을 위해 사회 심리학 분야의 동조(conformity) 실험 데이터를 다시 불러오겠습니다. 해당 데이터는 carData 라이브러리의 <code>Moore</code> 데이터 세트에 잘 정돈되어 있습니다. 우리는 지위가 높은 파트너(high status)가 지위가 낮은 파트너(low status)보다 상대방으로부터 더 강한 동조를 끌어내는지 양적 데이터로 검정하고자 했습니다. 가설은 <span class="math inline">\(H_0:\mu_{\text{High}}-\mu_{\text{Low}}=0\)</span> 대 <span class="math inline">\(H_A:\mu_{\text{High}}-\mu_{\text{Low}}&gt;0\)</span>입니다. 여기서 집단 1은 지위가 높은 쪽이므로, 사전에 분산 비율 <span class="math inline">\(s_1^2/s_2^2 = 19.087/27.855 = 0.685\)</span>를 확인하여 분산이 대체로 유사하다(등분산)는 결론을 내렸으므로, <code>var.equal = TRUE</code> 인자를 당당히 활성화할 수 있습니다.</p>
+<p>구체적인 응용을 위해 사회 심리학 분야의 동조(conformity) 실험 데이터를 다시 불러오겠습니다. 해당 데이터는 carData 라이브러리의 <code>Moore</code> 데이터 세트에 잘 정돈되어 있습니다. 우리는 지위가 높은 파트너(high status)가 지위가 낮은 파트너(low status)보다 상대방으로부터 더 강한 동조를 끌어내는지 양적 데이터로 검정하고자 했습니다. 가설은 <span class="math inline">\(H_0:\mu_{\text{High}}-\mu_{\text{Low}}=0\)</span> 대 <span class="math inline">\(H_A:\mu_{\text{High}}-\mu_{\text{Low}}&gt;0\)</span>입니다. 여기서 집단 1은 지위가 높은 쪽이므로, 사전에 분산 비율 <span class="math inline">\(s_1^2/s_2^2 = 19.087/27.855 = 0.685\)</span>를 확인하여 분산이 대체로 유사하다(등분산)는 결론을 내렸으므로, <code>var.equal = TRUE</code> 인자를 지정할 수 있습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(carData)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Moore, <span class="at">package =</span> <span class="st">"carData"</span>)</span>
@@ -627,7 +627,7 @@ mean difference
 </div>
 </div>
 <p>결과 창에는 “Paired t-test”라는 타이틀과 함께 검정 통계량 t, 자유도 df, 그리고 <span class="math inline">\(p\)</span>-값이 깔끔하게 정돈되어 출력됩니다. 이 결과 역시 과거 우리가 계산기를 두드려가며 도출했던 수작업 결과와 놀랍도록 일치합니다.</p>
-<p>가설 검정 수치와 더불어, 출력 화면 하단에는 쌍을 이룬 차이의 모평균 <span class="math inline">\(\mu_{D}\)</span>에 대한 95% 신뢰 구간이 당당히 자리 잡고 있습니다. 이 역시 <code>conf.level</code> 인자를 삽입하여 손쉽게 조작할 수 있습니다. 만약 <span class="math inline">\(\mu_{D}\)</span>에 대한 90% 신뢰 구간이 절실하다면 다음 코드를 실행하여 <span class="math inline">\((-2.2930053, -0.8669947)\)</span>이라는 정밀한 구간을 획득하십시오.</p>
+<p>가설 검정 수치와 더불어, 출력 화면 하단에는 쌍을 이룬 차이의 모평균 <span class="math inline">\(\mu_{D}\)</span>에 대한 95% 신뢰 구간이 함께 출력됩니다. 이 역시 <code>conf.level</code> 인자를 삽입하여 손쉽게 조작할 수 있습니다. 만약 <span class="math inline">\(\mu_{D}\)</span>에 대한 90% 신뢰 구간이 절실하다면 다음 코드를 실행하여 <span class="math inline">\((-2.2930053, -0.8669947)\)</span>이라는 정밀한 구간을 획득하십시오.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> sleep<span class="sc">$</span>extra[sleep<span class="sc">$</span>group <span class="sc">==</span> <span class="dv">1</span>],</span>
@@ -664,7 +664,7 @@ mean difference
 </section>
 <section id="추론-결과를-재사용-가능한-객체로-다루기" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="추론-결과를-재사용-가능한-객체로-다루기"><span class="header-section-number">4</span> 추론 결과를 재사용 가능한 객체로 다루기</h2>
-<p>R이 제공하는 검정 함수들의 진정한 강력함은 결과를 단순히 화면에 텍스트로 뿌려주는 데 그치지 않고, 그 결과 전체를 메모리상에 ‘구조화된 객체(Object)’ 형태로 저장할 수 있다는 데 있습니다. 대규모 데이터를 처리하는 현대의 자동화 파이프라인이나 AI 기반 데이터 리포팅 시스템에서는 검정 결과를 객체로 저장한 뒤, 필요한 <span class="math inline">\(p\)</span>-값이나 신뢰 구간 수치만 스크립트로 쏙쏙 뽑아 쓰는 방식이 필수적입니다. 이 방식은 인간의 수작업 복사-붙여넣기 과정에서 필연적으로 발생하는 오타를 원천 차단합니다.</p>
+<p>R이 제공하는 검정 함수들의 진정한 강력함은 결과를 단순히 화면에 텍스트로 뿌려주는 데 그치지 않고, 그 결과 전체를 메모리상에 ‘구조화된 객체(Object)’ 형태로 저장할 수 있다는 데 있습니다. 여러 검정을 반복 수행하거나 결과를 자동으로 보고서에 반영해야 할 때는, 검정 결과를 객체로 저장한 뒤 필요한 <span class="math inline">\(p\)</span>-값이나 신뢰 구간 수치만 코드로 추출해 쓰는 방식이 유용합니다. 이 방식은 인간의 수작업 복사-붙여넣기 과정에서 필연적으로 발생하는 오타를 원천 차단합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>prop_result <span class="ot">&lt;-</span> <span class="fu">prop.test</span>(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">12</span>,</span>
@@ -712,7 +712,7 @@ attr(,"conf.level")
 [1] 0.9</code></pre>
 </div>
 </div>
-<p>수많은 집단이나 피처(feature)에 대해 동일한 검정 로직을 반복 적용해야 한다면, 무작정 코드를 짜기보다 먼저 데이터 구조를 정갈하게 전처리(tidy)해야 합니다. 어떤 변수 간의 비교가 실제 비즈니스나 연구 질문에 정확히 부합하는지 전략적으로 결정한 뒤에야 반복 루프를 작성하십시오. 기계적으로 검정을 남발하는 자동화 능력보다 훨씬 중요한 통계학자의 덕목은, 불필요하고 무의미한 다중 비교(multiple comparisons)를 억제하는 정교한 실험 설계 능력을 갖추는 것입니다.</p>
+<p>수많은 집단이나 피처(feature)에 대해 동일한 검정 로직을 반복 적용해야 한다면, 무작정 코드를 짜기보다 먼저 데이터 구조를 정갈하게 전처리(tidy)해야 합니다. 어떤 변수 간의 비교가 실제 비즈니스나 연구 질문에 정확히 부합하는지 전략적으로 결정한 뒤에야 반복 루프를 작성하십시오. 기계적으로 검정을 남발하는 자동화 능력보다 훨씬 중요한 통계학자의 덕목은, 불필요하고 무의미한 다중 비교(multiple comparisons)를 억제하는 실험 설계 능력을 갖추는 것입니다.</p>
 
 
 </section>
