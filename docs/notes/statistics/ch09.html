@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>탐색적 분석 이후 – R과 데이터 분석 입문</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-d55203e86ba1a699a1ae3c3642d34712.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="탐색적 분석 이후 – R과 데이터 분석 입문">
+<meta property="og:description" content="">
+<meta property="og:image" content="ch09_files/figure-html/unnamed-chunk-2-1.png">
+<meta property="og:site_name" content="R과 데이터 분석 입문">
+<meta name="twitter:title" content="탐색적 분석 이후 – R과 데이터 분석 입문">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="ch09_files/figure-html/unnamed-chunk-2-1.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      R과 데이터 분석 입문
+      </li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">R과 데이터 분석 입문</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 언어</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#표집-분포" id="toc-표집-분포" class="nav-link active" data-scroll-target="#표집-분포"><span class="header-section-number">1</span> 표집 분포</a></li>
+  <li><a href="#중심극한정리" id="toc-중심극한정리" class="nav-link" data-scroll-target="#중심극한정리"><span class="header-section-number">2</span> 중심극한정리</a></li>
+  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">3</span> 연습 문제</a></li>
+  <li><a href="#실습-표집-분포" id="toc-실습-표집-분포" class="nav-link" data-scroll-target="#실습-표집-분포"><span class="header-section-number">4</span> 실습: 표집 분포</a></li>
+  <li><a href="#실습-중심극한정리" id="toc-실습-중심극한정리" class="nav-link" data-scroll-target="#실습-중심극한정리"><span class="header-section-number">5</span> 실습: 중심극한정리</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">탐색적 분석 이후</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p>탐색적 데이터 분석(Exploratory Data Analysis)은 데이터셋 내 변수들에 관해 유용한 통찰을 제공합니다. 탐색적 분석만으로는 우리가 던지는 근본적인 질문에 완벽히 답하기 어렵습니다. 통계적 추론(Statistical Inference)의 기저에 깔린 핵심 아이디어를 살펴보겠습니다.</p>
+</blockquote>
+<section id="표집-분포" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="표집-분포"><span class="header-section-number">1</span> 표집 분포</h2>
+<p>지금까지 우리는 표본(Sample)으로부터 통계량을 계산하는 작업을 주로 다루었습니다. 통계량 계산 자체가 우리의 최종 목적은 아닙니다. 우리의 진정한 목표는 모수(Parameters)에 대해 타당한 추론을 내리는 것입니다. 따라서 모수와 통계량의 정의를 간략히 짚고 넘어가겠습니다.</p>
+<p>모수는 우리가 관심을 갖는 전체 모집단(Population)의 특성을 설명하는 수치입니다. 통계량(Statistics)은 표본으로부터 계산된 수치이며, 일반적으로 모수를 추정하는 데 사용됩니다. 예를 들어, 표본 평균 <span class="math inline">\(\bar{x}\)</span>는 모평균 <span class="math inline">\(\mu\)</span>를 추정하고, 표본 비율 <span class="math inline">\(\hat{p}\)</span>는 모비율 <span class="math inline">\(p\)</span>를 추정하며, 표본 분산 <span class="math inline">\(s^2\)</span>은 모분산 <span class="math inline">\(\sigma^2\)</span>을 추정합니다. 이 쌍들에서 앞의 기호는 표본에서 구한 통계량이고, 뒤의 기호는 모집단의 모수입니다.</p>
+<p>표본 통계량을 계산할 때 우리는 정확한 값을 알 수 없는 모집단 모수에 대한 일종의 추정치를 얻게 됩니다. 고전 통계학의 근본적인 가정 중 하나는 모든 모집단 모수가 비록 그 값은 알 수 없을지라도 고정된 상수(fixed quantity)라는 점입니다. 우리가 모수를 이미 완벽히 알고 있다면, 복잡한 통계적 추론 과정을 굳이 거칠 필요가 없을 것입니다.</p>
+<p>설령 모집단 모수를 안다고 가정하더라도, 특정 표본에서 구한 통계량이 그 모수와 정확히 일치하는 경우는 매우 드뭅니다. 왜냐하면 표본 통계량은 어떤 표본이 추출되느냐에 따라 달라지는 확률적 수치(random quantity)이기 때문입니다. 이해를 돕기 위해 모집단 크기가 작고 모수를 이미 알고 있는 단순한 상황을 가정해 보겠습니다.</p>
+<p>5명의 학생으로 구성된 소규모 모집단이 있고, 이들이 한 학기 동안 수강하는 평균 학점을 추정하고자 합니다. 학생들의 학점은 아래 표와 같습니다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>학생 ID</th>
+<th>학점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>18</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>13</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+<p>이 모집단의 실제 모평균은 <span class="math inline">\(\mu=14.6\)</span>입니다. 이제 어떤 제약으로 인해 우리가 표본 크기를 <span class="math inline">\(n=2\)</span>로만 추출할 수 있다고 가정해 보겠습니다. 5명의 모집단에서 2명을 뽑는 가능한 조합은 총 10가지입니다. 이 10가지 조합 각각에서 계산된 표본 평균은 다음과 같습니다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>학생들</th>
+<th>평균</th>
+<th>학생들</th>
+<th>평균</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1,2</td>
+<td>16.5</td>
+<td>2,4</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td>1,3</td>
+<td>15</td>
+<td>2,5</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>1,4</td>
+<td>15.5</td>
+<td>3,4</td>
+<td>12.5</td>
+</tr>
+<tr class="even">
+<td>1,5</td>
+<td>16.5</td>
+<td>3,5</td>
+<td>13.5</td>
+</tr>
+<tr class="odd">
+<td>2,3</td>
+<td>13.5</td>
+<td>4,5</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+<p>실제 모평균은 14.6이지만, 어떤 표본이 뽑히느냐에 따라 표본 평균은 다양하게 나타납니다. 결과적으로 표본 평균을 비롯한 모든 표본 통계량은 무작위 추출 과정에 의존하므로 그 자체로 확률 변수(random variable)가 됩니다. 앞서 다루었듯 확률 변수란 결과를 미리 알 수 없는 무작위 현상(이 경우 표본 추출)의 수치적 요약을 뜻합니다. 통계량 역시 확률 변수이므로 특정한 확률 분포를 따르게 됩니다. 이처럼 크기가 <span class="math inline">\(n\)</span>인 표본으로부터 계산된 표본 통계량의 확률 분포를 표집 분포(sampling distribution)라고 부릅니다. 모든 표본 통계량은 저마다의 표집 분포를 가지며, 이 분포는 우리가 수집한 데이터가 우연에 의한 것인지 아니면 통계적으로 유의한지(비정상적인지)를 판단하는 기준이 됩니다.</p>
+<p>표집 분포의 중심 위치뿐만 아니라, 표본 통계량에 얼마나 많은 변동성(variability)이 존재하는지도 중요한 관심사입니다. 변동성이 크다는 것은 표본을 뽑을 때마다 통계량의 값이 크게 요동칠 수 있음을 의미합니다. 데이터 자체의 변동성을 파악하기 위해 분산과 표준편차를 계산하듯, 표본 통계량에 대해서도 분산이나 표준편차를 계산할 수 있습니다. 이처럼 ’표본 통계량의 표준편차’를 우리는 특별히 표준 오차(standard error)라고 부르며, 흔히 <span class="math inline">\(\text{s.e.}\)</span>로 표기합니다.</p>
+<p>위에서 다룬 <span class="math inline">\(n=2\)</span>인 학점 예시를 다시 살펴보겠습니다. 10개의 가능한 표본 평균들의 평균은 모평균과 동일한 14.6이 됩니다. 그리고 이 10개 표본 평균값들이 중심(14.6)으로부터 얼마나 흩어져 있는지를 계산해 보면, 이 표본 평균의 표준 오차는 <span class="math inline">\(\text{s.e.}(\bar{x})=1.26\)</span>이 됩니다.</p>
+<p>표집 분포는 크기가 <span class="math inline">\(n\)</span>인 표본에 기반하므로, 표본 크기에 따라 그 형태가 달라진다는 점을 쉽게 유추할 수 있습니다. 분포가 표본 크기의 영향을 받는다면 통계량의 표준 오차 또한 영향을 받습니다. 우리는 대수의 법칙(law of large numbers)을 통해 표본 크기가 커질수록 표본 통계량이 실제 모수 값에 점점 더 수렴한다는 사실을 알고 있습니다. 그렇다면 표준 오차는 어떻게 될까요?</p>
+<p>표본 크기를 <span class="math inline">\(n=4\)</span>로 늘려 동일한 모집단에서 표본을 추출한다고 가정해 보겠습니다. 5명 중 4명을 뽑는 조합은 총 5가지이며, 각각의 표본 평균은 아래와 같습니다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>학생들</th>
+<th>평균</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1,2,3,4</td>
+<td>14.5</td>
+</tr>
+<tr class="even">
+<td>1,2,3,5</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>1,2,4,5</td>
+<td>15.25</td>
+</tr>
+<tr class="even">
+<td>1,3,4,5</td>
+<td>14.5</td>
+</tr>
+<tr class="odd">
+<td>2,3,4,5</td>
+<td>13.75</td>
+</tr>
+</tbody>
+</table>
+<p>이 5가지 표본 평균들의 평균은 여전히 14.6입니다. 하지만 이번에는 표본 평균들이 중심에 더 가깝게 모여 있어, 표준 오차를 계산하면 <span class="math inline">\(\text{s.e.}(\bar{x})=0.515\)</span>로 줄어듭니다. 즉, 표본 크기가 증가할수록 표준 오차는 감소합니다. 직관적으로 생각해 보아도 당연한 결과입니다. 만약 전체 모집단을 모두 표본으로 조사할 수 있다면(<span class="math inline">\(n=N\)</span>), 오직 하나의 표본 평균(모평균과 동일한 값)만을 얻게 될 것이며 이때 표준 오차는 0이 됩니다. 모집단이 매우 커서 사실상 무한하다고 볼 수 있는 경우에는 극한의 개념을 빌려 다음과 같이 표현할 수 있습니다.</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \text{s.e.} = 0
+\]</span></p>
+<p>결론적으로 표본 크기가 커지면 표본 통계량의 변동성(표준 오차)이 줄어들고, 이는 곧 표집 분포가 중심 주위로 더욱 뾰족하게 압축된다는 것을 의미합니다. 한 회사의 직원 20명의 통근 시간 데이터를 예로 들어 보겠습니다. 모든 직원의 통근 시간을 알고 있을 때, 표본 크기를 <span class="math inline">\(n=5\)</span>, <span class="math inline">\(n=10\)</span>, <span class="math inline">\(n=15\)</span>로 늘려가며 가능한 모든 표본 조합을 구해보면 표본 크기가 커질수록 분포의 폭이 눈에 띄게 줄어드는 것을 확인할 수 있습니다.</p>
+<p>요약하자면 표본 통계량은 무작위 추출이라는 본질적 특성 때문에 그 자체로 확률 변수입니다. 따라서 확률 분포인 표집 분포(Sampling distribution)와 변동성을 나타내는 표준 오차(Standard error)를 동반합니다. 표본 크기가 증가할수록 변동성은 감소하고 분포는 더욱 좁아집니다.</p>
+</section>
+<section id="중심극한정리" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="중심극한정리"><span class="header-section-number">2</span> 중심극한정리</h2>
+<p>위에서 설명한 표집 분포의 개념은 무척 논리적이지만, 현실적인 제약이 하나 있습니다. 이론적인 표집 분포를 완벽히 구성하려면 가능한 모든 표본 조합을 조사해야 한다는 점입니다. 현실에서는 단 하나의 표본을 제대로 수집하는 것조차 많은 비용과 시간이 소요되는데, 모든 표본을 수집하는 것은 실무적으로 불가능에 가깝습니다.</p>
+<p>이러한 한계에도 불구하고 우리가 통계적 추론을 수행할 수 있는 이유는, 수학적으로 증명된 표집 분포의 몇 가지 강력한 성질 덕분입니다. 첫째, 표본 평균이나 표본 비율 같은 대표적인 통계량의 표집 분포는 실제 모집단 모수를 중심으로 형성됩니다. 즉, 가능한 모든 표본 통계량의 평균을 구하면 실제 모수와 정확히 일치합니다. 이런 성질을 갖는 추정량을 불편 추정량(unbiased estimator)이라고 부릅니다. 모든 통계량이 이 성질을 갖는 것은 아니어서, 예컨대 표본 표준편차 <span class="math inline">\(s\)</span>의 기댓값은 모표준편차 <span class="math inline">\(\sigma\)</span>보다 약간 작습니다. 둘째, 표집 분포의 퍼짐 정도는 앞서 다룬 표준 오차를 통해 계산할 수 있습니다.</p>
+<p>가장 놀랍고 중요한 세 번째 성질은 표본 비율과 표본 평균의 표집 분포 형태에 관한 것입니다. 앞서 통근 시간의 표집 분포를 시각화해 본다면 그 모양이 점차 종 모양(bell-shaped)에 가까워진다는 것을 발견할 수 있습니다. 표본 비율의 경우도 마찬가지입니다.</p>
+<p>동전을 100번 던져 앞면이 나온 비율을 계산하는 과정을 10,000번 반복한다고 상상해 보십시오. 이 시뮬레이션을 통해 얻은 앞면 비율들의 표집 분포는 완벽에 가까운 종 모양을 띠게 됩니다.</p>
+<p>이러한 종 모양 특성은 단순한 우연이 아닙니다. 중심극한정리에 따르면 표본 크기 <span class="math inline">\(n\)</span>이 충분히 클 때, 표본 평균의 표집 분포는 중심이 실제 모평균 <span class="math inline">\(\mu\)</span>이고 분산이 표준 오차의 제곱인 정규분포(Normal distribution)로 근사됩니다. 아래에서 <span class="math inline">\(\dot\sim\)</span> 기호는 ’근사적으로 이 분포를 따른다’는 뜻입니다.</p>
+<p><span class="math display">\[
+\bar{x} \ \dot\sim\ N\!\left(\mu,\; \text{s.e.}(\bar{x})^{2} \right)
+\]</span></p>
+<p>표본 비율에 대해서도 완전히 동일한 원리가 성립합니다. 표본 크기가 충분히 커지면, 표본 비율의 표집 분포 역시 중심이 실제 모비율 <span class="math inline">\(p\)</span>이고 분산이 표준 오차의 제곱인 정규분포를 따르게 됩니다.</p>
+<p><span class="math display">\[
+\hat{p} \ \dot\sim\ N\!\left(p,\; \text{s.e.}(\hat{p})^{2} \right)
+\]</span></p>
+<p>이처럼 표본 평균과 표본 비율의 표집 분포가 정규분포로 근사된다는 이 놀라운 정리를 바로 중심극한정리(Central Limit Theorem)라고 부릅니다. 딥러닝 모델의 복잡한 파라미터 추정이나 대규모 데이터 분석에서도 이 정리는 데이터의 노이즈를 다루는 강력한 이론적 기반이 됩니다. 우리는 이 결과 덕분에 다음 장부터 본격적으로 다루게 될 가설 검정(Hypothesis testing)과 신뢰 구간(Confidence intervals) 같은 통계적 추론을 현실적으로 수행할 수 있습니다.</p>
+<p>중심극한정리의 구체적인 예로 다시 동전 던지기를 살펴보겠습니다. 공정한 동전(앞면이 나올 실제 확률 <span class="math inline">\(p=0.5\)</span>)을 100번 던져 표본 비율 <span class="math inline">\(\hat{p}\)</span>을 계산한다고 가정해 봅시다. 이때 <span class="math inline">\(\hat{p}\)</span>의 표준 오차는 <span class="math inline">\(\text{s.e.}(\hat{p})=0.05\)</span>로 계산됩니다. 중심극한정리에 의해, 우리가 구한 표본 비율은 평균이 <span class="math inline">\(0.5\)</span>이고 분산이 <span class="math inline">\(0.05^2\)</span>인 정규분포를 대략적으로 따르게 됩니다. 수학적 기호로는 다음과 같이 표현합니다.</p>
+<p><span class="math display">\[
+\hat{p} \sim N(0.5, 0.05^2)
+\]</span></p>
+</section>
+<section id="연습-문제" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">3</span> 연습 문제</h2>
+<ol type="1">
+<li><p>공정한 동전(앞면과 뒷면이 나올 확률이 각각 50%)을 50번 던져 뒷면이 나온 비율을 계산한다고 가정해 보겠습니다. 이 과정을 아주 여러 번 반복한다면, 뒷면 비율의 표집 분포는 대략 어떤 값을 중심으로 하는 정규분포를 띠게 될까요?</p></li>
+<li><p>여러분은 특정 모집단에서 <span class="math inline">\(n=100\)</span> 크기의 표본을 추출하고, 동료는 동일한 모집단에서 <span class="math inline">\(n=500\)</span> 크기의 표본을 추출했습니다. 두 사람 중 누구의 표본 통계량이 더 작은 표준 오차를 가질까요?</p></li>
+<li><p>임의의 모집단에서 추출한 표본을 바탕으로 표본 평균을 계산합니다. 표본 크기가 점점 커짐에 따라, 표본 평균의 표집 분포는 어떤 형태의 분포로 수렴하게 됩니까?</p></li>
+<li><p>사람들의 보폭 길이를 조사하여 표본 평균 보폭을 계산한다고 가정해 보겠습니다. 더 많은 사람을 조사할수록(표본 크기가 커질수록) 표본 평균 보폭의 표준 오차는 어떻게 변합니까? 또한 표집 분포의 모양은 어떤 분포에 가까워질까요?</p></li>
+</ol>
+</section>
+<section id="실습-표집-분포" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="실습-표집-분포"><span class="header-section-number">4</span> 실습: 표집 분포</h2>
+<p>표집 분포(Sampling distribution)는 단일 표본에서 관찰되는 데이터의 분포가 아니라, 동일한 조건에서 표본을 반복적으로 추출했을 때 우리가 구하고자 하는 ’통계량’이 어떻게 변동하는지를 보여주는 분포입니다. 이 개념이 중요한 이유는 단 하나의 표본 평균이나 표본 비율만으로는 오차의 불확실성을 정확히 측정할 수 없기 때문입니다. 같은 모집단에서 동일한 크기의 표본을 다시 뽑더라도 평균값은 매번 미세하게 달라집니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sample_means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">5000</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">expr =</span> <span class="fu">mean</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">size =</span> <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sample_means)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.496233</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(sample_means)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3100493</code></pre>
+</div>
+</div>
+<p>위 코드는 1부터 6까지의 주사위 눈 평균이라는 아주 단순한 상황을 시뮬레이션하지만, 여기에 담긴 핵심 논리는 현대의 복잡한 추론 문제에도 똑같이 적용됩니다. 선거 여론조사의 지지율(표본 비율), 신약 임상시험의 치료 효과 차이, 복잡한 머신러닝 회귀분석에서의 기울기 추정량 등 그 어떤 통계량도 표본이 바뀌면 변동합니다. 통계적 추론이란 바로 이 피할 수 없는 ’변동성’을 무시하는 것이 아니라, 오히려 계산의 중심에 두고 불확실성을 과학적으로 다루는 절차입니다.</p>
+</section>
+<section id="실습-중심극한정리" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="실습-중심극한정리"><span class="header-section-number">5</span> 실습: 중심극한정리</h2>
+<p>앞서 언급한 표집 분포의 특성과 중심극한정리를 R의 시각화 도구를 통해 눈으로 직접 확인해 보겠습니다. 다음 코드는 균등 분포에서 표본을 추출하여 표본 평균의 분포가 정규분포 형태(종 모양)에 근접해지는 과정을 보여줍니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(showtext)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: sysfonts</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: showtextdb</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">font_add_google</span>(<span class="st">"Nanum Gothic Coding"</span>, <span class="st">"NanumGothicCoding"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 균등 분포(Uniform distribution)에서 10,000번의 표본 평균 추출 시뮬레이션</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 각 표본의 크기는 n = 30</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>sample_means_n30 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="dv">10000</span>, </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">10</span>))</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 표집 분포 히스토그램 시각화</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample_means_n30, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">col =</span> <span class="st">"skyblue"</span>, </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"표본 평균의 표집 분포 (n=30)"</span>, </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"표본 평균"</span>, <span class="at">ylab =</span> <span class="st">"빈도수"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch09_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>원래의 데이터가 균등 분포를 따르더라도 표본 크기가 30 정도 되면, 표본 평균들의 히스토그램은 뚜렷한 정규분포 형태를 나타냅니다. 이것이 바로 중심극한정리의 강력함입니다. 이 과정을 코드로 시뮬레이션 해보는 것은 통계적 추론의 원리를 직관적으로 이해하는 데 큰 도움이 됩니다.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

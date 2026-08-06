@@ -12,13 +12,13 @@ R의 `renv`는 프로젝트 수준에서 패키지 의존성을 관리하여 환
 
 ### 핵심 워크플로우
 
-`renv`를 사용하는 기본 과정은 "초기화 → 작업(패키지 설치) → 기록(스냅샷) → 복원"의 순환으로 이루어집니다.
+`renv`를 사용하는 기본 과정은 초기화 → 작업(패키지 설치) → 기록(스냅샷) → 복원의 순환으로 이루어집니다.
 
 #### 프로젝트 초기화
 
 RStudio에서 새 프로젝트를 생성하거나, 해당 프로젝트 폴더에서 R 콘솔을 열고 초기화를 진행합니다.
 
-```R
+```r
 renv::init()
 ```
 
@@ -28,7 +28,7 @@ renv::init()
 
 평소와 동일한 방법으로 R을 사용합니다. 패키지를 설치하면 시스템 전역 라이브러리가 아닌 해당 프로젝트의 로컬 라이브러리에 설치됩니다.
 
-```R
+```r
 install.packages("dplyr")
 install.packages("ggplot2")
 ```
@@ -37,7 +37,7 @@ install.packages("ggplot2")
 
 코드를 작성하면서 새로운 패키지를 추가했거나 업데이트를 마쳤다면, 현재 환경 상태를 저장해야 합니다.
 
-```R
+```r
 renv::snapshot()
 ```
 
@@ -47,7 +47,7 @@ renv::snapshot()
 
 동료와 협업하거나, 다른 컴퓨터로 프로젝트를 옮겼을 때 실행하는 명령어입니다. Git 등을 통해 공유받은 프로젝트 폴더에서 R을 실행하면 `.Rprofile`에 의해 `renv`가 자동으로 활성화됩니다.
 
-```R
+```r
 renv::restore()
 ```
 
@@ -61,7 +61,7 @@ renv::restore()
 
 현재 설치된 로컬 패키지 상태와 `renv.lock`에 기록된 상태 간의 불일치가 있는지 확인합니다. 스냅샷을 찍어야 할지, 복원을 해야 할지 알려주는 유용한 진단 도구입니다.
 
-```R
+```r
 renv::status()
 ```
 
@@ -69,7 +69,7 @@ renv::status()
 
 프로젝트 내에 설치된 패키지들을 최신 버전으로 업데이트합니다. 업데이트 후에는 코드가 잘 동작하는지 테스트하고 다시 `renv::snapshot()`을 실행해야 합니다.
 
-```R
+```r
 renv::update()
 ```
 
@@ -81,6 +81,13 @@ renv::update()
 - 제외해야 할 파일: `renv/library/`, `renv/staging/`
 
 ## Ref
+
+- [ ] Analyzing Baseball Data With R 3rd
+- [ ] Tidy Modeling with R
+- [ ] Data Wrangling with R
+- [ ] Dynamic Documents with R and knitr 2nd
+
+---
 
 - [ ] R for Data Science 2nd
 - [ ] R을 이용한 데이터 분석 실무
@@ -96,9 +103,11 @@ renv::update()
 - [ ] Must Have 나성호의 R 데이터 분석 입문
 - [ ] 데이터 과학을 위한 파이썬과 R
 - [ ] 모두를 위한 R 데이터 분석 입문(2판)
+
+---
+
 - [ ] Hands-On Programming with R
 - [ ] Advanced R
-- [ ] Dynamic Documents with R and knitr 2nd
 - [ ] R in Action 2nd
 - [ ] Using R and RStudio for Data Management, Statistical Analysis, and Graphics 2nd
 - [ ] ggplot2 Elegant Graphics for Data Analysis 2nd
@@ -111,8 +120,5 @@ renv::update()
 - [ ] R in Action 3rd
 - [ ] blogdown - Creating Websites with R Markdown
 - [ ] bookdown
-- [ ] Tidy Modeling with R
-- [ ] Data Wrangling with R
 - [ ] Deep Learning and Scientific Computing with R torch
-- [ ] Analyzing Baseball Data With R 3rd
 - [ ] Model-Based Clustering, Classification, and Density Estimation Using mclust in R
