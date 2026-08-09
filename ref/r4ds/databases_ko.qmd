@@ -1,0 +1,662 @@
+﻿# 데이터베이스 (Databases) {#sec-import-databases}
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+## 소개 (Introduction)
+
+엄청난 양의(huge amount of) 데이터가 데이터베이스에 존재하므로(lives in), 데이터베이스에 접근(access)하는 방법을 아는 것은 필수적(essential)입니다.
+때로는 다른 사람에게 스냅샷(snapshot)을 `.csv`로 다운로드해 달라고 요청할 수 있지만, 이는 금방 고통스러워집니다: 변경(change)을 해야 할 때마다 다른 사람과 소통(communicate)해야 합니다.
+여러분이 필요할 때 필요한 데이터를 얻기 위해 데이터베이스에 직접 접근(reach into)할 수 있기를 원할 것입니다.
+
+이 장에서는 먼저 DBI 패키지의 기본 사항(basics)에 대해 배웁니다: DBI 패키지를 사용하여 데이터베이스에 연결(connect)한 다음 SQL[^databases-1] 쿼리(query)로 데이터를 검색(retrieve)하는 방법을 배웁니다.
+**구조화된 질의어(Structured Query Language)**의 줄임말인 **SQL**은 데이터베이스의 공통어(lingua franca)이며 모든 데이터 과학자가 배워야 할 중요한 언어입니다.
+그렇기는 하지만(That said), SQL로 시작하지 않고 대신 dplyr 코드를 SQL로 변환할 수 있는 dbplyr를 알려드리겠습니다.
+이것을 SQL의 가장 중요한 기능 중 일부를 가르치기 위한 방법으로 사용할 것입니다.
+이 장이 끝날 때까지(by the end of the chapter) 여러분이 SQL 마스터가 되지는 않겠지만 가장 중요한 구성 요소(components)를 식별(identify)하고 그것들이 무엇을 하는지 이해할 수 있을 것입니다.
+
+[^databases-1]: SQL은 "에스"-"큐"-"엘" 또는 "시퀄(sequel)"로 발음됩니다.
+
+### 전제 조건 (Prerequisites)
+
+이 장에서는 DBI와 dbplyr를 소개합니다.
+DBI는 데이터베이스에 연결하고 SQL을 실행하는 저수준(low-level) 인터페이스입니다; dbplyr는 dplyr 코드를 SQL 쿼리로 변환한 다음 DBI를 사용하여 실행하는 고수준(high-level) 인터페이스입니다.
+
+```{r}
+#| label: setup
+#| message: false
+library(DBI)
+library(dbplyr)
+library(tidyverse)
+```
+
+## 데이터베이스 기초 (Database basics)
+
+가장 간단한 수준에서 데이터베이스는 데이터베이스 용어(terminology)로 **테이블(tables)**이라고 하는 데이터 프레임의 모음(collection)이라고 생각할 수 있습니다.
+데이터 프레임과 마찬가지로 데이터베이스 테이블은 열의 모든 값이 동일한 유형(type)인 명명된(named) 열의 모음입니다.
+데이터 프레임과 데이터베이스 테이블 간에는 세 가지 높은 수준의(high level) 차이점이 있습니다:
+
+-   데이터베이스 테이블은 디스크에 저장되며 임의로(arbitrarily) 클 수 있습니다.
+    데이터 프레임은 메모리에 저장되며 근본적으로(fundamentally) 제한이 있습니다(비록 그 한계가 여전히 많은 문제에 대해 충분히 크긴 하지만).
+
+-   데이터베이스 테이블에는 거의 항상 인덱스(indexes)가 있습니다.
+    책의 인덱스와 마찬가지로(Much like) 데이터베이스 인덱스를 사용하면 모든 행을 일일이 살펴보지 않고도 관심 있는(of interest) 행을 빠르게 찾을 수 있습니다.
+    데이터 프레임과 티블(tibbles)에는 인덱스가 없지만 data.table에는 있으며, 이것이 속도가 빠른 이유 중 하나입니다.
+
+-   대부분의 고전적인(classical) 데이터베이스는 기존 데이터를 분석하는 것이 아니라 데이터를 빠르게 수집(collecting)하는 데 최적화되어(optimized) 있습니다.
+    이러한 데이터베이스는 데이터가 R과 같이 열 단위(column-by-column)가 아닌 행 단위(row-by-row)로 저장되기 때문에 **행 지향형(row-oriented)**이라고 합니다.
+    최근에는 기존 데이터 분석을 훨씬 더 빠르게 해주는 **열 지향형(column-oriented)** 데이터베이스의 개발이 활발해지고(much development of) 있습니다.
+
+데이터베이스는 데이터베이스 관리 시스템(간단히 **DBMS**)에 의해 운영되며(run by) 세 가지 기본 형태로 제공됩니다:
+
+-   **클라이언트-서버(Client-server)** DBMS는 컴퓨터(클라이언트)에서 연결(connect to)하는 강력한(powerful) 중앙 서버에서 실행됩니다. 조직 내 여러 사람과 데이터를 공유하는 데 유용합니다(great for). 널리 사용되는 클라이언트-서버 DBMS로는 PostgreSQL, MariaDB, SQL Server 및 Oracle이 있습니다.
+-   Snowflake, Amazon의 RedShift, Google의 BigQuery와 같은 **클라우드(Cloud)** DBMS는 클라이언트-서버 DBMS와 유사하지만 클라우드에서 실행됩니다. 즉, 매우(extremely) 큰 데이터셋을 쉽게 처리할 수 있으며 필요에 따라 더 많은 컴퓨팅 리소스를 자동으로 제공할 수 있습니다.
+-   SQLite 또는 duckdb와 같은 **인-프로세스(In-process)** DBMS는 전적으로 여러분의 컴퓨터에서 실행됩니다. 여러분이 기본(primary) 사용자인 큰 데이터셋으로 작업하는 데 유용합니다.
+
+## 데이터베이스에 연결하기 (Connecting to a database)
+
+R에서 데이터베이스에 연결하려면 다음과 같은 패키지 쌍(pair of packages)을 사용합니다:
+
+-   항상 DBI(**d**ata**b**ase **i**nterface)를 사용하게 될 것입니다. 데이터베이스에 연결, 데이터 업로드, SQL 쿼리 실행 등을 수행하는 일반적인(generic) 함수 세트를 제공하기 때문입니다.
+
+-   연결하려는 DBMS에 맞게 조정된(tailored for) 패키지도 사용하게 됩니다.
+    이 패키지는 일반적인 DBI 명령을 주어진 DBMS에 필요한 세부 사항(specifics)으로 변환(translates)합니다.
+    일반적으로 각 DBMS마다 하나의 패키지가 있습니다. 예: PostgreSQL용 RPostgres 및 MySQL용 RMariaDB.
+
+DBMS에 맞는 특정 패키지를 찾을 수 없는 경우 일반적으로 odbc 패키지를 대신 사용할 수 있습니다.
+이것은 많은 DBMS에서 지원하는 ODBC 프로토콜을 사용합니다.
+odbc는 ODBC 드라이버도 설치하고 odbc 패키지에 찾을 위치를 알려주어야 하므로 약간의 추가 설정(setup)이 필요합니다.
+
+구체적으로(Concretely), `DBI::dbConnect()`를 사용하여 데이터베이스 연결을 생성합니다.
+첫 번째 인수는 DBMS[^databases-2]를 선택한 다음, 두 번째 및 후속(subsequent) 인수는 연결 방법(즉, DBMS가 있는 위치 및 액세스하는 데 필요한 자격 증명(credentials))을 설명합니다.
+다음 코드는 일반적인(typical) 예시 두 가지를 보여줍니다:
+
+[^databases-2]: 일반적으로(Typically) 클라이언트 패키지에서 이 함수만 사용할 것이므로 `library()`로 전체 패키지를 로드하는 대신 `::`를 사용하여 해당 함수 하나만 가져오는(pull out) 것을 권장합니다.
+
+```{r}
+#| eval: false
+con <- DBI::dbConnect(
+  RMariaDB::MariaDB(), 
+  username = "foo"
+)
+con <- DBI::dbConnect(
+  RPostgres::Postgres(), 
+  hostname = "databases.mycompany.com", 
+  port = 1234
+)
+```
+
+연결에 대한 정확한(precise) 세부 사항(details)은 DBMS마다 많이 다르므로 아쉽게도(unfortunately) 여기에서 모든 세부 사항을 다룰(cover) 수는 없습니다.
+즉(This means), 스스로(on your own) 약간의 조사를 해야 합니다.
+일반적으로 팀의 다른 데이터 과학자에게 물어보거나 DBA(**d**ata**b**ase **a**dministrator, 데이터베이스 관리자)에게 문의할 수 있습니다.
+초기 설정은 제대로 하려면 약간의 만지작거림(fiddling) (그리고 아마도 약간의 구글링)이 필요할 때가 많지만(often), 일반적으로 한 번만 수행하면 됩니다.
+
+### 이 책에서는 (In this book)
+
+클라이언트-서버 또는 클라우드 DBMS를 설정하는 것은 이 책에서 번거로운 일(a pain)이므로 대신 R 패키지에 완전히 상주하는 인-프로세스 DBMS인 duckdb를 사용할 것입니다.
+DBI의 마법(magic) 덕분에 duckdb를 사용하는 것과 다른 DBMS를 사용하는 것의 유일한 차이점은 데이터베이스에 연결하는 방법뿐입니다.
+이 코드를 쉽게 실행할 수 있고(as well as easily) 배운 내용을 쉽게 가져와(take) 다른 곳에 적용(apply)할 수 있기 때문에 교육용으로 사용하기에 좋습니다.
+
+duckdb에 연결하는 것은 특별히(particularly) 간단합니다. 기본값(defaults)으로 R을 종료할 때 삭제되는 임시(temporary) 데이터베이스가 생성되기 때문입니다.
+R을 다시 시작할 때마다 백지상태(clean slate)에서 시작할 수 있도록 보장(guarantees)하기 때문에 학습에 좋습니다:
+
+```{r}
+con <- DBI::dbConnect(duckdb::duckdb())
+```
+
+duckdb는 데이터 과학자의 요구에 매우(very much) 부합하도록 설계된 고성능(high-performance) 데이터베이스입니다.
+여기서 사용하는 이유는 시작하기 매우 쉽고 기가바이트 단위의 데이터를 엄청난 속도로(with great speed) 처리(handling)할 수 있기 때문입니다.
+실제(real) 데이터 분석 프로젝트에서 duckdb를 사용하려면 영구적인(persistent) 데이터베이스를 만들고 duckdb에 저장할 위치를 알려주기 위해 `dbdir` 인수를 제공(supply)해야 합니다.
+프로젝트를 사용하고 있다고 가정(Assuming)하면(@sec-workflow-scripts-projects), 현재 프로젝트의 `duckdb` 디렉터리에 저장하는 것이 합리적(reasonable)입니다:
+
+```{r}
+#| eval: false
+con <- DBI::dbConnect(duckdb::duckdb(), dbdir = "duckdb")
+```
+
+### 일부 데이터 로드하기 (Load some data) {#sec-load-data}
+
+이것은 새 데이터베이스이므로 일부 데이터를 추가하는 것부터 시작해야 합니다.
+여기서는 `DBI::dbWriteTable()`을 사용하여 ggplot2의 `mpg`와 `diamonds` 데이터셋을 추가하겠습니다.
+`dbWriteTable()`의 가장 간단한 용법(usage)에는 데이터베이스 연결, 데이터베이스에 만들 테이블 이름, 데이터 프레임 형식의 데이터 등 세 가지 인수가 필요합니다.
+
+```{r}
+dbWriteTable(con, "mpg", ggplot2::mpg)
+dbWriteTable(con, "diamonds", ggplot2::diamonds)
+```
+
+실제 프로젝트에서 duckdb를 사용하는 경우 `duckdb_read_csv()` 및 `duckdb_register_arrow()`에 대해 알아보는(learning about) 것을 적극(highly) 권장합니다.
+이들은 먼저 데이터를 R에 로드할 필요 없이 duckdb로 직접 데이터를 빠르게 로드하는 강력하고(powerful) 고성능의(performant) 방법을 제공합니다.
+@sec-save-database에서 여러 파일을 데이터베이스에 로드하는 유용한(useful) 기법(technique)도 소개(show off)하겠습니다.
+
+### DBI 기본 (DBI basics)
+
+몇 가지 다른 DBI 함수를 사용하여 데이터가 올바르게 로드되었는지 확인할 수 있습니다: `dbListTables()`는 데이터베이스의 모든 테이블을 나열하고[^databases-3] `dbReadTable()`은 테이블의 내용(contents)을 검색(retrieves)합니다.
+
+[^databases-3]: 적어도(At least), 볼 수 있는 권한(permission)이 있는 모든 테이블을 나열합니다.
+
+```{r}
+dbListTables(con)
+
+con |> 
+  dbReadTable("diamonds") |> 
+  as_tibble()
+```
+
+`dbReadTable()`은 `data.frame`을 반환(returns)하므로, 멋지게 출력되도록 `as_tibble()`을 사용하여 티블로 변환합니다.
+
+SQL을 이미 알고 있다면 `dbGetQuery()`를 사용하여 데이터베이스에서 쿼리를 실행한 결과를 얻을(get) 수 있습니다:
+
+```{r}
+sql <- "
+  SELECT carat, cut, clarity, color, price 
+  FROM diamonds 
+  WHERE price > 15000
+"
+as_tibble(dbGetQuery(con, sql))
+```
+
+SQL을 이전에 한 번도 본 적이 없더라도 걱정하지(worry) 마세요!
+곧(shortly) 이에 대해 자세히 알아볼 것입니다.
+하지만 주의 깊게(carefully) 읽어보면(read) diamonds 데이터셋의 5개 열과 `price`가 15,000보다 큰 모든 행을 선택(selects)한다는 것을 추측(guess)할 수 있습니다.
+
+## dbplyr 기초 (dbplyr basics)
+
+이제 데이터베이스에 연결하고 일부 데이터를 로드했으므로 dbplyr에 대해 알아볼(learn about) 수 있습니다.
+dbplyr는 dplyr **백엔드(backend)**인데, 이는 여러분이 계속해서 dplyr 코드를 작성하지만 백엔드가 코드를 다르게(differently) 실행(executes)한다는 것을 의미합니다.
+이 경우, dbplyr는 SQL로 변환(translates)합니다. 다른 백엔드로는 [data.table](https://r-datatable.com)로 변환하는 [dtplyr](https://dtplyr.tidyverse.org)와 여러 코어(multiple cores)에서 코드를 실행하는 [multidplyr](https://multidplyr.tidyverse.org)가 있습니다.
+
+dbplyr를 사용하려면 먼저 `tbl()`을 사용하여 데이터베이스 테이블을 나타내는(represents) 개체(object)를 생성해야 합니다:
+
+```{r}
+diamonds_db <- tbl(con, "diamonds")
+diamonds_db
+```
+
+::: callout-note
+데이터베이스와 상호 작용(interact)하는 두 가지 일반적인(common) 방법이 더 있습니다.
+첫째, 많은 기업(corporate) 데이터베이스는 매우 커서 모든 테이블을 구성(organized) 상태로 유지하려면 일부 계층 구조(hierarchy)가 필요합니다.
+이 경우 관심 있는 테이블을 선택(pick)하기 위해 스키마(schema) 또는 카탈로그(catalog)와 스키마를 제공해야 할 수 있습니다:
+
+```{r}
+#| eval: false
+diamonds_db <- tbl(con, in_schema("sales", "diamonds"))
+diamonds_db <- tbl(con, in_catalog("north_america", "sales", "diamonds"))
+```
+
+다른 때는 자신만의 SQL 쿼리를 시작점(starting point)으로 사용하고 싶을 수도 있습니다:
+
+```{r}
+#| eval: false
+diamonds_db <- tbl(con, sql("SELECT * FROM diamonds"))
+```
+:::
+
+이 객체는 **게으른(lazy)** 상태입니다. 이 객체에 dplyr 동사(verbs)를 사용해도 dplyr은 아무 작업도 수행하지(do any work) 않습니다: 수행하려는 작업(operations)의 시퀀스(sequence)만 기록(records)하고 필요할 때만 작업을 수행합니다.
+예를 들어 다음 파이프라인(pipeline)을 살펴봅시다(take):
+
+```{r}
+big_diamonds_db <- diamonds_db |> 
+  filter(price > 15000) |> 
+  select(carat:clarity, price)
+
+big_diamonds_db
+```
+
+이 객체가 상단에 DBMS 이름을 출력하기 때문에(because) 데이터베이스 쿼리를 나타낸다는 것을 알(tell) 수 있으며, 열의 수를 알려주지만 일반적으로(typically) 행의 수는 모릅니다.
+총 행 수를 찾으려면 일반적으로 완전한(complete) 쿼리를 실행해야 하는데 이는 피하고(avoid) 싶은 부분이기 때문입니다.
+
+dplyr 함수 `show_query()`에 의해 생성된 SQL 코드를 볼 수 있습니다.
+dplyr를 안다면 이것은 SQL을 배우는 아주 좋은 방법입니다!
+dplyr 코드를 작성하고 dbplyr를 사용하여 SQL로 변환한 다음 두 언어가 어떻게 매치(match up)되는지 알아내려고(figure out) 해보세요.
+
+```{r}
+big_diamonds_db |>
+  show_query()
+```
+
+모든 데이터를 다시 R로 가져오려면(get back) `collect()`를 호출(call)합니다.
+백그라운드에서(Behind the scenes) 이것은 SQL을 생성하고 `dbGetQuery()`를 호출하여 데이터를 가져온(get) 다음 결과를 티블로 변환합니다(turns):
+
+```{r}
+big_diamonds <- big_diamonds_db |> 
+  collect()
+big_diamonds
+```
+
+일반적으로 dbplyr를 사용하여 아래에 설명된 변환을 사용하여 데이터베이스에서 원하는 데이터를 선택하고, 기본적인 필터링(filtering) 및 집계(aggregation)를 수행하게 됩니다.
+그런 다음 R 고유의(unique to) 함수로 데이터를 분석(analyse)할 준비가 되면 데이터를 `collect()`하여 인메모리(in-memory) 티블을 얻고 순수(pure) R 코드로 작업을 계속할(continue) 수 있습니다.
+
+## SQL
+
+이 장의 나머지 부분에서는 dbplyr의 렌즈(lens)를 통해 SQL을 조금 가르쳐 드릴 것입니다.
+이것은 SQL에 대한 다소(rather) 파격적인(non-traditional) 소개이지만 기초를 빠르게 익힐 수(get you quickly up to speed) 있기를 바랍니다.
+다행히(Luckily) dplyr을 이해한다면 너무 많은 개념(concepts)이 동일하므로(are the same) SQL을 빠르게 배울 수 있는(pick up) 훌륭한(great) 출발점(place)에 있는 것입니다.
+
+nycflights13 패키지의 몇몇 오랜 친구인 `flights`와 `planes`를 사용하여 dplyr과 SQL 간의 관계(relationship)를 살펴볼(explore) 것입니다.
+dbplyr에는 nycflights13에서 학습용 데이터베이스로 테이블을 복사하는 함수가 함께 제공되므로 이 데이터셋을 학습용 데이터베이스로 쉽게 가져올(get into) 수 있습니다:
+
+```{r}
+dbplyr::copy_nycflights13(con)
+flights <- tbl(con, "flights")
+planes <- tbl(con, "planes")
+```
+
+```{r}
+#| echo: false
+options(dplyr.strict_sql = TRUE)
+```
+```
+
+### SQL 기초 (SQL basics)
+
+SQL의 최상위(top-level) 구성 요소는 **명령문(statements)**이라고 합니다.
+일반적인(Common) 명령문에는 새 테이블을 정의하는 `CREATE`, 데이터를 추가하는 `INSERT`, 데이터를 검색(retrieving)하는 `SELECT`가 있습니다.
+데이터 과학자로서 거의 배타적으로(exclusively) 사용하게 될 명령문인 **쿼리(queries)**라고도 하는 `SELECT` 명령문에 중점(focus)을 둘 것입니다.
+
+쿼리는 **절(clauses)**로 구성(made up of)됩니다.
+중요한 절은 `SELECT`, `FROM`, `WHERE`, `ORDER BY`, `GROUP BY` 등 5가지입니다. 모든 쿼리에는 `SELECT`[^databases-4] 및 `FROM`[^databases-5] 절이 있어야 하며 지정된(specified) 테이블에서 모든 열을 선택하는 `SELECT * FROM table`이 가장 간단한 쿼리입니다.
+이것은 dbplyr가 순수한(unadulterated) 테이블에 대해 생성하는 것입니다:
+
+[^databases-4]: 혼란스럽게도(Confusingly) 문맥(context)에 따라 `SELECT`는 명령문이거나 절입니다.
+    이러한 혼란을 피하기(avoid) 위해 이 책에서는 일반적으로(generally) `SELECT` 명령문 대신 `SELECT` 쿼리를 사용합니다.
+
+[^databases-5]: 엄밀히(technically) 말하면 기본적인 계산(calculations)을 수행하기 위해 `SELECT 1+1`과 같은 쿼리를 작성할 수 있으므로 `SELECT`만 필수적(required)입니다.
+    하지만 (항상 그렇듯이) 데이터로 작업(work with data)하려면 `FROM` 절도 필요합니다.
+
+```{r}
+flights |> show_query()
+planes |> show_query()
+```
+
+`WHERE`와 `ORDER BY`는 어떤 행이 포함될지, 그리고 그 행들이 어떻게 정렬(ordered)될지 제어(control)합니다:
+
+```{r}
+flights |> 
+  filter(dest == "IAH") |> 
+  arrange(dep_delay) |>
+  show_query()
+```
+
+`GROUP BY`는 쿼리를 요약(summary)으로 변환(converts)하여 집계(aggregation)가 발생하게(happen) 합니다:
+
+```{r}
+flights |> 
+  group_by(dest) |> 
+  summarize(dep_delay = mean(dep_delay, na.rm = TRUE)) |> 
+  show_query()
+```
+
+dplyr 동사와 SELECT 절 사이에는 두 가지 중요한 차이점(differences)이 있습니다:
+
+-   SQL에서는 대소문자(case)가 중요하지(matter) 않습니다. `select`, `SELECT` 또는 `SeLeCt`로 작성(write)할 수 있습니다. 이 책에서는 SQL 키워드를 테이블이나 변수 이름과 구별(distinguish)하기 위해 대문자(uppercase)로 작성하는 일반적인 관례(convention)를 고수(stick with)할 것입니다.
+-   SQL에서는 순서가 중요합니다. 절은 항상 `SELECT`, `FROM`, `WHERE`, `GROUP BY`, `ORDER BY` 순서로 작성해야 합니다. 혼란스럽게도 이 순서는 절이 실제로 평가(evaluated)되는 방식과 일치(match)하지 않는데, `FROM`, `WHERE`, `GROUP BY`, `SELECT`, `ORDER BY` 순서로 평가됩니다.
+
+다음 섹션에서는 각 절에 대해 더 자세히 살펴봅니다.
+
+::: callout-note
+SQL은 표준(standard)이지만 매우(extremely) 복잡(complex)하며 어떤 데이터베이스도 정확히(exactly) 따르지(follows) 않는다는 점에 유의하세요.
+이 책에서 중점을 둘 주요 구성 요소는 DBMS 간에 매우 유사하지만(similar) 사소한(minor) 변형(variations)이 많습니다.
+다행히 dbplyr는 이 문제를 처리(handle)하도록 설계(designed)되었으며 다른 데이터베이스에 대해 다른 변환을 생성합니다.
+완벽(perfect)하지는 않지만 지속적으로(continually) 개선되고 있으며 문제가 발생(hit)하면 [GitHub](https://github.com/tidyverse/dbplyr/issues/)에 이슈를 제출(file)하여 저희가 더 잘할 수 있도록 도와(help)주실 수 있습니다.
+:::
+
+### SELECT
+
+`SELECT` 절은 쿼리의 핵심 요소(workhorse)이며 `select()`, `mutate()`, `rename()`, `relocate()`와 같은 작업을 수행(performs)하고, 다음 섹션에서 배울(learn) `summarize()`와 같은 역할(job)도 수행합니다.
+
+`select()`, `rename()`, `relocate()`는 열이 표시(appears)되는 위치(있는 경우)와 열 이름에만 영향을 미치므로(affect) `SELECT`로 매우 직접적으로 변환(direct translations)됩니다:
+
+```{r}
+planes |> 
+  select(tailnum, type, manufacturer, model, year) |> 
+  show_query()
+
+planes |> 
+  select(tailnum, type, manufacturer, model, year) |> 
+  rename(year_built = year) |> 
+  show_query()
+
+planes |> 
+  select(tailnum, type, manufacturer, model, year) |> 
+  relocate(manufacturer, model, .before = type) |> 
+  show_query()
+```
+
+이 예제(example)는 SQL이 이름 바꾸기(renaming)를 수행하는 방법도 보여줍니다.
+SQL 용어로 이름 바꾸기를 **별칭(aliasing)**이라고 하며 `AS`를 사용하여 수행(done)됩니다.
+`mutate()`와 달리(unlike) 이전(old) 이름은 왼쪽에 있고 새 이름은 오른쪽에 있다는 점에 유의하세요.
+
+::: callout-note
+위의 예제에서 `"year"`와 `"type"`은 큰따옴표(double quotes)로 묶여(wrapped) 있습니다.
+이는(That's because) 이들이 duckdb에서 **예약어(reserved words)**이기 때문입니다. 따라서 dbplyr는 열/테이블 이름과 SQL 연산자(operators) 간의 잠재적인 혼란(potential confusion)을 피하기 위해 인용(quotes)합니다.
+
+다른 데이터베이스로 작업할 때 모든 변수 이름이 인용(quoted)된 것을 볼 가능성이(likely to see) 높습니다. duckdb와 같은 소수의(handful of) 클라이언트 패키지만이 모든 예약어가 무엇인지 알기 때문에 안전을 위해(to be safe) 모든 것을 인용하기 때문입니다.
+
+``` sql
+SELECT "tailnum", "type", "manufacturer", "model", "year"
+FROM "planes"
+```
+
+다른 일부 데이터베이스 시스템에서는 따옴표 대신 백틱(backticks)을 사용합니다:
+
+``` sql
+SELECT `tailnum`, `type`, `manufacturer`, `model`, `year`
+FROM `planes`
+```
+:::
+
+`mutate()`에 대한 변환은 비슷하게 간단합니다(straightforward). 각 변수는 `SELECT`에서 새로운 표현식(expression)이 됩니다:
+
+```{r}
+flights |> 
+  mutate(
+    speed = distance / (air_time / 60)
+  ) |> 
+  show_query()
+```
+
+개별(individual) 구성 요소(`/`와 같은)의 변환에 대해서는 @sec-sql-expressions에서 다시 설명하겠습니다(come back to).
+
+### FROM
+
+`FROM` 절은 데이터 소스를 정의합니다.
+단일 테이블만 사용하기 때문에 당분간(for a little while)은 다소 흥미롭지 않을(uninteresting) 것입니다.
+조인 함수에 도달(hit)하면 더 복잡한 예제를 볼 수 있습니다.
+
+### GROUP BY
+
+`group_by()`는 `GROUP BY`[^databases-6] 절로 변환되고 `summarize()`는 `SELECT` 절로 변환됩니다:
+
+[^databases-6]: 이것은 우연(coincidence)이 아닙니다. dplyr 함수 이름은 SQL 절에서 영감(inspired)을 받았습니다.
+
+```{r}
+diamonds_db |> 
+  group_by(cut) |> 
+  summarize(
+    n = n(),
+    avg_price = mean(price, na.rm = TRUE)
+  ) |> 
+  show_query()
+```
+
+@sec-sql-expressions에서 `n()`과 `mean()`의 변환에 무슨 일이 일어나는지 다시 설명(come back to)하겠습니다.
+
+### WHERE
+
+`filter()`는 `WHERE` 절로 변환됩니다:
+
+```{r}
+flights |> 
+  filter(dest == "IAH" | dest == "HOU") |> 
+  show_query()
+
+flights |> 
+  filter(arr_delay > 0 & arr_delay < 20) |> 
+  show_query()
+```
+
+여기서 유의해야 할 몇 가지 중요한 세부 사항(details)이 있습니다:
+
+-   `|`는 `OR`이 되고 `&`는 `AND`가 됩니다.
+-   SQL은 비교(comparison)를 위해 `==`가 아닌 `=`를 사용합니다. SQL에는 할당(assignment)이 없으므로 혼란이 생길 가능성(potential for confusion)이 없습니다.
+-   SQL은 문자열(strings)에 `""`가 아닌 `''`만 사용합니다. SQL에서 `""`는 R의 ``` `` ```처럼 변수를 식별(identify)하는 데 사용됩니다.
+
+또 다른 유용한 SQL 연산자는 `IN`으로, R의 `%in%`과 매우 유사(close)합니다:
+
+```{r}
+flights |> 
+  filter(dest %in% c("IAH", "HOU")) |> 
+  show_query()
+```
+
+SQL은 `NA` 대신 `NULL`을 사용합니다.
+`NULL`은 `NA`와 비슷하게 동작(behave)합니다.
+가장 큰(main) 차이점은 비교 및 산술(arithmetic)에서 "전염성(infectious)"이 있지만 요약할(summarizing) 때는 조용히(silently) 삭제(dropped)된다는 것입니다.
+dbplyr는 여러분이 이 동작에 처음 부딪혔을(hit) 때 이 동작에 대해 상기시켜(remind) 줄 것입니다:
+
+```{r}
+flights |> 
+  group_by(dest) |> 
+  summarize(delay = mean(arr_delay))
+```
+
+`NULL`이 어떻게 작동(work)하는지 더 알고 싶으시다면 Markus Winand의 "[The Three-Valued Logic of SQL](https://modern-sql.com/concept/three-valued-logic)"을 읽어보시면 좋을 것입니다(enjoy).
+
+일반적으로(In general), R에서 `NA`에 사용하는 함수를 사용하여 `NULL`로 작업(work with)할 수 있습니다:
+
+```{r}
+flights |> 
+  filter(!is.na(dep_delay)) |> 
+  show_query()
+```
+
+이 SQL 쿼리는 dbplyr의 단점(drawbacks) 중 하나를 보여줍니다(illustrates). SQL은 정확(correct)하지만 손으로 작성(write by hand)할 수 있을 만큼 간단하지는(simple) 않다는 것입니다.
+이 경우 괄호(parentheses)를 생략(drop)하고 읽기 더 쉬운(easier to read) 특수(special) 연산자를 사용할 수 있습니다:
+
+``` sql
+WHERE "dep_delay" IS NOT NULL
+```
+
+요약(summarize)을 사용하여 만든 변수를 `filter()`하는 경우, dbplyr는 `WHERE` 절이 아닌 `HAVING` 절을 생성한다는 점에 유의(Note)하세요.
+이것은 SQL의 특이한 점(idiosyncrasies) 중 하나입니다: `WHERE`는 `SELECT` 및 `GROUP BY` 전에 평가(evaluated)되므로, SQL은 나중에(afterwards) 평가될 다른 절이 필요합니다.
+
+```{r}
+diamonds_db |> 
+  group_by(cut) |> 
+  summarize(n = n()) |> 
+  filter(n > 100) |> 
+  show_query()
+```
+
+### ORDER BY
+
+행 정렬(ordering rows)에는 `arrange()`에서 `ORDER BY` 절로의 간단한(straightforward) 변환이 포함(involves)됩니다:
+
+```{r}
+flights |> 
+  arrange(year, month, day, desc(dep_delay)) |> 
+  show_query()
+```
+
+`desc()`가 `DESC`로 어떻게 변환되는지 주목하세요(Notice). 이 함수는 이름이 SQL에서 직접 영감을 받은(directly inspired by) 많은 dplyr 함수 중 하나입니다.
+
+### 서브쿼리 (Subqueries)
+
+때로는(Sometimes) dplyr 파이프라인(pipeline)을 단일 `SELECT` 명령문으로 변환할 수 없어서 서브쿼리를 사용해야 하는 경우가 있습니다.
+**서브쿼리(subquery)**는 일반적인 테이블 대신 `FROM` 절에서 데이터 소스로 사용되는 쿼리일 뿐입니다.
+
+dbplyr는 일반적으로 SQL의 한계(limitations)를 해결하기(work around) 위해 서브쿼리를 사용합니다.
+예를 들어 `SELECT` 절의 표현식(expressions)은 방금 생성된(just created) 열을 참조할(refer to) 수 없습니다.
+즉, 다음의 (어리석은) dplyr 파이프라인은 두 단계로 수행되어야 합니다. 첫 번째(내부) 쿼리는 `year1`을 계산(computes)하고 그런 다음 두 번째(외부) 쿼리는 `year2`를 계산할 수 있습니다.
+
+```{r}
+flights |> 
+  mutate(
+    year1 = year + 1,
+    year2 = year1 + 1
+  ) |> 
+  show_query()
+```
+
+방금 생성한 변수를 `filter()`하려고 시도한(attempted) 경우에도 이것을 볼 수 있습니다.
+`WHERE`는 `SELECT` 이후에 작성되지만 그 전에 평가되므로 이 (어리석은) 예제에서는 서브쿼리가 필요합니다(Remember):
+
+```{r}
+flights |> 
+  mutate(year1 = year + 1) |> 
+  filter(year1 == 2014) |> 
+  show_query()
+```
+
+때로는 dbplyr가 해당 변환을 최적화(optimize)하는 방법을 아직 모르기 때문에 필요하지 않은 곳에(where it's not needed) 서브쿼리를 생성(create)하기도 합니다.
+시간이 지나면서(over time) dbplyr가 개선(improves)됨에 따라 이러한 경우는 드물어지겠지만(get rarer) 아마 완전히 없어지지는(never go away) 않을 것입니다.
+### 조인 (Joins)
+
+dplyr의 조인에 익숙하다면 SQL 조인도 매우 유사합니다.
+다음은 간단한 예시입니다:
+
+```{r}
+flights |> 
+  left_join(planes |> rename(year_built = year), join_by(tailnum)) |> 
+  show_query()
+```
+
+여기서 주목해야 할 주요(main) 사항은 구문(syntax)입니다: SQL 조인은 `FROM` 절의 하위 절(sub-clauses)을 사용하여 추가 테이블을 가져오고 `ON`을 사용하여 테이블 간의 관계(related)를 정의합니다.
+
+이러한 함수에 대한 dplyr의 이름은 SQL과 매우 밀접하게 연결되어(closely connected) 있으므로 `inner_join()`, `right_join()` 및 `full_join()`에 해당하는 SQL을 쉽게 추측(guess)할 수 있습니다:
+
+``` sql
+SELECT flights.*, "type", manufacturer, model, engines, seats, speed
+FROM flights
+INNER JOIN planes ON (flights.tailnum = planes.tailnum)
+
+SELECT flights.*, "type", manufacturer, model, engines, seats, speed
+FROM flights
+RIGHT JOIN planes ON (flights.tailnum = planes.tailnum)
+
+SELECT flights.*, "type", manufacturer, model, engines, seats, speed
+FROM flights
+FULL JOIN planes ON (flights.tailnum = planes.tailnum)
+```
+
+데이터베이스의 데이터로 작업할 때 조인을 많이 사용하게 될 가능성이 높습니다.
+데이터베이스 테이블은 각 "사실(fact)"이 한 곳에 저장되고, 분석을 위한 완전한(complete) 데이터셋을 유지(keep)하기 위해 기본 키(primary keys)와 외래 키(foreign keys)로 연결된(connected by) 복잡한 테이블 네트워크(complex network of tables)를 탐색(navigate)해야 하는 매우 정규화된 형태(highly normalized form)로 저장되는 경우가 많기 때문입니다.
+이러한 상황에 부닥친다면(hit this scenario), Tobias Schieferdecker, Kirill Müller, Darko Bergant가 만든 [dm 패키지](https://cynkra.github.io/dm/)가 구세주(life saver)가 될 것입니다.
+이 패키지는 DBA가 종종 제공하는 제약 조건(constraints)을 사용하여 테이블 간의 연결을 자동으로 결정(determine)하고, 무슨 일이 일어나고 있는지 볼 수 있도록 연결을 시각화(visualize)하며, 한 테이블을 다른 테이블에 연결하는 데 필요한 조인을 생성(generate)할 수 있습니다.
+
+### 다른 동사들 (Other verbs)
+
+dbplyr는 `distinct()`, `slice_*()`, `intersect()`와 같은 다른 동사(verbs)와 `pivot_longer()`, `pivot_wider()`와 같이 점점 더 다양해지는(growing selection) tidyr 함수도 변환합니다.
+현재 사용 가능한 전체 세트(full set)를 확인하는 가장 쉬운 방법은 dbplyr 웹사이트(<https://dbplyr.tidyverse.org/reference/>)를 방문(visit)하는 것입니다.
+
+### 연습 문제 (Exercises)
+
+1.  `distinct()`는 무엇으로 변환됩니까?
+    `head()`는 어떻습니까?
+
+2.  다음 SQL 쿼리가 각각 무엇을 하는지 설명하고 dbplyr를 사용하여 다시 만들어(recreate) 보세요.
+
+    ``` sql
+    SELECT * 
+    FROM flights
+    WHERE dep_delay < arr_delay
+
+    SELECT *, distance / (air_time / 60) AS speed
+    FROM flights
+    ```
+
+## 함수 변환 (Function translations) {#sec-sql-expressions}
+
+지금까지 우리는 dplyr 동사가 쿼리의 절(clauses)로 변환되는 과정의 큰 그림(big picture)에 초점을 맞췄습니다.
+이제 조금 더 자세히 살펴보고(zoom in a little) 개별 열(individual columns)에서 작동하는 R 함수의 변환에 대해 이야기해 보겠습니다. 예: `summarize()`에서 `mean(x)`를 사용하면 어떻게 됩니까?
+
+무슨 일이 일어나는지(what's going on) 확인하는 데 도움이 되도록 `summarize()` 또는 `mutate()`를 실행하고 생성된 SQL을 보여주는 몇 가지 작은 도우미(helper) 함수를 사용하겠습니다.
+이렇게 하면 몇 가지 변형(variations)을 탐구(explore)하고 요약(summaries)과 변형(transformations)이 어떻게 다를(differ) 수 있는지 조금 더 쉽게 볼 수 있습니다.
+
+```{r}
+summarize_query <- function(df, ...) {
+  df |> 
+    summarize(...) |> 
+    show_query()
+}
+mutate_query <- function(df, ...) {
+  df |> 
+    mutate(..., .keep = "none") |> 
+    show_query()
+}
+```
+
+몇 가지 요약으로 뛰어들어(dive in) 봅시다!
+아래 코드를 보면 `mean()`과 같은 일부 요약 함수는 비교적(relatively) 간단한(simple) 변환을 갖는 반면 `median()`과 같은 다른 함수는 훨씬 더 복잡하다는(complex) 것을 알 수 있습니다.
+통계(statistics)에서는 일반적(common)이지만 데이터베이스에서는 덜 일반적인 연산일수록 일반적으로 복잡성이 더 높습니다(higher).
+
+```{r}
+flights |> 
+  group_by(year, month, day) |>  
+  summarize_query(
+    mean = mean(arr_delay, na.rm = TRUE),
+    median = median(arr_delay, na.rm = TRUE)
+  )
+```
+
+요약 함수를 `mutate()` 내부에서 사용하면 소위(so-called) **윈도우(window)** 함수로 전환되어야 하기 때문에 요약 함수의 변환이 더 복잡(complicated)해집니다.
+SQL에서는 그 뒤에 `OVER`를 추가하여 일반(ordinary) 집계 함수를 윈도우 함수로 전환(turn)합니다:
+
+```{r}
+flights |> 
+  group_by(year, month, day) |>  
+  mutate_query(
+    mean = mean(arr_delay, na.rm = TRUE),
+  )
+```
+
+SQL에서 `GROUP BY` 절은 요약 전용(exclusively for summaries)으로 사용되므로 여기서는 그룹화(grouping)가 `GROUP BY` 절에서 `OVER`로 이동(moved)한 것을 볼 수 있습니다.
+
+윈도우 함수에는 각각 "이전(previous)" 또는 "다음(next)" 값을 보는(look at) `lead()` 및 `lag()`와 같이 앞을 내다보거나(look forward) 뒤를 돌아보는(look backwards) 모든 함수가 포함(include)됩니다:
+
+```{r}
+flights |> 
+  group_by(dest) |>  
+  arrange(time_hour) |> 
+  mutate_query(
+    lead = lead(arr_delay),
+    lag = lag(arr_delay)
+  )
+```
+
+SQL 테이블에는 내재된(intrinsic) 순서가 없기 때문에 여기서 데이터를 `arrange()`하는 것이 중요합니다.
+사실 `arrange()`를 사용하지 않으면 매번 다른 순서로 행을 반환받을 수도 있습니다!
+윈도우 함수의 경우 순서 정보(ordering information)가 반복된다는(repeated) 점에 유의하세요(Notice): 메인 쿼리의 `ORDER BY` 절이 윈도우 함수에 자동으로 적용(apply)되지는 않습니다.
+
+또 다른 중요한 SQL 함수는 `CASE WHEN`입니다. 이것은 `if_else()` 및 `case_when()`의 변환으로 사용되며, 이 함수는 dplyr 함수에 직접적인 영감을 주었습니다(directly inspired).
+다음은 몇 가지 간단한 예시입니다:
+
+```{r}
+flights |> 
+  mutate_query(
+    description = if_else(arr_delay > 0, "delayed", "on-time")
+  )
+flights |> 
+  mutate_query(
+    description = 
+      case_when(
+        arr_delay < -5 ~ "early", 
+        arr_delay < 5 ~ "on-time",
+        arr_delay >= 5 ~ "late"
+      )
+  )
+```
+
+`CASE WHEN`은 R에서 SQL로 직접 변환(direct translation)되지 않는 다른 일부 함수에도 사용됩니다.
+이것의 좋은 예시가 `cut()`입니다:
+
+```{r}
+flights |> 
+  mutate_query(
+    description =  cut(
+      arr_delay, 
+      breaks = c(-Inf, -5, 5, Inf), 
+      labels = c("early", "on-time", "late")
+    )
+  )
+```
+
+dbplyr는 또한 일반적인 문자열 및 날짜-시간 조작(manipulation) 함수도 변환하는데, 이는 `vignette("translation-function", package = "dbplyr")`에서 배울 수 있습니다.
+dbplyr의 변환이 확실히 완벽한 것은 아니며 아직 변환되지 않은 R 함수도 많지만, dbplyr는 여러분이 대부분의(most of the time) 시간에 사용할 함수를 놀라울 정도로 잘 다루어(covering) 냅니다(does a surprisingly good job).
+
+## 요약 (Summary)
+
+이 장에서는 데이터베이스의 데이터에 접근하는 방법을 배웠습니다.
+익숙한(familiar with) dplyr 코드를 작성하면 자동으로 SQL로 변환되도록 해주는 dplyr "백엔드"인 dbplyr에 중점(focused)을 두었습니다.
+우리는 그 변환을 사용하여 SQL을 조금 가르쳐 주었습니다; SQL은 데이터 작업에 가장 많이 사용되는 언어이며 이를 조금 알고 있으면 R을 사용하지 않는 다른 데이터 관련 종사자들(folks)과 더 쉽게 의사소통할 수 있기 때문에 중요합니다.
+
+이 장을 다 읽고(finished) SQL에 대해 더 자세히 알아보고 싶으시다면 두 가지 추천 도서(recommendations)가 있습니다:
+
+-   Renée M. P. Teate의 [*SQL for Data Scientists*](https://sqlfordatascientists.com)는 데이터 과학자의 요구에 맞게 특별히(specifically) 고안된(designed) SQL 입문서(introduction)이며 실제 조직에서 마주칠(encounter) 수 있는 고도로(highly) 상호 연결된(interconnected) 데이터의 예시를 포함(includes)하고 있습니다.
+-   Anthony DeBarros의 [*Practical SQL*](https://www.practicalsql.com)는 데이터 저널리스트(설득력 있는(compelling) 이야기를 전달(telling)하는 데 특화된(specialized in) 데이터 과학자)의 관점(perspective)에서 쓰였으며(written from) 데이터를 데이터베이스로 가져오고 자체 DBMS를 실행하는 것에 대해 더 자세히(more detail) 설명합니다.
+
+다음 장에서는 빅데이터(large data) 작업을 위한 또 다른 dplyr 백엔드인 arrow에 대해 알아볼 것입니다.
+Arrow는 디스크의 큰 파일로 작업하도록 설계되었으며 데이터베이스를 자연스럽게 보완(complement)합니다.
