@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>workflow-help – R과 데이터 분석 입문</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d55203e86ba1a699a1ae3c3642d34712.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="R과 데이터 분석 입문">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="R과 데이터 분석 입문">
+<meta name="twitter:title" content="R과 데이터 분석 입문">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      R과 데이터 분석 입문
+      </li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">R과 데이터 분석 입문</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 언어</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../notes/part01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">톺아보기</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/data-visualize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 시각화 (Data visualization)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-workflow-getting-help" id="toc-sec-workflow-getting-help" class="nav-link active" data-scroll-target="#sec-workflow-getting-help"><span class="header-section-number">1</span> 워크플로: 도움 구하기 (Workflow: getting help)</a>
+  <ul class="collapse">
+  <li><a href="#구글은-여러분의-친구입니다-google-is-your-friend" id="toc-구글은-여러분의-친구입니다-google-is-your-friend" class="nav-link" data-scroll-target="#구글은-여러분의-친구입니다-google-is-your-friend"><span class="header-section-number">1.1</span> 구글은 여러분의 친구입니다 (Google is your friend)</a></li>
+  <li><a href="#reprex-만들기-making-a-reprex" id="toc-reprex-만들기-making-a-reprex" class="nav-link" data-scroll-target="#reprex-만들기-making-a-reprex"><span class="header-section-number">1.2</span> reprex 만들기 (Making a reprex)</a></li>
+  <li><a href="#자기-자신에게-투자하기-investing-in-yourself" id="toc-자기-자신에게-투자하기-investing-in-yourself" class="nav-link" data-scroll-target="#자기-자신에게-투자하기-investing-in-yourself"><span class="header-section-number">1.3</span> 자기 자신에게 투자하기 (Investing in yourself)</a></li>
+  <li><a href="#요약-summary" id="toc-요약-summary" class="nav-link" data-scroll-target="#요약-summary"><span class="header-section-number">1.4</span> 요약 (Summary)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="sec-workflow-getting-help" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> 워크플로: 도움 구하기 (Workflow: getting help)</h1>
+<p>이 책은 외딴섬이 아닙니다(is not an island). 여러분이 R을 마스터할 수 있게 해주는 단일한 리소스(resource)는 없습니다. 이 책에 설명된 기술을 여러분 자신의 데이터에 적용하기 시작하면 곧 우리가 대답하지 않은 질문들을 발견하게 될 것입니다. 이 섹션에서는 도움을 얻고 계속해서 학습하는 데 도움이 되는 몇 가지 팁을 설명합니다.</p>
+<section id="구글은-여러분의-친구입니다-google-is-your-friend" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="구글은-여러분의-친구입니다-google-is-your-friend"><span class="header-section-number">1.1</span> 구글은 여러분의 친구입니다 (Google is your friend)</h2>
+<p>막히면 구글에서 시작하세요. 일반적으로 쿼리에 “R”을 추가하는 것만으로 관련성 있는 결과로 좁히기에 충분합니다. 검색 결과가 유용하지 않다면 대개 R 관련 결과가 없다는 의미입니다. 또한 “tidyverse” 또는 “ggplot2”와 같은 패키지 이름을 추가하면 여러분에게 더 친숙하게 느껴질 코드로 결과를 좁히는 데 도움이 될 것입니다(예: “how to make a boxplot in R” 대 “how to make a boxplot in R with ggplot2”). 구글은 특히 오류 메시지에 유용합니다. 오류 메시지가 표시되었는데 무슨 뜻인지 전혀 모르겠다면 구글에 검색해 보세요! 과거에 다른 누군가도 이 때문에 혼란스러워했을 가능성이 높으며, 웹 어딘가에 도움말이 있을 것입니다. (오류 메시지가 영어가 아닌 경우 <code>Sys.setenv(LANGUAGE = "en")</code>를 실행하고 코드를 다시 실행하세요. 영어 오류 메시지에 대한 도움말을 찾을 가능성이 더 높습니다.)</p>
+<p>구글이 도움이 되지 않으면 <a href="https://stackoverflow.com">Stack Overflow</a>를 시도해 보세요. R을 사용하는 질문과 답변으로 검색을 제한하기 위해 <code>[R]</code>을 포함하여 기존 답변을 검색하는 데 약간의 시간을 할애하는 것으로 시작하세요.</p>
+</section>
+<section id="reprex-만들기-making-a-reprex" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="reprex-만들기-making-a-reprex"><span class="header-section-number">1.2</span> reprex 만들기 (Making a reprex)</h2>
+<p>구글 검색에서 유용한 정보를 찾지 못했다면 최소한의 재현 가능한 예제(minimal <strong>repr</strong>oducible <strong>ex</strong>ample)의 줄임말인 <strong>reprex</strong>를 준비하는 것이 아주 좋은 생각입니다. 좋은 reprex는 다른 사람들이 여러분을 돕기 쉽게 만들어 주며, 종종 여러분 스스로 이것을 만드는 과정에서 문제를 파악하게 될 것입니다. reprex를 생성하는 데는 두 부분이 있습니다:</p>
+<ul>
+<li><p>첫째, 코드를 재현 가능하게 만들어야 합니다. 이것은 여러분이 모든 것을 포착(capture)해야 함을 의미합니다. 즉 모든 <code>library()</code> 호출을 포함하고 필요한 모든 객체를 생성해야 합니다. 이를 제대로 했는지 확인하는 가장 쉬운 방법은 reprex 패키지를 사용하는 것입니다.</p></li>
+<li><p>둘째, 코드를 최소한으로 만들어야 합니다. 문제와 직접 관련이 없는 것은 모두 제거하세요. 이것은 대개 실제 직면한 것보다 훨씬 작고 간단한 R 객체를 생성하거나 심지어 내장 데이터(built-in data)를 사용하는 것을 포함합니다.</p></li>
+</ul>
+<p>정말 일이 많아 보입니다! 실제로 그럴 수 있지만 큰 보상이 따릅니다:</p>
+<ul>
+<li><p>80%의 경우에 훌륭한 reprex를 만들면 문제의 원인이 드러납니다. 독립적이고 최소한의 예제를 작성하는 과정에서 스스로 자신의 질문에 답을 얻게 되는 경우가 얼마나 잦은지 놀라울 정도입니다.</p></li>
+<li><p>나머지 20%의 경우 다른 사람들이 다뤄보기(play with) 쉬운 방식으로 문제의 본질(essence)을 캡처한 것이 됩니다. 이것은 도움을 받을 가능성을 상당히 높여줍니다!</p></li>
+</ul>
+<p>reprex를 직접 손으로 작성할 때 실수로 무언가를 빠뜨리기 쉬우며, 이는 여러분의 코드가 다른 사람의 컴퓨터에서 실행될 수 없음을 의미합니다. tidyverse의 일부로 설치되는 reprex 패키지를 사용하여 이 문제를 피하세요. 다음 코드를 클립보드에 복사(또는 RStudio Server나 Cloud에서 선택)한다고 가정해 보겠습니다:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>그런 다음 <code>reprex()</code>를 호출하면 기본 출력이 GitHub용으로 형식이 지정됩니다:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>reprex<span class="sc">::</span><span class="fu">reprex</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>RStudio에 있는 경우 RStudio의 뷰어(Viewer)에 아름답게 렌더링된 HTML 미리보기가 표시되고, 그렇지 않은 경우 기본 브라우저에 표시됩니다. reprex는 클립보드에 자동으로 복사됩니다(RStudio Server나 Cloud에서는 직접 복사해야 합니다):</p>
+<pre><code>``` r
+y &lt;- 1:4
+mean(y)
+#&gt; [1] 2.5
+```</code></pre>
+<p>이 텍스트는 마크다운(Markdown)이라는 특수한 방식으로 형식이 지정되며 Stack Overflow나 GitHub 같은 사이트에 붙여넣을 수 있고, 그 사이트들은 자동으로 코드처럼 보이도록 렌더링합니다. 이 마크다운이 GitHub에서 렌더링될 때의 모습은 다음과 같습니다:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>다른 누구든지 이것을 즉시 복사, 붙여넣기 및 실행할 수 있습니다.</p>
+<p>예제를 재현 가능하게 만들기 위해 포함해야 할 세 가지가 있습니다: 필요한 패키지, 데이터, 코드.</p>
+<ol type="1">
+<li><p>예제에 어떤 패키지가 필요한지 쉽게 알 수 있도록 스크립트 맨 위에 <strong>패키지</strong>를 로드해야 합니다. 이때 각 패키지의 최신 버전을 사용하고 있는지 확인하기 좋은 타이밍입니다. 패키지를 설치하거나 마지막으로 업데이트한 이후 수정된 버그를 발견할 수도 있습니다. tidyverse의 패키지에 대해서는 <code>tidyverse_update()</code>를 실행하는 가장 확인하기 쉬운 방법입니다.</p></li>
+<li><p><strong>데이터</strong>를 포함하는 가장 쉬운 방법은 <code>dput()</code>을 사용하여 그것을 다시 생성하는 데 필요한 R 코드를 생성하는 것입니다. 예를 들어 R에서 <code>mtcars</code> 데이터셋을 다시 생성하려면 다음 단계를 수행하세요:</p>
+<ol type="1">
+<li>R에서 <code>dput(mtcars)</code>를 실행합니다.</li>
+<li>출력을 복사합니다.</li>
+<li>reprex에 <code>mtcars &lt;-</code>를 입력한 후 붙여넣습니다.</li>
+</ol>
+<p>여전히 문제가 드러나는 한도 내에서 가장 작은 부분 집합(subset)의 데이터를 사용하려고 시도하세요.</p></li>
+<li><p>여러분의 <strong>코드</strong>를 다른 사람들이 쉽게 읽을 수 있도록 약간의 시간을 투자하세요:</p>
+<ul>
+<li><p>공백을 사용했는지 확인하고 변수 이름은 간결하면서도 정보를 제공하도록 하세요.</p></li>
+<li><p>주석(comments)을 사용하여 문제가 어디에 있는지 표시하세요.</p></li>
+<li><p>문제와 관련 없는 모든 것을 제거하기 위해 최선을 다하세요.</p></li>
+</ul>
+<p>코드가 짧을수록 이해하기 쉽고 수정하기 쉽습니다.</p></li>
+</ol>
+<p>새로운 R 세션을 시작하고 스크립트를 복사하여 붙여넣음으로써 실제로 재현 가능한 예제를 만들었는지 확인하는 것으로 마무리하세요.</p>
+<p>reprex를 만드는 것은 사소한 일이 아니며 훌륭하고 진정으로 최소한의 reprex를 만드는 방법을 배우려면 약간의 연습이 필요할 것입니다. 하지만 코드가 포함된 질문을 하는 방법을 배우고, 그것을 재현 가능하게 만드는 데 시간을 투자하는 것은 여러분이 R을 배우고 마스터함에 따라 계속해서 보상을 줄 것입니다.</p>
+</section>
+<section id="자기-자신에게-투자하기-investing-in-yourself" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="자기-자신에게-투자하기-investing-in-yourself"><span class="header-section-number">1.3</span> 자기 자신에게 투자하기 (Investing in yourself)</h2>
+<p>문제가 발생하기 전에 여러분 스스로 문제를 해결할 준비를 하는 데 어느 정도 시간을 할애해야 합니다. 매일 R을 배우는 데 약간의 시간을 투자하면 장기적으로 엄청난 보상을 받을 것입니다. 한 가지 방법은 <a href="https://www.tidyverse.org/blog/">tidyverse blog</a>에서 tidyverse 팀이 무엇을 하고 있는지 따라가는(follow) 것입니다. 보다 광범위한 R 커뮤니티의 동향을 파악하려면 <a href="https://rweekly.org">R Weekly</a>를 읽는 것을 권장합니다. 이는 매주 R 커뮤니티에서 가장 흥미로운 뉴스를 모으는 커뮤니티의 노력입니다.</p>
+</section>
+<section id="요약-summary" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="요약-summary"><span class="header-section-number">1.4</span> 요약 (Summary)</h2>
+<p>이 장을 끝으로 책의 전체 게임(Whole Game) 부분이 마무리됩니다. 여러분은 이제 시각화, 변환, 정돈, 가져오기와 같은 데이터 과학 과정의 가장 중요한 부분들을 보았습니다. 이제 여러분은 전체 프로세스에 대한 전체적인 뷰(holistic view)를 갖게 되었으며, 우리는 작은 조각들의 세부 사항으로 들어가기 시작합니다.</p>
+<p>책의 다음 부분인 시각화(Visualize)에서는 그래픽의 문법(grammar of graphics)과 ggplot2를 사용한 데이터 시각화 생성에 대해 더 깊이 알아보고, 지금까지 배운 도구들을 사용하여 탐색적 데이터 분석을 수행하는 방법을 보여주며, 소통을 위한 플롯을 생성하는 좋은 방법들(good practices)을 소개합니다.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
