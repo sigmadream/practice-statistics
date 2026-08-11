@@ -34,7 +34,6 @@ carat
 
 - FIGURE 7.1: ggplot2에서 생성된 플롯으로 명시적으로 출력할 필요가 없습니다(비교를 위해 Sweave에서는 print(p)를 해야 하며 이는 매우 혼란스럽습니다. 16.1절 참조).
 
-
 59
 
 ###### 7.1 Graphical Devices
@@ -81,10 +80,9 @@ Bookman in the PDF device
 
 0.00.20.40.60.81.0
 
-| | |
-|---|---|
-| | |
-
+|     |     |
+| --- | --- |
+|     |     |
 
 g
 
@@ -121,7 +119,6 @@ x <- c("\U20AC", "\U201A", "\U201E", "\U2026", "\U2020",
 - "\U00A4", "\U0104", "\U00A6", "\U00A7", "\U00A8", "\U00A9", "\U015E", "\U00AB", "\U00AC", "\U00AE", "\U017B", "\U00B0", "\U00B1", "\U02DB", "\U0142",
 - "\U00B4", "\U00B5", "\U00B6", "\U00B7", "\U00B8", "\U0105", "\U015F", "\U00BB", "\U013D", "\U02DD", "\U013E", "\U017C", "\U0154", "\U00C1", "\U00C2", "\U0102", "\U00C4", "\U0139", "\U0106", "\U00C7", "\U010C")
 
-
 plot(c(1, 11), c(1, 6), type = "n", ann = F, axes = F) box() text(rep(1:11, 6), rep(1:6, each = 11), x)
 
 적절한 인코딩을 설정하지 않으면 아래와 같은 경고가 나타나고 문자가 "..."로 대체될 수 있습니다(아래의 문자 \U20AC는 유로 기호 €입니다).
@@ -130,12 +127,10 @@ plot(1, main = "\U20AC")
 
 ## Warning: conversion failure on ’€’ in ’mbcsToSbcs’: dot substituted for <e2> ## Warning: conversion failure on ’€’ in ’mbcsToSbcs’: dot substituted for <82> ## Warning: conversion failure on ’€’ in ’mbcsToSbcs’: dot substituted for <ac>
 
-|‚ „ … † ‡ ‰ Š ‹<br><br>Ž ‘ ’ “ ” • – — ™ š<br><br>› ž ˇ ˘ Ł ¤ ¦<br><br>§ ¨ © « ¬ ® ° ± ˛<br><br>ł ´<br><br>µ ¶ · ¸ » ˝<br><br>Á Â Ä Ç|
-|---|
-
+| ‚ „ … † ‡ ‰ Š ‹<br><br>Ž ‘ ’ “ ” • – — ™ š<br><br>› ž ˇ ˘ Ł ¤ ¦<br><br>§ ¨ © « ¬ ® ° ± ˛<br><br>ł ´<br><br>µ ¶ · ¸ » ˝<br><br>Á Â Ä Ç |
+| ------------------------------------------------------------------------------------------------------------------------------------- |
 
 - FIGURE 7.3: Windows-1250 코드 페이지 표: 이 표는 유로 기호나 어큐트 악센트가 있는 문자 A와 같이 코드 페이지의 일부 문자만 보여줍니다.
-
 
 ###### 7.1.6 The Dingbats Font
 
@@ -153,7 +148,7 @@ pdf(file = NULL) # open a pdf device to record plots ## enable recording for the
 
 str(x, 1) # an R object of class recordedplot
 
-## List of 3 ## $ :Dotted pair list of 8 ## $ : raw [1:35992] 00 00 00 00 ... ## $ : NULL ## - attr(*, "pid")= int 31856 ## - attr(*, "class")= chr "recordedplot"
+## List of 3 ## $ :Dotted pair list of 8 ## $ : raw [1:35992] 00 00 00 00 ... ## $ : NULL ## - attr(_, "pid")= int 31856 ## - attr(_, "class")= chr "recordedplot"
 
 print(x) # redraw the plot object
 
@@ -192,8 +187,8 @@ mass → energy E = mc2
 2 4 6 8 10
 
 2 4 6 8 10
-- - banana 또는 순서가 있는 목록:
 
+- - banana 또는 순서가 있는 목록:
 
 1. items
 
@@ -204,16 +199,15 @@ mass → energy E = mc2
 1. ordered
 
 - - 중첩된
-- - 항목 # 더 많은 섹션 ## Hi hi hi ## Hello hello hello ## Howdy howdy howdy # 이제, 약간의 R 코드    {r linear-model} fit = lm(dist ~ speed, data = cars) b = coef(fit) # 계수 summary(fit)
+- - 항목 # 더 많은 섹션 ## Hi hi hi ## Hello hello hello ## Howdy howdy howdy # 이제, 약간의 R 코드 {r linear-model} fit = lm(dist ~ speed, data = cars) b = coef(fit) # 계수 summary(fit)
 
+코드는 모든 출력 형식에서 구문 강조 표시가 적용됩니다. # 그리고 약간의 그림 {r lm-vis, fig.cap= Regression diagnostics } par(mfrow = c(2, 2), pch = 20, mar = c(4, 4, 2, .1),
 
-코드는 모든 출력 형식에서 구문 강조 표시가 적용됩니다. # 그리고 약간의 그림    {r lm-vis, fig.cap= Regression diagnostics } par(mfrow = c(2, 2), pch = 20, mar = c(4, 4, 2, .1),
-
-bg =  white ) plot(fit)
+bg = white ) plot(fit)
 
 # 약간의 수학 회귀 방정식은 $Y= r b[1] + r b[2] x$이며, 모델은 다음과 같습니다.
 
-$$ Y = \beta_0 + \beta_1 x + \epsilon$$ # Pandoc 확장: 정의 목록 프로그래머 : 커피를 코드로 바꾸는 사람입니다. LaTeX : 몇 개의 백슬래시를 사용하는 간단한 언어입니다. # Pandoc 확장: 예시 몇 가지 예시가 있습니다. (@) 0.3 + 0.4 - 0.7이 무엇인지 생각해 보십시오. 0입니다. 간단합니다. (@weird) 이제 0.3 - 0.7 + 0.4가 무엇인지 생각해 보십시오. 여전히 0일까요? 사람들은 종종 (@weird)에 놀라곤 합니다. # Pandoc 확장: 표 여기에 표가 있습니다. Table: 간단한 표 문법 시연.    {r echo=FALSE} knitr::kable(head(iris))
+$$ Y = \beta_0 + \beta_1 x + \epsilon$$ # Pandoc 확장: 정의 목록 프로그래머 : 커피를 코드로 바꾸는 사람입니다. LaTeX : 몇 개의 백슬래시를 사용하는 간단한 언어입니다. # Pandoc 확장: 예시 몇 가지 예시가 있습니다. (@) 0.3 + 0.4 - 0.7이 무엇인지 생각해 보십시오. 0입니다. 간단합니다. (@weird) 이제 0.3 - 0.7 + 0.4가 무엇인지 생각해 보십시오. 여전히 0일까요? 사람들은 종종 (@weird)에 놀라곤 합니다. # Pandoc 확장: 표 여기에 표가 있습니다. Table: 간단한 표 문법 시연. {r echo=FALSE} knitr::kable(head(iris))
 
 # Pandoc 확장: 각주 각주[^1]를 작성할 수도 있습니다. [^1]: 안녕하세요, 각주입니다. 또는 인라인 각주^[여기에 보이는 것처럼]를 작성할 수도 있습니다. # Pandoc 확장: 인용 R Markdown 파일을 R[@R-base]의 knitr[@R-knitr]를 통해 Markdown으로 컴파일합니다. @R-knitr에 대한 자세한 내용은 <http://yihui.name/knitr>를 참고하십시오.
 
@@ -221,8 +215,7 @@ $$ Y = \beta_0 + \beta_1 x + \epsilon$$ # Pandoc 확장: 정의 목록 프로그
 
 - 그림 14.1: RStudio 창에서 R Markdown v2의 HTML 출력 문서 미리보기.
 
-
-# 참고 문헌    {r include=FALSE} knitr::write_bib(c( base ,  knitr ),  Rmd-v2.bib )
+# 참고 문헌 {r include=FALSE} knitr::write_bib(c( base , knitr ), Rmd-v2.bib )
 
 kable()이나 write_bib()가 어떻게 작동하는지 확실하지 않다면 6.3절 및 12.4.1절을 다시 확인해 보시기 바랍니다.
 
@@ -230,9 +223,8 @@ kable()이나 write_bib()가 어떻게 작동하는지 확실하지 않다면 6.
 
 HTML 출력에 대해 조정할 수 있는 옵션이 다양하게 있습니다. 전체 목록은 도움말 페이지 ?rmarkdown::html_document를 참고하시기 바랍니다.
 
-|![image 21](Dynamic Documents with R and knitr 2nd_images/imageFile21.png)|
-|---|
-
+| ![image 21](Dynamic Documents with R and knitr 2nd_images/imageFile21.png) |
+| -------------------------------------------------------------------------- |
 
 ###### 그림 14.2: 표, 각주, 인용 미리보기: 표는 kable()로 생성되었고, 참고 문헌 데이터베이스는 knitr의 write_bib()로 생성되었습니다.
 
@@ -266,9 +258,8 @@ html_document: css: my_own.css theme: null highlight: null
 
 HTML 페이지에는 종종 CSS, JavaScript, 이미지 파일 등 외부 종속성이 있으므로 다른 사람과 HTML 파일을 공유할 때 불편할 수 있습니다. HTML 파일을 보낼 때 이러한 종속성도 포함되어 있는지 확인해야 하기 때문입니다.
 
-|![image 22](Dynamic Documents with R and knitr 2nd_images/imageFile22.png)|
-|---|
-
+| ![image 22](Dynamic Documents with R and knitr 2nd_images/imageFile22.png) |
+| -------------------------------------------------------------------------- |
 
 ###### 그림 14.3: 목차 및 번호가 매겨진 섹션이 포함된 readable 테마 미리보기(그림 14.1과 글꼴이 다른 것을 확인할 수 있습니다).
 
@@ -338,27 +329,24 @@ HTML 문서 형식에 익숙해지면 다른 출력 형식도 쉽게 익힐 수 
 
 pdf_document: number_sections: yes toc: yes
 
-|Pandoc extension: tables<br><br>A table here.<br><br>Table 1: Demonstration of simple table syntax.<br><br>Sepal.Length Sepal.Width Petal.Length Petal.Width Species<br><br>5.1 3.5 1.4 0.2 setosa 4.9 3.0 1.4 0.2 setosa<br><br>4.7 3.2 1.3 0.2 setosa<br><br>4.6 3.1 1.5 0.2 setosa<br>5.0 3.6 1.4 0.2 setosa<br><br><br>5.4 3.9 1.7 0.4 setosa<br><br><br>Pandoc extension: footnotes<br><br>We can also write footnotes1. Or write some inline footnotes2.<br><br>Pandoc extension: citations<br><br>We compile the R Markdown ﬁle to Markdown through knitr (Xie 2014) in R (R Core Team 2014). For more about Xie (2014), see http://yihui.name/knitr.<br><br>References<br><br>R Core Team. 2014. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. http://www.R-project. org/.<br><br>Xie, Yihui. 2014. Knitr: A General-Purpose Package for Dynamic Report Generation in R. http://yihui.name/knitr/.<br><br>1hi, I’m a footnote 2as you can see here|
-|---|
-
+| Pandoc extension: tables<br><br>A table here.<br><br>Table 1: Demonstration of simple table syntax.<br><br>Sepal.Length Sepal.Width Petal.Length Petal.Width Species<br><br>5.1 3.5 1.4 0.2 setosa 4.9 3.0 1.4 0.2 setosa<br><br>4.7 3.2 1.3 0.2 setosa<br><br>4.6 3.1 1.5 0.2 setosa<br>5.0 3.6 1.4 0.2 setosa<br><br><br>5.4 3.9 1.7 0.4 setosa<br><br><br>Pandoc extension: footnotes<br><br>We can also write footnotes1. Or write some inline footnotes2.<br><br>Pandoc extension: citations<br><br>We compile the R Markdown ﬁle to Markdown through knitr (Xie 2014) in R (R Core Team 2014). For more about Xie (2014), see http://yihui.name/knitr.<br><br>References<br><br>R Core Team. 2014. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. http://www.R-project. org/.<br><br>Xie, Yihui. 2014. Knitr: A General-Purpose Package for Dynamic Report Generation in R. http://yihui.name/knitr/.<br><br>1hi, I’m a footnote 2as you can see here |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 ###### 그림 14.4: R Markdown v2 예시의 PDF 출력 문서 4페이지 미리보기.
 
-|R Markdown v2 Demo<br><br>Li Lei Han Meimei<br><br>2015/01/01<br><br>Contents<br><br>1 Start with a cool section 2<br>2 Followed by another section 2<br>3 More sections 2<br><br>3.1 Hi . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2<br>3.2 Hello . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2<br>3.3 Howdy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2<br><br><br>4 Okay, some R code 3<br>5 And some pictures 3<br>6 A little bit math 4<br>7 Pandoc extension: deﬁnition lists 4<br>8 Pandoc extension: examples 4<br>9 Pandoc extension: tables 5<br>10 Pandoc extension: footnotes 5<br>11 Pandoc extension: citations 5<br><br><br>References 5|
-|---|
-
+| R Markdown v2 Demo<br><br>Li Lei Han Meimei<br><br>2015/01/01<br><br>Contents<br><br>1 Start with a cool section 2<br>2 Followed by another section 2<br>3 More sections 2<br><br>3.1 Hi . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2<br>3.2 Hello . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2<br>3.3 Howdy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2<br><br><br>4 Okay, some R code 3<br>5 And some pictures 3<br>6 A little bit math 4<br>7 Pandoc extension: deﬁnition lists 4<br>8 Pandoc extension: examples 4<br>9 Pandoc extension: tables 5<br>10 Pandoc extension: footnotes 5<br>11 Pandoc extension: citations 5<br><br><br>References 5 |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 1
 
 - 그림 14.5: 목차와 번호가 매겨진 섹션이 포함된 PDF 출력 문서 미리보기.
 
-
 Pandoc에는 YAML 메타데이터에서 사용할 수 있는 몇 가지 LATEX 전용 옵션이 있으며, Pandoc 웹사이트에서 전체 문서를 찾을 수 있습니다. 여기서는 그 중 몇 가지만 나열합니다.
 
-fontsize: 문서의 글꼴 크기(예: 10pt, 11pt, 12pt)
-documentclass: 문서 클래스(예: article, book, report)
-classoption: 문서 클래스에 대한 옵션(예: a4paper, twocolumn)
-geometry: geometry 패키지에 대한 옵션(예: tmargin=2cm, bmargin=2cm, lmargin=3cm, rmargin=3cm)
+fontsize: 문서의 글꼴 크기(10pt, 11pt, 12pt)
+documentclass: 문서 클래스(article, book, report)
+classoption: 문서 클래스에 대한 옵션(a4paper, twocolumn)
+geometry: geometry 패키지에 대한 옵션(tmargin=2cm, bmargin=2cm, lmargin=3cm, rmargin=3cm)
 
 참고: 이는 YAML의 최상위 옵션이므로 pdf_document 필드 아래에 두어서는 안 됩니다.
 
@@ -377,8 +365,7 @@ output:
 
 pdf_document: latex_engine: xelatex keep_tex: yes
 
-- ---
-
+---
 
 이전 절에서 includes 및 template 옵션을 소개했는데, 이는 LATEX 출력에 더 유용할 수 있습니다. LATEX 사용자가 프리앰블(preamble)에서 특정 LATEX 패키지를 사용하여 출력을 사용자 정의하는 것이 매우 일반적이기 때문입니다. 이러한 콘텐츠를 외부 파일에 넣고 includes 옵션 아래의 in_header 옵션을 통해 프리앰블에 포함시킬 수 있습니다. 기본 LATEX 템플릿에 만족하지 않는 경우 직접 작성할 수 있습니다. 실제로 작성하기 전에 Pandoc 문서를 주의 깊게 확인하여 YAML 옵션을 통해 원하는 결과를 얻을 수 있는지 확인해 보시기 바랍니다. 새로운 LATEX 템플릿을 작성하는 것은 비교적 쉽지만, Pandoc의 향후 변경 가능성을 인지하고 있어야 하므로 나중에 템플릿을 유지 관리하는 것이 간단하지 않을 수 있습니다.
 
@@ -391,7 +378,7 @@ Word 문서에서 가장 중요하고 유용한 기능은 템플릿일 것입니
 Word 문서에서 스타일을 정의하는 방법을 보여주기 위해 https://vimeo.com/110804387에 짧은 동영상을 준비했습니다. 그림 14.7 및 14.8도 확인해 보실 수 있습니다. 기본 단계는 다음과 같습니다.
 
 - 1. Pandoc을 사용하여 임의의 Word 문서를 만듭니다. 예: YAML 메타데이터의 output 옵션으로 word_document를 사용합니다.
-x <- round(x, 2)
+     x <- round(x, 2)
 
 as.character(x) # x를 문자로 변환하고 반환합니다 })
 
@@ -404,7 +391,6 @@ knit_hooks$set(text = function(x) {
 gsub("^\\s*|\\s*$", "", x) })
 
 - • document 훅은 chunk 훅과 유사하며 전체 문서의 출력을 입력 x로 받습니다. 이 훅은 문서를 후처리하는 데 유용할 수 있습니다. 실제로 이 책은 모든 표 캡션 아래(tabular 환경 전)에 수직 간격 \medskip{}을 추가하기 위해 이 훅을 사용했습니다.
-
 
 knit_hooks$set(document = function(x) {
 
@@ -421,13 +407,13 @@ knitr에는 특별한 소스 문서 형식이 있는데, 본질적으로 roxygen
 
 때로는 R 코드와 일반 텍스트를 섞고 싶지 않고 대신 주석에 텍스트를 작성하여 전체 문서가 유효한 R 스크립트가 되도록 하고 싶을 때가 있습니다. knitr의 spin() 함수는 주석이 roxygen 구문을 사용하여 작성된 경우 이러한 R 스크립트를 처리할 수 있습니다. spin()의 기본 아이디어 역시 문학적 프로그래밍에서 영감을 받았습니다. 이 R 스크립트를 컴파일하면 #'가 제거되어 일반 텍스트가 "복원"되고 R 코드가 평가됩니다. roxygen 주석 뒤에 있지 않은 모든 것은 코드 청크로 취급됩니다. 청크 옵션을 작성하려면 또 다른 유형의 특수 주석인 #+ 또는 #- 뒤에 청크 옵션을 사용하면 됩니다. 다음은 간단한 예시입니다.
 
-#' 여기에 방법을 소개하고 그 다음에 R 코드를 작성합니다:
-1 + 1 
+#' 여기에 방법을 소개하고 그 다음에 R 코드를 작성합니다.
+1 + 1
 x <- rnorm(10)
 
 #' 다음과 같이 청크 옵션을 작성하는 것도 가능합니다.
-#+ test-label, fig.height=4 
-plot(x) 
+#+ test-label, fig.height=4
+plot(x)
 #' 이제 문서가 완성되었습니다.
 
 이 스크립트를 test.R이라는 파일에 저장하고 컴파일하여 보고서를 만들 수 있습니다.
@@ -446,7 +432,7 @@ title = "Waiting time: Old Faithful geyser." alt = "Waiting time: Old Faithful g
 
 청크 내의 모든 플롯 파일은 foo-1, foo-2, ..., foo-n과 같이 순차적으로 이름이 지정됩니다. 여기서 foo는 청크 라벨이고 n은 청크 내 플롯의 총 개수입니다. 청크에 플롯이 하나만 있더라도 파일명에는 여전히 접미사 -1이 붙습니다.
 
-fig.path에 존재하지 않는 디렉토리가 포함된 경우 knitr는 자동으로 디렉토리를 생성하려고 시도합니다. LATEX 출력의 경우 그림 경로와 파일명에는 영숫자, 하이픈(-), 밑줄(_)만 허용되며, 다른 모든 문자는 밑줄로 대체됩니다. 이는 LATEX가 공백이나 점과 같은 문자를 처리하는 데 문제가 있을 수 있기 때문입니다.
+fig.path에 존재하지 않는 디렉토리가 포함된 경우 knitr는 자동으로 디렉토리를 생성하려고 시도합니다. LATEX 출력의 경우 그림 경로와 파일명에는 영숫자, 하이픈(-), 밑줄(\_)만 허용되며, 다른 모든 문자는 밑줄로 대체됩니다. 이는 LATEX가 공백이나 점과 같은 문자를 처리하는 데 문제가 있을 수 있기 때문입니다.
 
 대부분의 경우 fig.ext를 지정할 필요는 없지만, 그래픽을 저장하기 위해 사용자 정의 장치를 사용하는 경우 knitr는 적절한 파일명 확장자를 알 수 없으므로 문자열로 이 옵션을 명시적으로 설정해야 합니다.
 

@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d55203e86ba1a699a1ae3c3642d34712.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-05671fd07ca6d6876311839a4a0c21df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -186,6 +186,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">데이터 시각화 (Data visualization)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/data-transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">소개</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -266,7 +272,7 @@ Figure&nbsp;1: 스크립트 에디터를 열면 IDE의 왼쪽 상단에 새 창�
 </section>
 <section id="rstudio-진단-rstudio-diagnostics" class="level3" data-number="1.1.2">
 <h3 data-number="1.1.2" class="anchored" data-anchor-id="rstudio-진단-rstudio-diagnostics"><span class="header-section-number">1.1.2</span> RStudio 진단 (RStudio diagnostics)</h3>
-<p>스크립트 에디터에서 RStudio는 사이드바에 빨간색 십자형 기호(cross)와 물결 모양 밑줄(squiggly line)로 구문 오류(syntax errors)를 강조 표시합니다:</p>
+<p>스크립트 에디터에서 RStudio는 사이드바에 빨간색 십자형 기호(cross)와 물결 모양 밑줄(squiggly line)로 구문 오류(syntax errors)를 강조 표시합니다.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -276,7 +282,7 @@ Figure&nbsp;1: 스크립트 에디터를 열면 IDE의 왼쪽 상단에 새 창�
 </div>
 </div>
 </div>
-<p>십자형 기호 위에 마우스를 올리면 어떤 문제인지 확인할 수 있습니다:</p>
+<p>십자형 기호 위에 마우스를 올리면 어떤 문제인지 확인할 수 있습니다.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -286,7 +292,7 @@ Figure&nbsp;1: 스크립트 에디터를 열면 IDE의 왼쪽 상단에 새 창�
 </div>
 </div>
 </div>
-<p>RStudio는 또한 잠재적인 문제에 대해서도 알려줍니다:</p>
+<p>RStudio는 또한 잠재적인 문제에 대해서도 알려줍니다.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -300,11 +306,11 @@ Figure&nbsp;1: 스크립트 에디터를 열면 IDE의 왼쪽 상단에 새 창�
 <section id="저장-및-명명-saving-and-naming" class="level3" data-number="1.1.3">
 <h3 data-number="1.1.3" class="anchored" data-anchor-id="저장-및-명명-saving-and-naming"><span class="header-section-number">1.1.3</span> 저장 및 명명 (Saving and naming)</h3>
 <p>RStudio는 종료 시 스크립트 에디터의 내용을 자동으로 저장하고 다시 열 때 자동으로 다시 로드합니다. 그럼에도 불구하고 Untitled1, Untitled2, Untitled3 등과 같은 이름은 피하고 대신 스크립트를 저장하고 유익한 정보가 담긴 이름을 지정하는 것이 좋습니다.</p>
-<p>파일 이름을 <code>code.R</code>이나 <code>myscript.R</code>로 지정하고 싶을 수도 있지만 파일 이름을 선택하기 전에 조금 더 신중하게 생각해야 합니다. 파일 이름 지정의 3가지 중요한 원칙은 다음과 같습니다:</p>
+<p>파일 이름을 <code>code.R</code>이나 <code>myscript.R</code>로 지정하고 싶을 수도 있지만 파일 이름을 선택하기 전에 조금 더 신중하게 생각해야 합니다. 파일 이름 지정의 3가지 중요한 원칙은 다음과 같습니다.</p>
 <ol type="1">
-<li>파일 이름은 <strong>기계(machine)</strong>가 읽을 수 있어야 합니다: 공백, 기호, 특수 문자를 피하세요. 대소문자 구분에 의존하여 파일을 구별하지 마세요.</li>
-<li>파일 이름은 <strong>사람(human)</strong>이 읽을 수 있어야 합니다: 파일 이름을 사용하여 파일에 무엇이 있는지 설명하세요.</li>
-<li>파일 이름은 기본 정렬(default ordering) 방식과 잘 어울려야 합니다: 알파벳순 정렬이 사용되는 순서대로 파일을 정렬할 수 있도록 숫자로 파일 이름을 시작하세요.</li>
+<li>파일 이름은 <strong>기계(machine)</strong>가 읽을 수 있어야 합니다. 공백, 기호, 특수 문자를 피하세요. 대소문자 구분에 의존하여 파일을 구별하지 마세요.</li>
+<li>파일 이름은 <strong>사람(human)</strong>이 읽을 수 있어야 합니다. 파일 이름을 사용하여 파일에 무엇이 있는지 설명하세요.</li>
+<li>파일 이름은 기본 정렬(default ordering) 방식과 잘 어울려야 합니다. 알파벳순 정렬이 사용되는 순서대로 파일을 정렬할 수 있도록 숫자로 파일 이름을 시작하세요.</li>
 </ol>
 <p>예를 들어 프로젝트 폴더에 다음과 같은 파일이 있다고 가정해 보겠습니다.</p>
 <pre><code>alternative model.R
@@ -316,8 +322,8 @@ Figure_02.png
 model_first_try.R
 run-first.r
 temp.txt</code></pre>
-<p>여기에는 다양한 문제가 있습니다: 어느 파일을 먼저 실행해야 하는지 찾기 어렵고, 파일 이름에 공백이 포함되어 있으며, 이름은 같지만 대소문자 구분이 다른 두 개의 파일(<code>finalreport</code> 대 <code>FinalReport</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>)이 있고, 일부 이름은 내용(<code>run-first</code> 및 <code>temp</code>)을 설명하지 않습니다.</p>
-<p>다음은 동일한 파일 집합의 이름을 지정하고 구성하는 더 나은 방법입니다:</p>
+<p>여기에는 다양한 문제가 있습니다. 어느 파일을 먼저 실행해야 하는지 찾기 어렵고, 파일 이름에 공백이 포함되어 있으며, 이름은 같지만 대소문자 구분이 다른 두 개의 파일(<code>finalreport</code> 대 <code>FinalReport</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>)이 있고, 일부 이름은 내용(<code>run-first</code> 및 <code>temp</code>)을 설명하지 않습니다.</p>
+<p>다음은 동일한 파일 집합의 이름을 지정하고 구성하는 더 나은 방법입니다.</p>
 <pre><code>01-load-data.R
 02-exploratory-analysis.R
 03-model-approach-1.R
@@ -333,7 +339,7 @@ report-draft-notes.txt</code></pre>
 <section id="프로젝트-projects" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="프로젝트-projects"><span class="header-section-number">1.2</span> 프로젝트 (Projects)</h2>
 <p>언젠가 여러분은 R을 종료하고, 다른 일을 하고, 나중에 분석으로 돌아와야 할 것입니다. 언젠가 여러분은 여러 분석을 동시에 수행하게 될 것이고 이들을 별도로 유지하고 싶을 것입니다. 언젠가 외부 세계의 데이터를 R로 가져오고 R의 수치 결과와 그림을 외부 세계로 내보내야 할 것입니다.</p>
-<p>이러한 실제 상황을 다루려면 두 가지 결정을 내려야 합니다:</p>
+<p>이러한 실제 상황을 다루려면 두 가지 결정을 내려야 합니다.</p>
 <ol type="1">
 <li><p>진실의 출처(source of truth)는 무엇인가? 어떤 일이 있었는지에 대한 영구적인 기록으로 무엇을 남겨둘 것인가?</p></li>
 <li><p>분석 결과(analysis)는 어디에 존재하는가?</p></li>
@@ -356,7 +362,7 @@ Figure&nbsp;2: 항상 백지 상태(clean slate)에서 RStudio 세션을 시작�
 </div>
 </div>
 </div>
-<p>코드의 중요한 부분을 에디터에 제대로 캡처했는지 확인하기 위해 함께 작동하는 훌륭한 키보드 단축키 쌍이 있습니다:</p>
+<p>코드의 중요한 부분을 에디터에 제대로 캡처했는지 확인하기 위해 함께 작동하는 훌륭한 키보드 단축키 쌍이 있습니다.</p>
 <ol type="1">
 <li>Cmd/Ctrl + Shift + 0/F10을 눌러 R을 다시 시작합니다.</li>
 <li>Cmd/Ctrl + Shift + S를 눌러 현재 스크립트를 다시 실행합니다.</li>
@@ -379,7 +385,7 @@ Figure&nbsp;2: 항상 백지 상태(clean slate)에서 RStudio 세션을 시작�
 </section>
 <section id="분석-결과는-어디에-존재하는가-where-does-your-analysis-live" class="level3" data-number="1.2.2">
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="분석-결과는-어디에-존재하는가-where-does-your-analysis-live"><span class="header-section-number">1.2.2</span> 분석 결과는 어디에 존재하는가? (Where does your analysis live?)</h3>
-<p>R에는 <strong>작업 디렉토리(working directory)</strong>라는 강력한 개념이 있습니다. 이곳은 R이 로드해달라고 요청한 파일을 찾는 곳이며 저장하라고 요청한 파일이 저장되는 곳입니다. RStudio는 콘솔 상단에 현재 작업 디렉토리를 표시합니다:</p>
+<p>R에는 <strong>작업 디렉토리(working directory)</strong>라는 강력한 개념이 있습니다. 이곳은 R이 로드해달라고 요청한 파일을 찾는 곳이며 저장하라고 요청한 파일이 저장되는 곳입니다. RStudio는 콘솔 상단에 현재 작업 디렉토리를 표시합니다.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -389,7 +395,7 @@ Figure&nbsp;2: 항상 백지 상태(clean slate)에서 RStudio 세션을 시작�
 </div>
 </div>
 </div>
-<p><code>getwd()</code>를 실행하면 R 코드에서 이를 출력할 수 있습니다:</p>
+<p><code>getwd()</code>를 실행하면 R 코드에서 이를 출력할 수 있습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/Users/hadley/Documents/r4ds"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -420,7 +426,7 @@ Figure&nbsp;3: 새 프로젝트를 만들려면: (위) 먼저 New Directory를 �
 </div>
 </div>
 <p>프로젝트 이름을 <code>r4ds</code>로 지정하고 이 프로젝트를 어느 하위 디렉토리에 넣을지 신중하게 생각하세요. 적당한(sensible) 곳에 저장해 두지 않으면 나중에 찾기가 힘들 것입니다!</p>
-<p>이 과정이 완료되면 오직 이 책만을 위한 새로운 RStudio 프로젝트가 생성됩니다. 프로젝트의 “홈(home)”이 현재 작업 디렉토리인지 확인합니다:</p>
+<p>이 과정이 완료되면 오직 이 책만을 위한 새로운 RStudio 프로젝트가 생성됩니다. 프로젝트의 “홈(home)”이 현재 작업 디렉토리인지 확인합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] /Users/hadley/Documents/r4ds</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -441,7 +447,7 @@ Figure&nbsp;3: 새 프로젝트를 만들려면: (위) 먼저 New Directory를 �
 <section id="상대-경로와-절대-경로-relative-and-absolute-paths" class="level3" data-number="1.2.4">
 <h3 data-number="1.2.4" class="anchored" data-anchor-id="상대-경로와-절대-경로-relative-and-absolute-paths"><span class="header-section-number">1.2.4</span> 상대 경로와 절대 경로 (Relative and absolute paths)</h3>
 <p>일단 프로젝트 내부에 들어가면 절대 경로가 아닌 상대 경로만 사용해야 합니다. 차이점이 무엇일까요? 상대 경로는 작업 디렉토리, 즉 프로젝트의 홈을 기준으로 합니다. 위에서 Hadley가 <code>data/diamonds.csv</code>를 작성했을 때 그것은 <code>/Users/hadley/Documents/r4ds/data/diamonds.csv</code>의 단축키였습니다. 하지만 중요한 것은 Mine이 자신의 컴퓨터에서 이 코드를 실행한다면 이 코드는 <code>/Users/Mine/Documents/r4ds/data/diamonds.csv</code>를 가리킬 것이라는 점입니다. 상대 경로가 중요한 이유는 바로 이것입니다. R 프로젝트 폴더가 어느 위치에 있든 상관없이 작동할 것입니다.</p>
-<p>절대 경로는 작업 디렉토리와 상관없이 동일한 위치를 가리킵니다. 운영 체제에 따라 조금씩 다르게 보입니다. Windows에서는 드라이브 문자(예: <code>C:</code>) 또는 두 개의 백슬래시(예: <code>\\servername</code>)로 시작하고 Mac/Linux에서는 슬래시 “/”(예: <code>/users/hadley</code>)로 시작합니다. 절대 경로는 공유를 방해하므로 스크립트에서 <strong>절대</strong> 사용해서는 안 됩니다. 다른 어느 누구도 여러분과 정확히 동일한 디렉토리 구성을 가지고 있지 않을 것입니다.</p>
+<p>절대 경로는 작업 디렉토리와 상관없이 동일한 위치를 가리킵니다. 운영 체제에 따라 조금씩 다르게 보입니다. Windows에서는 드라이브 문자(<code>C:</code>) 또는 두 개의 백슬래시(<code>\\servername</code>)로 시작하고 Mac/Linux에서는 슬래시 “/”(<code>/users/hadley</code>)로 시작합니다. 절대 경로는 공유를 방해하므로 스크립트에서 <strong>절대</strong> 사용해서는 안 됩니다. 다른 어느 누구도 여러분과 정확히 동일한 디렉토리 구성을 가지고 있지 않을 것입니다.</p>
 <p>운영 체제 간에는 또 다른 중요한 차이점이 있습니다. 경로의 구성 요소를 구분하는 방법입니다. Mac과 Linux는 슬래시(<code>data/diamonds.csv</code>)를 사용하고 Windows는 백슬래시(<code>data\diamonds.csv</code>)를 사용합니다. R은 (현재 사용 중인 플랫폼에 상관없이) 두 유형 모두에서 작동할 수 있지만 불행히도 백슬래시는 R에서 특별한 의미를 가지며 경로에 백슬래시 한 개를 포함하려면 백슬래시 두 개를 입력해야 합니다! 이것은 생활을 실망스럽게(frustrating) 만들므로 우리는 항상 슬래시가 있는 Linux/Mac 스타일을 사용하는 것을 권장합니다.</p>
 </section>
 </section>
@@ -455,7 +461,7 @@ Figure&nbsp;3: 새 프로젝트를 만들려면: (위) 먼저 New Directory를 �
 <section id="요약-summary" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="요약-summary"><span class="header-section-number">1.4</span> 요약 (Summary)</h2>
 <p>이 장에서는 스크립트(파일)와 프로젝트(디렉토리)를 통해 R 코드를 구성하는 방법을 배웠습니다. 코드 스타일과 마찬가지로 처음에는 쓸데없는 바쁜 일(busywork)처럼 느껴질 수 있습니다. 그러나 여러 프로젝트에 걸쳐 더 많은 코드가 축적됨에 따라 약간의 사전 구성 작업이 장기적으로 얼마나 많은 시간을 절약해 주는지 이해하게 될 것입니다.</p>
-<p>요약하자면, 스크립트와 프로젝트는 미래에 여러분에게 도움이 될 탄탄한 워크플로를 제공합니다:</p>
+<p>요약하자면, 스크립트와 프로젝트는 미래에 여러분에게 도움이 될 탄탄한 워크플로를 제공합니다.</p>
 <ul>
 <li>데이터 분석 프로젝트마다 하나의 RStudio 프로젝트를 만듭니다.</li>
 <li>프로젝트에 스크립트를 (유익한 이름으로) 저장하고, 편집하고, 부분별로 또는 전체로 실행합니다. 스크립트에 모든 내용을 제대로 캡처했는지 확인하기 위해 R을 자주 다시 시작하세요.</li>

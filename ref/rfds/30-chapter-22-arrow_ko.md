@@ -12,14 +12,14 @@ arrow와 dbplyr 모두 dplyr 백엔드를 제공하므로 언제 어느 것을 �
 
 ## 사전 준비
 
-이 장에서도 계속해서 tidyverse, 특히 dplyr를 사용하겠지만, 이를 대규모 데이터 작업용으로 특별히 설계된 arrow 패키지와 결합할 것입니다:
+이 장에서도 계속해서 tidyverse, 특히 dplyr를 사용하겠지만, 이를 대규모 데이터 작업용으로 특별히 설계된 arrow 패키지와 결합할 것입니다.
 
 ```
 library(tidyverse)
 library(arrow)
 ```
 
-이 장의 후반부에서는 arrow와 duckdb 사이의 몇 가지 연결성도 살펴볼 것이므로 dbplyr와 duckdb도 필요합니다:
+이 장의 후반부에서는 arrow와 duckdb 사이의 몇 가지 연결성도 살펴볼 것이므로 dbplyr와 duckdb도 필요합니다.
 
 ```
 library(dbplyr, warn.conflicts = FALSE)
@@ -45,16 +45,16 @@ curl::multi_download(
 
 # 데이터 세트 열기
 
-데이터를 살펴보는 것으로 시작해 보겠습니다. 9GB 크기인 이 파일은 꽤 커서 아마 전체를 메모리에 로드하고 싶지는 않을 것입니다. 일반적으로 데이터 크기의 최소 두 배 이상의 메모리가 필요하다는 것이 좋은 경험 법칙이며, 많은 노트북 컴퓨터는 최대 16GB의 메모리를 갖추고 있습니다. 이는 <a href="https://readr.tidyverse.org/reference/read_delim.html" class="orm:hideurl"><code>read_csv()</code></a>를 피하고 대신 <a href="https://arrow.apache.org/docs/r/reference/open_dataset.html" class="orm:hideurl"><code>arrow::open_dataset()</code></a>을 사용해야 함을 의미합니다:
+데이터를 살펴보는 것으로 시작해 보겠습니다. 9GB 크기인 이 파일은 꽤 커서 아마 전체를 메모리에 로드하고 싶지는 않을 것입니다. 일반적으로 데이터 크기의 최소 두 배 이상의 메모리가 필요하다는 것이 좋은 경험 법칙이며, 많은 노트북 컴퓨터는 최대 16GB의 메모리를 갖추고 있습니다. 이는 <a href="https://readr.tidyverse.org/reference/read_delim.html" class="orm:hideurl"><code>read_csv()</code></a>를 피하고 대신 <a href="https://arrow.apache.org/docs/r/reference/open_dataset.html" class="orm:hideurl"><code>arrow::open_dataset()</code></a>을 사용해야 함을 의미합니다.
 
 ```
 seattle_csv <- open_dataset(
-  sources = "data/seattle-library-checkouts.csv", 
+  sources = "data/seattle-library-checkouts.csv",
   format = "csv"
 )
 ```
 
-이 코드가 실행되면 무슨 일이 일어날까요? <a href="https://arrow.apache.org/docs/r/reference/open_dataset.html" class="orm:hideurl"><code>open_dataset()</code></a>은 데이터 세트의 구조를 파악하기 위해 몇 천 개의 행을 스캔합니다. 그런 다음 찾은 것을 기록하고 멈춥니다. 여러분이 구체적으로 요청할 때만 더 많은 행을 읽을 것입니다. `seattle_csv`를 출력하면 이러한 메타데이터를 볼 수 있습니다:
+이 코드가 실행되면 무슨 일이 일어날까요? <a href="https://arrow.apache.org/docs/r/reference/open_dataset.html" class="orm:hideurl"><code>open_dataset()</code></a>은 데이터 세트의 구조를 파악하기 위해 몇 천 개의 행을 스캔합니다. 그런 다음 찾은 것을 기록하고 멈춥니다. 여러분이 구체적으로 요청할 때만 더 많은 행을 읽을 것입니다. `seattle_csv`를 출력하면 이러한 메타데이터를 볼 수 있습니다.
 
 ```
 seattle_csv
@@ -95,12 +95,12 @@ seattle_csv |> glimpse()
 #> $ PublicationYear <string> "c2011.", "2010.", "2015", "2005.", "c2004.", "c20…
 ```
 
-arrow가 계산을 수행하고 약간의 데이터를 반환하도록 강제하는 <a href="https://dplyr.tidyverse.org/reference/compute.html" class="orm:hideurl"><code>collect()</code></a>를 사용함으로써, dplyr 동사들과 함께 이 데이터 세트를 사용하기 시작할 수 있습니다. 예를 들어 다음 코드는 연도별 총 대출 횟수를 알려줍니다:
+arrow가 계산을 수행하고 약간의 데이터를 반환하도록 강제하는 <a href="https://dplyr.tidyverse.org/reference/compute.html" class="orm:hideurl"><code>collect()</code></a>를 사용함으로써, dplyr 동사들과 함께 이 데이터 세트를 사용하기 시작할 수 있습니다. 예를 들어 다음 코드는 연도별 총 대출 횟수를 알려줍니다.
 
 ```
-seattle_csv |> 
-  count(CheckoutYear, wt = Checkouts) |> 
-  arrange(CheckoutYear) |> 
+seattle_csv |>
+  count(CheckoutYear, wt = Checkouts) |>
+  arrange(CheckoutYear) |>
   collect()
 #> # A tibble: 18 × 2
 #>   CheckoutYear       n
@@ -122,7 +122,7 @@ arrow 덕분에 이 코드는 기본 데이터 세트가 아무리 크더라도 
 
 ## 파케이의 장점
 
-CSV와 마찬가지로 파케이는 직사각형 구조의 데이터에 사용되지만, 아무 파일 편집기로나 읽을 수 있는 텍스트 형식 대신 빅 데이터의 요구에 맞게 특별히 설계된 사용자 정의 바이너리 형식입니다. 이는 다음을 의미합니다:
+CSV와 마찬가지로 파케이는 직사각형 구조의 데이터에 사용되지만, 아무 파일 편집기로나 읽을 수 있는 텍스트 형식 대신 빅 데이터의 요구에 맞게 특별히 설계된 사용자 정의 바이너리 형식입니다. 이는 다음을 의미합니다.
 
 - 파케이 파일은 일반적으로 동일한 CSV 파일보다 작습니다. 파케이는 파일 크기를 줄이기 위해 [효율적인 인코딩](https://oreil.ly/OzpFo)에 의존하며 파일 압축을 지원합니다. 디스크에서 메모리로 이동할 데이터가 적기 때문에 이는 파케이 파일을 빠르게 만드는 데 도움이 됩니다.
 
@@ -154,7 +154,7 @@ seattle_csv |>
 
 이를 실행하는 데 1분 정도 걸립니다. 곧 보게 되겠지만 이는 향후 작업을 훨씬 훨씬 빠르게 만들어주는 초기 투자입니다.
 
-우리가 방금 무엇을 만들어냈는지 살펴보겠습니다:
+우리가 방금 무엇을 만들어냈는지 살펴보겠습니다.
 
 ```
 tibble(
@@ -177,23 +177,23 @@ tibble(
 
 # Arrow와 함께 dplyr 사용하기
 
-이제 파케이 파일들을 만들었으니 이들을 다시 읽어 들여야 합니다. <a href="https://arrow.apache.org/docs/r/reference/open_dataset.html" class="orm:hideurl"><code>open_dataset()</code></a>을 다시 사용하지만 이번에는 디렉토리를 제공합니다:
+이제 파케이 파일들을 만들었으니 이들을 다시 읽어 들여야 합니다. <a href="https://arrow.apache.org/docs/r/reference/open_dataset.html" class="orm:hideurl"><code>open_dataset()</code></a>을 다시 사용하지만 이번에는 디렉토리를 제공합니다.
 
 ```
 seattle_pq <- open_dataset(pq_path)
 ```
 
-이제 dplyr 파이프라인을 작성할 수 있습니다. 예를 들어 지난 5년 동안 매달 대출된 책의 총 개수를 셀 수 있습니다:
+이제 dplyr 파이프라인을 작성할 수 있습니다. 예를 들어 지난 5년 동안 매달 대출된 책의 총 개수를 셀 수 있습니다.
 
 ```
-query <- seattle_pq |> 
+query <- seattle_pq |>
   filter(CheckoutYear >= 2018, MaterialType == "BOOK") |>
   group_by(CheckoutYear, CheckoutMonth) |>
   summarize(TotalCheckouts = sum(Checkouts)) |>
   arrange(CheckoutYear, CheckoutMonth)
 ```
 
-arrow 데이터용 dplyr 코드를 작성하는 것은 <a href="ch21.html#chp-databases" data-type="xref">21장</a>에서 논의한 것처럼 개념적으로 dbplyr와 유사합니다. dplyr 코드를 작성하면 Apache Arrow C++ 라이브러리가 이해할 수 있는 쿼리로 자동 변환되며, <a href="https://dplyr.tidyverse.org/reference/compute.html" class="orm:hideurl"><code>collect()</code></a>를 호출할 때 실행됩니다. `query` 객체를 출력하면 실행 시 Arrow가 무엇을 반환할 것으로 예상되는지에 대한 약간의 정보를 볼 수 있습니다:
+arrow 데이터용 dplyr 코드를 작성하는 것은 <a href="ch21.html#chp-databases" data-type="xref">21장</a>에서 논의한 것처럼 개념적으로 dbplyr와 유사합니다. dplyr 코드를 작성하면 Apache Arrow C++ 라이브러리가 이해할 수 있는 쿼리로 자동 변환되며, <a href="https://dplyr.tidyverse.org/reference/compute.html" class="orm:hideurl"><code>collect()</code></a>를 호출할 때 실행됩니다. `query` 객체를 출력하면 실행 시 Arrow가 무엇을 반환할 것으로 예상되는지에 대한 약간의 정보를 볼 수 있습니다.
 
 ```
 query
@@ -201,13 +201,13 @@ query
 #> CheckoutYear: int32
 #> CheckoutMonth: int64
 #> TotalCheckouts: int64
-#> 
+#>
 #> * Grouped by CheckoutYear
 #> * Sorted by CheckoutYear [asc], CheckoutMonth [asc]
 #> See $.data for the source Arrow object
 ```
 
-그리고 <a href="https://dplyr.tidyverse.org/reference/compute.html" class="orm:hideurl"><code>collect()</code></a>를 호출하여 결과를 얻을 수 있습니다:
+그리고 <a href="https://dplyr.tidyverse.org/reference/compute.html" class="orm:hideurl"><code>collect()</code></a>를 호출하여 결과를 얻을 수 있습니다.
 
 ```
 query |> collect()
@@ -228,35 +228,35 @@ dbplyr와 마찬가지로 arrow는 일부 R 표현식만 이해하므로 평소 
 
 ## 성능
 
-CSV에서 파케이로 전환할 때의 성능 영향을 간단히 살펴보겠습니다. 먼저 데이터가 하나의 대형 CSV 파일로 저장되어 있을 때 2021년 매달 대출된 책의 수를 계산하는 데 걸리는 시간을 측정해 보겠습니다:
+CSV에서 파케이로 전환할 때의 성능 영향을 간단히 살펴보겠습니다. 먼저 데이터가 하나의 대형 CSV 파일로 저장되어 있을 때 2021년 매달 대출된 책의 수를 계산하는 데 걸리는 시간을 측정해 보겠습니다.
 
 ```
-seattle_csv |> 
+seattle_csv |>
   filter(CheckoutYear == 2021, MaterialType == "BOOK") |>
   group_by(CheckoutMonth) |>
   summarize(TotalCheckouts = sum(Checkouts)) |>
   arrange(desc(CheckoutMonth)) |>
-  collect() |> 
+  collect() |>
   system.time()
-#>    user  system elapsed 
+#>    user  system elapsed
 #>  11.997   1.189  11.343
 ```
 
-이제 시애틀 도서관 대출 데이터가 18개의 더 작은 파케이 파일로 분할된 새 버전의 데이터 세트를 사용해 보겠습니다:
+이제 시애틀 도서관 대출 데이터가 18개의 더 작은 파케이 파일로 분할된 새 버전의 데이터 세트를 사용해 보겠습니다.
 
 ```
-seattle_pq |> 
+seattle_pq |>
   filter(CheckoutYear == 2021, MaterialType == "BOOK") |>
   group_by(CheckoutMonth) |>
   summarize(TotalCheckouts = sum(Checkouts)) |>
   arrange(desc(CheckoutMonth)) |>
-  collect() |> 
+  collect() |>
   system.time()
-#>    user  system elapsed 
+#>    user  system elapsed
 #>   0.272   0.063   0.063
 ```
 
-약 100배의 성능 향상은 두 가지 요인 때문입니다: 다중 파일 파티셔닝과 개별 파일의 형식입니다:
+약 100배의 성능 향상은 두 가지 요인 때문입니다. 다중 파일 파티셔닝과 개별 파일의 형식입니다.
 
 - 파티셔닝은 성능을 향상시킵니다. 왜냐하면 이 쿼리는 `CheckoutYear == 2021`을 사용하여 데이터를 필터링하며, arrow는 18개의 파케이 파일 중 하나만 읽으면 된다는 것을 인식할 만큼 똑똑하기 때문입니다.
 - 파케이 형식은 메모리로 더 직접적으로 읽을 수 있는 바이너리 형식으로 데이터를 저장함으로써 성능을 향상시킵니다. 열 단위 형식과 풍부한 메타데이터 덕분에 arrow는 쿼리에 실제로 사용되는 네 개의 열(`CheckoutYear`, `MaterialType`, `CheckoutMonth`, `Checkouts`)만 읽으면 됩니다.
@@ -265,10 +265,10 @@ seattle_pq |>
 
 ## Arrow와 함께 dbplyr 사용하기
 
-파케이와 arrow의 마지막 이점이 하나 더 있습니다. <a href="https://arrow.apache.org/docs/r/reference/to_duckdb.html" class="orm:hideurl"><code>arrow::to_duckdb()</code></a>를 호출하여 arrow 데이터 세트를 DuckDB 데이터베이스(<a href="ch21.html#chp-databases" data-type="xref">21장</a>)로 쉽게 전환할 수 있다는 것입니다:
+파케이와 arrow의 마지막 이점이 하나 더 있습니다. <a href="https://arrow.apache.org/docs/r/reference/to_duckdb.html" class="orm:hideurl"><code>arrow::to_duckdb()</code></a>를 호출하여 arrow 데이터 세트를 DuckDB 데이터베이스(<a href="ch21.html#chp-databases" data-type="xref">21장</a>)로 쉽게 전환할 수 있다는 것입니다.
 
 ```
-seattle_pq |> 
+seattle_pq |>
   to_duckdb() |>
   filter(CheckoutYear >= 2018, MaterialType == "BOOK") |>
   group_by(CheckoutYear) |>

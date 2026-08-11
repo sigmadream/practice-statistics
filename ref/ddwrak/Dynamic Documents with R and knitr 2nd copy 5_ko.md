@@ -16,7 +16,7 @@ knitr 패키지의 설계는 이론상 어떠한 일반 텍스트 문서도 처�
 
 정규 표현식(Friedl, 2006, 또는 위키백과 참조)은 문서에서 인라인 코드와 같은 다른 요소 및 코드 블록(청크)을 식별하는 데 사용됩니다. 이러한 정규 표현식 패턴은 knitr의 all_patterns 객체에 저장됩니다. 예를 들어, Rnw 문서에서 코드 청크의 시작을 나타내는 패턴은 다음과 같습니다.
 
-all_patterns$rnw$chunk.begin ## [1] "^\\s*<<(.*)>>=.*$"
+all_patterns$rnw$chunk.begin ## [1] "^\\s*<<(.*)>>=.\*$"
 
 정규 표현식에서 ^는 문자열의 시작을 의미합니다. \s*는 임의의 개수(0개 포함)의 공백 문자와 일치합니다. .*는 임의의 문자와 임의의 개수로 일치합니다. 이 정규 표현식은 “줄 시작 부분의 임의의 공백 문자 + << + 임의의 문자 + >>=”를 의미하므로 아래의 줄들은 가능한 청크 헤더입니다.
 
@@ -33,12 +33,11 @@ hi<<>>= <<foo>= <<bar>>
 - 1. 정규 표현식에서 \s는 공백을 나타내지만, R에서는 이중 백슬래시를 작성해야 합니다. 왜냐하면 R 문자열에서 \\는 실제로는 하나의 백슬래시를 의미하기 때문입니다(첫 번째 백슬래시는 이스케이프 역할을 하여 역시 백슬래시인 두 번째 문자를 처리합니다). 초보자에게 이스케이프 문자로 사용되는 백슬래시는 꽤 혼란스러울 수 있으며, 경험상 실제 백슬래시를 원할 때는 두 개의 백슬래시가 필요할 수 있습니다.
 - 2. 정규 표현식의 괄호 ()는 문자열 그룹을 형성하여 후방 참조(back references)를 통해 이를 추출할 수 있도록 합니다. 예를 들어, abbbc에서 두 번째 문자 그룹을 추출합니다.
 
-
-# [b]+ means to match  b  for one or more times gsub("(a)([b]+)(c)", "\\2", "abbbc")
+# [b]+ means to match b for one or more times gsub("(a)([b]+)(c)", "\\2", "abbbc")
 
 ## [1] "bbb"
 
-우리는 청크 헤더에서 청크 옵션을 추출해야 하며, 이것이 바로 정규 표현식에서 .*를 ()로 감싸서 < <(.*)> >=와 같이 작성한 이유입니다.
+우리는 청크 헤더에서 청크 옵션을 추출해야 하며, 이것이 바로 정규 표현식에서 ._를 ()로 감싸서 < <(._)> >=와 같이 작성한 이유입니다.
 
 ###### 5.1.1 청크 옵션
 
@@ -51,7 +50,6 @@ R의 구문과 일관성이 있기 때문에 이 구문에 대해 특별히 기�
 <<foo, eval=if (bar < 5) TRUE else FALSE>>=
 
 이 청크 앞에 소스 문서에서 생성된 숫자 변수 bar가 있다고 가정해 보겠습니다. if (bar < 5) TRUE else FALSE 표현식을 eval 옵션에 전달할 수 있으며, 이로 인해 eval 옵션은 bar의 값에 의존하게 됩니다. 결과적으로 bar의 값에 따라 이 청크를 평가합니다(5보다 크면 청크가 평가되지 않음). 즉, 특정 청크를 선택적으로 평가할 수 있습니다. 이 예시는 청크 옵션에 아무리 복잡한 R 표현식도 작성할 수 있음을 보여줍니다. 사실, bar < 5 표현식이 일반적으로 TRUE 또는 FALSE를 반환하므로(bar가 NA가 아닌 경우) eval = bar < 5로 간소화할 수 있습니다.
-
 
 ###### 5.1.2 청크 레이블
 
@@ -89,20 +87,19 @@ Documentation here. <<>>= 1+1 <<>>= rnorm(10) @ More documentation.
 
 ###### 5.2.1 마크다운
 
-R 마크다운(Rmd) 문서의 경우, 우리는 ```{r}과 ``` 사이에 코드 청크를 작성하고 인라인 R 코드는 `r ` 안에 작성합니다. 청크 옵션은 청크 헤더의 닫는 중괄호 전에 작성됩니다. 인라인 R 코드는 백틱(`)을 포함할 수 없다는 점에 유의하세요. 예를 들어, `r pi*2`는 괜찮지만 `r `pi`*2`는 안 됩니다. `pi`*2가 유효한 R 코드라 할지라도 구문 분석기는 첫 번째 백틱이 인라인 R 코드 표현식을 종료하기 위한 것이 아님을 알 수 없습니다.
+R 마크다운(Rmd) 문서의 경우, 우리는 `{r}과 ` 사이에 코드 청크를 작성하고 인라인 R 코드는 `r ` 안에 작성합니다. 청크 옵션은 청크 헤더의 닫는 중괄호 전에 작성됩니다. 인라인 R 코드는 백틱(`)을 포함할 수 없다는 점에 유의하세요. 예를 들어, `r pi*2`는 괜찮지만 `r `pi`*2`는 안 됩니다. `pi`\*2가 유효한 R 코드라 할지라도 구문 분석기는 첫 번째 백틱이 인라인 R 코드 표현식을 종료하기 위한 것이 아님을 알 수 없습니다.
 
 표 5.1: 모든 문서 형식의 구문 요약: RLTX, R 마크다운, R HTML, R reStructuredText, RAE
 
-|inline| | | | | | | | |
-|---|---|---|---|---|---|---|---|---|
-|end| | | | | | | | |
-|start| | | | | |//<br><br>###|.| |
-|format|R<br><br>R|md<br><br>htm|l| | | | | |
+| inline |            |               |     |     |     |               |     |     |
+| ------ | ---------- | ------------- | --- | --- | --- | ------------- | --- | --- |
+| end    |            |               |     |     |     |               |     |     |
+| start  |            |               |     |     |     | //<br><br>### | .   |     |
+| format | R<br><br>R | md<br><br>htm | l   |     |     |               |     |     |
 
+in.rcode\*end.rcode--><!--rinlinex-->
 
-in.rcode*end.rcode--><!--rinlinex-->
-
-.rcode*%end.rcode\rinline{x}
+.rcode\*%end.rcode\rinline{x}
 
 @\Sexpr{x}
 
@@ -112,9 +109,9 @@ in.rcode*end.rcode--><!--rinlinex-->
 
 }````rx`
 
-n.rcode*//end.rcode`rx`
+n.rcode\*//end.rcode`rx`
 
-gin.rcode*###.end.rcode@rx@
+gin.rcode\*###.end.rcode@rx@
 
 endinline
 
@@ -127,8 +124,7 @@ AsciiDoc, R Textile, and brew.
 - - list item
 - - list item
 
-
-백틱은 `<code>` 태그를 생성합니다. This is [a link](url), and this is an ![image](url). A block of code ( <pre>  tag):
+백틱은 `<code>` 태그를 생성합니다. This is [a link](url), and this is an ![image](url). A block of code ( <pre> tag):
 
 1 + 1 rnorm(10)
 
@@ -137,23 +133,21 @@ AsciiDoc, R Textile, and brew.
 - 1. 항목 1
 - 2. 항목 2
 
-
 원래 마크다운 구문은 단순하게 설계되었으므로, 표 작성, LATEX 수학 수식 작성 또는 참고 문헌 등 저작 환경 측면에서 어느 정도 제약이 있는 것은 불가피합니다. 짧은 과제를 작성하는 것과 같은 일부 경우에는 복잡한 기능이 필요하지 않으므로 마크다운으로도 꽤 잘 작동할 것입니다.
 
 마크다운의 한 가지 문제는 파생 버전입니다. Pandoc의 마크다운(http://johnmacfarlane.net/pandoc), Github Flavored 마크다운(http://github.com), kramdown(http://kramdown.rubyforge.org) 등과 같이 수많은 변형이 존재합니다. 이러한 변형들은 표와 같은 특정 요소를 작성하는 방법에 대해 고유한 정의를 가질 수 있습니다. CommonMark(http://commonmark.org)는 마크다운 구문을 모호하지 않게 정의하기 위한 노력이며, Pandoc의 마크다운은 CommonMark 표준과 호환됩니다. 또한, 현재로서는 Pandoc이 마크다운을 위한 가장 포괄적인 도구일 것입니다. Pandoc은 원래 마크다운에 다음과 같은 유용한 확장 기능들을 많이 추가했습니다.
 
 - 1. 세 개의 백틱 쌍으로 둘러싸인 펜스 코드 블록
 - 2. 일반 LATEX(PDF 출력용) 또는 MathJax(http://mathjax.org, HTML 출력용)를 통한 LATEX 수학 수식 지원. 이를 통해 $math$ 또는 $$math$$와 같은 LATEX 구문을 사용하여 웹 페이지에 수학 방정식을 작성할 수 있습니다.
-- 3. 문서에 대한 메타데이터(예: 제목, 저자 및 날짜 정보)
+- 3. 문서에 대한 메타데이터(제목, 저자 및 날짜 정보)
 - 4. 공백이나 파이프로 기둥(열)이 구분된 표
 - 5. 정의 목록, 각주 및 인용구 등
-
 
 다음은 일부 확장 기능이 어떻게 보이는지 보여줍니다.
 
 --title: 내 보고서 제목 author: Yihui Xie
 
---평소처럼 4칸 들여쓰기하거나 아래에 코드를 작성합니다.    r 1 + 1 rnorm(10)
+--평소처럼 4칸 들여쓰기하거나 아래에 코드를 작성합니다. r 1 + 1 rnorm(10)
 
 인라인 수식: $\alpha + \beta$. 디스플레이 스타일: $$f(x) = x^{2} + 1$$ 인용에서 가져온 간단한 표 [@joe2014]:
 
@@ -161,7 +155,6 @@ AsciiDoc, R Textile, and brew.
 
 - | a | 49 | M |
 - | b | 32 | F |
-
 
 더 중요한 것은, Pandoc이 마크다운을 PDF/LATEX, HTML, 워드(Microsoft Word 또는 OpenOffice) 및 프레젠테이션 슬라이드(LATEX beamer 또는 HTML5 슬라이드)를 포함한 여러 다른 문서 형식으로 변환할 수 있다는 점입니다. R 패키지 rmarkdown(Allaire 외, 2015a)은 knitr과 Pandoc을 기반으로 하며, 사용자가 기본적으로 꽤 아름다운 출력을 빠르게 만들 수 있도록 자주 사용되는 몇 가지 출력 형식을 포함하고 있습니다.
 
@@ -172,7 +165,6 @@ rmarkdown 패키지는 RStudio 개발자들이 도입했으므로, RStudio가 R 
 LATEX 문서의 경우, 이전에 여러 번 보았듯이 R 코드 청크는 < <> >=와 @ 사이에 삽입되며 인라인 R 코드는 \Sexpr{} 안에 작성됩니다.
 
 - 5.2.3 HTML
-
 
 HTML(하이퍼텍스트 마크업 언어, Hyper-Text Markup Language)은 웹 페이지 이면에 있는 언어입니다. 보통 웹 브라우저가 이를 구문 분석하고 요소를 렌더링하기 때문에 HTML 코드를 직접 볼 일은 없습니다. 예를 들어 굵은 글씨를 볼 때 소스 코드는 <strong>굵은 글씨</strong>일 수 있습니다. 대부분의 웹 브라우저는 HTML 소스 코드를 표시할 수 있습니다. 예를 들어 파이어폭스와 구글 크롬에서는 Ctrl + U를 눌러 페이지 소스를 볼 수 있습니다.
 
@@ -197,7 +189,7 @@ reStructuredText(reST) 문서(http://docutils.sourceforge.net/rst.html)에도 R 
 
 A reST document for knitr =========================
 
-이것은 reStructuredText 문서(*.Rrst)입니다. knitr을 위해 R 코드를 작성하는 방법은 다음과 같습니다.
+이것은 reStructuredText 문서(\*.Rrst)입니다. knitr을 위해 R 코드를 작성하는 방법은 다음과 같습니다.
 
 .. {r test-rst, eval=TRUE} 1 + 1 rnorm(10)
 
@@ -219,11 +211,11 @@ Textile은 또 다른 경량 마크업 언어이며 보통 HTML로 변환됩니�
 
 구문을 보여주는 R Textile 예시는 다음과 같습니다. h1. Textile 파일 니팅(Knitting) Hello world! ###. begin.rcode test, tidy=FALSE if (1 + 1 == 2) {
 
- of course! 
+of course!
 
 } ###. end.rcode
 
-그리고 인라인 표현식 @r 2*pi@ 입니다.
+그리고 인라인 표현식 @r 2\*pi@ 입니다.
 
 ###### 5.2.7 사용자 정의
 
@@ -237,7 +229,7 @@ c("chunk.begin", "chunk.end", "inline.code") )
 
 우리만의 구문을 지정하려면 기본 구문을 덮어쓰는 knit_patterns$set()을 사용할 수 있습니다. 예를 들면 다음과 같습니다. knit_patterns$set(
 
-chunk.begin = "^<<r(.*)", chunk.end = "^r>>$", inline.code = "\\{\\{([^}]+)\\}\\}"
+chunk.begin = "^<<r(.\*)", chunk.end = "^r>>$", inline.code = "\\{\\{([^}]+)\\}\\}"
 
 )
 
@@ -249,14 +241,13 @@ x의 평균은 {{mean(x)}}입니다.
 
 하지만 실제로는 이러한 사용자 정의가 불필요한 경우가 많습니다. 기본 구문을 따르는 것이 좋으며, 그렇지 않으면 소스 문서를 컴파일하기 위해 추가 지침이 필요합니다.
 
-knitr에는 pat_ 접두사가 붙은 일련의 함수들이 있는데, 이들은 구문 패턴을 설정하기 위한 편의 함수들입니다. 예를 들어 pat_rnw()는 knit_hooks$set()을 호출하여 Rnw 문서를 위한 패턴을 설정합니다. 모든 패턴 함수는 다음과 같습니다.
+knitr에는 pat\_ 접두사가 붙은 일련의 함수들이 있는데, 이들은 구문 패턴을 설정하기 위한 편의 함수들입니다. 예를 들어 pat_rnw()는 knit_hooks$set()을 호출하여 Rnw 문서를 위한 패턴을 설정합니다. 모든 패턴 함수는 다음과 같습니다.
 
-grep("^pat_", ls("package:knitr"), value = TRUE) ## [1] "pat_asciidoc" "pat_brew" "pat_html"
+grep("^pat\_", ls("package:knitr"), value = TRUE) ## [1] "pat_asciidoc" "pat_brew" "pat_html"
 
 - ## [4] "pat_md" "pat_rnw" "pat_rst" ## [7] "pat_tex" "pat_textile"
 
-
-소스 문서를 구문 분석할 때 knitr은 파일 확장자에 따라 사용할 패턴 목록을 먼저 결정합니다. 예를 들어 *.Rmd 문서는 R 마크다운 구문을 사용합니다. 파일 확장자를 알 수 없는 경우 knitr은 문서 내의 코드 청크를 추가로 감지하여 구문이 기존 패턴 목록과 일치하는지 확인합니다. 일치하는 경우 해당 패턴 목록이 사용됩니다. 예를 들어 foo.txt 파일의 경우 knitr은 txt 확장자를 인식하지 못하지만 이 파일에 ```{r}로 시작하는 코드 청크가 포함되어 있으면 knitr은 R 마크다운 구문을 자동으로 사용합니다.
+소스 문서를 구문 분석할 때 knitr은 파일 확장자에 따라 사용할 패턴 목록을 먼저 결정합니다. 예를 들어 \*.Rmd 문서는 R 마크다운 구문을 사용합니다. 파일 확장자를 알 수 없는 경우 knitr은 문서 내의 코드 청크를 추가로 감지하여 구문이 기존 패턴 목록과 일치하는지 확인합니다. 일치하는 경우 해당 패턴 목록이 사용됩니다. 예를 들어 foo.txt 파일의 경우 knitr은 txt 확장자를 인식하지 못하지만 이 파일에 ```{r}로 시작하는 코드 청크가 포함되어 있으면 knitr은 R 마크다운 구문을 자동으로 사용합니다.
 
 ###### 5.3 출력 렌더러
 
@@ -274,22 +265,22 @@ hook_fun <- function(x, options) {
 
 출력 훅에서 x는 대개 R의 원시 출력이며, options는 현재 청크 옵션 목록입니다. 출력 클래스에 해당하는 knit_hooks의 훅 이름은 표 5.2에 나열되어 있습니다.
 
-message() 함수에서 방출되는 메시지 출력을 사용자 정의 LATEX 환경(예: Rmessage)에 넣고자 한다면, 메시지 훅을 다음과 같이 설정할 수 있습니다.
+message() 함수에서 방출되는 메시지 출력을 사용자 정의 LATEX 환경(Rmessage)에 넣고자 한다면, 메시지 훅을 다음과 같이 설정할 수 있습니다.
 
 표 5.2: 출력 훅 함수 및 evaluate 패키지의 결과 객체 클래스
 
-| 클래스 | 출력 훅 | 인수 |
-|---|---|---|
-| source | source | x, options |
-| character | output | x, options |
-| recordedplot | plot | x, options |
-| message | message | x, options |
-| warning | warning | x, options |
-| error | error | x, options |
-| | chunk | x, options |
-| | inline | x |
-| | text | x |
-| | document | x |
+| 클래스       | 출력 훅  | 인수       |
+| ------------ | -------- | ---------- |
+| source       | source   | x, options |
+| character    | output   | x, options |
+| recordedplot | plot     | x, options |
+| message      | message  | x, options |
+| warning      | warning  | x, options |
+| error        | error    | x, options |
+|              | chunk    | x, options |
+|              | inline   | x          |
+|              | text     | x          |
+|              | document | x          |
 
 knit_hooks$set(message = function(x, options) {
 
@@ -303,9 +294,9 @@ paste0("\\begin{Rmessage}\n", x, "\\end{Rmessage}") })
 
 그러면 출력에 메시지가 있을 때마다 위아래로 수평선을 볼 수 있습니다.
 
-기본적으로 knitr은 각 출력 형식에 대해 일련의 기본 출력 훅을 설정하므로, 보통 우리가 직접 모든 훅을 설정할 필요는 없습니다. knitr의 render_ 접두사가 붙은 일련의 함수를 사용하여 다양한 출력 형식에 대한 기본 출력 훅을 설정할 수 있습니다.
+기본적으로 knitr은 각 출력 형식에 대해 일련의 기본 출력 훅을 설정하므로, 보통 우리가 직접 모든 훅을 설정할 필요는 없습니다. knitr의 render\_ 접두사가 붙은 일련의 함수를 사용하여 다양한 출력 형식에 대한 기본 출력 훅을 설정할 수 있습니다.
 
-grep("^render_", ls("package:knitr"), value = TRUE)
+grep("^render\_", ls("package:knitr"), value = TRUE)
 
 ## [1] "render_asciidoc" "render_html" ## [3] "render_jekyll" "render_latex"
 
@@ -316,7 +307,7 @@ grep("^render_", ls("package:knitr"), value = TRUE)
 
 - 그림 5.1: knitr의 Sweave 스타일. Rnw 문서의 맨 처음에서 render_sweave()를 실행하면 Sweave 스타일을 볼 수 있습니다.
 
-render_latex(), render_html(), render_markdown() 함수는 출력 형식이 각각 LATEX, HTML, 마크다운일 때 호출됩니다. render_sweave()와 render_listings()는 LATEX 출력의 두 가지 변형입니다. 전자는 Sweave.sty에 정의된 전통적인 Sweave 환경(예: Sinput 및 Soutput 등)을 사용하고, 후자는 출력을 꾸미기 위해 LATEX의 listings 패키지를 사용합니다. 두 스타일이 어떻게 보이는지는 그림 5.1 및 그림 5.2를 참조하세요.
+render_latex(), render_html(), render_markdown() 함수는 출력 형식이 각각 LATEX, HTML, 마크다운일 때 호출됩니다. render_sweave()와 render_listings()는 LATEX 출력의 두 가지 변형입니다. 전자는 Sweave.sty에 정의된 전통적인 Sweave 환경(Sinput 및 Soutput 등)을 사용하고, 후자는 출력을 꾸미기 위해 LATEX의 listings 패키지를 사용합니다. 두 스타일이 어떻게 보이는지는 그림 5.1 및 그림 5.2를 참조하세요.
 
 출력 훅을 설정하려는 경우, 나머지 출력에 영향을 미칠 수 있도록 소스 문서의 맨 처음에 설정하는 것이 좋습니다. 예를 들어 아래 청크는 Rnw 문서의 첫 번째 청크가 될 수 있습니다(청크 옵션 include = FALSE는 독자에게 흥미롭지 않으므로 이 청크의 내용을 출력에 표시하지 않음을 의미합니다).
 
@@ -333,8 +324,7 @@ render_latex(), render_html(), render_markdown() 함수는 출력 형식이 각�
 
 - 그림 5.2: knitr의 listings 스타일. render_listings()는 이와 같은 스타일(색상이 있는 텍스트 및 회색 음영)을 생성합니다.
 
-
-- • plot 훅은 파일 이름의 문자열(예: foo.pdf)을 입력 x로 받습니다. 아래는 LATEX 출력을 위한 plot 훅의 단순화된 버전입니다(실제 훅은 out.width 및 out.height 등 고려해야 할 청크 옵션이 많기 때문에 이보다 훨씬 더 복잡합니다).
+- • plot 훅은 파일 이름의 문자열(foo.pdf)을 입력 x로 받습니다. 아래는 LATEX 출력을 위한 plot 훅의 단순화된 버전입니다(실제 훅은 out.width 및 out.height 등 고려해야 할 청크 옵션이 많기 때문에 이보다 훨씬 더 복잡합니다).
 
 knit_hooks$set(plot = function(x, options) {
 
@@ -357,6 +347,7 @@ paste("<div class= Rchunk >", x, "</div>") })
 knit_hooks$set(inline = function(x) {
 
 ###### if (is.numeric(x))
+
 x <- round(x, 2)
 
 as.character(x) # x를 문자로 변환하고 반환합니다 })
@@ -370,7 +361,6 @@ knit_hooks$set(text = function(x) {
 gsub("^\\s*|\\s*$", "", x) })
 
 - • document 훅은 chunk 훅과 유사하며 전체 문서의 출력을 입력 x로 받습니다. 이 훅은 문서를 후처리하는 데 유용할 수 있습니다. 실제로 이 책은 모든 표 캡션 아래(tabular 환경 전)에 수직 간격 \medskip{}을 추가하기 위해 이 훅을 사용했습니다.
-
 
 knit_hooks$set(document = function(x) {
 
@@ -387,13 +377,13 @@ knitr에는 특별한 소스 문서 형식이 있는데, 본질적으로 roxygen
 
 때로는 R 코드와 일반 텍스트를 섞고 싶지 않고 대신 주석에 텍스트를 작성하여 전체 문서가 유효한 R 스크립트가 되도록 하고 싶을 때가 있습니다. knitr의 spin() 함수는 주석이 roxygen 구문을 사용하여 작성된 경우 이러한 R 스크립트를 처리할 수 있습니다. spin()의 기본 아이디어 역시 문학적 프로그래밍에서 영감을 받았습니다. 이 R 스크립트를 컴파일하면 #'가 제거되어 일반 텍스트가 "복원"되고 R 코드가 평가됩니다. roxygen 주석 뒤에 있지 않은 모든 것은 코드 청크로 취급됩니다. 청크 옵션을 작성하려면 또 다른 유형의 특수 주석인 #+ 또는 #- 뒤에 청크 옵션을 사용하면 됩니다. 다음은 간단한 예시입니다.
 
-#' 여기에 방법을 소개하고 그 다음에 R 코드를 작성합니다:
-1 + 1 
+#' 여기에 방법을 소개하고 그 다음에 R 코드를 작성합니다.
+1 + 1
 x <- rnorm(10)
 
 #' 다음과 같이 청크 옵션을 작성하는 것도 가능합니다.
-#+ test-label, fig.height=4 
-plot(x) 
+#+ test-label, fig.height=4
+plot(x)
 #' 이제 문서가 완성되었습니다.
 
 이 스크립트를 test.R이라는 파일에 저장하고 컴파일하여 보고서를 만들 수 있습니다.
@@ -404,4 +394,3 @@ spin("test.R")
 spin() 함수에는 출력 문서 형식을 지정하는 format 인수가 있습니다(기본값은 R 마크다운). 예를 들어 format = 'Rnw'인 경우 R 코드는 먼저 < <> >=와 @ 사이에 삽입된 다음, 컴파일되어 LATEX 출력을 생성합니다.
 
 이것은 R 스크립트를 기반으로 보고서를 생성하는 3.3절의 stitch() 함수와 비슷해 보입니다. 하지만 spin()은 텍스트 청크를 작성할 수 있게 해주는 반면 stitch()는 사전 정의된 템플릿만 사용할 수 있어 자유도가 떨어집니다.
-

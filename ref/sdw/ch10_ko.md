@@ -1,4 +1,5 @@
 # Chapter 10\. Everybody Makes Mistakes
+
 # 제10장. 누구나 실수를 합니다
 
 Until now, I have presumed that scientists are capable of making statistical computations with perfect accuracy and err only in their choice of appropriate numbers to compute. Scientists may misuse the results of statistical tests or fail to make relevant computations, but they can at least calculate a _p_ value, right?
@@ -8,7 +9,7 @@ Perhaps not.
 어쩌면 아닐지도 모릅니다.
 
 Surveys of statistically significant results reported in medical and psychological trials suggest that many _p_ values are wrong and some statistically insignificant results are actually significant when computed correctly.[](./18-apa.md#ch10en1)1,[](./18-apa.md#ch10en2)2 Even the prestigious journal _Nature_ isn’t perfect, with roughly 38% of papers making typos and calculation errors in their _p_ values.[](./18-apa.md#ch10en3)3 Other reviews find examples of misclassified data, erroneous duplication of data, inclusion of the wrong dataset entirely, and other mix-ups, all concealed by papers that did not describe their analysis in enough detail for the errors to be easily noticed.[](./18-apa.md#ch10en4)4
-의학 및 심리학 실험에서 보고된 통계적으로 유의미한 결과들에 대한 조사에 따르면, 많은 _p_ 값이 잘못되었고 올바르게 계산했을 때 유의미하지 않은 결과 중 일부가 실제로는 유의미한 것으로 나타납니다.[](./18-apa.md#ch10en1)1,[](./18-apa.md#ch10en2)2 권위 있는 학술지인 _Nature_조차 완벽하지 않아 약 38%의 논문에서 _p_ 값에 오타나 계산 오류가 발견됩니다.[](./18-apa.md#ch10en3)3 다른 리뷰에서는 오분류된 데이터, 잘못된 데이터 중복, 완전히 잘못된 데이터셋의 포함, 기타 혼선과 같은 사례들이 발견되었으며, 이러한 오류들은 논문이 쉽게 눈에 띌 만큼 자세히 분석 과정을 설명하지 않아 감춰져 있었습니다.[](./18-apa.md#ch10en4)4
+의학 및 심리학 실험에서 보고된 통계적으로 유의미한 결과들에 대한 조사에 따르면, 많은 _p_ 값이 잘못되었고 올바르게 계산했을 때 유의미하지 않은 결과 중 일부가 실제로는 유의미한 것으로 나타납니다.[](./18-apa.md#ch10en1)1,[](./18-apa.md#ch10en2)2 권위 있는 학술지인 *Nature*조차 완벽하지 않아 약 38%의 논문에서 _p_ 값에 오타나 계산 오류가 발견됩니다.[](./18-apa.md#ch10en3)3 다른 리뷰에서는 오분류된 데이터, 잘못된 데이터 중복, 완전히 잘못된 데이터셋의 포함, 기타 혼선과 같은 사례들이 발견되었으며, 이러한 오류들은 논문이 쉽게 눈에 띌 만큼 자세히 분석 과정을 설명하지 않아 감춰져 있었습니다.[](./18-apa.md#ch10en4)4
 
 These sorts of mistakes are to be expected. Scientists may be superhumanly caffeinated, but they’re still human, and the constant pressure to publish means that thorough documentation and replication are ignored. There’s no incentive for researchers to make their data and calculations available for inspection or to devote time to replicating other researchers’ results.
 이러한 종류의 실수는 예상 가능한 일입니다. 과학자들이 카페인의 힘으로 초인적인 능력을 발휘할지 모르지만 여전히 인간이며, 논문 출판에 대한 끊임없는 압박은 철저한 문서화와 재현성이 무시됨을 의미합니다. 연구자들이 검토를 위해 데이터와 계산 과정을 공개하거나 다른 연구자의 결과를 재현하는 데 시간을 할애할 유인이 없습니다.
@@ -17,6 +18,7 @@ As these problems have become more widely known, software tools have advanced to
 이러한 문제들이 널리 알려지면서, 분석 단계를 쉽게 기록하고 공유할 수 있도록 소프트웨어 도구들이 발전했습니다. 하지만 과학자들은 아직 이러한 도구들을 널리 채택하지 않고 있으며, 유전학 분야의 유명한 실패 사례가 보여주듯 이러한 도구 없이는 연구 내용을 철저히 검토하는 과정이 매우 고통스러울 수 있습니다.
 
 # Irreproducible Genetics
+
 # 재현 불가능한 유전학
 
 The problems began in 2006, when a new genetic test promised to allow chemotherapy treatments to be carefully targeted to the patient’s specific variant of cancer. Duke University researchers ran trials indicating that their technique could determine which drugs a tumor would be most sensitive to, sparing patients the side effects of ineffective treatments. Oncologists were excited at the prospect, and other researchers began their own studies. But first they asked two biostatisticians, Keith Baggerly and Kevin Coombes, to check the data.
@@ -38,10 +40,11 @@ The problem was not just that Potti did not share his data readily. Scientists o
 문제는 포티가 데이터를 쉽게 공유하지 않았다는 점만이 아니었습니다. 과학자들은 종종 논문과 같은 모호한 형태나 연구 노트에 적힌 내용을 제외하고는, 원시 데이터를 결과로 변환하는 과정을 기록하거나 문서화하지 않습니다. 원시 데이터는 수정되고 다른 형식으로 변환되며 다른 데이터셋과 연결되어야 합니다. 또한, 때로는 맞춤형 소프트웨어를 사용하여 통계 분석을 수행해야 하며, 결과로부터 그래프와 표를 만들어야 합니다. 이 작업은 종종 데이터를 여러 데이터 파일과 스프레드시트에 복사하고 붙여넣는 식으로 수작업으로 이루어지며, 이는 오류가 발생하기 매우 쉬운 과정입니다. 담당 대학원생의 과도한 스트레스를 받는 기억력 외에는 이러한 단계들에 대한 명확한 기록이 없는 것이 보통입니다. 하지만 우리는 그 학생이 졸업하고 몇 년이 지난 후에도 해당 과정의 모든 단계를 조사하고 재현할 수 있기를 원합니다.
 
 # Making Reproducibility Easy
+
 # 재현성을 쉽게 만들기
 
 Ideally, these steps would be _reproducible_: fully automated, with the computer source code available for inspection as a definitive record of the work. Errors would be easy to spot and correct, and any scientist could download the dataset and code and produce exactly the same results. Even better, the code would be combined with a description of its purpose.
-이상적으로는 이러한 단계들이 _재현 가능(reproducible)_해야 합니다. 즉, 완전히 자동화되어 있고 컴퓨터 소스 코드를 작업의 확정적인 기록으로서 검토할 수 있게 해야 합니다. 오류를 쉽게 발견하고 수정할 수 있어야 하며, 어떤 과학자라도 데이터셋과 코드를 다운로드하여 정확히 똑같은 결과를 도출할 수 있어야 합니다. 나아가, 코드에 그 목적을 설명하는 내용이 함께 포함된다면 더욱 좋을 것입니다.
+이상적으로는 이러한 단계들이 *재현 가능(reproducible)*해야 합니다. 즉, 완전히 자동화되어 있고 컴퓨터 소스 코드를 작업의 확정적인 기록으로서 검토할 수 있게 해야 합니다. 오류를 쉽게 발견하고 수정할 수 있어야 하며, 어떤 과학자라도 데이터셋과 코드를 다운로드하여 정확히 똑같은 결과를 도출할 수 있어야 합니다. 나아가, 코드에 그 목적을 설명하는 내용이 함께 포함된다면 더욱 좋을 것입니다.
 
 Statistical software has been advancing to make this possible. A tool called Sweave, for instance, makes it easy to embed statistical analyses performed using the popular R programming language inside papers written in LATEX, a typesetting system commonly used for scientific and mathematical publications. The result looks just like any scientific paper, but another scientist reading the paper and curious about its methods can download the source code, which shows exactly how all the numbers and plots were calculated. But academic journals, which use complicated typesetting and publishing systems, do not yet accept Sweave publications, so its use is limited.
 이를 가능하게 하도록 통계 소프트웨어가 발전해 왔습니다. 예를 들어 Sweave라는 도구는 인기 있는 프로그래밍 언어인 R을 사용하여 수행한 통계 분석을, 과학 및 수학 출판물에 널리 쓰이는 조판 시스템인 LaTeX로 작성된 논문 안에 쉽게 포함할 수 있게 해줍니다. 결과물은 여느 과학 논문과 다름없이 보이지만, 그 논문을 읽고 방법론이 궁금한 다른 과학자는 모든 숫자와 그래프가 어떻게 계산되었는지 정확하게 보여주는 소스 코드를 다운로드할 수 있습니다. 그러나 복잡한 조판 및 출판 시스템을 사용하는 학술지들은 아직 Sweave 출판물을 받아들이지 않기 때문에 그 사용은 제한적입니다.
@@ -56,26 +59,27 @@ That’s quite a lot of work, with little motivation for the scientist, who alre
 이러한 작업들은 분석이 어떻게 이루어졌는지 이미 알고 있는 과학자들에게는 큰 동기를 부여하지 못하며 꽤 많은 수고를 요구합니다. 더 많은 연구를 하는 대신, _다른_ 사람들이 혜택을 볼 수 있도록 코드를 다듬는 데 왜 그렇게 많은 시간을 쏟아야 할까요? 그곳에는 많은 이점이 있습니다. 자동화된 데이터 분석은 새로운 데이터셋에 소프트웨어를 적용해 보거나 각 부분이 제대로 기능하는지 테스트하기 쉽게 만들어 줍니다. 버전 관리 시스템을 사용하면 모든 변경 사항에 대한 기록을 남기게 되므로, "지난 화요일에는 작동하던 이 코드가 왜 지금은 안 되는 거지?"라며 막막해할 일이 없습니다. 그리고 계산과 코드에 대한 포괄적인 기록은 나중에 언제든지 다시 실행할 수 있음을 뜻합니다. 저는 언젠가 출판을 위해 논문의 그림 서식을 다시 지정해야 했을 때, 그것들을 만드는 데 어떤 데이터를 썼는지 기억나지 않는다는 사실을 깨닫고 무척 당황한 적이 있습니다. 제 엉성한 분석 기록 탓에 그래프들을 다시 만들어내려 애쓰느라 하루 종일 공황 상태에 빠져 있어야 했습니다.
 
 But even if they _have_ fully automated their analysis, scientists are understandably reluctant to share their code. What if a competing scientist uses it to beat you to a discovery? Since they aren’t required to disclose their code, they don’t have to disclose that they used yours; they can get academic credit for a discovery based mostly on your work. What if the code is based on proprietary or commercial software that can’t be shared? And some code is of such miserable quality that scientists find it embarrassing to share.
-하지만 설령 그들이 분석을 완전히 자동화_했다_고 하더라도, 과학자들이 자신들의 코드를 공유하기 꺼리는 것은 이해할 만한 일입니다. 경쟁 과학자가 그것을 사용하여 당신보다 먼저 무언가를 발견하면 어떡할까요? 그들은 자신의 코드를 공개할 의무가 없으므로 당신의 코드를 사용했다는 사실을 밝히지 않아도 되며, 대부분 당신의 작업에 기반한 발견으로 학문적 명성을 얻을 수도 있습니다. 코드가 공유할 수 없는 독점적 소프트웨어나 상용 소프트웨어를 기반으로 하고 있다면 어떡할까요? 게다가 어떤 코드는 품질이 너무 처참하여 과학자들이 공유하기 창피해하기도 합니다.
+하지만 설령 그들이 분석을 완전히 자동화*했다*고 하더라도, 과학자들이 자신들의 코드를 공유하기 꺼리는 것은 이해할 만한 일입니다. 경쟁 과학자가 그것을 사용하여 당신보다 먼저 무언가를 발견하면 어떡할까요? 그들은 자신의 코드를 공개할 의무가 없으므로 당신의 코드를 사용했다는 사실을 밝히지 않아도 되며, 대부분 당신의 작업에 기반한 발견으로 학문적 명성을 얻을 수도 있습니다. 코드가 공유할 수 없는 독점적 소프트웨어나 상용 소프트웨어를 기반으로 하고 있다면 어떡할까요? 게다가 어떤 코드는 품질이 너무 처참하여 과학자들이 공유하기 창피해하기도 합니다.
 
 The Community Research and Academic Programming License (CRAPL), a copyright agreement drafted by Matt Might for use with academic software, includes in its “Definitions” section the following:
-학술용 소프트웨어를 위해 매트 마이트(Matt Might)가 초안을 작성한 저작권 협약인 CRAPL(Community Research and Academic Programming License)의 "정의(Definitions)" 섹션에는 다음과 같은 내용이 포함되어 있습니다:
+학술용 소프트웨어를 위해 매트 마이트(Matt Might)가 초안을 작성한 저작권 협약인 CRAPL(Community Research and Academic Programming License)의 "정의(Definitions)" 섹션에는 다음과 같은 내용이 포함되어 있습니다.
 
 1. “The Program” refers to the medley of source code, shell scripts, executables, objects, libraries and build files supplied to You, or these files as modified by You.  
-\[Any appearance of design in the Program is purely coincidental and should not in any way be mistaken for evidence of thoughtful software construction.\]
+   \[Any appearance of design in the Program is purely coincidental and should not in any way be mistaken for evidence of thoughtful software construction.\]
 1. "프로그램(The Program)"은 사용자에게 제공된 소스 코드, 셸 스크립트, 실행 파일, 오브젝트, 라이브러리 및 빌드 파일의 잡동사니, 혹은 사용자에 의해 수정된 해당 파일들을 의미합니다.
-\[프로그램에 나타나는 어떠한 설계의 흔적이라도 이는 순전히 우연이며, 사려 깊은 소프트웨어 구성의 증거로 착각해서는 안 됩니다.\]
-2. “You” refers to the person or persons brave and daft enough to use the Program.
-2. "사용자(You)"는 그 프로그램을 기꺼이 사용할 만큼 용감하고 어리석은 사람을 뜻합니다.
-3. “The Documentation” refers to the Program.
-3. "문서(The Documentation)"는 프로그램 그 자체를 의미합니다.
-4. “The Author” probably refers to the caffeineaddled graduate student that got the Program to work moments before a submission deadline.
-4. "원저작자(The Author)"는 아마도 제출 마감 몇 분 전에 간신히 프로그램이 작동하도록 만든, 카페인에 중독된 대학원생을 지칭할 것입니다.
+   \[프로그램에 나타나는 어떠한 설계의 흔적이라도 이는 순전히 우연이며, 사려 깊은 소프트웨어 구성의 증거로 착각해서는 안 됩니다.\]
+1. “You” refers to the person or persons brave and daft enough to use the Program.
+1. "사용자(You)"는 그 프로그램을 기꺼이 사용할 만큼 용감하고 어리석은 사람을 뜻합니다.
+1. “The Documentation” refers to the Program.
+1. "문서(The Documentation)"는 프로그램 그 자체를 의미합니다.
+1. “The Author” probably refers to the caffeineaddled graduate student that got the Program to work moments before a submission deadline.
+1. "원저작자(The Author)"는 아마도 제출 마감 몇 분 전에 간신히 프로그램이 작동하도록 만든, 카페인에 중독된 대학원생을 지칭할 것입니다.
 
 The CRAPL also stipulates that users must “agree to hold the Author free from shame, embarrassment, or ridicule for any hacks, kludges, or leaps of faith found within the Program.” While the CRAPL may not be the most legally rigorous licensing agreement, it speaks to the problems faced by authors of academic code: writing software for public use takes a great deal more work than writing code for personal use, including documentation, testing, and cleanup of accumulated cruft from many nights of hacking. The extra work has little benefit for the programmer, who gets no academic credit even for important software that took months to write. And would scientists avail themselves of the opportunity to inspect code and find bugs? Nobody gets scientific glory by checking code for typos.
 또한 CRAPL은 사용자들이 "프로그램 내에서 발견된 임시방편(hacks, kludges)이나 무리수(leaps of faith)로 인해 원저작자가 수치심, 당혹감 또는 조롱을 겪지 않도록 동의"해야 한다고 규정합니다. CRAPL이 법적으로 가장 엄격한 라이선스 협약은 아닐지라도, 학술용 코드를 작성하는 저자들이 직면한 문제를 잘 보여줍니다. 공용 소프트웨어를 작성하는 것은 문서화, 테스트, 그리고 수많은 밤을 새워 코딩하며 쌓인 찌꺼기들을 정리하는 등 개인용 코드를 작성하는 것보다 훨씬 많은 수고가 듭니다. 이러한 추가 작업은 프로그래머에게 돌아가는 혜택이 거의 없으며, 수개월이 걸려 작성한 중요한 소프트웨어조차도 그에 상응하는 학문적 인정을 받지 못합니다. 그리고 과학자들이 코드를 검토하고 버그를 찾아낼 기회를 과연 활용할까요? 오타를 찾아내려고 코드를 확인하는 일로 과학적 영예를 얻는 사람은 없습니다.
 
 # Experiment, Rinse, Repeat
+
 # 실험하고, 다시 다듬고, 반복하라
 
 Another solution might be replication. If scientists carefully recreate the experiments of other scientists from scratch, collecting entirely new data, and validate their results—a painstaking and time-consuming process—it is much easier to rule out the possibility of a typo causing an errant result. Replication also weeds out fluke false positives, assuming the replication attempt has sufficient statistical power to detect the effect in question. Many scientists claim that experimental replication is the heart of science; no new idea is accepted until it is independently tested and retested around the world and found to hold water.
@@ -93,17 +97,17 @@ This is worrisome. Does the trend hold true for less speculative kinds of medica
 Tips
 팁(Tips)
 
-* Automate your data analysis using a spreadsheet, analysis script, or program that can be tested against known input. If anyone suspects an error, you should be able to refer to your code to see exactly what you did.
-* 알려진 입력값을 바탕으로 테스트할 수 있는 스프레드시트, 분석 스크립트 또는 프로그램을 사용하여 데이터 분석을 자동화하십시오. 누군가 오류를 의심할 때, 코드만 참조하면 정확히 어떤 작업을 했는지 볼 수 있어야 합니다.
-* Corollary: Test all analysis programs against known input and ensure the results make sense. Ideally, use automated tests to check the code as you make changes, ensuring you don’t introduce errors.
-* 이에 따른 결론: 모든 분석 프로그램을 알려진 입력값으로 테스트하고 결과가 합리적인지 확인하십시오. 이상적으로는 코드를 변경할 때마다 자동화된 테스트를 통해 코드를 점검하여 새로운 오류를 만들지 않도록 하십시오.
-* When writing software, follow the best practices for scientific computing: _<http://www.plosbiology.org/article/info:doi/10.1371/journal.pbio.1001745>_.
-* 소프트웨어를 작성할 때는 과학 컴퓨팅의 모범 사례(best practices)를 따르십시오: _<http://www.plosbiology.org/article/info:doi/10.1371/journal.pbio.1001745>_.
-* When using programs and scripts to analyze your data, follow the “Ten Simple Rules for Reproducible Computational Research.”[9](./18-apa.md#ch10en9)
-* 데이터 분석에 프로그램과 스크립트를 사용할 때는 "재현 가능한 전산 연구를 위한 10가지 간단한 규칙(Ten Simple Rules for Reproducible Computational Research)"을 따르십시오. [9](./18-apa.md#ch10en9)
-* Use a reproducible research tool like Sweave to automatically include data from your analysis in your paper.
-* Sweave와 같이 재현 가능한 연구 도구를 사용하여 분석 데이터가 자동으로 논문에 포함되도록 하십시오.
-* Make all data available when possible, through specialized databases such as GenBank and PDB or through generic data repositories such as Dryad and Figshare.
-* 가능한 한 GenBank, PDB와 같은 전문 데이터베이스나 Dryad, Figshare와 같은 범용 데이터 저장소를 통해 모든 데이터를 이용할 수 있도록 하십시오.
-* Publish your software source code, spreadsheets, or analysis scripts. Many journals let you submit these as supplementary material with your paper, or you can deposit the files on Dryad or Figshare.
-* 소프트웨어의 소스 코드, 스프레드시트 또는 분석 스크립트를 공개하십시오. 많은 학술지들이 이러한 자료를 논문의 보충 자료(supplementary material)로 제출할 수 있게 해주며, Dryad나 Figshare 같은 저장소에 기탁할 수도 있습니다.
+- Automate your data analysis using a spreadsheet, analysis script, or program that can be tested against known input. If anyone suspects an error, you should be able to refer to your code to see exactly what you did.
+- 알려진 입력값을 바탕으로 테스트할 수 있는 스프레드시트, 분석 스크립트 또는 프로그램을 사용하여 데이터 분석을 자동화하십시오. 누군가 오류를 의심할 때, 코드만 참조하면 정확히 어떤 작업을 했는지 볼 수 있어야 합니다.
+- Corollary: Test all analysis programs against known input and ensure the results make sense. Ideally, use automated tests to check the code as you make changes, ensuring you don’t introduce errors.
+- 이에 따른 결론: 모든 분석 프로그램을 알려진 입력값으로 테스트하고 결과가 합리적인지 확인하십시오. 이상적으로는 코드를 변경할 때마다 자동화된 테스트를 통해 코드를 점검하여 새로운 오류를 만들지 않도록 하십시오.
+- When writing software, follow the best practices for scientific computing: _<http://www.plosbiology.org/article/info:doi/10.1371/journal.pbio.1001745>_.
+- 소프트웨어를 작성할 때는 과학 컴퓨팅의 모범 사례(best practices)를 따르십시오: _<http://www.plosbiology.org/article/info:doi/10.1371/journal.pbio.1001745>_.
+- When using programs and scripts to analyze your data, follow the “Ten Simple Rules for Reproducible Computational Research.”[9](./18-apa.md#ch10en9)
+- 데이터 분석에 프로그램과 스크립트를 사용할 때는 "재현 가능한 전산 연구를 위한 10가지 간단한 규칙(Ten Simple Rules for Reproducible Computational Research)"을 따르십시오. [9](./18-apa.md#ch10en9)
+- Use a reproducible research tool like Sweave to automatically include data from your analysis in your paper.
+- Sweave와 같이 재현 가능한 연구 도구를 사용하여 분석 데이터가 자동으로 논문에 포함되도록 하십시오.
+- Make all data available when possible, through specialized databases such as GenBank and PDB or through generic data repositories such as Dryad and Figshare.
+- 가능한 한 GenBank, PDB와 같은 전문 데이터베이스나 Dryad, Figshare와 같은 범용 데이터 저장소를 통해 모든 데이터를 이용할 수 있도록 하십시오.
+- Publish your software source code, spreadsheets, or analysis scripts. Many journals let you submit these as supplementary material with your paper, or you can deposit the files on Dryad or Figshare.
+- 소프트웨어의 소스 코드, 스프레드시트 또는 분석 스크립트를 공개하십시오. 많은 학술지들이 이러한 자료를 논문의 보충 자료(supplementary material)로 제출할 수 있게 해주며, Dryad나 Figshare 같은 저장소에 기탁할 수도 있습니다.

@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d55203e86ba1a699a1ae3c3642d34712.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-05671fd07ca6d6876311839a4a0c21df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -182,6 +182,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">데이터 시각화 (Data visualization)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/data-transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">소개</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -215,27 +221,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>이 책은 외딴섬이 아닙니다(is not an island). 여러분이 R을 마스터할 수 있게 해주는 단일한 리소스(resource)는 없습니다. 이 책에 설명된 기술을 여러분 자신의 데이터에 적용하기 시작하면 곧 우리가 대답하지 않은 질문들을 발견하게 될 것입니다. 이 섹션에서는 도움을 얻고 계속해서 학습하는 데 도움이 되는 몇 가지 팁을 설명합니다.</p>
 <section id="구글은-여러분의-친구입니다-google-is-your-friend" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="구글은-여러분의-친구입니다-google-is-your-friend"><span class="header-section-number">1.1</span> 구글은 여러분의 친구입니다 (Google is your friend)</h2>
-<p>막히면 구글에서 시작하세요. 일반적으로 쿼리에 “R”을 추가하는 것만으로 관련성 있는 결과로 좁히기에 충분합니다. 검색 결과가 유용하지 않다면 대개 R 관련 결과가 없다는 의미입니다. 또한 “tidyverse” 또는 “ggplot2”와 같은 패키지 이름을 추가하면 여러분에게 더 친숙하게 느껴질 코드로 결과를 좁히는 데 도움이 될 것입니다(예: “how to make a boxplot in R” 대 “how to make a boxplot in R with ggplot2”). 구글은 특히 오류 메시지에 유용합니다. 오류 메시지가 표시되었는데 무슨 뜻인지 전혀 모르겠다면 구글에 검색해 보세요! 과거에 다른 누군가도 이 때문에 혼란스러워했을 가능성이 높으며, 웹 어딘가에 도움말이 있을 것입니다. (오류 메시지가 영어가 아닌 경우 <code>Sys.setenv(LANGUAGE = "en")</code>를 실행하고 코드를 다시 실행하세요. 영어 오류 메시지에 대한 도움말을 찾을 가능성이 더 높습니다.)</p>
+<p>막히면 구글에서 시작하세요. 일반적으로 쿼리에 “R”을 추가하는 것만으로 관련성 있는 결과로 좁히기에 충분합니다. 검색 결과가 유용하지 않다면 대개 R 관련 결과가 없다는 의미입니다. 또한 “tidyverse” 또는 “ggplot2”와 같은 패키지 이름을 추가하면 여러분에게 더 친숙하게 느껴질 코드로 결과를 좁히는 데 도움이 될 것입니다(“how to make a boxplot in R” 대 “how to make a boxplot in R with ggplot2”). 구글은 특히 오류 메시지에 유용합니다. 오류 메시지가 표시되었는데 무슨 뜻인지 전혀 모르겠다면 구글에 검색해 보세요! 과거에 다른 누군가도 이 때문에 혼란스러워했을 가능성이 높으며, 웹 어딘가에 도움말이 있을 것입니다. (오류 메시지가 영어가 아닌 경우 <code>Sys.setenv(LANGUAGE = "en")</code>를 실행하고 코드를 다시 실행하세요. 영어 오류 메시지에 대한 도움말을 찾을 가능성이 더 높습니다.)</p>
 <p>구글이 도움이 되지 않으면 <a href="https://stackoverflow.com">Stack Overflow</a>를 시도해 보세요. R을 사용하는 질문과 답변으로 검색을 제한하기 위해 <code>[R]</code>을 포함하여 기존 답변을 검색하는 데 약간의 시간을 할애하는 것으로 시작하세요.</p>
 </section>
 <section id="reprex-만들기-making-a-reprex" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="reprex-만들기-making-a-reprex"><span class="header-section-number">1.2</span> reprex 만들기 (Making a reprex)</h2>
-<p>구글 검색에서 유용한 정보를 찾지 못했다면 최소한의 재현 가능한 예제(minimal <strong>repr</strong>oducible <strong>ex</strong>ample)의 줄임말인 <strong>reprex</strong>를 준비하는 것이 아주 좋은 생각입니다. 좋은 reprex는 다른 사람들이 여러분을 돕기 쉽게 만들어 주며, 종종 여러분 스스로 이것을 만드는 과정에서 문제를 파악하게 될 것입니다. reprex를 생성하는 데는 두 부분이 있습니다:</p>
+<p>구글 검색에서 유용한 정보를 찾지 못했다면 최소한의 재현 가능한 예제(minimal <strong>repr</strong>oducible <strong>ex</strong>ample)의 줄임말인 <strong>reprex</strong>를 준비하는 것이 아주 좋은 생각입니다. 좋은 reprex는 다른 사람들이 여러분을 돕기 쉽게 만들어 주며, 종종 여러분 스스로 이것을 만드는 과정에서 문제를 파악하게 될 것입니다. reprex를 생성하는 데는 두 부분이 있습니다.</p>
 <ul>
 <li><p>첫째, 코드를 재현 가능하게 만들어야 합니다. 이것은 여러분이 모든 것을 포착(capture)해야 함을 의미합니다. 즉 모든 <code>library()</code> 호출을 포함하고 필요한 모든 객체를 생성해야 합니다. 이를 제대로 했는지 확인하는 가장 쉬운 방법은 reprex 패키지를 사용하는 것입니다.</p></li>
 <li><p>둘째, 코드를 최소한으로 만들어야 합니다. 문제와 직접 관련이 없는 것은 모두 제거하세요. 이것은 대개 실제 직면한 것보다 훨씬 작고 간단한 R 객체를 생성하거나 심지어 내장 데이터(built-in data)를 사용하는 것을 포함합니다.</p></li>
 </ul>
-<p>정말 일이 많아 보입니다! 실제로 그럴 수 있지만 큰 보상이 따릅니다:</p>
+<p>정말 일이 많아 보입니다! 실제로 그럴 수 있지만 큰 보상이 따릅니다.</p>
 <ul>
 <li><p>80%의 경우에 훌륭한 reprex를 만들면 문제의 원인이 드러납니다. 독립적이고 최소한의 예제를 작성하는 과정에서 스스로 자신의 질문에 답을 얻게 되는 경우가 얼마나 잦은지 놀라울 정도입니다.</p></li>
 <li><p>나머지 20%의 경우 다른 사람들이 다뤄보기(play with) 쉬운 방식으로 문제의 본질(essence)을 캡처한 것이 됩니다. 이것은 도움을 받을 가능성을 상당히 높여줍니다!</p></li>
 </ul>
-<p>reprex를 직접 손으로 작성할 때 실수로 무언가를 빠뜨리기 쉬우며, 이는 여러분의 코드가 다른 사람의 컴퓨터에서 실행될 수 없음을 의미합니다. tidyverse의 일부로 설치되는 reprex 패키지를 사용하여 이 문제를 피하세요. 다음 코드를 클립보드에 복사(또는 RStudio Server나 Cloud에서 선택)한다고 가정해 보겠습니다:</p>
+<p>reprex를 직접 손으로 작성할 때 실수로 무언가를 빠뜨리기 쉬우며, 이는 여러분의 코드가 다른 사람의 컴퓨터에서 실행될 수 없음을 의미합니다. tidyverse의 일부로 설치되는 reprex 패키지를 사용하여 이 문제를 피하세요. 다음 코드를 클립보드에 복사(또는 RStudio Server나 Cloud에서 선택)한다고 가정해 보겠습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>그런 다음 <code>reprex()</code>를 호출하면 기본 출력이 GitHub용으로 형식이 지정됩니다:</p>
+<p>그런 다음 <code>reprex()</code>를 호출하면 기본 출력이 GitHub용으로 형식이 지정됩니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>reprex<span class="sc">::</span><span class="fu">reprex</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>RStudio에 있는 경우 RStudio의 뷰어(Viewer)에 아름답게 렌더링된 HTML 미리보기가 표시되고, 그렇지 않은 경우 기본 브라우저에 표시됩니다. reprex는 클립보드에 자동으로 복사됩니다(RStudio Server나 Cloud에서는 직접 복사해야 합니다):</p>
 <pre><code>``` r
@@ -243,24 +249,24 @@ y &lt;- 1:4
 mean(y)
 #&gt; [1] 2.5
 ```</code></pre>
-<p>이 텍스트는 마크다운(Markdown)이라는 특수한 방식으로 형식이 지정되며 Stack Overflow나 GitHub 같은 사이트에 붙여넣을 수 있고, 그 사이트들은 자동으로 코드처럼 보이도록 렌더링합니다. 이 마크다운이 GitHub에서 렌더링될 때의 모습은 다음과 같습니다:</p>
+<p>이 텍스트는 마크다운(Markdown)이라는 특수한 방식으로 형식이 지정되며 Stack Overflow나 GitHub 같은 사이트에 붙여넣을 수 있고, 그 사이트들은 자동으로 코드처럼 보이도록 렌더링합니다. 이 마크다운이 GitHub에서 렌더링될 때의 모습은 다음과 같습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>다른 누구든지 이것을 즉시 복사, 붙여넣기 및 실행할 수 있습니다.</p>
-<p>예제를 재현 가능하게 만들기 위해 포함해야 할 세 가지가 있습니다: 필요한 패키지, 데이터, 코드.</p>
+<p>예제를 재현 가능하게 만들기 위해 포함해야 할 세 가지가 있습니다. 필요한 패키지, 데이터, 코드.</p>
 <ol type="1">
 <li><p>예제에 어떤 패키지가 필요한지 쉽게 알 수 있도록 스크립트 맨 위에 <strong>패키지</strong>를 로드해야 합니다. 이때 각 패키지의 최신 버전을 사용하고 있는지 확인하기 좋은 타이밍입니다. 패키지를 설치하거나 마지막으로 업데이트한 이후 수정된 버그를 발견할 수도 있습니다. tidyverse의 패키지에 대해서는 <code>tidyverse_update()</code>를 실행하는 가장 확인하기 쉬운 방법입니다.</p></li>
-<li><p><strong>데이터</strong>를 포함하는 가장 쉬운 방법은 <code>dput()</code>을 사용하여 그것을 다시 생성하는 데 필요한 R 코드를 생성하는 것입니다. 예를 들어 R에서 <code>mtcars</code> 데이터셋을 다시 생성하려면 다음 단계를 수행하세요:</p>
+<li><p><strong>데이터</strong>를 포함하는 가장 쉬운 방법은 <code>dput()</code>을 사용하여 그것을 다시 생성하는 데 필요한 R 코드를 생성하는 것입니다. 예를 들어 R에서 <code>mtcars</code> 데이터셋을 다시 생성하려면 다음 단계를 수행하세요.</p>
 <ol type="1">
 <li>R에서 <code>dput(mtcars)</code>를 실행합니다.</li>
 <li>출력을 복사합니다.</li>
 <li>reprex에 <code>mtcars &lt;-</code>를 입력한 후 붙여넣습니다.</li>
 </ol>
 <p>여전히 문제가 드러나는 한도 내에서 가장 작은 부분 집합(subset)의 데이터를 사용하려고 시도하세요.</p></li>
-<li><p>여러분의 <strong>코드</strong>를 다른 사람들이 쉽게 읽을 수 있도록 약간의 시간을 투자하세요:</p>
+<li><p>여러분의 <strong>코드</strong>를 다른 사람들이 쉽게 읽을 수 있도록 약간의 시간을 투자하세요.</p>
 <ul>
 <li><p>공백을 사용했는지 확인하고 변수 이름은 간결하면서도 정보를 제공하도록 하세요.</p></li>
 <li><p>주석(comments)을 사용하여 문제가 어디에 있는지 표시하세요.</p></li>

@@ -10,11 +10,11 @@
 
 # 모델 설명을 위한 소프트웨어 (Software for Model Explanations)
 
-tidymodels 프레임워크 자체에는 모델 설명을 위한 소프트웨어가 포함되어 있지 않습니다. 대신, tidymodels로 훈련되고 평가된 모델은 [lime](https://oreil.ly/bzCAq), [vip](https://oreil.ly/UpoQf) 및 [DALEX](https://oreil.ly/KPZLQ)와 같은 R 패키지의 다른 보충(supplementary) 소프트웨어로 설명될 수 있습니다. 우리는 종종 다음을 선택합니다:
+tidymodels 프레임워크 자체에는 모델 설명을 위한 소프트웨어가 포함되어 있지 않습니다. 대신, tidymodels로 훈련되고 평가된 모델은 [lime](https://oreil.ly/bzCAq), [vip](https://oreil.ly/UpoQf) 및 [DALEX](https://oreil.ly/KPZLQ)와 같은 R 패키지의 다른 보충(supplementary) 소프트웨어로 설명될 수 있습니다. 우리는 종종 다음을 선택합니다.
 
-- 모델 구조를 활용하고(take advantage of)(흔히 더 빠른) *모델 기반(model-based)* 방법을 사용하고자 할 때 vip 함수
+- 모델 구조를 활용하고(take advantage of)(흔히 더 빠른) _모델 기반(model-based)_ 방법을 사용하고자 할 때 vip 함수
 
-- 모든 모델에 적용될 수 있는 *모델 불가지론적(model-agnostic)* 방법을 사용하고자 할 때 DALEX 함수
+- 모든 모델에 적용될 수 있는 _모델 불가지론적(model-agnostic)_ 방법을 사용하고자 할 때 DALEX 함수
 
 [10장](ch10.xhtml#resampling)과 [11장](ch11.xhtml#compare)에서는 교호작용이 있는 선형 모델과 랜덤 포레스트 모델을 포함하여 아이오와 주 Ames의 주택 가격을 예측하기 위해 여러 모델을 훈련하고 비교했으며, 결과는 [그림 18-1](#explain-obs-pred)에 나와 있습니다.
 
@@ -23,7 +23,7 @@ tidymodels 프레임워크 자체에는 모델 설명을 위한 소프트웨어�
 <h6 id="figure-18-1.-comparing-predicted-prices-for-a-linear-model-with-interactions-and-a-random-forest-model.">그림 18-1. 교호작용이 있는 선형 모델과 랜덤 포레스트 모델의 예측 가격 비교.</h6>
 </figure>
 
-이 두 모델 모두에 대해 모델 불가지론적 설명자(explainers)를 구축하여 이러한 예측을 하는 이유를 알아보겠습니다. DALEX를 위한 DALEXtra 추가 기능(add-on) 패키지를 사용할 수 있으며, 이는 tidymodels에 대한 지원을 제공합니다. Biecek and Burzykowski (2021)는 모델 설명에 DALEX를 사용하는 방법에 대한 철저한(thorough) 탐구를 제공합니다; 이 장에서는 tidymodels에 특화된 일부 중요한 접근 방식만 요약합니다. DALEX를 사용하여 전역적(global)이든 지역적(local)이든 어떤 종류의 모델 설명을 계산하려면, 먼저 적절한 데이터를 준비한 다음 각 모델에 대한 *설명자(explainer)*를 만듭니다:
+이 두 모델 모두에 대해 모델 불가지론적 설명자(explainers)를 구축하여 이러한 예측을 하는 이유를 알아보겠습니다. DALEX를 위한 DALEXtra 추가 기능(add-on) 패키지를 사용할 수 있으며, 이는 tidymodels에 대한 지원을 제공합니다. Biecek and Burzykowski (2021)는 모델 설명에 DALEX를 사용하는 방법에 대한 철저한(thorough) 탐구를 제공합니다; 이 장에서는 tidymodels에 특화된 일부 중요한 접근 방식만 요약합니다. DALEX를 사용하여 전역적(global)이든 지역적(local)이든 어떤 종류의 모델 설명을 계산하려면, 먼저 적절한 데이터를 준비한 다음 각 모델에 대한 *설명자(explainer)*를 만듭니다.
 
 ```
 library(DALEXtra)
@@ -57,15 +57,15 @@ explainer_rf <-
 
 선형 모델은 일반적으로 해석하고 설명하기가 직관적(straightforward)입니다; 선형 모델을 위해 별도의 모델 설명 알고리즘을 사용하는 자신을 자주 발견하지는 못할(may not often find yourself using) 것입니다. 그러나 선형 모델이라도 스플라인(splines)과 교호작용 항이 있으면 예측을 이해하거나 설명하기 어려울 수 있습니다!
 
-모델 설명 가능성(explainability) 동안 상당한(significant) 피처 엔지니어링 변환을 다루는 것은 우리가 가진 몇 가지 옵션을 강조(highlights)합니다(또는 때로는 그러한 분석의 모호성(ambiguity)을 강조합니다). 전역 또는 지역 모델 설명은 다음 측면(in terms of)에서 정량화할 수 있습니다:
+모델 설명 가능성(explainability) 동안 상당한(significant) 피처 엔지니어링 변환을 다루는 것은 우리가 가진 몇 가지 옵션을 강조(highlights)합니다(또는 때로는 그러한 분석의 모호성(ambiguity)을 강조합니다). 전역 또는 지역 모델 설명은 다음 측면(in terms of)에서 정량화할 수 있습니다.
 
-- 의미 있는 피처 엔지니어링 변환 없이 존재하는 *원래의 기본적인 예측 변수*, 또는
+- 의미 있는 피처 엔지니어링 변환 없이 존재하는 _원래의 기본적인 예측 변수_, 또는
 
-- 이 예제에서처럼 차원 축소([16장](ch16.xhtml#dimensionality)) 또는 교호작용 및 스플라인 항을 통해 생성된 *파생된(Derived) 피처*
+- 이 예제에서처럼 차원 축소([16장](ch16.xhtml#dimensionality)) 또는 교호작용 및 스플라인 항을 통해 생성된 _파생된(Derived) 피처_
 
 # 지역 설명 (Local Explanations)
 
-지역 모델 설명은 단일 관측치에 대한 예측에 관한 정보를 제공합니다. 예를 들어, North Ames 이웃에 있는 오래된 듀플렉스(duplex)([4장](ch04.xhtml#ames))를 고려해 보겠습니다:
+지역 모델 설명은 단일 관측치에 대한 예측에 관한 정보를 제공합니다. 예를 들어, North Ames 이웃에 있는 오래된 듀플렉스(duplex)([4장](ch04.xhtml#ames))를 고려해 보겠습니다.
 
 ```
 duplex <- vip_train[120,]
@@ -94,7 +94,7 @@ lm_breakdown
 
 이 선형 모델은 위도와 경도에 대한 스플라인 항을 사용하여 훈련되었으므로 여기에 표시된 `Longitude`의 가격 기여도는 모든 개별 스플라인 항의 효과를 결합합니다. 기여도는 파생된 스플라인 피처가 아니라 원래의 `Longitude` 피처 측면(in terms of)에서입니다.
 
-랜덤 포레스트 모델의 경우 가장 중요한 피처가 약간 다르며, 크기, 연식 및 듀플렉스 상태가 가장 중요합니다:
+랜덤 포레스트 모델의 경우 가장 중요한 피처가 약간 다르며, 크기, 연식 및 듀플렉스 상태가 가장 중요합니다.
 
 ```
 rf_breakdown <- predict_parts(explainer = explainer_rf, new_observation = duplex)
@@ -114,7 +114,7 @@ rf_breakdown
 
 이와 같은 모델 분석 설명은 피처의 *순서(order)*에 의존합니다(depend on).
 
-휴리스틱을 통해 선택된(chosen via a heuristic) 선형 모델에 대한 기본값과 동일하도록(same as the default) 랜덤 포레스트 모델 설명의 `order`를 선택하면 피처의 상대적(relative) 중요도를 변경할 수 있습니다:
+휴리스틱을 통해 선택된(chosen via a heuristic) 선형 모델에 대한 기본값과 동일하도록(same as the default) 랜덤 포레스트 모델 설명의 `order`를 선택하면 피처의 상대적(relative) 중요도를 변경할 수 있습니다.
 
 ```
 predict_parts(
@@ -133,7 +133,7 @@ predict_parts(
 #> random forest: prediction                    4.969
 ```
 
-이러한 분석 설명이 순서를 기반으로 변경된다는 사실을 사용하여 모든(또는 많은) 가능한 순서(orderings)에 대해 가장 중요한 피처를 계산할 수 있습니다. 이것이 섀플리 덧셈 설명(Shapley additive explanations, SHAP)(Lundberg and Lee 2017)의 배후에 있는(behind) 아이디어로, 피처의 평균 기여도가 피처 순서 지정의 다양한 조합 또는 "연합(coalitions)" 하에서(under) 계산됩니다. 무작위 순서 지정을 `B = 20`으로 사용하여 듀플렉스에 대한 SHAP 속성(attributions)을 계산해 보겠습니다:
+이러한 분석 설명이 순서를 기반으로 변경된다는 사실을 사용하여 모든(또는 많은) 가능한 순서(orderings)에 대해 가장 중요한 피처를 계산할 수 있습니다. 이것이 섀플리 덧셈 설명(Shapley additive explanations, SHAP)(Lundberg and Lee 2017)의 배후에 있는(behind) 아이디어로, 피처의 평균 기여도가 피처 순서 지정의 다양한 조합 또는 "연합(coalitions)" 하에서(under) 계산됩니다. 무작위 순서 지정을 `B = 20`으로 사용하여 듀플렉스에 대한 SHAP 속성(attributions)을 계산해 보겠습니다.
 
 ```
 set.seed(1801)
@@ -146,7 +146,7 @@ shap_duplex <-
   )
 ```
 
-`plot(shap_duplex)`를 호출하여 DALEX의 기본 플롯 메서드를 사용하거나 기반이 되는(underlying) 데이터에 액세스하고 커스텀 플롯을 만들 수 있습니다. [그림 18-2](#duplex-rf-shap)의 상자 플롯은 우리가 시도한 모든 순서 지정(orderings)에서 기여도의 분포를 표시하고, 막대(bars)는 각 피처에 대한 평균 속성을 표시합니다:
+`plot(shap_duplex)`를 호출하여 DALEX의 기본 플롯 메서드를 사용하거나 기반이 되는(underlying) 데이터에 액세스하고 커스텀 플롯을 만들 수 있습니다. [그림 18-2](#duplex-rf-shap)의 상자 플롯은 우리가 시도한 모든 순서 지정(orderings)에서 기여도의 분포를 표시하고, 막대(bars)는 각 피처에 대한 평균 속성을 표시합니다.
 
 ```
 library(forcats)
@@ -170,7 +170,7 @@ shap_duplex %>%
 <h6 id="figure-18-2.-shapley-additive-explanations-from-the-random-forest-model-for-a-duplex-property.">그림 18-2. 듀플렉스 자산에 대한 랜덤 포레스트 모델의 섀플리 덧셈 설명.</h6>
 </figure>
 
-데이터 세트의 다른 관측치는 어떨까요? Gilbert 이웃에 있는 더 크고 새로운 1가구 주택(one-family home)을 살펴보겠습니다:
+데이터 세트의 다른 관측치는 어떨까요? Gilbert 이웃에 있는 더 크고 새로운 1가구 주택(one-family home)을 살펴보겠습니다.
 
 ```
 big_house <- vip_train[1269,]
@@ -181,7 +181,7 @@ big_house
 #> 1 Gilbert             2267       2002 OneFam        42.1     -93.6
 ```
 
-동일한 방식으로 이 주택에 대한 SHAP 평균 속성을 계산할 수 있습니다:
+동일한 방식으로 이 주택에 대한 SHAP 평균 속성을 계산할 수 있습니다.
 
 ```
 set.seed(1802)
@@ -211,7 +211,7 @@ shap_house <-
 
 열을 섞었을 때 모델 성능이 크게 저하(degradation)되면 중요한(important) 것이고, 열의 값을 섞어도 모델 성능에 큰 차이가 없다면 중요한 변수가 아닙니다. 이 접근 방식은 모든 종류의 모델에 적용될 수 있으며(*모델 불가지론적(model agnostic)*임), 결과를 이해하기가 직관적(straightforward)입니다.
 
-DALEX를 사용하여 `model_parts()` 함수를 통해 이러한 종류의 변수 중요도를 계산합니다:
+DALEX를 사용하여 `model_parts()` 함수를 통해 이러한 종류의 변수 중요도를 계산합니다.
 
 ```
 set.seed(1803)
@@ -220,7 +220,7 @@ set.seed(1804)
 vip_rf <- model_parts(explainer_rf, loss_function = loss_root_mean_square)
 ```
 
-다시 말하지만(Again), `plot(vip_lm, vip_rf)`를 호출하여 DALEX의 기본 플롯 메서드를 사용할 수 있지만 기저가 되는(underlying) 데이터를 탐색(exploration), 분석 및 플로팅에 사용할 수 있습니다. 플로팅을 위한 함수를 만들어 보겠습니다:
+다시 말하지만(Again), `plot(vip_lm, vip_rf)`를 호출하여 DALEX의 기본 플롯 메서드를 사용할 수 있지만 기저가 되는(underlying) 데이터를 탐색(exploration), 분석 및 플로팅에 사용할 수 있습니다. 플로팅을 위한 함수를 만들어 보겠습니다.
 
 ```
 ggplot_imp <- function(...) {
@@ -278,14 +278,14 @@ ggplot_imp <- function(...) {
 
 부분 의존성 프로파일은 Ames의 예상 주택 가격과 같은 모델 예측의 기대값이 연식이나 총 생활 면적과 같은 피처의 함수로서 어떻게 변하는지 보여줍니다.
 
-이러한 프로파일을 구축하는 한 가지 방법은 개별 관측치에 대한 프로파일을 집계하거나 평균을 내는 것입니다(aggregating or averaging). 개별 관측치의 예측이 주어진 피처의 함수로서 어떻게 변하는지 보여주는 프로파일을 ICE(individual conditional expectation, 개별 조건부 기대) 프로파일 또는 CP(ceteris paribus, 다른 모든 조건이 동일할 때) 프로파일이라고 합니다. 이러한 개별 프로파일(훈련 세트의 관측치 500개에 대해)을 계산한 다음 DALEX 함수 `model_profile()`을 사용하여 집계(aggregate)할 수 있습니다:
+이러한 프로파일을 구축하는 한 가지 방법은 개별 관측치에 대한 프로파일을 집계하거나 평균을 내는 것입니다(aggregating or averaging). 개별 관측치의 예측이 주어진 피처의 함수로서 어떻게 변하는지 보여주는 프로파일을 ICE(individual conditional expectation, 개별 조건부 기대) 프로파일 또는 CP(ceteris paribus, 다른 모든 조건이 동일할 때) 프로파일이라고 합니다. 이러한 개별 프로파일(훈련 세트의 관측치 500개에 대해)을 계산한 다음 DALEX 함수 `model_profile()`을 사용하여 집계(aggregate)할 수 있습니다.
 
 ```
 set.seed(1805)
 pdp_age <- model_profile(explainer_rf, N = 500, variables = "Year_Built")
 ```
 
-이 객체의 기저가 되는(underlying) 데이터를 플로팅하기 위한 또 다른 함수를 만들어 보겠습니다:
+이 객체의 기저가 되는(underlying) 데이터를 플로팅하기 위한 또 다른 함수를 만들어 보겠습니다.
 
 ```
 ggplot_pdp <- function(obj, x) {
@@ -310,7 +310,7 @@ ggplot_pdp <- function(obj, x) {
 }
 ```
 
-이 함수를 사용하면 랜덤 포레스트 모델의 비선형(nonlinear) 동작을 볼 수 있는 [그림 18-5](#year-built)가 생성됩니다:
+이 함수를 사용하면 랜덤 포레스트 모델의 비선형(nonlinear) 동작을 볼 수 있는 [그림 18-5](#year-built)가 생성됩니다.
 
 ```
 ggplot_pdp(pdp_age, Year_Built)  +
@@ -319,7 +319,7 @@ ggplot_pdp(pdp_age, Year_Built)  +
        color = NULL)
 ```
 
-다른 연도에 지어진 주택의 판매 가격은 대개 평탄(mostly flat)하며 약 1960년 이후 약간 상승합니다(modest rise). 부분 의존성 프로파일은 모델의 다른 특성에 대해서도 계산할 수 있으며 `Bldg_Type`과 같은 데이터의 그룹에 대해서도 계산할 수 있습니다. 이러한 프로파일에 1,000개의 관측치를 사용해 보겠습니다:
+다른 연도에 지어진 주택의 판매 가격은 대개 평탄(mostly flat)하며 약 1960년 이후 약간 상승합니다(modest rise). 부분 의존성 프로파일은 모델의 다른 특성에 대해서도 계산할 수 있으며 `Bldg_Type`과 같은 데이터의 그룹에 대해서도 계산할 수 있습니다. 이러한 프로파일에 1,000개의 관측치를 사용해 보겠습니다.
 
 ```
 set.seed(1806)
@@ -374,7 +374,7 @@ as_tibble(pdp_liv$agr_profiles) %>%
 
 # 다시 콩으로! (Back to Beans!)
 
-[16장](ch16.xhtml#dimensionality)에서는 고차원 데이터를 모델링할 때 차원 축소를 피처 엔지니어링이나 전처리 단계로 사용하는 방법에 대해 논의했습니다. 콩 유형을 예측하는 마른 콩(dry bean) 형태(morphology) 측정값의 예제 데이터 세트에 대해 부분 최소 제곱(PLS) 차원 축소와 정규화 판별 분석 모델을 결합(combined with)하여 훌륭한(great) 결과를 확인했습니다. 이러한 형태적 특성 중 어떤 것이 콩 유형 예측에서 *가장* 중요했습니까? 이 장 전반에 걸쳐(throughout) 간략히 설명된 것과 동일한 접근 방식을 사용하여 모델 불가지론적 설명자(model-agnostic explainer)를 만들고 `model_parts()`를 통해, 이를테면 전역 모델 설명을 계산할 수 있습니다:
+[16장](ch16.xhtml#dimensionality)에서는 고차원 데이터를 모델링할 때 차원 축소를 피처 엔지니어링이나 전처리 단계로 사용하는 방법에 대해 논의했습니다. 콩 유형을 예측하는 마른 콩(dry bean) 형태(morphology) 측정값의 예제 데이터 세트에 대해 부분 최소 제곱(PLS) 차원 축소와 정규화 판별 분석 모델을 결합(combined with)하여 훌륭한(great) 결과를 확인했습니다. 이러한 형태적 특성 중 어떤 것이 콩 유형 예측에서 _가장_ 중요했습니까? 이 장 전반에 걸쳐(throughout) 간략히 설명된 것과 동일한 접근 방식을 사용하여 모델 불가지론적 설명자(model-agnostic explainer)를 만들고 `model_parts()`를 통해, 이를테면 전역 모델 설명을 계산할 수 있습니다.
 
 ```
 set.seed(1807)
@@ -400,9 +400,9 @@ vip_beans <-
 
 [그림 18-8](#bean-explainer)에서 볼 수 있는 전역 피처 중요도 측정값은 모든 PLS 성분의 효과를 통합(incorporate)하지만 원래(original) 변수의 측면(in terms of)에서 나타냅니다.
 
-[그림 18-8](#bean-explainer)은 모양(shape) 계수가 콩 유형을 예측하는 데 가장 중요한 특성 중 하나이며, 특히 면적 $`A`$, 장축 $`L`$, 단축 $`l`$을 고려(takes into account)하는 견고성(solidity) 척도(measure)인 모양 계수 4가 중요함을 보여줍니다:
+[그림 18-8](#bean-explainer)은 모양(shape) 계수가 콩 유형을 예측하는 데 가장 중요한 특성 중 하나이며, 특히 면적 $`A`$, 장축 $`L`$, 단축 $`l`$을 고려(takes into account)하는 견고성(solidity) 척도(measure)인 모양 계수 4가 중요함을 보여줍니다.
 
-``` math
+```math
 \text{SF4} = \frac{A}{\pi(L/2)(l/2)}
 ```
 

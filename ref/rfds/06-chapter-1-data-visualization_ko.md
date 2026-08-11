@@ -4,32 +4,32 @@
 
 > “단순한 그래프는 다른 어떤 장치보다 데이터 분석가의 마음에 더 많은 정보를 가져다주었습니다.” —존 튜키(John Tukey)
 
-R에는 그래프를 만들기 위한 여러 시스템이 있지만, ggplot2는 가장 우아하고 다재다능한 시스템 중 하나입니다. ggplot2는 그래프를 설명하고 구축하기 위한 일관된 시스템인 *그래픽 문법(grammar of graphics)* 을 구현합니다. ggplot2를 사용하면 하나의 시스템을 배워 여러 곳에 적용함으로써 더 빠르고 더 많은 작업을 수행할 수 있습니다.
+R에는 그래프를 만들기 위한 여러 시스템이 있지만, ggplot2는 가장 우아하고 다재다능한 시스템 중 하나입니다. ggplot2는 그래프를 설명하고 구축하기 위한 일관된 시스템인 _그래픽 문법(grammar of graphics)_ 을 구현합니다. ggplot2를 사용하면 하나의 시스템을 배워 여러 곳에 적용함으로써 더 빠르고 더 많은 작업을 수행할 수 있습니다.
 
 이 장에서는 ggplot2를 사용하여 데이터를 시각화하는 방법을 배웁니다. 간단한 산점도를 만드는 것으로 시작하여 ggplot2의 기본 구성 요소인 심미적 매핑(aesthetic mappings)과 기하학적 객체(geometric objects)를 소개하는 데 사용합니다. 그런 다음 단일 변수의 분포를 시각화하고 두 개 이상의 변수 간의 관계를 시각화하는 과정을 안내합니다. 마지막으로 그래프를 저장하는 방법과 문제 해결 팁으로 마무리하겠습니다.
 
 ## 사전 준비
 
-이 장은 tidyverse의 핵심 패키지 중 하나인 ggplot2에 중점을 둡니다. 이 장에서 사용하는 데이터셋, 도움말 페이지 및 함수에 액세스하려면 다음을 실행하여 tidyverse를 로드하세요:
+이 장은 tidyverse의 핵심 패키지 중 하나인 ggplot2에 중점을 둡니다. 이 장에서 사용하는 데이터셋, 도움말 페이지 및 함수에 액세스하려면 다음을 실행하여 tidyverse를 로드하세요.
 
 ```
 library(tidyverse)
 #> ── Attaching core tidyverse packages ───────────────────── tidyverse 2.0.0 ──
-#> ✔ dplyr     1.1.0.9000     ✔ readr     2.1.4     
-#> ✔ forcats   1.0.0          ✔ stringr   1.5.0     
-#> ✔ ggplot2   3.4.1          ✔ tibble    3.1.8     
-#> ✔ lubridate 1.9.2          ✔ tidyr     1.3.0     
-#> ✔ purrr     1.0.1          
+#> ✔ dplyr     1.1.0.9000     ✔ readr     2.1.4
+#> ✔ forcats   1.0.0          ✔ stringr   1.5.0
+#> ✔ ggplot2   3.4.1          ✔ tibble    3.1.8
+#> ✔ lubridate 1.9.2          ✔ tidyr     1.3.0
+#> ✔ purrr     1.0.1
 #> ── Conflicts ─────────────────────────────────────── tidyverse_conflicts() ──
 #> ✖ dplyr::filter() masks stats::filter()
 #> ✖ dplyr::lag()    masks stats::lag()
-#> ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all 
+#> ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all
 #>   conflicts to become errors
 ```
 
 이 코드 한 줄로 거의 모든 데이터 분석에 사용할 패키지들인 핵심 tidyverse가 로드됩니다. 또한 tidyverse의 어떤 함수가 기본 R(또는 로드했을 수 있는 다른 패키지)의 함수와 충돌하는지 알려줍니다.<sup><a href="ch01.html#idm44771333724368" id="idm44771333724368-marker" data-type="noteref">1</a></sup>
 
-이 코드를 실행했을 때 `there is no package called 'tidyverse'`라는 에러 메시지가 표시되면, 먼저 설치한 다음 <a href="https://rdrr.io/r/base/library.html" class="orm:hideurl"><code>library()</code></a>를 다시 한 번 실행해야 합니다:
+이 코드를 실행했을 때 `there is no package called 'tidyverse'`라는 에러 메시지가 표시되면, 먼저 설치한 다음 <a href="https://rdrr.io/r/base/library.html" class="orm:hideurl"><code>library()</code></a>를 다시 한 번 실행해야 합니다.
 
 ```
 install.packages("tidyverse")
@@ -53,7 +53,7 @@ library(ggthemes)
 
 palmerpenguins 패키지에 있는 `penguins` 데이터 프레임(일명 <a href="https://allisonhorst.github.io/palmerpenguins/reference/penguins.html" class="orm:hideurl"><code>palmerpenguins::penguins</code></a>)을 사용하여 이 질문들에 대한 답을 테스트할 수 있습니다. 데이터 프레임은 (열에) 변수와 (행에) 관측치를 모아 놓은 직사각형 모음입니다. `penguins`에는 Kristen Gorman 박사와 남극 팔머 기지 LTER(Long Term Ecological Research)가 수집하여 제공한 344개의 관측치가 포함되어 있습니다.<sup><a href="ch01.html#idm44771333851472" id="idm44771333851472-marker" data-type="noteref">2</a></sup>
 
-논의를 쉽게 하기 위해 몇 가지 용어를 정의해 보겠습니다:
+논의를 쉽게 하기 위해 몇 가지 용어를 정의해 보겠습니다.
 
 변수 (Variable)  
 측정할 수 있는 수량, 품질 또는 속성입니다.
@@ -62,10 +62,10 @@ palmerpenguins 패키지에 있는 `penguins` 데이터 프레임(일명 <a href
 측정할 때의 변수 상태입니다. 변수의 값은 측정할 때마다 다를 수 있습니다.
 
 관측치 (Observation)  
-유사한 조건에서 수행된 측정값의 집합입니다(일반적으로 관측치 내의 모든 측정은 동일한 객체에 대해 동시에 이루어집니다). 관측치에는 각각 다른 변수와 연관된 여러 값이 포함됩니다. 때때로 관측치를 *데이터 포인트(data point)* 라고 부르기도 합니다.
+유사한 조건에서 수행된 측정값의 집합입니다(일반적으로 관측치 내의 모든 측정은 동일한 객체에 대해 동시에 이루어집니다). 관측치에는 각각 다른 변수와 연관된 여러 값이 포함됩니다. 때때로 관측치를 _데이터 포인트(data point)_ 라고 부르기도 합니다.
 
 테이블 형식 데이터 (Tabular data)  
-각각 변수 및 관측치와 연관된 값들의 집합입니다. 각 값이 고유한 "셀(cell)"에 배치되고, 각 변수가 고유한 열(column)에 배치되며, 각 관측치가 고유한 행(row)에 배치되는 경우 테이블 형식 데이터는 *깔끔(tidy)* 하다고 합니다.
+각각 변수 및 관측치와 연관된 값들의 집합입니다. 각 값이 고유한 "셀(cell)"에 배치되고, 각 변수가 고유한 열(column)에 배치되며, 각 관측치가 고유한 행(row)에 배치되는 경우 테이블 형식 데이터는 _깔끔(tidy)_ 하다고 합니다.
 
 이 맥락에서 변수는 모든 펭귄의 속성을 의미하고, 관측치는 펭귄 한 마리의 모든 속성을 의미합니다.
 
@@ -102,7 +102,7 @@ glimpse(penguins)
 #> $ year              <int> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2…
 ```
 
-`penguins`에 포함된 변수 중 일부는 다음과 같습니다:
+`penguins`에 포함된 변수 중 일부는 다음과 같습니다.
 
 `species`  
 펭귄의 종 (Adelie, Chinstrap, 또는 Gentoo)
@@ -127,7 +127,7 @@ glimpse(penguins)
 
 이 그래프를 단계별로 재현해 보겠습니다.
 
-ggplot2를 사용하면 <a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="orm:hideurl"><code>ggplot()</code></a> 함수로 그래프를 시작하여, 나중에 *레이어(layers)* 를 추가할 플롯 객체를 정의합니다. <a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="orm:hideurl"><code>ggplot()</code></a>의 첫 번째 인자는 그래프에 사용할 데이터셋이므로, `ggplot(data = penguins)`는 `penguins` 데이터를 표시할 준비가 된 빈 그래프를 생성합니다. 하지만 아직 데이터를 시각화하는 방법을 알려주지 않았으므로 현재는 비어 있습니다. 이것은 그다지 흥미로운 그래프는 아니지만, 나머지 그래프 레이어를 그릴 빈 캔버스라고 생각하면 됩니다.
+ggplot2를 사용하면 <a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="orm:hideurl"><code>ggplot()</code></a> 함수로 그래프를 시작하여, 나중에 _레이어(layers)_ 를 추가할 플롯 객체를 정의합니다. <a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="orm:hideurl"><code>ggplot()</code></a>의 첫 번째 인자는 그래프에 사용할 데이터셋이므로, `ggplot(data = penguins)`는 `penguins` 데이터를 표시할 준비가 된 빈 그래프를 생성합니다. 하지만 아직 데이터를 시각화하는 방법을 알려주지 않았으므로 현재는 비어 있습니다. 이것은 그다지 흥미로운 그래프는 아니지만, 나머지 그래프 레이어를 그릴 빈 캔버스라고 생각하면 됩니다.
 
 ```
 ggplot(data = penguins)
@@ -137,7 +137,7 @@ ggplot(data = penguins)
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_01in02.png" alt="A blank, gray plot area." />
 </figure>
 
-다음으로 데이터의 정보가 어떻게 시각적으로 표현될지 <a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="orm:hideurl"><code>ggplot()</code></a>에 알려주어야 합니다. <a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="orm:hideurl"><code>ggplot()</code></a> 함수의 `mapping` 인자는 데이터셋의 변수가 그래프의 시각적 속성(*심미성, aesthetics*)에 어떻게 매핑되는지 정의합니다. `mapping` 인자는 항상 <a href="https://ggplot2.tidyverse.org/reference/aes.html" class="orm:hideurl"><code>aes()</code></a> 함수 내에 정의되며, <a href="https://ggplot2.tidyverse.org/reference/aes.html" class="orm:hideurl"><code>aes()</code></a>의 `x` 및 `y` 인자는 x축 및 y축에 매핑할 변수를 지정합니다. 지금은 지느러미 길이만 `x` 심미성에 매핑하고 체질량을 `y` 심미성에 매핑해 보겠습니다. ggplot2는 `data` 인자(이 경우 `penguins`)에서 매핑된 변수를 찾습니다.
+다음으로 데이터의 정보가 어떻게 시각적으로 표현될지 <a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="orm:hideurl"><code>ggplot()</code></a>에 알려주어야 합니다. <a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="orm:hideurl"><code>ggplot()</code></a> 함수의 `mapping` 인자는 데이터셋의 변수가 그래프의 시각적 속성(_심미성, aesthetics_)에 어떻게 매핑되는지 정의합니다. `mapping` 인자는 항상 <a href="https://ggplot2.tidyverse.org/reference/aes.html" class="orm:hideurl"><code>aes()</code></a> 함수 내에 정의되며, <a href="https://ggplot2.tidyverse.org/reference/aes.html" class="orm:hideurl"><code>aes()</code></a>의 `x` 및 `y` 인자는 x축 및 y축에 매핑할 변수를 지정합니다. 지금은 지느러미 길이만 `x` 심미성에 매핑하고 체질량을 `y` 심미성에 매핑해 보겠습니다. ggplot2는 `data` 인자(이 경우 `penguins`)에서 매핑된 변수를 찾습니다.
 
 다음 그래프는 이러한 매핑을 추가한 결과를 보여줍니다.
 
@@ -173,7 +173,7 @@ ggplot(
 
 이제 우리가 생각하는 "산점도"와 비슷한 모양을 갖추었습니다. 아직 "궁극적인 목표" 그래프와 일치하지는 않지만, 이 그래프를 사용하여 우리의 탐구를 촉발한 질문, 즉 "지느러미 길이와 체질량 사이의 관계는 어떻게 보이는가?"에 답하기 시작할 수 있습니다. 그 관계는 양의 관계(지느러미 길이가 증가할수록 체질량도 증가함), 꽤 선형적인 관계(점들이 곡선이 아닌 직선 주위에 군집함), 그리고 적당히 강한 관계(직선 주위에 흩어짐이 너무 많지 않음)인 것으로 보입니다. 지느러미가 더 긴 펭귄은 일반적으로 체질량 측면에서 더 큽니다.
 
-이 그래프에 더 많은 레이어를 추가하기 전에 잠시 멈추고 우리가 받은 경고 메시지를 살펴보겠습니다:
+이 그래프에 더 많은 레이어를 추가하기 전에 잠시 멈추고 우리가 받은 경고 메시지를 살펴보겠습니다.
 
 > Removed 2 rows containing missing values (<a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="orm:hideurl"><code>geom_point()</code></a>).
 
@@ -197,11 +197,11 @@ ggplot(
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_01in05.png" alt="A scatterplot of body mass vs. flipper length of penguins. The plot displays a positive, fairly linear, and relatively strong relationship between these two variables. Species (Adelie, Chinstrap, and Gentoo) are represented with different colors." />
 </figure>
 
-범주형 변수가 심미성에 매핑될 때, ggplot2는 변수의 각 고유한 수준(여기서는 세 종 각각)에 고유한 심미성 값(여기서는 고유한 색상)을 자동으로 할당하는데, 이 과정을 *스케일링(scaling)* 이라고 합니다. ggplot2는 어떤 값이 어떤 수준에 해당하는지 설명하는 범례도 추가합니다.
+범주형 변수가 심미성에 매핑될 때, ggplot2는 변수의 각 고유한 수준(여기서는 세 종 각각)에 고유한 심미성 값(여기서는 고유한 색상)을 자동으로 할당하는데, 이 과정을 _스케일링(scaling)_ 이라고 합니다. ggplot2는 어떤 값이 어떤 수준에 해당하는지 설명하는 범례도 추가합니다.
 
 이제 한 가지 레이어를 더 추가해 보겠습니다. 체질량과 지느러미 길이 사이의 관계를 보여주는 부드러운 곡선(smooth curve)입니다. 계속하기 전에 이전 코드를 참조하여 기존 그래프에 이것을 어떻게 추가할 수 있을지 생각해 보세요.
 
-이것은 데이터를 나타내는 새로운 기하학적 객체이므로, 점 geom 위에 새로운 geom을 레이어로 추가할 것입니다: <a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="orm:hideurl"><code>geom_smooth()</code></a>. 그리고 `method = "lm"`을 사용하여 선형 모델(`l`inear `m`odel)을 기반으로 최적의 적합선을 그리도록 지정할 것입니다.
+이것은 데이터를 나타내는 새로운 기하학적 객체이므로, 점 geom 위에 새로운 geom을 레이어로 추가할 것입니다. <a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="orm:hideurl"><code>geom_smooth()</code></a>. 그리고 `method = "lm"`을 사용하여 선형 모델(`l`inear `m`odel)을 기반으로 최적의 적합선을 그리도록 지정할 것입니다.
 
 ```
 ggplot(
@@ -218,7 +218,7 @@ ggplot(
 
 성공적으로 선을 추가했지만, 이 그래프는 <a href="#sec-ultimate-goal" data-type="xref">"궁극적인 목표"</a> 섹션의 그래프와 같지 않습니다. 그 그래프는 각각의 펭귄 종에 대해 별도의 선이 있는 것이 아니라 전체 데이터셋에 대해 하나의 선만 가지고 있습니다.
 
-<a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="orm:hideurl"><code>ggplot()</code></a> 내에서 심미성 매핑이 정의되면(전역, *global* 수준에서), 그래프의 후속적인 각 geom 레이어로 전달됩니다. 그러나 ggplot2의 각 geom 함수는 전역 수준에서 상속된 것에 더해 *로컬(local)* 수준의 심미성 매핑을 허용하는 `mapping` 인자를 받을 수도 있습니다. 점은 종(species)에 따라 색상이 지정되길 원하지만 선은 종별로 분리되길 원하지 않으므로, <a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="orm:hideurl"><code>geom_point()</code></a>에 대해서만 `color = species`를 지정해야 합니다.
+<a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="orm:hideurl"><code>ggplot()</code></a> 내에서 심미성 매핑이 정의되면(전역, _global_ 수준에서), 그래프의 후속적인 각 geom 레이어로 전달됩니다. 그러나 ggplot2의 각 geom 함수는 전역 수준에서 상속된 것에 더해 _로컬(local)_ 수준의 심미성 매핑을 허용하는 `mapping` 인자를 받을 수도 있습니다. 점은 종(species)에 따라 색상이 지정되길 원하지만 선은 종별로 분리되길 원하지 않으므로, <a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="orm:hideurl"><code>geom_point()</code></a>에 대해서만 `color = species`를 지정해야 합니다.
 
 ```
 ggplot(
@@ -289,13 +289,13 @@ ggplot(
 5.  다음 코드에서 에러가 발생하는 이유는 무엇이며, 어떻게 고칠 수 있을까요?
 
     ```
-    ggplot(data = penguins) + 
+    ggplot(data = penguins) +
       geom_point()
     ```
 
 6.  <a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="orm:hideurl"><code>geom_point()</code></a>에서 `na.rm` 인자는 무슨 역할을 하나요? 인자의 기본값은 무엇인가요? 이 인자를 `TRUE`로 성공적으로 설정한 산점도를 만들어 보세요.
 
-7.  이전 연습 문제에서 만든 그래프에 다음 캡션을 추가하세요: “Data come from the palmerpenguins package.” 힌트: <a href="https://ggplot2.tidyverse.org/reference/labs.html" class="orm:hideurl"><code>labs()</code></a>의 문서를 살펴보세요.
+7.  이전 연습 문제에서 만든 그래프에 다음 캡션을 추가하세요. “Data come from the palmerpenguins package.” 힌트: <a href="https://ggplot2.tidyverse.org/reference/labs.html" class="orm:hideurl"><code>labs()</code></a>의 문서를 살펴보세요.
 
 8.  다음 시각화를 재현해 보세요. `bill_depth_mm`은 어떤 심미성에 매핑되어야 할까요? 그리고 전역(global) 수준에 매핑해야 할까요, 아니면 geom 수준에 매핑해야 할까요?
 
@@ -337,7 +337,7 @@ ggplot(
 
 # ggplot2 호출하기
 
-이러한 입문 섹션을 넘어가면서, ggplot2 코드를 좀 더 간결하게 표현하는 방식으로 전환할 것입니다. 지금까지는 다음과 같이 매우 명시적이었습니다. 이는 학습할 때 도움이 됩니다:
+이러한 입문 섹션을 넘어가면서, ggplot2 코드를 좀 더 간결하게 표현하는 방식으로 전환할 것입니다. 지금까지는 다음과 같이 매우 명시적이었습니다. 이는 학습할 때 도움이 됩니다.
 
 ```
 ggplot(
@@ -349,18 +349,18 @@ ggplot(
 
 일반적으로 함수의 처음 한두 개 인자는 너무 중요해서 외우고 있어야 합니다. <a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="orm:hideurl"><code>ggplot()</code></a>의 처음 두 인자는 `data`와 `mapping`입니다. 책의 나머지 부분에서는 이러한 이름을 입력하지 않겠습니다. 그러면 타이핑이 줄어들고 추가 텍스트 양이 줄어들어 그래프 간의 차이점을 더 쉽게 확인할 수 있습니다. 이는 우리가 <a href="ch25.html#chp-functions" data-type="xref">25장</a>에서 다시 다루게 될 정말 중요한 프로그래밍 고려 사항입니다.
 
-이전 그래프를 더 간결하게 다시 작성하면 다음과 같습니다:
+이전 그래프를 더 간결하게 다시 작성하면 다음과 같습니다.
 
 ```
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + 
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point()
 ```
 
-향후에는 다음과 같이 그래프를 만들 수 있게 해주는 파이프 `|>`에 대해서도 배울 것입니다:
+향후에는 다음과 같이 그래프를 만들 수 있게 해주는 파이프 `|>`에 대해서도 배울 것입니다.
 
 ```
-penguins |> 
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) + 
+penguins |>
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point()
 ```
 
@@ -370,7 +370,7 @@ penguins |>
 
 ## 범주형 변수
 
-변수가 작은 값 집합 중 하나만 취할 수 있는 경우 *범주형(categorical)* 변수입니다. 범주형 변수의 분포를 조사하려면 막대 차트(bar chart)를 사용할 수 있습니다. 막대의 높이는 각 `x` 값에서 관측치가 얼마나 발생했는지를 보여줍니다.
+변수가 작은 값 집합 중 하나만 취할 수 있는 경우 _범주형(categorical)_ 변수입니다. 범주형 변수의 분포를 조사하려면 막대 차트(bar chart)를 사용할 수 있습니다. 막대의 높이는 각 `x` 값에서 관측치가 얼마나 발생했는지를 보여줍니다.
 
 ```
 ggplot(penguins, aes(x = species)) +
@@ -392,11 +392,11 @@ ggplot(penguins, aes(x = fct_infreq(species))) +
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_01in12.png" alt="A bar chart of frequencies of species of penguins, where the bars are ordered in decreasing order of their heights (frequencies): Adelie (approximately 150), Gentoo (approximately 125), Chinstrap (approximately 90)." />
 </figure>
 
-팩터와 팩터를 다루기 위한 함수(예: <a href="https://forcats.tidyverse.org/reference/fct_inorder.html" class="orm:hideurl"><code>fct_infreq()</code></a>)에 대해서는 <a href="ch16.html#chp-factors" data-type="xref">16장</a>에서 자세히 알아볼 것입니다.
+팩터와 팩터를 다루기 위한 함수(<a href="https://forcats.tidyverse.org/reference/fct_inorder.html" class="orm:hideurl"><code>fct_infreq()</code></a>)에 대해서는 <a href="ch16.html#chp-factors" data-type="xref">16장</a>에서 자세히 알아볼 것입니다.
 
 ## 수치형 변수
 
-광범위한 수치 값을 가질 수 있고 해당 값으로 덧셈, 뺄셈 또는 평균을 구하는 것이 합리적인 경우, 변수는 *수치형(numerical)* (또는 양적) 변수입니다. 수치형 변수는 연속형이거나 이산형일 수 있습니다.
+광범위한 수치 값을 가질 수 있고 해당 값으로 덧셈, 뺄셈 또는 평균을 구하는 것이 합리적인 경우, 변수는 _수치형(numerical)_ (또는 양적) 변수입니다. 수치형 변수는 연속형이거나 이산형일 수 있습니다.
 
 연속형 변수의 분포에 일반적으로 사용되는 시각화 중 하나는 히스토그램입니다.
 
@@ -460,9 +460,9 @@ ggplot(penguins, aes(x = body_mass_g)) +
 
 ## 수치형 및 범주형 변수
 
-수치형 변수와 범주형 변수 간의 관계를 시각화하려면 나란히 배치된 박스 플롯(side-by-side box plots)을 사용할 수 있습니다. *박스 플롯(boxplot)* 은 분포를 설명하는 위치 측정값(백분위수)에 대한 시각적 속기(shorthand)의 한 유형입니다. 잠재적인 이상치(outlier)를 식별하는 데에도 유용합니다. <a href="#fig-eda-boxplot" data-type="xref">그림 1-1</a>에 나와 있듯이 각 박스 플롯은 다음으로 구성됩니다:
+수치형 변수와 범주형 변수 간의 관계를 시각화하려면 나란히 배치된 박스 플롯(side-by-side box plots)을 사용할 수 있습니다. _박스 플롯(boxplot)_ 은 분포를 설명하는 위치 측정값(백분위수)에 대한 시각적 속기(shorthand)의 한 유형입니다. 잠재적인 이상치(outlier)를 식별하는 데에도 유용합니다. <a href="#fig-eda-boxplot" data-type="xref">그림 1-1</a>에 나와 있듯이 각 박스 플롯은 다음으로 구성됩니다.
 
-- 분포의 25번째 백분위수에서 75번째 백분위수까지 뻗어 있는, *사분위수 범위(interquartile range, IQR)* 로 알려진 거리인 데이터 중간 절반의 범위를 나타내는 상자(box). 상자 중간에는 분포의 중앙값, 즉 50번째 백분위수를 표시하는 선이 있습니다. 이 세 개의 선은 분포의 퍼짐 정도와 분포가 중앙값을 중심으로 대칭인지 한쪽으로 치우쳐(skewed) 있는지 알려줍니다.
+- 분포의 25번째 백분위수에서 75번째 백분위수까지 뻗어 있는, _사분위수 범위(interquartile range, IQR)_ 로 알려진 거리인 데이터 중간 절반의 범위를 나타내는 상자(box). 상자 중간에는 분포의 중앙값, 즉 50번째 백분위수를 표시하는 선이 있습니다. 이 세 개의 선은 분포의 퍼짐 정도와 분포가 중앙값을 중심으로 대칭인지 한쪽으로 치우쳐(skewed) 있는지 알려줍니다.
 
 - 상자의 양쪽 가장자리에서 IQR의 1.5배 이상 벗어난 곳에 떨어지는 관측치를 표시하는 시각적 점(points). 이러한 이상치 점들은 비정상적이므로 개별적으로 그려집니다.
 
@@ -473,7 +473,7 @@ ggplot(penguins, aes(x = body_mass_g)) +
 <h6 id="figure-1-1.-diagram-depicting-how-a-boxplot-is-created.">그림 1-1. 박스 플롯이 생성되는 과정을 묘사한 다이어그램.</h6>
 </figure>
 
-<a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="orm:hideurl"><code>geom_boxplot()</code></a>을 사용하여 종별 체질량 분포를 살펴봅시다:
+<a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="orm:hideurl"><code>geom_boxplot()</code></a>을 사용하여 종별 체질량 분포를 살펴봅시다.
 
 ```
 ggplot(penguins, aes(x = species, y = body_mass_g)) +
@@ -484,7 +484,7 @@ ggplot(penguins, aes(x = species, y = body_mass_g)) +
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_01in16.png" alt="Side-by-side box plots of distributions of body masses of Adelie, Chinstrap, and Gentoo penguins. The distribution of Adelie and Chinstrap penguins&#39; body masses appear to be symmetric with medians around 3750 grams. The median body mass of Gentoo penguins is much higher, around 5000 grams, and the distribution of the body masses of these penguins appears to be somewhat right skewed." />
 </figure>
 
-대안적으로 <a href="https://ggplot2.tidyverse.org/reference/geom_density.html" class="orm:hideurl"><code>geom_density()</code></a>를 사용하여 밀도 플롯을 만들 수 있습니다:
+대안적으로 <a href="https://ggplot2.tidyverse.org/reference/geom_density.html" class="orm:hideurl"><code>geom_density()</code></a>를 사용하여 밀도 플롯을 만들 수 있습니다.
 
 ```
 ggplot(penguins, aes(x = body_mass_g, color = species)) +
@@ -497,7 +497,7 @@ ggplot(penguins, aes(x = body_mass_g, color = species)) +
 
 또한 선이 배경과 대비되어 좀 더 눈에 띄게 만들기 위해 `linewidth` 인자를 사용하여 선의 두께를 사용자 지정했습니다.
 
-추가적으로 `species`를 `color`와 `fill` 심미성 모두에 매핑하고 `alpha` 심미성을 사용하여 채워진 밀도 곡선에 투명도를 추가할 수 있습니다. 이 심미성은 0(완전히 투명함)과 1(완전히 불투명함) 사이의 값을 가집니다. 다음 그래프에서는 0.5로 설정되어 있습니다:
+추가적으로 `species`를 `color`와 `fill` 심미성 모두에 매핑하고 `alpha` 심미성을 사용하여 채워진 밀도 곡선에 투명도를 추가할 수 있습니다. 이 심미성은 0(완전히 투명함)과 1(완전히 불투명함) 사이의 값을 가집니다. 다음 그래프에서는 0.5로 설정되어 있습니다.
 
 ```
 ggplot(penguins, aes(x = body_mass_g, color = species, fill = species)) +
@@ -508,10 +508,10 @@ ggplot(penguins, aes(x = body_mass_g, color = species, fill = species)) +
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_01in18.png" alt="A density plot of body masses of penguins by species of penguins. Each species (Adelie, Chinstrap, and Gentoo) is represented in different colored outlines for the density curves. The density curves are also filled with the same colors, with some transparency added." />
 </figure>
 
-여기서 우리가 사용한 용어에 주목하세요:
+여기서 우리가 사용한 용어에 주목하세요.
 
-- 해당 심미성으로 표현되는 시각적 속성이 변수의 값에 따라 변하게 하려면, 변수를 심미성에 *매핑(map)* 합니다.
-- 그렇지 않은 경우 심미성의 값을 *설정(set)* 합니다.
+- 해당 심미성으로 표현되는 시각적 속성이 변수의 값에 따라 변하게 하려면, 변수를 심미성에 _매핑(map)_ 합니다.
+- 그렇지 않은 경우 심미성의 값을 _설정(set)_ 합니다.
 
 ## 두 개의 범주형 변수
 
@@ -556,7 +556,7 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 
 ## 3개 이상의 변수
 
-<a href="#sec-adding-aesthetics-layers" data-type="xref">"심미성과 레이어 추가하기"</a>에서 보았듯이, 그래프에 더 많은 변수를 추가 심미성에 매핑하여 통합할 수 있습니다. 예를 들어, 다음 산점도에서 점의 색상은 종(species)을 나타내고 점의 모양은 섬(island)을 나타냅니다:
+<a href="#sec-adding-aesthetics-layers" data-type="xref">"심미성과 레이어 추가하기"</a>에서 보았듯이, 그래프에 더 많은 변수를 추가 심미성에 매핑하여 통합할 수 있습니다. 예를 들어, 다음 산점도에서 점의 색상은 종(species)을 나타내고 점의 모양은 섬(island)을 나타냅니다.
 
 ```
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
@@ -567,7 +567,7 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_01in22.png" alt="A scatterplot of body mass vs. flipper length of penguins. The plot displays a positive, linear, relatively strong relationship between these two variables. The points are colored based on the species of the penguins and the shapes of the points represent islands (round points are Biscoe island, triangles are Dream island, and squared are Torgersen island). The plot is very busy and it&#39;s difficult to distinguish the shapes of the points." />
 </figure>
 
-하지만 그래프에 너무 많은 심미적 매핑을 추가하면 혼란스러워져 이해하기 어려워집니다. 특히 범주형 변수에 유용한 또 다른 옵션은 그래프를 *패싯(facets)* 으로 분할하는 것입니다. 패싯은 각각 데이터의 부분 집합(subset) 하나를 표시하는 하위 그래프입니다.
+하지만 그래프에 너무 많은 심미적 매핑을 추가하면 혼란스러워져 이해하기 어려워집니다. 특히 범주형 변수에 유용한 또 다른 옵션은 그래프를 _패싯(facets)_ 으로 분할하는 것입니다. 패싯은 각각 데이터의 부분 집합(subset) 하나를 표시하는 하위 그래프입니다.
 
 단일 변수를 기준으로 그래프를 패싯하려면 <a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="orm:hideurl"><code>facet_wrap()</code></a>을 사용합니다. <a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="orm:hideurl"><code>facet_wrap()</code></a>의 첫 번째 인자는 공식(formula)<sup><a href="ch01.html#idm44771330671200" id="idm44771330671200-marker" data-type="noteref">3</a></sup>으로, `~` 뒤에 변수 이름을 붙여 만듭니다. <a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="orm:hideurl"><code>facet_wrap()</code></a>에 전달하는 변수는 범주형이어야 합니다.
 
@@ -601,7 +601,7 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
     ggplot(
       data = penguins,
       mapping = aes(
-        x = bill_length_mm, y = bill_depth_mm, 
+        x = bill_length_mm, y = bill_depth_mm,
         color = species, shape = species
       )
     ) +
@@ -620,7 +620,7 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 
 # 그래프 저장하기
 
-그래프를 다 만든 후에는 다른 곳에서 사용할 수 있도록 이미지로 저장하여 R 밖으로 가져오고 싶을 수 있습니다. 이는 가장 최근에 생성된 그래프를 디스크에 저장하는 <a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="orm:hideurl"><code>ggsave()</code></a>의 역할입니다:
+그래프를 다 만든 후에는 다른 곳에서 사용할 수 있도록 이미지로 저장하여 R 밖으로 가져오고 싶을 수 있습니다. 이는 가장 최근에 생성된 그래프를 디스크에 저장하는 <a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="orm:hideurl"><code>ggsave()</code></a>의 역할입니다.
 
 ```
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
@@ -654,10 +654,10 @@ R 코드 실행을 시작하면 문제에 부딪힐 가능성이 높습니다. �
 
 실행 중인 코드를 책에 있는 코드와 주의 깊게 비교하는 것부터 시작하세요. R은 극도로 까다로워서 잘못 배치된 문자 하나가 큰 차이를 만들 수 있습니다. 모든 `(`가 `)`와 짝을 이루고 모든 `"`가 다른 `"`와 짝을 이루는지 확인하세요. 때로는 코드를 실행해도 아무 일도 일어나지 않을 수 있습니다. 콘솔의 왼쪽을 확인하세요. `+`가 있으면 R은 아직 완전한 표현식을 입력하지 않았다고 생각하고 기다리고 있는 것입니다. 이 경우 обычно Escape를 눌러 현재 명령어 처리를 중단하고 처음부터 다시 시작하는 것이 쉽습니다.
 
-ggplot2 그래픽을 만들 때 한 가지 흔한 문제는 `+`를 잘못된 곳에 놓는 것입니다. 줄의 시작이 아니라 끝에 와야 합니다. 즉, 다음과 같은 코드를 실수로 작성하지 않았는지 확인하세요:
+ggplot2 그래픽을 만들 때 한 가지 흔한 문제는 `+`를 잘못된 곳에 놓는 것입니다. 줄의 시작이 아니라 끝에 와야 합니다. 즉, 다음과 같은 코드를 실수로 작성하지 않았는지 확인하세요.
 
 ```
-ggplot(data = mpg) 
+ggplot(data = mpg)
 + geom_point(mapping = aes(x = displ, y = hwy))
 ```
 
@@ -675,6 +675,6 @@ ggplot(data = mpg)
 
 <sup>[1](ch01.html#idm44771333724368-marker)</sup> 더 많은 패키지를 로드할수록 중요해지는 conflicted 패키지를 사용하면 해당 메시지를 제거하고 요구에 따라 충돌 해결이 발생하도록 강제할 수 있습니다. conflicted에 대해 더 알아보려면 [패키지 웹사이트](https://oreil.ly/01bKz)를 참조하세요.
 
-<sup>[2](ch01.html#idm44771333851472-marker)</sup> Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. [*https://oreil.ly/ncwc5*](https://oreil.ly/ncwc5). doi: 10.5281/zenodo.3960218.
+<sup>[2](ch01.html#idm44771333851472-marker)</sup> Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. [_https://oreil.ly/ncwc5_](https://oreil.ly/ncwc5). doi: 10.5281/zenodo.3960218.
 
 <sup>[3](ch01.html#idm44771330671200-marker)</sup> 여기서 "공식(formula)"은 "방정식(equation)"의 동의어가 아니라 `~`에 의해 생성된 것의 이름입니다.

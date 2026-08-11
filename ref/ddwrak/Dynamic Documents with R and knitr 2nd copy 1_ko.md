@@ -51,9 +51,9 @@ R과 knitr는 모두 CRAN(Comprehensive R Archive Network)에서 무료 오픈 �
 - ## [11] LC_MEASUREMENT=en_US.UTF-8
 - ## [12] LC_IDENTIFICATION=C ## ## attached base packages: ## [1] stats graphics grDevices utils datasets ## [6] base ## ## other attached packages: ## [1] knitr_1.10 ## ## loaded via a namespace (and not attached): ## [1] formatR_1.2 tools_3.2.0 highr_0.5 ## [4] stringr_0.6.2 evaluate_0.7
 
-knitr 패키지는 웹사이트 http://yihui.name/knitr/ 에 자세히 문서화되어 있으며, 가장 중요한 페이지는 아마도 청크 옵션에 대한 전체 참조를 찾을 수 있는 http://yihui.name/knitr/options 일 것입니다(5.1.1절). 개발 버전은 Github(https://github.com/yihui/knitr)에서 호스팅됩니다. 언제든지 최신 개발 버전을 확인하거나, 이슈/기능 요청을 제출하거나, 저장소를 포크하고 직접 변경하여 개발에 참여할 수 있습니다. https://github.com/yihui/knitr-examples 저장소에는 최소한의 예제와 고급 예제를 모두 포함하여 수많은 예제가 있습니다. Karl Broman은 http://kbroman.org/knitr_knutshell 에 knitr에 대한 멋진 최소한의 자습서를 준비했으며, 이는 초보자가 knitr를 빠르게 배우는 데 유용할 수 있습니다. 밴더빌트 대학교 생물통계학과의 Frank Harrell 등이 유지 관리하는 위키 페이지도 있으며, knitr 사용에 대한 몇 가지 요령과 유용한 경험을 소개했습니다: http://biostat.mc.vanderbilt.edu.
+knitr 패키지는 웹사이트 http://yihui.name/knitr/ 에 자세히 문서화되어 있으며, 가장 중요한 페이지는 아마도 청크 옵션에 대한 전체 참조를 찾을 수 있는 http://yihui.name/knitr/options 일 것입니다(5.1.1절). 개발 버전은 Github(https://github.com/yihui/knitr)에서 호스팅됩니다. 언제든지 최신 개발 버전을 확인하거나, 이슈/기능 요청을 제출하거나, 저장소를 포크하고 직접 변경하여 개발에 참여할 수 있습니다. https://github.com/yihui/knitr-examples 저장소에는 최소한의 예제와 고급 예제를 모두 포함하여 수많은 예제가 있습니다. Karl Broman은 http://kbroman.org/knitr_knutshell 에 knitr에 대한 멋진 최소한의 자습서를 준비했으며, 이는 초보자가 knitr를 빠르게 배우는 데 유용할 수 있습니다. 밴더빌트 대학교 생물통계학과의 Frank Harrell 등이 유지 관리하는 위키 페이지도 있으며, knitr 사용에 대한 몇 가지 요령과 유용한 경험을 소개했습니다. http://biostat.mc.vanderbilt.edu.
 
-R에 대한 다른 많은 책과 달리 이 책에서는 R 소스 코드에 프롬프트를 추가하지 않으며, 이전 R 세션 정보에서 볼 수 있듯이 기본적으로 두 개의 해시 ##를 사용하여 텍스트 출력을 주석 처리합니다. 이러한 규칙의 이유는 6장에서 설명합니다. 패키지 이름은 일반 텍스트(예: rpart)로, 함수 이름은 평문(예: paste())으로, 인라인 코드는 타자기로 된 글꼴(예: mean(1:10, trim = 0.1))로 서식이 지정되며, 파일 이름은 산세리프 글꼴(예: figure/foo.pdf)로 지정됩니다.
+R에 대한 다른 많은 책과 달리 이 책에서는 R 소스 코드에 프롬프트를 추가하지 않으며, 이전 R 세션 정보에서 볼 수 있듯이 기본적으로 두 개의 해시 ##를 사용하여 텍스트 출력을 주석 처리합니다. 이러한 규칙의 이유는 6장에서 설명합니다. 패키지 이름은 일반 텍스트(rpart)로, 함수 이름은 평문(paste())으로, 인라인 코드는 타자기로 된 글꼴(mean(1:10, trim = 0.1))로 서식이 지정되며, 파일 이름은 산세리프 글꼴(figure/foo.pdf)로 지정됩니다.
 
 ###### 책의 구조
 
@@ -116,15 +116,12 @@ xxi
 - 3.3 최소한의 Rmd 문서의 소스 . . . . . . . . . 15
 - 3.4 마크다운의 최소 예제 . . . . . . . . . . . . . 16
 
-
 - 4.1 RStudio에서 Rnw 문서 편집 . . . . . . . . . . . . . 20
 - 4.2 RStudio에서 Rmd 문서 편집 . . . . . . . . . . . . . 22
 - 4.3 LYX에서 knitr 사용 . . . . . . . . . . . . . . . . . . . . . . 24
 
-
 - 5.1 knitr의 Sweave 스타일 . . . . . . . . . . . . . . . . . . 41
 - 5.2 knitr의 listings 스타일 . . . . . . . . . . . . . . . . . . 42
-
 
 - 7.1 명시적으로 인쇄할 필요가 없는 ggplot2에서 생성된 그림 . . . . . . . . . . . . . . . . . . . . . . . . . . . . 59
 - 7.2 Bookman 글꼴 계열을 사용한 그림 . . . . . . . . . . . 62
@@ -140,23 +137,19 @@ xxi
 - 7.12 tikz() 장치로 네이티브 LATEX에 수학 쓰기 . . . . . 75
 - 7.13 하위 그림이 있는 그림 환경 . . . . . . . . . . 77
 
-
 - 10.1 기본 여백이 있는 그림 . . . . . . . . . . . . . . . 100
 - 10.2 더 작은 여백이 있는 그림 . . . . . . . . . . . . . . . . 101
 - 10.3 큰 흰색 여백이 있는 원본 그림 . . . . . . . . 104
 - 10.4 잘린 그림 . . . . . . . . . . . . . . . . . . . . . . . 105
 - 10.5 hook_rgl()로 캡처한 rgl 그림 . . . . . . . . . . . . . 106 xxiii
 
-
 xxiv 그림 목록
 
 - 10.6 GGobi로 생성한 그림 . . . . . . . . . . . . . . . . . . . 107
 - 10.7 기존 rgl 그림에 요소 추가 . . . . . . . . . . 109
 
-
 - 11.1 TikZ로 그린 다이어그램 . . . . . . . . . . . . . . . . 121
 - 11.2 Graphviz의 dot으로 그린 다이어그램 . . . . . . . . . . 122
-
 
 - 12.1 gridExtra 패키지로 생성된 표 . . . . . . . . . 129
 - 12.2 목록으로 긴 줄 끊기 . . . . . . . . . . . . . . . . 134
@@ -170,8 +163,7 @@ xxiv 그림 목록
 - 12.10 순서도 데모의 샘플 페이지 . . . . . . . . . . 153
 - 12.11 회귀 모델 템플릿 . . . . . . . . . . . . . 157
 
-
-13.1 마크다운에서 변환된 OpenDocument Text . . . . 164 13.2 HTML5 슬라이드 예제 소스 . . . . . . 165
+  13.1 마크다운에서 변환된 OpenDocument Text . . . . 164 13.2 HTML5 슬라이드 예제 소스 . . . . . . 165
 
 - 14.1 R 마크다운 v2의 HTML 출력 문서 미리보기 . . . . . . . . . . . . . . . . . . . . . . . . . . . . 178
 - 14.2 표, 각주, 인용 미리보기 . . . . . . 179
@@ -189,11 +181,9 @@ xxiv 그림 목록
 - 14.14 템플릿에서 새 R 마크다운 문서 만들기 . . 206
 - 14.15 R 마크다운으로 전자책 만들기 . . . . . . . . . . . . 207
 
-
 그림 목록 xxv
 
 - 14.16 R 마크다운의 DataTables 라이브러리로 생성된 표 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 210
-
 
 - 15.1 이변량 정규 분포에 대한 깁스 샘플링 추적 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 215
 - 15.2 깁스 샘플링의 5000개 포인트 . . . . . . . . . . . . . 215
@@ -203,7 +193,6 @@ xxiv 그림 목록
 - 15.6 ggplot2 전환 가이드의 샘플 페이지 . . . . . . 225
 - 15.7 knitr를 사용하여 PDF 비네트를 컴파일하기 위한 Makefile . . . 226
 - 15.8 HTML 비네트를 컴파일하기 위한 Makefile . . . . . . . . . 227 16.1 IPython 스크린샷 . . . . . . . . . . . . . . . . . . . 243
-
 
 ###### 표 목록
 
@@ -219,22 +208,23 @@ xxiv 그림 목록
 
 정답은 {{ 6 * pi }}입니다.
 
-여기서 {{ 와 }} 는 6 * pi가 소스 코드이며 실행되어야 함을 컴퓨터에 알려주는 한 쌍의 마커입니다. 여기서 pi(π)는 R의 상수입니다.
+여기서 {{ 와 }} 는 6 \* pi가 소스 코드이며 실행되어야 함을 컴퓨터에 알려주는 한 쌍의 마커입니다. 여기서 pi(π)는 R의 상수입니다.
 
-웹 스크립팅 언어(예: 프로그램 코드를 HTML 문서에 삽입할 수 있는 PHP)를 알고 있다면 이 아이디어가 익숙할 것입니다. 위 예제는 인라인 코드 출력을 보여주며, 이는 소스 코드가 문장 안에 혼합되어 있음을 의미합니다. 다른 유형의 출력은 전체 코드 블록에서 결과를 제공하는 청크 출력입니다. 청크 출력은 훨씬 더 유연성이 있습니다. 예를 들어, 코드 청크에서 그래픽과 표를 생성할 수 있습니다.
+웹 스크립팅 언어(프로그램 코드를 HTML 문서에 삽입할 수 있는 PHP)를 알고 있다면 이 아이디어가 익숙할 것입니다. 위 예제는 인라인 코드 출력을 보여주며, 이는 소스 코드가 문장 안에 혼합되어 있음을 의미합니다. 다른 유형의 출력은 전체 코드 블록에서 결과를 제공하는 청크 출력입니다. 청크 출력은 훨씬 더 유연성이 있습니다. 예를 들어, 코드 청크에서 그래픽과 표를 생성할 수 있습니다.
 
 그림 1.1은 R 코드 청크로 동적으로 생성되었으며, 아래에 인쇄되어 있습니다.
 
 1
 
-| | | | | | | | |
-|---|---|---|---|---|---|---|---|
-| | | | | | | | |
-| | | | | | | | |
-| | | | | | | | |
-| | | | | | | | |
-| | | | | | | | |
-| | | | | | | | |
+|     |     |     |     |     |     |     |     |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|     |     |     |     |     |     |     |     |
+|     |     |     |     |     |     |     |     |
+|     |     |     |     |     |     |     |     |
+|     |     |     |     |     |     |     |     |
+|     |     |     |     |     |     |     |     |
+|     |     |     |     |     |     |     |     |
+
 ###### 1.1 브라운 운동 시뮬레이션
 
 그림 1.1: 100단계에 대한 브라운 운동 시뮬레이션: x1 = 1, xi+1 = xi + i+1, i iid∼ N(0,1), i = 1,2, · · · ,100
@@ -277,7 +267,7 @@ Donald E. Knuth, 리터럴 프로그래밍, 1984
 이러한 단계는 소프트웨어 패키지에서 구현될 수 있으므로 작성자가 이러한 기술적 세부 사항에 신경 쓸 필요가 없습니다. 대신 출력 결과가 어떻게 보일지만 제어합니다. 리터럴 프로그래밍의 아이디어는 단순해 보이지만 보고서(특히 데이터 분석과 관련된 보고서)를 위해 조정할 수 있는 세부 사항은 많습니다. 예를 들어, 데이터 보고서에는 종종 표가 포함되며 표 1.1은 knitr의 kable() 함수를 사용하여 아래 R 코드에서 생성된 표입니다.
 
 ```r
-library(knitr) 
+library(knitr)
 kable(head(mtcars[, 1:6]))
 ```
 
@@ -287,15 +277,14 @@ kable(head(mtcars[, 1:6]))
 
 표 1.1: mtcars 데이터 세트의 하위 세트: 처음 6개 행과 6개 열.
 
-| | mpg | cyl | disp | hp | drat | wt |
-|---|---|---|---|---|---|---|
-| Mazda RX4 | 21.0 | 6 | 160 | 110 | 3.90 | 2.620 |
-| Mazda RX4 Wag | 21.0 | 6 | 160 | 110 | 3.90 | 2.875 |
-| Datsun 710 | 22.8 | 4 | 108 | 93 | 3.85 | 2.320 |
-| Hornet 4 Drive | 21.4 | 6 | 258 | 110 | 3.08 | 3.215 |
-| Hornet Sportabout | 18.7 | 8 | 360 | 175 | 3.15 | 3.440 |
-| Valiant | 18.1 | 6 | 225 | 105 | 2.76 | 3.460 |
-
+|                   | mpg  | cyl | disp | hp  | drat | wt    |
+| ----------------- | ---- | --- | ---- | --- | ---- | ----- |
+| Mazda RX4         | 21.0 | 6   | 160  | 110 | 3.90 | 2.620 |
+| Mazda RX4 Wag     | 21.0 | 6   | 160  | 110 | 3.90 | 2.875 |
+| Datsun 710        | 22.8 | 4   | 108  | 93  | 3.85 | 2.320 |
+| Hornet 4 Drive    | 21.4 | 6   | 258  | 110 | 3.08 | 3.215 |
+| Hornet Sportabout | 18.7 | 8   | 360  | 175 | 3.15 | 3.440 |
+| Valiant           | 18.1 | 6   | 225  | 105 | 2.76 | 3.460 |
 
 ### 2
 
@@ -329,7 +318,7 @@ D. Donoho, WaveLab 및 재현 가능한 연구
 
 RR을 위해 명심해야 할 핵심은 다른 사람들이 결과를 재현할 수 있어야 하므로 컴퓨팅을 이식 가능하게 만들기 위해 최선을 다해야 한다는 것입니다. 아래에서는 RR에 대한 몇 가지 좋은 관행을 논의하고 이를 따르지 않는 것이 왜 나쁠 수 있는지 설명합니다.
 
-- • 동일한 디렉터리 아래에서 모든 소스 파일을 관리하고 가능하면 상대 경로를 사용하십시오: 절대 경로는 재현성을 깰 수 있습니다. 예를 들어, C:/Users/john/foo.csv 또는 /home/joe/foo.csv와 같은 데이터 파일은 한 컴퓨터에만 존재할 수 있으며, 하드 디스크에서 절대 경로가 다를 수 있기 때문에 다른 사람들은 이를 읽지 못할 수 있습니다. 모든 것을 동일한 디렉터리 아래에 유지하면 read.csv('foo.csv')(현재 작업 디렉터리에 있는 경우) 또는 read.csv('../data/foo.csv')(한 수준 위로 올라가서 data/ 디렉터리 아래에서 파일 찾기)로 데이터 파일을 읽을 수 있습니다. 결과를 배포할 때 전체 디렉터리의 아카이브(예: zip 패키지)를 만들 수 있습니다.
+- • 동일한 디렉터리 아래에서 모든 소스 파일을 관리하고 가능하면 상대 경로를 사용하십시오: 절대 경로는 재현성을 깰 수 있습니다. 예를 들어, C:/Users/john/foo.csv 또는 /home/joe/foo.csv와 같은 데이터 파일은 한 컴퓨터에만 존재할 수 있으며, 하드 디스크에서 절대 경로가 다를 수 있기 때문에 다른 사람들은 이를 읽지 못할 수 있습니다. 모든 것을 동일한 디렉터리 아래에 유지하면 read.csv('foo.csv')(현재 작업 디렉터리에 있는 경우) 또는 read.csv('../data/foo.csv')(한 수준 위로 올라가서 data/ 디렉터리 아래에서 파일 찾기)로 데이터 파일을 읽을 수 있습니다. 결과를 배포할 때 전체 디렉터리의 아카이브(zip 패키지)를 만들 수 있습니다.
 - • 컴퓨팅이 시작된 후에는 작업 디렉터리를 변경하지 마십시오: setwd()는 작업 디렉터리를 설정하는 R의 함수이며 사용자의 코드에서 setwd('C:/path/to/some/dir')를 보는 것은 드문 일이 아닙니다. 이는 절대 경로일 뿐만 아니라 나머지 소스 문서에 전역적인 영향을 미치기 때문에 좋지 않습니다. 이 경우 루트 디렉터리가 변경되었으므로 모든 상대 경로에 조정이 필요할 수 있으며 소프트웨어가 예기치 않은 위치에 출력을 쓸 수 있다는 점을 명심해야 합니다(예를 들어, 그림은 ./figures/ 디렉터리에 생성될 것으로 예상되지만 setwd('./data/')를 설정하면 대신 ./data/figures/에 기록됩니다). 작업 디렉터리를 설정해야 하는 경우 R 세션의 맨 처음에서 설정하십시오. 4장에서 소개할 대부분의 편집기는 이 규칙을 따르며, 문서를 컴파일하기 위해 knitr가 호출되기 전에 작업 디렉터리가 소스 문서의 디렉터리로 설정됩니다. 다른 작업 디렉터리를 설정한 후 코드를 작성하는 것이 불가피하거나 훨씬 더 편리한 경우 나중에 디렉터리를 복원해야 합니다. 예를 들면 다음과 같습니다.
 
 ```r
@@ -344,19 +333,19 @@ f <- function(...) {
 ```
 
 - • 깨끗한 R 세션에서 문서를 컴파일하십시오: 현재 R 세션에 있는 기존 R 객체는 출력 결과를 "오염"시킬 수 있습니다. 코드 청크를 하나씩 누적하고 대화식으로 실행하여 결과를 확인하여 보고서를 작성하는 것은 괜찮지만, 최종적으로는 모든 결과가 코드에서 새로 생성되도록 새 R 세션이 있는 일괄 처리 모드에서 보고서를 컴파일해야 합니다.
-- • 사람의 상호 작용이 필요한 명령을 피하십시오: 사람의 입력은 매우 예측하기 어려울 수 있습니다. 예를 들어, 사용자에게 데이터 파일을 선택하도록 요청하는 대화 상자를 팝업하면 사용자가 어떤 파일을 선택할지 확실히 알 수 없습니다. file.choose()와 같은 함수를 사용하여 read.table()에 파일을 입력하는 대신 파일 이름을 명시적으로 작성해야 합니다(예: read.table('a-specific-file.txt')).
+- • 사람의 상호 작용이 필요한 명령을 피하십시오: 사람의 입력은 매우 예측하기 어려울 수 있습니다. 예를 들어, 사용자에게 데이터 파일을 선택하도록 요청하는 대화 상자를 팝업하면 사용자가 어떤 파일을 선택할지 확실히 알 수 없습니다. file.choose()와 같은 함수를 사용하여 read.table()에 파일을 입력하는 대신 파일 이름을 명시적으로 작성해야 합니다(read.table('a-specific-file.txt')).
 - • 데이터 분석을 위한 환경 변수를 피하십시오: 환경 변수는 구성 목적으로 프로그래밍에서 많이 사용되지만, 사용자가 설정하기 위한 추가 지침이 필요하고 사람들이 간단히 이 작업을 잊어버릴 수 있으므로 데이터 분석에 사용하는 것은 바람직하지 않습니다. 설정할 옵션이 있으면 소스 문서 내부에서 설정하십시오.
 - • sessionInfo()(또는 devtools::session_info()) 및 이 문서를 컴파일하는 방법에 대한 지침을 첨부하십시오: 세션 정보는 R 버전, 운영 체제 및 사용된 추가 패키지와 같은 소프트웨어 환경을 독자가 인식하게 합니다. 때로는 단일 함수를 호출하여 문서를 컴파일하는 것만큼 간단하지 않을 수 있으며 추가 단계가 필요한 경우 컴파일 방법을 명확히 해야 합니다. 그러나 셸 스크립트, Makefile 또는 배치 파일과 같은 컴퓨터 스크립트 형식으로 지침을 제공하는 것이 좋습니다.
 
 예제로 R을 사용했지만 이러한 관행은 R 언어에만 국한되지 않습니다. 다른 컴퓨팅 환경에도 동일한 규칙이 적용됩니다.
 
-리터럴 프로그래밍 도구는 종종 사용자가 일괄 처리 모드에서 문서를 컴파일해야 하며 재현 가능한 연구에 좋지만 탐색적 데이터 분석의 경우 일괄 처리 모드가 번거로울 수 있습니다. 최종 문서에 무엇을 넣을지 결정하지 않은 경우 데이터 및 코드와 자주 상호 작용해야 할 수 있으며 코드를 업데이트할 때마다 전체 문서를 컴파일할 가치가 없습니다. 이 문제는 4장에서 소개하는 RStudio 및 Emacs/ESS와 같은 유능한 편집기를 사용하여 해결할 수 있습니다. 이러한 편집기에서 우리는 코드와 상호 작용하고 데이터를 자유롭게 탐색할 수 있으며(예: 연결된 R 세션에서 R 코드 전송 또는 작성), 코딩 작업이 끝나면 일괄 처리 모드에서 전체 문서를 컴파일하여 모든 코드가 깨끗한 R 세션에서 작동하는지 확인할 수 있습니다.
+리터럴 프로그래밍 도구는 종종 사용자가 일괄 처리 모드에서 문서를 컴파일해야 하며 재현 가능한 연구에 좋지만 탐색적 데이터 분석의 경우 일괄 처리 모드가 번거로울 수 있습니다. 최종 문서에 무엇을 넣을지 결정하지 않은 경우 데이터 및 코드와 자주 상호 작용해야 할 수 있으며 코드를 업데이트할 때마다 전체 문서를 컴파일할 가치가 없습니다. 이 문제는 4장에서 소개하는 RStudio 및 Emacs/ESS와 같은 유능한 편집기를 사용하여 해결할 수 있습니다. 이러한 편집기에서 우리는 코드와 상호 작용하고 데이터를 자유롭게 탐색할 수 있으며(연결된 R 세션에서 R 코드 전송 또는 작성), 코딩 작업이 끝나면 일괄 처리 모드에서 전체 문서를 컴파일하여 모든 코드가 깨끗한 R 세션에서 작동하는지 확인할 수 있습니다.
 
 ###### 2.3 장벽
 
 RR의 모든 장점에도 불구하고 몇 가지 실질적인 장벽이 있으며 다음은 완전하지 않은 목록입니다.
 
-- • 데이터가 방대할 수 있습니다: 예를 들어 생물학의 고에너지 물리학 및 차세대 시퀀싱 데이터는 수십 테라바이트의 데이터를 생성할 수 있으며, 데이터를 보고서와 함께 보관하고 배포하는 것은 사소한 일이 아닙니다.
+- • 데이터가 방대할 수 있습니다. 예를 들어 생물학의 고에너지 물리학 및 차세대 시퀀싱 데이터는 수십 테라바이트의 데이터를 생성할 수 있으며, 데이터를 보고서와 함께 보관하고 배포하는 것은 사소한 일이 아닙니다.
 - • 데이터의 기밀성: 보고서와 함께 원시 데이터를 공개하는 것이 금지될 수 있으며, 특히 기밀성 문제로 인해 인체 실험 대상과 관련된 경우 더욱 그렇습니다.
 - • 소프트웨어 버전 및 구성: 더 이상 사용할 수 없는 구버전 소프트웨어 패키지나 운영 체제에 따라 다르게 컴파일되는 소프트웨어 패키지로 보고서가 생성될 수 있습니다.
 - • 경쟁: 잠재적인 경쟁자가 모든 것을 쉽게 무료로 얻을 수 있는 반면 원래 작성자는 많은 돈과 노력을 투자했다는 사실 때문에 보고서와 함께 코드나 데이터를 공개하지 않기로 선택할 수 있습니다.
@@ -388,11 +377,11 @@ packageVersion("knitr") # 최신 버전이 아니면 update.packages() 실행
 knitr를 설치하면 knit() 함수를 사용하여 소스 문서를 컴파일할 수 있습니다. 예를 들면 다음과 같습니다.
 
 ```r
-library(knitr) 
+library(knitr)
 knit("your-file.Rnw")
 ```
 
-*.Rnw 파일은 일반적으로 다음 섹션과 5장에서 살펴볼 것처럼 R 코드가 포함된 LATEX 문서이며, 여기에서 더 많은 유형의 문서가 소개될 것입니다.
+\*.Rnw 파일은 일반적으로 다음 섹션과 5장에서 살펴볼 것처럼 R 코드가 포함된 LATEX 문서이며, 여기에서 더 많은 유형의 문서가 소개될 것입니다.
 
 ###### 3.2 최소한의 예제
 
@@ -401,8 +390,8 @@ knit("your-file.Rnw")
 ```r
 str(cars)
 
-##  data.frame : 50 obs. of 2 variables: 
-## $ speed: num 4 4 7 7 8 9 10 10 10 11 ... 
+##  data.frame : 50 obs. of 2 variables:
+## $ speed: num 4 4 7 7 8 9 10 10 10 11 ...
 ## $ dist : num 2 10 4 22 16 10 18 26 34 17 ...
 ```
 
@@ -410,7 +399,7 @@ str(cars)
 
 그림 3.1은 LATEX에 포함된 R 코드의 전체 예제입니다. 파일 이름 확장자가 관례상 Rnw이기 때문에 이러한 종류의 문서를 앞으로 Rnw 문서라고 부릅니다. 이를 minimal.Rnw 파일로 저장하고 전에 설명한 대로 R에서 knit('minimal.Rnw')를 실행하면 knitr가 minimal.tex라는 LATEX 출력 문서를 생성합니다. LATEX에 익숙한 사람들은 pdflatex를 통해 이 문서를 PDF로 컴파일할 수 있습니다. 그림 3.2는 Rnw 문서에서 컴파일된 PDF 문서입니다.
 
-여기서 필수적인 것은 R 코드를 LATEX에 어떻게 내장했는지입니다. Rnw 문서에서 < <> >=는 코드 청크의 시작을 나타내고 @는 코드 청크를 종료합니다(이 설명은 엄밀하지는 않지만 이해하기 더 쉽습니다). 이 예제에서는 산점도를 그리고, 선형 모델을 맞추고, 산점도에 회귀선을 추가하기 위해 두 마커 사이에 4줄의 R 코드가 있습니다. \Sexpr{} 명령은 인라인 R 코드를 내장하는 데 사용됩니다(예: 이 예제의 coef(fit)[2]). < <와 > >= 사이에 코드 청크에 대한 청크 옵션을 쓸 수 있습니다. 이 예제의 청크 옵션은 플롯 크기를 4 x 3인치(fig.width 및 fig.height)로 지정하고 플롯을 중앙에 정렬해야 함(fig.align)을 지정했습니다.
+여기서 필수적인 것은 R 코드를 LATEX에 어떻게 내장했는지입니다. Rnw 문서에서 < <> >=는 코드 청크의 시작을 나타내고 @는 코드 청크를 종료합니다(이 설명은 엄밀하지는 않지만 이해하기 더 쉽습니다). 이 예제에서는 산점도를 그리고, 선형 모델을 맞추고, 산점도에 회귀선을 추가하기 위해 두 마커 사이에 4줄의 R 코드가 있습니다. \Sexpr{} 명령은 인라인 R 코드를 내장하는 데 사용됩니다(이 예제의 coef(fit)[2]). < <와 > >= 사이에 코드 청크에 대한 청크 옵션을 쓸 수 있습니다. 이 예제의 청크 옵션은 플롯 크기를 4 x 3인치(fig.width 및 fig.height)로 지정하고 플롯을 중앙에 정렬해야 함(fig.align)을 지정했습니다.
 
 이 최소한의 예제에는 보고서의 가장 기본적인 요소가 있습니다.
 
@@ -432,7 +421,7 @@ str(cars)
 
 LATEX는 수많은 명령어로 인해 초보자에게 압도적으로 보일 수 있습니다. 이에 비해 마크다운(Gruber, 2004)은 훨씬 더 간단한 형식입니다. 그림 3.3은 이전 예제와 동일한 분석을 수행하는 마크다운 예제입니다.
 
-마크다운의 이상적인 출력은 그림 3.4(Mozilla Firefox)와 같이 HTML 웹 페이지입니다. 마찬가지로 마크다운 문서에서 R 코드에 대한 구문을 볼 수 있습니다. ```{r}은 코드 청크를 열고, ```는 청크를 종료하며, 인라인 R 코드는 `r ` 내에 넣을 수 있습니다. 여기서 `는 백틱입니다.
+마크다운의 이상적인 출력은 그림 3.4(Mozilla Firefox)와 같이 HTML 웹 페이지입니다. 마찬가지로 마크다운 문서에서 R 코드에 대한 구문을 볼 수 있습니다. `{r}은 코드 청크를 열고, `는 청크를 종료하며, 인라인 R 코드는 `r ` 내에 넣을 수 있습니다. 여기서 `는 백틱입니다.
 
 knitr에서 약간 더 긴 예제는 마크다운을 기반으로 하는 notebook이라는 데모입니다. 마크다운의 잠재력뿐만 아니라 knitr로 웹 애플리케이션을 구축할 가능성도 보여줍니다. 데모를 보려면 아래 코드를 실행하십시오.
 
@@ -441,7 +430,7 @@ knitr에서 약간 더 긴 예제는 마크다운을 기반으로 하는 noteboo
 그림 3.4: 그림 3.2와 동일한 분석을 수행하는 마크다운의 최소한의 예제이지만 이제 출력은 PDF가 아닌 HTML입니다.
 
 ```r
-if (!require("shiny")) install.packages("shiny") 
+if (!require("shiny")) install.packages("shiny")
 demo("notebook", package = "knitr")
 ```
 
@@ -454,16 +443,17 @@ demo("notebook", package = "knitr")
 stitch()의 기본 아이디어는 knitr가 일부 기본 설정이 포함된 소스 문서의 템플릿을 제공하여 사용자가 이 템플릿에 R 스크립트(하나의 코드 청크)만 입력하면 되도록 하는 것입니다. 그런 다음 knitr가 템플릿을 보고서로 컴파일합니다. 현재 LATEX, HTML 및 마크다운에 대한 기본 제공 템플릿이 있습니다. 사용법은 다음과 같습니다.
 
 ```r
-library(knitr) 
+library(knitr)
 stitch("your-script.R")
 ```
+
 ###### 3.4 R 코드 추출하기
 
 리터럴 프로그래밍 문서의 경우 보고서로 컴파일(코드 실행)하거나 문서 내의 프로그램 코드를 추출할 수 있습니다. 이를 각각 "위빙(weaving)" 및 "탱글링(tangling)"이라고 합니다. knitr에서 위빙을 위한 함수는 knit()이고, 해당하는 탱글링 함수는 purl()입니다. 예를 들면 다음과 같습니다.
 
 ```r
-library(knitr) 
-purl("your-file.Rnw") 
+library(knitr)
+purl("your-file.Rnw")
 purl("your-file.Rmd")
 ```
 
@@ -594,7 +584,7 @@ knitr 패키지의 설계는 이론상 어떤 일반 텍스트 문서도 처리�
 정규 표현식(Friedl, 2006, 또는 Wikipedia 참조)은 문서에서 인라인 코드와 같은 다른 요소 및 코드 블록(청크)을 식별하는 데 사용됩니다. 이러한 정규 표현식 패턴은 knitr의 all_patterns 객체에 저장됩니다. 예를 들어 Rnw 문서의 코드 청크 시작 패턴은 다음과 같습니다.
 
 ```r
-all_patterns$rnw$chunk.begin 
+all_patterns$rnw$chunk.begin
 ## [1] "^\\s*<<(.*)>>=.*$"
 ```
 
@@ -605,8 +595,8 @@ all_patterns$rnw$chunk.begin
 아무 문자나 숫자와 일치합니다. 이 정규 표현식은 "줄의 시작 부분에 있는 모든 공백 + << + 아무 문자 + >>="을 의미하므로 아래 줄은 가능한 청크 헤더입니다.
 
 ```
-<<>>= 
-<<foo>>= 
+<<>>=
+<<foo>>=
 <<bar, echo=TRUE>>=
 <<a=1, b=2>>=
 ```
@@ -614,8 +604,8 @@ all_patterns$rnw$chunk.begin
 그리고 다음은 유효하지 않은 청크 헤더입니다(첫 번째 헤더에서는 < <가 줄의 시작 부분에 나타나지 않고, 두 번째 헤더에서는 >가 하나뿐이며, 세 번째 헤더에서는 =가 누락됨).
 
 ```
-hi<<>>= 
-<<foo>= 
+hi<<>>=
+<<foo>=
 <<bar>>
 ```
 
@@ -631,7 +621,7 @@ gsub("(a)([b]+)(c)", "\\2", "abbbc")
 ## [1] "bbb"
 ```
 
-청크 헤더에서 청크 옵션을 추출해야 하므로 정규 표현식에서 .*를 ()로 묶어 < <(.*)> >=와 같이 만들었습니다.
+청크 헤더에서 청크 옵션을 추출해야 하므로 정규 표현식에서 ._를 ()로 묶어 < <(._)> >=와 같이 만들었습니다.
 
 ###### 5.1.1 청크 옵션
 
@@ -656,12 +646,12 @@ bar가 이 청크 이전의 소스 문서에 생성된 숫자 변수라고 가�
 유일한 예외는 구문 규칙을 따를 필요가 없는 청크 레이블입니다. 즉, 유효하지 않은 R 코드일 수 있습니다. 이는 역사적인 이유(Sweave 규칙)와 편의성(따옴표 입력 방지) 때문입니다. 엄밀히 말해서 청크 옵션의 일부인 청크 레이블은 문자 값을 취해야 하므로 따옴표로 묶어야 하지만, 대부분의 경우 knitr는 레이블 표현식에 사용된 "객체"가 존재하지 않더라도 따옴표 없는 레이블을 처리하고 내부적으로 따옴표로 묶을 수 있습니다. 다음은 청크 레이블을 작성하는 모든 유효한 방법입니다.
 
 ```
-<<foo>>= 
-<<foo-bar>>= 
-<<foo_bar>>= 
-<<"foo">>= 
-<< foo-bar >>= 
-<<label="foo">>= 
+<<foo>>=
+<<foo-bar>>=
+<<foo_bar>>=
+<<"foo">>=
+<< foo-bar >>=
+<<label="foo">>=
 <<echo=FALSE, label="foo-bar">>=
 ```
 
@@ -678,11 +668,11 @@ opts_chunk$set(echo = FALSE)
 그러면 아래 두 청크의 경우 echo가 각각 FALSE와 TRUE가 됩니다.
 
 ```
-<<foo>>= 
-1+1 
-@ 
-<<bar, echo=TRUE>>= 
-rnorm(10) 
+<<foo>>=
+1+1
+@
+<<bar, echo=TRUE>>=
+rnorm(10)
 @
 ```
 
@@ -720,16 +710,18 @@ rnorm(10)
 
 ###### 5.2.1 마크다운
 
-R 마크다운(Rmd) 문서의 경우 ```{r} 및 ``` 사이에 코드 청크를 작성하고 인라인 R 코드는 `r ` 에 작성합니다. 청크 옵션은 청크 헤더의 닫는 중괄호 앞에 작성됩니다. 인라인 R 코드는 백틱을 포함할 수 없습니다. 예를 들어 `r pi*2`는 괜찮지만 `r `pi`*2`는 그렇지 않습니다. `pi`*2가 유효한 R 코드임에도 불구하고 파서는 첫 번째 백틱이 인라인 R 코드 표현식을 종료하기 위한 것이 아님을 알 수 없습니다.
+R 마크다운(Rmd) 문서의 경우 `{r} 및 ` 사이에 코드 청크를 작성하고 인라인 R 코드는 `r ` 에 작성합니다. 청크 옵션은 청크 헤더의 닫는 중괄호 앞에 작성됩니다. 인라인 R 코드는 백틱을 포함할 수 없습니다. 예를 들어 `r pi*2`는 괜찮지만 `r `pi`*2`는 그렇지 않습니다. `pi`\*2가 유효한 R 코드임에도 불구하고 파서는 첫 번째 백틱이 인라인 R 코드 표현식을 종료하기 위한 것이 아님을 알 수 없습니다.
 
 표 5.1: 모든 문서 형식의 구문 요약: R LATEX, R 마크다운, R HTML, R reStructuredText, R AsciiDoc.
 AsciiDoc, R Textile 및 brew.
 
-마크다운을 사용하면 읽기 쉽고 쓰기 쉬운 일반 텍스트 형식으로 작성한 다음 구조적으로 유효한 XHTML 또는 HTML로 변환할 수 있습니다. 이메일을 작성하는 방법만 알고 있다면 몇 분 안에 배울 수 있습니다: http://en.wikipedia.org/wiki/Markdown. 다음은 짧은 예입니다.
+마크다운을 사용하면 읽기 쉽고 쓰기 쉬운 일반 텍스트 형식으로 작성한 다음 구조적으로 유효한 XHTML 또는 HTML로 변환할 수 있습니다. 이메일을 작성하는 방법만 알고 있다면 몇 분 안에 배울 수 있습니다. http://en.wikipedia.org/wiki/Markdown. 다음은 짧은 예입니다.
 
 ```markdown
 # 첫 번째 수준 제목
+
 ## 두 번째 수준
+
 이것은 단락입니다. 이것은 굵은 글씨이고, 이것은 기울임꼴입니다.
 
 - 목록 항목
@@ -739,13 +731,14 @@ AsciiDoc, R Textile 및 brew.
 ```
 
 ```r
-1 + 1 
+1 + 1
 rnorm(10)
 ```
 
 ```markdown
 ### 세 번째 수준 섹션 제목
-순서가 있는 목록을 작성할 수 있습니다:
+
+순서가 있는 목록을 작성할 수 있습니다.
 
 1. 항목 1
 2. 항목 2
@@ -753,7 +746,7 @@ rnorm(10)
 
 원래 마크다운 구문은 단순하게 설계되었기 때문에 표, LATEX 수학 식 또는 참고 문헌을 작성하는 기능과 같이 저작 환경 측면에서 약간의 제한이 있을 수밖에 없습니다. 짧은 숙제를 작성하는 것과 같은 일부 경우에는 복잡한 기능이 필요하지 않으므로 마크다운이 상당히 잘 작동할 것입니다.
 
-마크다운의 한 가지 문제는 파생물입니다. Pandoc의 마크다운(http://johnmacfarlane.net/pandoc), Github Flavored 마크다운(http://github.com), kramdown(http://kramdown.rubyforge.org) 등 여러 가지 변형이 있습니다. 이러한 방식은 특정 요소(예: 표)를 작성하는 방법에 대한 자체 정의가 있을 수 있습니다. CommonMark(http://commonmark.org)는 마크다운 구문을 모호하지 않게 정의하려는 노력의 일환이며, Pandoc의 마크다운은 CommonMark 표준과 호환됩니다. 게다가 현재 마크다운을 위한 가장 포괄적인 도구는 아마도 Pandoc일 것입니다. 원본 마크다운에 다음과 같은 여러 유용한 확장을 추가했습니다.
+마크다운의 한 가지 문제는 파생물입니다. Pandoc의 마크다운(http://johnmacfarlane.net/pandoc), Github Flavored 마크다운(http://github.com), kramdown(http://kramdown.rubyforge.org) 등 여러 가지 변형이 있습니다. 이러한 방식은 특정 요소(표)를 작성하는 방법에 대한 자체 정의가 있을 수 있습니다. CommonMark(http://commonmark.org)는 마크다운 구문을 모호하지 않게 정의하려는 노력의 일환이며, Pandoc의 마크다운은 CommonMark 표준과 호환됩니다. 게다가 현재 마크다운을 위한 가장 포괄적인 도구는 아마도 Pandoc일 것입니다. 원본 마크다운에 다음과 같은 여러 유용한 확장을 추가했습니다.
 
 - 1. 세 개의 백틱 쌍 안의 제한된 코드 블록;
 - 2. 일반 LATEX(PDF 출력용) 또는 MathJax(http://mathjax.org, HTML 출력용)를 통한 LATEX 수학. 이를 통해 웹 페이지에서 LATEX 구문(즉, $math$ 또는 $$math$$)을 사용하여 수학 방정식을 쓸 수 있습니다.
@@ -763,27 +756,30 @@ rnorm(10)
 
 다음은 일부 확장이 어떻게 보이는지 보여줍니다.
 
-```markdown
+````markdown
 ---
 title: 내 보고서 제목
 author: Yihui Xie
 ---
 
 코드를 아래에 작성하거나 평소와 같이 4개의 공백으로 들여쓰기합니다.
+
 ```{r}
-1 + 1 
+1 + 1
 rnorm(10)
 ```
+````
 
-인라인 수학: $\alpha + \beta$. 
-디스플레이 스타일: $$f(x) = x^{2} + 1$$ 
+인라인 수학: $\alpha + \beta$.
+디스플레이 스타일: $$f(x) = x^{2} + 1$$
 인용[@joe2014]에서 가져온 간단한 표:
 
-| id | age | sex | 
-|:----|----:|:---:|
-| a | 49 | M |
-| b | 32 | F |
-```
+| id  | age | sex |
+| :-- | --: | :-: |
+| a   |  49 |  M  |
+| b   |  32 |  F  |
+
+````
 
 더 중요한 것은 Pandoc이 마크다운을 PDF/LATEX, HTML, Word(Microsoft Word 또는 OpenOffice) 및 프레젠테이션 슬라이드(LATEX beamer 또는 HTML5 슬라이드)를 포함한 여러 다른 문서 형식으로 변환할 수 있다는 것입니다. rmarkdown 패키지(Allaire et al., 2015a)는 knitr와 Pandoc을 기반으로 하며 몇 가지 일반적으로 사용되는 출력 형식을 포함하므로 사용자가 기본적으로 상당히 아름다운 출력을 빠르게 만들 수 있습니다.
 
@@ -802,19 +798,19 @@ HTML(Hyper-Text Markup Language)은 웹 페이지 이면의 언어입니다. 일
 HTML에는 페이지의 다양한 요소를 나타내는 크고 제한된 수의 태그가 있습니다. 태그/명령을 신중하게 구성하여 조판을 정밀하게 제어할 수 있다는 점에서 HTML은 LATEX와 비슷합니다. 대가는 입력해야 할 태그가 많기 때문에 문서를 작성하는 데 오랜 시간이 걸릴 수 있다는 것입니다. 그렇기 때문에 소규모 문서에는 마크다운이 더 나을 수 있습니다. 어쨌든 HTML이 모든 권한을 가지고 있다는 사실 때문에 때로는 HTML을 사용해야 합니다. 다음은 HTML 문서의 예입니다.
 
 ```html
-<html> 
+<html>
 <head>
-<title>이것은 HTML 페이지입니다</title> 
-</head> 
+<title>이것은 HTML 페이지입니다</title>
+</head>
 <body>
 
-<p>이것은 <em>단락</em>입니다.</p> 
-<div><code>div</code> 레이어입니다.</div> 
+<p>이것은 <em>단락</em>입니다.</p>
+<div><code>div</code> 레이어입니다.</div>
 <!-- 저는 주석입니다. 당신은 저를 볼 수 없습니다. -->
 
-</body> 
+</body>
 </html>
-```
+````
 
 HTML 문서에 R 코드를 작성하려면 HTML의 주석 구문을 사용합니다. 예:
 
@@ -824,7 +820,10 @@ HTML 문서에 R 코드를 작성하려면 HTML의 주석 구문을 사용합니
 rnorm(10) 
 end.rcode-->
 
-<p>그리고 이것은 pi의 값입니다: <!--rinline pi -->.</p>
+<p>
+  그리고 이것은 pi의 값입니다.
+  <!--rinline pi -->.
+</p>
 ```
 
 ###### 5.2.4 reStructuredText
@@ -837,10 +836,10 @@ knitr용 reST 문서
 
 이것은 reStructuredText 문서(*.Rrst)입니다. 다음은 knitr용 R 코드를 작성하는 방법입니다.
 
-.. {r test-rst, eval=TRUE} 
-1 + 1 
+.. {r test-rst, eval=TRUE}
+1 + 1
 rnorm(10)
-.. .. 
+.. ..
 
 pi의 값은 :r:`pi` 입니다.
 ```
@@ -852,15 +851,15 @@ Docutils 시스템(Python으로 작성됨)은 reST 문서를 HTML로 변환하�
 AsciiDoc(http://en.wikipedia.org/wiki/AsciiDoc)은 소프트웨어 설명서, 기사, 책 및 HTML 페이지와 같은 여러 유형의 출력으로 변환할 수 있는 일반 텍스트 문서 형식입니다. 다음은 책을 쓰기 위한 최소한의 R AsciiDoc 예입니다.
 
 ```asciidoc
-= 책 제목 
+= 책 제목
 :author: A Knitter
 
-== 첫 번째 장 
-Hello world! 
-// begin.rcode test, eval=TRUE 
-1 + 1 
-rnorm(10) 
-// end.rcode 
+== 첫 번째 장
+Hello world!
+// begin.rcode test, eval=TRUE
+1 + 1
+rnorm(10)
+// end.rcode
 pi의 값은 `r pi` 입니다.
 ```
 
@@ -871,12 +870,12 @@ Textile은 또 다른 가벼운 마크업 언어이며 일반적으로 HTML로 �
 다음은 구문을 보여주는 R Textile 예입니다.
 
 ```textile
-h1. Knitting Textile Files 
-Hello world! 
-###. begin.rcode test, tidy=FALSE 
+h1. Knitting Textile Files
+Hello world!
+###. begin.rcode test, tidy=FALSE
 if (1 + 1 == 2) {
   "of course!"
-} 
+}
 ###. end.rcode
 
 그리고 인라인 표현식 @r 2*pi@.
@@ -888,16 +887,16 @@ if (1 + 1 == 2) {
 
 ```r
 knit_patterns$get(
-  c("chunk.begin", "chunk.end", "inline.code") 
+  c("chunk.begin", "chunk.end", "inline.code")
 )
 
-## $chunk.begin 
-## [1] "^\\s*<<(.*)>>=.*$" 
-## 
-## $chunk.end 
-## [1] "^\\s*@\\s*(%+.*|)$" 
-## 
-## $inline.code 
+## $chunk.begin
+## [1] "^\\s*<<(.*)>>=.*$"
+##
+## $chunk.end
+## [1] "^\\s*@\\s*(%+.*|)$"
+##
+## $inline.code
 ## [1] "\\\\Sexpr\\{([^}]+)\\}"
 ```
 
@@ -905,8 +904,8 @@ knit_patterns$get(
 
 ```r
 knit_patterns$set(
-chunk.begin = "^<<r(.*)", 
-chunk.end = "^r>>$", 
+chunk.begin = "^<<r(.*)",
+chunk.end = "^r>>$",
 inline.code = "\\{\\{([^}]+)\\}\\}"
 )
 ```
@@ -914,9 +913,9 @@ inline.code = "\\{\\{([^}]+)\\}\\}"
 그러면 사용자 정의 구문으로 다음과 같은 문서를 구문 분석할 수 있습니다.
 
 ```
-<<r test-syntax, eval=TRUE 
-1 + 1 
-x <- rnorm(10) 
+<<r test-syntax, eval=TRUE
+1 + 1
+x <- rnorm(10)
 r>>
 
 x의 평균은 {{mean(x)}}입니다.
@@ -924,16 +923,16 @@ x의 평균은 {{mean(x)}}입니다.
 
 그러나 실제로 이러한 종류의 사용자 지정은 종종 불필요합니다. 기본 구문을 따르는 것이 더 낫습니다. 그렇지 않으면 소스 문서를 컴파일하기 위해 추가 지침이 필요합니다.
 
-knitr에는 접두사 pat_ 이 있는 일련의 함수가 있으며 구문 패턴을 설정하는 편의 함수입니다. 예를 들어 pat_rnw() 는 knit_hooks$set() 을 호출하여 Rnw 문서에 대한 패턴을 설정합니다. 모든 패턴 기능에는 다음이 포함됩니다.
+knitr에는 접두사 pat\_ 이 있는 일련의 함수가 있으며 구문 패턴을 설정하는 편의 함수입니다. 예를 들어 pat_rnw() 는 knit_hooks$set() 을 호출하여 Rnw 문서에 대한 패턴을 설정합니다. 모든 패턴 기능에는 다음이 포함됩니다.
 
 ```r
-grep("^pat_", ls("package:knitr"), value = TRUE) 
+grep("^pat_", ls("package:knitr"), value = TRUE)
 ## [1] "pat_asciidoc" "pat_brew" "pat_html"
-## [4] "pat_md" "pat_rnw" "pat_rst" 
+## [4] "pat_md" "pat_rnw" "pat_rst"
 ## [7] "pat_tex" "pat_textile"
 ```
 
-소스 문서를 구문 분석할 때 knitr는 먼저 파일 이름 확장자에 따라 사용할 패턴 목록을 결정합니다. 예를 들어 *.Rmd 문서는 R 마크다운 구문을 사용합니다. 파일 확장자를 모르는 경우,
+소스 문서를 구문 분석할 때 knitr는 먼저 파일 이름 확장자에 따라 사용할 패턴 목록을 결정합니다. 예를 들어 \*.Rmd 문서는 R 마크다운 구문을 사용합니다. 파일 확장자를 모르는 경우,
 
 knitr는 문서에서 코드 청크를 추가로 감지하고 구문이 기존 패턴 목록과 일치하는지 확인합니다. 일치하면 해당 패턴 목록이 사용됩니다. 예를 들어 파일 foo.txt의 경우 확장자 txt는 knitr에 알려지지 않았지만 이 파일에 ```{r}로 시작하는 코드 청크가 포함되어 있으면 knitr는 자동으로 R 마크다운 구문을 사용합니다.
 
@@ -942,7 +941,7 @@ knitr는 문서에서 코드 청크를 추가로 감지하고 구문이 기존 �
 evaluate 패키지(Wickham, 2015)는 코드 청크를 실행하는 데 사용되며 기본 R의 eval() 함수는 인라인 R 코드를 실행하는 데 사용됩니다. 후자는 R의 "언어 컴퓨팅"(R Core Team, 2014)의 힘으로 이해하기 쉽고 가능해졌습니다. 문자열로 코드 조각 1+1이 있다고 가정하면 R 코드로 구문 분석하고 평가할 수 있습니다.
 
 ```r
-eval(parse(text = "1+1")) 
+eval(parse(text = "1+1"))
 ## [1] 2
 ```
 
@@ -962,42 +961,43 @@ hook_fun <- function(x, options) {
 
 ```r
 knit_hooks$set(message = function(x, options) {
-  paste0("\\begin{Rmessage}\n", x, "\\end{Rmessage}") 
+  paste0("\\begin{Rmessage}\n", x, "\\end{Rmessage}")
 })
 ```
 
 물론 사전에 LATEX 서문에서 Rmessage 환경을 정의해야 합니다. 예:
+
 ```latex
 \newenvironment{Rmessage}{
-  \rule[0.5ex]{1\columnwidth}{1pt} % 수평선 
+  \rule[0.5ex]{1\columnwidth}{1pt} % 수평선
 }{
-  \rule[0.5ex]{1\columnwidth}{1pt} 
+  \rule[0.5ex]{1\columnwidth}{1pt}
 }
 ```
 
 그러면 출력에 메시지가 있을 때마다 위와 아래에 수평선이 나타납니다.
 
-기본적으로 knitr는 각 출력 형식에 대해 일련의 기본 출력 훅을 설정하므로 일반적으로 모든 훅을 직접 설정할 필요는 없습니다. 다양한 출력 형식에 대한 기본 출력 훅을 설정하는 데 knitr의 접두사 render_ 가 있는 일련의 함수를 사용할 수 있습니다.
+기본적으로 knitr는 각 출력 형식에 대해 일련의 기본 출력 훅을 설정하므로 일반적으로 모든 훅을 직접 설정할 필요는 없습니다. 다양한 출력 형식에 대한 기본 출력 훅을 설정하는 데 knitr의 접두사 render\_ 가 있는 일련의 함수를 사용할 수 있습니다.
 
 ```r
 grep("^render_", ls("package:knitr"), value = TRUE)
 
-## [1] "render_asciidoc" "render_html" 
+## [1] "render_asciidoc" "render_html"
 ## [3] "render_jekyll" "render_latex"
-## [5] "render_listings" "render_markdown" 
-## [7] "render_rst" "render_sweave" 
+## [5] "render_listings" "render_markdown"
+## [7] "render_rst" "render_sweave"
 ## [9] "render_textile"
 ```
 
 그림 5.1: knitr의 Sweave 스타일: Rnw 문서 시작 부분에서 render_sweave()를 실행하면 Sweave 스타일이 표시됩니다.
 
-render_latex(), render_html() 및 render_markdown() 함수는 각각 출력 형식이 LATEX, HTML 및 마크다운일 때 호출됩니다. render_sweave() 및 render_listings() 는 LATEX 출력의 두 가지 변형입니다. 전자는 Sweave.sty(예: Sinput 및 Soutput 등)에 정의된 기존 Sweave 환경을 사용하고 후자는 출력을 장식하기 위해 LATEX의 listings 패키지를 사용합니다. 두 스타일이 어떻게 보이는지는 그림 5.1과 그림 5.2를 참조하십시오. 
+render_latex(), render_html() 및 render_markdown() 함수는 각각 출력 형식이 LATEX, HTML 및 마크다운일 때 호출됩니다. render_sweave() 및 render_listings() 는 LATEX 출력의 두 가지 변형입니다. 전자는 Sweave.sty(Sinput 및 Soutput 등)에 정의된 기존 Sweave 환경을 사용하고 후자는 출력을 장식하기 위해 LATEX의 listings 패키지를 사용합니다. 두 스타일이 어떻게 보이는지는 그림 5.1과 그림 5.2를 참조하십시오.
 
 출력 훅을 설정하려는 경우 소스 문서의 맨 처음부터 설정하여 나머지 출력에 영향을 미칠 수 있도록 하는 것이 더 낫습니다. 예를 들어, 아래 청크는 Rnw 문서의 첫 번째 청크일 수 있습니다(청크 옵션 include = FALSE는 독자에게 흥미롭지 않기 때문에 이 청크의 어떤 내용도 출력에 표시하지 않음을 의미합니다).
 
 ```
-<<setup, include=FALSE>>= 
-render_sweave() 
+<<setup, include=FALSE>>=
+render_sweave()
 @
 ```
 
@@ -1006,13 +1006,14 @@ render_sweave()
 표 5.2의 모든 출력 훅 중에서 추가 설명이 필요한 다섯 가지 특별한 훅이 있습니다.
 
 그림 5.2: (코드 예시 생략) listings 패키지를 사용할 때의 모습.
+
 - 그림 5.2: knitr의 listings 스타일: render_listings()는 이와 같은 스타일(색상이 지정된 텍스트와 회색 음영)을 생성합니다.
 
-- • plot 훅은 파일 이름의 문자열(예: foo.pdf)인 파일 이름을 입력 x로 사용합니다. 아래는 LATEX 출력을 위한 plot 훅의 단순화된 버전입니다(실제 훅은 out.width 및 out.height 등 고려해야 할 많은 청크 옵션이 있기 때문에 이것보다 훨씬 복잡합니다).
+- • plot 훅은 파일 이름의 문자열(foo.pdf)인 파일 이름을 입력 x로 사용합니다. 아래는 LATEX 출력을 위한 plot 훅의 단순화된 버전입니다(실제 훅은 out.width 및 out.height 등 고려해야 할 많은 청크 옵션이 있기 때문에 이것보다 훨씬 복잡합니다).
 
 ```r
 knit_hooks$set(plot = function(x, options) {
-  paste("\\includegraphics{", x, "}", sep = "") 
+  paste("\\includegraphics{", x, "}", sep = "")
 })
 ```
 
@@ -1020,7 +1021,7 @@ knit_hooks$set(plot = function(x, options) {
 
 ```r
 knit_hooks$set(chunk = function(x, options) {
-  paste("<div class='Rchunk'>", x, "</div>") 
+  paste("<div class='Rchunk'>", x, "</div>")
 })
 ```
 
@@ -1043,7 +1044,7 @@ knitr는 기본 인라인 훅(6.1절)에서 반올림을 처리하므로 실제�
 
 ```r
 knit_hooks$set(text = function(x) {
-  gsub("^\\s*|\\s*$", "", x) 
+  gsub("^\\s*|\\s*$", "", x)
 })
 ```
 
@@ -1051,7 +1052,7 @@ knit_hooks$set(text = function(x) {
 
 ```r
 knit_hooks$set(document = function(x) {
-  gsub("\\begin{tabular}", "\\medskip{}\\begin{tabular}", x, fixed = TRUE) 
+  gsub("\\begin{tabular}", "\\medskip{}\\begin{tabular}", x, fixed = TRUE)
 })
 ```
 
@@ -1067,20 +1068,20 @@ knitr에는 기본적으로 roxygen 주석이 있는 R 스크립트인 특별한
 때로는 R 코드를 일반 텍스트와 섞고 싶지 않고 주석에 텍스트를 작성하여 전체 문서가 유효한 R 스크립트가 되도록 하고 싶을 때가 있습니다. knitr의 spin() 함수는 주석이 roxygen 구문을 사용하여 작성된 경우 이러한 R 스크립트를 처리할 수 있습니다. spin() 의 기본 아이디어 역시 리터럴 프로그래밍에서 영감을 받았습니다. 이 R 스크립트를 컴파일할 때 일반 텍스트가 "복원"되도록 #' 가 제거되고 R 코드가 평가됩니다. roxygen 주석 뒤에 없는 것은 모두 코드 청크로 취급됩니다. 청크 옵션을 작성하려면 청크 옵션이 뒤따르는 특수 주석 #+ 또는 #- 의 다른 유형을 사용할 수 있습니다. 다음은 간단한 예입니다.
 
 ```r
-#' 여기에 방법을 소개하고 R 코드를 작성합니다:
-1 + 1 
+#' 여기에 방법을 소개하고 R 코드를 작성합니다.
+1 + 1
 x <- rnorm(10)
 
-#' 청크 옵션을 작성할 수도 있습니다. 예: 
-#+ test-label, fig.height=4 
-plot(x) 
+#' 청크 옵션을 작성할 수도 있습니다. 예:
+#+ test-label, fig.height=4
+plot(x)
 #' 문서가 이제 완료되었습니다.
 ```
 
 이 스크립트를 test.R이라는 파일에 저장하고 보고서로 컴파일할 수 있습니다.
 
 ```r
-library(knitr) 
+library(knitr)
 spin("test.R")
 ```
 
@@ -1103,7 +1104,7 @@ spin() 함수에는 출력 문서 형식(기본값은 R 마크다운)을 지정�
 또 다른 R 옵션인 digits는 숫자를 반올림할 자릿수를 제어합니다. R의 기본값은 7이며, 종종 숫자를 불필요하게 "정밀하게" 만듭니다. 다음과 같이 문서의 첫 번째 청크에서 기본값을 변경할 수 있습니다.
 
 ```r
-# 10^5 이상의 숫자는 과학적 기수법으로 표시하고 소수점 이하 2자리로 반올림합니다. 
+# 10^5 이상의 숫자는 과학적 기수법으로 표시하고 소수점 이하 2자리로 반올림합니다.
 options(scipen = 1, digits = 2)
 ```
 
@@ -1126,12 +1127,12 @@ options(scipen = 1, digits = 2)
 청크 옵션 eval(TRUE 또는 FALSE)은 코드 청크를 평가할지 여부를 결정합니다. 청크가 평가되지 않으면 원래 소스 코드를 제외하고 아무 결과도 반환되지 않습니다. 이 옵션은 숫자 벡터를 사용하여 평가할 표현식을 지정할 수도 있습니다. 이 경우 평가되지 않도록 설정된 코드는 주석 처리됩니다. 아래 청크의 경우 eval = -2를 설정하여 두 번째 표현식이 평가되지 않음을 의미합니다.
 
 ```r
-1 + 1 
+1 + 1
 ## [1] 2
 
-## if (TRUE) { 
-## print("hi") 
-## } 
+## if (TRUE) {
+## print("hi")
+## }
 dnorm(0)
 
 ## [1] 0.3989
@@ -1142,12 +1143,12 @@ dnorm(0)
 formatR 패키지(Xie, 2015a)의 tidy_source() 함수는 R 코드를 재서식화하는 데 사용됩니다(청크 옵션 tidy = TRUE일 때). 예를 들어 공백 및 들여쓰기를 추가하고, 긴 줄을 짧은 줄로 끊고, 대입 연산자 =를 <-로 자동 치환할 수 있습니다. 자세한 내용은 formatR의 설명서를 참조하십시오. 청크 옵션 tidy.opts(리스트)가 tidy_source()에 전달되어 R 코드의 서식을 제어합니다. 아래 예제는 tidy = TRUE/FALSE의 효과를 보여줍니다.
 
 ```r
-# 옵션 tidy=FALSE 
+# 옵션 tidy=FALSE
 for(k in 1:10){j=cos(sin(k)*k^2)+3;print(j-5)}
 
-# 옵션 tidy=TRUE 
+# 옵션 tidy=TRUE
 for (k in 1:10) {
-  j <- cos(sin(k) * k^2) + 3 
+  j <- cos(sin(k) * k^2) + 3
   print(j - 5)
 }
 ```
@@ -1157,13 +1158,13 @@ for (k in 1:10) {
 ```r
 0 + 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 0 + 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 0 + 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 0 + 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9
 
-## [1] 180 
-# tidy_source()의 모든 인수 
+## [1] 180
+# tidy_source()의 모든 인수
 names(formals(formatR::tidy_source))
 
-## [1] "source" "comment" "blank" 
+## [1] "source" "comment" "blank"
 ## [4] "arrow" "brace.newline" "indent"
-## [7] "output" "text" "width.cutoff" 
+## [7] "output" "text" "width.cutoff"
 ## [10] "..."
 ```
 
@@ -1178,10 +1179,10 @@ LATEX 출력의 경우 LATEX 패키지 framed는 이 책에서 볼 수 있듯이
 기본적으로 프롬프트 문자는 출력에서 R 소스 코드를 망가뜨리고 R 코드를 복사하기 어렵게 만들기 때문에 제거됩니다. 동일한 원리(옵션 comment = '##')에 따라 R 출력은 기본적으로 주석으로 마스킹됩니다. 사실 이것은 조교로 일할 때 숙제를 채점한 저자의 경험에서 큰 동기를 얻었습니다. 기본 프롬프트가 있으면 소스 코드를 복사하기가 매우 불편하기 때문에 숙제에서 결과를 검증하기가 어렵습니다. 어쨌든 프롬프트가 있는 출력으로 되돌리기는 쉽습니다(옵션 prompt = TRUE 설정). 그리고 출력 문서에서 코드를 실행하려는 독자의 불편함을 금방 깨닫게 될 것입니다. 예를 들어 아래 청크는 prompt = TRUE 및 comment = NA를 사용합니다.
 
 ```r
-> x <- rnorm(5) 
-> x 
-[1] -0.01156 -0.90915 0.37367 1.90694 0.16459 
-> var(x) 
+> x <- rnorm(5)
+> x
+[1] -0.01156 -0.90915 0.37367 1.90694 0.16459
+> var(x)
 [1] 1.041
 ```
 
@@ -1190,13 +1191,13 @@ LATEX 출력의 경우 LATEX 패키지 framed는 이 책에서 볼 수 있듯이
 LATEX 출력의 경우 size 옵션을 통해 청크 출력의 글꼴 크기를 지정할 수도 있습니다. 이 옵션은 LATEX 글꼴 크기 값(footnotesize, small, large, Large 등)을 사용합니다(기본 크기는 normalsize). beamer 슬라이드와 같이 출력이 길고 공간이 제한적일 때 더 작은 글꼴 크기를 설정하는 것이 도움이 됩니다. 아래 청크는 size = 'footnotesize'를 사용합니다.
 
 ```
-<<font-size, size='footnotesize'>>= 
-x <- rnorm(20, mean = 5, sd = 3) 
+<<font-size, size='footnotesize'>>=
+x <- rnorm(20, mean = 5, sd = 3)
 x^2
 
 ## [1] 5.039 8.314 10.604 5.749 28.855 38.501 14.089
 ## [8] 10.535 16.023 94.736 32.549 33.854 37.890 54.440
-## [15] 41.333 31.910 8.445 2.227 46.454 25.077 
+## [15] 41.333 31.910 8.445 2.227 46.454 25.077
 @
 ```
 
@@ -1208,7 +1209,7 @@ echo (TRUE) 소스 코드를 표시할지 여부. eval 옵션과 같은 숫자 �
 
 results ('markup') R에서 코드를 실행했을 때 R 콘솔에 인쇄되었을 일반 텍스트 출력을 마무리하는 방법. 기본값은 LATEX 환경 또는 HTML div 태그와 같은 특수 환경에서 결과를 마크업하는 것을 의미합니다. 다른 가능한 값은 다음과 같습니다.
 
-'asis' 아무 마크업 없이 R의 원시 출력을 출력 문서에 씁니다. 예를 들어 소스 코드 cat('<em>emphasize</em>')는 results = 'asis' 일 때 HTML에서 기울임꼴 텍스트를 생성할 수 있습니다. 이는 R을 사용하여 출력용 원시 요소(예: LATEX 마크업을 사용하는 표, 6.3절 참조)를 생성할 때 매우 유용합니다.
+'asis' 아무 마크업 없이 R의 원시 출력을 출력 문서에 씁니다. 예를 들어 소스 코드 cat('<em>emphasize</em>')는 results = 'asis' 일 때 HTML에서 기울임꼴 텍스트를 생성할 수 있습니다. 이는 R을 사용하여 출력용 원시 요소(LATEX 마크업을 사용하는 표, 6.3절 참조)를 생성할 때 매우 유용합니다.
 
 'hold' 텍스트 출력을 보류하고 청크 끝에 씁니다. 'hide' 이 옵션 값은 일반 텍스트 출력을 숨깁니다.
 
@@ -1221,26 +1222,26 @@ include (TRUE) 문서에 청크 출력을 포함할지 여부. FALSE일 경우 �
 아래는 results = 'asis'와 세 가지 유형의 메시지를 보여주는 예입니다.
 
 ```r
-b <- coef(lm(dist ~ speed, data = cars)) 
-# 회귀 방정식 작성 
+b <- coef(lm(dist ~ speed, data = cars))
+# 회귀 방정식 작성
 cat(sprintf("$dist = %.02f + %.02f speed$", b[1], b[2]))
 
 dist = −17.58 + 3.93speed
 
-x <- dnorm(0, sd = -1) # 경고를 생성합니다. 
+x <- dnorm(0, sd = -1) # 경고를 생성합니다.
 ## Warning in dnorm(0, sd = -1): NaNs produced
 
-y <- 1 + "a" # 불가능; 오류 
-## Error: non-numeric argument to binary operator 
+y <- 1 + "a" # 불가능; 오류
+## Error: non-numeric argument to binary operator
 
-message("hello world!") 
+message("hello world!")
 ## hello world!
 ```
 
 results 옵션을 사용하지 않으면 출력에 방정식 대신 원시 LATEX 코드가 표시됩니다.
 
 ```r
-cat(sprintf("$dist = %.02f + %.02f speed$", b[1], b[2])) 
+cat(sprintf("$dist = %.02f + %.02f speed$", b[1], b[2]))
 ## $dist = -17.58 + 3.93 speed$
 ```
 
@@ -1253,8 +1254,8 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 warning = FALSE (또는 message = FALSE) 인 경우 경고(또는 메시지)가 보고서 출력이 아닌 R 콘솔에 인쇄됩니다. 정말로 경고를 숨기고 싶다면 R 식에서 suppressWarnings() (또는 suppressMessages()) 함수를 호출해야 합니다. 예:
 
 ```r
-suppressWarnings(1:2 + 1:3) # 더 이상 경고 없음 
-## [1] 2 4 4 
+suppressWarnings(1:2 + 1:3) # 더 이상 경고 없음
+## [1] 2 4 4
 suppressMessages(message("foo"))
 ```
 
@@ -1269,10 +1270,10 @@ knitr::opts_chunk$set(error = FALSE)
 현재 이 기능은 R 마크다운에만 적용됩니다. 코드 청크에 여러 개의 짧은 R 식이 있고 각 식이 약간의 출력을 인쇄하는 경우 R의 각 식과 출력 조각이 별도의 시각적 블록을 차지하기 때문에 출력을 읽기가 방해됩니다. 이 경우 청크 옵션 collapse = TRUE를 사용하여 모든 코드 및 출력 조각을 하나의 블록으로 축소할 수 있습니다. 다음은 예입니다.
 
 ```r
-1 + 1 
+1 + 1
 ## [1] 2
-2 + 3 
-## [1] 5 
+2 + 3
+## [1] 5
 if (TRUE) 1:10
 ## [1] 1 2 3 4 5 6 7 8 9 10
 ```
@@ -1300,6 +1301,7 @@ if (TRUE) 1:10
 ```r
 1 + 1 # 아래에 빈 줄
 ```
+
 ###### 6.3 표
 
 표는 본질적으로 텍스트 출력이지만 이 책의 초판에서는 다음과 같은 이유로 표 생성에 대해 다루지 않았습니다.
@@ -1311,38 +1313,38 @@ if (TRUE) 1:10
 그러나 이 특정 기능에 대한 수요가 여전히 높은 것 같아서 이 주제를 조금 확장해 보겠습니다. LATEX 표의 경우 앞서 언급한 패키지가 잘 작동할 것입니다. HTML 표의 경우 xtable 및 R2HTML(Lecoutre, 2014)을 사용할 수 있습니다. 또한 표 1.1은 LATEX, HTML 및 마크다운 표를 위해 knitr에서 제공하는 간단한 함수인 kable()의 예입니다. 더 중요한 것은 kable() 함수가 출력 형식을 인식하고 적절한 형식의 표를 자동으로 생성할 수 있다는 것입니다. 예를 들어 동일한 데이터 객체에 대해 Rnw 문서에서는 LATEX 표를, Rmd 문서에서는 마크다운 표를, R HTML 문서에서는 HTML 표를 생성합니다. 따라서 어떤 유형의 문서에 있는지 기억할 필요 없이 코드 청크에서 kable()만 호출하면 됩니다. 아래 코드 청크는 다양한 형식의 표 소스 코드를 보여줍니다.
 
 ```r
-# 표 소스를 인쇄하는 함수 정의 
-kable_source <- function(...) cat(kable(...), sep = "\n") 
-# 예제 데이터 프레임 
-d <- data.frame(a = 1:3, b = pi * (1:3), c = c("ab", "cd", "efg")) 
-# kable()의 두 번째 인수는 출력 형식입니다. 
+# 표 소스를 인쇄하는 함수 정의
+kable_source <- function(...) cat(kable(...), sep = "\n")
+# 예제 데이터 프레임
+d <- data.frame(a = 1:3, b = pi * (1:3), c = c("ab", "cd", "efg"))
+# kable()의 두 번째 인수는 출력 형식입니다.
 kable_source(d, "latex")
 
-\begin{tabular}{rrl} 
-a & b & c\\ 
-\hline 
-1 & 3.142 & ab\\ 
-\hline 
-2 & 6.283 & cd\\ 
-\hline 
-3 & 9.425 & efg\\ 
+\begin{tabular}{rrl}
+a & b & c\\
+\hline
+1 & 3.142 & ab\\
+\hline
+2 & 6.283 & cd\\
+\hline
+3 & 9.425 & efg\\
 \end{tabular}
 
 kable_source(d, "markdown")
 
-| a| b|c | 
+| a| b|c |
 |--:|-----:|:---|
 | 1| 3.142|ab |
 | 2| 6.283|cd |
 | 3| 9.425|efg |
 
-# 첫 번째 및 세 번째 열을 가운데 정렬하고, 두 번째 열을 오른쪽 정렬합니다. 
+# 첫 번째 및 세 번째 열을 가운데 정렬하고, 두 번째 열을 오른쪽 정렬합니다.
 kable_source(d, "markdown", align = c("c", "r", "c"))
 
-| a | b| c | 
-|:-:|-----:|:---:| 
-| 1 | 3.142| ab | 
-| 2 | 6.283| cd | 
+| a | b| c |
+|:-:|-----:|:---:|
+| 1 | 3.142| ab |
+| 2 | 6.283| cd |
 | 3 | 9.425| efg |
 
 kable_source(d, "pandoc")
@@ -1353,54 +1355,54 @@ a b c
 2 6.283 cd
 3 9.425 efg
 
-# 두 자리 숫자 사용 
+# 두 자리 숫자 사용
 kable_source(d, "pandoc", digits = 2)
 
 a b c
 --- ----- ---
-1 3.14 ab 
-2 6.28 cd 
+1 3.14 ab
+2 6.28 cd
 3 9.42 efg
 
-# 다른 열 이름 및 두 자리 숫자 사용 
+# 다른 열 이름 및 두 자리 숫자 사용
 kable_source(d, "pandoc", col.names = c("AAA", "BBB", "CCC"))
 
-AAA BBB CCC 
+AAA BBB CCC
 ---- ------ ----
 1 3.142 ab
 2 6.283 cd
 3 9.425 efg
 
-kable_source(d, "html") 
+kable_source(d, "html")
 <table>
-<thead> 
+<thead>
 <tr>
 <th style="text-align:right;"> a </th>
-<th style="text-align:right;"> b </th> 
+<th style="text-align:right;"> b </th>
 <th style="text-align:left;"> c </th>
 </tr>
-</thead> 
+</thead>
 <tbody>
-<tr> 
-<td style="text-align:right;"> 1 </td> 
-<td style="text-align:right;"> 3.142 </td> 
+<tr>
+<td style="text-align:right;"> 1 </td>
+<td style="text-align:right;"> 3.142 </td>
 <td style="text-align:left;"> ab </td>
-</tr> 
+</tr>
 <tr>
-<td style="text-align:right;"> 2 </td> 
-<td style="text-align:right;"> 6.283 </td> 
+<td style="text-align:right;"> 2 </td>
+<td style="text-align:right;"> 6.283 </td>
 <td style="text-align:left;"> cd </td>
-</tr> 
+</tr>
 <tr>
-<td style="text-align:right;"> 3 </td> 
-<td style="text-align:right;"> 9.425 </td> 
+<td style="text-align:right;"> 3 </td>
+<td style="text-align:right;"> 9.425 </td>
 <td style="text-align:left;"> efg </td>
 </tr>
-</tbody> 
+</tbody>
 </table>
 ```
 
-직사각형 데이터를 일반 표로 간단히 표시하려면 kable()이 좋은 선택일 수 있습니다. 조건부 서식(예: 특정 행/셀에 색상 지정)과 같이 더 발전되고 복잡한 기능을 원하는 경우 다른 패키지를 사용하는 것이 좋습니다.
+직사각형 데이터를 일반 표로 간단히 표시하려면 kable()이 좋은 선택일 수 있습니다. 조건부 서식(특정 행/셀에 색상 지정)과 같이 더 발전되고 복잡한 기능을 원하는 경우 다른 패키지를 사용하는 것이 좋습니다.
 
 ###### 6.4 자동 인쇄
 
@@ -1415,15 +1417,15 @@ printr 패키지(Xie, 2014)는 knit_print() 함수에 대한 여러 S3 메서드
 R 콘솔에 ??sunflower를 입력하면(??는 R에서 help.search()를 의미함) "sunflower"라는 키워드를 사용한 검색 결과를 보여주는 도움말 창이 팝업으로 나타납니다. 그러나 R 코드 청크에 이것을 입력하고 knitr를 사용하여 컴파일하면 일반적으로 출력에 임시 도움말 창을 포함할 수 없기 때문에 아무것도 표시되지 않습니다. ??는 본질적으로 hsearch 클래스의 특수 객체를 반환하는 R 함수이기 때문에 printr 패키지는 검색 결과 객체를 처리하기 위해 S3 메서드인 knit_print.hsearch()를 정의했습니다. 따라서 printr 패키지를 로드한 후에 ?? 명령을 사용할 수 있습니다.
 
 ```r
-library(printr) 
+library(printr)
 ??sunflower
 
 Package Topic Title graphics sunflowerplot Produce a Sunflower Scatter Plot grDevices xyTable Multiplicities of (x,y) Points, e.g., ...
 
 head(iris[, 1:4])
 
-Sepal.Length Sepal.Width Petal.Length Petal.Width 
-5.1 3.5 1.4 0.2 
+Sepal.Length Sepal.Width Petal.Length Petal.Width
+5.1 3.5 1.4 0.2
 4.9 3.0 1.4 0.2
 4.7 3.2 1.3 0.2
 4.6 3.1 1.5 0.2
@@ -1444,16 +1446,16 @@ Sepal.Length Sepal.Width Petal.Length Petal.Width
 ```r
 head(knit_theme$get(), 20)
 
-## [1] "acid" "aiseered" "andes" 
-## [4] "anotherdark" "autumn" "baycomb" 
-## [7] "bclear" "biogoo" "bipolar" 
-## [10] "blacknblue" "bluegreen" "breeze" 
+## [1] "acid" "aiseered" "andes"
+## [4] "anotherdark" "autumn" "baycomb"
+## [7] "bclear" "biogoo" "bipolar"
+## [10] "blacknblue" "bluegreen" "breeze"
 ## [13] "bright" "camo" "candy"
-## [16] "clarity" "dante" "darkblue" 
+## [16] "clarity" "dante" "darkblue"
 ## [19] "darkbone" "darkness"
 ```
 
-테마를 설정하려면 knit_theme$set()을 사용할 수 있습니다. 예: 
+테마를 설정하려면 knit_theme$set()을 사용할 수 있습니다. 예:
 
 ```r
 knit_theme$set("autumn")
@@ -1472,8 +1474,8 @@ knit_theme$set("autumn")
 그래픽은 보고서의 중요한 부분이며, knitr에서는 그래픽 출력이 자연스럽고 유연하도록 많은 노력을 기울였습니다. 예를 들어 knitr는 R 콘솔의 동작을 모방하려고 시도하며 동일한 코드가 R 콘솔에서 플롯을 생성할 수 있는 한 그리드 그래픽(Murrell, 2011)을 명시적으로 인쇄할 필요가 없을 수 있습니다(그러나 R 콘솔에서 그렇게 해야 하기 때문에 루프와 같은 일부 경우에는 인쇄해야 합니다). 아래는 R 콘솔과 knitr 모두에서 플롯을 생성하는 코드 청크입니다(그림 7.1 참조).
 
 ```r
-library(ggplot2) 
-p <- qplot(carat, price, data = diamonds) + geom_hex() 
+library(ggplot2)
+p <- qplot(carat, price, data = diamonds) + geom_hex()
 p # print(p)가 필요하지 않습니다
 ```
 
@@ -1486,15 +1488,15 @@ p # print(p)가 필요하지 않습니다
 dev 청크 옵션을 통해 knitr에서 지원하는 20개 이상의 그래픽 장치가 있습니다. 예를 들어 dev = 'png' 는 기본 R의 grDevices 패키지에 있는 png() 장치를 사용하고 dev = 'CairoJPEG' 는 추가 패키지 Cairo에 있는 CairoJPEG() 장치를 사용합니다(물론 먼저 설치해야 합니다). dev에 사용 가능한 값은 다음과 같습니다.
 
 ```r
-[1] "bmp" "postscript" "pdf" 
-[4] "png" "svg" "jpeg" 
+[1] "bmp" "postscript" "pdf"
+[4] "png" "svg" "jpeg"
 [7] "pictex" "tiff" "win.metafile"
-[10] "cairo_pdf" "cairo_ps" "quartz_pdf" 
-[13] "quartz_png" "quartz_jpeg" "quartz_tiff" 
-[16] "quartz_gif" "quartz_psd" "quartz_bmp" 
-[19] "CairoJPEG" "CairoPNG" "CairoPS" 
-[22] "CairoPDF" "CairoSVG" "CairoTIFF" 
-[25] "Cairo_pdf" "Cairo_png" "Cairo_ps" 
+[10] "cairo_pdf" "cairo_ps" "quartz_pdf"
+[13] "quartz_png" "quartz_jpeg" "quartz_tiff"
+[16] "quartz_gif" "quartz_psd" "quartz_bmp"
+[19] "CairoJPEG" "CairoPNG" "CairoPS"
+[22] "CairoPDF" "CairoSVG" "CairoTIFF"
+[25] "Cairo_pdf" "Cairo_png" "Cairo_ps"
 [28] "Cairo_svg" "tikz"
 ```
 
@@ -1503,8 +1505,8 @@ dev 청크 옵션을 통해 knitr에서 지원하는 20개 이상의 그래픽 �
 이러한 장치 중 어느 것도 만족스럽지 않으면, 사용자 지정 장치 함수의 이름을 제공할 수 있습니다. 이 함수는 사용하기 전에 다음 형태로 정의되어야 합니다.
 
 ```r
-custom_dev <- function(file, width, height, ...) { 
-  # 여기에 장치를 엽니다. 예: 
+custom_dev <- function(file, width, height, ...) {
+  # 여기에 장치를 엽니다. 예:
   # pdf(file, width, height, ...)
 }
 ```
@@ -1533,8 +1535,8 @@ HTML 출력의 경우 보통 래스터 이미지를 사용하지만, 오늘날 �
 plot(rep(0:1, 10), pch = 1:20, col = 2, xlab = "xlab font",
 ylab = "ylab font")
 
-mtext("Bookman in the PDF device", side = 3, cex = 1.2) 
-text(6, 0.5, "Aa Bb Cc\nRr Ss Tt\nXx Yy Zz", cex = 1.5) 
+mtext("Bookman in the PDF device", side = 3, cex = 1.2)
+text(6, 0.5, "Aa Bb Cc\nRr Ss Tt\nXx Yy Zz", cex = 1.5)
 text(16, 0.5, "g", cex = 6, col = 3)
 ```
 
@@ -1545,6 +1547,7 @@ text(16, 0.5, "g", cex = 6, col = 3)
 ###### 7.1.5 인코딩
 
 pdf 장치의 경우 pdf.options()를 통해 전역적으로 옵션을 설정할 수 있습니다. 즉 이 함수에서 설정된 옵션은 현재 R 세션의 모든 pdf 장치에 영향을 미칩니다. 플롯에 다중 바이트 문자가 있는 경우 pdf 장치의 인코딩을 설정하는 것이 이 함수의 한 가지 중요한 응용 프로그램입니다. 예를 들어 유로 기호나 양음 악센트가 있는 문자 A를 쓰고자 할 때 인코딩을 CP1250으로 설정해야 할 수 있습니다(라틴 문자를 사용하는 중부 및 동부 유럽 언어의 텍스트를 나타내기 위함, http://en.wikipedia.org/wiki/Windows-1250 참조).
+
 ```r
 pdf.options(encoding = "CP1250")
 ```
@@ -1554,11 +1557,11 @@ pdf.options(encoding = "CP1250")
 ```r
 list.files(system.file("enc", package = "grDevices"))
 
-## [1] "AdobeStd.enc" "AdobeSym.enc" "CP1250.enc" 
-## [4] "CP1251.enc" "CP1253.enc" "CP1257.enc" 
-## [7] "Cyrillic.enc" "Greek.enc" "ISOLatin1.enc" 
-## [10] "ISOLatin2.enc" "ISOLatin7.enc" "ISOLatin9.enc" 
-## [13] "KOI8-R.enc" "KOI8-U.enc" "MacRoman.enc" 
+## [1] "AdobeStd.enc" "AdobeSym.enc" "CP1250.enc"
+## [4] "CP1251.enc" "CP1253.enc" "CP1257.enc"
+## [7] "Cyrillic.enc" "Greek.enc" "ISOLatin1.enc"
+## [10] "ISOLatin2.enc" "ISOLatin7.enc" "ISOLatin9.enc"
+## [13] "KOI8-R.enc" "KOI8-U.enc" "MacRoman.enc"
 ## [16] "PDFDoc.enc" "TeXtext.enc" "WinAnsi.enc"
 ```
 
@@ -1570,8 +1573,8 @@ x <- c("\U20AC", "\U201A", "\U201E", "\U2026", "\U2020",
 "\U00A4", "\U0104", "\U00A6", "\U00A7", "\U00A8", "\U00A9", "\U015E", "\U00AB", "\U00AC", "\U00AE", "\U017B", "\U00B0", "\U00B1", "\U02DB", "\U0142",
 "\U00B4", "\U00B5", "\U00B6", "\U00B7", "\U00B8", "\U0105", "\U015F", "\U00BB", "\U013D", "\U02DD", "\U013E", "\U017C", "\U0154", "\U00C1", "\U00C2", "\U0102", "\U00C4", "\U0139", "\U0106", "\U00C7", "\U010C")
 
-plot(c(1, 11), c(1, 6), type = "n", ann = F, axes = F) 
-box() 
+plot(c(1, 11), c(1, 6), type = "n", ann = F, axes = F)
+box()
 text(rep(1:11, 6), rep(1:6, each = 11), x)
 ```
 
@@ -1580,8 +1583,8 @@ text(rep(1:11, 6), rep(1:6, each = 11), x)
 ```r
 plot(1, main = "\U20AC")
 
-## Warning: conversion failure on '€' in 'mbcsToSbcs': dot substituted for <e2> 
-## Warning: conversion failure on '€' in 'mbcsToSbcs': dot substituted for <82> 
+## Warning: conversion failure on '€' in 'mbcsToSbcs': dot substituted for <e2>
+## Warning: conversion failure on '€' in 'mbcsToSbcs': dot substituted for <82>
 ## Warning: conversion failure on '€' in 'mbcsToSbcs': dot substituted for <ac>
 ```
 
@@ -1596,21 +1599,21 @@ pdf()의 설명서에 따르면, useDingbats 인수는 작은 원이 포함된 P
 코드 청크의 모든 플롯은 먼저 evaluate 패키지에 의해 R 객체로 기록된 다음 플롯 파일을 생성하기 위해 그래픽 장치 내에서 "재생"됩니다. 플롯의 두 가지 출처가 있습니다. 첫째, plot.new() 또는 grid.newpage()가 호출될 때마다(이것은 기본 R 및 그리드 플롯이 생성되기 전에 발생함), evaluate는 현재 플롯이 있는 경우 스냅샷을 저장하려고 시도합니다. 둘째, 완전한 각 식이 평가된 후 스냅샷도 저장됩니다. 기술적인 세부 사항은 ?setHook 및 ?recordPlot (둘 다 기본 R의 함수)을 참조하십시오. 기록 속도를 높이기 위해 null 그래픽 장치 pdf(file = NULL)가 사용됩니다. 아래는 플롯이 기록되는 방법을 보여주는 간단한 예입니다.
 
 ```r
-pdf(file = NULL) # 플롯을 기록할 pdf 장치 열기 
-## 현재 장치에 대한 기록 활성화 
-dev.control("enable") 
-plot(rnorm(100)) # 플롯 그리기 
-x <- recordPlot() 
+pdf(file = NULL) # 플롯을 기록할 pdf 장치 열기
+## 현재 장치에 대한 기록 활성화
+dev.control("enable")
+plot(rnorm(100)) # 플롯 그리기
+x <- recordPlot()
 dev.off()
-## pdf 
+## pdf
 ## 2
 
 str(x, 1) # recordedplot 클래스의 R 객체
-## List of 3 
-## $ :Dotted pair list of 8 
-## $ : raw [1:35992] 00 00 00 00 ... 
-## $ : NULL 
-## - attr(*, "pid")= int 31856 
+## List of 3
+## $ :Dotted pair list of 8
+## $ : raw [1:35992] 00 00 00 00 ...
+## $ : NULL
+## - attr(*, "pid")= int 31856
 ## - attr(*, "class")= chr "recordedplot"
 
 print(x) # 플롯 객체 다시 그리기
@@ -1620,7 +1623,7 @@ null 장치는 대부분의 경우 작동합니다. 작동하지 않을 수 있�
 
 ```r
 options(device = function(width = 7, height = 7, ...) {
-  cairo_pdf(tempfile(), width, height, ...) 
+  cairo_pdf(tempfile(), width, height, ...)
 })
 ```
 
@@ -1631,25 +1634,25 @@ evaluate 패키지는 식별로 플롯을 기록합니다. 다시 말해 소스 
 par()는 플롯을 생성하지 않음). 따라서 evaluate는 기본적으로 두 개의 플롯을 생성합니다(그림 7.4 참조).
 
 ```r
-par(mar = c(3, 3, 0.1, 0.1)) 
-plot(1:10, ann = FALSE, las = 1) 
+par(mar = c(3, 3, 0.1, 0.1))
+plot(1:10, ann = FALSE, las = 1)
 if (TRUE) {
-  text(5, 9, "mass $\\rightarrow$ energy\n$E=mc^2$") 
+  text(5, 9, "mass $\\rightarrow$ energy\n$E=mc^2$")
 }
 ```
 
 (그림 7.4 설명: 세 개의 식이 두 개의 플롯을 생성했습니다. 첫 번째 식은 아무 플롯도 그리지 않습니다. 두 번째는 높은 수준의 플롯을 그립니다. 세 번째는 플롯에 낮은 수준의 변경(텍스트)을 추가합니다. 7.6절은 오른쪽 플롯에서 LATEX 코드가 어떻게 렌더링되었는지 설명합니다.)
 
-이는 동적 문서를 위한 R의 기존 도구와 상당한 차이를 가져오는데 저수준 플롯 변경도 기록할 수 있기 때문입니다. 반면 기존 도구(예: Sweave)는 이러한 변경 사항을 캡처하지 못합니다.
+이는 동적 문서를 위한 R의 기존 도구와 상당한 차이를 가져오는데 저수준 플롯 변경도 기록할 수 있기 때문입니다. 반면 기존 도구(Sweave)는 이러한 변경 사항을 캡처하지 못합니다.
 
-참고로 R에는 고수준 및 저수준 플롯 명령이 있습니다. 고수준 플롯 명령은 새롭고 완전한 플롯을 시작하고(예: plot(), hist(), boxplot()), 저수준 명령은 기존 플롯에 정보를 추가하는 경우가 많습니다(예: text(), points(), segments()). 이것은 고수준 플롯이 만들어진 후에 호출되어야 합니다. 자세한 내용은 Murrell(2011)을 참조하십시오.
+참고로 R에는 고수준 및 저수준 플롯 명령이 있습니다. 고수준 플롯 명령은 새롭고 완전한 플롯을 시작하고(plot(), hist(), boxplot()), 저수준 명령은 기존 플롯에 정보를 추가하는 경우가 많습니다(text(), points(), segments()). 이것은 고수준 플롯이 만들어진 후에 호출되어야 합니다. 자세한 내용은 Murrell(2011)을 참조하십시오.
 
 일반적으로 저수준 플롯 변경을 별도의 플롯으로 캡처하는 것은 직관적이지 않거나 불가능합니다. evaluate 패키지는 이 작업을 쉽게 만들었습니다.
 
 그림 7.5는 두 개의 고수준 플롯을 생성하는 두 개의 식을 보여줍니다. knitr가 그래픽 출력을 자연스럽게 만들려고 시도한다는 점을 상기하십시오. 한 청크에 두 개의 플롯이 있으면 추가 작업 없이 둘 다 출력에 표시됩니다.
 
 ```r
-plot(cars) 
+plot(cars)
 boxplot(cars$dist, xlab = "dist")
 ```
 
@@ -1660,8 +1663,8 @@ boxplot(cars$dist, xlab = "dist")
 그러나 다른 식(일반적인 경우는 루프) 내부의 저수준 플롯 명령은 누적되어 기록되지 않지만 고수준 플롯 명령은 어디에 있든 항상 기록됩니다. 예를 들어 이 청크에는 두 개의 완전한 식이 있으므로 21개의 플롯이 아닌 2개의 플롯만 생성합니다.
 
 ```r
-plot(0, 0, type = "n", ann = FALSE) 
-for (i in seq(0, pi, length = 20)) 
+plot(0, 0, type = "n", ann = FALSE)
+for (i in seq(0, pi, length = 20))
   points(cos(i), sin(i))
 ```
 
@@ -1669,7 +1672,7 @@ for (i in seq(0, pi, length = 20))
 
 ```r
 for (i in seq(0, pi, length = 20)) {
-  plot(cos(i), sin(i), xlim = c(-1, 1), ylim = c(-1, 1)) 
+  plot(cos(i), sin(i), xlim = c(-1, 1), ylim = c(-1, 1))
 }
 ```
 
@@ -1678,10 +1681,10 @@ for (i in seq(0, pi, length = 20)) {
 fig.keep = 'last'를 사용하여 모든 이전 플롯을 버리고 마지막 플롯만 유지하거나, fig.keep = 'first'를 사용하여 첫 번째 플롯만 유지하거나, fig.keep = 'none'을 사용하여 모든 플롯을 버릴 수 있습니다. 마지막 플롯만 유지하는 예제는 그림 7.7을 참조하고 코드는 아래에 있습니다.
 
 ```r
-library(ggplot2) 
+library(ggplot2)
 pie <- ggplot(diamonds, aes(x = factor(1), fill = cut)) +
-  xlab("cut") + geom_bar(width = 1) 
-pie + coord_polar(theta = "y") # 파이 차트 
+  xlab("cut") + geom_bar(width = 1)
+pie + coord_polar(theta = "y") # 파이 차트
 pie + coord_polar() # 불스아이 차트
 ```
 
@@ -1690,8 +1693,8 @@ pie + coord_polar() # 불스아이 차트
 플롯 기록에 대한 추가 참고 사항: knitr는 기록된 모든 플롯(R 객체)을 검사하고 순차적으로 비교합니다. 이전 플롯이 다음 플롯의 "부분 집합"인 경우(= 이전 플롯 + 저수준 변경 사항) 이전 플롯은 기본적으로(즉, fig.keep = 'high' 일 때) 제거됩니다. 연속된 두 플롯이 동일한 경우 두 번째 플롯은 기본적으로 제거되므로 fig.keep 옵션을 변경하지 않으면 다음 청크가 하나의 플롯만 생성한다는 사실이 놀라울 수 있습니다.
 
 ```r
-m <- matrix(1:100, ncol = 10) 
-image(m) 
+m <- matrix(1:100, ncol = 10)
+image(m)
 image(m * 2) # 이전 플롯과 정확히 동일함
 ```
 
@@ -1700,14 +1703,14 @@ image(m * 2) # 이전 플롯과 정확히 동일함
 청크 옵션 fig.show는 청크의 모든 플롯을 보류하고 청크 끝으로 모두 "플러시"할지(fig.show = 'hold'; 예제는 그림 7.4 및 7.5 참조), 아니면 플롯이 생성된 장소에 바로 삽입할지(기본적으로 fig.show = 'asis') 결정합니다. 7.2절에서는 하나의 청크에 있는 두 개의 플롯에 대해 fig.show = 'asis' 인 예를 보여주었습니다.
 
 ```
-<<clock-animation, fig.show='animate', interval=1>>= 
-par(mar = rep(3, 4)) 
+<<clock-animation, fig.show='animate', interval=1>>=
+par(mar = rep(3, 4))
 for (i in seq(pi/2, -4/3 * pi, length = 12)) {
-  plot(0, 0, pch = 20, ann = FALSE, axes = FALSE) 
-  arrows(0, 0, cos(i), sin(i)) 
-  axis(1, 0, "VI"); axis(2, 0, "IX") 
+  plot(0, 0, pch = 20, ann = FALSE, axes = FALSE)
+  arrows(0, 0, cos(i), sin(i))
+  axis(1, 0, "VI"); axis(2, 0, "IX")
   axis(3, 0, "XII"); axis(4, 0, "III"); box()
-} 
+}
 @
 ```
 
@@ -1726,23 +1729,25 @@ hook_scianimator JavaScript 라이브러리인 SciAnimator(https://github.com/br
 애니메이션을 형성합니다. 이 훅을 사용하려면 HTML 출력의 헤더에 jQuery 및 SciAnimator를 모두 포함해야 합니다. 예:
 
 ```html
-<head> 
-<link rel="stylesheet" href="css/scianimator.css" /> 
-<script src="js/jquery-1.4.4.min.js"></script> 
-<script src="js/jquery.scianimator.pack.js"></script>
+<head>
+  <link rel="stylesheet" href="css/scianimator.css" />
+  <script src="js/jquery-1.4.4.min.js"></script>
+  <script src="js/jquery.scianimator.pack.js"></script>
+</head>
 ```
+
 ```html
 </head>
 ```
 
-이러한 *.js 및 *.css 파일은 SciAnimator의 Github 저장소에서 다운로드할 수 있습니다. 겉보기에는 이 훅 함수가 HTML에 대한 상당한 지식을 필요로 하는 것 같습니다.
+이러한 _.js 및 _.css 파일은 SciAnimator의 Github 저장소에서 다운로드할 수 있습니다. 겉보기에는 이 훅 함수가 HTML에 대한 상당한 지식을 필요로 하는 것 같습니다.
 
 hook_r2swf R2SWF 패키지(Qiu 등, 2015)를 사용하여 이미지를 Flash(SWF) 애니메이션으로 변환합니다. 이 훅은 R에 R2SWF 패키지만 설치하면 되며, 추가 소프트웨어 패키지나 구성이 필요하지 않으므로 사용하기 가장 쉬울 수 있습니다.
 
 이 패키지 옵션을 설정하는 방법은 다음과 같습니다.
 
 ```r
-opts_knit$set(animation.fun = hook_scianimator) 
+opts_knit$set(animation.fun = hook_scianimator)
 # 또는 opts_knit$set(animation.fun = hook_r2swf)
 ```
 
@@ -1771,7 +1776,7 @@ fig.width와 fig.height는 일반적으로 숫자 값을 취하는 반면, out.w
 LATEX 출력에 대한 out.width의 기본값은 표준 LATEX 길이가 아닌 \maxwidth이며 다음과 같이 정의되었습니다.
 
 ```latex
-% maxwidth가 linewidth보다 작으면 원래 너비이고 % 그렇지 않으면 linewidth를 사용합니다 
+% maxwidth가 linewidth보다 작으면 원래 너비이고 % 그렇지 않으면 linewidth를 사용합니다
 \makeatletter \def\maxwidth{ %
 \ifdim\Gin@nat@width>\linewidth
 \linewidth \else
@@ -1790,8 +1795,8 @@ Retina 디스플레이의 경우 청크 옵션 fig.retina를 사용하여 HTML �
 옵션 out.width, out.height 및 out.extra는 청크에 여러 플롯이 있는 경우 이러한 옵션이 먼저 플롯의 길이로 확장되고 각 옵션의 i번째 요소가 i번째 플롯에 적용된다는 의미에서 재활용됩니다. 그림 7.10은 동일한 코드 청크에 있지만 회전 각도가 다른 두 개의 플롯을 보여줍니다(out.extra = sprintf('angle=%d', c(-30, 90)')).
 
 ```r
-plot(1:10, pch = 1:10, col = 1:10, cex = 2, lwd = 2) 
-lines(1:10, type = "h", col = "lightgray") 
+plot(1:10, pch = 1:10, col = 1:10, cex = 2, lwd = 2)
+lines(1:10, type = "h", col = "lightgray")
 plot(rnorm(30), pch = 21, cex = 1.5, col = "darkgreen", bg = "lightgreen")
 ```
 
@@ -1799,7 +1804,7 @@ plot(rnorm(30), pch = 21, cex = 1.5, col = "darkgreen", bg = "lightgreen")
 
 ###### 7.6 tikz() 장치
 
-PDF, PNG 및 기타 기존 R 그래픽 장치 외에도 knitr는 pgfSweave 패키지의 기능과 유사한 tikzDevice 패키지(Sharpsteen 및 Bracken, 2015)를 통해 TikZ 그래픽(Tantau, 2008)을 특별히 지원합니다. 청크 옵션 dev = 'tikz' 를 설정하면 tikzDevice의 tikz() 장치가 플롯을 생성하는 데 사용됩니다. knitr는 확장자 *.tikz를 사용하지만 tikz() 장치로 생성된 플롯 파일은 본질적으로 LATEX 파일입니다.
+PDF, PNG 및 기타 기존 R 그래픽 장치 외에도 knitr는 pgfSweave 패키지의 기능과 유사한 tikzDevice 패키지(Sharpsteen 및 Bracken, 2015)를 통해 TikZ 그래픽(Tantau, 2008)을 특별히 지원합니다. 청크 옵션 dev = 'tikz' 를 설정하면 tikzDevice의 tikz() 장치가 플롯을 생성하는 데 사용됩니다. knitr는 확장자 \*.tikz를 사용하지만 tikz() 장치로 생성된 플롯 파일은 본질적으로 LATEX 파일입니다.
 
 sanitize(\ 및 %와 같은 플롯의 특수 TEX 문자를 이스케이프하기 위한 옵션) 및 external 옵션은 tikz() 장치와 관련이 있습니다. 자세한 내용은 tikz() 설명서를 참조하십시오. knitr의 external = TRUE는 tikz()의 standAlone = TRUE를 의미하며, TikZ 그래픽 출력은 생성 직후 PDF로 컴파일되므로 "외부화"는 LATEX의 tikz 패키지(PGF 및 TikZ 설명서 참조)에 있는 공식적이지만 복잡한 외부화 명령에 의존하지 않습니다. 외부화의 이점은 메인 LATEX 문서가 컴파일될 때 TikZ 그래픽을 PDF로 컴파일하는 시간을 절약한다는 것입니다.
 
@@ -1814,7 +1819,7 @@ sanitize(\ 및 %와 같은 플롯의 특수 TEX 문자를 이스케이프하기 
 글꼴 스타일의 일관성 외에도 tikz() 장치를 사용하면 R 플롯에 임의의 LATEX 식을 작성할 수 있습니다. 일반적인 용도는 수학 식을 작성하는 것입니다. R의 기존 접근 방식은 expression() 객체를 사용하여 플롯에 수학 기호를 작성하는 것이며, tikz() 장치의 경우 일반 LATEX 코드만 작성하면 됩니다. 아래는 두 가지 접근 방식을 각각 사용하여 작성한 수학 식 p(θ|x) ∝ π(θ)f(x|θ)의 예입니다. 이것은 그림 7.11(기존 접근 방식)을 위한 코드 청크입니다.
 
 ```r
-plot(0, type = "n", ann = FALSE) 
+plot(0, type = "n", ann = FALSE)
 text(0, expression(p(theta ~ "|" ~ bold(x)) %prop%
 pi(theta) * f(bold(x) ~ "|" ~ theta)), cex = 2)
 ```
@@ -1822,7 +1827,7 @@ pi(theta) * f(bold(x) ~ "|" ~ theta)), cex = 2)
 tikz() 장치를 사용하면 더 직관적이고(LATEX에 익숙한 경우) 더 아름답습니다(그림 7.12).
 
 ```r
-plot(0, type = "n", ann = FALSE) 
+plot(0, type = "n", ann = FALSE)
 text(0, paste("$p(\\theta|\\mathbf{x})", "\\propto",
 "\\pi(\\theta)f(\\mathbf{x}|\\theta)$"), cex = 2)
 ```
@@ -1846,9 +1851,9 @@ options(tikzDefaultEngine = "xetex") # 또는 'luatex'
 LATEX 출력의 플롯의 경우 knitr는 자동으로 figure 환경을 생성할 수 있습니다. 이것은 fig.cap 옵션을 그림 캡션의 문자열로 설정할 때 발생합니다. figure 환경은 다음과 같습니다.
 
 ```latex
-\begin{figure}[position] 
-% 예: \includegraphics{foo} 
-\caption[short caption]{full caption.} 
+\begin{figure}[position]
+% 예: \includegraphics{foo}
+\caption[short caption]{full caption.}
 \label{label}
 \end{figure}
 ```
@@ -1857,7 +1862,7 @@ fig.cap 옵션은 전체 캡션을 지정합니다. 관련된 기타 청크 옵�
 
 fig.env ('figure') 사용할 환경 이름. 예: 기본 figure 환경 대신 marginfigure 또는 sidewaysfigure 환경을 사용할 수 있습니다.
 
-fig.pos ('') 그림의 위치 배치. 예: 'tbp' 
+fig.pos ('') 그림의 위치 배치. 예: 'tbp'
 
 fig.scap (NULL) 짧은 캡션. NULL인 경우 fig.cap에서 . 또는 ; 또는 : 앞의 모든 단어가 짧은 캡션으로 사용됩니다. NA인 경우 무시됩니다.
 
@@ -1874,9 +1879,9 @@ fig.lp ('fig:') 레이블 접두사. 각 청크의 경우 그림 레이블은 fi
 ```latex
 \begin{figure}
   \subfloat[sub caption 1\label{foo1}]{\includegraphics{foo1}}
-  \subfloat[sub caption 2\label{foo2}]{\includegraphics{foo2}} 
-  \caption[short main caption]{full main caption.} 
-  \label{foo} 
+  \subfloat[sub caption 2\label{foo2}]{\includegraphics{foo2}}
+  \caption[short main caption]{full main caption.}
+  \label{foo}
 \end{figure}
 ```
 
@@ -1885,27 +1890,29 @@ fig.lp ('fig:') 레이블 접두사. 각 청크의 경우 그림 레이블은 fi
 분명히 figure 환경은 LATEX에 한정되지만 fig.cap은 HTML의 플롯에도 사용할 수 있으며, 이 경우 캡션은 <img /> 태그에 title 및 alt 속성으로 쓰입니다. 아래는 LATEX에서 figure 환경을 만드는 예입니다.
 
 ```r
-<<waiting, fig.cap='Waiting time: Old Faithful geyser.'>>= 
-hist(faithful$waiting, main = "") 
+<<waiting, fig.cap='Waiting time: Old Faithful geyser.'>>=
+hist(faithful$waiting, main = "")
 @
 ```
 
 LATEX 출력은 다음과 같습니다.
 
 ```latex
-\begin{figure}[] 
-\includegraphics{figure/waiting} 
-\caption[Waiting time]{Waiting time: Old Faithful geyser.} 
-\label{fig:waiting} 
+\begin{figure}[]
+\includegraphics{figure/waiting}
+\caption[Waiting time]{Waiting time: Old Faithful geyser.}
+\label{fig:waiting}
 \end{figure}
 ```
 
 HTML의 코드 청크인 경우 다음과 같이 생성됩니다.
 
 ```html
-<img src = "figure/waiting.png"
-title = "Waiting time: Old Faithful geyser." 
-alt = "Waiting time: Old Faithful geyser." />
+<img
+  src="figure/waiting.png"
+  title="Waiting time: Old Faithful geyser."
+  alt="Waiting time: Old Faithful geyser."
+/>
 ```
 
 ###### 7.8 그림 경로
@@ -1914,7 +1921,7 @@ alt = "Waiting time: Old Faithful geyser." />
 
 청크의 모든 플롯 파일은 foo-1, foo-2, ..., foo-n과 같이 순차적으로 이름이 지정됩니다. 여기서 foo는 청크 레이블이고 n은 청크의 총 플롯 수입니다. 청크에 플롯이 하나만 있더라도 파일 이름에는 여전히 -1 접미사가 붙습니다.
 
-fig.path에 존재하지 않는 디렉터리가 포함된 경우 knitr는 자동으로 디렉터리를 만들려고 시도합니다. LATEX 출력의 경우 그림 경로 및 파일 이름에 영숫자, 하이픈(-) 및 밑줄(_)만 허용되며 다른 모든 문자는 밑줄로 바뀝니다. LATEX가 이러한 문자(예: 공백 및 마침표)를 처리하는 데 문제가 있을 수 있기 때문입니다.
+fig.path에 존재하지 않는 디렉터리가 포함된 경우 knitr는 자동으로 디렉터리를 만들려고 시도합니다. LATEX 출력의 경우 그림 경로 및 파일 이름에 영숫자, 하이픈(-) 및 밑줄(\_)만 허용되며 다른 모든 문자는 밑줄로 바뀝니다. LATEX가 이러한 문자(공백 및 마침표)를 처리하는 데 문제가 있을 수 있기 때문입니다.
 대부분의 경우 fig.ext를 지정할 필요는 없지만
 
 사용자 지정 장치를 사용하여 그래픽을 저장할 때 knitr는 적절한 파일 이름 확장자를 알 수 없으므로 이 옵션을 문자열로 명시적으로 설정해야 합니다.
@@ -1929,51 +1936,51 @@ fig.path에 존재하지 않는 디렉터리가 포함된 경우 knitr는 자동
 
 ###### 8.1 구현
 
-캐시는 새로운 아이디어가 아닙니다. cacheSweave 및 weaver 패키지 모두 Sweave를 기반으로 구현했으며, 전자는 filehash를 사용하고 후자는 *.RData 이미지를 사용합니다. cacheSweave는 filehash를 기반으로 객체의 지연 로드(lazy-loading)도 지원합니다. knitr 패키지는 내부 기본 R 함수를 직접 사용하여 객체를 저장하고(tools:::makeLazyLoadDB()) 지연 로드합니다(lazyLoad()).
+캐시는 새로운 아이디어가 아닙니다. cacheSweave 및 weaver 패키지 모두 Sweave를 기반으로 구현했으며, 전자는 filehash를 사용하고 후자는 \*.RData 이미지를 사용합니다. cacheSweave는 filehash를 기반으로 객체의 지연 로드(lazy-loading)도 지원합니다. knitr 패키지는 내부 기본 R 함수를 직접 사용하여 객체를 저장하고(tools:::makeLazyLoadDB()) 지연 로드합니다(lazyLoad()).
 
 cacheSweave 비네트(vignette)는 지연 로드의 개념을 명확하게 설명했습니다. 대략적으로 말해서 지연 로드란 객체가 실제로 어딘가에 사용될 때까지 메모리에 로드되지 않는다는 것을 의미합니다. 대신 "약속(promise)"만 생성되며 이는 일반적으로 메모리 소비 측면에서 빠르고 저렴합니다. 이 약속이 계산에 사용될 때 실제 객체가 하드 디스크에서 로드됩니다. 이것은 캐시에 매우 유용합니다. 때로는 큰 객체를 읽고 캐시한 다음 분석을 위해 하위 집합을 가져오고 이 하위 집합도 캐시합니다. 앞으로 계산이 해당 하위 집합 객체에만 기초하는 경우 초기 큰 객체는 R로 로드되지 않습니다. R의 약속에 대한 자세한 내용은 ?promise를 참조하십시오.
 
 캐싱을 켜려면 청크 옵션 cache를 TRUE로 설정할 수 있습니다(기본값은 FALSE). 다음은 캐시 효과를 빠르게 보여주는 코드 청크입니다.
 
 ```r
-x <- 1 
+x <- 1
 Sys.sleep(10)
 x <- 2
 ```
 
 81
 
-Sys.sleep()을 사용하여 R을 10초 동안 대기하게 했습니다. 이 청크가 처음 컴파일될 때는 일시 중지되는 것을 볼 수 있지만, 코드 평가가 실제로 완전히 건너뛰어지기 때문에 다시 컴파일할 때는 일시 중지가 없습니다. 이 청크에서 생성된 객체 x가 있으며 다음번에 지연 로드될 것입니다. knitr는 청크에서 새로 생성된 모든 객체를 파악하고 지연 로드 데이터베이스(*.rdb 및 *.rdx 파일)에 저장합니다. 이제 x의 값을 확인할 수 있습니다.
+Sys.sleep()을 사용하여 R을 10초 동안 대기하게 했습니다. 이 청크가 처음 컴파일될 때는 일시 중지되는 것을 볼 수 있지만, 코드 평가가 실제로 완전히 건너뛰어지기 때문에 다시 컴파일할 때는 일시 중지가 없습니다. 이 청크에서 생성된 객체 x가 있으며 다음번에 지연 로드될 것입니다. knitr는 청크에서 새로 생성된 모든 객체를 파악하고 지연 로드 데이터베이스(_.rdb 및 _.rdx 파일)에 저장합니다. 이제 x의 값을 확인할 수 있습니다.
 
 ```r
-x # 이전 청크의 값 
+x # 이전 청크의 값
 ## [1] 2
 ```
 
 ###### 8.2 캐시 쓰기
 
-캐시 파일의 경로는 청크 옵션 cache.path에 의해 결정됩니다. 기본적으로 모든 캐시 파일은 현재 작업 디렉터리에 상대적인 cache/ 디렉터리 아래에 생성됩니다. 옵션 값에 디렉터리(예: cache.path = 'cache/abc-')가 포함된 경우 캐시 파일은 해당 디렉터리 아래에 저장됩니다. 그림 경로와 마찬가지로 캐시 디렉터리가 없으면 자동으로 만들어지며, cache.path는 물리적 경로 대신 캐시 파일의 접두사가 될 수도 있습니다.
+캐시 파일의 경로는 청크 옵션 cache.path에 의해 결정됩니다. 기본적으로 모든 캐시 파일은 현재 작업 디렉터리에 상대적인 cache/ 디렉터리 아래에 생성됩니다. 옵션 값에 디렉터리(cache.path = 'cache/abc-')가 포함된 경우 캐시 파일은 해당 디렉터리 아래에 저장됩니다. 그림 경로와 마찬가지로 캐시 디렉터리가 없으면 자동으로 만들어지며, cache.path는 물리적 경로 대신 캐시 파일의 접두사가 될 수도 있습니다.
 
 캐시는 R 코드와 청크 옵션을 모두 포함하여 코드 청크가 변경될 때마다 무효화되고 삭제됩니다. 이는 이 청크의 이전 캐시 파일이 제거되고 새 캐시 파일로 대체됨을 의미합니다. 캐시 파일 이름은 청크 레이블을 접두사로 사용하여 식별되며(문서에서 청크 레이블은 고유해야 함을 상기하십시오), 캐시 파일 이름의 접미사는 R 객체의 MD5 해시 문자열입니다. 이 객체는 R 코드, 청크 옵션 및 getOption('width') 값을 포함하는 리스트입니다. MD5 해시는 digest 패키지에 의해 계산되며, knitr에서 캐시 파일 이름 생성을 에뮬레이트하는 아래 예제를 통해 이것이 어떻게 작동하는지 분명해질 것입니다.
 
 ```r
-d <- digest::digest 
+d <- digest::digest
 ## x$code는 코드 청크라고 상상해보세요. x$options는 청크 옵션입니다
 x <- list(code = "1+1", options = list(results = "asis", fig.height = 3), width = getOption("width"))
 
-d(x) 
+d(x)
 ## [1] "667308d70fc72f26eb7454dde04af9a0"
 
-x$code <- "1 + 1" # 코드에 공백 추가 
+x$code <- "1 + 1" # 코드에 공백 추가
 d(x)
-## [1] "e903b616477cfa3e2314a3da65062dfb" 
+## [1] "e903b616477cfa3e2314a3da65062dfb"
 
-x$options$eval <- FALSE # eval 옵션을 FALSE로 추가 
-d(x) 
-## [1] "8decb2a180f7f49b47de54bd5ec8fb34" 
+x$options$eval <- FALSE # eval 옵션을 FALSE로 추가
+d(x)
+## [1] "8decb2a180f7f49b47de54bd5ec8fb34"
 
-x$width <- 40 
-d(x) 
+x$width <- 40
+d(x)
 ## [1] "7e1d77987b195b14d9b563b9a8f0ca6c"
 ```
 
@@ -1995,19 +2002,19 @@ getOption('width')가 캐시에 영향을 미치는 이유는 인쇄된 텍스�
 첫 번째 질문에 답하기 위해, R 버전을 값으로 취하는 version과 같은 청크 옵션을 문서에 추가할 수 있습니다. 예:
 
 ```r
-<<cache-rversion, cache=TRUE, version=R.version.string>>= 
-# R 버전에 영향을 받을 수 있는 코드 
-R.version.string 
-## [1] "R version 3.2.0 (2015-04-16)" 
+<<cache-rversion, cache=TRUE, version=R.version.string>>=
+# R 버전에 영향을 받을 수 있는 코드
+R.version.string
+## [1] "R version 3.2.0 (2015-04-16)"
 @
 ```
 
 그러면 R이 업그레이드된 경우 이 청크가 다시 실행됩니다. 두 번째 문제를 해결하려면 knitr에게 외부 파일의 변경 사항을 알려야 합니다. 한 가지 자연스러운 지표는 file.info() 함수로 얻을 수 있는 파일의 수정 시간입니다. 데이터 파일 이름이 iris.csv라고 가정하고 해당 수정 시간을 청크 옵션 iris_time에 넣을 수 있습니다. 예:
 
 ```r
-<<itime, cache=TRUE, iris_time=file.info('iris.csv')$mtime>>= 
-# iris.csv가 최신 버전이 되면 데이터를 다시 읽습니다. 
-iris <- read.csv("iris.csv") 
+<<itime, cache=TRUE, iris_time=file.info('iris.csv')$mtime>>=
+# iris.csv가 최신 버전이 되면 데이터를 다시 읽습니다.
+iris <- read.csv("iris.csv")
 @
 ```
 
@@ -2020,18 +2027,18 @@ iris <- read.csv("iris.csv")
 함수가 반환하는 값이 아니기 때문에 어떻게 저장해야 할지 명확하지 않습니다. 이러한 이유로 weaver 및 cacheSweave와 같은 패키지는 부작용을 캐시하지 않지만, knitr는 다음과 같은 일부 부작용을 보존하려고 시도합니다.
 
 - 1. 인쇄된 결과: 캐시된 청크에 대한 출력 문서에 코드 청크의 모든 출력이 실제로 평가되지 않더라도 로드됨을 의미합니다. 그 이유는 knitr가 청크의 출력을 문자열로도 캐시하기 때문입니다. 그래픽 출력도 출력의 일부이기 때문에 캐시됨을 의미합니다.
-- 2. 로드된 패키지: 각 캐시된 청크가 평가된 후, 현재 R 세션에서 사용된 패키지 목록이 __packages 접미사가 붙은 캐시 경로 아래의 파일에 작성됩니다. 다음에 캐시된 청크를 다시 빌드해야 하는 경우 이러한 패키지가 먼저 로드됩니다. 패키지 이름을 캐시하는 이유는 일부 패키지를 로드하는 속도가 느릴 수 있으며, 이전에 캐시된 청크에서 로드된 패키지가, 나중에 캐시된 청크만 다시 빌드해야 할 때 사용할 수 없을 수도 있기 때문입니다. 이는 캐시된 청크에만 적용되며 캐시되지 않은 청크의 경우 항상 library()를 사용하여 패키지를 명시적으로 로드해야 합니다.
+- 2. 로드된 패키지: 각 캐시된 청크가 평가된 후, 현재 R 세션에서 사용된 패키지 목록이 \_\_packages 접미사가 붙은 캐시 경로 아래의 파일에 작성됩니다. 다음에 캐시된 청크를 다시 빌드해야 하는 경우 이러한 패키지가 먼저 로드됩니다. 패키지 이름을 캐시하는 이유는 일부 패키지를 로드하는 속도가 느릴 수 있으며, 이전에 캐시된 청크에서 로드된 패키지가, 나중에 캐시된 청크만 다시 빌드해야 할 때 사용할 수 없을 수도 있기 때문입니다. 이는 캐시된 청크에만 적용되며 캐시되지 않은 청크의 경우 항상 library()를 사용하여 패키지를 명시적으로 로드해야 합니다.
 - 3. 난수 시드: 청크가 난수 시드(정수 벡터)를 생성한 경우 임의 시뮬레이션의 재현성을 향상시키기 위해 다음에 시드가 저장되고 로드됩니다(12.4.7절 참조).
 
 knitr가 일부 부작용을 유지하려고 시도하지만, 캐시되지 않는 par() 또는 options() 설정과 같은 다른 유형의 부작용도 있습니다. 사용자는 이러한 특별한 경우를 인지하고 캐시되지 않아야 할 코드를 캐시되지 않은 청크로 명확하게 분리해야 합니다. 예를 들어 문서의 첫 번째 청크에 모든 전역 옵션을 설정하고 해당 청크를 캐시하지 않습니다. 일반적으로 이 청크를 문서의 첫 번째 청크로 둡니다.
 
 ```r
-<<setup, cache=FALSE, include=FALSE>>= 
-# 문서에 대한 일부 전역 옵션 설정 
-options(width = 60, show.signif.stars = FALSE) 
-# 전역 청크 옵션도 설정 
-library(knitr) 
-opts_chunk$set(fig.width = 5, fig.height = 4, tidy = FALSE) 
+<<setup, cache=FALSE, include=FALSE>>=
+# 문서에 대한 일부 전역 옵션 설정
+options(width = 60, show.signif.stars = FALSE)
+# 전역 청크 옵션도 설정
+library(knitr)
+opts_chunk$set(fig.width = 5, fig.height = 4, tidy = FALSE)
 @
 ```
 
@@ -2057,7 +2064,7 @@ x <- 1
 y <- x + 2
 
 <<chunkC, dependson='chunkB'>>=
-y + 5 
+y + 5
 @
 ```
 
@@ -2075,12 +2082,12 @@ codetools 패키지의 findGlobals() 함수는 청크에 있는 모든 전역 �
 
 사용되며 해당 설명서에 따르면 결과는 근사치입니다. 전역 객체는 대략 로컬에서 생성되지 않은 객체를 의미합니다. 예를 들어 function() {y <- x} 식에서 x는 이 함수의 본문에서 생성되는 것을 볼 수 없기 때문에 외부의 기존 전역 객체여야 합니다(실제로 어떤 객체이든 상관없이). 반면 y는 로컬입니다. 한편으로는 나중의 청크에 있는 전역 객체와 비교할 수 있도록 각 캐시된 청크에서 생성된 객체의 목록도 저장해야 합니다. 예를 들어, 청크 A가 객체 x를 생성하고 청크 B가 이 객체를 사용하는 경우 청크 B는 A에 종속되어야 합니다. 즉, A가 변경될 때마다 B도 업데이트되어야 합니다.
 
-autodep = TRUE 인 경우 knitr는 캐시된 청크에서 생성된 객체 이름과 이러한 전역 객체를 각각 __objects 및 __globals 라는 두 파일에 기록합니다. 나중에 dep_auto() 함수를 사용하여 객체 이름을 분석하여 자동으로 종속성을 파악할 수 있습니다. 일반적인 사용법은 다음과 같습니다.
+autodep = TRUE 인 경우 knitr는 캐시된 청크에서 생성된 객체 이름과 이러한 전역 객체를 각각 **objects 및 **globals 라는 두 파일에 기록합니다. 나중에 dep_auto() 함수를 사용하여 객체 이름을 분석하여 자동으로 종속성을 파악할 수 있습니다. 일반적인 사용법은 다음과 같습니다.
 
 ```r
-<<setup, cache=FALSE, include=FALSE>>= 
-opts_chunk$set(autodep = TRUE) # autodep을 전역적으로 설정 
-dep_auto() # 종속성 파악 
+<<setup, cache=FALSE, include=FALSE>>=
+opts_chunk$set(autodep = TRUE) # autodep을 전역적으로 설정
+dep_auto() # 종속성 파악
 @
 ```
 
@@ -2092,11 +2099,11 @@ dep_auto() # 종속성 파악
 
 ```r
 <<A, cache=FALSE>>=
-x <- 1 
+x <- 1
 @
 
 <<B, cache=TRUE, foo=x>>=
-y <- x + 2 
+y <- x + 2
 @
 ```
 
@@ -2127,9 +2134,9 @@ load_cache(label, object, notfound = "NOT AVAILABLE", path = opts_chunk$get("cac
 knitr에서 코드 청크와 하위 문서(child documents)를 모두 상호 참조할 수 있습니다. 이를 통해 소스 문서를 더 잘 구성할 수 있습니다. 다음은 실용적인 예입니다. 사용자 지정 ggplot2 테마가 있고 이를 문서의 몇몇 플롯에 적용하려고 합니다.
 
 ```r
-<<my-theme, eval=FALSE>>= 
+<<my-theme, eval=FALSE>>=
 theme(legend.text = element_text(size = 12, angle = 45)) +
-theme(legend.position = "bottom") 
+theme(legend.position = "bottom")
 @
 ```
 
@@ -2153,21 +2160,21 @@ qplot(carat, price, data = diamonds, color = cut) +
 레이블을 의미함). 청크 헤더와 달리 > > 뒤에 =가 없다는 점에 유의하십시오. 예를 들어 청크 A를 B에 포함시킵니다.
 
 ```r
-<<A>>= 
-x <- rnorm(1) 
-@ 
-<<B>>= 
-x 
-<<A>> 
-x 
+<<A>>=
+x <- rnorm(1)
+@
+<<B>>=
+x
+<<A>>
+x
 @
 ```
 
 이 경우 청크 B는 기본적으로 다음과 같습니다(< <A> >는 청크 A의 코드로 대체되지만 eval을 포함하여 A의 모든 청크 옵션은 무시됨).
 
 ```r
-x 
-x <- rnorm(1) 
+x
+x <- rnorm(1)
 x
 ```
 
@@ -2178,10 +2185,10 @@ x
 전체 청크를 재사용하는 데에는 두 가지 방법이 있습니다. 첫 번째 방법은 동일한 레이블을 사용하되 청크를 비워두는 것입니다. 이 접근 방식의 한 가지 문제는 청크 옵션이 다를 경우 두 청크의 MD5 해시가 달라지므로 두 청크를 모두 캐시할 수 없다는 것입니다(knitr는 레이블당 하나의 캐시 파일 세트만 허용함). 다음은 한 가지 예입니다.
 
 ```r
-<<chunkA, eval=FALSE>>= 
-x <- 1 + 1 
-@ 
-<<chunkA, eval=TRUE>>= 
+<<chunkA, eval=FALSE>>=
+x <- 1 + 1
+@
+<<chunkA, eval=TRUE>>=
 @
 ```
 
@@ -2189,14 +2196,14 @@ x <- 1 + 1
 
 ```r
 <<A>>=
-x <- rnorm(1) 
+x <- rnorm(1)
 @
 
 <<B>>=
-y <- x + 2 
+y <- x + 2
 @
 
-<<C, ref.label=c('A', 'B')>>= 
+<<C, ref.label=c('A', 'B')>>=
 @
 ```
 
@@ -2226,7 +2233,7 @@ gcd <- function(m, n) {
   while ((r <- m%%n) != 0) {
     m <- n
     n <- r
-  } 
+  }
   n
 }
 ```
@@ -2240,7 +2247,7 @@ read_chunk("shared.R")
 이것은 일반적으로 문서의 첫 번째 청크와 같은 초기 청크에서 수행되며, 나중에 소스 문서에서 Q1 청크를 사용할 수 있습니다.
 
 ```r
-<<Q1>>= 
+<<Q1>>=
 @
 ```
 
@@ -2270,26 +2277,26 @@ read_chunk("foo.R", labels = c("A", "B", "C"), from = c(1, 7, 15), to = c(5, 9, 
 
 ```r
 <<A, eval=TRUE>>=
-x <- rnorm(12) 
-@ 
+x <- rnorm(12)
+@
 ```
 
 변수 x를 사용하는 하위 문서를 포함합니다.
 
 ```r
-<<B, child='chapt1.Rnw'>>= 
+<<B, child='chapt1.Rnw'>>=
 @
 ```
 
 자유도가 12인 카이제곱 확률 변수의 한 실현값은 \Sexpr{y}입니다.
 
-청크 B에서 하위 문서를 참조했습니다. 메인 문서가 컴파일될 때 knitr는 하위 문서를 찾아 그에 따라 컴파일합니다. 이 시점까지 메인 문서의 환경에 있는 모든 것(예: 변수 x)을 하위 문서에서 사용할 수 있습니다. 하위 문서는 다음과 같습니다.
+청크 B에서 하위 문서를 참조했습니다. 메인 문서가 컴파일될 때 knitr는 하위 문서를 찾아 그에 따라 컴파일합니다. 이 시점까지 메인 문서의 환경에 있는 모든 것(변수 x)을 하위 문서에서 사용할 수 있습니다. 하위 문서는 다음과 같습니다.
 
-이것은 하위 문서입니다. 
+이것은 하위 문서입니다.
 
 ```r
 <<B1>>=
-y <- sum(x^2) 
+y <- sum(x^2)
 @
 ```
 
@@ -2304,14 +2311,14 @@ y <- sum(x^2)
 다른 데이터 입력을 가지고 템플릿을 사용하여 동일한 분석을 수행하는 것은 흔한 일이며 하위 문서도 이러한 작업에 도움이 될 수 있습니다. 사소한 예로 메인 문서의 카이제곱 분포에서 다른 난수를 계속 생성해 보겠습니다.
 
 ```latex
-% book.Rnw의 두 번째 부분 
+% book.Rnw의 두 번째 부분
 % 위 예제를 계속합니다. 이제 자유도를 8로 변경합니다.
 
-<<C, eval=TRUE>>= 
-x <- rnorm(8) 
-@ 
+<<C, eval=TRUE>>=
+x <- rnorm(8)
+@
 % 그리고 하위 문서를 다시 포함시킵니다.
-<<D, child='chapt1.Rnw'>>= 
+<<D, child='chapt1.Rnw'>>=
 @
 
 자유도가 8인 카이제곱 확률 변수의 한 실현값은 \Sexpr{y}입니다.
@@ -2330,8 +2337,8 @@ x <- rnorm(8)
 set_parent() 함수는 knitr에 하위 문서의 부모 문서를 알립니다. 이 함수가 한 번 호출되면 knitr는 부모 문서의 서문을 읽고 Rnw 문서가 TEX로 컴파일될 때 해당 서문을 하위 문서에 씁니다. 예를 들어 chapt1.Rnw에서 다음과 같이 할 수 있습니다.
 
 ```r
-<<parent, include=FALSE>>= 
-set_parent("book.Rnw") 
+<<parent, include=FALSE>>=
+set_parent("book.Rnw")
 @
 ```
 
@@ -2354,8 +2361,8 @@ knit_hooks의 기존 훅과 충돌하지 않는 한 청크 훅의 이름은 임�
 ```r
 names(knit_hooks$get(default = TRUE))
 
-## [1] "source" "output" "warning" "message" 
-## [5] "error" "plot" "inline" "chunk" 
+## [1] "source" "output" "warning" "message"
+## [5] "error" "plot" "inline" "chunk"
 ## [9] "text" "document"
 ```
 
@@ -2364,12 +2371,12 @@ names(knit_hooks$get(default = TRUE))
 ```r
 knit_hooks$set(margin = function(before, options, envir) {
   if (before)
-    par(mar = c(4, 4, 0.1, 0.1)) 
-  else NULL 
+    par(mar = c(4, 4, 0.1, 0.1))
+  else NULL
 })
 ```
 
-(그림 10.1 설명: 기본 여백(예: par(mar = c(5.1, 4.1, 4.1, 2.1)))이 있는 플롯.)
+(그림 10.1 설명: 기본 여백(par(mar = c(5.1, 4.1, 4.1, 2.1)))이 있는 플롯.)
 
 이 훅은 R 기본 그래픽에 대해 par()로 여백 매개변수를 설정하는 데 사용됩니다(기본 여백이 너무 큰 경우가 많기 때문입니다).
 
@@ -2378,18 +2385,18 @@ knit_hooks$set(margin = function(before, options, envir) {
 훅을 정의한 후, 훅 함수를 실행하려면 이름이 같은 청크 옵션을 NULL이 아닌 값으로 설정해야 합니다. 기본적으로 정의되지 않은 모든 청크 옵션은 NULL이므로 아래 청크는 margin = NULL 옵션이 있는 청크와 같습니다. 이 청크는 컴파일될 때 우리가 방금 정의한 훅을 호출하지 않습니다(그림 10.1).
 
 ```r
-<<mar-normal>>= 
-par(bg = "gray") 
-plot(1:10) 
+<<mar-normal>>=
+par(bg = "gray")
+plot(1:10)
 @
 ```
 
 그러나 margin = TRUE 로 설정하면 TRUE가 NULL이 아니므로 청크가 평가되기 전에 훅이 호출됩니다(그림 10.2).
 
 ```r
-<<mar-small, margin=TRUE>>= 
-par(bg = "gray") 
-plot(1:10) 
+<<mar-small, margin=TRUE>>=
+par(bg = "gray")
+plot(1:10)
 @
 ```
 
@@ -2405,7 +2412,7 @@ before: 논리 값입니다. 훅이 청크 전에 호출되는 경우 TRUE, 청�
 
 options: 현재 청크 옵션의 리스트입니다. 예를 들어 options$label은 현재 청크 레이블입니다.
 
-envir: 현재 코드 청크가 평가되는 환경입니다. 예를 들어 envir$x는 현재 청크의 객체 x(존재하는 경우)입니다. 
+envir: 현재 코드 청크가 평가되는 환경입니다. 예를 들어 envir$x는 현재 청크의 객체 x(존재하는 경우)입니다.
 
 name: 현재 훅 함수의 이름입니다.
 
@@ -2425,20 +2432,20 @@ knitr는 임의의 청크 옵션을 허용하므로 청크 훅의 options 인수
 
 ```r
 knit_hooks$set(margin = function(before, options, envir) {
-  if (before) { 
-    m <- options$margin 
+  if (before) {
+    m <- options$margin
     if (is.numeric(m) && length(m) == 4L) {
-      par(mar = m) 
+      par(mar = m)
     }
-  } else NULL 
+  } else NULL
 })
 ```
 
-여백 매개변수에 고정된 값 c(4, 4, .1, .1)을 사용하는 대신, 이제 길이 4의 임의의 숫자 벡터를 사용할 수 있습니다. 예: 
+여백 매개변수에 고정된 값 c(4, 4, .1, .1)을 사용하는 대신, 이제 길이 4의 임의의 숫자 벡터를 사용할 수 있습니다. 예:
 
 ```r
-<<mar-numeric, margin=c(2, 3, 1, .1)>>= 
-plot(1:10) 
+<<mar-numeric, margin=c(2, 3, 1, .1)>>=
+plot(1:10)
 @
 ```
 
@@ -2455,7 +2462,7 @@ knit_hooks$set(brace = function(before, options, envir) {
   if (before) {
     "\\noindent\\downbracefill{}\n\n"
   } else {
-    "\n\n\\noindent\\upbracefill{}\n" 
+    "\n\n\\noindent\\upbracefill{}\n"
   }
 })
 ```
@@ -2463,11 +2470,11 @@ knit_hooks$set(brace = function(before, options, envir) {
 이 brace 훅을 다음 청크에 적용합니다.
 
 ```r
-<<test, brace=TRUE>>= 
+<<test, brace=TRUE>>=
 1 + 1
-## [1] 2 
+## [1] 2
 rnorm(10)
-## [1] -0.1738 1.1675 0.8677 -0.8149 -1.6213 0.8553 
+## [1] -0.1738 1.1675 0.8677 -0.8149 -1.6213 0.8553
 ## [7] -1.8358 -0.7550 -1.6286 -0.6447
 @
 ```
@@ -2506,7 +2513,7 @@ knit_hooks$set(crop = hook_pdfcrop)
 이제 아래 동일한 코드 청크에 의해 생성된 두 플롯을 비교합니다. 첫 번째 것은 잘리지 않았습니다(그림 10.3). 그리고 동일한 플롯이 청크 옵션 crop = TRUE 와 함께 생성되며 자르기(crop) 훅을 호출합니다(그림 10.4).
 
 ```r
-par(mar = c(5, 4, 4, 2)) # 큰 여백 
+par(mar = c(5, 4, 4, 2)) # 큰 여백
 plot(lat ~ long, data = quakes, pch = 20, col = rgb(0, 0, 0, 0.2))
 ```
 
@@ -2533,8 +2540,8 @@ long
 hook_rgl() 훅을 사용하면 rgl 패키지에서 쉽게 스냅샷을 저장할 수 있습니다(Adler 및 Murdoch, 2014). rgl 훅은 훅 내에서 options 인수를 주의 깊게 사용하여 세부 사항을 처리하는 좋은 예입니다. 예를 들어 rgl.snapshot() 또는 rgl.postscript()에서 rgl 플롯의 너비와 높이를 직접 설정할 수 없으므로, 옵션 fig.width, fig.height 및 dpi를 사용하여 창의 예상 크기를 계산한 다음, par3d()로 현재 창의 크기를 조정하고 플롯을 저장하며 마지막으로 출력에 플롯을 삽입하기 위한 적절한 코드가 포함된 문자열을 반환합니다. 다음은 hook_rgl()의 빠르고 대략적인 버전입니다.
 
 ```r
-knit_hooks$set(rgl = function(before, options, envir) { 
-  library(rgl) 
+knit_hooks$set(rgl = function(before, options, envir) {
+  library(rgl)
   if (before || rgl.cur() == 0)
     return() # 청크 전에는 아무것도 반환하지 않음
 
@@ -2547,7 +2554,7 @@ knit_hooks$set(rgl = function(before, options, envir) {
 (그림 10.5 설명: hook_rgl()에 캡처된 rgl 플롯. 이 훅 함수는 rgl의 rgl.snapshot()을 호출하여 PNG 이미지에 스냅샷을 저장합니다.)
 
 ```r
-  rgl.snapshot(paste(name, ".png", sep = ""), fmt = "png") 
+  rgl.snapshot(paste(name, ".png", sep = ""), fmt = "png")
   paste("\\includegraphics{", name, "}\n", sep = "")
 })
 ```
@@ -2561,14 +2568,14 @@ knit_hooks$set(rgl = hook_rgl)
 그런 다음 청크 옵션 rgl = TRUE로 설정하기만 하면 캡처된 플롯이 그림 10.5에 표시됩니다.
 
 ```r
-library(rgl) 
-demo("bivar", package = "rgl", echo = FALSE) 
+library(rgl)
+demo("bivar", package = "rgl", echo = FALSE)
 par3d(zoom = 0.7)
 ```
 
 ###### 10.2.3 플롯 수동 저장
 
-7.2절에서 R 플롯이 어떻게 기록되는지 설명했습니다. 어떤 경우에는 recordPlot()으로 플롯을 캡처할 수 없지만(예: rgl 플롯) 다른 함수를 사용하여 저장할 수 있습니다. 이러한 플롯을 출력에 삽입하려면 먼저 다음과 같이 훅을 설정해야 합니다(자세한 내용은 도움말 페이지 ?hook_plot_custom 참조).
+7.2절에서 R 플롯이 어떻게 기록되는지 설명했습니다. 어떤 경우에는 recordPlot()으로 플롯을 캡처할 수 없지만(rgl 플롯) 다른 함수를 사용하여 저장할 수 있습니다. 이러한 플롯을 출력에 삽입하려면 먼저 다음과 같이 훅을 설정해야 합니다(자세한 내용은 도움말 페이지 ?hook_plot_custom 참조).
 
 ![이미지 14](Dynamic Documents with R and knitr 2nd_images/imageFile14.png)
 
@@ -2581,12 +2588,12 @@ knit_hooks$set(custom_plot = hook_plot_custom)
 그런 다음 청크 옵션을 custom_plot = TRUE로 설정하고 청크에서 플롯 파일을 수동으로 작성합니다. 다음은 rggobi 패키지의 ggobi_display_save_picture() 함수를 사용하여 GGobi 플롯을 캡처하는 예입니다(Temple Lang 등, 2014).
 
 ```r
-<<ggobi-plot, custom_plot=TRUE, fig.ext='png'>>= 
-library(rggobi) 
-data("flea", package = "tourr") 
-ggobi(flea) 
-Sys.sleep(1) # 스냅샷을 위해 대기 
-ggobi_display_save_picture(path = fig_path(".png")) 
+<<ggobi-plot, custom_plot=TRUE, fig.ext='png'>>=
+library(rggobi)
+data("flea", package = "tourr")
+ggobi(flea)
+Sys.sleep(1) # 스냅샷을 위해 대기
+ggobi_display_save_picture(path = fig_path(".png"))
 @
 ```
 
@@ -2598,21 +2605,21 @@ ggobi_display_save_picture(path = fig_path(".png"))
 fig.show = 'animate' 옵션(7.3.1절)을 통해 일련의 이미지를 저장하여 애니메이션을 만들 수도 있습니다. 아래는 rgl을 사용하여 산점도를 확대하는 예입니다(실제 애니메이션은 knitr의 메인 설명서 참조).
 
 ```r
-## 청크 옵션 사용: custom_plot=TRUE, fig.ext='png', 
-## out.width='2.5in', fig.show='animate', fig.num=20 
-library(animation) 
-# demo('rgl_animation')에서 차용 
-data(pollen) 
+## 청크 옵션 사용: custom_plot=TRUE, fig.ext='png',
+## out.width='2.5in', fig.show='animate', fig.num=20
+library(animation)
+# demo('rgl_animation')에서 차용
+data(pollen)
 uM <- matrix(c(-0.37, -0.51, -0.77, 0, -0.73, 0.67, -0.1,
-0, 0.57, 0.53, -0.63, 0, 0, 0, 0, 1), 4, 4) 
-library(rgl) 
-open3d(userMatrix = uM, windowRect = c(0, 0, 400, 400)) 
-plot3d(pollen[, 1:3]) 
-zm <- seq(1, 0.05, length = 20) 
-par3d(zoom = 1) # 나중에 확대/축소 비율을 점진적으로 변경합니다. 
+0, 0.57, 0.53, -0.63, 0, 0, 0, 0, 1), 4, 4)
+library(rgl)
+open3d(userMatrix = uM, windowRect = c(0, 0, 400, 400))
+plot3d(pollen[, 1:3])
+zm <- seq(1, 0.05, length = 20)
+par3d(zoom = 1) # 나중에 확대/축소 비율을 점진적으로 변경합니다.
 for (i in 1:length(zm)) {
-  par3d(zoom = zm[i]) 
-  Sys.sleep(0.05) 
+  par3d(zoom = zm[i])
+  Sys.sleep(0.05)
   rgl.snapshot(paste(fig_path(i), "png", sep = "."))
 }
 ```
@@ -2636,19 +2643,19 @@ knit_hooks$set(optipng = hook_optipng)
 기본 rgl 훅인 hook_rgl()은 새 플롯을 그리기 전에 rgl 장치를 닫지 않기 때문에 문제가 될 수 있습니다. 이는 후속 플롯이 이전 장면 위에 그려지기 때문입니다. 예를 들어, 다음 두 줄을 함께 실행하면 두 개의 구가 있는 하나의 플롯을 얻습니다(그림 10.7). 그러나 첫 번째 플롯을 닫고 두 번째 줄을 실행하면 각각 하나의 구가 있는 두 개의 플롯을 얻게 됩니다.
 
 ```r
-rgl.spheres(0, 0, 0) 
+rgl.spheres(0, 0, 0)
 rgl.spheres(0, 2, 0)
 ```
 
 일반적으로 서로 다른 코드 청크는 서로 다른 그래픽 장치를 사용하므로 나중의 청크에 있는 그래픽 요소는 이전 청크에 추가되지 않지만 rgl 플롯의 경우에는 그렇지 않습니다. 플롯을 그리기 전에 장치를 닫으려면 훅을 약간 조정해야 합니다. 예:
 
 ```r
-knit_hooks$set(rgl = function(before, options, envir) { 
-  # 이 청크 전에 장치가 열렸다면 닫습니다. 
+knit_hooks$set(rgl = function(before, options, envir) {
+  # 이 청크 전에 장치가 열렸다면 닫습니다.
   if (before && rgl.cur() > 0)
     rgl.close()
 
-  hook_rgl(before, options, envir) 
+  hook_rgl(before, options, envir)
 })
 ```
 
@@ -2671,19 +2678,19 @@ knitr가 R 패키지이고 일차적으로 R 환경 내에서 실행되어야 �
 청크 훅과 마찬가지로 모든 언어 엔진은 기본적으로 knitr의 R 함수입니다. 이 함수들은 코드 청크를 외부 프로그램에 전달하고 거기서 코드를 실행한 뒤 결과를 다시 가져와 출력에 씁니다. 대부분의 경우 코드는 system() 함수를 통해 외부 프로그램으로 전달됩니다. 예를 들어 -c 옵션을 통해 코드를 bash에 전달할 수 있습니다.
 
 ```r
-system("bash -c 'ls ~ | grep ^D'", intern = TRUE) 
+system("bash -c 'ls ~ | grep ^D'", intern = TRUE)
 ## [1] "Desktop" "Downloads" "Dropbox"
 ```
 
 bash 스크립트에 익숙하지 않은 사람들을 위해 설명하자면, ls ~ | grep ^D 코드는 홈 디렉터리(~) 아래의 파일을 나열하고 그 파일 이름들을 파이프(|)를 통해 grep에 전달하여 D 문자로 시작하는 파일 이름을 일치시킨다는 의미입니다. ls와 grep은 표준 Linux 명령입니다.
 
-청크 옵션 engine을 사용하여 청크에 대한 언어 엔진을 지정할 수 있습니다. 예를 들어 아래 청크는 engine = 'bash'를 사용합니다. 
+청크 옵션 engine을 사용하여 청크에 대한 언어 엔진을 지정할 수 있습니다. 예를 들어 아래 청크는 engine = 'bash'를 사용합니다.
 
 ```bash
 ls ~ | grep ^D
 
-## Desktop 
-## Downloads 
+## Desktop
+## Downloads
 ## Dropbox
 ```
 
@@ -2700,10 +2707,10 @@ ls ~ | grep ^D
 bash 예제를 계속 진행하기 위해 다음과 같이 기초적인 엔진을 정의할 수 있습니다.
 
 ```r
-knit_engines$set(bash = function(options) { 
-  code <- paste(options$code, collapse = "\n") 
+knit_engines$set(bash = function(options) {
+  code <- paste(options$code, collapse = "\n")
   out <- system(paste("bash -c", shQuote(code), sep = " "), intern = TRUE)
-  paste(c(code, out), collapse = "\n") 
+  paste(c(code, out), collapse = "\n")
 })
 ```
 
@@ -2736,10 +2743,10 @@ C++는 Rcpp 패키지를 통해 knitr에서 지원됩니다(Eddelbuettel 등, 20
 아래는 Rcpp가 포함된 C++로 작성된 피보나치 수열(xi = xi−1 + xi−2, x0 = 0 및 x1 = 1)의 예입니다.
 
 ```cpp
-#include <Rcpp.h> 
-// [[Rcpp::export]] 
+#include <Rcpp.h>
+// [[Rcpp::export]]
 int fibCpp(const int x) {
-  if (x == 0 || x == 1) return(x); 
+  if (x == 0 || x == 1) return(x);
   return (fibCpp(x - 1)) + fibCpp(x - 2);
 }
 ```
@@ -2747,11 +2754,11 @@ int fibCpp(const int x) {
 컴파일된 후에는 Rcpp::export 속성으로 표시했기 때문에 R에서 직접 fibCpp() 함수를 호출할 수 있습니다.
 
 ```r
-fibCpp(10L) 
-## [1] 55 
+fibCpp(10L)
+## [1] 55
 system.time(fibCpp(27L))
 
-## user system elapsed 
+## user system elapsed
 ## 0.001 0.000 0.001
 ```
 
@@ -2760,18 +2767,18 @@ system.time(fibCpp(27L))
 ```r
 fibR <- function(x) {
   if (x == 0L || x == 1L) return(x)
-  return(fibR(x - 1L) + fibR(x - 2L)) 
+  return(fibR(x - 1L) + fibR(x - 2L))
 }
 ```
 
 놀랍지 않게도, 수치 결과는 같더라도 R 버전이 훨씬 느립니다.
 
 ```r
-fibR(10L) 
-## [1] 55 
+fibR(10L)
+## [1] 55
 system.time(fibR(27L))
 
-## user system elapsed 
+## user system elapsed
 ## 0.708 0.000 0.708
 ```
 
@@ -2785,21 +2792,21 @@ C 언어와 Fortran을 위한 두 개의 간단한 언어 엔진 c와 fortran이
 # 이 책을 집필할 당시 환경의 컴파일러
 Sys.which("gcc")
 
-## gcc 
+## gcc
 ## "/usr/bin/gcc"
 
 Sys.which("gfortran")
 
-## gfortran 
+## gfortran
 ## "/usr/bin/gfortran"
 ```
 
 아래는 이 두 엔진의 사용법을 보여주는 두 가지 예입니다. 먼저 이 예제에 대해 청크 옵션 engine = 'c' 를 설정합니다.
 
 ```c
-/* 숫자의 제곱 계산 */ 
+/* 숫자의 제곱 계산 */
 void my_square(double *x) {
-  *x = *x * *x; 
+  *x = *x * *x;
 }
 ```
 
@@ -2808,12 +2815,12 @@ void my_square(double *x) {
 ```r
 .C("my_square", 9)
 
-## [[1]] 
+## [[1]]
 ## [1] 81
 
 .C("my_square", 123)
 
-## [[1]] 
+## [[1]]
 ## [1] 15129
 ```
 
@@ -2821,28 +2828,29 @@ void my_square(double *x) {
 
 ```fortran
 C Fortran test
-      subroutine fexp(n, x) 
+      subroutine fexp(n, x)
       double precision x
 ```
+
 ```fortran
 C 출력
-      integer n, i 
+      integer n, i
 C 입력 값
       do 10 i = 1, n
         x = dexp(dcos(dsin(dble(float(i)))))
-10    continue 
-      return 
+10    continue
+      return
       end
 ```
 
 그리고 .Fortran() 인터페이스를 통해 Fortran 서브루틴을 호출할 수 있습니다.
 
 ```r
-res <- .Fortran("fexp", n = 100000L, x = 0) 
+res <- .Fortran("fexp", n = 100000L, x = 0)
 str(res)
 
-## List of 2 
-## $ n: int 100000 
+## List of 2
+## $ n: int 100000
 ## $ x: num 2.72
 ```
 
@@ -2854,38 +2862,38 @@ C++, C, Fortran은 컴파일 언어에 속하며, 그 외에 인터프리터 언
 
 표 11.1: knitr에서 지원하는 인터프리터 언어: 언어 이름, 엔진 이름 및 코드를 실행하기 위한 명령줄 인수.
 
-|언어|엔진|코드 인수|
-|---|---|---|
-|Python|python|-c|
-|Ruby|ruby|-e|
-|(g)awk|(g)awk| |
-|sed|sed| |
-|shell|sh/bash/zsh|-c|
-|Perl|perl|-e|
-|Haskell|haskell|-e|
-|CoffeeScript|coffee|-e|
-|Groovy|groovy|-e|
-|Node.js|node|-e|
-|Scala|scala|-e|
-|SAS|sas|-SYSIN|
+| 언어         | 엔진        | 코드 인수 |
+| ------------ | ----------- | --------- |
+| Python       | python      | -c        |
+| Ruby         | ruby        | -e        |
+| (g)awk       | (g)awk      |           |
+| sed          | sed         |           |
+| shell        | sh/bash/zsh | -c        |
+| Perl         | perl        | -e        |
+| Haskell      | haskell     | -e        |
+| CoffeeScript | coffee      | -e        |
+| Groovy       | groovy      | -e        |
+| Node.js      | node        | -e        |
+| Scala        | scala       | -e        |
+| SAS          | sas         | -SYSIN    |
 
 앞서 언급했듯이 엔진 이름 자체가 실행 파일이 아닐 수 있으므로 프로그램의 실제 경로를 지정해야 할 수도 있습니다. Haskell의 경우 haskell은 Haskell을 실행하는 프로그램이 아니라 ghc이므로 engine = 'haskell' 과 engine.path = 'ghc' 를 모두 지정해야 합니다.
 
-위 언어에 대한 몇 가지 예를 제공합니다. 다음은 Python 청크(청크 옵션 engine = 'python')입니다. 
+위 언어에 대한 몇 가지 예를 제공합니다. 다음은 Python 청크(청크 옵션 engine = 'python')입니다.
 
 ```python
-x = 'hello, python world!' 
-print x 
+x = 'hello, python world!'
+print x
 print x.split(' ')
 
-## hello, python world! 
+## hello, python world!
 ## ['hello,', 'python', 'world!']
 ```
 
 다음은 Ruby 청크입니다.
 
 ```ruby
-x = 'hello, ruby world!' 
+x = 'hello, ruby world!'
 p x.split(' ')
 
 ## ["hello,", "ruby", "world!"]
@@ -2896,20 +2904,20 @@ p x.split(' ')
 이 청크에 대해 engine.opts = shQuote(system.file('NEWS.Rd', package = 'knitr')) 옵션을 사용했음에 유의하십시오. 즉, R에서 NEWS.Rd 파일의 경로를 가져와 shQuote()로 인용하고 두 번째 인수로 awk에 전달합니다(첫 번째 인수는 코드 청크임을 기억하십시오). 즉, awk로 읽을 파일입니다.
 
 ```awk
-# NEWS 파일에 비어 있지 않은 줄이 몇 개 있습니까? 
+# NEWS 파일에 비어 있지 않은 줄이 몇 개 있습니까?
 NF {
   i = i + 1
-} 
+}
 END { print i }
 
-## 8 
+## 8
 ```
 
 마지막으로 Perl 코드 청크입니다.
 
 ```perl
-$test = "jello world"; 
-$test =~ s/j/h/; 
+$test = "jello world";
+$test =~ s/j/h/;
 print $test
 
 ## hello world
@@ -2920,48 +2928,48 @@ print $test
 rstan 패키지(Guo 등, 2014)를 사용하여 베이지안 통계 추론을 특징으로 하는 비교적 새로운 프로그래밍 언어인 Stan의 모델을 컴파일할 수 있습니다. knitr에는 stan이라는 언어 엔진이 있어 코드 청크에 Stan 모델을 작성할 수 있습니다. 물론 특별한 언어 엔진을 사용하지 않고 일반적인 R 코드 청크에서 모델을 파일로 저장하거나 모델을 R 코드의 긴 문자열로 작성하여 Stan 모델을 컴파일할 수 있습니다. 두 가지 방법 모두 단점이 있습니다. 모델이 외부 파일에 있는 경우 독자가 보고서에서 실제 모델을 보기가 불편하고, R에서 모델을 여러 줄의 긴 문자열로 작성하는 것은 번거롭습니다. stan 엔진은 모델을 코드 청크로 작성할 수 있게 하여 앞서 언급한 두 가지 문제를 모두 해결합니다. 다음은 베르누이 분포의 매개변수 p(X = 1 확률)의 사후 분포에서 표본을 추출하는 간단한 예입니다.
 
 ```stan
-<<engine='stan', engine.opts = list(x = 'ex1')>>= 
+<<engine='stan', engine.opts = list(x = 'ex1')>>=
 data {
   int<lower=0,upper=1> X[20];
-} 
+}
 parameters {
   real<lower=0,upper=1> p;
-} 
+}
 model {
   X ~ bernoulli(p);
-} 
+}
 @
 ```
 
 청크 옵션 engine = 'stan' 외에도 옵션 engine.opts = list(x = 'ex1')을 지정했습니다. 여기서 x는 R 세션에 저장될 Stan 모델의 이름을 의미합니다. 이 코드 청크는 rstan의 stan_model() 함수에 모델을 전달하고 모델을 객체 ex1에 저장합니다. 다음 청크에서 객체 ex1을 사용할 수 있는 이유가 바로 이것입니다.
 
 ```r
-library(rstan) 
+library(rstan)
 fit <- sampling(ex1, data = list(X = rbinom(20, 1, 0.3)))
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 
-Iteration: 1 / 2000 [ 0%] (Warmup) 
-Iteration: 200 / 2000 [ 10%] (Warmup) 
-Iteration: 400 / 2000 [ 20%] (Warmup) 
-Iteration: 600 / 2000 [ 30%] (Warmup) 
-Iteration: 800 / 2000 [ 40%] (Warmup) 
-Iteration: 1000 / 2000 [ 50%] (Warmup) 
+Iteration: 1 / 2000 [ 0%] (Warmup)
+Iteration: 200 / 2000 [ 10%] (Warmup)
+Iteration: 400 / 2000 [ 20%] (Warmup)
+Iteration: 600 / 2000 [ 30%] (Warmup)
+Iteration: 800 / 2000 [ 40%] (Warmup)
+Iteration: 1000 / 2000 [ 50%] (Warmup)
 Iteration: 1001 / 2000 [ 50%] (Sampling)
-.... 
+....
 print(fit)
 
-Inference for Stan model: anon_model. 
-4 chains, each with iter=2000; warmup=1000; thin=1; 
+Inference for Stan model: anon_model.
+4 chains, each with iter=2000; warmup=1000; thin=1;
 post-warmup draws per chain=1000, total post-warmup draws=4000.
 
-      mean se_mean   sd   2.5%    25%    50%    75% 
-p     0.36    0.00 0.10   0.18   0.29   0.36   0.43 
+      mean se_mean   sd   2.5%    25%    50%    75%
+p     0.36    0.00 0.10   0.18   0.29   0.36   0.43
 lp__ -14.93    0.02 0.73 -16.99 -15.12 -14.65 -14.47
 
-      97.5% n_eff Rhat 
-p      0.57  1498    1 
-lp__ -14.42  1703    1 
+      97.5% n_eff Rhat
+p      0.57  1498    1
+lp__ -14.42  1703    1
 ....
 ```
 
@@ -2974,33 +2982,33 @@ p = 0.3인 베르누이 분포에서 20개의 임의의 데이터 포인트를 �
 tikz 엔진이 내부적으로 하는 일은 다음과 같습니다. LATEX 템플릿을 사용하여 코드 청크를 삽입하고 tex 문서를 PDF로 컴파일합니다. 기본적으로 knitr의 템플릿(knitr의 설치 디렉터리 내 misc 디렉터리 아래의 tikz2pdf.tex)을 사용합니다.
 
 ```r
-f <- system.file("misc", "tikz2pdf.tex", package = "knitr") 
+f <- system.file("misc", "tikz2pdf.tex", package = "knitr")
 cat(readLines(f), sep = "\n")
 
-\documentclass{article} 
-\include{preview} 
-\usepackage[pdftex,active,tightpage]{preview} 
-\usepackage{amsmath} 
-\usepackage{tikz} 
-\usetikzlibrary{matrix} 
-\begin{document} 
-\begin{preview} 
-%% TIKZ_CODE %% 
-\end{preview} 
+\documentclass{article}
+\include{preview}
+\usepackage[pdftex,active,tightpage]{preview}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+\begin{document}
+\begin{preview}
+%% TIKZ_CODE %%
+\end{preview}
 \end{document}
 ```
 
-%% TIKZ_CODE %% 줄은 TikZ 코드 청크로 대체됩니다. 기본 템플릿이 만족스럽지 않으면 청크 옵션 engine.opts를 통해 템플릿을 제공할 수 있습니다. 예를 들어 engine.opts = list(template = 'path/to/tikz/template.tex') 와 같이 제공합니다. 그런 다음 이 TEX 파일은 R 함수 tools::texi2pdf()를 통해 PDF로 컴파일됩니다. 지정된 그림 파일 확장자(청크 옵션 fig.ext)가 pdf가 아닌 경우 ImageMagick(convert 유틸리티를 통해)이 호출되어 PDF 파일을 PNG와 같은 다른 파일 형식으로 변환합니다(예: 문서 형식이 HTML인 경우).
+%% TIKZ_CODE %% 줄은 TikZ 코드 청크로 대체됩니다. 기본 템플릿이 만족스럽지 않으면 청크 옵션 engine.opts를 통해 템플릿을 제공할 수 있습니다. 예를 들어 engine.opts = list(template = 'path/to/tikz/template.tex') 와 같이 제공합니다. 그런 다음 이 TEX 파일은 R 함수 tools::texi2pdf()를 통해 PDF로 컴파일됩니다. 지정된 그림 파일 확장자(청크 옵션 fig.ext)가 pdf가 아닌 경우 ImageMagick(convert 유틸리티를 통해)이 호출되어 PDF 파일을 PNG와 같은 다른 파일 형식으로 변환합니다(문서 형식이 HTML인 경우).
 
 그림 11.1은 아래 원시 TikZ 코드에서 그려진 다이어그램입니다.
 
 ```latex
-\usetikzlibrary{arrows} 
-\begin{tikzpicture}[node distance=2cm, auto,>=latex', thick] 
+\usetikzlibrary{arrows}
+\begin{tikzpicture}[node distance=2cm, auto,>=latex', thick]
 \node (P) {$P$};
 
 % 아래 코드는 단순화된 TikZ 구조입니다.
-% f^ k 
+% f^ k
 % P^
 % f
 % g
@@ -3010,21 +3018,21 @@ cat(readLines(f), sep = "\n")
 % A C
 ```
 
-(그림 11.1 설명: TikZ로 그린 다이어그램. 소스 코드는 *.tex 파일에 기록되고 LATEX에 의해 PDF로 컴파일됩니다.)
+(그림 11.1 설명: TikZ로 그린 다이어그램. 소스 코드는 \*.tex 파일에 기록되고 LATEX에 의해 PDF로 컴파일됩니다.)
 
 ```latex
-  \node (B) [right of=P] {$B$}; 
+  \node (B) [right of=P] {$B$};
   \node (A) [below of=P] {$A$};
-  \node (C) [below of=B] {$C$}; 
+  \node (C) [below of=B] {$C$};
   \node (P1) [node distance=1.4cm, left of=P, above of=P]
-  {$\hat{P}$}; 
-  \draw[->] (P) to node {$f$} (B); 
+  {$\hat{P}$};
+  \draw[->] (P) to node {$f$} (B);
   \draw[->] (P) to node [swap] {$g$} (A);
   \draw[->] (A) to node [swap] {$f$} (C);
-  \draw[->] (B) to node {$g$} (C); 
-  \draw[->, bend right] (P1) to node [swap] {$\hat{g}$} (A); 
-  \draw[->, bend left] (P1) to node {$\hat{f}$} (B); 
-  \draw[->, dashed] (P1) to node {$k$} (P); 
+  \draw[->] (B) to node {$g$} (C);
+  \draw[->, bend right] (P1) to node [swap] {$\hat{g}$} (A);
+  \draw[->, bend left] (P1) to node {$\hat{f}$} (B);
+  \draw[->, dashed] (P1) to node {$k$} (P);
 \end{tikzpicture}
 ```
 
@@ -3043,15 +3051,15 @@ Graphviz(Ellson 등, 2002)는 오픈 소스의 인기 있는 그래프 시각화
 여기서는 PDF 그래프 파일을 생성하기 위해 fig.ext = 'pdf' 를 사용했으며 PNG와 같은 다른 파일 형식으로 변경할 수도 있습니다.
 
 ```dot
-digraph test123 { 
+digraph test123 {
   a -> b -> c;
   a -> {x y};
   b [shape=box];
   c [label="hello\nworld",color=blue,fontsize=24, fontname="Palatino-Italic",fontcolor=red,style=filled];
-  a -> z [label="hi", weight=100]; 
-  x -> z [label="multi-line\nlabel"]; 
+  a -> z [label="hi", weight=100];
+  x -> z [label="multi-line\nlabel"];
   edge [style=dashed,color=red];
-  b -> x; 
+  b -> x;
   {rank=same; b x}
 }
 ```
@@ -3067,10 +3075,10 @@ Highlight는 C, PHP, R 등을 포함한 매우 다양한 언어에 대한 구문
 아래 청크는 이전 awk 예제에서 가져온 것입니다. 입력 구문이 awk이고 출력 유형이 LATEX임을 Highlight에 알려 적절한 LATEX 명령을 키워드에 생성할 수 있도록 청크 옵션 engine.opts = '-S awk -O latex' 를 사용합니다. 이 책의 인쇄판에서는 색상을 확인하기 어려울 수 있지만 최소한 첫 번째 줄이 이탤릭체(주석)라는 것은 볼 수 있습니다.
 
 ```awk
-# NEWS 파일에 비어 있지 않은 줄이 몇 개 있습니까? 
+# NEWS 파일에 비어 있지 않은 줄이 몇 개 있습니까?
 NF {
   i = i + 1
-} 
+}
 END { print i }
 ```
 
@@ -3083,18 +3091,18 @@ Highlight는 코드의 다양한 토큰을 마크업하기 위해 \hlnum{}(숫�
 예를 들어 cat 엔진을 통해 styles.css라는 파일에 아래 코드 청크를 쓸 수 있습니다.
 
 ```css
-<<engine='cat', engine.opts = list(file = 'styles.css')>>= 
+<<engine='cat', engine.opts = list(file = 'styles.css')>>=
 p {
   margin: 5px 2px 5px 2px;
-} 
+}
 @
 ```
 
 변수 internal.only가 TRUE인 경우 다음 코드 청크가 최종 출력에 포함됩니다(보고서 내용 중 그룹 내에서 내부적으로만 표시하려는 부분이 있다고 가정).
 
 ```r
-<<engine='asis', echo = internal.only>>= 
-다음은 'internal.only'를 TRUE로 설정하여 이 보고서의 공개 버전에서는 숨겨진 분석에 대한 몇 가지 1급 비밀입니다. 비밀 번호 1: ... 
+<<engine='asis', echo = internal.only>>=
+다음은 'internal.only'를 TRUE로 설정하여 이 보고서의 공개 버전에서는 숨겨진 분석에 대한 몇 가지 1급 비밀입니다. 비밀 번호 1: ...
 @
 ```
 
@@ -3109,7 +3117,7 @@ runr 패키지(Xie, 2013)는 이 문제를 해결하기 위한 시도입니다. 
 - 3. Julia는 코드를 수신하고 평가한 다음 표준 출력(일반 텍스트)을 소켓에 씁니다.
 - 4. R은 socketConnection(open = 'r') 을 통해 소켓에서 읽고 R 코드 청크 출력과 마찬가지로 Julia 출력을 보고서에 씁니다.
 - 5. 다음 Julia 코드 청크가 들어오면 2~4단계를 반복하고 quit() 코드를 보내면 Julia가 종료됩니다.
-이러한 방식으로 Julia 세션은 R에서 명시적으로 종료할 때까지 활성화된 상태로 유지되며, 모든 Julia 코드 청크는 동일한 Julia 세션에서 평가됩니다. runr 패키지는 아직 초기 단계에 있으며 커뮤니티의 기여를 환영합니다.
+     이러한 방식으로 Julia 세션은 R에서 명시적으로 종료할 때까지 활성화된 상태로 유지되며, 모든 Julia 코드 청크는 동일한 Julia 세션에서 평가됩니다. runr 패키지는 아직 초기 단계에 있으며 커뮤니티의 기여를 환영합니다.
 
 ### 12
 
@@ -3119,7 +3127,7 @@ runr 패키지(Xie, 2013)는 이 문제를 해결하기 위한 시도입니다. 
 
 ###### 12.1 청크 옵션
 
-knitr에는 여러 가지 내장 청크 옵션이 있으며 일반적으로 청크 헤더에 값을 할당하지만, 이러한 고정 옵션을 사용자 지정할 수 있습니다(예: 옵션 이름 바꾸기).
+knitr에는 여러 가지 내장 청크 옵션이 있으며 일반적으로 청크 헤더에 값을 할당하지만, 이러한 고정 옵션을 사용자 지정할 수 있습니다(옵션 이름 바꾸기).
 
 ###### 12.1.1 옵션 별칭(Aliases)
 
@@ -3132,16 +3140,16 @@ set_alias(w = "fig.width", h = "fig.height")
 그러면 다음과 같이 그림 너비와 높이에 대해 각각 w와 h를 사용할 수 있습니다.
 
 ```r
-<<fig-size, w=5, h=3>>= 
-plot(1:10) 
+<<fig-size, w=5, h=3>>=
+plot(1:10)
 @
 ```
 
 위의 청크는 다음과 같습니다.
 
 ```r
-<<fig-size, fig.width=5, fig.height=3>>= 
-plot(1:10) 
+<<fig-size, fig.width=5, fig.height=3>>=
+plot(1:10)
 @
 ```
 
@@ -3152,8 +3160,8 @@ plot(1:10)
 옵션 이름 외에도 자주 사용하는 옵션 값들을 옵션 템플릿으로 함께 묶을 수도 있습니다. knitr의 opts_template 객체를 사용하여 이러한 템플릿을 빌드할 수 있습니다. 템플릿은 옵션 세트들의 명명된 컬렉션입니다. 예를 들어 그래픽 장치 크기를 7 × 5 인치로 설정하려는 플롯이 다수 있고 나머지 다른 플롯에 대해서는 크기를 3.5 × 3 인치로 설정하려 한다고 가정해 보겠습니다. 확실히 첫 번째 플롯 그룹에는 fig.width = 7, fig.height = 5 를 입력하고 두 번째 그룹에는 fig.width = 3.5, fig.height = 3 을 입력할 수 있지만 이것은 (옵션 별칭을 사용하더라도) 분명히 지루한 작업입니다. 이 경우 두 개의 옵션 세트를 템플릿에 넣기만 하면 됩니다.
 
 ```r
-opts_template$set( 
-  fig.large = list(fig.width = 7, fig.height = 5), 
+opts_template$set(
+  fig.large = list(fig.width = 7, fig.height = 5),
   fig.small = list(fig.width = 3.5, fig.height = 3)
 )
 ```
@@ -3161,16 +3169,16 @@ opts_template$set(
 템플릿이 설정된 후에는 향후 청크 헤더에서 청크 옵션 opts.label을 사용하여 참조하기만 하면 됩니다. 예를 들어 아래 청크에서 큰 플롯에 대한 옵션을 원한다고 해보겠습니다.
 
 ```r
-<<fig-ex, opts.label='fig.large'>>= 
-plot(1:10) 
+<<fig-ex, opts.label='fig.large'>>=
+plot(1:10)
 @
 ```
 
 이것은 다음과 같습니다.
 
 ```r
-<<fig-ex, fig.width=7, fig.height=7>>= 
-plot(1:10) 
+<<fig-ex, fig.width=7, fig.height=7>>=
+plot(1:10)
 @
 ```
 
@@ -3184,38 +3192,38 @@ library(gridExtra)
 g <- tableGrob(head(iris))
 ```
 
-| |Sepal.Length|Sepal.Width|Petal.Length|Petal.Width|Species|
-|---|---|---|---|---|---|
-|1|5.1|3.5|1.4|0.2|setosa|
-|2|4.9|3.0|1.4|0.2|setosa|
-|3|4.7|3.2|1.3|0.2|setosa|
-|4|4.6|3.1|1.5|0.2|setosa|
-|5|5.0|3.6|1.4|0.2|setosa|
-|6|5.4|3.9|1.7|0.4|setosa|
+|     | Sepal.Length | Sepal.Width | Petal.Length | Petal.Width | Species |
+| --- | ------------ | ----------- | ------------ | ----------- | ------- |
+| 1   | 5.1          | 3.5         | 1.4          | 0.2         | setosa  |
+| 2   | 4.9          | 3.0         | 1.4          | 0.2         | setosa  |
+| 3   | 4.7          | 3.2         | 1.3          | 0.2         | setosa  |
+| 4   | 4.6          | 3.1         | 1.5          | 0.2         | setosa  |
+| 5   | 5.0          | 3.6         | 1.4          | 0.2         | setosa  |
+| 6   | 5.4          | 3.9         | 1.7          | 0.4         | setosa  |
 
 (그림 12.1 설명: gridExtra 패키지로 생성된 표: 테이블 Grob을 생성하고 적절한 그래픽 장치에 그립니다.)
 
 다음으로 grid 패키지의 grid.draw()를 사용하여 객체를 플롯에 그립니다. 그 전에 그래픽 장치에 적절한 크기를 결정해야 합니다. 그렇지 않으면 플롯에 추가적인 흰색 여백이 생길 수 있습니다. 사실 grid 패키지의 convertWidth() 및 convertHeight() 함수는 미리 계산된 Grob의 너비와 높이를 인치로 변환할 수 있습니다. 따라서 평소처럼 고정된 숫자를 사용하는 대신 두 개의 함수 호출을 청크 옵션 fig.width 및 fig.height에 전달합니다. 그림 12.1은 grid.draw()에 의해 그려진 iris 데이터의 첫 네 줄 표입니다.
 
 ```r
-<<table, fig.width=convertWidth(grobWidth(g), 'in', TRUE)>>= 
-## 인치 단위의 너비와 높이 
+<<table, fig.width=convertWidth(grobWidth(g), 'in', TRUE)>>=
+## 인치 단위의 너비와 높이
 convertWidth(grobWidth(g), "in", value = TRUE)
-## [1] 5.55 
+## [1] 5.55
 
-convertHeight(grobHeight(g), "in", value = TRUE) 
-## [1] 1.94 
-grid.draw(g) 
+convertHeight(grobHeight(g), "in", value = TRUE)
+## [1] 1.94
+grid.draw(g)
 @
 ```
 
 프로그래밍 가능한 청크 옵션을 통해 우리는 여러 측면에서 보고서를 프로그래밍할 수 있습니다. 한 가지 잠재적 응용으로, 각 절차가 하위 문서에 있는 공통 진단 절차가 포함된 선형 회귀 보고서를 빌드할 수 있습니다(9.3절). 그런 다음 특정 조건에 따라 특정 절차를 포함할지 여부를 결정할 수 있습니다. 예를 들어 회귀 모델에서 이상치를 감지한 경우 이상치를 처리하는 이상치 모듈을 포함합니다. 아래 청크는 이 아이디어의 개요를 보여줍니다.
 
 ```r
-<<cooks-distance>>= 
-cookd <- cooks.distance(fit) 
+<<cooks-distance>>=
+cookd <- cooks.distance(fit)
 # 거리가 1보다 크면 이상치 절차를 포함합니다.
-<<outlier, child=if (any(cookd > 1)) 'outlier.Rnw'>>= 
+<<outlier, child=if (any(cookd > 1)) 'outlier.Rnw'>>=
 @
 ```
 
@@ -3232,10 +3240,10 @@ cookd <- cooks.distance(fit)
 <<B, echo=FALSE>>=
 2+2
 
-<<C, echo=FALSE>>= 
-rnorm(10) 
+<<C, echo=FALSE>>=
+rnorm(10)
 
-<<show-code, ref.label=c('A', 'B', 'C'), eval=FALSE>>= 
+<<show-code, ref.label=c('A', 'B', 'C'), eval=FALSE>>=
 @
 ```
 
@@ -3244,7 +3252,7 @@ rnorm(10)
 문서에 코드 청크가 많다면 knitr의 all_labels() 함수를 사용하여 문서의 모든 청크 레이블을 얻어 ref.label에 전달할 수 있습니다. 예:
 
 ```r
-<<show-code, ref.label=all_labels()>>= 
+<<show-code, ref.label=all_labels()>>=
 @
 ```
 
@@ -3257,14 +3265,14 @@ opts_chunk$set()으로 전역적으로 echo = FALSE 를 설정하고 코드를 �
 예를 들어 다음 코드 청크에 대해 로컬 옵션 width = 30 (인쇄를 위한 대략적인 너비) 및 digits = 2 (인쇄를 위한 자릿수)를 사용합니다.
 
 ```r
-<<R.options = list(width=30, digits=2)>>= 
+<<R.options = list(width=30, digits=2)>>=
 seq(0, 10, length = 20)
 
-## [1] 0.00 0.53 1.05 1.58 
-## [5] 2.11 2.63 3.16 3.68 
-## [9] 4.21 4.74 5.26 5.79 
+## [1] 0.00 0.53 1.05 1.58
+## [5] 2.11 2.63 3.16 3.68
+## [9] 4.21 4.74 5.26 5.79
 ## [13] 6.32 6.84 7.37 7.89
-## [17] 8.42 8.95 9.47 10.00 
+## [17] 8.42 8.95 9.47 10.00
 @
 ```
 
@@ -3273,7 +3281,7 @@ seq(0, 10, length = 20)
 일반적으로는 청크에 코드를 직접 입력하거나 참조를 통해 다른 청크의 코드를 포함시킵니다(9장). code라는 이름의 청크 옵션을 사용하여 청크에 코드를 할당하는 또 다른 방법이 있습니다. 이렇게 하면 코드 청크를 동적으로 구성할 수 있습니다. 예를 들어 외부 스크립트에서 코드를 읽어올 수 있습니다.
 
 ```r
-<<code = readLines('foo.R')>>= 
+<<code = readLines('foo.R')>>=
 @
 ```
 
@@ -3296,8 +3304,9 @@ opts_knit$set(root.dir = "/home/foo/bar/")
 레이블이 지정되지 않은 청크의 경우 unnamed-chunk-i 형식의 자동 레이블이 사용됩니다. 이는 패키지 옵션 unnamed.chunk.label을 통해 사용자 지정할 수 있습니다. 예:
 
 ```r
-opts_knit$set(unnamed.chunk.label = "fig") 
+opts_knit$set(unnamed.chunk.label = "fig")
 ```
+
 그러면 자동 청크 레이블이 fig-1, fig-2 와 같이 생성됩니다.
 
 ###### 12.3 조판
@@ -3308,7 +3317,7 @@ opts_knit$set(unnamed.chunk.label = "fig")
 
 LATEX에서 knitr를 사용할 때 흔히 발생하는 문제는 출력 너비가 페이지 여백을 초과할 수 있다는 것입니다. 너비에는 소스 코드, 텍스트 출력, 그래픽 출력의 세 가지 유형이 있습니다. 7.4절에서 \maxwidth를 언급했는데, 이는 그래픽 출력이 페이지 너비보다 넓어지지 않도록 보장합니다.
 
-소스 코드와 텍스트 출력의 너비는 options()의 전역 옵션 width에 의해 제어됩니다(6.2.2절). 이 옵션의 기본값은 75이며, 페이지 여백을 재설정하지 않은 경우(예: geometry 패키지 사용) LATEX 문서에 비해 너무 클 수 있습니다.
+소스 코드와 텍스트 출력의 너비는 options()의 전역 옵션 width에 의해 제어됩니다(6.2.2절). 이 옵션의 기본값은 75이며, 페이지 여백을 재설정하지 않은 경우(geometry 패키지 사용) LATEX 문서에 비해 너무 클 수 있습니다.
 
 소스 코드나 텍스트 출력이 너무 넓은 것을 확인하면 더 작은 width 옵션을 사용할 수 있습니다. 예:
 
@@ -3319,10 +3328,10 @@ options(width = 55)
 그러나 이것이 항상 작동하는 것은 아닙니다. 소스 코드의 경우 R이 소스 라인을 분할할 적절한 장소를 찾지 못할 수 있습니다. 텍스트 출력의 경우 원래 줄에 줄바꿈이 포함되지 않을 수 있습니다(verbatim 환경에 있기 때문에 LATEX가 줄을 자동으로 바꿈 처리하지 않음). 아래 예제의 경우 width 옵션이 아무리 작아도 텍스트 줄이 래핑되지 않습니다.
 
 ```r
-# 소스 코드를 래핑할 수 없음 
-x <- "thisistoolongandRisunabletofindaplacetoinsertthelinebreak" 
-# 출력 줄을 래핑할 수 없음 
-cat(x, "---") 
+# 소스 코드를 래핑할 수 없음
+x <- "thisistoolongandRisunabletofindaplacetoinsertthelinebreak"
+# 출력 줄을 래핑할 수 없음
+cat(x, "---")
 ## thisistoolongandRisunabletofindaplacetoinsertthelinebreak ---
 ```
 
@@ -3332,7 +3341,7 @@ cat(x, "---")
 x <- paste("this", "is", "too", "long", "and", "R", "is", "unable", "to", "find", "a", "place", "to", "insert", "the", "line", "break", sep = "")
 ```
 
-다른 접근 방식은 listings 스타일을 사용하는 것입니다(그림 5.2 및 render_listings() 함수 상기). LATEX 서문의 listings 패키지에 대해 breaklines 옵션을 true로 설정할 수 있습니다. 
+다른 접근 방식은 listings 스타일을 사용하는 것입니다(그림 5.2 및 render_listings() 함수 상기). LATEX 서문의 listings 패키지에 대해 breaklines 옵션을 true로 설정할 수 있습니다.
 
 ```latex
 \lstset{breaklines=true}
@@ -3345,17 +3354,18 @@ LATEX에서 이 옵션의 예는 그림 12.2를 참조하십시오.
 LATEX 출력의 경우 메시지, 경고 및 오류에 각각 해당하는 세 가지 색상이 정의되어 있습니다.
 
 ```latex
-\definecolor{messagecolor}{rgb}{0, 0, 0} 
-\definecolor{warningcolor}{rgb}{1, 0, 1} 
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
 \definecolor{errorcolor}{rgb}{1, 0, 0}
 ```
 
 기본적으로 메시지는 검은색, 경고는 자홍색(magenta), 오류는 빨간색입니다. LATEX 서문에서 \definecolor{} 명령을 사용하여 이들을 재정의할 수 있습니다.
 
-|breaklines 옵션을 true로 설정하여 긴 줄을 줄 바꿈할 수 있습니다.<br><br>print (” a s d l f j k s a d f l k j kljsd klwjr klwjre klwjer kljwre kljwer lkjrwee lkwjre lkwjere lkwjer lkwjre lkasdfa afsd afdafsd afddadf adfsadf afdasdf ”)<br><br>|[1] "asdlfjk sadflkj kljsd klwjr klwjre klwjer kljwre kljwer lkjrwee lkwjre lkwjere lkwjer lkwjre lkasdfa afsd afdafsd afddadf adfsadf afdasdf"<br><br>|
-|---|
-<br><br>비교를 위해 다음은 breaklines=false인 경우를 보여줍니다.<br><br>print (” a s d l f j k s a d f l k j kljsd klwjr klwjre klwjer kljwre kljwer lkjrw<br><br>|[1] "asdlfjk sadflkj kljsd klwjr klwjre klwjer kljwre kljwer lkjrwee lkwjre lkwjere lkwjer lkwjre lkasdfa afsd afdafsd afddadf adfsadf afdasdf"<br><br>|
-|---|
+| breaklines 옵션을 true로 설정하여 긴 줄을 줄 바꿈할 수 있습니다.<br><br>print (” a s d l f j k s a d f l k j kljsd klwjr klwjre klwjer kljwre kljwer lkjrwee lkwjre lkwjere lkwjer lkwjre lkasdfa afsd afdafsd afddadf adfsadf afdasdf ”)<br><br> | [1] "asdlfjk sadflkj kljsd klwjr klwjre klwjer kljwre kljwer lkjrwee lkwjre lkwjere lkwjer lkwjre lkasdfa afsd afdafsd afddadf adfsadf afdasdf"<br><br> |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <br><br>비교를 위해 다음은 breaklines=false인 경우를 보여줍니다.<br><br>print (” a s d l f j k s a d f l k j kljsd klwjr klwjre klwjer kljwre kljwer lkjrw<br><br>                                                                                | [1] "asdlfjk sadflkj kljsd klwjr klwjre klwjer kljwre kljwer lkjrwee lkwjre lkwjere lkwjer lkwjre lkasdfa afsd afdafsd afddadf adfsadf afdasdf"<br><br> |
+| ---                                                                                                                                                                                                                                               |
+
 |
 |---|
 
@@ -3372,12 +3382,12 @@ ee lkwjre lkwjere lkwjer lkwjre lkasdfa afsd afdafsd afddadf adfsadf afdasdf ”
 ```
 
 ```r
-## 페이지 여백에 닿기 위해 
-## 일부러 주석을 늘려 to to to to to to to to to to to to 
+## 페이지 여백에 닿기 위해
+## 일부러 주석을 늘려 to to to to to to to to to to to to
 rpois(40, 5)
 
 ## [1] 6 4 6 4 9 5 2 4 2 4 4 10 6 3 1 8 8
-## [18] 2 7 4 10 6 5 2 7 4 6 4 2 5 8 7 2 3 
+## [18] 2 7 4 10 6 5 2 7 4 6 4 2 5 8 7 2 3
 ## [35] 2 7 7 3 3 3
 ```
 
@@ -3385,31 +3395,31 @@ rpois(40, 5)
 
 ```css
 div.chunk {
-  padding: 5mm; 
+  padding: 5mm;
 }
 ```
 
 ```latex
-\documentclass{beamer} 
-\begin{document} 
-\title{Using knitr in Beamer} 
+\documentclass{beamer}
+\begin{document}
+\title{Using knitr in Beamer}
 \author{Yihui Xie}
 
-\maketitle 
-\begin{frame} 
-\frametitle{Introduction} 
-This is a normal slide. 
-\end{frame} 
-% 코드 출력을 위해서는 [fragile] 옵션이 필요합니다! 
-\begin{frame}[fragile] 
-\frametitle{Code chunks} 
-<<test, out.width='.6\\linewidth', fig.align='center'>>= 
-par(mar = c(4, 4, .1, .1)) 
-x = rnorm(100) 
-hist(x, main="", col="lightblue", border="white") 
-rug(x) 
-@ 
-\end{frame} 
+\maketitle
+\begin{frame}
+\frametitle{Introduction}
+This is a normal slide.
+\end{frame}
+% 코드 출력을 위해서는 [fragile] 옵션이 필요합니다!
+\begin{frame}[fragile]
+\frametitle{Code chunks}
+<<test, out.width='.6\\linewidth', fig.align='center'>>=
+par(mar = c(4, 4, .1, .1))
+x = rnorm(100)
+hist(x, main="", col="lightblue", border="white")
+rug(x)
+@
+\end{frame}
 \end{document}
 ```
 
@@ -3425,37 +3435,38 @@ beamer 슬라이드의 공간이 제한되어 있기 때문에 코드에 더 작
 Code chunks
 
 ```r
-par(mar = c(4, 4, 0.1, 0.1)) 
-x = rnorm(100) 
-hist(x, main = "", col = "lightblue", border = "white") 
+par(mar = c(4, 4, 0.1, 0.1))
+x = rnorm(100)
+hist(x, main = "", col = "lightblue", border = "white")
 rug(x)
 ```
+
 (막대 그래프 그림 생략)
 (그림 12.4 내용 끝)
 
 (그림 12.4 설명: beamer 슬라이드의 샘플 페이지: 플롯이 있는 코드 청크.)
 
 ```r
-<<setup, include=FALSE>>= 
-opts_chunk$set(size = "footnotesize") 
+<<setup, include=FALSE>>=
+opts_chunk$set(size = "footnotesize")
 @
 ```
 
 다음으로 출력 내용을 프로그래밍하는 예를 보여주며, 이를 통해 beamer 명령 \only{}를 사용하여 화면의 동일한 위치에 플롯을 하나씩 표시할 수 있습니다(자세한 내용은 beamer 설명서 참조). 기본 아이디어는 그래픽 명령 \includegraphics{}를 \only<n>{\includegraphics{}}로 바꾸는 것이며, 여기서 n은 현재 청크의 n번째 플롯입니다. 다음은 이 작업을 수행하는 수정된 플롯 훅입니다.
 
 ```r
-<<setup, include=FALSE>>= 
-hook_plot <- knit_hooks$get("plot") # 기본 훅 
-# 기본 훅을 미세 조정하고 재설정 
+<<setup, include=FALSE>>=
+hook_plot <- knit_hooks$get("plot") # 기본 훅
+# 기본 훅을 미세 조정하고 재설정
 knit_hooks$set(plot = function(x, options) {
-  txt <- hook_plot(x, options) 
+  txt <- hook_plot(x, options)
   if (options$fig.cur <= 0)
     return(txt)
 
-  # \includegraphics 앞에 \only<n> 추가 
+  # \includegraphics 앞에 \only<n> 추가
   gsub("(\\\\includegraphics[^}]+})",
        sprintf("\\\\only<%d>{\\1}", options$fig.cur), txt)
-}) 
+})
 @
 ```
 
@@ -3464,21 +3475,22 @@ knit_hooks$set(plot = function(x, options) {
 ###### 12.3.5 긴 출력 억제
 
 Venables와 Ripley(2002)의 "Modern Applied Statistics with S"(MASS)라는 책을 읽어본 분들은 저자가 여러 곳에서 책 내용 중 출력을 생략한 것을 보았을 것입니다. 출력이 너무 길어질 수 있기 때문입니다. 예를 들어 17페이지의 painters 데이터 프레임에는 54개의 행이 있지만 해당 페이지에는 처음 5개의 행만 표시되고 나머지 행은 생략되었습니다(생략은 ....로 표시됨). knitr에서 출력 훅을 재정의하여 이 작업을 자동화할 수 있습니다(5.3절). 예:
+
 ```r
-# 기본 출력 훅 
-hook_output <- knit_hooks$get("output") 
+# 기본 출력 훅
+hook_output <- knit_hooks$get("output")
 knit_hooks$set(output = function(x, options) {
-  # 기본적으로 처음 5줄 인쇄 
+  # 기본적으로 처음 5줄 인쇄
   if (is.null(n <- options$out.lines))
-    n <- 5 
-  x <- unlist(stringr::str_split(x, "\n")) 
+    n <- 5
+  x <- unlist(stringr::str_split(x, "\n"))
   if (length(x) > n) {
-    # 출력 자르기 
+    # 출력 자르기
     x <- c(head(x, n), "....\n")
   }
 
-  # 처음 n줄을 함께 붙여넣기 
-  x <- paste(x, collapse = "\n") 
+  # 처음 n줄을 함께 붙여넣기
+  x <- paste(x, collapse = "\n")
   hook_output(x, options)
 })
 ```
@@ -3486,23 +3498,23 @@ knit_hooks$set(output = function(x, options) {
 그러면 MASS 책의 예제와 유사한 효과를 얻을 수 있습니다.
 
 ```r
-library(MASS) 
+library(MASS)
 painters
 
-##               Composition Drawing Colour Expression 
-## Da Udine               10       8     16          3 
-## Da Vinci               15      16      4         14 
-## Del Piombo              8      13     16          7 
-## Del Sarto              12      16      9          8 
+##               Composition Drawing Colour Expression
+## Da Udine               10       8     16          3
+## Da Vinci               15      16      4         14
+## Del Piombo              8      13     16          7
+## Del Sarto              12      16      9          8
 ....
 ```
 
 위에 정의된 훅의 기본 아이디어는 출력의 줄 수가 5보다 크면 head(x, 5)로 처음 5줄을 추출하고 출력 벡터에 ....를 추가한 다음 수정된 출력을 기본 출력 훅 함수 hook_output()에 전달하는 것입니다. 이 기본 함수는 출력 훅을 재설정하기 전에 가져온 것입니다. 줄 수를 5로 하드코딩할 필요는 없으므로 청크 옵션 out.lines가 NULL인지도 확인합니다. NULL이 아니면 출력에 유지할 줄 수를 지정하는 숫자로 간주됩니다. 예를 들어 대신 처음 10줄을 인쇄할 수 있습니다.
 
 ```r
-<<print-painters, out.lines=8>>= 
-library(MASS) 
-painters 
+<<print-painters, out.lines=8>>=
+library(MASS)
+painters
 @
 ```
 
@@ -3515,12 +3527,12 @@ painters
 특수 문자를 이스케이프해야 할지 여부가 불분명할 수도 있습니다. 예를 들어 인라인 R 코드에서 LATEX 수식을 생성할 수 있으며 이 경우에는 백슬래시와 같은 특수 문자를 이스케이프해서는 안 됩니다. 어쨌든 이스케이프를 원한다면 다음과 같이 새로운 인라인 훅 함수를 만들 수 있습니다.
 
 ```r
-# 기본 인라인 훅 가져오기 
-hook_inline <- knit_hooks$get("inline") 
-# 새 인라인 훅 빌드 
+# 기본 인라인 훅 가져오기
+hook_inline <- knit_hooks$get("inline")
+# 새 인라인 훅 빌드
 knit_hooks$set(inline = function(x) {
   if (is.character(x))
-    x <- knitr:::escape_latex(x) 
+    x <- knitr:::escape_latex(x)
   hook_inline(x)
 })
 ```
@@ -3534,18 +3546,18 @@ knit_hooks$set(inline = function(x) {
 교과서나 튜토리얼을 작성할 때 R 코드 청크에 정리나 수식처럼 번호를 매기면 유용할 수 있습니다. 예를 들어 amsthm 패키지를 사용하여 LATEX 서문에 "Example(예제)" 환경을 쉽게 정의할 수 있습니다.
 
 ```latex
-\usepackage{amsthm} 
+\usepackage{amsthm}
 \newtheorem{rexample}{R Example}[section]
 ```
 
 그런 다음 문서에서 이 새로운 환경 rexample을 사용할 수 있습니다.
 
 ```latex
-\begin{rexample} 
-<<test, eval=TRUE>>= 
-1 + 1 
-rnorm(10) 
-@ 
+\begin{rexample}
+<<test, eval=TRUE>>=
+1 + 1
+rnorm(10)
+@
 \end{rexample}
 ```
 
@@ -3555,15 +3567,15 @@ rnorm(10)
 knit_hooks$set(rexample = function(before, options, envir) {
   if (before) {
     sprintf("\\begin{rexample}\\label{%s}\\hfill{}", options$label)
-  } else "\\end{rexample}" 
+  } else "\\end{rexample}"
 })
 ```
 
 기본적으로 이 훅은 청크 앞에 \begin{rexample} 을 쓰고 뒤에 \end{rexample} 을 씁니다. 또한 나중에 참조할 수 있도록 환경에 대한 레이블을 쓰며, 이 레이블은 청크 레이블이 됩니다. 이제 청크에 이 훅을 적용할 수 있습니다. 예:
 
 ```r
-<<test, rexample=TRUE>>= 
-1 + 1 
+<<test, rexample=TRUE>>=
+1 + 1
 @
 ```
 
@@ -3572,14 +3584,14 @@ knit_hooks$set(rexample = function(before, options, envir) {
 R HTML 문서에 대해서도 유사한 훅을 만들 수 있지만 HTML은 조판을 주 목적으로 하는 것이 아니기 때문에 LATEX처럼 자동 번호 매기기를 하기는 쉽지 않습니다. 하지만 R에서 자체 카운터를 사용할 수 있습니다. 예:
 
 ```r
-## HTML을 위한 예제 카운터 
-example_count <- 0 
+## HTML을 위한 예제 카운터
+example_count <- 0
 knit_hooks$set(rexample = function(before, options, envir) {
-  if (before) { 
-    # 1씩 증가 
-    example_count <<- example_count + 1 
+  if (before) {
+    # 1씩 증가
+    example_count <<- example_count + 1
     sprintf("<div>Example %d</div>", example_count)
-  } else "" 
+  } else ""
 })
 ```
 
@@ -3593,8 +3605,8 @@ LATEX 문서 외에도 조판된 HTML 문서를 사용할 수도 있습니다. k
 
 요령 및 해결책 141
 
-|1 소개<br><br>이것은 R 예제 환경의 테스트입니다.<br><br>1.1 시작!<br><br>R Example 1.1. 1 + 1 ## [1] 2<br><br>예제 1.1을 보세요!<br><br>1.2 하!<br><br>R Example 1.2. x = rnorm(10)<br><br>계속 진행하세요!<br><br>R Example 1.3. sd(x) # 표준편차 ## [1] 1.124<br>|
-|---|
+| 1 소개<br><br>이것은 R 예제 환경의 테스트입니다.<br><br>1.1 시작!<br><br>R Example 1.1. 1 + 1 ## [1] 2<br><br>예제 1.1을 보세요!<br><br>1.2 하!<br><br>R Example 1.2. x = rnorm(10)<br><br>계속 진행하세요!<br><br>R Example 1.3. sd(x) # 표준편차 ## [1] 1.124<br> |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 1.2와 1.3은 어떤가요? 모든 코드 청크에 대해 이 R 예제 환경을 사용하려면
 
@@ -3614,8 +3626,8 @@ vignette("docco-classic", package = "knitr")
 
 knitr에는 R 패키지에 대한 BibTEX 데이터베이스 작성, HTML 출력을 위한 이미지의 base64 인코딩, 소스 문서를 최종 출력으로 컴파일하는 등
 
-|![이미지 16](Dynamic Documents with R and knitr 2nd_images/imageFile16.png)|
-|---|
+| ![이미지 16](Dynamic Documents with R and knitr 2nd_images/imageFile16.png) |
+| --------------------------------------------------------------------------- |
 
 ###### (그림 12.6 설명: HTML 출력의 Docco 스타일: 설명은 왼쪽 열에 있고 R 코드는 오른쪽 열에 있습니다. knitr의 rocco() 함수를 사용하여 R 마크다운에서 이러한 페이지를 렌더링할 수 있습니다.)
 
@@ -3626,26 +3638,26 @@ knitr에는 R 패키지에 대한 BibTEX 데이터베이스 작성, HTML 출력�
 write_bib() 함수는 기본 R의 citation() 및 toBibtex() 함수에 대한 래퍼입니다. 기본적으로 현재 R 세션에 로드된 패키지들을 수집하고 해당 인용 정보를 추출합니다. 또한 tweak이라는 인수를 가지는데, 이 인수는 기본 인용 정보를 미세 조정할지 여부를 결정합니다. 예를 들어 서지(bibliography) 데이터베이스에서 작성자 이름 "Duncan Temple Lang"은 "Duncan {Temple Lang}"이어야 합니다. 이처럼 정보를 수동으로 수정하는 대신 write_bib()가 자동으로 처리할 수 있습니다.
 
 ```r
-write_bib(c("filehash", "RGtk2", "rms")) 
+write_bib(c("filehash", "RGtk2", "rms"))
 @Manual{R-filehash,
-  title = {filehash: Simple key-value database}, 
-  author = {Roger D. Peng}, 
-  year = {2014}, 
-  note = {R package version 2.2-2}, 
+  title = {filehash: Simple key-value database},
+  author = {Roger D. Peng},
+  year = {2014},
+  note = {R package version 2.2-2},
   url = {http://CRAN.R-project.org/package=filehash},
-} 
+}
 @Manual{R-RGtk2,
-  title = {RGtk2: R bindings for Gtk 2.8.0 and above}, 
-  author = {Michael Lawrence and Duncan {Temple Lang}}, 
-  year = {2014}, 
-  note = {R package version 2.20.31}, 
+  title = {RGtk2: R bindings for Gtk 2.8.0 and above},
+  author = {Michael Lawrence and Duncan {Temple Lang}},
+  year = {2014},
+  note = {R package version 2.20.31},
   url = {http://CRAN.R-project.org/package=RGtk2},
-} 
+}
 @Manual{R-rms,
-  title = {rms: Regression Modeling Strategies}, 
-  author = {Frank E. {Harrell, Jr.}}, 
-  year = {2015}, 
-  note = {R package version 4.3-0}, 
+  title = {rms: Regression Modeling Strategies},
+  author = {Frank E. {Harrell, Jr.}},
+  year = {2015},
+  note = {R package version 4.3-0},
   url = {http://CRAN.R-project.org/package=rms},
 }
 ```
@@ -3659,8 +3671,8 @@ write_bib()의 두 번째 인수는 file이며 서지 항목을 파일에 저장
 문서를 컴파일할 때마다 파일을 작성하고 싶지 않다면 청크를 캐시할 수 있습니다. 그러면 다음으로 자연스러운 질문은 언제 또는 어떻게 캐시를 업데이트할 수 있는가입니다. 8장을 기억해 보세요. 한 가지 해결책은 패키지 버전을 청크 옵션에 넣는 것입니다. 예를 들어 문서에 사용하는 기본 패키지가 foo인 경우 다음과 같이 청크를 작성할 수 있습니다.
 
 ```r
-<<write-bib, cache=TRUE, version=packageVersion('foo')>>= 
-write_bib(c("foo", "other", "packages"), file = "paper.bib") 
+<<write-bib, cache=TRUE, version=packageVersion('foo')>>=
+write_bib(c("foo", "other", "packages"), file = "paper.bib")
 @
 ```
 
@@ -3679,18 +3691,18 @@ opts_knit$set(upload.fun = image_uri)
 그러면 HTML 출력에 플롯이 있는 경우 이미지 파일 경로가 base64 문자열로 대체됩니다. 다음은 R 로고(JPEG 이미지)를 인코딩하는 예입니다.
 
 ```r
-# R 로고 인코딩 
-logo <- file.path(R.home("doc"), "html", "logo.jpg") 
-uri <- image_uri(logo) 
-# 처음 250개 문자 
+# R 로고 인코딩
+logo <- file.path(R.home("doc"), "html", "logo.jpg")
+uri <- image_uri(logo)
+# 처음 250개 문자
 uri.sub <- substring(uri, seq(1, 201, 50), seq(50, 250, 50))
 
 cat(uri.sub, sep = "\n")
 
-data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEBKwErAAD 
-/4QAWRXhpZgAATU0AKgAAAAgAAAAAAAD/2wBDAAUDBAQEAwUEB 
-AQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCE 
-YGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUH 
+data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEBKwErAAD
+/4QAWRXhpZgAATU0AKgAAAAgAAAAAAAD/2wBDAAUDBAQEAwUEB
+AQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCE
+YGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUH
 h4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4
 ```
 
@@ -3723,14 +3735,14 @@ markdown 패키지의 markdownToHTML()을 호출하여 마크다운을 HTML로 �
 유닉스 계열 시스템 사용자의 경우 knitr의 설치 경로 중 bin 디렉터리 아래에 knit라는 이름의 Bash 스크립트가 있습니다. 다음을 통해 찾을 수 있습니다.
 
 ```r
-system.file("bin", "knit", package = "knitr") 
+system.file("bin", "knit", package = "knitr")
 ## [1] "/home/yihui/R/knitr/bin/knit"
 ```
 
 이것은 R을 호출하여 knitr를 로드하고 파일 이름 확장자에 따라 knit2pdf() 또는 knit2html()을 자동으로 사용하는 실행 가능한 스크립트입니다. 이 스크립트를 PATH 변수에 넣으면 명령줄에서 직접 호출할 수 있습니다. 예를 들어 저는 ~/bin/ 아래에 이 스크립트에 대한 심볼릭 링크를 만들고 이것을 ~/.bashrc에 추가했습니다.
 
 ```bash
-PATH=$PATH:$HOME/bin 
+PATH=$PATH:$HOME/bin
 export PATH
 ```
 
@@ -3741,11 +3753,11 @@ export PATH
 지금까지는 knitr의 knit() 함수에 대한 입력으로 파일을 사용해 왔습니다. 사실 text라는 소스 문서를 수신하는 대안적인 인수가 있습니다.
 
 ```r
-# knit()의 인수 
+# knit()의 인수
 formatR::usage(knit, width = 40)
 
-## knit(input, output = NULL, tangle = FALSE, 
-##     text = NULL, quiet = FALSE, envir = parent.frame(), 
+## knit(input, output = NULL, tangle = FALSE,
+##     text = NULL, quiet = FALSE, envir = parent.frame(),
 ##     encoding = getOption("encoding"))
 ```
 
@@ -3754,7 +3766,7 @@ knit()에 입력 파일을 제공하면 knitr로 읽혀서 결국 text 인수에
 이제 포괄적인 예로 ggplot2 패키지의 모든 geom 예제에 대해 PDF 문서를 빌드해 보겠습니다. 그림 12.7의 소스 코드와 그림 12.8의 샘플 출력 페이지를 참조하십시오. 처음 보기에는 조금 복잡해 보일 수 있지만 기본 아이디어는 간단합니다.
 
 - 1. 설정 청크에서 두 가지 전역 청크 옵션을 설정합니다. tidy = FALSE(선택 사항) 및 cache = TRUE(나중에 실행할 예제 코드 청크가 많기 때문).
-- 2. write-examples 청크에서 apropos()를 사용하여 geom_ 으로 시작하는 모든 함수 이름을 찾습니다. 그런 다음 해당 도움말 파일을 찾고 거기에서 tools 패키지의 Rd2ex()를 사용하여 예제 코드를 추출합니다. 마지막으로 함수 이름을 섹션 제목 및 청크 레이블로 사용하여 Rnw 청크를 구성하고 소스 텍스트를 변수 ex에 할당합니다.
+- 2. write-examples 청크에서 apropos()를 사용하여 geom\_ 으로 시작하는 모든 함수 이름을 찾습니다. 그런 다음 해당 도움말 파일을 찾고 거기에서 tools 패키지의 Rd2ex()를 사용하여 예제 코드를 추출합니다. 마지막으로 함수 이름을 섹션 제목 및 청크 레이블로 사용하여 Rnw 청크를 구성하고 소스 텍스트를 변수 ex에 할당합니다.
 - 3. 마지막 단계에서는 text 인수로 전달된 소스를 니트(knit)하고,
 
 knit()는 LATEX 코드를 반환하며, 우리는 이 코드를 \Sexpr{}을 사용하여 텍스트 문자열로서 문서에 삽입합니다.
@@ -3768,7 +3780,7 @@ knit()는 LATEX 코드를 반환하며, 우리는 이 코드를 \Sexpr{}을 사�
 ```r
 args(purl)
 
-## function (..., documentation = 1L) 
+## function (..., documentation = 1L)
 ## NULL
 ```
 
@@ -3780,8 +3792,8 @@ documentation 인수는 세 가지 값을 취할 수 있습니다.
 
 다음 청크는 documentation 인수의 세 가지 값에 해당하는 예제를 보여줍니다. 청크 헤더는 ## ---- 뒤에, 텍스트 청크는 #' 뒤에 작성됩니다. documentation = 2 인 경우 생성된 R 스크립트를 spin() 함수에 전달하여 원본 문서를 복원할 수 있습니다(5.4절).
 
-|\documentclass[a4paper,titlepage]{tufte-handout} \title{ggplot2 Gallery} \begin{document} \maketitle \tableofcontents<br><br><<setup, include=FALSE>>= # 청크를 캐시하고 ggplot2 예제 코드를 깔끔하게(tidy) 정리하지 않음 opts_chunk$set(tidy = FALSE, cache = TRUE) @<br><br>% ggplot2의 모든 geom <<write-examples, include=FALSE>>= library(ggplot2) ex = lapply(apropos("^geom_"), function(g) {<br><br>p = utils:::index.search(g, find.package(), TRUE) tools::Rd2ex(utils:::.getHelpFile(p), f <- tempfile()) c(sprintf("\\section{%s}\n\n<<%s>>=",<br><br>knitr:::escape_latex(g), g), readLines(f), "@\n\n")<br><br>}) @<br><br>\Sexpr{knit(text = unlist(ex))} \end{document}|
-|---|
+| \documentclass[a4paper,titlepage]{tufte-handout} \title{ggplot2 Gallery} \begin{document} \maketitle \tableofcontents<br><br><<setup, include=FALSE>>= # 청크를 캐시하고 ggplot2 예제 코드를 깔끔하게(tidy) 정리하지 않음 opts*chunk$set(tidy = FALSE, cache = TRUE) @<br><br>% ggplot2의 모든 geom <<write-examples, include=FALSE>>= library(ggplot2) ex = lapply(apropos("^geom*"), function(g) {<br><br>p = utils:::index.search(g, find.package(), TRUE) tools::Rd2ex(utils:::.getHelpFile(p), f <- tempfile()) c(sprintf("\\section{%s}\n\n<<%s>>=",<br><br>knitr:::escape_latex(g), g), readLines(f), "@\n\n")<br><br>}) @<br><br>\Sexpr{knit(text = unlist(ex))} \end{document} |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 (그림 12.7 설명: ggplot2 geom 예제의 소스 문서: Rd2ex() 함수를 사용하여 geom 함수에 대한 모든 예제 코드를 추출했으며, knitr가 컴파일할 Rnw 구문을 사용하여 코드 청크를 구성합니다.)
 
@@ -3815,7 +3827,7 @@ mpg
 ```r
 src <- c("this is the source document", "<<A, tidy=FALSE>>=", "1+1", "@", "the end")
 
-cat(purl(text = src, documentation = 0L)) 
+cat(purl(text = src, documentation = 0L))
 ## 1+1
 
 cat(purl(text = src, documentation = 1L))
@@ -3825,7 +3837,7 @@ cat(purl(text = src, documentation = 1L))
 
 cat(purl(text = src, documentation = 2L))
 
-## #'  this is the source document 
+## #'  this is the source document
 ## ----A, tidy=FALSE----------------------------------
 ## 1+1
 
@@ -3845,9 +3857,9 @@ knitr의 rand_seed 객체는 이러한 목적으로 설계되었습니다. 이 �
 ```r
 rand_seed
 
-## { 
-##     if (exists(".Random.seed", envir = globalenv())) 
-##         get(".Random.seed", envir = globalenv()) 
+## {
+##     if (exists(".Random.seed", envir = globalenv()))
+##         get(".Random.seed", envir = globalenv())
 ## }
 
 is.language(rand_seed)
@@ -3858,8 +3870,8 @@ is.language(rand_seed)
 기본적으로 난수 시드가 존재하면 이를 반환합니다. 이 객체를 청크 옵션에 할당할 수 있습니다. 이는 평가되지 않은 식이기 때문에 청크가 컴파일될 때마다 이 객체가 다시 평가됩니다(knitr는 평가되지 않은 청크 옵션을 항상 평가함). 그러면 난수 시드가 변경된 경우 knitr가 변경 사항을 감지하고 캐시된 청크를 그에 따라 업데이트할 수 있습니다. 다음은 예입니다.
 
 ```r
-<<random-cache, cache=TRUE, cache.extra=rand_seed>>= 
-x <- rnorm(100) 
+<<random-cache, cache=TRUE, cache.extra=rand_seed>>=
+x <- rnorm(100)
 @
 ```
 
@@ -3881,19 +3893,19 @@ knit_rd("rpart")
 
 Rst2pdf(http://rst2pdf.ralsina.com.ar)는 reStructuredText에서 PDF를 생성하는 무료 소프트웨어 패키지입니다. 소스 문서를 작성할 때
 
-|\documentclass{article} \begin{document} <<read-demo>>= library(diagram) read_demo('flowchart', package = 'diagram',<br><br>labels = 'demo-flowchart') <<demo-flowchart, dev='tikz', cache=TRUE>>= @ \end{document}|
-|---|
+| \documentclass{article} \begin{document} <<read-demo>>= library(diagram) read_demo('flowchart', package = 'diagram',<br><br>labels = 'demo-flowchart') <<demo-flowchart, dev='tikz', cache=TRUE>>= @ \end{document} |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 (그림 12.9 설명: diagram 패키지의 flowchart 데모: knitr로 데모를 읽고 demo-flowchart 라는 레이블을 할당한 후, 이 레이블을 사용하여 문서에 삽입합니다.)
 
-R reST 형식(5.2.4절)으로 작성하면 knitr의 출력은 *.rst 문서가 되며, knitr의 래퍼 함수 rst2pdf()를 통해 Rst2pdf(설치된 경우)를 호출하여 PDF로 변환하거나 한 번에 knit2pdf('foo.Rrst') 를 호출할 수 있습니다.
+R reST 형식(5.2.4절)으로 작성하면 knitr의 출력은 \*.rst 문서가 되며, knitr의 래퍼 함수 rst2pdf()를 통해 Rst2pdf(설치된 경우)를 호출하여 PDF로 변환하거나 한 번에 knit2pdf('foo.Rrst') 를 호출할 수 있습니다.
 
 ###### 12.4.10 패키지 데모
 
 일부 R 패키지에는 demo() 함수로 실행할 수 있는 데모가 포함되어 있습니다. 예:
 
 ```r
-demo("plotmath") 
+demo("plotmath")
 demo("notebook", package = "knitr")
 ```
 
@@ -3912,24 +3924,24 @@ R 함수의 소스 코드를 보려면 함수의 이름을 입력하기만 하�
 ```r
 fivenum
 
-## function (x, na.rm = TRUE) 
-## { 
-##     xna <- is.na(x) 
-##     if (any(xna)) { 
-##         if (na.rm) 
-##             x <- x[!xna] 
-##         else return(rep.int(NA, 5)) 
-##     } 
-##     x <- sort(x) 
-##     n <- length(x) 
-##     if (n == 0) 
-##         rep.int(NA, 5) 
-##     else { 
-##         n4 <- floor((n + 3)/2)/2 
-##         d <- c(1, n4, (n + 1)/2, n + 1 - n4, n) 
-##         0.5 * (x[floor(d)] + x[ceiling(d)]) 
-##     } 
-## } 
+## function (x, na.rm = TRUE)
+## {
+##     xna <- is.na(x)
+##     if (any(xna)) {
+##         if (na.rm)
+##             x <- x[!xna]
+##         else return(rep.int(NA, 5))
+##     }
+##     x <- sort(x)
+##     n <- length(x)
+##     if (n == 0)
+##         rep.int(NA, 5)
+##     else {
+##         n4 <- floor((n + 3)/2)/2
+##         d <- c(1, n4, (n + 1)/2, n + 1 - n4, n)
+##         0.5 * (x[floor(d)] + x[ceiling(d)])
+##     }
+## }
 ## <environment: namespace:stats>
 ```
 
@@ -3937,12 +3949,12 @@ fivenum
 
 ```r
 insert_fun <- function(name) {
-  read_chunk(lines = capture.output(dump(name, "")), 
-             labels = paste(name, "source", sep = "-")) 
+  read_chunk(lines = capture.output(dump(name, "")),
+             labels = paste(name, "source", sep = "-"))
 }
 ```
 
-객체 name에 대해 덤프된 표현식은 name-source 레이블의 코드 청크에 캡처됩니다(자세한 내용은 ?dump 및 ?capture.output 참조). 이제 이 함수를 사용하여 임의의 함수의 소스 코드를 소스 문서에 삽입할 수 있습니다(예: fivenum() 함수).
+객체 name에 대해 덤프된 표현식은 name-source 레이블의 코드 청크에 캡처됩니다(자세한 내용은 ?dump 및 ?capture.output 참조). 이제 이 함수를 사용하여 임의의 함수의 소스 코드를 소스 문서에 삽입할 수 있습니다(fivenum() 함수).
 
 ```r
 insert_fun("fivenum")
@@ -3952,28 +3964,28 @@ insert_fun("fivenum")
 
 ```r
 fivenum <- function(x, na.rm = TRUE) {
-  xna <- is.na(x) 
+  xna <- is.na(x)
   if (any(xna)) {
     if (na.rm)
-      x <- x[!xna] 
+      x <- x[!xna]
     else return(rep.int(NA, 5))
-  } 
-  x <- sort(x) 
-  n <- length(x) 
+  }
+  x <- sort(x)
+  n <- length(x)
   if (n == 0)
-    rep.int(NA, 5) 
-  else { 
-    n4 <- floor((n + 3)/2)/2 
-    d <- c(1, n4, (n + 1)/2, n + 1 - n4, n) 
+    rep.int(NA, 5)
+  else {
+    n4 <- floor((n + 3)/2)/2
+    d <- c(1, n4, (n + 1)/2, n + 1 - n4, n)
     0.5 * (x[floor(d)] + x[ceiling(d)])
-  } 
+  }
 }
 ```
 
 위 청크의 소스 코드는 다음과 같습니다.
 
 ```r
-<<fivenum-source>>= 
+<<fivenum-source>>=
 @
 ```
 
@@ -3989,16 +4001,16 @@ fit2 <- lm(mpg ~ hp + drat, data = mtcars)
 knit_expand()의 기본 아이디어는 템플릿에 일부 태그를 삽입하고 현재 환경에서 이를 동적으로 평가하는 것입니다. 다음은 몇 가지 간단한 예입니다.
 
 ```r
-knit_expand(text = "The value of pi is {{ round(pi,4) }}.") 
+knit_expand(text = "The value of pi is {{ round(pi,4) }}.")
 ## [1] "The value of pi is 3.1416."
 
-knit_expand(text = "The value of pi is {{ round(pi,4) }}.", pi = 1.234567) 
-## [1] "The value of pi is 1.2346." 
+knit_expand(text = "The value of pi is {{ round(pi,4) }}.", pi = 1.234567)
+## [1] "The value of pi is 1.2346."
 
-knit_expand(text = "radius = {{r}} and area = {{pi*r^2}}", r = 5) 
-## [1] "radius = 5 and area = 78.5398163397448" 
+knit_expand(text = "radius = {{r}} and area = {{pi*r^2}}", r = 5)
+## [1] "radius = 5 and area = 78.5398163397448"
 
-knit_expand(text = "$a = {{a}}$ and $b = {{b}}$", a = 1, b = 2) 
+knit_expand(text = "$a = {{a}}$ and $b = {{b}}$", a = 1, b = 2)
 ## [1] "$a = 1$ and $b = 2$"
 ```
 
@@ -4007,25 +4019,25 @@ knit_expand(text = "$a = {{a}}$ and $b = {{b}}$", a = 1, b = 2)
 12.4.5절의 예제처럼 knit_expand()를 기반으로 하여 knit()용 소스 문서를 동적으로 만들 수 있습니다. 예를 들어, mtcars 데이터에 있는 두 변수의 모든 조합에 대한 mpg의 선형 회귀 모델을 작성하고 각 모델을 하나의 섹션에 배치합니다. 그림 12.11에 표시된 대로 템플릿 파일을 작성하고 이름을 mtcars-template.Rnw 로 지정합니다. 그런 다음 이 템플릿을 기반으로 모델을 빌드할 수 있습니다.
 
 ```r
-## 다음과 같이 mpg 대 cyl+disp 의 모델 하나를 빌드할 수 있습니다. 
-knit_expand("mtcars-template.Rnw", x1 = "cyl", x2 = "disp", i = 1) 
-## 그리고 mapply()로 전체 작업을 벡터화할 수 있습니다. 
-vars <- combn(names(mtcars)[-1], 2) 
+## 다음과 같이 mpg 대 cyl+disp 의 모델 하나를 빌드할 수 있습니다.
+knit_expand("mtcars-template.Rnw", x1 = "cyl", x2 = "disp", i = 1)
+## 그리고 mapply()로 전체 작업을 벡터화할 수 있습니다.
+vars <- combn(names(mtcars)[-1], 2)
 src <- mapply(knit_expand, file = "mtcars-template.Rnw",
               x1 = vars[1, ], x2 = vars[2, ], i = seq_len(ncol(vars)))
 ```
 
-우리는 combn() 함수를 사용하여 두 변수의 모든 조합을 얻고 mapply()를 통해 knit_expand()에 전달했습니다. 다음 단계는 간단합니다. 전처리된 소스 텍스트 src를 knit()에 전달합니다(예: knit(text = src, output = 'lm-mtcars.tex')). 그러면 회귀 결과가 포함된 LATEX 출력을 얻게 됩니다.
+우리는 combn() 함수를 사용하여 두 변수의 모든 조합을 얻고 mapply()를 통해 knit_expand()에 전달했습니다. 다음 단계는 간단합니다. 전처리된 소스 텍스트 src를 knit()에 전달합니다(knit(text = src, output = 'lm-mtcars.tex')). 그러면 회귀 결과가 포함된 LATEX 출력을 얻게 됩니다.
 
 ###### 12.4.13 편물 짜기(knitting) 조기 종료
 
 전체 문서를 니트(knit)하고 싶지 않은 경우 knit_exit() 함수를 사용하면 일찍 종료할 수 있습니다. 이것을 코드 청크에 넣으면 문서의 나머지 부분은 무시되고 이전의 모든 텍스트/코드 청크의 결과가 즉시 반환됩니다.
 
 ```latex
-\section{Regression against {{x1}} and {{x2}}} 
-<<lm-{{x1}}-{{x2}}>>= 
-fit{{i}} = lm(mpg ~ {{x1}} + {{x2}}, data = mtcars) 
-summary(fit{{i}}) 
+\section{Regression against {{x1}} and {{x2}}}
+<<lm-{{x1}}-{{x2}}>>=
+fit{{i}} = lm(mpg ~ {{x1}} + {{x2}}, data = mtcars)
+summary(fit{{i}})
 @
 ```
 
@@ -4033,14 +4045,14 @@ summary(fit{{i}})
 
 ###### 12.4.14 기호 그대로의(Literal) knitr 소스 코드
 
-인라인 R 표현식의 소스 코드(예: \Sexpr{x})와 같은 기호 그대로의 knitr 소스 코드를 작성하려고 할 때 이 작업이 어렵다는 것을 알게 될 수 있습니다. 이는 특히 knitr 튜토리얼을 작성할 때 일반적인 작업입니다. 분명히 knitr가 소스 코드를 평가할 것이기 때문에 소스 코드를 있는 그대로 작성할 수는 없습니다. knitr는 LATEX 명령 \verb|| 의 특별한 의미를 이해하지 못하기 때문에 \verb|\Sexpr{x}| 라고 쓸 수도 없습니다. 마찬가지로 R 마크다운에서 기호 그대로의 인라인 표현식 `r x` 를 작성하는 것도 어려울 수 있습니다.
+인라인 R 표현식의 소스 코드(\Sexpr{x})와 같은 기호 그대로의 knitr 소스 코드를 작성하려고 할 때 이 작업이 어렵다는 것을 알게 될 수 있습니다. 이는 특히 knitr 튜토리얼을 작성할 때 일반적인 작업입니다. 분명히 knitr가 소스 코드를 평가할 것이기 때문에 소스 코드를 있는 그대로 작성할 수는 없습니다. knitr는 LATEX 명령 \verb|| 의 특별한 의미를 이해하지 못하기 때문에 \verb|\Sexpr{x}| 라고 쓸 수도 없습니다. 마찬가지로 R 마크다운에서 기호 그대로의 인라인 표현식 `r x` 를 작성하는 것도 어려울 수 있습니다.
 
 knitr의 inline_expr() 함수는 이 문제에 대한 하나의 솔루션을 제공합니다. 이 함수는 문자열을 가져와 인라인 표현식의 적절한 구문을 사용하여 래핑합니다.
 
 ```r
-inline_expr("1 + 1") 
-## [1] "\\Sexpr{1 + 1}" 
-inline_expr("paste('a', 'b')") 
+inline_expr("1 + 1")
+## [1] "\\Sexpr{1 + 1}"
+inline_expr("paste('a', 'b')")
 ## [1] "\\Sexpr{paste('a', 'b')}"
 ```
 
@@ -4063,60 +4075,60 @@ knitr가 더 이상 인식하지 못하도록 코드 청크의 소스 코드를 
 aspell() 함수는 필터 함수를 사용하여 파일의 특정 줄을 건너뛸 수 있습니다. knit_filter() 함수는 파일의 코드 청크를 건너뛰도록 설계되었습니다. 다음은 각각 Rnw 및 Rmd 파일을 검사하는 두 가지 예입니다.
 
 ```r
-library(knitr) 
+library(knitr)
 knitr_example <- function(...) system.file("examples", ..., package = "knitr")
 
-# -t는 TeX 모드를 의미합니다. 
+# -t는 TeX 모드를 의미합니다.
 aspell(knitr_example("knitr-minimal.Rnw"), knit_filter, control = "-t")
 
-## backref 
-## /home/yihui/R/knitr/examples/knitr-minimal.Rnw:13:37 
-## 
-## boxplots 
-## /home/yihui/R/knitr/examples/knitr-minimal.Rnw:41:45 
-## 
-## colorlinks 
-## /home/yihui/R/knitr/examples/knitr-minimal.Rnw:13:51 
-## 
-## knitr 
+## backref
+## /home/yihui/R/knitr/examples/knitr-minimal.Rnw:13:37
+##
+## boxplots
+## /home/yihui/R/knitr/examples/knitr-minimal.Rnw:41:45
+##
+## colorlinks
+## /home/yihui/R/knitr/examples/knitr-minimal.Rnw:13:51
+##
+## knitr
 ## /home/yihui/R/knitr/examples/knitr-minimal.Rnw:26:26
 
-.... 
-# -H는 HTML 모드입니다. 
-aspell(knitr_example("knitr-minimal.Rmd"), knit_filter, control = "-H -t") 
+....
+# -H는 HTML 모드입니다.
+aspell(knitr_example("knitr-minimal.Rmd"), knit_filter, control = "-H -t")
 ## knitr
 
-## /home/yihui/R/knitr/examples/knitr-minimal.Rmd:3:38 
-## /home/yihui/R/knitr/examples/knitr-minimal.Rmd:59:42 
-## 
-## LaTeX 
+## /home/yihui/R/knitr/examples/knitr-minimal.Rmd:3:38
+## /home/yihui/R/knitr/examples/knitr-minimal.Rmd:59:42
+##
+## LaTeX
 ## /home/yihui/R/knitr/examples/knitr-minimal.Rmd:38:1
 ```
 
 철자가 맞다고 알고 있는 단어를 사전에 추가하여 맞춤법 검사기가 다음에 해당 단어를 보고하지 않도록 할 수 있습니다. R에는 "LATEX"라는 단어가 포함된 내장 사전이 있습니다. 이 사전을 적용하면 "LATEX"라는 단어가 더 이상 보고되지 않습니다(그러나 "knitr"는 여전히 보고됨).
 
 ```r
-# 사전 사용: LaTeX는 알려진 단어입니다. 
-dict <- Sys.glob(file.path(R.home("share"), "dictionaries", "*.rds")) 
-# 사전에 무엇이 있습니까? 
+# 사전 사용: LaTeX는 알려진 단어입니다.
+dict <- Sys.glob(file.path(R.home("share"), "dictionaries", "*.rds"))
+# 사전에 무엇이 있습니까?
 if (length(dict) >= 1) head(readRDS(dict[1]), 20)
 
-## [1] "Accessor" "accessor" 
-## [3] "accessors" "ACF" 
-## [5] "Affymetrix" "AIC" 
-## [7] "Akaike" "Akaike's" 
-## [9] "alikes" "ANOVA" 
-## [11] "API" "approximative" 
-## [13] "ARIMA" "ARMA" 
-## [15] "ascii" "AUC" 
-## [17] "autocorrelation" "autocorrelations" 
+## [1] "Accessor" "accessor"
+## [3] "accessors" "ACF"
+## [5] "Affymetrix" "AIC"
+## [7] "Akaike" "Akaike's"
+## [9] "alikes" "ANOVA"
+## [11] "API" "approximative"
+## [13] "ARIMA" "ARMA"
+## [15] "ascii" "AUC"
+## [17] "autocorrelation" "autocorrelations"
 ## [19] "autocovariance" "autocovariances"
 
 aspell(knitr_example("knitr-minimal.Rmd"), knit_filter,
        control = "-H -t", dictionaries = dict)
 
-## knitr 
-## /home/yihui/R/knitr/examples/knitr-minimal.Rmd:3:38 
+## knitr
+## /home/yihui/R/knitr/examples/knitr-minimal.Rmd:3:38
 ## /home/yihui/R/knitr/examples/knitr-minimal.Rmd:59:42
 ```
 
@@ -4141,6 +4153,7 @@ knit("yourfile.Rnw", encoding = "GB2312")
 knitr는 입력 문서의 인코딩을 자동으로 감지하려고 시도하지 않지만 일반적으로 편집기가 문서에 대한 인코딩 정보를 알고 있다는 점에 유의하십시오. 예를 들어 RStudio와 LYX는 문서를 컴파일하기 전에 인코딩 문자열을 knitr에 전달합니다.
 
 ### 13
+
 ###### 보고서 출판(Publishing)
 
 knitr를 통해 보고서를 컴파일한 후, 출력 문서가 바로 최종 결과물이 아닐 수도 있습니다. 특히 Rnw 문서와 Rmd 문서의 출력은 종종 추가적인 컴파일이 필요합니다. Rnw의 직접적인 출력은 LATEX이며 이를 PDF로 컴파일할 수 있습니다. Rmd의 출력은 마크다운이며, 우리가 실제로 읽는 것은 마크다운에서 변환된 웹 페이지입니다.
@@ -4148,10 +4161,10 @@ knitr를 통해 보고서를 컴파일한 후, 출력 문서가 바로 최종 �
 LATEX로 할 일은 많지 않습니다. 도구 모음(tool chain)이 꽤 표준화되고 성숙해졌습니다(LATEX, PDFTEX, XeTEX, LuaTEX 등). Rnw 소스 문서를 기반으로 보고서를 출판할 때는 단일 PDF 파일만 출판하면 됩니다. 독자가 읽고 싶어 하지 않을 수도 있기 때문에 소스 코드를 숨기는 작업이 필요할 수 있습니다. 이 경우 청크 옵션 echo를 전역적으로 FALSE로 설정할 수 있으며 때로는 R에서 나오는 메시지와 경고를 숨기고 싶을 수도 있습니다.
 
 ```r
-<<setup, include=FALSE>>= 
+<<setup, include=FALSE>>=
 knitr::opts_chunk$set(
   echo = FALSE, message = FALSE, warning = FALSE
-) 
+)
 @
 ```
 
@@ -4171,18 +4184,18 @@ Pandoc은 이미지 인코딩 외에도 문서의 LATEX 수학 표현식도 감�
 
 ###### 13.2 Pandoc
 
-Pandoc(http://johnmacfarlane.net/pandoc)은 범용 문서 변환기입니다. 특히 Pandoc은 마크다운을 LATEX, HTML, 서식 있는 텍스트 형식(*.rtf), EBook(*.epub), Microsoft Word(*.docx), OpenDocument Text(*.odt) 등과 같은 다양한 다른 문서 형식으로 변환할 수 있습니다. 이 절에서는 Pandoc이 이면에서 어떻게 작동하는지 알려주며, 이 절에서 소개하는 내용보다 작업하기 훨씬 더 편리한 R 마크다운 v2에 대해서는 14장을 참조하십시오.
+Pandoc(http://johnmacfarlane.net/pandoc)은 범용 문서 변환기입니다. 특히 Pandoc은 마크다운을 LATEX, HTML, 서식 있는 텍스트 형식(_.rtf), EBook(_.epub), Microsoft Word(_.docx), OpenDocument Text(_.odt) 등과 같은 다양한 다른 문서 형식으로 변환할 수 있습니다. 이 절에서는 Pandoc이 이면에서 어떻게 작동하는지 알려주며, 이 절에서 소개하는 내용보다 작업하기 훨씬 더 편리한 R 마크다운 v2에 대해서는 14장을 참조하십시오.
 
 Pandoc은 명령줄 도구입니다. Linux 및 Mac 사용자는 문제없이 사용할 수 있습니다. Windows 사용자의 경우 시작 메뉴를 통해 명령 창에 접근한 다음 실행 > cmd를 입력합니다. 명령 창(또는 터미널)을 연 후 다음과 같은 명령을 입력하여 test.md와 같은 마크다운 파일을 다른 형식으로 변환할 수 있습니다.
 
 ```bash
-pandoc test.md -o test.html 
-pandoc test.md -s --mathjax -o test.html 
-pandoc test.md -o test.odt 
-pandoc test.md -o test.rtf 
-pandoc test.md -o test.docx 
-pandoc test.md -o test.pdf 
-pandoc test.md --latex-engine=xelatex -o test.html 
+pandoc test.md -o test.html
+pandoc test.md -s --mathjax -o test.html
+pandoc test.md -o test.odt
+pandoc test.md -o test.rtf
+pandoc test.md -o test.docx
+pandoc test.md -o test.pdf
+pandoc test.md --latex-engine=xelatex -o test.html
 pandoc test.md -o test.epub
 ```
 
@@ -4196,7 +4209,7 @@ knitr에는 R에서 Pandoc을 호출하는 pandoc() 함수가 있습니다. 이 
 
 ###### 13.3 HTML5 슬라이드
 
-프레젠테이션을 만들기 위해 12.3.4절에 언급된 Beamer 클래스를 사용할 수 있습니다. 웹 기술의 발달로 웹에 HTML5 슬라이드를 만들어 웹 브라우저에서 볼 수도 있습니다. 슬라이드를 일반적인 (PDF 또는 PPT) 파일로 다운로드할 필요가 없습니다. 또한 HTML5 슬라이드를 사용하면 비디오 클립 및 대화형 콘텐츠(예: JavaScript 응용 프로그램)와 같은 풍부한 미디어를 슬라이드에 삽입할 수 있습니다.
+프레젠테이션을 만들기 위해 12.3.4절에 언급된 Beamer 클래스를 사용할 수 있습니다. 웹 기술의 발달로 웹에 HTML5 슬라이드를 만들어 웹 브라우저에서 볼 수도 있습니다. 슬라이드를 일반적인 (PDF 또는 PPT) 파일로 다운로드할 필요가 없습니다. 또한 HTML5 슬라이드를 사용하면 비디오 클립 및 대화형 콘텐츠(JavaScript 응용 프로그램)와 같은 풍부한 미디어를 슬라이드에 삽입할 수 있습니다.
 
 HTML5 슬라이드를 만드는 방법에는 여러 가지가 있습니다. 한 가지 방법은 Pandoc을 사용하여 마크다운에서 변환하는 것입니다. 그림 13.2는 knitr를 통해 마크다운으로 컴파일할 수 있는 Rmd 문서를 보여줍니다. 그런 다음 명령줄에서 Pandoc을 호출하여 이를 HTML5 슬라이드로 변환할 수 있습니다(파일 이름이 test.md라고 가정).
 
@@ -4215,13 +4228,13 @@ pandoc -s -t dzslides test.md -o test.html
 
 (그림 13.2 내용)
 % 아름답고 재현 가능한 슬라이드를 빠르게 작성하기
-% Yihui Xie 
+% Yihui Xie
 % 2012/12/05
 
 # 소개
 
 - knitr
-- pandoc 
+- pandoc
 
 # 코드 청크
 
@@ -4229,6 +4242,7 @@ pandoc -s -t dzslides test.md -o test.html
 head(cars)
 cor(cars)
 ```
+
 (그림 13.2 내용 끝)
 
 (그림 13.2 설명: HTML5 슬라이드 예제의 소스: 이 문서를 knitr를 통해 컴파일한 다음 Pandoc을 통해 마크다운 출력을 DZSlides로 변환할 수 있습니다.)
@@ -4238,8 +4252,8 @@ cor(cars)
 Jekyll(http://jekyllrb.com)은 일반 텍스트 파일을 기반으로 하는 블로그 엔진입니다. 블로그 게시물은 마크다운으로 작성할 수 있으므로 knitr의 결과를 웹사이트에 게시할 수 있습니다. 주의해야 할 점 하나는 코드 블록의 구문이 기존 마크다운(백틱 세 개)과 다르다는 것입니다. Jekyll의 경우 코드 블록을 Liquid 태그 안에 넣어야 합니다.
 
 ```liquid
-{% highlight lang %} 
-# 코드를 여기에 
+{% highlight lang %}
+# 코드를 여기에
 {% endhighlight %}
 ```
 
@@ -4297,15 +4311,15 @@ rmarkdown 패키지는 RStudio IDE에서 잘 지원됩니다. render() 함수를
 
 다른 요소의 구문은 Pandoc의 마크다운에서도 거의 동일하게 유지됩니다. 예를 들어 1수준 섹션 헤더를 작성하려면 # 기호를 한 개 사용하고 2수준 헤더에는 # 기호를 두 개 사용합니다. 마크다운의 기본 요소 구문은 5.2.1절을 검토하십시오. 아래에는 유용할 수 있는 몇 가지 새로운 요소가 나와 있으며(전체 문서는 http://johnmacfarlane.net/pandoc/ 참조), 글머리 기호 아래에 이 요소들에 대한 짧은 예제가 표시됩니다.
 
-- 정의 리스트와 예제 리스트 
+- 정의 리스트와 예제 리스트
 
-  특별한 용어 : 
+  특별한 용어 :
   여기에 용어를 설명/해석합니다.
 
-  (@) 번호가 매겨진 예제입니다. 
+  (@) 번호가 매겨진 예제입니다.
   (@) 또 다른 번호가 매겨진 예제입니다.
 
-  (@cool-example) 이 예제에는 레이블이 지정되어 있습니다. 
+  (@cool-example) 이 예제에는 레이블이 지정되어 있습니다.
   이것은 일반적인 단락이며, 여기서 예제 (@cool-example)를 참조할 수 있습니다.
 
 - ^[...]을 사용한 각주 및 [@id]를 사용한 인용문
@@ -4316,38 +4330,38 @@ rmarkdown 패키지는 RStudio IDE에서 잘 지원됩니다. render() 함수를
 
 - 그림/표 캡션
 
-  Pandoc에는 기본적으로 활성화된 implicit_figures라는 마크다운 확장이 있습니다. 다음과 같은 이미지는 
+  Pandoc에는 기본적으로 활성화된 implicit_figures라는 마크다운 확장이 있습니다. 다음과 같은 이미지는
 
-  ![그림 캡션.](path/to/image.png) 
+  ![그림 캡션.](path/to/image.png)
 
-  LaTeX에서 다음과 같이 렌더링됩니다. 
+  LaTeX에서 다음과 같이 렌더링됩니다.
 
   \begin{figure}
   \includegraphics{path/to/image.png} \caption{그림 캡션.}
-  \end{figure} 
-  
-  마찬가지로 표 캡션을 추가할 수 있습니다. 예: 
-  
+  \end{figure}
+
+  마찬가지로 표 캡션을 추가할 수 있습니다. 예:
+
   Table: 표 캡션입니다.
 
-  |   |   |   |
-  |---|---|---|
-  | A | B | C |
-  | a | 10 | bc |
-  | d | 25 | ef |
+  |     |     |     |
+  | --- | --- | --- |
+  | A   | B   | C   |
+  | a   | 10  | bc  |
+  | d   | 25  | ef  |
 
 - 원시 TEX/HTML 내용
 
   때로는 마크다운이 여전히 제한적이라고 느껴져서 LaTeX를 사용하고 싶은 유혹을 받을 수 있습니다. 괜찮습니다. 마크다운에 원시 \TeX{} 코드를 작성할 수 있습니다.
 
-  마크다운 버전: 
+  마크다운 버전:
   ![긴 캡션.](foo.png)
 
-  LaTeX 버전: 
+  LaTeX 버전:
   \begin{figure}
   \includegraphics[width=.8\textwidth]{foo.png} \caption[짧은 캡션]{긴 캡션.}
-  \end{figure} 
-  
+  \end{figure}
+
   Pandoc은 이 문서를 LaTeX/PDF로 변환할 때 원시 TeX 내용을 보존할 수 있습니다.
 
 인용을 사용할 때는 서지 데이터베이스를 지정해야 합니다. LATEX에 익숙하다면 BibTEX도 알 가능성이 높습니다. 서지 데이터베이스는 YAML 메타데이터의 bibliography 필드에 지정된 .bib 파일일 수 있습니다(다음 절 참조). BibTEX를 모르는 경우 references 필드를 사용하여 (bibliography 대신) YAML 메타데이터에 서지 항목을 포함할 수 있습니다. 예:
@@ -4355,24 +4369,24 @@ rmarkdown 패키지는 RStudio IDE에서 잘 지원됩니다. render() 함수를
 ```yaml
 ---
 references:
-- id: joe2014 
-  title: A Nice Paper 
-  author:
-  - family: Smith
-    given: Joe 
-  issued:
-    year: 2014 
-  container-title: The Journal of Awesome Research 
-  type: article-journal
-- id: john1980 
-  title: A Great Book 
-  author:
-  - family: Brown 
-    given: John 
-  issued:
-    year: 1980 
-  publisher: An Excellent Publisher 
-  type: book
+  - id: joe2014
+    title: A Nice Paper
+    author:
+      - family: Smith
+        given: Joe
+    issued:
+      year: 2014
+    container-title: The Journal of Awesome Research
+    type: article-journal
+  - id: john1980
+    title: A Great Book
+    author:
+      - family: Brown
+        given: John
+    issued:
+      year: 1980
+    publisher: An Excellent Publisher
+    type: book
 ---
 ```
 
@@ -4386,12 +4400,12 @@ Pandoc의 마크다운에서 또 다른 중요한 확장은 YAML 메타데이터
 
 ```yaml
 ---
-title: "A Nice Report" 
-author: "John Smith" 
-date: 2014/12/31 
+title: "A Nice Report"
+author: "John Smith"
+date: 2014/12/31
 output:
-  html_document: 
-    toc: yes 
+  html_document:
+    toc: yes
     number_sections: yes
   word_document: default
 ---
@@ -4402,21 +4416,21 @@ rmarkdown용 YAML 메타데이터에서 가장 중요한 필드는 output 필드
 
 ###### 14.3 출력 형식
 
-rmarkdown에는 _document 및 _presentation 접미사가 있는 일련의 형식 함수가 있습니다(예: html_document(), pdf_document(), beamer_presentation() 등). 이러한 함수는 다음과 같이 render()의 두 번째 인수로 사용할 수 있습니다.
+rmarkdown에는 \_document 및 \_presentation 접미사가 있는 일련의 형식 함수가 있습니다(html_document(), pdf_document(), beamer_presentation() 등). 이러한 함수는 다음과 같이 render()의 두 번째 인수로 사용할 수 있습니다.
 
 ```r
-library(rmarkdown) 
-render("foo.Rmd") 
-render("foo.Rmd", pdf_document()) 
-render("foo.Rmd", word_document()) 
-render("foo.Rmd", beamer_presentation()) 
+library(rmarkdown)
+render("foo.Rmd")
+render("foo.Rmd", pdf_document())
+render("foo.Rmd", word_document())
+render("foo.Rmd", beamer_presentation())
 render("foo.Rmd", ioslides_presentation())
 ```
 
 각 출력 형식 함수에는 고유한 인수가 있습니다. 예를 들어 HTML 문서에 목차를 활성화하려는 경우 다음과 같이 호출할 수 있습니다.
 
 ```r
-library(rmarkdown) 
+library(rmarkdown)
 render("foo.Rmd", html_document(toc = TRUE))
 ```
 
@@ -4425,10 +4439,11 @@ render("foo.Rmd", html_document(toc = TRUE))
 ```yaml
 ---
 output:
-  html_document: 
+  html_document:
     toc: yes
 ---
 ```
+
 YAML에서 yes와 true는 모두 논리 값 TRUE를 의미합니다. YAML 메타데이터를 사용하고 두 번째 인수 없이 render()를 호출하거나, YAML 메타데이터를 생략/무시하고 render()에 명시적으로 두 번째 인수를 제공할 수 있습니다. YAML 접근 방식이 더 편리하고 일반적입니다. 출력 정보가 소스 문서에 포함되기 때문입니다. 두 번째 접근 방식은 YAML에 정의된 출력 형식을 재정의할 때 유용할 수 있습니다. 가능한 옵션이 무엇인지 각 출력 형식 함수의 도움말 페이지를 참조하십시오. 예를 들어 R 콘솔에서 ?rmarkdown::pdf_document 를 입력하면 PDF 출력에 대한 옵션을 볼 수 있습니다.
 
 출력 형식 함수는 knitr 패키지/청크 옵션, Pandoc 인수, rmarkdown에 대한 기타 보조 옵션을 포함한 옵션 리스트를 반환합니다. html_document()를 예로 들어 설명하겠습니다.
@@ -4438,33 +4453,33 @@ YAML에서 yes와 true는 모두 논리 값 TRUE를 의미합니다. YAML 메타
 html_document()가 실제로 반환하는 내용을 확인하려면 이를 실행하고 반환된 객체의 구조를 인쇄해 볼 수 있습니다.
 
 ```r
-library(rmarkdown) 
+library(rmarkdown)
 str(html_document(), width = 55, strict.width = "wrap")
 
-## List of 6 
-##  $ knitr           :List of 3 
-##   ..$ opts_knit    : NULL 
-##   ..$ opts_chunk   :List of 5 
-##   .. ..$ dev       : chr "png" 
-##   .. ..$ dpi       : num 96 
-##   .. ..$ fig.width : num 7 
-##   .. ..$ fig.height: num 5 
-##   .. ..$ fig.retina: num 2 
-##   ..$ knit_hooks   : NULL 
-##  $ pandoc          :List of 5 
-##   ..$ to           : chr "html" 
-##   ..$ from         : chr 
-##   "markdown+autolink_bare_uris+ascii_identifiers+te".. 
-##   ..$ args         : chr [1:8] "--smart" "--email-obfuscation" 
-##   "none" "--self-contained" ... 
-##   ..$ keep_tex     : logi FALSE 
-##   ..$ ext          : NULL 
-##  $ keep_md         : logi FALSE 
-##  $ clean_supporting: logi TRUE 
-##  $ pre_processor   :function (...) 
-##  $ post_processor  :function (metadata, input_file, 
-##     output_file, clean, 
-##     verbose) 
+## List of 6
+##  $ knitr           :List of 3
+##   ..$ opts_knit    : NULL
+##   ..$ opts_chunk   :List of 5
+##   .. ..$ dev       : chr "png"
+##   .. ..$ dpi       : num 96
+##   .. ..$ fig.width : num 7
+##   .. ..$ fig.height: num 5
+##   .. ..$ fig.retina: num 2
+##   ..$ knit_hooks   : NULL
+##  $ pandoc          :List of 5
+##   ..$ to           : chr "html"
+##   ..$ from         : chr
+##   "markdown+autolink_bare_uris+ascii_identifiers+te"..
+##   ..$ args         : chr [1:8] "--smart" "--email-obfuscation"
+##   "none" "--self-contained" ...
+##   ..$ keep_tex     : logi FALSE
+##   ..$ ext          : NULL
+##  $ keep_md         : logi FALSE
+##  $ clean_supporting: logi TRUE
+##  $ pre_processor   :function (...)
+##  $ post_processor  :function (metadata, input_file,
+##     output_file, clean,
+##     verbose)
 ##  - attr(*, "class")= chr "rmarkdown_output_format"
 ```
 
@@ -4474,7 +4489,7 @@ str(html_document(), width = 55, strict.width = "wrap")
 
 --smart 및 --self-contained와 같은 몇 가지 Pandoc 인수도 리스트에 포함되어 있습니다.
 
-rmarkdown에 대한 몇 가지 보조 옵션도 있습니다. 예를 들어 clean_supporting은 HTML 파일이 렌더링된 후 중간 출력 파일을 정리할지 여부를 의미합니다. 중간 파일에는 그림 파일이 포함될 수 있습니다. HTML 파일이 독립적이기를 원하는 경우 Pandoc은 모든 외부 리소스(예: 이미지)를 그 안에 포함시키므로 더 이상
+rmarkdown에 대한 몇 가지 보조 옵션도 있습니다. 예를 들어 clean_supporting은 HTML 파일이 렌더링된 후 중간 출력 파일을 정리할지 여부를 의미합니다. 중간 파일에는 그림 파일이 포함될 수 있습니다. HTML 파일이 독립적이기를 원하는 경우 Pandoc은 모든 외부 리소스(이미지)를 그 안에 포함시키므로 더 이상
 
 이러한 외부 파일이 필요하지 않습니다. 이 경우 render()는 HTML 파일을 렌더링한 후 외부 파일들을 삭제합니다.
 
@@ -4482,31 +4497,31 @@ rmarkdown에 대한 몇 가지 보조 옵션도 있습니다. 예를 들어 clea
 
 이제 Rmd-v2.Rmd라는 이름의 R 마크다운 v2 문서의 전체 예를 보여줍니다. 조금 길긴 하지만 Pandoc과 rmarkdown의 대부분의 기능을 보여줍니다.
 
-```yaml
+````yaml
 ---
-title: "R Markdown v2 Demo" 
+title: "R Markdown v2 Demo"
 author:
 - Li Lei
-- Han Meimei 
-date: "2015/01/01" 
+- Han Meimei
+date: "2015/01/01"
 output:
   html_document:
-    fig_caption: yes 
+    fig_caption: yes
   pdf_document:
     template: null
-  word_document: default 
+  word_document: default
 bibliography: Rmd-v2.bib
 ---
 
-# 멋진 섹션으로 시작 
-여기에 약간의 _소개_ 를 넣습니다. [links](http://yihui.name/knitr) 및 `code` 와 같은 전통적인 **마크다운** 구문을 사용할 수 있습니다. 
+# 멋진 섹션으로 시작
+여기에 약간의 _소개_ 를 넣습니다. [links](http://yihui.name/knitr) 및 `code` 와 같은 전통적인 **마크다운** 구문을 사용할 수 있습니다.
 
-# 다른 섹션이 뒤따름 
+# 다른 섹션이 뒤따름
 물론 리스트를 작성할 수 있습니다.
 
 - apple
 - pear
-- banana 
+- banana
 
 또는 정렬된 리스트:
 
@@ -4515,68 +4530,78 @@ bibliography: Rmd-v2.bib
 1. be
 1. ordered
 - nested
-- items 
+- items
 
-# 더 많은 섹션 
-## 안녕 안녕 안녕 
-## 여보세요 여보세요 여보세요 
-## 안녕하세요 안녕하세요 안녕하세요 
+# 더 많은 섹션
+## 안녕 안녕 안녕
+## 여보세요 여보세요 여보세요
+## 안녕하세요 안녕하세요 안녕하세요
 
-# 좋습니다, 몇 가지 R 코드 
-```{r linear-model} 
-fit = lm(dist ~ speed, data = cars) 
-b = coef(fit) # coefficients 
+# 좋습니다, 몇 가지 R 코드
+```{r linear-model}
+fit = lm(dist ~ speed, data = cars)
+b = coef(fit) # coefficients
 summary(fit)
-```
+````
 
-코드는 모든 출력 형식에서 강조 표시됩니다. 
+코드는 모든 출력 형식에서 강조 표시됩니다.
 
-# 그리고 몇 가지 그림 
-```{r lm-vis, fig.cap='Regression diagnostics'} 
+# 그리고 몇 가지 그림
+
+```{r lm-vis, fig.cap='Regression diagnostics'}
 par(mfrow = c(2, 2), pch = 20, mar = c(4, 4, 2, .1),
-bg = 'white') 
+bg = 'white')
 plot(fit)
 ```
 
-# 약간의 수학 
+# 약간의 수학
+
 회귀 방정식은 $Y= `r b[1]` + `r b[2]` x$ 이고 모델은 다음과 같습니다.
-$$ Y = \beta_0 + \beta_1 x + \epsilon$$ 
+$$ Y = \beta_0 + \beta_1 x + \epsilon$$
 
-# Pandoc 확장: 정의 리스트 
-프로그래머 : 커피를 코드로 바꾸는 사람. 
-LaTeX : 몇 개의 백슬래시가 있는 간단한 언어. 
+# Pandoc 확장: 정의 리스트
 
-# Pandoc 확장: 예제들 
-몇 가지 예제가 있습니다. 
-(@) `0.3 + 0.4 - 0.7`은 무엇일까요? 0입니다. 쉽죠. 
-(@weird) 이제 `0.3 - 0.7 + 0.4`는 무엇일까요? 여전히 0일까요? 사람들은 흔히 (@weird)에 놀랍니다. 
+프로그래머 : 커피를 코드로 바꾸는 사람.
+LaTeX : 몇 개의 백슬래시가 있는 간단한 언어.
 
-# Pandoc 확장: 표들 
-여기에 표가 있습니다. 
-Table: 간단한 표 구문의 예. 
-```{r echo=FALSE} 
+# Pandoc 확장: 예제들
+
+몇 가지 예제가 있습니다.
+(@) `0.3 + 0.4 - 0.7`은 무엇일까요? 0입니다. 쉽죠.
+(@weird) 이제 `0.3 - 0.7 + 0.4`는 무엇일까요? 여전히 0일까요? 사람들은 흔히 (@weird)에 놀랍니다.
+
+# Pandoc 확장: 표들
+
+여기에 표가 있습니다.
+Table: 간단한 표 구문의 예.
+
+```{r echo=FALSE}
 knitr::kable(head(iris))
 ```
 
-# Pandoc 확장: 각주 
-각주[^1]를 작성할 수도 있습니다. 
-[^1]: 안녕하세요, 각주입니다 
-또는 인라인 각주^[여기서 볼 수 있듯이]를 작성하십시오. 
+# Pandoc 확장: 각주
 
-# Pandoc 확장: 인용문 
+각주[^1]를 작성할 수도 있습니다.
+[^1]: 안녕하세요, 각주입니다
+또는 인라인 각주^[여기서 볼 수 있듯이]를 작성하십시오.
+
+# Pandoc 확장: 인용문
+
 우리는 R [@R-base]에서 **knitr** [@R-knitr]를 통해 R 마크다운 파일을 마크다운으로 컴파일합니다. @R-knitr에 대한 자세한 내용은 <http://yihui.name/knitr>를 참조하십시오.
-```
+
+````
 
 ![이미지 20](Dynamic Documents with R and knitr 2nd_images/imageFile20.png)
 
 (그림 14.1 설명: RStudio 창에서 R 마크다운 v2의 HTML 출력 문서 미리 보기.)
 
 ```r
-# 참고 문헌 
-```{r include=FALSE} 
+# 참고 문헌
+```{r include=FALSE}
 knitr::write_bib(c('base', 'knitr'), 'Rmd-v2.bib')
-```
-```
+````
+
+````
 
 kable() 또는 write_bib()가 어떻게 작동하는지 잘 모르는 경우 6.3절과 12.4.1절을 검토해야 할 수 있습니다.
 
@@ -4594,18 +4619,18 @@ HTML 출력에 맞게 조정할 수 있는 많은 옵션이 있습니다. 전체
 ```yaml
 ---
 output:
-  html_document: 
-    fig_caption: yes 
-    number_sections: yes 
-    theme: readable 
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    theme: readable
     toc: yes
 ---
-```
+````
 
 현재 이러한 CSS 테마를 rmarkdown에서 사용할 수 있습니다(http://bootswatch.com 에서 미리 보기를 볼 수 있습니다).
 
 ```r
-## [1] "default" "cerulean" "journal" "flatly" 
+## [1] "default" "cerulean" "journal" "flatly"
 ## [5] "readable" "spacelab" "united" "cosmo"
 ```
 
@@ -4614,7 +4639,7 @@ output:
 ```yaml
 ---
 output:
-  html_document: 
+  html_document:
     css: my_own.css
 ---
 ```
@@ -4624,17 +4649,17 @@ output:
 ```yaml
 ---
 output:
-  html_document: 
-    css: my_own.css 
-    theme: null 
+  html_document:
+    css: my_own.css
+    theme: null
     highlight: null
 ---
 ```
 
 HTML 페이지에는 종종 CSS, JavaScript 및 이미지 파일과 같은 외부 종속성이 있기 때문에, 다른 사람과 HTML 파일을 공유할 때 불편할 수 있습니다. HTML 파일을 보낼 때 이러한 종속성도 포함되어 있는지 확인해야 하기 때문입니다.
 
-|![이미지 22](Dynamic Documents with R and knitr 2nd_images/imageFile22.png)|
-|---|
+| ![이미지 22](Dynamic Documents with R and knitr 2nd_images/imageFile22.png) |
+| --------------------------------------------------------------------------- |
 
 ###### (그림 14.3 설명: 목차와 번호가 매겨진 섹션이 있는 "readable" 테마의 미리 보기(그림 14.1과 글꼴이 다르다는 것을 알 수 있습니다).)
 
@@ -4643,8 +4668,8 @@ Pandoc에는 모든 외부 종속성을 HTML 파일에 포함시켜 HTML 파일�
 ```yaml
 ---
 output:
-  html_document: 
-    self_contained: no 
+  html_document:
+    self_contained: no
     lib_dir: assets
 ---
 ```
@@ -4652,7 +4677,7 @@ output:
 때로는 HTML 헤더, 본문 앞, 또는 본문 뒤에 추가 콘텐츠를 포함하고 싶을 수 있습니다. 이런 경우 rmarkdown에는 추가 콘텐츠의 파일 이름을 지정할 수 있는 includes 옵션이 있습니다. HTML 출력에서 JavaScript 라이브러리 D3(http://d3js.org)를 사용한다고 가정하면 doc_header.html 파일에 다음을 작성할 수 있습니다.
 
 ```html
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"> </script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 ```
 
 본문 앞뒤에 각각 삽입할 콘텐츠인 doc_before.html과 doc_after.html 두 파일도 있습니다. 예를 들어 doc_before.html에는 내비게이션 메뉴를 쓰고 doc_after.html에는 일부 저작권 정보를 쓸 수 있습니다. 이 세 파일은 다음과 같이 HTML 출력 파일에 포함될 수 있습니다.
@@ -4661,22 +4686,22 @@ output:
 ---
 output:
   html_document:
-    includes: 
-      in_header: doc_header.html 
-      before_body: doc_before.html 
+    includes:
+      in_header: doc_header.html
+      before_body: doc_before.html
       after_body: doc_after.html
 ```
 
 모든 출력 형식에 대해 Pandoc은 출력 파일을 만들기 위해 템플릿이 필요합니다. 템플릿에서 사용할 수 있는 몇 가지 Pandoc 변수가 있으며, 이러한 변수를 사용하여 고유한 템플릿을 정의할 수 있습니다. 예를 들어 최소 HTML 템플릿은 다음과 같을 수 있습니다.
 
 ```html
-<html> 
-<head>
-<title>$title$</title> 
-</head> 
-<body> 
-$body$ 
-</body>
+<html>
+  <head>
+    <title>$title$</title>
+  </head>
+  <body>
+    $body$
+  </body>
 </html>
 ```
 
@@ -4687,7 +4712,7 @@ $body$
 ```yaml
 ---
 output:
-  html_document: 
+  html_document:
     template: my_template.html
 ---
 ```
@@ -4697,7 +4722,7 @@ output:
 ```yaml
 ---
 output:
-  html_document: 
+  html_document:
     pandoc_args: "--self-contained"
 ```
 
@@ -4720,18 +4745,18 @@ HTML 문서 형식에 익숙해지면 다른 출력 형식도 마스터하기 �
 ```yaml
 ---
 output:
-  pdf_document: 
-    number_sections: yes 
+  pdf_document:
+    number_sections: yes
     toc: yes
 ```
 
-|Pandoc 확장: 표<br><br>여기에 표가 있습니다.<br><br>Table 1: 간단한 표 구문의 예.<br><br>Sepal.Length Sepal.Width Petal.Length Petal.Width Species<br><br>5.1 3.5 1.4 0.2 setosa 4.9 3.0 1.4 0.2 setosa<br><br>4.7 3.2 1.3 0.2 setosa<br><br>4.6 3.1 1.5 0.2 setosa<br>5.0 3.6 1.4 0.2 setosa<br><br><br>5.4 3.9 1.7 0.4 setosa<br><br><br>Pandoc 확장: 각주<br><br>각주1를 작성할 수도 있습니다. 또는 인라인 각주2를 작성하십시오.<br><br>Pandoc 확장: 인용문<br><br>우리는 R (R Core Team 2014)에서 knitr (Xie 2014)를 통해 R 마크다운 파일을 마크다운으로 컴파일합니다. Xie (2014)에 대한 자세한 내용은 http://yihui.name/knitr를 참조하십시오.<br><br>참고 문헌<br><br>R Core Team. 2014. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. http://www.R-project. org/.<br><br>Xie, Yihui. 2014. Knitr: A General-Purpose Package for Dynamic Report Generation in R. http://yihui.name/knitr/.<br><br>1안녕하세요, 각주입니다 2여기서 볼 수 있듯이|
-|---|
+| Pandoc 확장: 표<br><br>여기에 표가 있습니다.<br><br>Table 1: 간단한 표 구문의 예.<br><br>Sepal.Length Sepal.Width Petal.Length Petal.Width Species<br><br>5.1 3.5 1.4 0.2 setosa 4.9 3.0 1.4 0.2 setosa<br><br>4.7 3.2 1.3 0.2 setosa<br><br>4.6 3.1 1.5 0.2 setosa<br>5.0 3.6 1.4 0.2 setosa<br><br><br>5.4 3.9 1.7 0.4 setosa<br><br><br>Pandoc 확장: 각주<br><br>각주1를 작성할 수도 있습니다. 또는 인라인 각주2를 작성하십시오.<br><br>Pandoc 확장: 인용문<br><br>우리는 R (R Core Team 2014)에서 knitr (Xie 2014)를 통해 R 마크다운 파일을 마크다운으로 컴파일합니다. Xie (2014)에 대한 자세한 내용은 http://yihui.name/knitr를 참조하십시오.<br><br>참고 문헌<br><br>R Core Team. 2014. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. http://www.R-project. org/.<br><br>Xie, Yihui. 2014. Knitr: A General-Purpose Package for Dynamic Report Generation in R. http://yihui.name/knitr/.<br><br>1안녕하세요, 각주입니다 2여기서 볼 수 있듯이 |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ###### (그림 14.4 설명: R 마크다운 v2 예제의 PDF 출력 문서 4페이지 미리 보기.)
 
-|R 마크다운 v2 Demo<br><br>Li Lei Han Meimei<br><br>2015/01/01<br><br>Contents<br><br>1 멋진 섹션으로 시작 2<br>2 다른 섹션이 뒤따름 2<br>3 더 많은 섹션 2<br><br>3.1 안녕 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2<br>3.2 여보세요 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2<br>3.3 안녕하세요 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2<br><br><br>4 좋습니다, 몇 가지 R 코드 3<br>5 그리고 몇 가지 그림 3<br>6 약간의 수학 4<br>7 Pandoc 확장: 정의 리스트 4<br>8 Pandoc 확장: 예제들 4<br>9 Pandoc 확장: 표들 5<br>10 Pandoc 확장: 각주 5<br>11 Pandoc 확장: 인용문 5<br><br><br>참고 문헌 5|
-|---|
+| R 마크다운 v2 Demo<br><br>Li Lei Han Meimei<br><br>2015/01/01<br><br>Contents<br><br>1 멋진 섹션으로 시작 2<br>2 다른 섹션이 뒤따름 2<br>3 더 많은 섹션 2<br><br>3.1 안녕 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2<br>3.2 여보세요 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2<br>3.3 안녕하세요 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2<br><br><br>4 좋습니다, 몇 가지 R 코드 3<br>5 그리고 몇 가지 그림 3<br>6 약간의 수학 4<br>7 Pandoc 확장: 정의 리스트 4<br>8 Pandoc 확장: 예제들 4<br>9 Pandoc 확장: 표들 5<br>10 Pandoc 확장: 각주 5<br>11 Pandoc 확장: 인용문 5<br><br><br>참고 문헌 5 |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 1
 
@@ -4752,22 +4777,22 @@ Pandoc에는 YAML 메타데이터에서 사용할 수 있는 몇 가지 LATEX �
 
 ```yaml
 ---
-documentclass: book 
-classoption: twocolumn 
-fontsize: 11pt 
+documentclass: book
+classoption: twocolumn
+fontsize: 11pt
 geometry:
-- tmargin=2cm
-- bmargin=2cm
-- lmargin=3cm
-- rmargin=3cm
+  - tmargin=2cm
+  - bmargin=2cm
+  - lmargin=3cm
+  - rmargin=3cm
 output:
-  pdf_document: 
-    latex_engine: xelatex 
+  pdf_document:
+    latex_engine: xelatex
     keep_tex: yes
 ---
 ```
 
-이전 절에서 includes 및 template 옵션을 소개했으며, LATEX 사용자가 서문의 특정 LATEX 패키지를 사용하여 출력을 사용자 정의하는 경우가 매우 많기 때문에 이 옵션들은 LATEX 출력에 더 유용할 수 있습니다. 이러한 내용을 외부 파일에 넣고 includes 옵션 아래 in_header 옵션을 통해 서문에 포함할 수 있습니다. 기본 LATEX 템플릿이 만족스럽지 않다면 
+이전 절에서 includes 및 template 옵션을 소개했으며, LATEX 사용자가 서문의 특정 LATEX 패키지를 사용하여 출력을 사용자 정의하는 경우가 매우 많기 때문에 이 옵션들은 LATEX 출력에 더 유용할 수 있습니다. 이러한 내용을 외부 파일에 넣고 includes 옵션 아래 in_header 옵션을 통해 서문에 포함할 수 있습니다. 기본 LATEX 템플릿이 만족스럽지 않다면
 
 직접 작성할 수 있습니다. 실제로 작성하기 전에 Pandoc 설명서를 주의 깊게 확인하여 YAML 옵션으로 원하는 결과를 얻을 수 있는지 확인하십시오. 새로운 LATEX 템플릿을 작성하는 것은 비교적 쉽지만 향후 Pandoc의 가능한 변경 사항을 인지해야 하므로 유지 관리하는 것은 간단하지 않을 수 있습니다.
 
@@ -4779,11 +4804,11 @@ Word 문서에서 가장 중요하고 유용한 기능은 아마도 템플릿일
 
 Word 문서에서 스타일을 정의하는 방법을 보여주기 위해 https://vimeo.com/110804387에 짧은 동영상을 준비했습니다. 그림 14.7 및 14.8도 볼 수 있습니다. 기본 단계는 다음과 같습니다.
 
-- 1. Pandoc을 사용하여 임의의 Word 문서를 만듭니다(예: YAML 메타데이터의 출력 옵션으로 word_document 사용).
+- 1. Pandoc을 사용하여 임의의 Word 문서를 만듭니다(YAML 메타데이터의 출력 옵션으로 word_document 사용).
 - 2. Word 문서를 열고 그림 14.7에 표시된 "스타일(Styles)" 패널을 찾습니다.
 - 3. 스타일을 수정할 요소에 커서를 놓으면 스타일 패널에 한 항목이 강조 표시되어야 합니다.
 - 4. 오른쪽의 ¶ 기호를 클릭하여 항목을 열면 그림 14.8과 같은 창이 나타납니다. 여기서 스타일을 수정할 수 있습니다. 예를 들어 title 요소의 글꼴 모음을 Bookman Old Style로 변경할 수 있습니다.
-이 Word 문서의 스타일을 업데이트한 후 (예를 들어, Rmd 파일과 동일한 디렉터리에 template.docx로) 저장하고 이를 참조 문서(reference document)로 사용할 수 있습니다.
+     이 Word 문서의 스타일을 업데이트한 후 (예를 들어, Rmd 파일과 동일한 디렉터리에 template.docx로) 저장하고 이를 참조 문서(reference document)로 사용할 수 있습니다.
 
 ```yaml
 ---
@@ -4847,10 +4872,11 @@ W 키는 와이드 스크린 모드를 토글(toggle)합니다. 슬라이드 크
 각 슬라이드를 개별적으로 사용자 지정할 수도 있습니다. 예를 들어 2수준 섹션 제목 뒤에 {.build} 토큰을 넣으면 프레젠테이션을 진행할 때 이 페이지의 요소가 점진적으로 표시됩니다. 예:
 
 ```markdown
-## 새 슬라이드 {.build} 
-먼저 이것을 보여줍니다. 
-그런 다음 저것을 보여줍니다. 
-마지막으로 재미있는 GIF 애니메이션을 보여줍니다. 
+## 새 슬라이드 {.build}
+
+먼저 이것을 보여줍니다.
+그런 다음 저것을 보여줍니다.
+마지막으로 재미있는 GIF 애니메이션을 보여줍니다.
 ![](foo.png)
 ```
 
@@ -4873,7 +4899,7 @@ Slidy를 위한 슬라이드 작성 규칙은 ioslides와 같습니다. rmarkdow
 유용할 수 있는 몇 가지 추가 기능이 있으며 다음 옵션들이 포함됩니다.
 
 - duration: 시간을 상기시키기 위해 바닥글에 카운트다운 타이머를 설정합니다. 예를 들어 50분 동안 발표하는 경우 YAML에 duration: 50 을 설정할 수 있습니다.
-- footer: 바닥글의 사용자 지정 메시지. 예를 들어 
+- footer: 바닥글의 사용자 지정 메시지. 예를 들어
 
 소속 기관의 이름이나 저작권 정보를 표시할 수 있습니다. Slidy 슬라이드를 인쇄하려면 Chrome을 사용할 수도 있습니다.
 
@@ -4887,14 +4913,14 @@ Slidy를 위한 슬라이드 작성 규칙은 ioslides와 같습니다. rmarkdow
 
 ```yaml
 ---
-title: "R Markdown v2 Demo" 
+title: "R Markdown v2 Demo"
 author:
-- Li Lei
-- Han Meimei 
-date: "2015/01/01" 
+  - Li Lei
+  - Han Meimei
+date: "2015/01/01"
 output:
-  beamer_presentation: 
-    theme: AnnArbor 
+  beamer_presentation:
+    theme: AnnArbor
 bibliography: Rmd-v2.bib
 ---
 ```
@@ -4902,41 +4928,41 @@ bibliography: Rmd-v2.bib
 슬라이드를 원시 LATEX로 작성한다면 소스 문서는 다음과 같을 것입니다.
 
 ```latex
-\documentclass{beamer} 
+\documentclass{beamer}
 \usetheme{AnnArbor}
 
-\title{R Markdown v2 Demo} 
-\author{Li Lei \and Han Meimei} 
+\title{R Markdown v2 Demo}
+\author{Li Lei \and Han Meimei}
 \date{2015/01/01}
 
-\begin{document} 
+\begin{document}
 \frame{\titlepage}
 
-\begin{frame}{Start with a cool section} 
-A bit \emph{introduction} here. 
-You can use traditional \textbf{Markdown} syntax, such as \href{http://yihui.name/knitr}{links} and \texttt{code}. 
-\end{frame} 
+\begin{frame}{Start with a cool section}
+A bit \emph{introduction} here.
+You can use traditional \textbf{Markdown} syntax, such as \href{http://yihui.name/knitr}{links} and \texttt{code}.
+\end{frame}
 \begin{frame}{Followed by another section}
 ```
 
-|R Markdown v2 Demo<br><br>Li Lei Han Meimei<br><br>2015/01/01<br><br>Li Lei, Han Meimei R Markdown v2 Demo 2015/01/01 1 / 13<br><br>|
-|---|
+| R Markdown v2 Demo<br><br>Li Lei Han Meimei<br><br>2015/01/01<br><br>Li Lei, Han Meimei R Markdown v2 Demo 2015/01/01 1 / 13<br><br> |
+| ------------------------------------------------------------------------------------------------------------------------------------ |
 
-|Pandoc extension: examples<br><br>We have some examples.<br><br>1 Think what is 0.3 + 0.4 - 0.7. Zero. Easy.<br>2 Now think what is 0.3 - 0.7 + 0.4. Still zero?<br><br><br>People are often surprised by (2).<br><br>Li Lei, Han Meimei R Markdown v2 Demo 2015/01/01 9 / 13<br><br>|
-|---|
+| Pandoc extension: examples<br><br>We have some examples.<br><br>1 Think what is 0.3 + 0.4 - 0.7. Zero. Easy.<br>2 Now think what is 0.3 - 0.7 + 0.4. Still zero?<br><br><br>People are often surprised by (2).<br><br>Li Lei, Han Meimei R Markdown v2 Demo 2015/01/01 9 / 13<br><br> |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ###### (그림 14.11 설명: R 마크다운이 생성한 Beamer 프레젠테이션의 두 슬라이드: 제목 슬라이드 및 예제 환경의 Pandoc 확장을 보여주는 슬라이드.)
 
 ```latex
 Of course you can write lists:
 
-\begin{itemize} 
-  \item apple 
-  \item pear 
+\begin{itemize}
+  \item apple
+  \item pear
   \item banana
 \end{itemize}
 
-.... 
+....
 \end{document}
 ```
 
@@ -4952,10 +4978,12 @@ output: beamer_presentation
 
 ```markdown
 # 섹션 하나
-- content
-- content 
 
-# 또 다른 섹션 
+- content
+- content
+
+# 또 다른 섹션
+
 ![](foo.png)
 ```
 
@@ -4972,11 +5000,13 @@ output: beamer_presentation
 
 ## 하위 섹션 하나
 
-- content 
+- content
 - content
 
-# 또 다른 섹션 
-## 또 다른 하위 섹션 
+# 또 다른 섹션
+
+## 또 다른 하위 섹션
+
 ![](foo.png)
 ```
 
@@ -4992,11 +5022,11 @@ html_vignette() 형식은 특별한 CSS 테마가 있는 html_document()의 래�
 
 ```r
 html_vignette <- function(fig_width = 3, fig_height = 3, dev = "png", css = NULL,
-...) { 
+...) {
   if (is.null(css)) {
     css <- system.file("rmarkdown", "templates",
                        "html_vignette", "resources", "vignette.css", package = "rmarkdown")
-  } 
+  }
   html_document(fig_width = fig_width,
                 fig_height = fig_height, dev = dev, fig_retina = FALSE, css = css, theme = NULL, highlight = "pygments", ...)
 }
@@ -5006,21 +5036,21 @@ tufte_handout() 형식은 LATEX 문서 클래스 tufte-handout.cls에 대한 래
 
 ```yaml
 ---
-title: "Tufte Handout" 
-author: "John Smith" 
-date: "August 13th, 2014" 
+title: "Tufte Handout"
+author: "John Smith"
+date: "August 13th, 2014"
 output: rmarkdown::tufte_handout
 ---
 ```
 
 ###### 14.4 Shiny를 사용한 대화형 문서
 
-Shiny(Chang 등, 2015)는 R을 사용하여 대화형 앱을 쉽게 만들 수 있는 웹 애플리케이션 프레임워크입니다. Shiny UI 함수(예: 텍스트 입력 상자, 드롭다운 리스트, 라디오 버튼, 슬라이더 등)를 사용하여 웹 사용자 인터페이스(UI)를 만들 수 있습니다. 이러한 UI 요소들은 R에서 서버 논리(예: 버튼을 클릭한 후 R이 수행할 작업)를 지정한 후에 R과 상호 작용할 수 있습니다. Shiny에 익숙하지 않은 경우 http://shiny.rstudio.com 웹사이트를 확인하여 Shiny에 대한 기본 사항을 알아보십시오.
+Shiny(Chang 등, 2015)는 R을 사용하여 대화형 앱을 쉽게 만들 수 있는 웹 애플리케이션 프레임워크입니다. Shiny UI 함수(텍스트 입력 상자, 드롭다운 리스트, 라디오 버튼, 슬라이더 등)를 사용하여 웹 사용자 인터페이스(UI)를 만들 수 있습니다. 이러한 UI 요소들은 R에서 서버 논리(버튼을 클릭한 후 R이 수행할 작업)를 지정한 후에 R과 상호 작용할 수 있습니다. Shiny에 익숙하지 않은 경우 http://shiny.rstudio.com 웹사이트를 확인하여 Shiny에 대한 기본 사항을 알아보십시오.
 
 Shiny 앱은 기본적으로 HTML 페이지이고, 마침 R 마크다운도 HTML로 렌더링될 수 있으므로 한 문서에 R 마크다운과 Shiny를 결합하는 것이 가능합니다. Shiny의 대화형 구성 요소가 포함되어 있기 때문에 이러한 문서를 "대화형 문서"라고 부릅니다. 그림 14.13은 대화형 문서의 최소한의 예를 보여줍니다. 해당 소스 문서는 다음과 같습니다.
 
-|![이미지 28](Dynamic Documents with R and knitr 2nd_images/imageFile28.png)|
-|---|
+| ![이미지 28](Dynamic Documents with R and knitr 2nd_images/imageFile28.png) |
+| --------------------------------------------------------------------------- |
 
 ###### (그림 14.12 설명: Tufte 유인물 스타일을 사용하는 예제 페이지: 각주, 그림, 수식 등과 같은 요소를 측면 여백에 정렬할 수 있습니다.)
 
@@ -5030,25 +5060,26 @@ Shiny 앱은 기본적으로 HTML 페이지이고, 마침 R 마크다운도 HTML
 
 ```yaml
 ---
-title: "R Markdown v2 Demo" 
-runtime: shiny 
+title: "R Markdown v2 Demo"
+runtime: shiny
 output: html_document
 ---
 ```
 
-```r
-```{r} 
-library(shiny) 
+````r
+```{r}
+library(shiny)
 sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
 
-renderPlot({ 
-  x <- faithful[, 2] # Old Faithful Geyser 데이터 
-  bins <- seq(min(x), max(x), length.out = input$bins + 1) 
-  # 지정된 수의 막대로 히스토그램을 그립니다. 
+renderPlot({
+  x <- faithful[, 2] # Old Faithful Geyser 데이터
+  bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  # 지정된 수의 막대로 히스토그램을 그립니다.
   hist(x, breaks = bins, col = 'darkgray', border = 'white')
 })
-```
-```
+````
+
+````
 
 일반 R 마크다운 문서를 대화형 문서로 전환하려면 YAML 메타데이터에 runtime: shiny 옵션만 추가하면 됩니다. 그런 다음 shiny 패키지의 함수를 사용할 수 있습니다. 위 예에서는 shiny의 UI 함수인 sliderInput()을 사용하여 HTML 페이지에 슬라이더를 만들었습니다. 슬라이더의 id는 bins입니다. 그런 다음 renderPlot() 함수를 사용하여 히스토그램을 렌더링했습니다. 이 코드 청크에서 가장 중요한 부분은 input$bins로, 이는 id가 bins인 슬라이더와 연결된 변수 값입니다. 슬라이더의 값을 업데이트하면 해당 값이 renderPlot()의 식으로 전달되고 그에 따라 플롯이 다시 그려집니다.
 
@@ -5056,7 +5087,7 @@ renderPlot({
 
 모든 Shiny 앱이 그림 14.13과 같이 간단할 수는 없습니다. UI 요소가 여러 개인 경우 코드 청크에 선형으로 나열하는 대신 별도의 앱으로 구성하고 싶을 수 있습니다. shiny의 shinyApp() 함수를 사용하면 하나의 함수에서 모든 UI 요소와 서버 논리를 지정하여 완전한 앱을 빌드할 수 있습니다. 그런 다음 R 마크다운에서 shinyApp()을 명시적으로 사용하여 전체 앱을 포함하거나, shinyApp() 객체를 반환하는 고유한 함수를 작성하여 다른 사람들도 귀하의 앱을 쉽게 사용할 수 있도록 할 수 있습니다.
 
-정적 HTML 문서는 문서를 공유하려 할 때 
+정적 HTML 문서는 문서를 공유하려 할 때
 
 웹사이트에 업로드하거나 이메일로 보낼 수 있습니다. 대화형 문서의 경우 배후에서 실행되는 활성화된 R 세션이 있어야 합니다. 대화형 문서를 공유하는 한 가지 가능한 방법은 RStudio에서 호스팅하는 http://shinyapps.io 에 게시하는 것입니다. 이 웹사이트에 게시하고 싶지 않은 경우 자체 Shiny 서버(http://www.rstudio.com/products/shiny/shiny-server/)를 설정할 수 있습니다.
 
@@ -5066,32 +5097,33 @@ renderPlot({
 
 ```yaml
 ---
-title: "R Markdown v2 Demo" 
-author: John Smith 
-date: "2015/01/01" 
-output: 
+title: "R Markdown v2 Demo"
+author: John Smith
+date: "2015/01/01"
+output:
   pdf_document:
-    documentclass: tufte-handout 
-    classoption: nohyper 
+    documentclass: tufte-handout
+    classoption: nohyper
     geometry: no
 ---
-```
+````
 
 위의 YAML 메타데이터는 기존 pdf_document() 형식을 활용합니다. 대안으로 다음과 같은 템플릿을 준비할 수 있습니다.
 
 ```latex
-\documentclass{tufte-handout} 
-$if(title)$ \title{$title$} $endif$ 
-$if(author)$ \author{$for(author)$$author$$sep$ \and $endfor$} $endif$ 
+\documentclass{tufte-handout}
+$if(title)$ \title{$title$} $endif$
+$if(author)$ \author{$for(author)$$author$$sep$ \and $endfor$} $endif$
 $if(date)$ \date{$date$}
-$endif$ 
-\begin{document} 
-$if(title)$ \maketitle $endif$ 
-$body$ 
+$endif$
+\begin{document}
+$if(title)$ \maketitle $endif$
+$body$
 \end{document}
 ```
 
 그런 다음 pdf_document에 template 옵션을 사용합니다. 이와 같이 사용자 지정 템플릿을 작성하는 데에는 여러 가지 단점이 있습니다.
+
 - Pandoc의 기본 LATEX는 훨씬 더 유연하며(https://github.com/jgm/pandoc-templates) 목차, 그림 리스트, 요약문 등도 처리할 수 있습니다.
 - YAML의 기존 옵션을 사용하는 것보다 새로운 템플릿을 작성하는 데 더 많은 노력이 듭니다.
 - 템플릿을 작성한 후에는 향후 Pandoc의 변경 사항으로 인해 템플릿이 망가지거나 일부 유용한 새 기능을 놓칠 수 있으므로 항상 주의해야 합니다. 이에 비해 Pandoc의 템플릿을 사용하면 별도로 유지 관리할 필요가 없습니다.
@@ -5132,7 +5164,7 @@ rticles 패키지(https://github.com/rstudio/rticles)는 여러 LATEX 문서 클
 
 ```r
 html_toc <- function(toc = TRUE, ...) {
-  rmarkdown::html_document(toc = toc, ...) 
+  rmarkdown::html_document(toc = toc, ...)
 }
 ```
 
@@ -5147,8 +5179,8 @@ output: myPackage::html_toc
 ```yaml
 ---
 output:
-  myPackage::html_toc: 
-    toc: no 
+  myPackage::html_toc:
+    toc: no
     self_contained: no
 ---
 ```
@@ -5160,7 +5192,7 @@ output:
 두 번째 예의 경우 이 Rmd 파일을 렌더링할 때 호출되는 것은 다음과 같습니다.
 
 ```r
-rmarkdown::render("foo.Rmd", myPackage::html_doc(toc = FALSE, self_contained = FALSE)) 
+rmarkdown::render("foo.Rmd", myPackage::html_doc(toc = FALSE, self_contained = FALSE))
 # 이는 기본적으로 다음과 같습니다.
 # render('foo.Rmd', html_document(toc = FALSE, self_contained = FALSE))
 ```
@@ -5168,14 +5200,14 @@ rmarkdown::render("foo.Rmd", myPackage::html_doc(toc = FALSE, self_contained = F
 14.3.1절에서 설명했듯이 출력 형식은 knitr 옵션, Pandoc 옵션 및 rmarkdown 옵션이라는 세 가지 유형의 옵션 리스트입니다. 위의 최소한의 예제에서는 Pandoc toc를 사용자 지정했지만 출력 형식 함수에서 더 많은 옵션을 사용자 지정할 수 있습니다. rmarkdown에는 출력 형식을 구성하는 데 사용할 수 있는 몇 가지 도우미 함수(output_format(), knitr_options(), pandoc_options())가 있습니다. reveal.js(HTML5 프레젠테이션 형식)를 위한 새로운 형식을 만드는 방법에 대한 예제는 https://github.com/jjallaire/revealjs 저장소를 참조하십시오. 아래에서는 EPUB(E-book 형식)용 출력을 만드는 방법에 대한 최소한의 예를 보여줍니다.
 
 ```r
-#' @importFrom rmarkdown output_format 
-#' @importFrom rmarkdown knitr_options 
+#' @importFrom rmarkdown output_format
+#' @importFrom rmarkdown knitr_options
 #' @importFrom rmarkdown pandoc_options
 
-epub_book <- function(to = c("epub", "epub3")) { 
-  to <- match.arg(to) 
-  optk <- knitr_options() 
-  optp <- pandoc_options(to, ext = ".epub") 
+epub_book <- function(to = c("epub", "epub3")) {
+  to <- match.arg(to)
+  optk <- knitr_options()
+  optp <- pandoc_options(to, ext = ".epub")
   output_format(knitr = optk, pandoc = optp)
 }
 ```
@@ -5184,21 +5216,24 @@ epub_book <- function(to = c("epub", "epub3")) {
 
 ```yaml
 ---
-title: "R Markdown v2 Demo" 
+title: "R Markdown v2 Demo"
 author:
-- Li Lei
-- Han Meimei
-date: "2015/01/01" 
+  - Li Lei
+  - Han Meimei
+date: "2015/01/01"
 output: myPackage::epub_book
 ---
 ```
 
-```markdown
-# 멋진 섹션으로 시작 
-```{r} 
+````markdown
+# 멋진 섹션으로 시작
+
+```{r}
 1 + 1
 ```
-```
+````
+
+````
 
 형식 함수 epub_book()의 핵심은 pandoc_options()의 to 인수를 epub 또는 epub3로 지정하는 것이었습니다. Pandoc은 수많은 문서 형식을 지원하지만 rmarkdown은 그중 일부만 포함했습니다. 위에서 소개한 접근 방식을 사용하여 고유한 형식 함수를 빌드할 수 있습니다.
 
@@ -5209,7 +5244,7 @@ output: myPackage::epub_book
 - 1. 다른 사람과 R 마크다운 문서를 공유할 때 includes 옵션에 지정된 종속성을 복사하는 것을 잊지 않아야 하므로 이식성이 떨어집니다. 다른 사람이 귀하의 종속성을 재사용하는 것도 편리하지 않습니다.
 - 2. JavaScript 라이브러리를 호출하려면 R 마크다운에 (때로는 많은 양의) JavaScript 코드를 작성해야 하지만, 모든 R 사용자가 JavaScript에 익숙한 것은 아니므로 R 마크다운 문서 작업을 할 수 없을 수도 있습니다.
 
-HTML 위젯의 아이디어는 JavaScript 라이브러리에 대한 기본 R 인터페이스를 제공하여 JavaScript를 모르는 사람들도 
+HTML 위젯의 아이디어는 JavaScript 라이브러리에 대한 기본 R 인터페이스를 제공하여 JavaScript를 모르는 사람들도
 
 기본 종속성이나 JavaScript 구문에 대해 걱정하지 않고 라이브러리를 사용할 수 있도록 하는 것입니다. JavaScript 라이브러리를 사용하여 플롯을 그릴 때 필요한 것은 코드 청크에서 R 함수를 호출하는 것뿐입니다.
 
@@ -5217,22 +5252,24 @@ htmlwidgets 패키지(Vaidyanathan 등, 2014)는 패키지 개발자가 JavaScri
 
 ```yaml
 ---
-title: "R Markdown v2 Demo" 
+title: "R Markdown v2 Demo"
 author:
 - Li Lei
 - Han Meimei
-date: "2015/01/01" 
+date: "2015/01/01"
 output: html_document
 ---
-```
+````
 
-```markdown
+````markdown
 DataTables 라이브러리에서 생성된 표는 다음과 같습니다.
 
-```{r} 
+```{r}
 DT::datatable(iris)
 ```
-```
+````
+
+````
 
 그림 14.16은 그 출력을 보여줍니다. DT 패키지는 JavaScript 라이브러리 DataTables(http://datatables.net)에 대한 인터페이스입니다. 보시다시피 R 마크다운 소스 문서는 정말 간단하며 JavaScript 파일이나 JavaScript 코드는 전혀 볼 수 없습니다. datatable() 함수를 호출하기만 하면 데이터 프레임이 DataTables를 통해 표시됩니다. HTML 페이지에 데이터를 전달하고 구문 분석하고 렌더링하는 어려운 작업은 패키지 작성자가 모두 수행했으며 사용자는 기본 기술 세부 사항을 모두 이해할 필요가 없습니다.
 
@@ -5245,7 +5282,7 @@ R 마크다운이 v1일 때부터 사용하기 시작한 경우, v1에서 v2로 
 ###### (그림 14.16 설명: R 마크다운에서 DataTables 라이브러리가 생성한 표: 열을 정렬하고 표 내에서 검색할 수 있으며, 전체 표가 여러 페이지에 표시될 수 있습니다.)
 
 - knitr 패키지는 v2에서 더 이상 기본적으로 로드(엄밀히 말해 연결(attached))되지 않습니다. 즉, library(knitr) 명령을 통해 명시적으로 로드하지 않는 한 knitr 패키지의 함수와 객체를 사용할 수 없습니다. 그렇지 않으면 "객체 'opts_chunk'를 찾을 수 없습니다"와 같은 오류가 발생할 수 있습니다.
-- Rmd 파일을 렌더링할 때 청크 옵션 fig.path (그림 경로) 및 cache.path (캐시 경로)가 rmarkdown에서 수정되었습니다. knitr에서는 각각 figure/ 및 cache/ 입니다. 이제 rmarkdown에서는 각각 foo_files/figure-format/ 및 foo_files/cache-format/ 입니다(여기서 foo는 파일 확장자를 제외한 입력 Rmd 파일의 기본 파일 이름이고, format은 출력 형식(예: tex 또는 html)임).
+- Rmd 파일을 렌더링할 때 청크 옵션 fig.path (그림 경로) 및 cache.path (캐시 경로)가 rmarkdown에서 수정되었습니다. knitr에서는 각각 figure/ 및 cache/ 입니다. 이제 rmarkdown에서는 각각 foo_files/figure-format/ 및 foo_files/cache-format/ 입니다(여기서 foo는 파일 확장자를 제외한 입력 Rmd 파일의 기본 파일 이름이고, format은 출력 형식(tex 또는 html)임).
 - 청크 옵션 error가 TRUE에서 FALSE로 변경되었습니다. 이는 R 마크다운 출력 문서에 오류 메시지를 표시하는 대신 기본적으로 R이 중지됨을 의미합니다(6.2.4절 참조).
 - 청크 옵션 fig.width, fig.height 및 fig.retina는 출력 형식에 따라 다른 값을 가질 수 있습니다. 출력 형식 함수의 rmarkdown 설명서를 확인하거나 R 마크다운 문서에서 str(knitr::opts_chunk$get()) 을 인쇄하여 청크 옵션의 값을 확인할 수 있습니다.
 
@@ -5263,7 +5300,7 @@ R 마크다운이 v1일 때부터 사용하기 시작한 경우, v1에서 v2로 
 
 이제 Gibbs 샘플링의 예를 보여줍니다. 이변량(bivariate) 정규 분포의 경우
 
-σX2 ρσXσY 
+σX2 ρσXσY
 ρσXσY σY2
 
 X
@@ -5278,7 +5315,7 @@ Y ∼ N
 
 우리는 조건부 분포를 알고 있으므로
 
-σY 
+σY
 σX
 
 ρ(x − µX), (1 − ρ2)σY2
@@ -5298,37 +5335,37 @@ X|Y = y ∼ N µX +
 Gibbs 샘플링을 사용하여 결합 정규 분포에서 난수를 생성할 수 있습니다. 먼저 x(0) 과 y(0) 을 초기화한 다음, x(k) ∼ f(x|y(k−1)) 과 y(k) ∼ f(y|x(k)) 를 반복해서 생성합니다. 아래의 R 코드는 15.2를 변환한 것입니다.
 
 ```r
-rbinormal <- function(n, mu1, mu2, sigma1, sigma2, rho) { 
+rbinormal <- function(n, mu1, mu2, sigma1, sigma2, rho) {
   # 초기화
   x <- rnorm(1, mu1, sigma1)
-  y <- rnorm(1, mu2, sigma2) 
-  xy <- matrix(nrow = n, ncol = 2, dimnames = list(NULL, c("X", "Y"))) 
-  
-  # 조건부 분포에서 샘플링 
+  y <- rnorm(1, mu2, sigma2)
+  xy <- matrix(nrow = n, ncol = 2, dimnames = list(NULL, c("X", "Y")))
+
+  # 조건부 분포에서 샘플링
   for (i in 1:n) {
     x <- rnorm(1, mu1 + sigma1/sigma2 * rho * (y - mu2), sqrt(1 - rho^2) * sigma1)
     y <- rnorm(1, mu2 + sigma2/sigma1 * rho * (x - mu1), sqrt(1 - rho^2) * sigma2)
     xy[i, ] <- c(x, y)
-  } 
+  }
   xy
 }
-```
+````
 
-그림 15.1은 µX = 0, σX = 2, µY = 1, σY = 3, ρ = 0.7 인 이변량 정규 분포에 대한 Gibbs 샘플링의 처음 20단계를 보여줍니다. 
+그림 15.1은 µX = 0, σX = 2, µY = 1, σY = 3, ρ = 0.7 인 이변량 정규 분포에 대한 Gibbs 샘플링의 처음 20단계를 보여줍니다.
 
 ```r
-set.seed(123) 
-n <- 20 
-z <- rbinormal(n, mu1 = 0, mu2 = 1, sigma1 = 2, sigma2 = 3, rho = 0.7) 
-plot(z, pch = 19) 
+set.seed(123)
+n <- 20
+z <- rbinormal(n, mu1 = 0, mu2 = 1, sigma1 = 2, sigma2 = 3, rho = 0.7)
+plot(z, pch = 19)
 arrows(z[-n, 1], z[-n, 2], z[-1, 1], z[-1, 2], length = 0.15, col = "gray40")
 ```
 
 또한 다음과 같이 일부 샘플을 그릴 수도 있습니다.
 
 ```r
-z <- rbinormal(5000, 0, 1, 2, 3, 0.7) 
-smoothScatter(z, nbin = 64) 
+z <- rbinormal(5000, 0, 1, 2, 3, 0.7)
+smoothScatter(z, nbin = 64)
 points(0, 1, col = "white", pch = 19) # 이론적 평균
 ```
 
@@ -5348,7 +5385,6 @@ Y
 -4
 -2
 
-
 -3 -2 -1 0 1 2 3
 
 X
@@ -5365,18 +5401,18 @@ X
 ```r
 apply(z, 2, mean) # 샘플 평균
 
-## X Y 
+## X Y
 ## 0.001287 0.971010
 
 apply(z, 2, sd) # 샘플 표준편차
 
-## X Y 
+## X Y
 ## 1.973 2.971
 
 cor(z) # 샘플 상관관계
 
-## X Y 
-## X 1.0000 0.6948 
+## X Y
+## X 1.0000 0.6948
 ## Y 0.6948 1.0000
 ```
 
@@ -5386,7 +5422,7 @@ cor(z) # 샘플 상관관계
 
 Huang과 Gottardo (2013) 생체의학 데이터의 비교 가능성 및 재현성
 
-재현 가능한 연구를 위해 데이터 분석에서 데이터, 코드, 소프트웨어를 공유해야 한다고 사람들은 제안해 왔습니다(예: Huang과 Gottardo(2013)). 우리는 교육에 대한 더 많은 노력이 중요한 단계여야 한다고 믿으며, 재현 가능한 과제부터 시작할 수 있습니다.
+재현 가능한 연구를 위해 데이터 분석에서 데이터, 코드, 소프트웨어를 공유해야 한다고 사람들은 제안해 왔습니다(Huang과 Gottardo(2013)). 우리는 교육에 대한 더 많은 노력이 중요한 단계여야 한다고 믿으며, 재현 가능한 과제부터 시작할 수 있습니다.
 
 ###### 15.2 동적 문서 제공(Serve)
 
@@ -5414,10 +5450,10 @@ R 마크다운 게시물이나 페이지를 마크다운으로 반복해서 컴�
 
 나중에 15.4절에서 패키지 삽화(vignette)를 소개할 것이며, servr의 vign() 함수는 R 패키지를 개발할 때 HTML 삽화를 제공하는 데 사용할 수 있습니다. 그 장점은 삽화를 제공할 때 소스 패키지에 HTML 출력 파일을 보존하지 않아 소스 패키지가 깨끗하게 유지된다는 것입니다.
 
-기술적 세부 사항이 궁금한 사람들을 위해, 구현은 WebSockets를 기반으로 합니다. servr는 HTML 페이지를 보여줄 때 R과 주기적으로(예: 1초 단위로) 통신하기 위해 WebSocket 연결을 설정하는 약간의 JavaScript 코드도 주입합니다. R이 WebSocket으로부터 요청을 받을 때마다 Rmd 파일의 타임스탬프와 그들의 출력 HTML 파일을 비교합니다. Rmd 파일이 해당 HTML 출력보다 최신인 경우 servr는 knitr 또는 rmarkdown을 호출하여 Rmd 파일을 HTML로 다시 컴파일한 다음 다시 WebSocket으로 메시지를 보냅니다.
+기술적 세부 사항이 궁금한 사람들을 위해, 구현은 WebSockets를 기반으로 합니다. servr는 HTML 페이지를 보여줄 때 R과 주기적으로(1초 단위로) 통신하기 위해 WebSocket 연결을 설정하는 약간의 JavaScript 코드도 주입합니다. R이 WebSocket으로부터 요청을 받을 때마다 Rmd 파일의 타임스탬프와 그들의 출력 HTML 파일을 비교합니다. Rmd 파일이 해당 HTML 출력보다 최신인 경우 servr는 knitr 또는 rmarkdown을 호출하여 Rmd 파일을 HTML로 다시 컴파일한 다음 다시 WebSocket으로 메시지를 보냅니다.
 
 ```makefile
-all: example.html 
+all: example.html
 %.html: %.Rmd
   Rscript -e "rmarkdown::render('$^')"
 ```
@@ -5438,7 +5474,7 @@ WebSocket이 이 메시지를 받으면 JavaScript에서 location.reload()를 �
 
 Vistat(http://vis.supstat.com)는 R 마크다운과 Jekyll(13.4절)을 기반으로 하는 웹사이트입니다. 재현 가능한 통계 그래픽 갤러리를 제공하는 것을 목표로 합니다. 웹사이트 저장소는 Github(https://github.com/supstat/vistat)에서 공개적으로 사용할 수 있습니다.
 
-이 저장소의 핵심은 몇 가지 전역 청크 옵션을 설정하고 Rmd 문서를 마크다운 출력으로 컴파일하는 R 스크립트 ./_bin/knit 입니다. 수학 방정식은 MathJax에 의해 렌더링되고 애니메이션은 SciAnimator 라이브러리(7.3.1절)를 통해 지원되며, D3 라이브러리를 통해 웹 그래픽을 만들 수도 있습니다.
+이 저장소의 핵심은 몇 가지 전역 청크 옵션을 설정하고 Rmd 문서를 마크다운 출력으로 컴파일하는 R 스크립트 ./\_bin/knit 입니다. 수학 방정식은 MathJax에 의해 렌더링되고 애니메이션은 SciAnimator 라이브러리(7.3.1절)를 통해 지원되며, D3 라이브러리를 통해 웹 그래픽을 만들 수도 있습니다.
 
 knitr가 Rmd 소스 파일을 마크다운 파일로 컴파일한 후 Jekyll은 마크다운을 HTML로 컴파일하여 웹사이트를 제공합니다.
 
@@ -5486,20 +5522,20 @@ Henrik Bengtsson, Duncan Murdoch, 그리고 R 코어 팀 덕분에 R 3.0.0부터
 
 knitr를 사용하여 삽화를 빌드하려면 다음과 같은 간단한 단계를 따르기만 하면 됩니다.
 
-- 삽화 소스 문서(예: Rnw 또는 Rmd 파일)에 %\VignetteEngine{knitr::knitr}와 같은 삽화 엔진 지정
+- 삽화 소스 문서(Rnw 또는 Rmd 파일)에 %\VignetteEngine{knitr::knitr}와 같은 삽화 엔진 지정
 - 패키지 DESCRIPTION 파일에 VignetteBuilder: knitr 필드 추가
 - DESCRIPTION의 Suggests 필드에 knitr 추가
 
-그런 다음 knitr 구문(예: 코드 청크의 경우 << >>= 또는 ```{r})을 사용하여 삽화를 작성할 수 있습니다. 삽화는 패키지 루트 디렉터리의 vignettes/ 디렉터리 아래에 두어야 한다는 것을 기억하십시오.
+그런 다음 knitr 구문(코드 청크의 경우 << >>= 또는 ```{r})을 사용하여 삽화를 작성할 수 있습니다. 삽화는 패키지 루트 디렉터리의 vignettes/ 디렉터리 아래에 두어야 한다는 것을 기억하십시오.
 
 R 매뉴얼 "Writing R Extensions(R 확장 작성)"에 따라 \VignetteIndexEntry{}에 삽화의 제목도 작성해야 합니다. \VignetteKeyword{}와 같은 몇 가지 다른 선택적 메타데이터 사양도 있습니다. knitr에서 R 마크다운 v2 삽화의 삽화 메타데이터(제목 및 삽화 엔진) 예는 그림 15.5를 참조하십시오. 패키지를 빌드한 후 삽화들이 HTML 색인 페이지에 나열됩니다.
 
-knitr 패키지에는 이런 식으로 컴파일된 여러 PDF 및 HTML 삽화가 있으며 다음을 실행하여 볼 수 있습니다. 
+knitr 패키지에는 이런 식으로 컴파일된 여러 PDF 및 HTML 삽화가 있으며 다음을 실행하여 볼 수 있습니다.
 
 ```r
-browseVignettes(package = "knitr") 
+browseVignettes(package = "knitr")
 # 또는 파일 이름을 아는 경우 특정 삽화를 봅니다.
-vignette("knitr-intro", package = "knitr") 
+vignette("knitr-intro", package = "knitr")
 vignette("knitr-refcard", package = "knitr")
 ```
 
@@ -5507,13 +5543,13 @@ vignette("knitr-refcard", package = "knitr")
 
 ```yaml
 ---
-title: "Not An Introduction to knitr" 
-author: "Yihui Xie" 
-date: "`r Sys.Date()`" 
+title: "Not An Introduction to knitr"
+author: "Yihui Xie"
+date: "`r Sys.Date()`"
 bibliography:
-- ../inst/examples/knitr-packages.bib
-- ../inst/examples/knitr-manual.bib
-vignette: > 
+  - ../inst/examples/knitr-packages.bib
+  - ../inst/examples/knitr-manual.bib
+vignette: >
   %\VignetteEngine{knitr::rmarkdown} 
   %\VignetteIndexEntry{Not an Introduction to knitr}
 output: knitr:::html_vignette
@@ -5523,24 +5559,24 @@ output: knitr:::html_vignette
 (그림 15.5 설명: knitr 삽화의 메타데이터: 이것은 knitr 삽화에서 추출된 것이며 `system.file('doc', 'knitr-intro.Rmd', package='knitr')`에서 찾을 수 있습니다.)
 
 ```r
-library(knitr) 
+library(knitr)
 sort(names(tools::vignetteEngine(package = "knitr")))
 
-## [1] "knitr::docco_classic" 
-## [2] "knitr::docco_classic_notangle" 
-## [3] "knitr::docco_linear" 
-## [4] "knitr::docco_linear_notangle" 
-## [5] "knitr::knitr" 
-## [6] "knitr::knitr_notangle" 
-## [7] "knitr::rmarkdown" 
+## [1] "knitr::docco_classic"
+## [2] "knitr::docco_classic_notangle"
+## [3] "knitr::docco_linear"
+## [4] "knitr::docco_linear_notangle"
+## [5] "knitr::knitr"
+## [6] "knitr::knitr_notangle"
+## [7] "knitr::rmarkdown"
 ## [8] "knitr::rmarkdown_notangle"
 ```
 
-_notangle 이라는 접미사가 있는 엔진은 접미사가 없는 엔진과 동일한 weave 함수를 갖지만 tangle 기능을 비활성화했기 때문에 R CMD build 또는 R CMD check 중에 삽화에서 생성되는 R 스크립트가 없습니다. 코드가 weave에서 실행된 후 R CMD check에서 동일한 코드를 다시 실행하는 것이 중복이고, 현재 인라인 R 코드 식이 tangle 출력에 포함되지 않아 문제를 일으킬 수도 있기 때문에, 때로는 삽화에서 R 스크립트를 추출(tangle)하고 싶지 않을 수 있습니다.
+\_notangle 이라는 접미사가 있는 엔진은 접미사가 없는 엔진과 동일한 weave 함수를 갖지만 tangle 기능을 비활성화했기 때문에 R CMD build 또는 R CMD check 중에 삽화에서 생성되는 R 스크립트가 없습니다. 코드가 weave에서 실행된 후 R CMD check에서 동일한 코드를 다시 실행하는 것이 중복이고, 현재 인라인 R 코드 식이 tangle 출력에 포함되지 않아 문제를 일으킬 수도 있기 때문에, 때로는 삽화에서 R 스크립트를 추출(tangle)하고 싶지 않을 수 있습니다.
 
-:: 연산자는 삽화 엔진에서 아무런 특별한 의미가 없음에 유의하십시오. base R에서 ::는 패키지에서 내보낸 객체를 가져오는 연산자(예: stats::lm)이므로 오해의 소지가 있을 수 있습니다. 그러나 삽화 엔진 표기법에서 ::는 패키지 이름과 엔진 이름을 구분하는 구분 기호에 불과하므로 knitr::rmarkdown은 rmarkdown이 knitr의 함수라는 뜻이 아니라 knitr의 삽화 엔진 중 하나라는 뜻일 뿐입니다.
+:: 연산자는 삽화 엔진에서 아무런 특별한 의미가 없음에 유의하십시오. base R에서 ::는 패키지에서 내보낸 객체를 가져오는 연산자(stats::lm)이므로 오해의 소지가 있을 수 있습니다. 그러나 삽화 엔진 표기법에서 ::는 패키지 이름과 엔진 이름을 구분하는 구분 기호에 불과하므로 knitr::rmarkdown은 rmarkdown이 knitr의 함수라는 뜻이 아니라 knitr의 삽화 엔진 중 하나라는 뜻일 뿐입니다.
 
-rmarkdown 삽화 엔진을 사용할 때, 현재 R이 이 두 가지 유형의 삽화 출력만 인식하기 때문에 파일 이름 확장자가 .html 또는 .pdf인 한 자유롭게 출력 형식을 선택할 수 있습니다. 출력 형식이 HTML인 경우 HTML 문서이거나 HTML5 프레젠테이션(예: ioslides 또는 Slidy) 중 하나일 수 있습니다. PDF인 경우 PDF 문서이거나 Beamer 슬라이드일 수 있습니다.
+rmarkdown 삽화 엔진을 사용할 때, 현재 R이 이 두 가지 유형의 삽화 출력만 인식하기 때문에 파일 이름 확장자가 .html 또는 .pdf인 한 자유롭게 출력 형식을 선택할 수 있습니다. 출력 형식이 HTML인 경우 HTML 문서이거나 HTML5 프레젠테이션(ioslides 또는 Slidy) 중 하나일 수 있습니다. PDF인 경우 PDF 문서이거나 Beamer 슬라이드일 수 있습니다.
 
 ###### 15.4.2 삽화 예제
 
@@ -5550,7 +5586,7 @@ Murphy(2012)의 ggplot2 마이그레이션 가이드는 ggplot2 패키지와 함
 
 이 가이드의 좋은 특징 중 하나는 Rnw 문서를 컬러 또는 흑백 버전으로 컴파일할 수 있다는 점인데, 이는 전역 변수 bw_version에 의해 제어됩니다. 이것이 TRUE이면 흑백 버전이 생성됩니다. 이는 흑백 플롯을 생성하는 청크(ggplot2에서는 theme_bw() 및 scale_fill_gray()와 같은 회색조를 의미함)에 대해 청크 옵션 eval = bw_version 및 echo = bw_version 을 설정하여 수행할 수 있습니다. bw_version이 FALSE이면 이러한 청크는 출력에서 숨겨집니다(소스 코드는 평가되지도 않고 반영되지도 않습니다). 마찬가지로 옵션 eval = !bw_version 및 echo = !bw_version 을 가진 다른 청크들이 있으며, 이 청크들은 컬러 플롯을 생성합니다. 결과적으로 단일 변수로 PDF 출력을 컬러로 할지 흑백으로 할지 제어할 수 있어 매우 편리합니다(5.1.1절 참조). 그림 15.6은 컬러 버전의 마이그레이션 가이드 샘플 페이지입니다.
 
-corrplot 패키지(Wei, 2013)에는 HTML 삽화 예제가 있습니다. Github의 https://github.com/taiyun/corrplot/tree/master/vignettes 에서 삽화의 소스 문서를 찾을 수 있습니다. 이것이 Rmd 문서라는 것은 분명합니다(5.2.1절). R 마크다운 v1을 사용한다는 점에 유의하십시오. 텍스트 편집기(예: RStudio)로 열면 R 코드 청크가 보입니다. 다음을 실행하여 컴파일된 HTML 삽화를 웹 브라우저에서 볼 수 있습니다.
+corrplot 패키지(Wei, 2013)에는 HTML 삽화 예제가 있습니다. Github의 https://github.com/taiyun/corrplot/tree/master/vignettes 에서 삽화의 소스 문서를 찾을 수 있습니다. 이것이 Rmd 문서라는 것은 분명합니다(5.2.1절). R 마크다운 v1을 사용한다는 점에 유의하십시오. 텍스트 편집기(RStudio)로 열면 R 코드 청크가 보입니다. 다음을 실행하여 컴파일된 HTML 삽화를 웹 브라우저에서 볼 수 있습니다.
 
 ```r
 help(package = "corrplot", help_type = "html")
@@ -5609,14 +5645,14 @@ No. cylinders
 geom_violin()에서 미적 요소(aesthetic)가 팩터인 경우 바이올린은 자동으로 회피(dodged)됩니다. 기본적으로 최대 너비는 표본 크기에 비례하여 조정됩니다. 아래의 맨 오른쪽 플롯에서는 커널 밀도 추정기의 대역폭이 기본값인 1에서 감소되어 밀도 추정치가 덜 매끄러워지고 따라서 바이올린 플롯도 덜 매끄러워집니다.
 
 ```r
-p <- ggplot(mtcars, aes(factor(cyl), mpg)) 
-p + geom_violin() # 기본 배율은 "count"입니다. 
-p + geom_violin(aes(fill = factor(cyl), colour = factor(cyl))) 
+p <- ggplot(mtcars, aes(factor(cyl), mpg))
+p + geom_violin() # 기본 배율은 "count"입니다.
+p + geom_violin(aes(fill = factor(cyl), colour = factor(cyl)))
 p + geom_violin(adjust = 0.5)
 ```
 
-|10<br><br>15<br><br>20<br><br>25<br><br>30<br><br>4 6 8<br><br>factor(cyl)<br><br>mpg|
-|---|
+| 10<br><br>15<br><br>20<br><br>25<br><br>30<br><br>4 6 8<br><br>factor(cyl)<br><br>mpg |
+| ------------------------------------------------------------------------------------- |
 
 |10<br><br>15<br><br>20<br><br>25<br><br>30<br><br>4 6 8<br><br>factor(cyl)<br><br>mpg<br><br>factor(cyl) 4 6 8<br><br>| |
 |10<br><br>15<br><br>20<br><br>25<br><br>30<br><br>35<br><br>4 6 8<br><br>factor(cyl)<br><br>mpg|
@@ -5629,10 +5665,10 @@ p + geom_violin(adjust = 0.5)
 ###### (그림 15.6 설명: ggplot2 마이그레이션 가이드의 샘플 페이지: ggplot2 0.9.0에 추가된 새로운 geom인 geom_violin()을 소개합니다.)
 
 ```makefile
-PDFS= foo.pdf bar.pdf 
-all: $(PDFS) 
+PDFS= foo.pdf bar.pdf
+all: $(PDFS)
 clean:
-  rm -f *.tex *.bbl *.blg *.aux *.out *.log 
+  rm -f *.tex *.bbl *.blg *.aux *.out *.log
 %.pdf: %.Rnw
   $(R_HOME)/bin/Rscript -e "knitr::knit2pdf('$*.Rnw')"
 ```
@@ -5654,10 +5690,10 @@ Makefile은 소스 패키지의 vignettes/ 디렉터리 아래에 있습니다. 
 분명히 이 접근 방식의 단점은 추가 처리 전에 모든 Rnw 문서가 Sweave에 의해 컴파일되어야 한다는 것입니다.
 
 ```makefile
-HTMLS= foo.html bar.html 
-all: $(HTMLS) 
+HTMLS= foo.html bar.html
+all: $(HTMLS)
 clean:
-  rm -rf figure/ *.md 
+  rm -rf figure/ *.md
 %.html: %.Rmd
   $(R_HOME)/bin/Rscript -e "knitr::knit2html('$*.Rmd')"
 ```
@@ -5698,10 +5734,10 @@ par(mar = c(4, 4, 0.1, 0.1), cex.lab = 0.95, cex.axis = 0.9,
 ```r
 knit_hooks$get("append")
 
-## function(before, options, envir) { 
-##     txt = options$append[[ifelse(before, 1, 2)]] 
-##     txt = c("\\begin{alltt}", txt, "\\end{alltt}") 
-##     paste(txt, collapse = "") 
+## function(before, options, envir) {
+##     txt = options$append[[ifelse(before, 1, 2)]]
+##     txt = c("\\begin{alltt}", txt, "\\end{alltt}")
+##     paste(txt, collapse = "")
 ## }
 ```
 
@@ -5747,7 +5783,7 @@ LP가 널리 사용되는 프로그래밍 접근 방식은 아닌 듯하지만 �
 rlp 패키지(https://github.com/yihui/rlp)는 LP 기술을 사용하여 R 패키지를 작성하는 예입니다. 자세한 내용은 이 저장소에서 확인할 수 있으며 구현의 기본 아이디어는 다음과 같습니다.
 
 - 1. 패키지의 R/ 디렉터리 아래에 R 소스 코드를 작성하는 대신 vignettes/ 디렉터리 아래에 패키지 삽화(R 마크다운)로 코드를 작성할 수 있습니다.
-- 2. Makefile을 사용하여 삽화 vignettes/*.Rmd 에서 R 스크립트 R/*.R 을 생성하는 방법을 정의합니다.
+- 2. Makefile을 사용하여 삽화 vignettes/_.Rmd 에서 R 스크립트 R/_.R 을 생성하는 방법을 정의합니다.
 - 3. make를 실행하여 R/ 디렉터리에 R 스크립트를 생성하고 R CMD build를 실행하여 패키지를 빌드합니다.
 
 이러한 단계는 RStudio IDE를 사용하면 쉬워질 수 있으며, 실제로 버튼 하나를 클릭하는 것만으로 이러한 단계를 수행할 수 있습니다. 구현 세부 사항은 너무 기술적이고 이 책의 범위를 벗어나므로 독자들이 이 패키지의 설명서를 읽어보시기를 권합니다.
@@ -5778,101 +5814,101 @@ eval, echo, results 등 knitr의 많은 청크 옵션은 Sweave에서 빌려왔�
 
 ```r
 testfile <- system.file("Sweave", "Sweave-test-1.Rnw",
-                        package = "utils") 
-outfile <- tempfile(fileext = ".Rnw") 
-Sweave2knitr(testfile, output = outfile) 
+                        package = "utils")
+outfile <- tempfile(fileext = ".Rnw")
+Sweave2knitr(testfile, output = outfile)
 
 # true/false를 대문자 TRUE/FALSE로 변경:
-# * fig=true 
+# * fig=true
 # 불필요한 옵션 fig=TRUE 제거:
-# * fig=TRUE 
-# * fig=TRUE 
+# * fig=TRUE
+# * fig=TRUE
 # results 옵션 인용(quoting):
-# * results=hide 
+# * results=hide
 # 'print', 'term', 'prefix' 옵션 제거:
-# * print=TRUE 
-# * echo=TRUE,print=TRUE 
+# * print=TRUE
+# * echo=TRUE,print=TRUE
 # true/false를 대문자 TRUE/FALSE로 변경:
-# * echo=true 
+# * echo=true
 # \SweaveOpts{}를 opts_chunk$set()으로 변경:
-# * \SweaveOpts{echo=FALSE} 
-# * \SweaveOpts{echo=true} 
+# * \SweaveOpts{echo=FALSE}
+# * \SweaveOpts{echo=true}
 # 여분의 줄 제거(#n은 줄 번호를 나타냄):
-# * (#69) @ 
+# * (#69) @
 
 cat(system(sprintf("diff %s %s", shQuote(testfile),
                    shQuote(outfile)), intern = TRUE), sep = "\n")
 
-# 7c7,14 
-# < \SweaveOpts{echo=FALSE} 
+# 7c7,14
+# < \SweaveOpts{echo=FALSE}
 # ---
-# > 
-# > <<include=FALSE>>= 
-# > library(knitr) 
-# > opts_chunk$set( 
+# >
+# > <<include=FALSE>>=
+# > library(knitr)
+# > opts_chunk$set(
 # > echo=FALSE
 ```
 
 ```r
-# > ) 
-# > @ 
-# > 
-# 15c22 
-# < <<print=TRUE>>= 
+# > )
+# > @
+# >
+# 15c22
+# < <<print=TRUE>>=
 # ---
-# > <<>>= 
-# 17c24 
-# < <<results=hide>>= 
+# > <<>>=
+# 17c24
+# < <<results=hide>>=
 # ---
-# > <<results='hide'>>= 
-# 22c29 
-# < <<echo=TRUE,print=TRUE>>= 
+# > <<results='hide'>>=
+# 22c29
+# < <<echo=TRUE,print=TRUE>>=
 # ---
-# > <<echo=TRUE>>= 
-# 43c50,57 
-# < \SweaveOpts{echo=true} 
+# > <<echo=TRUE>>=
+# 43c50,57
+# < \SweaveOpts{echo=true}
 # ---
-# > 
-# > <<include=FALSE>>= 
-# > library(knitr) 
-# > opts_chunk$set( 
-# > echo=TRUE 
-# > ) 
-# > @ 
-# > 
-# 53c67 
-# < <<fig=TRUE>>= 
+# >
+# > <<include=FALSE>>=
+# > library(knitr)
+# > opts_chunk$set(
+# > echo=TRUE
+# > )
+# > @
+# >
+# 53c67
+# < <<fig=TRUE>>=
 # ---
-# > <<>>= 
-# 63c77 
-# < <<fig=true>>= 
+# > <<>>=
+# 63c77
+# < <<fig=true>>=
 # ---
-# > <<>>= 
-# 69d82 
+# > <<>>=
+# 69d82
 # < @
 ```
 
 ###### 16.1.1 구문
 
-기본적으로 knitr는 R 함수 인수와 유사한 새로운 유형의 구문을 사용하여 청크 옵션을 분석합니다. 이것은 
+기본적으로 knitr는 R 함수 인수와 유사한 새로운 유형의 구문을 사용하여 청크 옵션을 분석합니다. 이것은
 
 기존의 Sweave 구문보다 훨씬 더 많은 권한을 제공합니다. 청크 옵션에 임의의 객체를 사용하고 R의 모든 기능을 활용할 수 있습니다.
 
-Sweave는 청크 옵션을 문자열로 처리하고 옵션을 쉼표로 분할하여 구문 분석하는 반면, knitr는 R 구문을 사용합니다. 즉 옵션이 문자값을 취하는 경우 R에서 하는 것처럼 따옴표로 묶어야 합니다(예: results = 'hide')(Sweave에서는 results = hide 로 씀). 청크 옵션 내에서 계산을 직접 수행하는 예제는 12.1.3절을 참조하십시오. 아래의 또 다른 예제는 새로운 구문이 얼마나 유연한지를 보여줍니다(그림 캡션을 동적으로 만들 수 있습니다).
+Sweave는 청크 옵션을 문자열로 처리하고 옵션을 쉼표로 분할하여 구문 분석하는 반면, knitr는 R 구문을 사용합니다. 즉 옵션이 문자값을 취하는 경우 R에서 하는 것처럼 따옴표로 묶어야 합니다(results = 'hide')(Sweave에서는 results = hide 로 씀). 청크 옵션 내에서 계산을 직접 수행하는 예제는 12.1.3절을 참조하십시오. 아래의 또 다른 예제는 새로운 구문이 얼마나 유연한지를 보여줍니다(그림 캡션을 동적으로 만들 수 있습니다).
 
 ```r
-<<cap, fig.cap=paste('The P-value is', t.test(x)$p.value)>>= 
-x <- rnorm(100) 
-boxplot(x) 
+<<cap, fig.cap=paste('The P-value is', t.test(x)$p.value)>>=
+x <- rnorm(100)
+boxplot(x)
 @
 ```
 
 구문상 또 다른 작은 차이점은 knitr의 경우 청크 헤더가 앞에 있지 않는 한 @ 기호를 텍스트 청크의 시작으로 인식하지 않는다는 것입니다. 예를 들어 knitr는 아래 예제에서 첫 번째 @ 를 유지하지만 Sweave는 이를 제거합니다.
 
 ```
-text @ 
-<<A>>= 
-1 + 1 
+text @
+<<A>>=
+1 + 1
 @
 ```
 
@@ -5884,7 +5920,7 @@ Sweave의 일부 옵션이 knitr에서 삭제되거나 변경되었으며 다음
 
 - concordance는 주로 RStudio를 지원하기 위해 변경되었습니다. 패키지 옵션 opts_knit$get('concordance') 가 TRUE 이면 출력 줄 번호가 입력 줄 번호에 매핑된 input-concordance.tex 라는 파일이 기록됩니다(이 구현은 Sweave보다 덜 정확함에 유의).
 - keep.source는 더 유연한 옵션인 tidy로 병합되었습니다.
-- print는 삭제되었습니다. R 표현식이 인쇄될지 여부는 R 사용 경험과 일치합니다(예: x <- 1 은 인쇄되지 않지만 1:10 은 인쇄됨. R 콘솔에서 명령을 입력하고 있다고 상상해 보십시오). 표현식의 출력을 정말로 보이지 않게 하려면 invisible() 함수를 사용할 수 있습니다.
+- print는 삭제되었습니다. R 표현식이 인쇄될지 여부는 R 사용 경험과 일치합니다(x <- 1 은 인쇄되지 않지만 1:10 은 인쇄됨. R 콘솔에서 명령을 입력하고 있다고 상상해 보십시오). 표현식의 출력을 정말로 보이지 않게 하려면 invisible() 함수를 사용할 수 있습니다.
 - term은 삭제되었습니다(term = TRUE 라고 생각하십시오).
 - prefix는 삭제되었습니다(prefix = TRUE 라고 생각하십시오).
 - prefix.string은 fig.path로 이름이 바뀌었으며 항상 그림
@@ -5907,7 +5943,7 @@ Sweave에서 알려진 일부 문제 및 자주 묻는 질문은 knitr에서 해
 때문입니다. knitr는 청크에 플롯이 있을 때만 그림을 LATEX에 작성합니다.
 
 - • lattice(및 ggplot2) 그래픽을 명시적으로 print()하지 않으면 Sweave에서는 작동하지 않지만, knitr에서는 R 콘솔에서와 마찬가지로 작동합니다(이러한 플롯 객체가 최상위 환경에 나타나면 인쇄할 필요가 없습니다).
-- • Sweave에서는 LATEX 스타일인 Sweave.sty 에 정의된 \setkeys{Gin}{width=.8\textwidth} 를 통해 출력되는 그림의 너비가 기본적으로 .8\textwidth 로 설정됩니다. 
+- • Sweave에서는 LATEX 스타일인 Sweave.sty 에 정의된 \setkeys{Gin}{width=.8\textwidth} 를 통해 출력되는 그림의 너비가 기본적으로 .8\textwidth 로 설정됩니다.
 
 이것은 Sweave에 의해 생성되었는지 여부와 관계없이 문서의 모든 그림에 영향을 미치며 그림에 대한 개별 너비를 설정하는 간단한 방법이 없습니다. 이 문제는 knitr의 out.width 옵션으로 해결되었습니다.
 
@@ -5938,39 +5974,54 @@ brew 패키지(Horner, 2011)는 가벼운 템플릿 프레임워크이며 구문
 ```r
 pi의 값은 <% pi %>이고, pi의 2배는 <% 2*pi %>입니다.
 ```
-입력 파일의 확장자가 *.brew인 경우 knitr는 brew 구문을 자동으로 사용합니다. brew는 실제로 여러 인라인 표현식에서 불완전한 코드 조각을 지원하므로 PHP와 정말 유사합니다. 다음은 brew에서 가져온 예제이지만 knitr는 이를 컴파일할 수 없습니다.
+
+입력 파일의 확장자가 \*.brew인 경우 knitr는 brew 구문을 자동으로 사용합니다. brew는 실제로 여러 인라인 표현식에서 불완전한 코드 조각을 지원하므로 PHP와 정말 유사합니다. 다음은 brew에서 가져온 예제이지만 knitr는 이를 컴파일할 수 없습니다.
 
 ```html
-<% for (i in c('1+1', '1+pi', '1+pi', 'sin(pi/2)')) { -%> 
-> <%=i%> 
-<% print(eval(parse(text=i))) %> 
-<% } -%>
+<% for (i in c('1+1', '1+pi', '1+pi', 'sin(pi/2)')) { -%> > <%=i%> <%
+print(eval(parse(text=i))) %> <% } -%>
 ```
 
 R2HTML 패키지(Lecoutre, 2014)에는 R 객체를 HTML로 내보내는 수많은 함수가 포함되어 있습니다. 주요 함수는 데이터 프레임, 테이블, lm 객체(lm()이 반환함) 등과 같은 다양한 R 객체에 적용될 수 있는 S3 제네릭 함수 HTML()입니다. 다음은 HTML 테이블로 변환된 iris 데이터의 일부입니다.
 
 ```r
-library(R2HTML) 
+library(R2HTML)
 HTML(head(iris[, -5], 1), "", caption = NULL)
 ```
 
 ```html
-<p align= center >
-<table cellspacing=0 border=1><tr><td>
-<table border=0 class=dataframe>
-<tbody> <tr class= firstline > 
-<th>&nbsp; </th> <th>Sepal.Length </th> <th>Sepal.Width </th> <th>Petal.Length </th> <th>Petal.Width</th>
-</tr> 
-<tr> <td class=firstcolumn>1 </td> <td class=cellinside>5.1 </td> <td class=cellinside>3.5 </td> <td class=cellinside>1.4 </td> <td class=cellinside>0.2 </td></tr> 
-</tbody> </table>
-</td></table>
+<p align="center"></p>
+<table cellspacing="0" border="1">
+  <tr>
+    <td>
+      <table border="0" class="dataframe">
+        <tbody>
+          <tr class="firstline">
+            <th>&nbsp;</th>
+            <th>Sepal.Length</th>
+            <th>Sepal.Width</th>
+            <th>Petal.Length</th>
+            <th>Petal.Width</th>
+          </tr>
+          <tr>
+            <td class="firstcolumn">1</td>
+            <td class="cellinside">5.1</td>
+            <td class="cellinside">3.5</td>
+            <td class="cellinside">1.4</td>
+            <td class="cellinside">0.2</td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</table>
 ```
 
 출력에 원시 HTML 코드를 작성하는 청크 옵션 `results = 'asis'` 와 함께 R HTML 문서를 위한 knitr 내부에서 R2HTML을 사용할 수 있습니다.
 
 R2HTML의 또 다른 주요 기여는 Sweave 확장 기능으로, Sweave를 기반으로 HTML 보고서를 작성할 수 있게 해줍니다.
 
-CRAN에는 재현 가능한 연구에 관한 작업 뷰(task view)가 있습니다: http://cran.r-project.org/web/views/ReproducibleResearch.html. 여기에서 이 주제에 관한 더 많은 패키지를 찾을 수 있습니다.
+CRAN에는 재현 가능한 연구에 관한 작업 뷰(task view)가 있습니다. http://cran.r-project.org/web/views/ReproducibleResearch.html. 여기에서 이 주제에 관한 더 많은 패키지를 찾을 수 있습니다.
 
 ###### 16.3 파이썬 패키지
 
@@ -5989,7 +6040,7 @@ Dexy는 코드를 통합하는 모든 종류의 기술 문서를 작성하기 �
 - 3. 모든 템플릿
 - 4. 모든 API (프로그래밍)
 
-Dexy와 knitr 사이에는 다중 언어 지원과 같은 유사점이 분명히 있습니다. Dexy의 중요한 개념 중 하나는 "필터(filter)"입니다. 필터는 입력 파일을 받아 출력 파일로 변환하는데, 이는 셸 스크립트의 파이프 `|` 와 비슷합니다. Dexy의 필터는 사실 knitr의 개념들의 조합입니다. 필터는 출력을 렌더링(예: 마크다운에서 HTML로)하거나, 프로그래밍 언어(knitr의 언어 엔진처럼)를 실행하거나, knitr의 청크 훅과 같은 추가 작업을 수행할 수 있습니다.
+Dexy와 knitr 사이에는 다중 언어 지원과 같은 유사점이 분명히 있습니다. Dexy의 중요한 개념 중 하나는 "필터(filter)"입니다. 필터는 입력 파일을 받아 출력 파일로 변환하는데, 이는 셸 스크립트의 파이프 `|` 와 비슷합니다. Dexy의 필터는 사실 knitr의 개념들의 조합입니다. 필터는 출력을 렌더링(마크다운에서 HTML로)하거나, 프로그래밍 언어(knitr의 언어 엔진처럼)를 실행하거나, knitr의 청크 훅과 같은 추가 작업을 수행할 수 있습니다.
 
 일반적으로 Dexy는 컴퓨터 코드와 템플릿을 분리하는데, 이는 장단점이 있습니다. 장점은 소스 스크립트를 재사용할 수 있다는 것이고, 단점은 보고서 환경과 소스 코드를 앞뒤로 왔다 갔다 해야 한다는 것입니다. 기본적으로 knitr는 보고서에 코드 청크를 직접 삽입하지만, 9장에서 소개한 대로 코드 청크를 외부화(externalize)할 수도 있습니다.
 
@@ -6005,14 +6056,14 @@ PythonTEX는 LATEX 내에서 파이썬에 빠르고 사용자 친화적인 접�
 \begin{pyconsole}[][frame=single]
 x = 123
 y = 345
-z = x + y 
-z 
+z = x + y
+z
 
 def f(expr):
     return(expr**4)
 
-f(x) 
-print('Python says hi from the console!') 
+f(x)
+print('Python says hi from the console!')
 \end{pyconsole}
 ```
 
@@ -6028,7 +6079,7 @@ IPython(http://ipython.org)은 파이썬을 위한 대화형 셸로, 코드, 텍
 
 보고서 생성과 관련된 가장 눈에 띄는 기능은 웹 기반 노트북입니다. 웹 브라우저에서 파이썬 명령으로 작업하고 결과(숫자 및 그래픽 결과 모두 포함)를 즉시 볼 수 있으며, 노트북에 더 많은 내용을 입력함에 따라 지속적으로 업데이트할 수 있습니다. 이것은 knitr에서 코드 청크를 작성하는 것과 매우 비슷합니다.
 
-IPython 노트북은 확장자가 *.ipynb인 JSON 파일로 저장할 수 있으며 다른 사람과 공유할 수 있습니다. 노트북에는 출력이 포함될 수도 있고 포함되지 않을 수도 있습니다. 출력이 없는 노트북은 knitr의 소스 문서(예: Rnw 및 Rmd 문서)와 유사합니다.
+IPython 노트북은 확장자가 \*.ipynb인 JSON 파일로 저장할 수 있으며 다른 사람과 공유할 수 있습니다. 노트북에는 출력이 포함될 수도 있고 포함되지 않을 수도 있습니다. 출력이 없는 노트북은 knitr의 소스 문서(Rnw 및 Rmd 문서)와 유사합니다.
 
 IPython에서 영감을 받아 knitr도 유사한 웹 노트북(하지만 기능은 더 적음)을 갖추게 되었으며, 이는 3.2.2절에서 언급했습니다.
 
@@ -6045,7 +6096,7 @@ R 및 파이썬 패키지 외에도 다른 프로그램의 도구들이 있습�
 Org-mode는 Emacs 텍스트 편집기에 구현된 일반 텍스트 마크업 언어입니다(Schulte 등, 2012). 문학적 프로그래밍과 재현 가능한 연구(동적 문서의 의미에서)를 모두 지원합니다. WEB 및 noweb과 같은 문학적 프로그래밍 초기 구현의 구문을 다소 따르는데, 즉 코드 청크와 텍스트 청크(텍스트 청크는 종종 "prose(산문)"라고 불림)의 개념이 있습니다. Org-mode의 코드 청크는 다음과 같습니다.
 
 ```
-#+name: c-chunk 
+#+name: c-chunk
 #+begin_src C
 
 int main(){
@@ -6054,29 +6105,29 @@ return 0; }
 #+end_src
 ```
 
-비교를 위해 knitr에서 동일한 청크는 다음과 같이 작성됩니다. 
+비교를 위해 knitr에서 동일한 청크는 다음과 같이 작성됩니다.
 
 ```c
-<<c-chunk, engine='c'>>= 
+<<c-chunk, engine='c'>>=
 int main(){
 return 0;
-} 
+}
 @
 ```
 
 메타데이터는 청크 헤더에 저장됩니다. Org-mode는 LATEX 또는 HTML을 출력 형식으로 사용하여 모든 입력 언어를 지원합니다.
 
-Schulte 등(2012)은 기존 도구의 문학적 프로그래밍 기능(예: Sweave에는 없음)에 대해 언급했지만, 보고서 작성자에게 흥미롭지 않은 것처럼 보여 이 책에서는 강조하지 않았습니다. 사실 knitr에도 코드 청크를 재구성하는 기능이 있습니다(9장 참조). 아래는 나중에 청크 B를 정의하지만 이를 이전 청크 A에 포함시키는 간단한 예입니다.
+Schulte 등(2012)은 기존 도구의 문학적 프로그래밍 기능(Sweave에는 없음)에 대해 언급했지만, 보고서 작성자에게 흥미롭지 않은 것처럼 보여 이 책에서는 강조하지 않았습니다. 사실 knitr에도 코드 청크를 재구성하는 기능이 있습니다(9장 참조). 아래는 나중에 청크 B를 정의하지만 이를 이전 청크 A에 포함시키는 간단한 예입니다.
 
 ```r
-<<A>>= 
+<<A>>=
 df <- data.frame(x = 1:10, y = rnorm(10))
-<<B>> 
-coef(fit) 
+<<B>>
+coef(fit)
 @
 
-<<B>>= 
-fit <- lm(y ~ x, data = df) 
+<<B>>=
+fit <- lm(y ~ x, data = df)
 @
 ```
 
@@ -6104,7 +6155,7 @@ SASweave(http://homepage.cs.uiowa.edu/~rlenth/SASweave)는 SAS 및 R을 사용�
 
 ###### A.1 문서(Documentation)
 
-knitr에는 세 가지 유형의 문서가 있습니다: R 문서(Rd), PDF 매뉴얼, 그리고 웹사이트.
+knitr에는 세 가지 유형의 문서가 있습니다. R 문서(Rd), PDF 매뉴얼, 그리고 웹사이트.
 
 R 문서는 roxygen2(Wickham 등, 2015)를 기반으로 하며, 태그가 있는 roxygen 주석(`# '`)으로 Rd를 작성할 수 있게 해주고, 이 주석은 실제 Rd로 변환됩니다. 다음은 roxygen 주석의 예입니다.
 
@@ -6114,21 +6165,21 @@ R 문서는 roxygen2(Wickham 등, 2015)를 기반으로 하며, 태그가 있는
 
 이것은 Rd로 다음과 같이 번역됩니다. `\author{Yihui Xie}`
 
-roxygen에는 @usage, @param, @return, @examples와 같은 일련의 태그가 있으며, 이는 Rd에서 각각 \usage{}, \arguments{\item{}}, \value{}, \examples{}에 해당합니다. 공식적인 Rd를 작성하는 것보다 roxygen 주석을 작성할 때의 이점은 문서와 소스 코드를 같은 파일에 유지할 수 있다는 것입니다. 이에 비해 R 패키지를 작성하는 공식적인 접근 방식은 R/ 디렉터리 아래에 R 소스를 작성하고 man/ 아래에 *.Rd 파일로 설명서 페이지를 작성하는 것입니다. 이 방식은 두 파일 사이를 왔다 갔다 해야 하고, R 소스는 업데이트했지만 문서를 업데이트하는 것을 잊어버릴 가능성이 있어 불편합니다. roxygen 주석은 소스의 R 함수 바로 위에 나타나므로 소스와 문서를 모두 유지 관리하기가 훨씬 쉽습니다.
+roxygen에는 @usage, @param, @return, @examples와 같은 일련의 태그가 있으며, 이는 Rd에서 각각 \usage{}, \arguments{\item{}}, \value{}, \examples{}에 해당합니다. 공식적인 Rd를 작성하는 것보다 roxygen 주석을 작성할 때의 이점은 문서와 소스 코드를 같은 파일에 유지할 수 있다는 것입니다. 이에 비해 R 패키지를 작성하는 공식적인 접근 방식은 R/ 디렉터리 아래에 R 소스를 작성하고 man/ 아래에 \*.Rd 파일로 설명서 페이지를 작성하는 것입니다. 이 방식은 두 파일 사이를 왔다 갔다 해야 하고, R 소스는 업데이트했지만 문서를 업데이트하는 것을 잊어버릴 가능성이 있어 불편합니다. roxygen 주석은 소스의 R 함수 바로 위에 나타나므로 소스와 문서를 모두 유지 관리하기가 훨씬 쉽습니다.
 
 다음은 roxygen 주석으로 문서화된 함수의 완전한 예입니다.
 
 ```r
-#' 문자열 반복 
-#' 
-#' 문자열을 n번 반복하고 하나의 문자열로 만듭니다. 
-#' @param x 문자열 
-#' @param n 정수 
-#' @return 문자열. 
-#' @examples 
-#' f('hi', n = 5) 
+#' 문자열 반복
+#'
+#' 문자열을 n번 반복하고 하나의 문자열로 만듭니다.
+#' @param x 문자열
+#' @param n 정수
+#' @return 문자열.
+#' @examples
+#' f('hi', n = 5)
 f <- function(x, n = 10) {
-  paste(rep(x, n), collapse = "") 
+  paste(rep(x, n), collapse = "")
 }
 ```
 
@@ -6145,16 +6196,16 @@ PDF 매뉴얼의 소스 문서는 examples 디렉터리(소스 패키지의 inst
 클로저는 본질적으로 함수이며 비지역(non-local) 변수에도 접근할 수 있습니다. 다음은 간단한 예입니다.
 
 ```r
-f <- function() { 
-  x <- 1 
+f <- function() {
+  x <- 1
   function(y) x + y
-} 
+}
 g <- f()
 
-g(5) # x에 5 더하기 
-## [1] 6 
+g(5) # x에 5 더하기
+## [1] 6
 
-ls(environment(g)) # g는 x를 볼 수 있습니다. 
+ls(environment(g)) # g는 x를 볼 수 있습니다.
 ## [1] "x"
 ```
 
@@ -6164,29 +6215,29 @@ ls(environment(g)) # g는 x를 볼 수 있습니다.
 
 ```r
 new_list <- function(default = list()) {
-  list(get = function() default, 
-       set = function(...) { 
-         x <- list(...) 
+  list(get = function() default,
+       set = function(...) {
+         x <- list(...)
          if (length(x)) default[names(x)] <<- x
-       }) 
+       })
 }
 ```
 
 함수 new_list()는 함수 리스트(setter와 getter)를 반환합니다. 객체 default는 이 두 함수에 바인딩(bound)됩니다. 이를 청크 옵션의 기본 리스트라고 생각할 수 있습니다. 다음으로 청크 옵션을 가져오고 설정하는 방법을 보여줍니다.
 
 ```r
-opts <- new_list(list(eval = TRUE)) 
+opts <- new_list(list(eval = TRUE))
 str(opts$get())
 
-## List of 1 
+## List of 1
 ## $ eval: logi TRUE
 
-opts$set(eval = FALSE) # eval을 FALSE로 변경 
-opts$set(results = "markup") # 청크 옵션 추가 
+opts$set(eval = FALSE) # eval을 FALSE로 변경
+opts$set(results = "markup") # 청크 옵션 추가
 str(opts$get())
 
-## List of 2 
-## $ eval : logi FALSE 
+## List of 2
+## $ eval : logi FALSE
 ## $ results: chr "markup"
 
 opts$set(results = "hide") # results 옵션 변경
@@ -6210,67 +6261,68 @@ $set() 함수에서는 인수를 객체 default에 할당하기 위해 `<<-` 를
 
 ###### A.3.1 구문 분석기(Parser)
 
-문서 구문 분석기(5.1절)는 다음과 같이 작동합니다: 구문 패턴 객체의 하위 요소인 chunk.begin과 chunk.end는 문서를 조각(코드 청크와 텍스트 청크)으로 분할하는 데 사용되며, 코드 청크의 경우 청크 옵션(즉, 첫 번째 줄에서 추출된 텍스트)은 R 코드로 분석(parsed)됩니다. 이것이 청크 옵션이 R 구문을 따라야 하는 이유입니다. 다음은 knitr가 텍스트 조각에서 어떻게 청크 옵션을 가져오는지 설명하는 예입니다.
+문서 구문 분석기(5.1절)는 다음과 같이 작동합니다. 구문 패턴 객체의 하위 요소인 chunk.begin과 chunk.end는 문서를 조각(코드 청크와 텍스트 청크)으로 분할하는 데 사용되며, 코드 청크의 경우 청크 옵션(즉, 첫 번째 줄에서 추출된 텍스트)은 R 코드로 분석(parsed)됩니다. 이것이 청크 옵션이 R 구문을 따라야 하는 이유입니다. 다음은 knitr가 텍스트 조각에서 어떻게 청크 옵션을 가져오는지 설명하는 예입니다.
 
 ```r
 ## 이것이 청크 옵션 텍스트라고 가정합니다.
-txt <- "label, eval=TRUE, echo=1:3, foo=if(TRUE) 2 else 5" 
-opc <- eval(parse(text = paste("alist(", txt, ")"))) 
+txt <- "label, eval=TRUE, echo=1:3, foo=if(TRUE) 2 else 5"
+opc <- eval(parse(text = paste("alist(", txt, ")")))
 names(opc) # 청크 레이블에는 이름이 지정되지 않습니다.
 
-## [1] "" "eval" "echo" "foo" 
+## [1] "" "eval" "echo" "foo"
 
 str(opc) # 일부는 평가되지 않은 표현식입니다.
 
-## List of 4 
-## $ : symbol label 
-## $ eval: logi TRUE 
-## $ echo: language 1:3 
+## List of 4
+## $ : symbol label
+## $ eval: logi TRUE
+## $ echo: language 1:3
 ## $ foo : language if (TRUE) 2 else 5
 ```
 
 먼저 텍스트 앞뒤에 함수 alist()를 추가했습니다. 이 함수는 인수들을 마치 함수 인수를 설명하는 것처럼 취급하므로 현재 어떠한 "인수"도 평가되지 않습니다. 그러나 구문은 적어도 유효해야 합니다. 한 가지 예외는 청크 레이블입니다. 이는 문자열이어야 하므로 필요한 경우 자동으로 따옴표로 묶입니다. 내부 함수 parse_params()는 청크 옵션을 분석하는 데 사용됩니다.
 
 ```r
-p <- knitr:::parse_params 
+p <- knitr:::parse_params
 str(p("chunk-label, eval=TRUE, foo=5"))
 
-## List of 3 
-## $ label: chr "chunk-label" 
-## $ eval : logi TRUE 
+## List of 3
+## $ label: chr "chunk-label"
+## $ eval : logi TRUE
 ## $ foo : num 5
 
-# 2a는 R에서 유효한 기호가 아니지만 knitr가 
+# 2a는 R에서 유효한 기호가 아니지만 knitr가
 # 자동으로 인용(quote)하므로 구문 분석은 정상입니다.
-parse(text = "alist(2a)") 
-## Error: <text>:1:8: unexpected symbol 
-## 1: alist(2a 
-## ^ 
+parse(text = "alist(2a)")
+## Error: <text>:1:8: unexpected symbol
+## 1: alist(2a
+## ^
 
 str(p("2a, eval=FALSE"))
 
-## List of 2 
-## $ label: chr "2a" 
+## List of 2
+## $ label: chr "2a"
 ## $ eval : logi FALSE
 
 str(p("'2a', eval=FALSE")) # 또는 수동으로 인용(quote)할 수 있습니다.
 
-## List of 2 
-## $ label: chr "2a" 
+## List of 2
+## $ label: chr "2a"
 ## $ eval : logi FALSE
 ```
 
 청크 옵션은 청크가 실행되기 전까지는 평가되지 않으므로, 청크 옵션은 구문 분석 시 문서에 있는 알 수 없는 값의 객체를 사용할 수 있습니다. 예를 들어 위의 옵션 echo와 foo는 평가되지 않은 표현식이며, 나중에 명시적으로 평가합니다.
 
 ```r
-eval(opc$echo) 
-## [1] 1 2 3 
+eval(opc$echo)
+## [1] 1 2 3
 
-eval(opc$foo) 
+eval(opc$foo)
 ## [1] 2
 ```
 
 모든 코드 청크는 내부 객체 knit_code에 명명된 리스트로 저장됩니다. 이름은 청크 레이블이고 내용은 코드입니다. 이 객체 또한 클로저 리스트로 생성되어 get()과 set() 메서드가 있지만, 예상치 못한 결과가 발생할 수 있으므로 이 객체를 수정하는 것은 권장되지 않습니다. 필요한 경우 `knitr:::knit_code$get('chunk-label')` 을 통해 코드 청크에 접근할 수 있습니다.
+
 ###### A.3.2 청크 훅(Chunk Hooks)
 
 knit_hooks에는 수많은 기본 훅이 있으며, 이는 출력 훅(5.3절)입니다.
@@ -6278,26 +6330,26 @@ knit_hooks에는 수많은 기본 훅이 있으며, 이는 출력 훅(5.3절)입
 ```r
 names(knit_hooks$get(default = TRUE))
 
-## [1] "source" "output" "warning" "message" 
-## [5] "error" "plot" "inline" "chunk" 
+## [1] "source" "output" "warning" "message"
+## [5] "error" "plot" "inline" "chunk"
 ## [9] "text" "document"
 ```
 
 이 객체의 다른 모든 훅은 청크 훅(10장)으로 간주됩니다. 코드 청크가 실행되기 전과 후에 모든 추가 훅이 호출됩니다. 다음은 의사 코드(pseudo code)입니다.
 
 ```
-hook(before = TRUE, ...) 
-evaluate(code) 
+hook(before = TRUE, ...)
+evaluate(code)
 hook(before = FALSE, ...)
 ```
 
 명심해야 할 한 가지 문제는 실행할 훅의 순서입니다. knit_hooks에 A와 B라는 두 개의 훅이 정의되어 있다면 어떤 순서로 호출될까요? 이 순서는 청크 옵션에서 가져옵니다. 즉, 이 두 훅에 해당하는 두 개의 청크 옵션 A와 B가 있어야 하며 청크 옵션의 순서가 훅을 실행할 순서를 결정합니다. 예를 들어 A가 B 앞에 있으면 훅 A가 B보다 먼저 호출됩니다. 그러나 코드 청크가 평가된 후에는 이 순서가 역전되는데, 그 이유는 훅 쌍(pair)에서 반환된 결과가 그룹화되도록 하기 위함입니다. 예를 들어 훅 A가 청크 앞에는 \begin{Aenvir}를 반환하고 청크 뒤에는 \end{Aenvir}를 반환한다고 가정해 보겠습니다. 마찬가지로 B는 Benvir를 반환합니다. 그러면 출력에서 우리가 원하는 것은 다음과 같습니다.
 
 ```latex
-\begin{Aenvir} 
-\begin{Benvir} 
-% 청크의 결과 
-\end{Benvir} 
+\begin{Aenvir}
+\begin{Benvir}
+% 청크의 결과
+\end{Benvir}
 \end{Aenvir}
 ```
 
@@ -6313,29 +6365,29 @@ hook(before = FALSE, ...)
 ```r
 apply_aliases <- function(x, list) {
   ## 이름(names)은 x의 별칭입니다.
-  list[x] <- list[names(x)] 
+  list[x] <- list[names(x)]
   list
-} 
+}
 
-al <- c(w = "fig.width", h = "fig.height", a = "fig.align") 
-op <- list(w = 7, h = 7, echo = TRUE, a = "center") 
+al <- c(w = "fig.width", h = "fig.height", a = "fig.align")
+op <- list(w = 7, h = 7, echo = TRUE, a = "center")
 str(op) # 사용자의 옵션
 
-## List of 4 
+## List of 4
 ## $ w : num 7
-## $ h : num 7 
-## $ echo: logi TRUE 
+## $ h : num 7
+## $ echo: logi TRUE
 ## $ a : chr "center"
 
 str(apply_aliases(al, op)) # 수정된 옵션
 
-## List of 7 
-## $ w : num 7 
-## $ h : num 7 
-## $ echo : logi TRUE 
-## $ a : chr "center" 
-## $ fig.width : num 7 
-## $ fig.height: num 7 
+## List of 7
+## $ w : num 7
+## $ h : num 7
+## $ echo : logi TRUE
+## $ a : chr "center"
+## $ fig.width : num 7
+## $ fig.height: num 7
 ## $ fig.align : chr "center"
 ```
 
@@ -6354,8 +6406,8 @@ knitr는 Sweave와 다른 일부 청크 옵션을 사용하기 때문에 부적�
 구현은 주로 정규 표현식을 기반으로 하며 다음은 간단한 예입니다.
 
 ```r
-op <- "<<eval=TRUE, results=tex>>=" 
-gsub("(results)\\s*=\\s*tex", "\\1='markup'", op) 
+op <- "<<eval=TRUE, results=tex>>="
+gsub("(results)\\s*=\\s*tex", "\\1='markup'", op)
 ## [1] "<<eval=TRUE, results='markup'>>="
 ```
 
@@ -6367,7 +6419,7 @@ Sweave2knitr()는 부적절한 청크 옵션뿐만 아니라 \SweaveOpts{} 및 \
 
 - 5줄짜리 하나의 청크가 출력에서 10줄 또는 3줄의 LATEX 코드를 생성할 수 있습니다.
 
-Sweave는 knitr보다 일치를 더 잘 구현합니다. 매핑은 Sweave에서 더 정밀합니다. knitr에서는 다음과 같은 방식으로 달성되는 근사치일 뿐입니다: 소스 문서를 구문 분석할 때 코드 청크와 텍스트 청크의 줄 수가 기록되고, 이러한 청크가 평가된 후 해당 출력 청크의 줄 수가 다시 계산됩니다. 하나의 소스 청크가 5줄이라고 가정해 보겠습니다. 만약
+Sweave는 knitr보다 일치를 더 잘 구현합니다. 매핑은 Sweave에서 더 정밀합니다. knitr에서는 다음과 같은 방식으로 달성되는 근사치일 뿐입니다. 소스 문서를 구문 분석할 때 코드 청크와 텍스트 청크의 줄 수가 기록되고, 이러한 청크가 평가된 후 해당 출력 청크의 줄 수가 다시 계산됩니다. 하나의 소스 청크가 5줄이라고 가정해 보겠습니다. 만약
 
 - • 출력도 5줄인 경우 소스의 i번째 줄은 출력의 i번째 줄에 매핑됩니다.
 - • 출력이 3줄인 경우 소스의 처음 3줄은 출력의 3줄에 매핑됩니다.
@@ -6390,19 +6442,19 @@ opts_knit$set(concordance = TRUE)
 사용자는 왜 knitr가 문서 형식에 따라 다른 입력 구문을 사용하는지 궁금할 수 있습니다(5.1절). 예를 들어 Rnw는 << >>= 를 사용하고 Rmd는 ```{r} 을 사용합니다. 사실 구문은 문서 형식에 묶여 있지 않습니다. Rmd 문서에 Rnw 구문을 사용할 수도 있습니다.
 
 ```
-# This is a markdown document 
-Here is a **code chunk**: 
-<<test>>= 
-1 + 1 
-rnorm(5) 
-@ 
+# This is a markdown document
+Here is a **code chunk**:
+<<test>>=
+1 + 1
+rnorm(5)
+@
 And an inline value \Sexpr{pi}.
 ```
 
 위의 예제 문서(이름이 test.Rmd 라고 가정)의 경우 다음과 같이 컴파일할 수 있습니다.
 
 ```r
-library(knitr) 
+library(knitr)
 pat_rnw() # 입력은 Rnw 구문입니다.
 render_markdown() # 출력은 마크다운입니다.
 knit("test.Rmd")
@@ -6413,9 +6465,9 @@ knit("test.Rmd")
 하지만 왜 모든 문서에 Rnw 구문을 사용하지 않을까요? 작성 형식에 따라 더 자연스러운 구문을 원했기 때문에 그렇게 결정했습니다. 그리고 << >>= 는 어떤 문서 형식에서도 유효한 마크업이 아닙니다. 예를 들어 LATEX 명령도 아니고 HTML 태그도 아닙니다. 사실 Sweave에는 LATEX와 유사한 또 다른 구문 세트가 있습니다. 예:
 
 ```latex
-\begin{Scode}{fig = TRUE, echo = FALSE} 
-library("graphics") 
-boxplot(Ozone ~ Month, data = airquality) 
+\begin{Scode}{fig = TRUE, echo = FALSE}
+library("graphics")
+boxplot(Ozone ~ Month, data = airquality)
 \end{Scode}
 ```
 
@@ -6454,7 +6506,7 @@ Falcon, S. (2013). weaver: Tools and extensions for processing Sweave documents.
 
 Fomel, S. and Claerbout, J. (2009). Guest editors’ introduction: Reproducible research. Computing in Science & Engineering, 11(1):5–7.
 
-Francois, R. (2013). highlight: Syntax highlighter. R package version 0.4.3. 
+Francois, R. (2013). highlight: Syntax highlighter. R package version 0.4.3.
 
 Friedl, J. (2006). Mastering Regular Expressions. O’Reilly Media, Incorporated.
 
@@ -6495,9 +6547,9 @@ Lenth, R. V. and Højsgaard, S. (2007). Sasweave: Literate programming using sas
 
 Murdoch, D. (2012). tables: Formula-driven table generation. R package version 0.7.
 
-Murphy, D. (2012). Changes and additions to ggplot2 0.9.0. URL: https://github.com/djmurphy420/ggplot2-transition-guide. 
+Murphy, D. (2012). Changes and additions to ggplot2 0.9.0. URL: https://github.com/djmurphy420/ggplot2-transition-guide.
 
-Murrell, P. (2011). R Graphics, Second Edition. Chapman & Hall/CRC. 
+Murrell, P. (2011). R Graphics, Second Edition. Chapman & Hall/CRC.
 
 Murrell, P. and Ripley, B. (2006). Non-standard fonts in PostScript and PDF graphics. R News, 6(2):41–47.
 

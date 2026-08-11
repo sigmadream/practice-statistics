@@ -2,7 +2,7 @@
 
 예측 모델은 입력 데이터가 주어지면 거의 항상 예측을 생성할 수 있습니다. 그러나 많은 상황에서 그러한 예측을 생성하는 것은 부적절합니다(inappropriate). 새로운 데이터 포인트가 모델을 생성하는 데 사용된 데이터 범위를 크게 벗어나는(well outside) 경우, 예측을 하는 것은 부적절한 *외삽(extrapolation)*일 수 있습니다. 부적절한 예측의 더 정성적인(qualitative) 예는 모델이 완전히 다른 맥락에서 사용되는 경우입니다. [14장](ch14.xhtml#iterative-search)에서 사용된 세포 분할 데이터는 인간 유방암 세포를 이미지 내에서 정확하게 분리(isolated)할 수 있는지 여부를 플래그(flags)로 표시합니다. 이 데이터로 구축된 모델을 동일한 목적으로 위 세포(stomach cells)에 부적절하게 적용할 수 있습니다. 예측을 생성할 수는 있지만, 다른 세포 유형에 적용할 수 있을 가능성은 낮습니다(unlikely to be applicable).
 
-이 장에서는 잠재적인 예측 품질을 정량화(quantifying)하기 위한 두 가지 방법에 대해 논의합니다:
+이 장에서는 잠재적인 예측 품질을 정량화(quantifying)하기 위한 두 가지 방법에 대해 논의합니다.
 
 모호한 영역 (Equivocal zones)
 이 방법은 예측값을 사용하여 결과가 의심스러울(suspect) 수 있음을 사용자에게 알립니다(alert).
@@ -18,13 +18,13 @@
 
 어떤 경우에는 예측과 관련된(associated with) 불확실성의 양이 너무 높아서 신뢰할 수 없습니다.
 
-두 개의 클래스와 두 개의 예측 변수(*x* 및 *y*)로 분류 데이터를 시뮬레이션할 수 있는 함수를 사용해 보겠습니다. 참(true) 모델은 다음 방정식이 있는 로지스틱 회귀 모델입니다:
+두 개의 클래스와 두 개의 예측 변수(_x_ 및 _y_)로 분류 데이터를 시뮬레이션할 수 있는 함수를 사용해 보겠습니다. 참(true) 모델은 다음 방정식이 있는 로지스틱 회귀 모델입니다.
 
-``` math
+```math
 {logit}(p) = - 1 - 2x - \frac{x^{2}}{5} + 2y^{2}
 ```
 
-두 예측 변수는 0.70의 상관관계를 갖는 이변량 정규 분포(bivariate normal distribution)를 따릅니다. 200개 샘플의 훈련 세트와 50개 샘플의 테스트 세트를 생성해 보겠습니다:
+두 예측 변수는 0.70의 상관관계를 갖는 이변량 정규 분포(bivariate normal distribution)를 따릅니다. 200개 샘플의 훈련 세트와 50개 샘플의 테스트 세트를 생성해 보겠습니다.
 
 ```
 library(tidymodels)
@@ -87,7 +87,7 @@ print(two_class_mod, digits = 3)
 
 불확실한 결과를 제거했을 때 성능이 얼마나 향상되는지에 기초하여 컷오프 주변 대역(band)의 너비를 결정할 수 있습니다. 그러나 보고 가능한(reportable) 비율(사용 가능한 결과의 예상 비율)도 추정해야 합니다. 예를 들어, 실제(real-world) 상황에서 완벽한 성능을 내지만 모델에 전달된 샘플의 2%에 대해서만 예측을 발표(release)하는 것은 유용하지 않을 것입니다.
 
-테스트 세트를 사용하여 성능 향상과 충분히 보고 가능한(reportable) 결과 확보 사이의 균형을 결정해 보겠습니다. 다음을 사용하여 예측이 생성됩니다:
+테스트 세트를 사용하여 성능 향상과 충분히 보고 가능한(reportable) 결과 확보 사이의 균형을 결정해 보겠습니다. 다음을 사용하여 예측이 생성됩니다.
 
 ```
 test_pred <- augment(two_class_mod, testing_set)
@@ -108,7 +108,7 @@ test_pred %>% head()
 <h6 id="figure-19-1.-simulated-two-class-data-set-with-a-logistic-regression-fit-and-decision-boundary.">그림 19-1. 로지스틱 회귀 적합(fit) 및 결정 경계가 있는 시뮬레이션된 2-클래스 데이터 세트.</h6>
 </figure>
 
-tidymodels에서 probably 패키지에는 모호한 영역에 대한 함수가 포함되어 있습니다. 두 개의 클래스가 있는 경우 `make_two_class_pred()` 함수는 모호한 영역이 있는 예측 클래스를 갖는 팩터 유사(factor-like) 열을 만듭니다:
+tidymodels에서 probably 패키지에는 모호한 영역에 대한 함수가 포함되어 있습니다. 두 개의 클래스가 있는 경우 `make_two_class_pred()` 함수는 모호한 영역이 있는 예측 클래스를 갖는 팩터 유사(factor-like) 열을 만듭니다.
 
 ```
 library(probably)
@@ -132,7 +132,7 @@ test_pred %>% count(.pred_with_eqz)
 
 ###### 참고 (Note)
 
-중요: 이 예에서 `[EQ]`는 팩터 수준(factor level)이 아니라 해당 열의 어트리뷰트(attribute)입니다.
+중요. 이 예에서 `[EQ]`는 팩터 수준(factor level)이 아니라 해당 열의 어트리뷰트(attribute)입니다.
 
 팩터 수준이 원래 데이터와 동일하므로 오차 행렬(confusion matrices) 및 기타 통계를 오류 없이 계산할 수 있습니다. yardstick 패키지의 표준 함수를 사용할 때 모호한 결과는 `NA`로 변환되며 확정적인(hard) 클래스 예측을 사용하는 계산에는 사용되지 않습니다. 다음 오차 행렬들의 차이점을 확인하십시오(notice):
 
@@ -154,7 +154,7 @@ test_pred %>% conf_mat(class, .pred_with_eqz)
 
 데이터에서 이러한 행을 필터링하기 위한 `is_equivocal()` 함수도 제공(available)됩니다.
 
-모호한 영역이 정확도를 높이는 데 도움이 됩니까? [그림 19-2](#equivocal-zone-results)와 같이 다양한 버퍼 크기를 살펴보겠습니다:
+모호한 영역이 정확도를 높이는 데 도움이 됩니까? [그림 19-2](#equivocal-zone-results)와 같이 다양한 버퍼 크기를 살펴보겠습니다.
 
 ```
 # 버퍼를 변경한 다음 성능을 계산하는 함수입니다.
@@ -194,7 +194,7 @@ test_pred <-
   )
 ```
 
-모델과 데이터가 잘 작동(well behaved)하는 예제의 경우, [그림 19-3](#std-errors)은 공간(space) 전체에 걸친 예측 표준 오차를 보여줍니다:
+모델과 데이터가 잘 작동(well behaved)하는 예제의 경우, [그림 19-3](#std-errors)은 공간(space) 전체에 걸친 예측 표준 오차를 보여줍니다.
 
 <figure>
 <img src="D:\sd\Practices\any2md\output\[2022] Tidy Modeling with R/assets/tmwr_1903.png" alt="tmwr 1903" />
@@ -207,7 +207,7 @@ test_pred <-
 
 모호한 영역은 모델 출력을 기반으로 예측의 신뢰성을 측정(measure)하려고 시도합니다. 예측의 표준 오차와 같은 모델 통계(statistics)가 외삽의 영향을 측정할 수 없으므로, 예측을 신뢰할지 여부를 평가하고(assess) "특정 데이터 포인트를 예측하는 데 우리 모델이 적용 가능한가(applicable)?"라는 질문에 대답하기 위해 다른 방법이 필요할 수 있습니다. [Kuhn and Johnson (2020)](https://oreil.ly/rsZqK)에서 광범위하게 사용되고 [2장](ch02.xhtml#tidyverse)에서 처음 살펴본 시카고 기차 데이터를 살펴보겠습니다(Let's take). 목표는 매일 Clark and Lake 기차역(train station)에 들어오는 고객 수를 예측하는 것입니다.
 
-modeldata 패키지(예제 데이터 세트가 있는 tidymodels 패키지)의 데이터 세트에는 2001년 1월 22일부터 2016년 8월 28일 사이의 일일 값이 있습니다. 데이터의 마지막 2주를 사용하여 작은 테스트 세트를 만들어 보겠습니다:
+modeldata 패키지(예제 데이터 세트가 있는 tidymodels 패키지)의 데이터 세트에는 2001년 1월 22일부터 2016년 8월 28일 사이의 일일 값이 있습니다. 데이터의 마지막 2주를 사용하여 작은 테스트 세트를 만들어 보겠습니다.
 
 ```
 ## `Chicago` 데이터 세트와 `stations` 모두 로드
@@ -223,7 +223,7 @@ Chicago_test  <- Chicago %>% slice((n - 13):n)
 
 주요(main) 예측 변수는 날짜뿐만 아니라 Clark and Lake를 포함한 여러 기차역에서 지연된(lagged) 승객(ridership) 데이터입니다. 승객 예측 변수는 서로 높은 상관관계가 있습니다(highly correlated). 다음 레시피에서 날짜 열은 몇 개의 새로운 피처로 확장(expanded)되고, 승객 예측 변수는 부분 최소 제곱(PLS) 성분을 사용하여 표현됩니다. [16장](ch16.xhtml#dimensionality)에서 논의한 바와 같이 PLS(Geladi and Kowalski 1986)는 새로운 피처가 서로 연관되지 않도록(decorrelated) 처리되었지만(but are) 결과 데이터를 예측하는 역할은 하는, 주성분 분석의 지도 버전입니다.
 
-전처리된 데이터를 사용하여 표준 선형 모델을 피팅합니다:
+전처리된 데이터를 사용하여 표준 선형 모델을 피팅합니다.
 
 ```
 base_recipe <-
@@ -251,7 +251,7 @@ set.seed(1902)
 lm_fit <- fit(lm_wflow, data = Chicago_train)
 ```
 
-데이터가 테스트 세트에 얼마나 잘 맞습니까(fit)? 테스트 세트에 대해 `predict()`를 수행하여 예측과 예측 구간(prediction intervals)을 모두 찾을 수 있습니다:
+데이터가 테스트 세트에 얼마나 잘 맞습니까(fit)? 테스트 세트에 대해 `predict()`를 수행하여 예측과 예측 구간(prediction intervals)을 모두 찾을 수 있습니다.
 
 ```
 res_test <-
@@ -286,7 +286,7 @@ res_test %>% rmse(ridership, .pred)
 <h6 id="figure-19-4.-two-weeks-of-2016-predictions-for-the-chicago-data-along-with-95-prediction-intervals.">그림 19-4. 95% 예측 구간이 포함된 시카고 데이터의 2016년 2주 예측.</h6>
 </figure>
 
-승객 수의 규모(scale)를 고려할 때, 이렇게 단순한 모델치고는 결과가 특히 좋아 보입니다. 이 모델이 배포(deployed)되었다면, 몇 년 후인 2020년 6월에는 얼마나 잘 예측(done)했을까요? 예측 모델이 입력 데이터가 주어지면 거의 항상 그러하듯이(as a predictive model almost always will), 모델은 예측을 성공적으로 수행합니다:
+승객 수의 규모(scale)를 고려할 때, 이렇게 단순한 모델치고는 결과가 특히 좋아 보입니다. 이 모델이 배포(deployed)되었다면, 몇 년 후인 2020년 6월에는 얼마나 잘 예측(done)했을까요? 예측 모델이 입력 데이터가 주어지면 거의 항상 그러하듯이(as a predictive model almost always will), 모델은 예측을 성공적으로 수행합니다.
 
 ```
 res_2020 <-
@@ -309,7 +309,7 @@ res_2020 %>% select(date, contains(".pred"))
 #> # … with 8 more rows
 ```
 
-비록 이 데이터가 원래 훈련 세트의 기간(time period)을 훨씬(well beyond) 지났지만, 예측 구간의 너비는 대략(about) 같습니다. 하지만 2020년 전 세계적(global) 대유행(pandemic)을 고려할 때, 이 데이터에 대한 모델의 성능은 형편(abysmal)없습니다:
+비록 이 데이터가 원래 훈련 세트의 기간(time period)을 훨씬(well beyond) 지났지만, 예측 구간의 너비는 대략(about) 같습니다. 하지만 2020년 전 세계적(global) 대유행(pandemic)을 고려할 때, 이 데이터에 대한 모델의 성능은 형편(abysmal)없습니다.
 
 ```
 res_2020 %>% select(date, ridership, starts_with(".pred"))
@@ -343,7 +343,7 @@ res_2020 %>% rmse(ridership, .pred)
 <h6 id="figure-19-5.-two-weeks-of-2020-predictions-for-the-chicago-data-along-with-95-prediction-intervals.">그림 19-5. 95% 예측 구간이 포함된 시카고 데이터의 2020년 2주 예측.</h6>
 </figure>
 
-이 상황은 새로운 예측(즉, 모델의 *적용 영역(applicability domain)*)에 대해 모델이 얼마나 적용 가능한지를 정량화(quantify)할 수 있는 두 번째 방법론(secondary methodology)을 가짐으로써 피할 수(avoided) 있습니다. Jaworska, Nikolova-Jeliazkova, and Aldenberg (2005) 또는 Netzeva et al. (2005)과 같이 적용 영역(applicability domain) 모델을 계산하는 다양한 방법이 있습니다. 이 장에서 사용된 접근 방식은 새로운 데이터 포인트가 훈련 데이터를 얼마나 (벗어났다면) 벗어났는지(how much (if any) a new data point is beyond) 측정하려고 시도하는 비교적(fairly) 단순한 비지도 방법입니다.<sup><a href="ch19.xhtml#idm45881845223120" id="idm45881845223120-marker" data-type="noteref">1</a></sup>
+이 상황은 새로운 예측(즉, 모델의 _적용 영역(applicability domain)_)에 대해 모델이 얼마나 적용 가능한지를 정량화(quantify)할 수 있는 두 번째 방법론(secondary methodology)을 가짐으로써 피할 수(avoided) 있습니다. Jaworska, Nikolova-Jeliazkova, and Aldenberg (2005) 또는 Netzeva et al. (2005)과 같이 적용 영역(applicability domain) 모델을 계산하는 다양한 방법이 있습니다. 이 장에서 사용된 접근 방식은 새로운 데이터 포인트가 훈련 데이터를 얼마나 (벗어났다면) 벗어났는지(how much (if any) a new data point is beyond) 측정하려고 시도하는 비교적(fairly) 단순한 비지도 방법입니다.<sup><a href="ch19.xhtml#idm45881845223120" id="idm45881845223120-marker" data-type="noteref">1</a></sup>
 
 ###### 참고 (Note)
 
@@ -351,7 +351,7 @@ res_2020 %>% rmse(ridership, .pred)
 
 잘 작동하는 한 가지 방법은 숫자형 예측 변수 값에 주성분 분석(PCA)을 사용하는 것입니다. 다른 기차역(California 및 Austin 역)의 승객 수(ridership)에 해당하는 두 개의 예측 변수만 사용하여 과정을 설명해 보겠습니다. 훈련 세트는 [그림 19-6](#pca-reference-dist)의 패널 (a)에 나와 있습니다. 이 역들의 승객 데이터는 높은 상관관계(highly correlated)가 있으며, 산점도(scatter plot)에 표시된 두 개의 분포는 평일(weekdays)과 주말(weekends)의 승객 수에 해당합니다.
 
-첫 번째 단계는 훈련 데이터에 대해 PCA를 수행(conduct)하는 것입니다. 훈련 세트의 PCA 점수는 [그림 19-6](#pca-reference-dist)의 패널 (b)에 나와 있습니다. 다음으로 이 결과를 사용하여 각 훈련 세트 포인트에서 PCA 데이터의 중심까지의 거리(distance)를 측정합니다([그림 19-6](#pca-reference-dist)의 패널 (c)). 그런 다음 이 *참조 분포(reference distribution)*([그림 19-6](#pca-reference-dist)의 패널 (d))를 사용하여 데이터 포인트가 훈련 데이터의 주류(mainstream)에서 얼마나 떨어져 있는지(how far) 추정할 수 있습니다.
+첫 번째 단계는 훈련 데이터에 대해 PCA를 수행(conduct)하는 것입니다. 훈련 세트의 PCA 점수는 [그림 19-6](#pca-reference-dist)의 패널 (b)에 나와 있습니다. 다음으로 이 결과를 사용하여 각 훈련 세트 포인트에서 PCA 데이터의 중심까지의 거리(distance)를 측정합니다([그림 19-6](#pca-reference-dist)의 패널 (c)). 그런 다음 이 _참조 분포(reference distribution)_([그림 19-6](#pca-reference-dist)의 패널 (d))를 사용하여 데이터 포인트가 훈련 데이터의 주류(mainstream)에서 얼마나 떨어져 있는지(how far) 추정할 수 있습니다.
 
 <figure class="width-90">
 <img src="D:\sd\Practices\any2md\output\[2022] Tidy Modeling with R/assets/tmwr_1906.png" alt="tmwr 1906" />
@@ -379,7 +379,7 @@ res_2020 %>% rmse(ridership, .pred)
 
 2020년 샘플은 어떠한(any of the) 훈련 세트 샘플보다 중심에서 멀리 떨어져 있습니다(백분위수는 100%). 이는 샘플이 매우 극단적(extreme)이며, 해당 예측은 심각한 외삽(severe extrapolation)이 될 것(아마 보고되지 않아야 할(should not be reported))임을 나타냅니다.
 
-applicable 패키지는 PCA를 사용하여 적용 영역 모델(applicability domain model)을 개발할 수 있습니다. 우리는 20개의 지연된(lagged) 역별(station) 승객 예측 변수를 PCA 분석의 입력(inputs)으로 사용할 것입니다. 거리 계산에 사용될 성분(components) 수를 결정하는 `threshold`라는 추가 인자(argument)가 있습니다. 우리의 예에서는, 우리는 승객 예측 변수의 분산(variation) 중 99%를 설명(account for)할 수 있을 만큼 충분한 성분을 사용해야 함을 나타내는 큰 값을 사용할 것입니다:
+applicable 패키지는 PCA를 사용하여 적용 영역 모델(applicability domain model)을 개발할 수 있습니다. 우리는 20개의 지연된(lagged) 역별(station) 승객 예측 변수를 PCA 분석의 입력(inputs)으로 사용할 것입니다. 거리 계산에 사용될 성분(components) 수를 결정하는 `threshold`라는 추가 인자(argument)가 있습니다. 우리의 예에서는, 우리는 승객 예측 변수의 분산(variation) 중 99%를 설명(account for)할 수 있을 만큼 충분한 성분을 사용해야 함을 나타내는 큰 값을 사용할 것입니다.
 
 ```
 library(applicable)
@@ -394,7 +394,7 @@ pca_stat
 #>    total variation in the predictors.
 ```
 
-`autoplot()` 메서드는 참조 분포를 플로팅합니다. 플로팅할 데이터를 선택하기 위한 선택적(optional) 인자가 있습니다. 훈련 세트의 거리 분포만 플로팅하려면 `distance` 값을 추가합니다. 이 코드는 [그림 19-8](#ap-autoplot)에 플롯을 생성합니다:
+`autoplot()` 메서드는 참조 분포를 플로팅합니다. 플로팅할 데이터를 선택하기 위한 선택적(optional) 인자가 있습니다. 훈련 세트의 거리 분포만 플로팅하려면 `distance` 값을 추가합니다. 이 코드는 [그림 19-8](#ap-autoplot)에 플롯을 생성합니다.
 
 ```
 autoplot(pca_stat, distance) + labs(x = "distance")
@@ -407,7 +407,7 @@ autoplot(pca_stat, distance) + labs(x = "distance")
 
 x축은 거리의 값을 나타내고 y축은 분포의 백분위수(percentiles)를 표시합니다. 예를 들어, 훈련 세트 샘플 중 절반은(half of the) 거리가 3.7 미만이었습니다.
 
-새로운 데이터에 대한 백분위수를 계산하기 위해 `score()` 함수는 `predict()`와 같은 방식(same way)으로 작동합니다:
+새로운 데이터에 대한 백분위수를 계산하기 위해 `score()` 함수는 `predict()`와 같은 방식(same way)으로 작동합니다.
 
 ```
 score(pca_stat, Chicago_test) %>% select(starts_with("distance"))

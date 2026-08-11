@@ -20,7 +20,7 @@ library(tidyverse)
 
 ## 마지막 관측치 이월(Last Observation Carried Forward)
 
-결측값이 흔히 사용되는 용도 중 하나는 데이터 입력의 편의성입니다. 데이터를 수동으로 입력할 때, 결측값은 종종 이전 행의 값이 반복됨(또는 이월됨)을 나타냅니다:
+결측값이 흔히 사용되는 용도 중 하나는 데이터 입력의 편의성입니다. 데이터를 수동으로 입력할 때, 결측값은 종종 이전 행의 값이 반복됨(또는 이월됨)을 나타냅니다.
 
 ```
 treatment <- tribble(
@@ -32,7 +32,7 @@ treatment <- tribble(
 )
 ```
 
-이러한 결측값을 <a href="https://tidyr.tidyverse.org/reference/fill.html" class="orm:hideurl"><code>tidyr::fill()</code></a>을 사용하여 채울 수 있습니다. 이것은 <a href="https://dplyr.tidyverse.org/reference/select.html" class="orm:hideurl"><code>select()</code></a>처럼 작동하여, 열 집합을 취합니다:
+이러한 결측값을 <a href="https://tidyr.tidyverse.org/reference/fill.html" class="orm:hideurl"><code>tidyr::fill()</code></a>을 사용하여 채울 수 있습니다. 이것은 <a href="https://dplyr.tidyverse.org/reference/select.html" class="orm:hideurl"><code>select()</code></a>처럼 작동하여, 열 집합을 취합니다.
 
 ```
 treatment |>
@@ -50,7 +50,7 @@ treatment |>
 
 ## 고정값(Fixed Values)
 
-때로는 결측값이 알려진 고정된 값, 가장 흔하게는 0을 나타냅니다. <a href="https://dplyr.tidyverse.org/reference/coalesce.html" class="orm:hideurl"><code>dplyr::coalesce()</code></a>를 사용하여 이를 대체할 수 있습니다:
+때로는 결측값이 알려진 고정된 값, 가장 흔하게는 0을 나타냅니다. <a href="https://dplyr.tidyverse.org/reference/coalesce.html" class="orm:hideurl"><code>dplyr::coalesce()</code></a>를 사용하여 이를 대체할 수 있습니다.
 
 ```
 x <- c(1, 4, 5, 7, NA)
@@ -60,7 +60,7 @@ coalesce(x, 0)
 
 때로는 특정 구체적인 값이 실제로 결측값을 나타내는 정반대의 문제에 부딪힐 것입니다. 이는 결측값을 적절히 표현할 방법이 없는 구형 소프트웨어에서 생성된 데이터에서 흔히 발생하며, 그 대신 99나 -999 같은 특별한 값을 사용해야 합니다.
 
-가능하다면, 예를 들어 <a href="https://readr.tidyverse.org/reference/read_delim.html" class="orm:hideurl"><code>readr::read_csv()</code></a>의 `na` 인수를 사용(예: `read_csv(path, na = "99")`)하여 데이터를 읽어 들일 때 이 문제를 처리하세요. 나중에 문제를 발견했거나 데이터 소스에서 읽을 때 이를 처리할 방법을 제공하지 않는 경우, <a href="https://dplyr.tidyverse.org/reference/na_if.html" class="orm:hideurl"><code>dplyr::na_if()</code></a>를 사용할 수 있습니다:
+가능하다면, 예를 들어 <a href="https://readr.tidyverse.org/reference/read_delim.html" class="orm:hideurl"><code>readr::read_csv()</code></a>의 `na` 인수를 사용(`read_csv(path, na = "99")`)하여 데이터를 읽어 들일 때 이 문제를 처리하세요. 나중에 문제를 발견했거나 데이터 소스에서 읽을 때 이를 처리할 방법을 제공하지 않는 경우, <a href="https://dplyr.tidyverse.org/reference/na_if.html" class="orm:hideurl"><code>dplyr::na_if()</code></a>를 사용할 수 있습니다.
 
 ```
 x <- c(1, 4, 5, 7, -99)
@@ -70,7 +70,7 @@ na_if(x, -99)
 
 ## NaN
 
-계속하기 전에 가끔 마주치게 될 특별한 유형의 결측값이 하나 있습니다: `NaN`("난"으로 발음됨), 즉 숫자가 아님(not a number)을 의미합니다. 일반적으로 `NA`와 똑같이 동작하기 때문에 이것에 대해 아는 것은 그다지 중요하지 않습니다:
+계속하기 전에 가끔 마주치게 될 특별한 유형의 결측값이 하나 있습니다. `NaN`("난"으로 발음됨), 즉 숫자가 아님(not a number)을 의미합니다. 일반적으로 `NA`와 똑같이 동작하기 때문에 이것에 대해 아는 것은 그다지 중요하지 않습니다.
 
 ```
 x <- c(NA, NaN)
@@ -84,10 +84,10 @@ is.na(x)
 
 드물게 `NA`와 `NaN`을 구별해야 하는 경우 `is.nan(x)`를 사용할 수 있습니다.
 
-불확정된 결과를 갖는 수학적 연산을 수행할 때 일반적으로 `NaN`을 접하게 됩니다:
+불확정된 결과를 갖는 수학적 연산을 수행할 때 일반적으로 `NaN`을 접하게 됩니다.
 
-``` m
-0 / 0 
+```m
+0 / 0
 #> [1] NaN
 0 * Inf
 #> [1] NaN
@@ -100,7 +100,7 @@ sqrt(-1)
 
 # 암시적 결측값(Implicit Missing Values)
 
-지금까지 우리는 *명시적으로(explicitly)* 누락된 결측값, 즉 데이터에서 `NA`를 볼 수 있는 값에 대해 이야기했습니다. 하지만 전체 데이터 행이 데이터에 단순히 없는 경우, 결측값은 *암시적으로(implicitly)* 누락될 수도 있습니다. 각 분기별로 특정 주식의 가격을 기록하는 간단한 데이터 세트로 그 차이를 설명해 보겠습니다:
+지금까지 우리는 _명시적으로(explicitly)_ 누락된 결측값, 즉 데이터에서 `NA`를 볼 수 있는 값에 대해 이야기했습니다. 하지만 전체 데이터 행이 데이터에 단순히 없는 경우, 결측값은 _암시적으로(implicitly)_ 누락될 수도 있습니다. 각 분기별로 특정 주식의 가격을 기록하는 간단한 데이터 세트로 그 차이를 설명해 보겠습니다.
 
 ```
 stocks <- tibble(
@@ -110,12 +110,12 @@ stocks <- tibble(
 )
 ```
 
-이 데이터 세트에는 두 개의 누락된 관측치가 있습니다:
+이 데이터 세트에는 두 개의 누락된 관측치가 있습니다.
 
 - 2020년 4분기의 `price`는 값이 `NA`이기 때문에 명시적으로 누락되었습니다.
 - 2021년 1분기의 `price`는 데이터 세트에 단순히 나타나지 않기 때문에 암시적으로 누락되었습니다.
 
-이 차이에 대해 생각하는 한 가지 방법은 다음과 같은 선문답(Zen-like koan)을 이용하는 것입니다:
+이 차이에 대해 생각하는 한 가지 방법은 다음과 같은 선문답(Zen-like koan)을 이용하는 것입니다.
 
 > 명시적 결측값은 부재(absence)의 존재(presence)이다.\
 >
@@ -125,18 +125,18 @@ stocks <- tibble(
 
 ## 피벗(Pivoting)
 
-여러분은 이미 암시적 결측을 명시적으로, 혹은 그 반대로 만들 수 있는 한 가지 도구인 피벗팅을 보았습니다. 행과 새 열의 모든 조합에는 어떤 값이 있어야 하기 때문에, 데이터를 넓게(wider) 만들면 암시적 결측값이 명시적으로 만들어질 수 있습니다. 예를 들어, `quarter`를 열에 배치하기 위해 `stocks`를 피벗하면 두 결측값이 모두 명시적이 됩니다:
+여러분은 이미 암시적 결측을 명시적으로, 혹은 그 반대로 만들 수 있는 한 가지 도구인 피벗팅을 보았습니다. 행과 새 열의 모든 조합에는 어떤 값이 있어야 하기 때문에, 데이터를 넓게(wider) 만들면 암시적 결측값이 명시적으로 만들어질 수 있습니다. 예를 들어, `quarter`를 열에 배치하기 위해 `stocks`를 피벗하면 두 결측값이 모두 명시적이 됩니다.
 
 ```
 stocks |>
   pivot_wider(
-    names_from = qtr, 
+    names_from = qtr,
     values_from = price
   )
 #> # A tibble: 2 × 5
 #>    year   `1`   `2`   `3`   `4`
 #>   <dbl> <dbl> <dbl> <dbl> <dbl>
-#> 1  2020  1.88  0.59  0.35 NA   
+#> 1  2020  1.88  0.59  0.35 NA
 #> 2  2021 NA     0.92  0.17  2.66
 ```
 
@@ -144,7 +144,7 @@ stocks |>
 
 ## 완성(Complete)
 
-<a href="https://tidyr.tidyverse.org/reference/complete.html" class="orm:hideurl"><code>tidyr::complete()</code></a>는 존재해야 하는 행의 조합을 정의하는 변수 집합을 제공하여 명시적 결측값을 생성할 수 있게 해줍니다. 예를 들어, `stocks` 데이터에는 `year`와 `qtr`의 모든 조합이 존재해야 한다는 것을 알고 있습니다:
+<a href="https://tidyr.tidyverse.org/reference/complete.html" class="orm:hideurl"><code>tidyr::complete()</code></a>는 존재해야 하는 행의 조합을 정의하는 변수 집합을 제공하여 명시적 결측값을 생성할 수 있게 해줍니다. 예를 들어, `stocks` 데이터에는 `year`와 `qtr`의 모든 조합이 존재해야 한다는 것을 알고 있습니다.
 
 ```
 stocks |>
@@ -155,13 +155,13 @@ stocks |>
 #> 1  2020     1  1.88
 #> 2  2020     2  0.59
 #> 3  2020     3  0.35
-#> 4  2020     4 NA   
-#> 5  2021     1 NA   
+#> 4  2020     4 NA
+#> 5  2021     1 NA
 #> 6  2021     2  0.92
 #> # … with 2 more rows
 ```
 
-일반적으로 여러분은 기존 변수의 이름으로 <a href="https://tidyr.tidyverse.org/reference/complete.html" class="orm:hideurl"><code>complete()</code></a>를 호출하여 누락된 조합을 채웁니다. 그러나 때로는 개별 변수 자체가 불완전할 수 있으므로, 대신 자체 데이터를 제공할 수 있습니다. 예를 들어, `stocks` 데이터 세트가 2019년부터 2021년까지 이어져야 한다는 것을 안다면, `year`에 해당 값을 명시적으로 제공할 수 있습니다:
+일반적으로 여러분은 기존 변수의 이름으로 <a href="https://tidyr.tidyverse.org/reference/complete.html" class="orm:hideurl"><code>complete()</code></a>를 호출하여 누락된 조합을 채웁니다. 그러나 때로는 개별 변수 자체가 불완전할 수 있으므로, 대신 자체 데이터를 제공할 수 있습니다. 예를 들어, `stocks` 데이터 세트가 2019년부터 2021년까지 이어져야 한다는 것을 안다면, `year`에 해당 값을 명시적으로 제공할 수 있습니다.
 
 ```
 stocks |>
@@ -169,10 +169,10 @@ stocks |>
 #> # A tibble: 12 × 3
 #>    year   qtr price
 #>   <dbl> <dbl> <dbl>
-#> 1  2019     1 NA   
-#> 2  2019     2 NA   
-#> 3  2019     3 NA   
-#> 4  2019     4 NA   
+#> 1  2019     1 NA
+#> 2  2019     2 NA
+#> 3  2019     3 NA
+#> 4  2019     4 NA
 #> 5  2020     1  1.88
 #> 6  2020     2  0.59
 #> # … with 6 more rows
@@ -186,36 +186,36 @@ stocks |>
 
 여기서 암시적으로 누락된 관측치를 드러내는 또 다른 중요한 방법인 조인(joins)이 나옵니다. <a href="ch19.html#chp-joins" data-type="xref">19장</a>에서 조인에 대해 더 자세히 배울 것이지만, 한 데이터 세트의 값 누락을 다른 데이터 세트와 비교할 때만 종종 알 수 있기 때문에 여기서 간단히 언급하고자 합니다.
 
-`dplyr::anti_join(x, y)`는 `y`와 일치하지 않는 `x`의 행만 선택하기 때문에 여기에서 유용한 도구입니다. 예를 들어, 두 번의 <a href="https://dplyr.tidyverse.org/reference/filter-joins.html" class="orm:hideurl"><code>anti_join()</code></a>을 사용하여 `flights`에 언급된 4개의 공항과 722대의 비행기에 대한 정보가 누락되었음을 드러낼 수 있습니다:
+`dplyr::anti_join(x, y)`는 `y`와 일치하지 않는 `x`의 행만 선택하기 때문에 여기에서 유용한 도구입니다. 예를 들어, 두 번의 <a href="https://dplyr.tidyverse.org/reference/filter-joins.html" class="orm:hideurl"><code>anti_join()</code></a>을 사용하여 `flights`에 언급된 4개의 공항과 722대의 비행기에 대한 정보가 누락되었음을 드러낼 수 있습니다.
 
 ```
 library(nycflights13)
 
-flights |> 
-  distinct(faa = dest) |> 
+flights |>
+  distinct(faa = dest) |>
   anti_join(airports)
 #> Joining with `by = join_by(faa)`
 #> # A tibble: 4 × 1
-#>   faa  
+#>   faa
 #>   <chr>
-#> 1 BQN  
-#> 2 SJU  
-#> 3 STT  
+#> 1 BQN
+#> 2 SJU
+#> 3 STT
 #> 4 PSE
 
-flights |> 
-  distinct(tailnum) |> 
+flights |>
+  distinct(tailnum) |>
   anti_join(planes)
 #> Joining with `by = join_by(tailnum)`
 #> # A tibble: 722 × 1
 #>   tailnum
-#>   <chr>  
-#> 1 N3ALAA 
-#> 2 N3DUAA 
-#> 3 N542MQ 
-#> 4 N730MQ 
-#> 5 N9EAMQ 
-#> 6 N532UA 
+#>   <chr>
+#> 1 N3ALAA
+#> 2 N3DUAA
+#> 3 N542MQ
+#> 4 N730MQ
+#> 5 N9EAMQ
+#> 6 N532UA
 #> # … with 716 more rows
 ```
 
@@ -225,7 +225,7 @@ flights |>
 
 # 요인(Factors)과 빈 그룹(Empty Groups)
 
-마지막 누락 유형은 요인(factors)으로 작업할 때 발생할 수 있는, 어떤 관측치도 포함하지 않는 빈 그룹(empty group)입니다. 예를 들어, 사람들에 대한 일부 건강 정보가 포함된 데이터 세트가 있다고 상상해 보세요:
+마지막 누락 유형은 요인(factors)으로 작업할 때 발생할 수 있는, 어떤 관측치도 포함하지 않는 빈 그룹(empty group)입니다. 예를 들어, 사람들에 대한 일부 건강 정보가 포함된 데이터 세트가 있다고 상상해 보세요.
 
 ```
 health <- tibble(
@@ -235,7 +235,7 @@ health <- tibble(
 )
 ```
 
-그리고 <a href="https://dplyr.tidyverse.org/reference/count.html" class="orm:hideurl"><code>dplyr::count()</code></a>를 사용하여 흡연자의 수를 세고 싶다고 가정해 봅시다:
+그리고 <a href="https://dplyr.tidyverse.org/reference/count.html" class="orm:hideurl"><code>dplyr::count()</code></a>를 사용하여 흡연자의 수를 세고 싶다고 가정해 봅시다.
 
 ```
 health |> count(smoker)
@@ -245,7 +245,8 @@ health |> count(smoker)
 #> 1 no         5
 ```
 
-이 데이터 세트에는 비흡연자만 포함되어 있지만 흡연자가 존재한다는 것을 우리는 알고 있습니다. 흡연자(원문은 nonsmoker라고 했으나 문맥상 smoker의 그룹이 비어있음을 의미) 그룹은 비어 있습니다. `.drop = FALSE`를 사용하면 데이터에서 보이지 않는 그룹을 포함하여 모든 그룹을 유지하도록 <a href="https://dplyr.tidyverse.org/reference/count.html" class="orm:hideurl"><code>count()</code></a>에 요청할 수 있습니다:
+이 데이터 세트에는 비흡연자만 포함되어 있지만 흡연자가 존재한다는 것을 우리는 알고 있습니다. 흡연자(원문은 nonsmoker라고 했으나 문맥상 smoker의 그룹이 비어있음을 의미) 그룹은 비어 있습니다. `.drop = FALSE`를 사용하면 데이터에서 보이지 않는 그룹을 포함하여 모든 그룹을 유지하도록 <a href="https://dplyr.tidyverse.org/reference/count.html" class="orm:hideurl"><code>count()</code></a>에 요청할 수 있습니다.
+
 ```
 health |> count(smoker, .drop = FALSE)
 #> # A tibble: 2 × 2
@@ -255,7 +256,7 @@ health |> count(smoker, .drop = FALSE)
 #> 2 no         5
 ```
 
-동일한 원리가 ggplot2의 이산형 축(discrete axes)에도 적용되며, 값이 없는 수준(levels)은 삭제됩니다. 적절한 이산형 축에 `drop = FALSE`를 제공하여 강제로 표시하도록 할 수 있습니다:
+동일한 원리가 ggplot2의 이산형 축(discrete axes)에도 적용되며, 값이 없는 수준(levels)은 삭제됩니다. 적절한 이산형 축에 `drop = FALSE`를 제공하여 강제로 표시하도록 할 수 있습니다.
 
 ```
 ggplot(health, aes(x = smoker)) +
@@ -271,11 +272,11 @@ ggplot(health, aes(x = smoker)) +
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_18in01.png" alt="x축에 단일 값 'no'가 있는 막대 차트. 이전 플롯과 동일한 막대 차트이지만 이제 x축에 'yes'와 'no'라는 두 개의 값이 있습니다. 'yes' 범주에 대한 막대는 없습니다." />
 </figure>
 
-동일한 문제가 <a href="https://dplyr.tidyverse.org/reference/group_by.html" class="orm:hideurl"><code>dplyr::group_by()</code></a>에서도 더 일반적으로 발생합니다. 여기서도 모든 요인 수준을 보존하기 위해 `.drop = FALSE`를 사용할 수 있습니다:
+동일한 문제가 <a href="https://dplyr.tidyverse.org/reference/group_by.html" class="orm:hideurl"><code>dplyr::group_by()</code></a>에서도 더 일반적으로 발생합니다. 여기서도 모든 요인 수준을 보존하기 위해 `.drop = FALSE`를 사용할 수 있습니다.
 
 ```
-health |> 
-  group_by(smoker, .drop = FALSE) |> 
+health |>
+  group_by(smoker, .drop = FALSE) |>
   summarize(
     n = n(),
     mean_age = mean(age),
@@ -286,7 +287,7 @@ health |>
 #> # A tibble: 2 × 6
 #>   smoker     n mean_age min_age max_age sd_age
 #>   <fct>  <int>    <dbl>   <dbl>   <dbl>  <dbl>
-#> 1 yes        0      NaN     Inf    -Inf   NA  
+#> 1 yes        0      NaN     Inf    -Inf   NA
 #> 2 no         5       60      34      88   21.6
 ```
 
@@ -306,23 +307,23 @@ length(x2)
 
 모든 요약 함수는 길이가 0인 벡터와 함께 작동하지만 처음 보기에는 놀라운 결과를 반환할 수 있습니다. 여기서 `mean(age)`가 `NaN`을 반환하는 것을 볼 수 있는데, 그 이유는 `mean(age)` = `sum(age)/length(age)`이고, 여기서는 0/0이기 때문입니다. <a href="https://rdrr.io/r/base/Extremes.html" class="orm:hideurl"><code>max()</code></a>와 <a href="https://rdrr.io/r/base/Extremes.html" class="orm:hideurl"><code>min()</code></a>은 빈 벡터에 대해 -Inf와 Inf를 반환합니다. 따라서 그 결과를 새로운 데이터의 비어 있지 않은 벡터와 결합하여 다시 계산하면 새로운 데이터의 최솟값 또는 최댓값을 얻게 됩니다.<sup><a href="ch18.html#idm44771285285168" id="idm44771285285168-marker" data-type="noteref">1</a></sup>
 
-때로는 요약을 수행한 다음 <a href="https://tidyr.tidyverse.org/reference/complete.html" class="orm:hideurl"><code>complete()</code></a>를 사용하여 암시적 결측을 명시적으로 만드는 것이 더 간단한 접근법이 될 수 있습니다:
+때로는 요약을 수행한 다음 <a href="https://tidyr.tidyverse.org/reference/complete.html" class="orm:hideurl"><code>complete()</code></a>를 사용하여 암시적 결측을 명시적으로 만드는 것이 더 간단한 접근법이 될 수 있습니다.
 
 ```
-health |> 
-  group_by(smoker) |> 
+health |>
+  group_by(smoker) |>
   summarize(
     n = n(),
     mean_age = mean(age),
     min_age = min(age),
     max_age = max(age),
     sd_age = sd(age)
-  ) |> 
+  ) |>
   complete(smoker)
 #> # A tibble: 2 × 6
 #>   smoker     n mean_age min_age max_age sd_age
 #>   <fct>  <int>    <dbl>   <dbl>   <dbl>  <dbl>
-#> 1 yes       NA       NA      NA      NA   NA  
+#> 1 yes       NA       NA      NA      NA   NA
 #> 2 no         5       60      34      88   21.6
 ```
 

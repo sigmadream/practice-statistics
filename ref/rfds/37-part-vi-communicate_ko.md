@@ -7,7 +7,7 @@
 <h6 id="figure-vi-1.-communication-is-the-final-part-of-the-data-science-process-if-you-cant-communicate-your-results-to-other-humans-it-doesnt-matter-how-great-your-analysis-is.">그림 VI-1. 소통은 데이터 과학 프로세스의 마지막 부분입니다. 결과를 다른 사람들에게 전달할 수 없다면 아무리 훌륭한 분석이라도 소용이 없습니다.</h6>
 </figure>
 
-소통은 다음 두 장의 주제입니다:
+소통은 다음 두 장의 주제입니다.
 
 - <a href="ch28.html#chp-quarto" data-type="xref">28장</a>에서는 산문(prose), 코드 및 결과를 통합하는 도구인 Quarto에 대해 배웁니다. 분석가 간의 소통뿐만 아니라 분석가와 의사 결정자 간의 소통을 위해 Quarto를 사용할 수 있습니다. Quarto 형식의 강력함 덕분에 동일한 문서를 두 가지 목적 모두에 사용할 수도 있습니다.
 

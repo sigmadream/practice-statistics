@@ -16,7 +16,7 @@
 
 SVM 모델은 내적(dot product)을 사용하므로 이러한 이유로 예측 변수를 중심화(center)하고 척도화(scale)해야 합니다. 다층 퍼셉트론 모델과 마찬가지로 이 모델은 PCA 피처 추출을 사용하면 이점을 얻을(benefit from) 수 있습니다. 그러나 이 장에서는 검색 프로세스를 2차원으로 시각화할 수 있도록 이 세 번째 튜닝 매개변수를 사용하지 않을 것입니다.
 
-([13장](ch13.xhtml#grid-search)의 요약에 표시된) 이전에 사용된 객체들과 함께, tidymodels 객체 `svm_rec`, `svm_spec`, `svm_wflow`가 모델 프로세스를 정의합니다:
+([13장](ch13.xhtml#grid-search)의 요약에 표시된) 이전에 사용된 객체들과 함께, tidymodels 객체 `svm_rec`, `svm_spec`, `svm_wflow`가 모델 프로세스를 정의합니다.
 
 ```
 library(tidymodels)
@@ -38,7 +38,7 @@ svm_wflow <-
   add_recipe(svm_rec)
 ```
 
-두 개의 튜닝 매개변수 `cost`와 `rbf_sigma`에 대한 기본 매개변수 범위는 다음과 같습니다:
+두 개의 튜닝 매개변수 `cost`와 `rbf_sigma`에 대한 기본 매개변수 범위는 다음과 같습니다.
 
 ```
 cost()
@@ -51,7 +51,7 @@ rbf_sigma()
 #> Range (transformed scale): [-10, 0]
 ```
 
-설명을 위해, 검색의 시각화를 개선하도록 커널 매개변수 범위를 약간 변경해 보겠습니다:
+설명을 위해, 검색의 시각화를 개선하도록 커널 매개변수 범위를 약간 변경해 보겠습니다.
 
 ```
 svm_param <-
@@ -69,7 +69,7 @@ svm_param <-
 <h6 id="figure-14-1.-heatmap-of-the-mean-area-under-the-roc-curve-for-a-high-density-grid-of-tuning-parameter-values.-the-best-point-is-a-solid-dot-in-the-upper-right-corner.">그림 14-1. 튜닝 매개변수 값의 고밀도 그리드에 대한 ROC 곡선 아래 평균 면적의 히트맵. 최상의 지점은 오른쪽 위 모서리에 있는 실선 원(solid dot)입니다.</h6>
 </figure>
 
-다음의 검색 절차는 진행하기 전에 최소한 일부 리샘플링된 성능 통계량이 필요합니다. 이 목적을 위해 다음 코드는 매개변수 공간의 평평한(flat) 부분에 존재하는 작은 정규 그리드를 생성합니다. `tune_grid()` 함수는 이 그리드를 리샘플링합니다:
+다음의 검색 절차는 진행하기 전에 최소한 일부 리샘플링된 성능 통계량이 필요합니다. 이 목적을 위해 다음 코드는 매개변수 공간의 평평한(flat) 부분에 존재하는 작은 정규 그리드를 생성합니다. `tune_grid()` 함수는 이 그리드를 리샘플링합니다.
 
 ```
 set.seed(1401)
@@ -111,7 +111,7 @@ collect_metrics(svm_initial)
 수학적으로 GP는 결합 확률 분포(joint probability distribution)가 다변량 가우시안(multivariate Gaussian)인 무작위(random) 변수들의 모음(collection)입니다. 우리 애플리케이션의 컨텍스트에서, 이것은 튜닝 매개변수 후보 값에 대한 성능 지표의 모음입니다. 이전 4개 샘플의 초기 그리드에 대해, 이 4개의 무작위 변수의 실현값(realizations)은 0.8639, 0.8625, 0.8627, 0.8659였습니다. 이들은 다변량 가우시안으로 분포(distributed)한다고 가정합니다(assumed). GP 모델에 대한 독립 변수/예측 변수를 정의하는 입력(inputs)은 대응되는 튜닝 매개변수 값입니다([표 14-1](#initial-gp-data)에 표시됨).
 
 | ROC    | cost    | rbf_sigma |
-|--------|---------|-----------|
+| ------ | ------- | --------- |
 | 0.8639 | 0.01562 | 0.000001  |
 | 0.8625 | 2.00000 | 0.000001  |
 | 0.8627 | 0.01562 | 0.000100  |
@@ -119,9 +119,9 @@ collect_metrics(svm_initial)
 
 표 14-1. 가우시안 프로세스 모델에 초기 바탕(substrate)으로 사용된 리샘플링 통계량으로, 여기서 `ROC`가 결과(outcome)이고 `cost`와 `rbf_sigma`는 모두 예측 변수입니다. {#initial-gp-data}
 
-가우시안 프로세스 모델은 평균 및 공분산(covariance) 함수로 지정되지만, 후자가 GP 모델의 특성(nature)에 가장 큰 영향을 미칩니다. 공분산 함수는 종종 입력 값($`x`$로 표시됨) 측면에서(in terms of) 매개변수화(parameterized)됩니다. 예로서, 일반적으로 사용되는 공분산 함수는 제곱 지수(squared exponential)<sup><a href="ch14.xhtml#idm45881854319968" id="idm45881854319968-marker" data-type="noteref">1</a></sup> 함수입니다:
+가우시안 프로세스 모델은 평균 및 공분산(covariance) 함수로 지정되지만, 후자가 GP 모델의 특성(nature)에 가장 큰 영향을 미칩니다. 공분산 함수는 종종 입력 값($`x`$로 표시됨) 측면에서(in terms of) 매개변수화(parameterized)됩니다. 예로서, 일반적으로 사용되는 공분산 함수는 제곱 지수(squared exponential)<sup><a href="ch14.xhtml#idm45881854319968" id="idm45881854319968-marker" data-type="noteref">1</a></sup> 함수입니다.
 
-``` math
+```math
 \operatorname{cov}\left( \mathbf{x}_{i},\mathbf{x}_{j} \right) = \exp\left( {- \frac{1}{2}\left| \mathbf{x}_{i} - \mathbf{x}_{j} \right|^{2}} \right) + \sigma_{ij}^{2}
 ```
 
@@ -142,9 +142,9 @@ collect_metrics(svm_initial)
 고려 중인 두 개의 새로운 튜닝 매개변수가 있다고 가정해 봅시다(under consideration). [표 14-2](#tuning-candidates)에서 후보 A는 후보 B보다 약간 더 나은 평균 ROC 값을 갖습니다(현재 최고는 0.8659). 그러나 분산은 B보다 4배(four-fold) 더 큽니다. 이것은 좋은 것일까요, 나쁜 것일까요? 옵션 A를 선택하는 것이 더 위험하지만(riskier) 잠재적으로 더 높은 수익(return)을 갖습니다. 분산의 증가는 또한 이 새로운 값이 기존 데이터에서 B보다 더 멀리 떨어져 있음(farther)을 반영합니다(reflects). 다음 섹션에서는 베이지안 최적화에 대한 GP 예측의 이러한 측면(aspects)을 더 자세히(in more detail) 살펴봅니다.
 
 | 후보 (Candidate) | 평균 (Mean) | 분산 (Variance) |
-|-----------|------|----------|
-| A         | 0.90 | 0.000400 |
-| B         | 0.89 | 0.000025 |
+| ---------------- | ----------- | --------------- |
+| A                | 0.90        | 0.000400        |
+| B                | 0.89        | 0.000025        |
 
 표 14-2. 추가 샘플링을 위해 고려되는 두 가지 예시 튜닝 매개변수 {#tuning-candidates}
 
@@ -158,7 +158,7 @@ collect_metrics(svm_initial)
 
 가우시안 프로세스가 현재 데이터에 피팅되면(fit to) 어떻게 사용될까요? 우리의 목표는 현재 최고보다 "더 나은 결과"를 가질 가능성이 가장 높은 다음번 튜닝 매개변수 조합을 선택하는 것입니다. 이를 수행하는 한 가지 접근 방식은 (아마도 공간 채우기 설계를 사용하여) 대규모(large) 후보 세트를 만든 다음 각 후보에 대해 평균 및 분산 예측을 수행하는 것입니다. 이 정보를 사용하여 가장 유리한(advantageous) 튜닝 매개변수 값을 선택합니다.
 
-*획득 함수(acquisition functions)*라고 불리는 목적 함수(objective functions)의 한 클래스는 평균과 분산 간의 트레이드오프를 용이하게 합니다. GP 모델의 예측된 분산은 주로 그것들이 기존 데이터에서 얼마나 떨어져 있는지(far away)에 따라 주도된다(driven by)는 점을 상기하십시오. 새로운 후보에 대한 예측된 평균과 분산 간의 트레이드오프는 종종 탐색(exploration)과 활용(exploitation)이라는 렌즈를 통해 보여집니다:
+*획득 함수(acquisition functions)*라고 불리는 목적 함수(objective functions)의 한 클래스는 평균과 분산 간의 트레이드오프를 용이하게 합니다. GP 모델의 예측된 분산은 주로 그것들이 기존 데이터에서 얼마나 떨어져 있는지(far away)에 따라 주도된다(driven by)는 점을 상기하십시오. 새로운 후보에 대한 예측된 평균과 분산 간의 트레이드오프는 종종 탐색(exploration)과 활용(exploitation)이라는 렌즈를 통해 보여집니다.
 
 탐색 (Exploration)  
 이것은 관찰된 후보 모델이 (만약 있다면) 더 적은 영역 쪽으로(toward) 선택을 편향시킵니다(biases). 이는 더 높은 분산을 가진 후보에게 더 많은 가중치를 부여하는 경향이 있으며 새로운 결과를 찾는 데 중점을 둡니다(focuses on).
@@ -197,12 +197,12 @@ collect_metrics(svm_initial)
 <h6 id="figure-14-4.-predicted-performance-distributions-for-two-sampled-tuning-parameter-values.">그림 14-4. 샘플링된 두 튜닝 매개변수 값에 대한 예측(Predicted) 성능 분포.</h6>
 </figure>
 
-평균 $`R^2`$ 예측만 고려할 때 0.10의 매개변수 값이 더 나은 선택입니다([표 14-3](#two-exp-improve) 참조). 0.25에 대한 튜닝 매개변수 추천은 평균적으로(on average) 현재 최고보다 더 나쁠(worse) 것으로 예측됩니다. 그러나 분산이 더 높기 때문에 현재 최고보다 더 넓은(more) 전체 확률 면적(probability area)을 갖습니다. 결과적으로 그것은 더 큰(larger) 기대 향상을 갖습니다:
+평균 $`R^2`$ 예측만 고려할 때 0.10의 매개변수 값이 더 나은 선택입니다([표 14-3](#two-exp-improve) 참조). 0.25에 대한 튜닝 매개변수 추천은 평균적으로(on average) 현재 최고보다 더 나쁠(worse) 것으로 예측됩니다. 그러나 분산이 더 높기 때문에 현재 최고보다 더 넓은(more) 전체 확률 면적(probability area)을 갖습니다. 결과적으로 그것은 더 큰(larger) 기대 향상을 갖습니다.
 
-| 매개변수 값 (Parameter value) | 평균 (Mean)   | 표준 편차 (Std dev)   | 기대 향상 (Expected improvement) |
-|-----------------|--------|-----------|----------------------|
-| 0.10            | 0.8679 | 0.0004317 | 0.000190             |
-| 0.25            | 0.8671 | 0.0039301 | 0.001216             |
+| 매개변수 값 (Parameter value) | 평균 (Mean) | 표준 편차 (Std dev) | 기대 향상 (Expected improvement) |
+| ----------------------------- | ----------- | ------------------- | -------------------------------- |
+| 0.10                          | 0.8679      | 0.0004317           | 0.000190                         |
+| 0.25                          | 0.8671      | 0.0039301           | 0.001216                         |
 
 표 14-3. 두 후보 튜닝 매개변수에 대한 기대 향상 {#two-exp-improve}
 
@@ -217,7 +217,7 @@ collect_metrics(svm_initial)
 
 ## `tune_bayes()` 함수
 
-베이지안 최적화를 통한 반복 검색을 구현(implement)하려면 `tune_bayes()` 함수를 사용하세요. 이것의 구문(syntax)은 `tune_grid()`와 매우 유사하지만 몇 가지 추가 인수가 있습니다:
+베이지안 최적화를 통한 반복 검색을 구현(implement)하려면 `tune_bayes()` 함수를 사용하세요. 이것의 구문(syntax)은 `tune_grid()`와 매우 유사하지만 몇 가지 추가 인수가 있습니다.
 
 `iter`  
 이것은 검색 반복의 최대 횟수입니다.
@@ -231,7 +231,7 @@ collect_metrics(svm_initial)
 `param_info` 인수  
 이 경우 이것은 매개변수의 범위와 사용되는 변환들을 지정합니다. 이들은 검색 공간을 정의하는 데 사용됩니다. 기본 매개변수 객체가 불충분(insufficient)한 상황에서는 `param_info`를 사용하여 기본값을 재정의(override)합니다.
 
-`control` 인수는 이제 `control_bayes()`의 결과를 사용합니다. 다음은 거기에 있는 몇 가지 유용한(helpful) 인수들입니다:
+`control` 인수는 이제 `control_bayes()`의 결과를 사용합니다. 다음은 거기에 있는 몇 가지 유용한(helpful) 인수들입니다.
 
 `no_improve`  
 이것은 `no_improve` 반복 내에서 개선된 매개변수가 발견(discovered)되지 않으면 검색을 중단(stop)하는 정수입니다.
@@ -242,52 +242,56 @@ collect_metrics(svm_initial)
 `verbose`  
 이것은 검색이 진행됨에 따라(proceeds) 로깅 정보를 인쇄하는(print) 논리값(logical)입니다.
 
-이 장의 시작 부분에 있는 첫 번째 SVM 결과를 가우시안 프로세스 모델의 초기 바탕(substrate)으로 사용해 보겠습니다. 이 애플리케이션의 경우 ROC 곡선 아래 면적을 최대화하려고 한다는(want to) 것을 상기하십시오. 우리 코드는 다음과 같습니다:
+이 장의 시작 부분에 있는 첫 번째 SVM 결과를 가우시안 프로세스 모델의 초기 바탕(substrate)으로 사용해 보겠습니다. 이 애플리케이션의 경우 ROC 곡선 아래 면적을 최대화하려고 한다는(want to) 것을 상기하십시오. 우리 코드는 다음과 같습니다.
 
 ```
 ctrl <- control_bayes(verbose = TRUE)
 
 set.seed(1403)
 ```
+
 svm_bo <-
-  svm_wflow %>%
-  tune_bayes(
-    resamples = cell_folds,
-    metrics = roc_res,
-    initial = svm_initial,
-    param_info = svm_param,
-    iter = 25,
-    control = ctrl
-  )
+svm_wflow %>%
+tune_bayes(
+resamples = cell_folds,
+metrics = roc_res,
+initial = svm_initial,
+param_info = svm_param,
+iter = 25,
+control = ctrl
+)
+
 ```
 
 검색 프로세스는 ROC 곡선 아래 면적에 대해 0.8659라는 초기 최고값(initial best value)으로 시작합니다. 가우시안 프로세스 모델은 이 4개의 통계량을 사용하여 모델을 만듭니다. 대규모 후보 세트가 자동으로 생성되고 기대 향상 획득 함수를 사용하여 점수가 매겨집니다(scored). 첫 번째 반복은 0.86315의 ROC 값으로 결과를 향상시키는 데 실패했습니다. 새로운 결과값으로 또 다른 가우시안 프로세스 모델을 피팅한 후, 두 번째 반복 역시 향상을 가져오지(yield) 못했습니다.
 
-`verbose` 옵션에 의해 생성된 처음 두 번의 반복에 대한 로그는 다음과 같았습니다:
+`verbose` 옵션에 의해 생성된 처음 두 번의 반복에 대한 로그는 다음과 같았습니다.
 
 \#\> Optimizing roc_auc using the expected improvement \#\> \#\> ── Iteration 1 ────────────────────────────────────── \#\> \#\> i Current best: roc_auc=0.8659 (@iter 0) \#\> i Gaussian process model \#\> ✓ Gaussian process model \#\> i Generating 5000 candidates \#\> i Predicted candidates \#\> i cost=0.386, rbf_sigma=0.000266 \#\> i Estimating performance \#\> ✓ Estimating performance \#\> ⓧ Newest results: roc_auc=0.8631 (+/-0.00866) \#\> \#\> ── Iteration 2 ────────────────────────────────────── \#\> \#\> i Current best: roc_auc=0.8659 (@iter 0) \#\> i Gaussian process model \#\> ✓ Gaussian process model \#\> i Generating 5000 candidates \#\> i Predicted candidates \#\> i cost=13.8, rbf_sigma=7.83e-07 \#\> i Estimating performance \#\> ✓ Estimating performance \#\> ⓧ Newest results: roc_auc=0.8624 (+/-0.00865)
 
-검색은 계속됩니다(continues). 그 과정(along the way)에서 반복 3, 4, 5, 6, 8, 13, 22, 23, 24에서 결과에 총 9번의 향상이 있었습니다. 최상의 결과는 반복 24에서 ROC 곡선 아래 면적이 0.8986으로 나타났습니다:
+검색은 계속됩니다(continues). 그 과정(along the way)에서 반복 3, 4, 5, 6, 8, 13, 22, 23, 24에서 결과에 총 9번의 향상이 있었습니다. 최상의 결과는 반복 24에서 ROC 곡선 아래 면적이 0.8986으로 나타났습니다.
 
 \#\> ── Iteration 24 ───────────────────────────────────── \#\> \#\> i Current best: roc_auc=0.8986 (@iter 23) \#\> i Gaussian process model \#\> ✓ Gaussian process model \#\> i Generating 5000 candidates \#\> i Predicted candidates \#\> i cost=31.8, rbf_sigma=0.0016 \#\> i Estimating performance \#\> ✓ Estimating performance \#\> ♥ Newest results: roc_auc=0.8986 (+/-0.00785)
 
-마지막 단계는 다음과 같았습니다:
+마지막 단계는 다음과 같았습니다.
 
 \#\> ── Iteration 25 ───────────────────────────────────── \#\> \#\> i Current best: roc_auc=0.8986 (@iter 24) \#\> i Gaussian process model \#\> ✓ Gaussian process model \#\> i Generating 5000 candidates \#\> i Predicted candidates \#\> i cost=20, rbf_sigma=0.00188 \#\> i Estimating performance \#\> ✓ Estimating performance \#\> ⓧ Newest results: roc_auc=0.8982 (+/-0.00781)
 
-결과를 조사(interrogate)하는 데 사용되는 함수는 그리드 검색에 사용되는 함수(예: `collect_metrics()` 등)와 동일합니다. 예를 들어:
+결과를 조사(interrogate)하는 데 사용되는 함수는 그리드 검색에 사용되는 함수(`collect_metrics()` 등)와 동일합니다. 예를 들어:
 
 ```
+
 show_best(svm_bo)
 #> # A tibble: 5 × 9
-#>    cost rbf_sigma .metric .estimator  mean     n std_err .config .iter
-#>   <dbl>     <dbl> <chr>   <chr>      <dbl> <int>   <dbl> <chr>   <int>
-#> 1  31.8   0.00160 roc_auc binary     0.899    10 0.00785 Iter24     24
-#> 2  30.8   0.00191 roc_auc binary     0.899    10 0.00791 Iter23     23
-#> 3  31.4   0.00166 roc_auc binary     0.899    10 0.00784 Iter22     22
-#> 4  31.8   0.00153 roc_auc binary     0.899    10 0.00783 Iter13     13
-#> 5  30.8   0.00163 roc_auc binary     0.899    10 0.00782 Iter15     15
-```
+#> cost rbf_sigma .metric .estimator mean n std_err .config .iter
+#> <dbl> <dbl> <chr> <chr> <dbl> <int> <dbl> <chr> <int>
+#> 1 31.8 0.00160 roc_auc binary 0.899 10 0.00785 Iter24 24
+#> 2 30.8 0.00191 roc_auc binary 0.899 10 0.00791 Iter23 23
+#> 3 31.4 0.00166 roc_auc binary 0.899 10 0.00784 Iter22 22
+#> 4 31.8 0.00153 roc_auc binary 0.899 10 0.00783 Iter13 13
+#> 5 30.8 0.00163 roc_auc binary 0.899 10 0.00782 Iter15 15
+
+````
 
 `autoplot()` 함수에는 반복 검색 방법을 위한 몇 가지 옵션이 있습니다. [그림 14-6](#progress-plot)은 `autoplot(svm_bo, type = "performance")`를 사용하여 검색에 따라 결과가 어떻게 변했는지 보여줍니다.
 
@@ -330,11 +334,11 @@ show_best(svm_bo)
 
 시뮬레이티드 어닐링을 사용하는 프로세스는 초기값으로 시작하여 매개변수 공간을 통과하는 통제된 무작위 보행(controlled random walk)에 착수(embarks on)합니다. 각각의 새로운 후보 매개변수 값은 새로운 점을 지역 이웃(local neighborhood) 내에 유지하는 이전 값의 작은 교란(perturbation)입니다.
 
-후보 점은 해당(corresponding) 성능 값을 얻기 위해 리샘플링됩니다. 이것이 이전 매개변수보다 더 나은 결과를 달성하면 새로운 최선(new best)으로 수락(accepted)되고 프로세스가 계속됩니다. 결과가 이전 값보다 나쁘면(worse) 검색 절차는 추가 단계(further steps)를 정의하기 위해 이 매개변수를 계속 사용할 수 있습니다. 이는 두 가지 요인(factors)에 달려 있습니다(depends on). 첫째, 나쁜(bad) 결과를 수락할 가능성(likelihood)은 성능이 나빠질수록 감소합니다. 즉, 성능이 크게 떨어지는 결과보다 약간 더 나쁜 결과가 수락될 가능성이 더 높습니다. 다른 요인은 검색 반복 횟수입니다. 시뮬레이티드 어닐링은 검색이 진행됨에 따라 더 적은 차선의(suboptimal) 값을 수락하기를 원합니다. 이 두 가지 요인으로부터 나쁜 결과에 대한 *수락 확률(acceptance probability)*은 다음과 같이 공식화될(formalized) 수 있습니다:
+후보 점은 해당(corresponding) 성능 값을 얻기 위해 리샘플링됩니다. 이것이 이전 매개변수보다 더 나은 결과를 달성하면 새로운 최선(new best)으로 수락(accepted)되고 프로세스가 계속됩니다. 결과가 이전 값보다 나쁘면(worse) 검색 절차는 추가 단계(further steps)를 정의하기 위해 이 매개변수를 계속 사용할 수 있습니다. 이는 두 가지 요인(factors)에 달려 있습니다(depends on). 첫째, 나쁜(bad) 결과를 수락할 가능성(likelihood)은 성능이 나빠질수록 감소합니다. 즉, 성능이 크게 떨어지는 결과보다 약간 더 나쁜 결과가 수락될 가능성이 더 높습니다. 다른 요인은 검색 반복 횟수입니다. 시뮬레이티드 어닐링은 검색이 진행됨에 따라 더 적은 차선의(suboptimal) 값을 수락하기를 원합니다. 이 두 가지 요인으로부터 나쁜 결과에 대한 *수락 확률(acceptance probability)*은 다음과 같이 공식화될(formalized) 수 있습니다.
 
 ``` math
 \Pr\left\lbrack \text{accept}\text{suboptimal}\text{parameters}\text{at}\text{iteration} i \right\rbrack = \exp\left( c \times D_{i} \times i \right)
-```
+````
 
 여기서 $`i`$는 반복 횟수, $`c`$는 사용자 지정(user-specified) 상수, $`D_{i}`$는 이전 값과 새 값 사이의 퍼센트 차이(음수 값은 더 나쁜 결과를 의미함)입니다. 나쁜 결과의 경우 수락 확률을 결정(determine)하고 무작위 균일 숫자(random uniform number)와 비교합니다. 무작위 숫자가 확률 값보다 크면 검색은 현재 매개변수를 버리고(discards) 다음 반복은 이전 값의 인근(neighborhood)에 후보 값을 만듭니다. 그렇지 않으면 다음 반복은 현재(차선의) 값을 기반으로 다음 매개변수 세트를 형성(forms)합니다.
 
@@ -357,7 +361,7 @@ show_best(svm_bo)
 
 우리의 구현에서 이웃은 매개변수 객체의 범위를 기반으로 현재 후보가 0과 1 사이가 되도록 척도화하여(scaling) 결정되므로 0.05와 0.15 사이의 반경 값이 합리적(reasonable)인 것 같습니다. 이러한 값의 경우 검색이 매개변수 공간의 한쪽에서 다른 쪽으로 갈 수 있는 가장 빠른 속도는 약 10회 반복입니다. 반경 크기는 검색이 매개변수 공간을 얼마나 빨리 탐색하는지를 제어합니다. 우리의 구현에서는 서로 다른 크기(magnitudes)의 "지역성(local)"이 새로운 후보 값을 정의하도록 반경 범위를 지정합니다.
 
-설명을 위해, 우리는 두 가지 주요 glmnet 튜닝 매개변수를 사용할 것입니다:
+설명을 위해, 우리는 두 가지 주요 glmnet 튜닝 매개변수를 사용할 것입니다.
 
 - 전체 정규화의 양 (`penalty`). 이 매개변수의 기본 범위는 $`10^{- 10}`$에서 $`10^{0}`$입니다. 이 매개변수에는 로그(밑 10) 변환을 사용하는 것이 일반적입니다(typical).
 
@@ -365,7 +369,7 @@ show_best(svm_bo)
 
 프로세스는 `penalty = 0.025` 및 `mixture = 0.050`의 초기값으로 시작됩니다. 0.050에서 0.015 사이를 무작위로 변동하는(fluctuates) 반경을 사용하여 데이터가 적절하게 척도화(scaled)되고, 초기 점 주변의 반경에서 무작위 값이 생성된 다음(generated), 그중 하나가 무작위로 후보로 선택됩니다. 설명을 위해 모든 후보 값이 향상(improvements)된다고 가정합니다. 새로운 값을 사용하여 새로운 무작위 인근 세트가 생성되고 하나가 선택되는 식입니다(and so on). [그림 14-10](#iterative-neighborhood)은 검색이 왼쪽 위 모서리(corner)를 향해 진행됨에 따라 6번의 반복을 보여줍니다.
 
-일부 반복 중에 반경을 따라 있는 후보 세트는 매개변수 경계 외부의 점을 제외(exclude)한다는 점에 유의하십시오. 또한, 우리의 구현은 다음 튜닝 매개변수 구성의 선택을 이전 구성과 매우 유사한 새로운 값에서 *멀어지도록(away)* 편향시킵니다(biases).
+일부 반복 중에 반경을 따라 있는 후보 세트는 매개변수 경계 외부의 점을 제외(exclude)한다는 점에 유의하십시오. 또한, 우리의 구현은 다음 튜닝 매개변수 구성의 선택을 이전 구성과 매우 유사한 새로운 값에서 _멀어지도록(away)_ 편향시킵니다(biases).
 
 숫자가 아닌(nonnumeric) 매개변수의 경우, 매개변수 값이 얼마나 자주 변경되는지에 대한 확률을 할당(assign)합니다.
 
@@ -376,7 +380,7 @@ show_best(svm_bo)
 
 ## `tune_sim_anneal()` 함수
 
-시뮬레이티드 어닐링을 통한 반복 검색을 구현하려면 `tune_sim_anneal()` 함수를 사용하세요. 이 함수에 대한 구문(syntax)은 `tune_bayes()`와 거의 동일(identical)합니다. 획득 함수나 불확실성 샘플링에 대한 옵션은 없습니다. `control_sim_anneal()` 함수에는 지역 인근과 냉각 일정(cooling schedule)을 정의하는 몇 가지 세부 사항이 있습니다:
+시뮬레이티드 어닐링을 통한 반복 검색을 구현하려면 `tune_sim_anneal()` 함수를 사용하세요. 이 함수에 대한 구문(syntax)은 `tune_bayes()`와 거의 동일(identical)합니다. 획득 함수나 불확실성 샘플링에 대한 옵션은 없습니다. `control_sim_anneal()` 함수에는 지역 인근과 냉각 일정(cooling schedule)을 정의하는 몇 가지 세부 사항이 있습니다.
 
 - `no_improve`는 시뮬레이티드 어닐링의 경우 `no_improve` 반복 내에 전역 최상(global best) 또는 향상된 결과가 발견되지 않으면 검색을 중지(stop)하는 정수입니다. 수락된 차선(suboptimal) 또는 버려진(discarded) 매개변수는 "개선 없음(no improvement)"으로 간주(count)됩니다.
 
@@ -408,11 +412,11 @@ svm_sa <-
 
 시뮬레이티드 어닐링 프로세스는 4개의 다른 반복에서 새로운 전역 최적값(optimums)을 발견했습니다(discovered). 가장 이른(earliest) 개선은 반복 5에 있었고 최종 최적값은 반복 27에서 발생했습니다(occured). 가장 좋은 전체(overall) 결과는 반복 27에서 0.8985의 ROC 곡선 아래 평균 면적으로 발생했습니다(0.8659의 초기 최상값과 비교하여). 반복 13, 21, 35, 43에서 4번의 재시작(restarts)이 있었고 프로세스 동안 12개의 버려진(discarded) 후보가 있었습니다.
 
-`verbose` 옵션은 검색 프로세스의 세부 정보를 인쇄합니다. 처음 5번의 반복에 대한 출력은 다음과 같습니다:
+`verbose` 옵션은 검색 프로세스의 세부 정보를 인쇄합니다. 처음 5번의 반복에 대한 출력은 다음과 같습니다.
 
 \#\> Optimizing roc_auc \#\> Initial best: 0.86594 \#\> 1 ◯ accept suboptimal roc_auc=0.86351 (+/-0.008642) \#\> 2 ◯ accept suboptimal roc_auc=0.86233 (+/-0.008657) \#\> 3 + better suboptimal roc_auc=0.86233 (+/-0.008661) \#\> 4 + better suboptimal roc_auc=0.86492 (+/-0.008504) \#\> 5 ♥ new best roc_auc=0.87247 (+/-0.008232)
 
-마지막 10번의 반복에 대한 출력은 다음과 같습니다:
+마지막 10번의 반복에 대한 출력은 다음과 같습니다.
 
 \#\> 40 ◯ accept suboptimal roc_auc=0.89606 (+/-0.008203) \#\> 41 ─ discard suboptimal roc_auc=0.87556 (+/-0.009272) \#\> 42 ─ discard suboptimal roc_auc=0.87198 (+/-0.009301) \#\> 43 ✖ restart from best roc_auc=0.89801 (+/-0.008224) \#\> 44 ◯ accept suboptimal roc_auc=0.89006 (+/-0.008789) \#\> 45 + better suboptimal roc_auc=0.89781 (+/-0.008104) \#\> 46 ◯ accept suboptimal roc_auc=0.89563 (+/-0.008601) \#\> 47 ─ discard suboptimal roc_auc=0.88527 (+/-0.008766) \#\> 48 ◯ accept suboptimal roc_auc=0.8922 (+/-0.008891) \#\> 49 ─ discard suboptimal roc_auc=0.87691 (+/-0.008352) \#\> 50 ◯ accept suboptimal roc_auc=0.88803 (+/-0.008728)
 

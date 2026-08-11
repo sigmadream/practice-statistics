@@ -18,7 +18,7 @@ _경고. 이 장은 아마도 이 책에서 가장 어려운 장일 수 있습�
 
 확률 변수의 평균은 **기댓값(expectation)**이라고도 하며, 이 모든 표본에서 우리는 0.2 또는 20%의 비율을 기대합니다. [그림 9.1](./19-CHAPTER_9__Putting_Probability_and_Statistics_Together.md#fig9-1)에 표시된 모든 분포는 0.2를 평균으로 가집니다. 각각에 대한 표준 편차는 기본 비율(이 경우 0.2)과 표본 크기에 의존하는 공식으로 주어집니다. 통계량의 표준 편차는 일반적으로 그것이 파생된 모집단 분포의 표준 편차와 구별하기 위해 **[표준 오차(standard error)](./25-GLOSSARY.md#gloss_144)**라고 불립니다.
 
-![Figure 9.1 The probability distribution of the observed proportion of left-handers in random samples of 1, 2, 5, 10, 100 and 1,000 people, where the true underlying proportion of left-handers in the population is 0.2. The probability of getting at least 30% left-handers in the sample is found by adding all the probability in the bars to the right of 0.3.](./images/p232.png) 
+![Figure 9.1 The probability distribution of the observed proportion of left-handers in random samples of 1, 2, 5, 10, 100 and 1,000 people, where the true underlying proportion of left-handers in the population is 0.2. The probability of getting at least 30% left-handers in the sample is found by adding all the probability in the bars to the right of 0.3.](./images/p232.png)
 
 그림 9.1 (Figure 9.1)  
 모집단의 실제 기본 왼손잡이 비율이 0.2일 때 1, 2, 5, 10, 100 및 1,000명의 무작위 표본에서 관측된 왼손잡이 비율의 확률 분포입니다. 표본에서 최소 30%의 왼손잡이를 얻을 확률은 0.3 오른쪽 막대에 있는 모든 확률을 더하여 구합니다.
@@ -35,7 +35,7 @@ _경고. 이 장은 아마도 이 책에서 가장 어려운 장일 수 있습�
 
 데이터는 관리 한계 내에 꽤 잘 들어맞으며, 이는 지역 간의 차이가 본질적으로 우연한 변동성만으로 예상할 수 있는 수준이라는 것을 의미합니다. 소규모 지역은 사례가 더 적기 때문에 우연의 역할에 더 취약하므로 결과가 더 극단적인 경향이 있습니다. 로센데일의 사망률은 7명의 사망자에 불과했기 때문에 단 몇 건의 추가 사례만으로도 그 비율이 크게 변경될 수 있습니다. 따라서 BBC의 극적인 헤드라인에도 불구하고 여기에는 큰 뉴스거리가 없습니다. 여러 지역의 기저 위험이 정확히 동일하더라도 관찰된 비율에서 3배의 변동이 예상됩니다.
 
-![Figure 9.2 Annual bowel-cancer death rates per 100,000 population in 380 districts in the UK, plotted against the population of the district. The two sets of dashed lines indicate the regions in which we would expect 95% and 99.8% of districts to lie, if there were no real differences between the risks, and they are derived from an assumed underlying binomial distribution. Only Glasgow City shows any evidence of an underlying risk that is different from the average. This way of looking at the data is called a ‘funnel plot’.](./images/p235.png) 
+![Figure 9.2 Annual bowel-cancer death rates per 100,000 population in 380 districts in the UK, plotted against the population of the district. The two sets of dashed lines indicate the regions in which we would expect 95% and 99.8% of districts to lie, if there were no real differences between the risks, and they are derived from an assumed underlying binomial distribution. Only Glasgow City shows any evidence of an underlying risk that is different from the average. This way of looking at the data is called a ‘funnel plot’.](./images/p235.png)
 
 그림 9.2 (Figure 9.2)  
 영국 380개 지역의 인구 10만 명당 연간 대장암 사망률을 해당 지역의 인구와 대비하여 그린 도표입니다. 두 세트의 점선은 위험 간에 실제 차이가 없다고 가정할 때 지역의 95%와 99.8%가 존재할 것으로 예상되는 영역을 나타내며, 가정된 기저 이항 분포에서 파생됩니다. 글래스고 시만이 평균과 다른 기저 위험의 증거를 보여줍니다. 데이터를 보는 이 방식을 '깔때기 플롯(funnel plot)'이라고 합니다.
@@ -48,7 +48,7 @@ _경고. 이 장은 아마도 이 책에서 가장 어려운 장일 수 있습�
 
 개별 데이터 포인트는 매우 다양한 모집단 분포에서 도출될 수 있으며, 그 중 일부는 소득이나 성적 파트너의 분포와 같이 꼬리가 긴 매우 치우친 형태일 수 있습니다. 그러나 우리는 이제 개별 데이터 포인트가 아니라 통계량의 분포를 고려하는 핵심적인 전환을 이루었으며, 이러한 통계량은 일반적으로 일종의 평균(averages)이 될 것입니다. 우리는 이미 [7장](./17-CHAPTER_7__How_Sure_Can_We_Be_About_What_Is_Going_On__Estimates_and_Intervals.md)에서 원본 데이터 분포의 모양에 관계없이 부트스트랩 리샘플의 표본 평균 분포가 규칙적인 대칭 모양을 띠는 경향이 있음을 보았으며, 이제 이를 넘어서 약 300년 전에 확립된 훨씬 더 깊고 놀라운 아이디어로 나아갈 수 있습니다.
 
-왼손잡이의 예는 표본 크기가 증가함에 따라 관찰된 비율의 변동성이 작아짐을 보여줍니다. 이것이 [그림 9.2](./19-CHAPTER_9__Putting_Probability_and_Statistics_Together.md#fig9-2)의 깔때기가 평균 근처에서 좁아지는 이유입니다. 이것은 18세기 초 스위스의 수학자 야코프 베르누이(Jacob Bernoulli)가 확립한 고전적인 **[큰 수의 법칙(Law of Large Numbers)](./25-GLOSSARY.md#gloss_69)**입니다. 앞면이 나오면 값 1을 취하고 뒷면이 나오면 0을 취하는 한 번의 동전 던지기는 베르누이 시행(Bernoulli trial)이라고 불리며 **[베르누이 분포(Bernoulli distribution)](./25-GLOSSARY.md#gloss_11)**를 가집니다. 균형 잡힌 동전을 계속 던지며 더 많은 베르누이 시행을 수행하면 각 결과의 비율은 앞면 50%와 뒷면 50%에 점점 더 가까워집니다. 우리는 관찰된 비율이 실제 기저의 앞면 확률로 수렴한다고 말합니다. 물론 처음 동전을 연속해서 여러 번 앞면이 나온 직후에는 비율이 50:50에서 멀어질 수 있으며, 따라서 뒷면이 나올 '차례'가 되어 비율이 균형을 이룰 것이라고 믿고 싶은 유혹이 생깁니다. 이것은 '도박사의 오류(gambler's fallacy)'로 알려져 있으며 (개인적인 경험에 비추어 볼 때) 극복하기 다소 어려운 심리적 편향(psychological bias)입니다. 하지만 동전에는 기억력이 없습니다. 중요한 통찰력은 동전이 과거의 불균형을 _보상(compensate)_할 수는 없지만 더 많고 독립적인 새로운 던지기로 이를 단순히 _압도(overwhelms)_한다는 것입니다.
+왼손잡이의 예는 표본 크기가 증가함에 따라 관찰된 비율의 변동성이 작아짐을 보여줍니다. 이것이 [그림 9.2](./19-CHAPTER_9__Putting_Probability_and_Statistics_Together.md#fig9-2)의 깔때기가 평균 근처에서 좁아지는 이유입니다. 이것은 18세기 초 스위스의 수학자 야코프 베르누이(Jacob Bernoulli)가 확립한 고전적인 **[큰 수의 법칙(Law of Large Numbers)](./25-GLOSSARY.md#gloss_69)**입니다. 앞면이 나오면 값 1을 취하고 뒷면이 나오면 0을 취하는 한 번의 동전 던지기는 베르누이 시행(Bernoulli trial)이라고 불리며 **[베르누이 분포(Bernoulli distribution)](./25-GLOSSARY.md#gloss_11)**를 가집니다. 균형 잡힌 동전을 계속 던지며 더 많은 베르누이 시행을 수행하면 각 결과의 비율은 앞면 50%와 뒷면 50%에 점점 더 가까워집니다. 우리는 관찰된 비율이 실제 기저의 앞면 확률로 수렴한다고 말합니다. 물론 처음 동전을 연속해서 여러 번 앞면이 나온 직후에는 비율이 50:50에서 멀어질 수 있으며, 따라서 뒷면이 나올 '차례'가 되어 비율이 균형을 이룰 것이라고 믿고 싶은 유혹이 생깁니다. 이것은 '도박사의 오류(gambler's fallacy)'로 알려져 있으며 (개인적인 경험에 비추어 볼 때) 극복하기 다소 어려운 심리적 편향(psychological bias)입니다. 하지만 동전에는 기억력이 없습니다. 중요한 통찰력은 동전이 과거의 불균형을 *보상(compensate)*할 수는 없지만 더 많고 독립적인 새로운 던지기로 이를 단순히 *압도(overwhelms)*한다는 것입니다.
 
 [3장](./13-CHAPTER_3__Why_Are_We_Looking_at_Data_Anyway__Populations_and_Measurement.md)에서 우리는 미국 인구의 출생 체중 분포를 잘 설명해주는 정규 분포 또는 가우스 분포(Gaussian distribution)로도 알려진 고전적인 '종 모양의 곡선(bell-shaped curve)'을 소개했으며, 출생 체중은 모두 작은 영향을 미치는 엄청나게 많은 요인에 의존하기 때문이라고 주장했습니다. 이러한 모든 작은 효과를 합산하면 정규 분포를 얻습니다.
 
@@ -66,11 +66,11 @@ _경고. 이 장은 아마도 이 책에서 가장 어려운 장일 수 있습�
 
 제가 동전을 하나 가지고 있다고 가정하고, 여러분에게 동전의 앞면이 나올 확률을 묻습니다. 여러분은 기꺼이 '50:50' 또는 그와 비슷하게 대답합니다. 그런 다음 제가 동전을 던지고 우리 중 누구도 보지 못하게 가린 채 다시 앞면이 나올 확률을 묻습니다. 제 경험상 일반적인 분들이라면 약간 멈칫하다가 마지못해 '50:50'이라고 말할 것입니다. 그런 다음 제가 여러분에게 보여주지 않은 채 동전을 슬쩍 보고 다시 질문합니다. 역시 대부분의 사람들과 비슷하다면 결국 '50:50'이라고 얼버무릴 것입니다.
 
-이 간단한 연습은 두 가지 유형의 불확실성 간의 주요한 구별을 보여줍니다. 동전을 던지기 _전_에 예측할 수 없는 사건의 '가능성(chance)'인 **[우연적 불확실성(aleatory uncertainty)](./25-GLOSSARY.md#gloss_03)**과 동전을 던진 _후_에 이미 결정되었으나 알 수 없는 이벤트에 대한 우리의 개인적인 무지를 표현하는 **[인식론적 불확실성(epistemic uncertainty)](./25-GLOSSARY.md#gloss_43)**입니다. 결과가 우연에 의존하는 복권(lottery ticket)과 결과는 이미 정해져 있지만 그것이 무엇인지 알 수 없는 스크래치 복권(scratch card) 사이에도 동일한 차이가 존재합니다.
+이 간단한 연습은 두 가지 유형의 불확실성 간의 주요한 구별을 보여줍니다. 동전을 던지기 *전*에 예측할 수 없는 사건의 '가능성(chance)'인 **[우연적 불확실성(aleatory uncertainty)](./25-GLOSSARY.md#gloss_03)**과 동전을 던진 *후*에 이미 결정되었으나 알 수 없는 이벤트에 대한 우리의 개인적인 무지를 표현하는 **[인식론적 불확실성(epistemic uncertainty)](./25-GLOSSARY.md#gloss_43)**입니다. 결과가 우연에 의존하는 복권(lottery ticket)과 결과는 이미 정해져 있지만 그것이 무엇인지 알 수 없는 스크래치 복권(scratch card) 사이에도 동일한 차이가 존재합니다.
 
 통계학은 세상의 특정 양에 대해 인식론적 불확실성이 있을 때 사용됩니다. 예를 들어, 인구 중 종교가 있다고 생각하는 사람들의 진짜 비율을 모를 때 설문 조사를 실시하거나, 약물의 실제 평균 효과를 모를 때 임상 시험을 실시합니다. 앞서 살펴본 바와 같이 이렇게 고정되어 있지만 알 수 없는 양을 매개변수라고 하며 종종 그리스 문자로 표시됩니다.[fn4](./45-footnotes.md#ch9-fn4)
 
-동전 던지기 예시처럼 이러한 실험을 하기 _전_에는 개체를 무작위로 샘플링하거나 환자를 약물이나 위약에 무작위로 배정하기 때문에 결과가 어떻게 될지에 대한 우연적 불확실성을 가집니다. 그런 다음 연구를 수행하고 데이터를 얻은 _후_ 이 확률 모델을 사용하여 현재의 인식론적 불확실성을 파악합니다. 마침내 가려진 동전에 대해 여러분이 기꺼이 '50:50'이라고 말할 준비가 된 것처럼 말입니다. 따라서 미래에 무엇을 기대할 수 있는지 알려주는 확률 이론은 과거에 관찰한 것을 통해 우리가 무엇을 배울 수 있는지 알려주기 위해 사용됩니다. 이것이 통계적 추론의 (매우 놀라운) 기반입니다.
+동전 던지기 예시처럼 이러한 실험을 하기 *전*에는 개체를 무작위로 샘플링하거나 환자를 약물이나 위약에 무작위로 배정하기 때문에 결과가 어떻게 될지에 대한 우연적 불확실성을 가집니다. 그런 다음 연구를 수행하고 데이터를 얻은 _후_ 이 확률 모델을 사용하여 현재의 인식론적 불확실성을 파악합니다. 마침내 가려진 동전에 대해 여러분이 기꺼이 '50:50'이라고 말할 준비가 된 것처럼 말입니다. 따라서 미래에 무엇을 기대할 수 있는지 알려주는 확률 이론은 과거에 관찰한 것을 통해 우리가 무엇을 배울 수 있는지 알려주기 위해 사용됩니다. 이것이 통계적 추론의 (매우 놀라운) 기반입니다.
 
 추정치 주위에 불확실성 구간 또는 동등하게 오차 한계(margin of error)를 도출하는 절차는 이 근본적인 아이디어에 기반합니다. 여기에는 세 단계가 있습니다.
 
@@ -87,16 +87,16 @@ _경고. 이 장은 아마도 이 책에서 가장 어려운 장일 수 있습�
 
 [7장](./17-CHAPTER_7__How_Sure_Can_We_Be_About_What_Is_Going_On__Estimates_and_Intervals.md)에서는 어머니 키에 대한 딸 키의 골턴 회귀 기울기에 대한 95% 구간을 얻기 위해 부트스트랩을 사용하는 방법을 살펴보았습니다. 확률 이론에 기반하고 표준 소프트웨어에서 제공되는 정확한(exact) 구간을 얻는 것이 훨씬 쉽고, [표 9.1](./19-CHAPTER_9__Putting_Probability_and_Statistics_Together.md#tab9-1)은 이것이 매우 유사한 결과를 제공함을 보여줍니다. 확률 이론에 기반한 '정확한' 구간은 부트스트랩 접근 방식보다 더 많은 가정이 필요하며 엄밀히 말하면 기본 모집단 분포가 정규 분포인 경우에만 정확히 들어맞습니다. 그러나 중심 극한 정리(Central Limit Theorem)는 표본 크기가 이렇게 크면 추정치가 정규 분포를 갖는다고 가정하는 것이 합리적이며 따라서 정확한 구간이 허용될 수 있음을 의미합니다.
 
-| | 부모에 대한 자녀의 회귀 기울기 (Gradient of regression of offspring on parent) | | | |
-| ------------------------------------------------ | -------------- | ------------ | ------------ |
-| 추정치 (Estimate)                                         | 표준 오차 (Standard error) | 95% 구간 (95% interval) |              |
-| 정확한 추정치 (Exact)                                            | 0.33           | 0.05         | 0.23 ~ 0.42 |
-| 부트스트랩 (Bootstrap)                                        | 0.33           | 0.06         | 0.22 ~ 0.44 |
+|                        | 부모에 대한 자녀의 회귀 기울기 (Gradient of regression of offspring on parent) |                         |             |     |
+| ---------------------- | ------------------------------------------------------------------------------ | ----------------------- | ----------- | --- |
+| 추정치 (Estimate)      | 표준 오차 (Standard error)                                                     | 95% 구간 (95% interval) |             |
+| 정확한 추정치 (Exact)  | 0.33                                                                           | 0.05                    | 0.23 ~ 0.42 |
+| 부트스트랩 (Bootstrap) | 0.33                                                                           | 0.06                    | 0.22 ~ 0.44 |
 
 표 9.1 (Table 9.1)  
 정확한 표준 오차 및 부트스트랩 표준 오차와 95% 신뢰 구간을 포함하여 어머니와 딸의 키 사이의 관계를 요약하는 회귀 계수 추정치 – 부트스트랩은 1,000개의 리샘플을 기반으로 합니다.
 
-일반적으로 더하기 또는 빼기 2개의 표준 오차로 설정되는 95% 구간을 사용하는 것이 관례이지만, 더 좁은(예: 80%) 또는 더 넓은(예: 99%) 구간이 종종 채택되기도 합니다.[fn7](./45-footnotes.md#ch9-fn7) 미국 노동통계국은 실업률에 대해 90% 구간을 사용하는 반면, 영국 통계청은 95% 구간을 사용합니다. 어느 것이 사용되고 있는지 명확히 하는 것이 필수적입니다.
+일반적으로 더하기 또는 빼기 2개의 표준 오차로 설정되는 95% 구간을 사용하는 것이 관례이지만, 더 좁은(80%) 또는 더 넓은(99%) 구간이 종종 채택되기도 합니다.[fn7](./45-footnotes.md#ch9-fn7) 미국 노동통계국은 실업률에 대해 90% 구간을 사용하는 반면, 영국 통계청은 95% 구간을 사용합니다. 어느 것이 사용되고 있는지 명확히 하는 것이 필수적입니다.
 
 ### 설문 조사의 오차 한계 (Margins of Error from Surveys)
 
@@ -112,17 +112,17 @@ _경고. 이 장은 아마도 이 책에서 가장 어려운 장일 수 있습�
 
 우리는 무작위 변동성에 기인하는 피할 수 없는 (그리고 정량화 가능한) 오차 한계 외에도 설문 조사가 부정확할 수 있는 많은 이유를 이미 보았습니다. 이 경우 과도한 변동성은 샘플링 방법, 특히 응답률이 10%에서 20% 사이로 매우 낮고 주로 유선 전화를 사용하는 전화 여론 조사의 사용 탓일 수 있습니다. 제 개인적이고 다소 회의적인 휴리스틱(heuristic)은 설문 조사에서 인용된 오차 한계를 여론 조사 과정에서 발생하는 체계적 오류를 고려하여 두 배로 늘려야 한다는 것입니다.
 
-![Figure 9.3 The style of visualization of opinion poll data used by the BBC before the UK general election on 8 June 2017.3 The trend line is the median of the previous seven polls. Each poll was usually based on 1,000 respondents, and therefore claimed to have a margin of error of at most ±3%. But the variability between polls far exceeded this margin. Parties other than Labour and Conservative are not shown.](./images/p246.png) 
+![Figure 9.3 The style of visualization of opinion poll data used by the BBC before the UK general election on 8 June 2017.3 The trend line is the median of the previous seven polls. Each poll was usually based on 1,000 respondents, and therefore claimed to have a margin of error of at most ±3%. But the variability between polls far exceeded this margin. Parties other than Labour and Conservative are not shown.](./images/p246.png)
 
 그림 9.3 (Figure 9.3)  
 2017년 6월 8일 영국 총선 전에 BBC가 여론 조사 데이터 시각화에 사용한 스타일입니다.[**3**](./35-chapter009_notes.md#ch9-end3) 추세선은 이전 7개 여론 조사의 중앙값(median)입니다. 각 여론 조사는 일반적으로 1,000명의 응답자를 기반으로 했으므로 기껏해야 ± 3%의 오차 한계를 가진다고 주장했습니다. 그러나 여론 조사 간의 변동성은 이 한계를 훨씬 초과했습니다. 노동당과 보수당을 제외한 다른 정당은 표시되지 않습니다.
 
 선거 전 여론 조사에서 완전한 정확성을 기대하지 않을 수 있지만 빛의 속도와 같은 세상에 대한 물리적 사실을 측정하려는 과학자들에게는 더 많은 것을 기대할 수 있습니다. 그러나 그러한 실험에서 인용된 오차 한계가 훗날 가망 없이 불충분한 것으로 밝혀진 오랜 역사가 있습니다. 20세기 전반기에 빛의 속도 추정치 주변의 불확실성 구간에는 현재 허용되는 값이 포함되지 않았습니다.
 
-이로 인해 측정 과학인 _계측학(metrology)_을 연구하는 기관에서는 오차 한계가 항상 다음 두 가지 구성 요소에 기반해야 한다고 명시하게 되었습니다.
+이로 인해 측정 과학인 *계측학(metrology)*을 연구하는 기관에서는 오차 한계가 항상 다음 두 가지 구성 요소에 기반해야 한다고 명시하게 되었습니다.
 
-* 유형 A (Type A): 이 장에서 논의된 표준 통계 측정값. 더 많은 관찰을 통해 감소할 것으로 예상됩니다.
-* 유형 B (Type B): 더 많은 관찰을 통해 감소할 것으로 예상되지 않는 체계적인 오류(systematic errors). 이는 전문가의 판단이나 외부 증거와 같은 비통계적 방법을 사용하여 처리해야 합니다.
+- 유형 A (Type A): 이 장에서 논의된 표준 통계 측정값. 더 많은 관찰을 통해 감소할 것으로 예상됩니다.
+- 유형 B (Type B): 더 많은 관찰을 통해 감소할 것으로 예상되지 않는 체계적인 오류(systematic errors). 이는 전문가의 판단이나 외부 증거와 같은 비통계적 방법을 사용하여 처리해야 합니다.
 
 이러한 통찰은 우리가 단일 데이터 소스에 가져올 수 있는 통계적 방법에 대해 겸손함을 가질 수 있도록 격려해야 합니다. 데이터가 수집된 방식에 근본적인 문제가 있는 경우 아무리 영리한 방법으로도 이러한 편향을 없앨 수 없으므로 우리의 배경 지식과 경험을 사용하여 우리의 결론을 조율해야 합니다.
 
@@ -132,15 +132,15 @@ _경고. 이 장은 아마도 이 책에서 가장 어려운 장일 수 있습�
 
 그러나 만약 우리가 시간에 따른 근본적인 경향, 예를 들어 '영국의 살인율이 올라가고 있다'는 주장을 하고 싶다면 어떻게 될까요? 예를 들어 영국 통계청은 2014년 4월에서 2015년 3월 사이에 497건의 살인이 있었고 이듬해에는 557건이 발생했다고 보고했습니다. 확실히 살인 건수는 늘어났지만 우리는 살인 건수가 특별한 이유 없이 해마다 변동한다는 것을 알고 있습니다. 따라서 이것이 실제 연간 살인율의 실질적인 변화를 나타낼까요? 우리는 이 알려지지 않은 양에 대해 추론을 하고 싶으므로, 관찰된 살인 사건 수에 대한 확률 모델이 필요합니다.
 
-다행히 지난 장에서 우리는 매일 발생하는 살인 건수가 대안적인 가능한 역사의 은유적인 모집단에서 포아송 분포로 도출된 무작위 관찰인 것처럼 작동한다는 것을 알게 되었습니다. 이는 결과적으로 한 해 전체에 걸친 총계가 (다소 가설적인) '실제' 연간 기저 비율과 동일한 평균 _m_을 갖는 포아송 분포의 단일 관찰로 간주될 수 있음을 의미합니다. 우리의 관심사는 _m_이 해마다 변경되는지 여부입니다.
+다행히 지난 장에서 우리는 매일 발생하는 살인 건수가 대안적인 가능한 역사의 은유적인 모집단에서 포아송 분포로 도출된 무작위 관찰인 것처럼 작동한다는 것을 알게 되었습니다. 이는 결과적으로 한 해 전체에 걸친 총계가 (다소 가설적인) '실제' 연간 기저 비율과 동일한 평균 *m*을 갖는 포아송 분포의 단일 관찰로 간주될 수 있음을 의미합니다. 우리의 관심사는 *m*이 해마다 변경되는지 여부입니다.
 
-이 포아송 분포의 표준 편차는 _m_의 제곱근, 즉 √_m_으로 작성되며 이는 우리 추정치의 표준 오차이기도 합니다. 이를 통해 _m_만 알고 있다면 신뢰 구간을 만들 수 있을 것입니다. 그러나 우리는 그것을 알지 못합니다(그것이 바로 이 작업의 핵심입니다). 497건의 살인이 발생한 2014-2015년 기간을 생각해 보십시오. 이는 해당 연도의 기본 비율 _m_에 대한 우리의 추정치입니다. 우리는 이 _m_의 추정치를 사용하여 표준 오차 √_m_을 √497 = 22.3으로 추정할 수 있습니다. 이것은 ± 1.96 × 22.3 = ± 43.7의 오차 한계를 제공합니다. 따라서 마침내 _m_에 대한 대략적인 95% 구간을 497 ± 43.7 = 453.3에서 540.7로 구할 수 있습니다. 95% 신뢰 구간은 종종 더하기 또는 빼기 1.96개의 표준 오차로 가정되기 때문에 이 기간 동안 진정한 기저 살인율이 연간 453에서 541 사이라는 것을 95% 확신할 수 있음을 의미합니다.
+이 포아송 분포의 표준 편차는 *m*의 제곱근, 즉 √*m*으로 작성되며 이는 우리 추정치의 표준 오차이기도 합니다. 이를 통해 *m*만 알고 있다면 신뢰 구간을 만들 수 있을 것입니다. 그러나 우리는 그것을 알지 못합니다(그것이 바로 이 작업의 핵심입니다). 497건의 살인이 발생한 2014-2015년 기간을 생각해 보십시오. 이는 해당 연도의 기본 비율 *m*에 대한 우리의 추정치입니다. 우리는 이 *m*의 추정치를 사용하여 표준 오차 √*m*을 √497 = 22.3으로 추정할 수 있습니다. 이것은 ± 1.96 × 22.3 = ± 43.7의 오차 한계를 제공합니다. 따라서 마침내 *m*에 대한 대략적인 95% 구간을 497 ± 43.7 = 453.3에서 540.7로 구할 수 있습니다. 95% 신뢰 구간은 종종 더하기 또는 빼기 1.96개의 표준 오차로 가정되기 때문에 이 기간 동안 진정한 기저 살인율이 연간 453에서 541 사이라는 것을 95% 확신할 수 있음을 의미합니다.
 
 [그림 9.4](./19-CHAPTER_9__Putting_Probability_and_Statistics_Together.md#fig9-4)는 기저 비율에 대한 95% 신뢰 구간과 함께 1998년에서 2016년 사이 잉글랜드와 웨일즈에서 관찰된 살인 건수를 보여줍니다. 연간 계수 간에 필연적인 변동이 있지만 신뢰 구간은 시간에 따른 변화에 대해 결론을 내릴 때 주의해야 함을 분명히 보여줍니다. 예를 들어 2015-2016년 기간 카운트 557 주변의 95% 구간은 511에서 603까지 가며 이전 해의 신뢰 구간과 상당히 겹칩니다.
 
 그렇다면 살인 피해자가 될 근본적인 위험에 실제 변화가 있었는지, 아니면 관찰된 변화가 단순히 불가피한 우연의 변동에 의한 것인지 어떻게 결정할 수 있을까요? 신뢰 구간이 겹치지 않으면 우리는 실제 변화가 있었다고 최소한 95% 확신할 수 있습니다. 그러나 이것은 다소 엄격한 기준이며 실제로는 근본적인 비율의 변화에 대한 95% 구간을 생성해야 합니다. 그런 다음 이 구간에 0이 포함되면 실제 변화가 있었다고 확신할 수 없습니다.
 
-![Figure 9.4 Number of homicides each year in England and Wales between 1998 and 2016, and 95% confidence intervals for the underlying ‘true’ homicide rate.4](./images/p250.png) 
+![Figure 9.4 Number of homicides each year in England and Wales between 1998 and 2016, and 95% confidence intervals for the underlying ‘true’ homicide rate.4](./images/p250.png)
 
 그림 9.4 (Figure 9.4)  
 1998년에서 2016년 사이 잉글랜드와 웨일즈의 연도별 살인 건수와 기저의 '진짜(true)' 살인율에 대한 95% 신뢰 구간입니다.[**4**](./35-chapter009_notes.md#ch9-end4)
@@ -153,8 +153,8 @@ _경고. 이 장은 아마도 이 책에서 가장 어려운 장일 수 있습�
 
 #### 요약 (Summary)
 
-* 확률 이론을 사용하여 요약 통계량의 표본 분포를 도출할 수 있으며, 이로부터 신뢰 구간 공식을 도출할 수 있습니다.
-* 95% 신뢰 구간은 가정이 올바른 경우의 95%에서 실제 매개변수 값을 포함하는 절차의 결과입니다. 특정 구간이 참값을 포함할 확률이 95%라고 주장할 수는 없습니다.
-* 중심 극한 정리(Central Limit Theorem)는 대규모 표본의 경우 표본 평균 및 기타 요약 통계량이 정규 분포를 갖는다고 가정할 수 있음을 의미합니다.
-* 오차 한계는 일반적으로 비무작위적 원인으로 인한 체계적 오류(systematic error)를 통합하지 않으므로 이를 평가하려면 외부 지식과 판단이 필요합니다.
-* 우리는 모든 데이터를 관찰할 때에도 신뢰 구간을 계산할 수 있으며, 이는 근본적인 은유적 모집단의 매개변수에 대한 불확실성을 나타냅니다.
+- 확률 이론을 사용하여 요약 통계량의 표본 분포를 도출할 수 있으며, 이로부터 신뢰 구간 공식을 도출할 수 있습니다.
+- 95% 신뢰 구간은 가정이 올바른 경우의 95%에서 실제 매개변수 값을 포함하는 절차의 결과입니다. 특정 구간이 참값을 포함할 확률이 95%라고 주장할 수는 없습니다.
+- 중심 극한 정리(Central Limit Theorem)는 대규모 표본의 경우 표본 평균 및 기타 요약 통계량이 정규 분포를 갖는다고 가정할 수 있음을 의미합니다.
+- 오차 한계는 일반적으로 비무작위적 원인으로 인한 체계적 오류(systematic error)를 통합하지 않으므로 이를 평가하려면 외부 지식과 판단이 필요합니다.
+- 우리는 모든 데이터를 관찰할 때에도 신뢰 구간을 계산할 수 있으며, 이는 근본적인 은유적 모집단의 매개변수에 대한 불확실성을 나타냅니다.

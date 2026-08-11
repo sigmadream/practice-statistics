@@ -27,15 +27,15 @@ library(rvest)
 
 자세히 살펴보면 많은 웹사이트가 페이지 어딘가에 "이용 약관(terms and conditions)" 또는 "서비스 약관(terms of service)" 링크를 포함하고 있으며, 해당 페이지를 주의 깊게 읽어보면 사이트가 웹 스크래핑을 구체적으로 금지한다는 사실을 종종 발견할 수 있습니다. 이러한 페이지는 기업이 매우 광범위한 주장을 펴는 법적인 땅따먹기(land grab)인 경향이 있습니다. 가능한 한 이러한 서비스 약관을 존중하는 것이 예의지만, 어떤 주장이든 비판적으로 받아들여야 합니다(take any claims with a grain of salt).
 
-미국 법원은 웹사이트 바닥글(footer)에 서비스 약관을 넣는 것만으로는 여러분이 그 약관에 구속되기에 충분하지 않다고 일반적으로 판결했습니다(예: [*HiQ Labs v. LinkedIn*](https://oreil.ly/mDAin)). 일반적으로 서비스 약관에 구속되려면 계정을 만들거나 확인란(check box)을 선택하는 등의 명시적인 조치를 취했어야 합니다. 이것이 데이터가 *공개적(public)*인지 여부가 중요한 이유입니다. 데이터에 접근하기 위해 계정이 필요하지 않다면 서비스 약관에 구속될 가능성이 낮습니다. 하지만 명시적으로 동의하지 않았더라도 서비스 약관이 집행 가능하다고 법원이 판결한 유럽에서는 상황이 다소 다르다는 점에 유의하세요.
+미국 법원은 웹사이트 바닥글(footer)에 서비스 약관을 넣는 것만으로는 여러분이 그 약관에 구속되기에 충분하지 않다고 일반적으로 판결했습니다([_HiQ Labs v. LinkedIn_](https://oreil.ly/mDAin)). 일반적으로 서비스 약관에 구속되려면 계정을 만들거나 확인란(check box)을 선택하는 등의 명시적인 조치를 취했어야 합니다. 이것이 데이터가 *공개적(public)*인지 여부가 중요한 이유입니다. 데이터에 접근하기 위해 계정이 필요하지 않다면 서비스 약관에 구속될 가능성이 낮습니다. 하지만 명시적으로 동의하지 않았더라도 서비스 약관이 집행 가능하다고 법원이 판결한 유럽에서는 상황이 다소 다르다는 점에 유의하세요.
 
 ## 개인 식별 정보
 
-데이터가 공개적이라 하더라도 이름, 이메일 주소, 전화번호, 생년월일 등 개인을 식별할 수 있는 정보를 스크래핑할 때는 극도로 주의해야 합니다. 유럽은 이러한 데이터의 수집 및 저장에 관해 특히 엄격한 법률([GDPR](https://oreil.ly/nzJwO))을 가지고 있으며, 어디에 거주하든 윤리적 수렁에 빠질 가능성이 높습니다. 예를 들어 2016년에 한 연구자 그룹이 데이팅 사이트 OkCupid에 있는 70,000명의 공개 프로필 정보(예: 사용자 이름, 나이, 성별, 위치 등)를 스크래핑하고 익명화 시도 없이 이 데이터를 공개적으로 배포했습니다. 연구자들은 데이터가 이미 공개되어 있기 때문에 이것에 아무런 문제가 없다고 느꼈지만, 이 연구는 데이터 세트에 정보가 공개된 사용자의 식별 가능성을 둘러싼 윤리적 우려로 인해 광범위한 비난을 받았습니다. 만약 여러분의 작업에 개인 식별 정보를 스크래핑하는 것이 포함되어 있다면, OkCupid 연구<sup><a href="ch24.html#idm44771274018592" id="idm44771274018592-marker" data-type="noteref">3</a></sup>와 개인 식별 정보의 획득 및 배포가 포함된 연구 윤리에 의문이 제기되는 유사한 연구들에 대해 읽어보시기를 강력히 권장합니다.
+데이터가 공개적이라 하더라도 이름, 이메일 주소, 전화번호, 생년월일 등 개인을 식별할 수 있는 정보를 스크래핑할 때는 극도로 주의해야 합니다. 유럽은 이러한 데이터의 수집 및 저장에 관해 특히 엄격한 법률([GDPR](https://oreil.ly/nzJwO))을 가지고 있으며, 어디에 거주하든 윤리적 수렁에 빠질 가능성이 높습니다. 예를 들어 2016년에 한 연구자 그룹이 데이팅 사이트 OkCupid에 있는 70,000명의 공개 프로필 정보(사용자 이름, 나이, 성별, 위치 등)를 스크래핑하고 익명화 시도 없이 이 데이터를 공개적으로 배포했습니다. 연구자들은 데이터가 이미 공개되어 있기 때문에 이것에 아무런 문제가 없다고 느꼈지만, 이 연구는 데이터 세트에 정보가 공개된 사용자의 식별 가능성을 둘러싼 윤리적 우려로 인해 광범위한 비난을 받았습니다. 만약 여러분의 작업에 개인 식별 정보를 스크래핑하는 것이 포함되어 있다면, OkCupid 연구<sup><a href="ch24.html#idm44771274018592" id="idm44771274018592-marker" data-type="noteref">3</a></sup>와 개인 식별 정보의 획득 및 배포가 포함된 연구 윤리에 의문이 제기되는 유사한 연구들에 대해 읽어보시기를 강력히 권장합니다.
 
 ## 저작권
 
-마지막으로 저작권법에 대해서도 걱정해야 합니다. 저작권법은 복잡하지만, 무엇이 보호되는지 정확히 설명하는 [미국 법](https://oreil.ly/OqUgO)을 살펴볼 가치가 있습니다: "[...] 어떤 유형의 표현 매체에 고정된 독창적인 저작물, [...]". 그런 다음 문학 작품, 음악 작품, 영화 등 이것이 적용되는 구체적인 범주를 설명합니다. 주목할 점은 저작권 보호에서 데이터가 제외된다는 것입니다. 즉, 스크래핑을 사실(facts)로만 제한하는 한 저작권 보호가 적용되지 않습니다. (하지만 유럽에는 데이터베이스를 보호하는 별도의 [“독자적(sui generis)” 권리](https://oreil.ly/0ewJe)가 있다는 점에 유의하세요.)
+마지막으로 저작권법에 대해서도 걱정해야 합니다. 저작권법은 복잡하지만, 무엇이 보호되는지 정확히 설명하는 [미국 법](https://oreil.ly/OqUgO)을 살펴볼 가치가 있습니다. "[...] 어떤 유형의 표현 매체에 고정된 독창적인 저작물, [...]". 그런 다음 문학 작품, 음악 작품, 영화 등 이것이 적용되는 구체적인 범주를 설명합니다. 주목할 점은 저작권 보호에서 데이터가 제외된다는 것입니다. 즉, 스크래핑을 사실(facts)로만 제한하는 한 저작권 보호가 적용되지 않습니다. (하지만 유럽에는 데이터베이스를 보호하는 별도의 [“독자적(sui generis)” 권리](https://oreil.ly/0ewJe)가 있다는 점에 유의하세요.)
 
 간단한 예로, 미국에서는 재료 목록과 설명서는 저작권이 없으므로 레시피를 보호하는 데 저작권을 사용할 수 없습니다. 하지만 해당 레시피 목록에 실질적으로 새로운 문학적 내용이 동반된다면 그것은 저작권이 있습니다. 인터넷에서 레시피를 찾을 때 항상 요리법 전에 그렇게 많은 내용이 있는 이유가 바로 이것입니다.
 
@@ -43,7 +43,7 @@ library(rvest)
 
 # HTML 기초
 
-웹 페이지를 스크래핑하려면 먼저 웹 페이지를 설명하는 언어인 *HTML*에 대해 조금 이해해야 합니다. HTML은 HyperText Markup Language의 약자이며 대략 다음과 같이 생겼습니다:
+웹 페이지를 스크래핑하려면 먼저 웹 페이지를 설명하는 언어인 *HTML*에 대해 조금 이해해야 합니다. HTML은 HyperText Markup Language의 약자이며 대략 다음과 같이 생겼습니다.
 
 ```
 <html>
@@ -57,17 +57,17 @@ library(rvest)
 </body>
 ```
 
-HTML은 *요소(element)*로 구성된 계층 구조를 가지고 있으며, 요소는 시작 태그(start tag, 예: `<tag>`), 선택적 *속성(attributes)*(`id='first'`), 종료 태그(end tag)<sup><a href="ch24.html#idm44771273952560" id="idm44771273952560-marker" data-type="noteref">4</a></sup>(`</tag>`와 같은 형태), 그리고 *내용물(contents)* (시작 태그와 종료 태그 사이의 모든 것)로 구성됩니다.
+HTML은 *요소(element)*로 구성된 계층 구조를 가지고 있으며, 요소는 시작 태그(start tag, 예: `<tag>`), 선택적 _속성(attributes)_(`id='first'`), 종료 태그(end tag)<sup><a href="ch24.html#idm44771273952560" id="idm44771273952560-marker" data-type="noteref">4</a></sup>(`</tag>`와 같은 형태), 그리고 _내용물(contents)_ (시작 태그와 종료 태그 사이의 모든 것)로 구성됩니다.
 
-`<`와 `>`는 시작 및 종료 태그에 사용되므로 직접 작성할 수 없습니다. 대신 HTML *이스케이프(escape)* 문자열인 `&gt;`(크다)와 `&lt;`(작다)를 사용해야 합니다. 그리고 이러한 이스케이프가 `&`를 사용하기 때문에 글자 그대로의 앰퍼샌드(&)를 원한다면 `&amp;`로 이스케이프해야 합니다. 가능한 HTML 이스케이프의 종류는 매우 다양하지만 rvest가 이를 자동으로 처리해 주므로 너무 걱정할 필요는 없습니다.
+`<`와 `>`는 시작 및 종료 태그에 사용되므로 직접 작성할 수 없습니다. 대신 HTML _이스케이프(escape)_ 문자열인 `&gt;`(크다)와 `&lt;`(작다)를 사용해야 합니다. 그리고 이러한 이스케이프가 `&`를 사용하기 때문에 글자 그대로의 앰퍼샌드(&)를 원한다면 `&amp;`로 이스케이프해야 합니다. 가능한 HTML 이스케이프의 종류는 매우 다양하지만 rvest가 이를 자동으로 처리해 주므로 너무 걱정할 필요는 없습니다.
 
 웹 스크래핑이 가능한 이유는 스크래핑하려는 데이터가 포함된 대부분의 페이지가 일반적으로 일관된 구조를 가지고 있기 때문입니다.
 
 ## 요소
 
-100개 이상의 HTML 요소가 있습니다. 가장 중요한 것 중 일부는 다음과 같습니다:
+100개 이상의 HTML 요소가 있습니다. 가장 중요한 것 중 일부는 다음과 같습니다.
 
-- 모든 HTML 페이지는 `<html>` 요소 안에 있어야 하며, 두 개의 자식을 가져야 합니다: 페이지 제목과 같은 문서 메타데이터가 포함된 `<head>`, 브라우저에서 보는 콘텐츠가 포함된 `<body>`입니다.
+- 모든 HTML 페이지는 `<html>` 요소 안에 있어야 하며, 두 개의 자식을 가져야 합니다. 페이지 제목과 같은 문서 메타데이터가 포함된 `<head>`, 브라우저에서 보는 콘텐츠가 포함된 `<body>`입니다.
 
 - `<h1>`(제목 1), `<section>`(섹션), `<p>`(문단), `<ol>`(순서 있는 목록)과 같은 블록(Block) 태그는 페이지의 전체 구조를 형성합니다.
 
@@ -75,7 +75,7 @@ HTML은 *요소(element)*로 구성된 계층 구조를 가지고 있으며, 요
 
 이전에 본 적 없는 태그를 발견하면 구글 검색을 통해 그 역할을 알아낼 수 있습니다. 또 다른 좋은 출발점은 웹 프로그래밍의 거의 모든 측면을 설명하는 [MDN Web Docs](https://oreil.ly/qIgHp)입니다.
 
-대부분의 요소는 시작 태그와 종료 태그 사이에 내용물을 가질 수 있습니다. 이 내용물은 텍스트일 수도 있고 더 많은 요소일 수도 있습니다. 예를 들어 다음 HTML에는 텍스트로 된 문단이 포함되어 있으며 한 단어가 굵게 표시되어 있습니다:
+대부분의 요소는 시작 태그와 종료 태그 사이에 내용물을 가질 수 있습니다. 이 내용물은 텍스트일 수도 있고 더 많은 요소일 수도 있습니다. 예를 들어 다음 HTML에는 텍스트로 된 문단이 포함되어 있으며 한 단어가 굵게 표시되어 있습니다.
 
 ```
 <p> Hi! My <b>name</b> is Hadley. </p>
@@ -89,7 +89,7 @@ HTML은 *요소(element)*로 구성된 계층 구조를 가지고 있으며, 요
 
 # 데이터 추출하기
 
-스크래핑을 시작하려면 스크래핑할 페이지의 URL이 필요한데, 일반적으로 웹 브라우저에서 복사할 수 있습니다. 그런 다음 <a href="http://xml2.r-lib.org/reference/read_xml.html" class="orm:hideurl"><code>read_html()</code></a>을 사용하여 해당 페이지의 HTML을 R로 읽어 들여야 합니다. 그러면 `xml_document`<sup><a href="ch24.html#idm44771273871552" id="idm44771273871552-marker" data-type="noteref">5</a></sup> 객체가 반환되며, 이를 rvest 함수를 사용하여 조작하게 됩니다:
+스크래핑을 시작하려면 스크래핑할 페이지의 URL이 필요한데, 일반적으로 웹 브라우저에서 복사할 수 있습니다. 그런 다음 <a href="http://xml2.r-lib.org/reference/read_xml.html" class="orm:hideurl"><code>read_html()</code></a>을 사용하여 해당 페이지의 HTML을 R로 읽어 들여야 합니다. 그러면 `xml_document`<sup><a href="ch24.html#idm44771273871552" id="idm44771273871552-marker" data-type="noteref">5</a></sup> 객체가 반환되며, 이를 rvest 함수를 사용하여 조작하게 됩니다.
 
 ```
 html <- read_html("http://rvest.tidyverse.org/")
@@ -122,7 +122,7 @@ html
 
 CSS는 HTML 문서의 시각적 스타일링을 정의하기 위한 도구입니다. CSS에는 *CSS 선택자(CSS selectors)*라는 페이지의 요소를 선택하기 위한 미니 언어가 포함되어 있습니다. CSS 선택자는 HTML 요소를 찾기 위한 패턴을 정의하며, 추출하려는 요소를 설명하는 간결한 방법을 제공하기 때문에 스크래핑에 유용합니다.
 
-<a href="#sec-css-selectors" data-type="xref">“올바른 선택자 찾기”</a>에서 CSS 선택자에 대해 더 자세히 다루겠지만, 다행히 다음 세 가지만으로도 많은 것을 할 수 있습니다:
+<a href="#sec-css-selectors" data-type="xref">“올바른 선택자 찾기”</a>에서 CSS 선택자에 대해 더 자세히 다루겠지만, 다행히 다음 세 가지만으로도 많은 것을 할 수 있습니다.
 
 `p`  
 모든 `<p>` 요소를 선택합니다.
@@ -133,7 +133,7 @@ CSS는 HTML 문서의 시각적 스타일링을 정의하기 위한 도구입니
 `#title`  
 `id` 속성이 "title"인 요소를 선택합니다. `id` 속성은 문서 내에서 고유해야 하므로 항상 단 하나의 요소만 선택합니다.
 
-간단한 예제에서 이 선택자들을 사용해 보겠습니다:
+간단한 예제에서 이 선택자들을 사용해 보겠습니다.
 
 ```
 html <- minimal_html("
@@ -143,7 +143,7 @@ html <- minimal_html("
 ")
 ```
 
-선택자와 일치하는 모든 요소를 찾으려면 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>를 사용하세요:
+선택자와 일치하는 모든 요소를 찾으려면 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>를 사용하세요.
 
 ```
 html |> html_elements("p")
@@ -160,7 +160,7 @@ html |> html_elements("#first")
 #> [1] <p id="first">This is a paragraph</p>
 ```
 
-또 다른 중요한 함수는 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>이며, 항상 입력과 같은 수의 출력을 반환합니다. 전체 문서에 적용하면 첫 번째 일치 항목을 제공합니다:
+또 다른 중요한 함수는 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>이며, 항상 입력과 같은 수의 출력을 반환합니다. 전체 문서에 적용하면 첫 번째 일치 항목을 제공합니다.
 
 ```
 html |> html_element("p")
@@ -180,7 +180,7 @@ html |> html_element("b")
 
 ## 중첩 선택
 
-대부분의 경우 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>와 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>를 함께 사용하게 되며, 일반적으로 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>를 사용하여 관측값(observation)이 될 요소를 식별한 다음 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>를 사용하여 변수가 될 요소를 찾습니다. 간단한 예제를 통해 이것이 어떻게 작동하는지 보겠습니다. 여기 각 리스트 항목(`<li>`)이 *스타워즈(Star Wars)*의 네 캐릭터에 대한 약간의 정보를 포함하는 순서 없는 목록(`<ul>`)이 있습니다:
+대부분의 경우 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>와 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>를 함께 사용하게 되며, 일반적으로 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>를 사용하여 관측값(observation)이 될 요소를 식별한 다음 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>를 사용하여 변수가 될 요소를 찾습니다. 간단한 예제를 통해 이것이 어떻게 작동하는지 보겠습니다. 여기 각 리스트 항목(`<li>`)이 *스타워즈(Star Wars)*의 네 캐릭터에 대한 약간의 정보를 포함하는 순서 없는 목록(`<ul>`)이 있습니다.
 
 ```
 html <- minimal_html("
@@ -193,7 +193,7 @@ html <- minimal_html("
   ")
 ```
 
-<a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>를 사용하여 각 요소가 다른 캐릭터에 해당하는 벡터를 만들 수 있습니다:
+<a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>를 사용하여 각 요소가 다른 캐릭터에 해당하는 벡터를 만들 수 있습니다.
 
 ```
 characters <- html |> html_elements("li")
@@ -205,7 +205,7 @@ characters
 #> [4] <li>\n<b>Yoda</b> weighs <span class="weight">66 kg</span>\n</li>
 ```
 
-각 캐릭터의 이름을 추출하려면 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>를 사용합니다. <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>의 출력에 적용될 때 요소당 하나의 응답을 반환하도록 보장되기 때문입니다:
+각 캐릭터의 이름을 추출하려면 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>를 사용합니다. <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>의 출력에 적용될 때 요소당 하나의 응답을 반환하도록 보장되기 때문입니다.
 
 ```
 characters |> html_element("b")
@@ -216,7 +216,7 @@ characters |> html_element("b")
 #> [4] <b>Yoda</b>
 ```
 
-이름의 경우 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>와 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>의 차이가 중요하지 않지만, 몸무게의 경우는 중요합니다. 몸무게를 뜻하는 `<span>`이 없는 경우에도 각 캐릭터에 대해 하나의 몸무게 값을 얻고 싶습니다. 그것이 바로 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>가 하는 일입니다:
+이름의 경우 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>와 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>의 차이가 중요하지 않지만, 몸무게의 경우는 중요합니다. 몸무게를 뜻하는 `<span>`이 없는 경우에도 각 캐릭터에 대해 하나의 몸무게 값을 얻고 싶습니다. 그것이 바로 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>가 하는 일입니다.
 
 ```
 characters |> html_element(".weight")
@@ -227,7 +227,7 @@ characters |> html_element(".weight")
 #> [4] <span class="weight">66 kg</span>
 ```
 
-<a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>는 `characters`의 자식인 모든 몸무게 `<span>`을 찾습니다. 세 개밖에 없으므로 이름과 몸무게 간의 연결이 끊어집니다:
+<a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_elements()</code></a>는 `characters`의 자식인 모든 몸무게 `<span>`을 찾습니다. 세 개밖에 없으므로 이름과 몸무게 간의 연결이 끊어집니다.
 
 ```
 characters |> html_elements(".weight")
@@ -241,23 +241,23 @@ characters |> html_elements(".weight")
 
 ## 텍스트와 속성
 
-<a href="https://rvest.tidyverse.org/reference/html_text.html" class="orm:hideurl"><code>html_text2()</code></a><sup><a href="ch24.html#idm44771273417888" id="idm44771273417888-marker" data-type="noteref">6</a></sup>는 HTML 요소의 일반 텍스트 내용물을 추출합니다:
+<a href="https://rvest.tidyverse.org/reference/html_text.html" class="orm:hideurl"><code>html_text2()</code></a><sup><a href="ch24.html#idm44771273417888" id="idm44771273417888-marker" data-type="noteref">6</a></sup>는 HTML 요소의 일반 텍스트 내용물을 추출합니다.
 
 ```
-characters |> 
-  html_element("b") |> 
+characters |>
+  html_element("b") |>
   html_text2()
 #> [1] "C-3PO"  "R4-P17" "R2-D2"  "Yoda"
 
-characters |> 
-  html_element(".weight") |> 
+characters |>
+  html_element(".weight") |>
   html_text2()
 #> [1] "167 kg" NA       "96 kg"  "66 kg"
 ```
 
 모든 이스케이프는 자동으로 처리된다는 점에 유의하세요. HTML 이스케이프는 소스 HTML에서만 볼 수 있고 rvest가 반환한 데이터에서는 절대 볼 수 없습니다.
 
-<a href="https://rvest.tidyverse.org/reference/html_attr.html" class="orm:hideurl"><code>html_attr()</code></a>은 속성에서 데이터를 추출합니다:
+<a href="https://rvest.tidyverse.org/reference/html_attr.html" class="orm:hideurl"><code>html_attr()</code></a>은 속성에서 데이터를 추출합니다.
 
 ```
 html <- minimal_html("
@@ -265,9 +265,9 @@ html <- minimal_html("
   <p><a href='https://en.wikipedia.org/wiki/Dog'>dogs</a></p>
 ")
 
-html |> 
-  html_elements("p") |> 
-  html_element("a") |> 
+html |>
+  html_elements("p") |>
+  html_element("a") |>
   html_attr("href")
 #> [1] "https://en.wikipedia.org/wiki/Cat" "https://en.wikipedia.org/wiki/Dog"
 ```
@@ -278,7 +278,7 @@ html |>
 
 운이 좋다면 데이터가 이미 HTML 테이블에 저장되어 있을 것이며, 그저 테이블에서 읽어오기만 하면 됩니다. 일반적으로 브라우저에서 테이블을 인식하는 것은 간단합니다. 행과 열의 직사각형 구조를 가지며 Excel과 같은 도구에 복사하여 붙여넣을 수 있습니다.
 
-HTML 테이블은 `<table>`, `<tr>`(테이블 행), `<th>`(테이블 헤딩), `<td>`(테이블 데이터)라는 4가지 주요 요소로 구성됩니다. 다음은 열 2개와 행 3개가 있는 간단한 HTML 테이블입니다:
+HTML 테이블은 `<table>`, `<tr>`(테이블 행), `<th>`(테이블 헤딩), `<td>`(테이블 데이터)라는 4가지 주요 요소로 구성됩니다. 다음은 열 2개와 행 3개가 있는 간단한 HTML 테이블입니다.
 
 ```
 html <- minimal_html("
@@ -291,11 +291,11 @@ html <- minimal_html("
   ")
 ```
 
-rvest는 이런 종류의 데이터를 읽는 방법을 아는 <a href="https://rvest.tidyverse.org/reference/html_table.html" class="orm:hideurl"><code>html_table()</code></a>이라는 함수를 제공합니다. 이 함수는 페이지에서 발견된 각 테이블마다 하나의 티블을 포함하는 리스트를 반환합니다. 추출하려는 테이블을 식별하려면 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>를 사용하세요:
+rvest는 이런 종류의 데이터를 읽는 방법을 아는 <a href="https://rvest.tidyverse.org/reference/html_table.html" class="orm:hideurl"><code>html_table()</code></a>이라는 함수를 제공합니다. 이 함수는 페이지에서 발견된 각 테이블마다 하나의 티블을 포함하는 리스트를 반환합니다. 추출하려는 테이블을 식별하려면 <a href="https://rvest.tidyverse.org/reference/html_element.html" class="orm:hideurl"><code>html_element()</code></a>를 사용하세요.
 
 ```
-html |> 
-  html_element(".mytable") |> 
+html |>
+  html_element(".mytable") |>
   html_table()
 #> # A tibble: 3 × 2
 #>       x     y
@@ -309,7 +309,7 @@ html |>
 
 # 올바른 선택자 찾기
 
-데이터에 필요한 선택자를 파악하는 것은 일반적으로 문제에서 가장 어려운 부분입니다. 구체적이면서(즉, 신경 쓰지 않는 것은 선택하지 않음) 민감한(즉, 신경 쓰는 모든 것을 선택함) 선택자를 찾기 위해 종종 약간의 실험을 해야 합니다. 많은 시행착오가 프로세스의 정상적인 부분입니다! 이 프로세스를 돕기 위해 두 가지 주요 도구를 사용할 수 있습니다: SelectorGadget과 브라우저의 개발자 도구입니다.
+데이터에 필요한 선택자를 파악하는 것은 일반적으로 문제에서 가장 어려운 부분입니다. 구체적이면서(즉, 신경 쓰지 않는 것은 선택하지 않음) 민감한(즉, 신경 쓰는 모든 것을 선택함) 선택자를 찾기 위해 종종 약간의 실험을 해야 합니다. 많은 시행착오가 프로세스의 정상적인 부분입니다! 이 프로세스를 돕기 위해 두 가지 주요 도구를 사용할 수 있습니다. SelectorGadget과 브라우저의 개발자 도구입니다.
 
 [SelectorGadget](https://oreil.ly/qui0z)은 여러분이 제공하는 긍정 및 부정 예제를 기반으로 CSS 선택자를 자동으로 생성하는 JavaScript 북마크릿(bookmarklet)입니다. 항상 작동하는 것은 아니지만, 작동할 때는 마법 같습니다! [vignette](https://oreil.ly/qui0z)를 읽거나 [Mine의 비디오](https://oreil.ly/qNv6l)를 시청하여 SelectorGadget을 설치하고 사용하는 방법을 배울 수 있습니다.
 
@@ -325,9 +325,9 @@ SelectorGadget이나 Chrome 개발자 도구가 이해할 수 없는 CSS 선택�
 
 ## 스타워즈
 
-rvest에는 <a href="https://rvest.tidyverse.org/articles/starwars.html" class="orm:hideurl"><code>vignette("starwars")</code></a>에 매우 간단한 예제가 포함되어 있습니다. 최소한의 HTML로 구성된 간단한 페이지이므로 좋은 출발점입니다. 지금 해당 페이지로 이동하여 요소 검사(Inspect Element)를 사용해 *스타워즈* 영화의 제목인 제목들 중 하나를 검사해 보시길 권장합니다. 키보드나 마우스를 사용하여 HTML의 계층 구조를 탐색하고 각 영화에 사용된 공통 구조를 파악할 수 있는지 확인해 보세요.
+rvest에는 <a href="https://rvest.tidyverse.org/articles/starwars.html" class="orm:hideurl"><code>vignette("starwars")</code></a>에 매우 간단한 예제가 포함되어 있습니다. 최소한의 HTML로 구성된 간단한 페이지이므로 좋은 출발점입니다. 지금 해당 페이지로 이동하여 요소 검사(Inspect Element)를 사용해 _스타워즈_ 영화의 제목인 제목들 중 하나를 검사해 보시길 권장합니다. 키보드나 마우스를 사용하여 HTML의 계층 구조를 탐색하고 각 영화에 사용된 공통 구조를 파악할 수 있는지 확인해 보세요.
 
-각 영화에 다음과 같은 공통 구조가 있음을 알 수 있을 것입니다:
+각 영화에 다음과 같은 공통 구조가 있음을 알 수 있을 것입니다.
 
 ```
 <section>
@@ -342,7 +342,7 @@ rvest에는 <a href="https://rvest.tidyverse.org/articles/starwars.html" class="
 </section>
 ```
 
-우리의 목표는 이 데이터를 `title`, `year`, `director`, `intro` 변수가 있는 7행의 데이터 프레임으로 바꾸는 것입니다. HTML을 읽고 모든 `<section>` 요소를 추출하는 것부터 시작하겠습니다:
+우리의 목표는 이 데이터를 `title`, `year`, `director`, `intro` 변수가 있는 7행의 데이터 프레임으로 바꾸는 것입니다. HTML을 읽고 모든 `<section>` 요소를 추출하는 것부터 시작하겠습니다.
 
 ```
 url <- "https://rvest.tidyverse.org/articles/starwars.html"
@@ -360,42 +360,42 @@ section
 #> [7] <section><h2 data-id="7">\nThe Force Awakens\n</h2>\n<p>\nReleased: 20 ...
 ```
 
-이 코드는 해당 페이지에 있는 7개의 영화와 일치하는 7개의 요소를 검색하며, 이는 `section`을 선택자로 사용하는 것이 좋다는 것을 시사합니다. 데이터가 항상 텍스트에서 발견되기 때문에 개별 요소를 추출하는 것은 간단합니다. 올바른 선택자를 찾는 문제일 뿐입니다:
+이 코드는 해당 페이지에 있는 7개의 영화와 일치하는 7개의 요소를 검색하며, 이는 `section`을 선택자로 사용하는 것이 좋다는 것을 시사합니다. 데이터가 항상 텍스트에서 발견되기 때문에 개별 요소를 추출하는 것은 간단합니다. 올바른 선택자를 찾는 문제일 뿐입니다.
 
 ```
 section |> html_element("h2") |> html_text2()
-#> [1] "The Phantom Menace"      "Attack of the Clones"   
-#> [3] "Revenge of the Sith"     "A New Hope"             
-#> [5] "The Empire Strikes Back" "Return of the Jedi"     
+#> [1] "The Phantom Menace"      "Attack of the Clones"
+#> [3] "Revenge of the Sith"     "A New Hope"
+#> [5] "The Empire Strikes Back" "Return of the Jedi"
 #> [7] "The Force Awakens"
 section |> html_element(".director") |> html_text2()
-#> [1] "George Lucas"     "George Lucas"     "George Lucas"    
+#> [1] "George Lucas"     "George Lucas"     "George Lucas"
 #> [4] "George Lucas"     "Irvin Kershner"   "Richard Marquand"
 #> [7] "J. J. Abrams"
 ```
 
-각 구성 요소에 대해 이 작업을 수행하고 나면 모든 결과를 티블로 감쌀 수 있습니다:
+각 구성 요소에 대해 이 작업을 수행하고 나면 모든 결과를 티블로 감쌀 수 있습니다.
 
 ```
 tibble(
-  title = section |> 
-    html_element("h2") |> 
+  title = section |>
+    html_element("h2") |>
     html_text2(),
-  released = section |> 
-    html_element("p") |> 
-    html_text2() |> 
-    str_remove("Released: ") |> 
+  released = section |>
+    html_element("p") |>
+    html_text2() |>
+    str_remove("Released: ") |>
     parse_date(),
-  director = section |> 
-    html_element(".director") |> 
+  director = section |>
+    html_element(".director") |>
     html_text2(),
-  intro = section |> 
-    html_element(".crawl") |> 
+  intro = section |>
+    html_element(".crawl") |>
     html_text2()
 )
 #> # A tibble: 7 × 4
-#>   title                   released   director         intro                  
-#>   <chr>                   <date>     <chr>            <chr>                  
+#>   title                   released   director         intro
+#>   <chr>                   <date>     <chr>            <chr>
 #> 1 The Phantom Menace      1999-05-19 George Lucas     "Turmoil has engulfed …
 #> 2 Attack of the Clones    2002-05-16 George Lucas     "There is unrest in th…
 #> 3 Revenge of the Sith     2005-05-19 George Lucas     "War! The Republic is …
@@ -416,25 +416,25 @@ tibble(
 <h6 id="figure-24-1.-imdb-top-movies-web-page-taken-on-2022-12-05.">그림 24-1. 2022-12-05에 캡처한 IMDb 최고 영화 웹 페이지.</h6>
 </figure>
 
-이 데이터는 명확한 표 구조를 가지고 있으므로 <a href="https://rvest.tidyverse.org/reference/html_table.html" class="orm:hideurl"><code>html_table()</code></a>로 시작할 가치가 있습니다:
+이 데이터는 명확한 표 구조를 가지고 있으므로 <a href="https://rvest.tidyverse.org/reference/html_table.html" class="orm:hideurl"><code>html_table()</code></a>로 시작할 가치가 있습니다.
 
 ```
 url <- "https://www.imdb.com/chart/top"
 html <- read_html(url)
 
-table <- html |> 
-  html_element("table") |> 
+table <- html |>
+  html_element("table") |>
   html_table()
 table
 #> # A tibble: 250 × 5
-#>   ``    `Rank & Title`           `IMDb Rating` `Your Rating` ``   
+#>   ``    `Rank & Title`           `IMDb Rating` `Your Rating` ``
 #>   <lgl> <chr>                            <dbl> <chr>         <lgl>
-#> 1 NA    "1.\n      The Shawshank Redempt…           9.2 "12345678910\n… NA   
-#> 2 NA    "2.\n      The Godfather\n      …           9.2 "12345678910\n… NA   
-#> 3 NA    "3.\n      The Dark Knight\n    …           9   "12345678910\n… NA   
-#> 4 NA    "4.\n      The Godfather Part II…           9   "12345678910\n… NA   
-#> 5 NA    "5.\n      12 Angry Men\n       …           9   "12345678910\n… NA   
-#> 6 NA    "6.\n      Schindler's List\n   …           8.9 "12345678910\n… NA   
+#> 1 NA    "1.\n      The Shawshank Redempt…           9.2 "12345678910\n… NA
+#> 2 NA    "2.\n      The Godfather\n      …           9.2 "12345678910\n… NA
+#> 3 NA    "3.\n      The Dark Knight\n    …           9   "12345678910\n… NA
+#> 4 NA    "4.\n      The Godfather Part II…           9   "12345678910\n… NA
+#> 5 NA    "5.\n      12 Angry Men\n       …           9   "12345678910\n… NA
+#> 6 NA    "6.\n      Schindler's List\n   …           8.9 "12345678910\n… NA
 #> # … with 244 more rows
 ```
 
@@ -445,10 +445,10 @@ ratings <- table |>
   select(
     rank_title_year = `Rank & Title`,
     rating = `IMDb Rating`
-  ) |> 
+  ) |>
   mutate(
     rank_title_year = str_replace_all(rank_title_year, "\n +", " ")
-  ) |> 
+  ) |>
   separate_wider_regex(
     rank_title_year,
     patterns = c(
@@ -463,9 +463,9 @@ ratings
 #>   <chr> <chr>                    <chr>  <dbl>
 #> 1 1     The Shawshank Redemption 1994     9.2
 #> 2 2     The Godfather            1972     9.2
-#> 3 3     The Dark Knight          2008     9  
-#> 4 4     The Godfather Part II    1974     9  
-#> 5 5     12 Angry Men             1957     9  
+#> 3 3     The Dark Knight          2008     9
+#> 4 4     The Godfather Part II    1974     9
+#> 5 5     12 Angry Men             1957     9
 #> 6 6     Schindler's List         1993     8.9
 #> # … with 244 more rows
 ```
@@ -473,25 +473,25 @@ ratings
 대부분의 데이터가 테이블 셀에서 나오는 이 경우에도 원시 HTML을 살펴보는 것은 여전히 가치가 있습니다. 그렇게 하면 속성 중 하나를 사용하여 약간의 추가 데이터를 더할 수 있다는 것을 알게 될 것입니다. 이것이 페이지 소스를 파고드는 데 약간의 시간을 할애할 가치가 있는 이유 중 하나입니다. 추가 데이터를 찾거나 파싱 경로가 약간 더 쉬운 것을 발견할 수 있습니다.
 
 ```
-html |> 
-  html_elements("td strong") |> 
-  head() |> 
+html |>
+  html_elements("td strong") |>
+  head() |>
   html_attr("title")
 #> [1] "9.2 based on 2,712,990 user ratings"
 #> [2] "9.2 based on 1,884,423 user ratings"
 #> [3] "9.0 based on 2,685,826 user ratings"
 #> [4] "9.0 based on 1,286,204 user ratings"
-#> [5] "9.0 based on 801,579 user ratings"  
+#> [5] "9.0 based on 801,579 user ratings"
 #> [6] "8.9 based on 1,370,458 user ratings"
 ```
 
-이것을 표 데이터와 결합하고 다시 <a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="orm:hideurl"><code>separate_wider_regex()</code></a>를 적용하여 우리가 관심 있는 데이터 부분을 추출할 수 있습니다:
+이것을 표 데이터와 결합하고 다시 <a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="orm:hideurl"><code>separate_wider_regex()</code></a>를 적용하여 우리가 관심 있는 데이터 부분을 추출할 수 있습니다.
 
 ```
-ratings |> 
+ratings |>
   mutate(
     rating_n = html |> html_elements("td strong") |> html_attr("title")
-  ) |> 
+  ) |>
   separate_wider_regex(
     rating_n,
     patterns = c(
@@ -499,7 +499,7 @@ ratings |>
       number = "[0-9,]+",
       " user ratings"
     )
-  ) |> 
+  ) |>
   mutate(
     number = parse_number(number)
   )
@@ -523,7 +523,7 @@ ratings |>
 
 # 요약
 
-이 장에서는 웹 페이지에서 데이터를 스크래핑하는 이유, 하지 말아야 할 이유, 그 방법에 대해 배웠습니다. 먼저 HTML의 기본 사항과 특정 요소를 참조하기 위해 CSS 선택자를 사용하는 것에 대해 배웠고, 그다음 rvest 패키지를 사용하여 HTML에서 데이터를 빼내어 R로 가져오는 방법에 대해 배웠습니다. 그리고 두 가지 사례 연구를 통해 웹 스크래핑을 시연했습니다: rvest 패키지 웹사이트에서 *스타워즈* 영화에 대한 데이터를 스크래핑하는 더 간단한 시나리오와 IMDb에서 상위 250개 영화를 스크래핑하는 더 복잡한 시나리오입니다.
+이 장에서는 웹 페이지에서 데이터를 스크래핑하는 이유, 하지 말아야 할 이유, 그 방법에 대해 배웠습니다. 먼저 HTML의 기본 사항과 특정 요소를 참조하기 위해 CSS 선택자를 사용하는 것에 대해 배웠고, 그다음 rvest 패키지를 사용하여 HTML에서 데이터를 빼내어 R로 가져오는 방법에 대해 배웠습니다. 그리고 두 가지 사례 연구를 통해 웹 스크래핑을 시연했습니다. rvest 패키지 웹사이트에서 _스타워즈_ 영화에 대한 데이터를 스크래핑하는 더 간단한 시나리오와 IMDb에서 상위 250개 영화를 스크래핑하는 더 복잡한 시나리오입니다.
 
 웹에서 데이터를 스크래핑하는 기술적 세부 사항은 특히 사이트를 다룰 때 복잡할 수 있습니다. 하지만 법적, 윤리적 고려 사항은 훨씬 더 복잡할 수 있습니다. 데이터를 스크래핑하기 전에 이 두 가지 모두에 대해 스스로 교육하는 것이 중요합니다.
 

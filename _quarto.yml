@@ -29,8 +29,8 @@ website:
       - section: notes/part01.qmd
         contents:
           - notes/data-visualize.qmd
+          - notes/data-transform.qmd
           # - notes/workflow-basics.qmd
-          # - notes/data-transform.qmd
           # - notes/workflow-style.qmd
           # - notes/data-tidy.qmd
           # - notes/workflow-scripts.qmd

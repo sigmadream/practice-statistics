@@ -4,7 +4,7 @@
 
 프로그래밍 섹션을 마무리하기 위해, 이 책의 다른 곳에서는 다루지 않은 가장 중요한 기본 R 함수들에 대해 간단히 살펴보겠습니다. 이 도구들은 프로그래밍을 더 많이 할 때 특히 유용하며 야생에서 마주치는 코드를 읽는 데 도움이 될 것입니다.
 
-여기가 데이터 과학 문제를 해결하는 데 tidyverse만이 유일한 방법은 아니라는 점을 상기시키기에 좋은 곳입니다. 이 책에서 tidyverse를 가르치는 이유는 tidyverse 패키지들이 공통된 설계 철학을 공유하여 함수 간의 일관성을 높이고 각각의 새로운 함수나 패키지를 배우고 사용하기 조금 더 쉽게 만들기 때문입니다. 기본 R(base R)을 사용하지 않고 tidyverse를 사용하는 것은 불가능하므로, 패키지를 로드하는 <a href="https://rdrr.io/r/base/library.html" class="orm:hideurl"><code>library()</code></a>, 숫자 요약을 위한 <a href="https://rdrr.io/r/base/sum.html" class="orm:hideurl"><code>sum()</code></a>과 <a href="https://rdrr.io/r/base/mean.html" class="orm:hideurl"><code>mean()</code></a>, 팩터, 날짜 및 POSIXct 데이터 유형, 그리고 물론 `+`, `-`, `/`, `*`, `|`, `&`, `!`와 같은 모든 기본 연산자를 포함하여 이미 *많은* 기본 R 함수를 가르쳤습니다. 지금까지 우리가 집중하지 않았던 것은 기본 R 워크플로우이므로 이 장에서는 그 중 몇 가지를 강조하겠습니다.
+여기가 데이터 과학 문제를 해결하는 데 tidyverse만이 유일한 방법은 아니라는 점을 상기시키기에 좋은 곳입니다. 이 책에서 tidyverse를 가르치는 이유는 tidyverse 패키지들이 공통된 설계 철학을 공유하여 함수 간의 일관성을 높이고 각각의 새로운 함수나 패키지를 배우고 사용하기 조금 더 쉽게 만들기 때문입니다. 기본 R(base R)을 사용하지 않고 tidyverse를 사용하는 것은 불가능하므로, 패키지를 로드하는 <a href="https://rdrr.io/r/base/library.html" class="orm:hideurl"><code>library()</code></a>, 숫자 요약을 위한 <a href="https://rdrr.io/r/base/sum.html" class="orm:hideurl"><code>sum()</code></a>과 <a href="https://rdrr.io/r/base/mean.html" class="orm:hideurl"><code>mean()</code></a>, 팩터, 날짜 및 POSIXct 데이터 유형, 그리고 물론 `+`, `-`, `/`, `*`, `|`, `&`, `!`와 같은 모든 기본 연산자를 포함하여 이미 _많은_ 기본 R 함수를 가르쳤습니다. 지금까지 우리가 집중하지 않았던 것은 기본 R 워크플로우이므로 이 장에서는 그 중 몇 가지를 강조하겠습니다.
 
 이 책을 읽은 후에는 기본 R, data.table 및 다른 패키지를 사용하여 동일한 문제에 대한 다른 접근 방식을 배우게 될 것입니다. 다른 사람들이 작성한 R 코드를 읽기 시작할 때, 특히 StackOverflow를 사용하는 경우 의심할 여지 없이 이러한 다른 접근 방식을 만나게 될 것입니다. 접근 방식을 혼합하여 사용하는 코드를 작성하는 것은 100% 괜찮습니다. 다른 사람의 말에 흔들리지 마세요!
 
@@ -24,9 +24,9 @@ library(tidyverse)
 
 ## 벡터 하위 집합 만들기 (Subsetting Vectors)
 
-벡터의 하위 집합을 만들 수 있는, 즉 `x[i]`에서 `i`가 될 수 있는 것에는 5가지 주요 유형이 있습니다:
+벡터의 하위 집합을 만들 수 있는, 즉 `x[i]`에서 `i`가 될 수 있는 것에는 5가지 주요 유형이 있습니다.
 
-- *양의 정수 벡터*. 양의 정수로 하위 집합을 만들면 해당 위치의 요소를 유지합니다.
+- _양의 정수 벡터_. 양의 정수로 하위 집합을 만들면 해당 위치의 요소를 유지합니다.
 
   ```
   x <- c("one", "two", "three", "four", "five")
@@ -41,14 +41,14 @@ library(tidyverse)
   #> [1] "one"  "one"  "five" "five" "five" "two"
   ```
 
-- *음의 정수 벡터*. 음수 값은 지정된 위치의 요소를 제외합니다.
+- _음의 정수 벡터_. 음수 값은 지정된 위치의 요소를 제외합니다.
 
   ```
   x[c(-1, -3, -5)]
   #> [1] "two"  "four"
   ```
 
-- *논리형 벡터*. 논리형 벡터로 하위 집합을 만들면 `TRUE` 값에 해당하는 모든 값을 유지합니다. 이것은 대부분 비교 함수와 함께 사용할 때 유용합니다.
+- _논리형 벡터_. 논리형 벡터로 하위 집합을 만들면 `TRUE` 값에 해당하는 모든 값을 유지합니다. 이것은 대부분 비교 함수와 함께 사용할 때 유용합니다.
 
   ```
   x <- c(10, 3, NA, 5, 8, 1, NA)
@@ -64,46 +64,46 @@ library(tidyverse)
 
   <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 달리 `NA` 인덱스는 출력에 `NA`로 포함됩니다.
 
-- *문자형 벡터*. 명명된 벡터가 있는 경우 문자형 벡터로 하위 집합을 만들 수 있습니다.
+- _문자형 벡터_. 명명된 벡터가 있는 경우 문자형 벡터로 하위 집합을 만들 수 있습니다.
 
   ```
   x <- c(abc = 1, def = 2, xyz = 5)
   x[c("xyz", "def")]
-  #> xyz def 
+  #> xyz def
   #>   5   2
   ```
 
   양의 정수로 하위 집합을 만드는 것과 마찬가지로 문자형 벡터를 사용하여 개별 항목을 복제할 수 있습니다.
 
-- *아무것도 없음(Nothing)*. 마지막 하위 집합 유형은 아무것도 없는 `x[]`이며, 이는 완전한 `x`를 반환합니다. 벡터의 하위 집합을 만드는 데는 유용하지 않지만, 곧 보게 되겠지만 티블(tibble)과 같은 2D 구조의 하위 집합을 만들 때 유용합니다.
+- _아무것도 없음(Nothing)_. 마지막 하위 집합 유형은 아무것도 없는 `x[]`이며, 이는 완전한 `x`를 반환합니다. 벡터의 하위 집합을 만드는 데는 유용하지 않지만, 곧 보게 되겠지만 티블(tibble)과 같은 2D 구조의 하위 집합을 만들 때 유용합니다.
 
 ## 데이터 프레임 하위 집합 만들기 (Subsetting Data Frames)
 
 데이터 프레임에 `[`를 사용할 수 있는 방법은 꽤 많이 있지만,<sup><a href="ch27.html#idm44771263328096" id="idm44771263328096-marker" data-type="noteref">1</a></sup> 가장 중요한 방법은 `df[rows, cols]`를 사용하여 행과 열을 독립적으로 선택하는 것입니다. 여기서 `rows`와 `cols`는 앞서 설명한 벡터입니다. 예를 들어, `df[rows, ]`와 `df[, cols]`는 빈 하위 집합을 사용하여 다른 차원을 보존하면서 행이나 열만 선택합니다.
 
-다음은 몇 가지 예입니다:
+다음은 몇 가지 예입니다.
 
 ```
 df <- tibble(
-  x = 1:3, 
-  y = c("a", "e", "f"), 
+  x = 1:3,
+  y = c("a", "e", "f"),
   z = runif(3)
 )
 
 # 첫 번째 행과 두 번째 열 선택
 df[1, 2]
 #> # A tibble: 1 × 1
-#>   y    
+#>   y
 #>   <chr>
 #> 1 a
 
 # 모든 행과 x 및 y 열 선택
 df[, c("x" , "y")]
 #> # A tibble: 3 × 2
-#>       x y    
+#>       x y
 #>   <int> <chr>
-#> 1     1 a    
-#> 2     2 e    
+#> 1     1 a
+#> 2     2 e
 #> 3     3 f
 
 # `x`가 1보다 큰 행과 모든 열 선택
@@ -115,7 +115,7 @@ df[df$x > 1, ]
 #> 2     3 f     0.601
 ```
 
-잠시 후 `$`에 대해 다시 살펴보겠지만, `df$x`가 문맥상 무엇을 하는지 짐작할 수 있어야 합니다: `df`에서 `x` 변수를 추출합니다. 여기서 이 방법을 사용해야 하는 이유는 `[`가 tidy evaluation을 사용하지 않으므로 `x` 변수의 출처를 명시해야 하기 때문입니다.
+잠시 후 `$`에 대해 다시 살펴보겠지만, `df$x`가 문맥상 무엇을 하는지 짐작할 수 있어야 합니다. `df`에서 `x` 변수를 추출합니다. 여기서 이 방법을 사용해야 하는 이유는 `[`가 tidy evaluation을 사용하지 않으므로 `x` 변수의 출처를 명시해야 하기 때문입니다.
 
 `[`와 관련하여 티블(tibble)과 데이터 프레임 사이에는 중요한 차이점이 있습니다. 이 책에서는 주로 데이터 프레임의 일종이지만 삶을 조금 더 편하게 만들어주기 위해 일부 동작을 조정한 티블을 사용해 왔습니다. 대부분의 경우 "티블"과 "데이터 프레임"을 서로 바꾸어 사용할 수 있으므로 R의 내장 데이터 프레임에 특별한 주의를 환기시키고 싶을 때는 `data.frame`이라고 쓰겠습니다. `df`가 `data.frame`인 경우 `df[, cols]`는 `col`이 단일 열을 선택하면 벡터를 반환하고, 두 개 이상의 열을 선택하면 데이터 프레임을 반환합니다. `df`가 티블인 경우 `[`는 항상 티블을 반환합니다.
 
@@ -134,7 +134,7 @@ df2[, "x"]
 #> 3     3
 ```
 
-`data.frame`에서 이 모호성을 피하는 한 가지 방법은 명시적으로 `drop = FALSE`를 지정하는 것입니다:
+`data.frame`에서 이 모호성을 피하는 한 가지 방법은 명시적으로 `drop = FALSE`를 지정하는 것입니다.
 
 ```
 df1[, "x" , drop = FALSE]
@@ -146,14 +146,14 @@ df1[, "x" , drop = FALSE]
 
 ## dplyr 등가물 (dplyr Equivalents)
 
-몇 가지 dplyr 동사는 `[`의 특수한 경우입니다:
+몇 가지 dplyr 동사는 `[`의 특수한 경우입니다.
 
-- <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>는 논리형 벡터로 행의 하위 집합을 만드는 것과 같으며, 결측값을 제외하도록 주의합니다:
+- <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>는 논리형 벡터로 행의 하위 집합을 만드는 것과 같으며, 결측값을 제외하도록 주의합니다.
 
   ```
   df <- tibble(
-    x = c(2, 3, 1, 1, NA), 
-    y = letters[1:5], 
+    x = c(2, 3, 1, 1, NA),
+    y = letters[1:5],
     z = runif(5)
   )
   df |> filter(x > 1)
@@ -162,9 +162,9 @@ df1[, "x" , drop = FALSE]
   df[!is.na(df$x) & df$x > 1, ]
   ```
 
-  야생에서 볼 수 있는 또 다른 일반적인 기술은 결측값을 삭제하는 부작용 때문에 <a href="https://rdrr.io/r/base/which.html" class="orm:hideurl"><code>which()</code></a>를 사용하는 것입니다: `df[which(df$x > 1), ]`.
+  야생에서 볼 수 있는 또 다른 일반적인 기술은 결측값을 삭제하는 부작용 때문에 <a href="https://rdrr.io/r/base/which.html" class="orm:hideurl"><code>which()</code></a>를 사용하는 것입니다. `df[which(df$x > 1), ]`.
 
-- <a href="https://dplyr.tidyverse.org/reference/arrange.html" class="orm:hideurl"><code>arrange()</code></a>는 정수형 벡터(보통 <a href="https://rdrr.io/r/base/order.html" class="orm:hideurl"><code>order()</code></a>로 생성됨)로 행의 하위 집합을 만드는 것과 같습니다:
+- <a href="https://dplyr.tidyverse.org/reference/arrange.html" class="orm:hideurl"><code>arrange()</code></a>는 정수형 벡터(보통 <a href="https://rdrr.io/r/base/order.html" class="orm:hideurl"><code>order()</code></a>로 생성됨)로 행의 하위 집합을 만드는 것과 같습니다.
 
   ```
   df |> arrange(x, y)
@@ -175,7 +175,7 @@ df1[, "x" , drop = FALSE]
 
   `order(decreasing = TRUE)`를 사용하여 모든 열을 내림차순으로 정렬하거나 `-rank(col)`을 사용하여 열을 개별적으로 내림차순으로 정렬할 수 있습니다.
 
-- <a href="https://dplyr.tidyverse.org/reference/select.html" class="orm:hideurl"><code>select()</code></a>와 <a href="https://dplyr.tidyverse.org/reference/relocate.html" class="orm:hideurl"><code>relocate()</code></a> 모두 문자형 벡터로 열의 하위 집합을 만드는 것과 유사합니다:
+- <a href="https://dplyr.tidyverse.org/reference/select.html" class="orm:hideurl"><code>select()</code></a>와 <a href="https://dplyr.tidyverse.org/reference/relocate.html" class="orm:hideurl"><code>relocate()</code></a> 모두 문자형 벡터로 열의 하위 집합을 만드는 것과 유사합니다.
 
   ```
   df |> select(x, z)
@@ -184,16 +184,16 @@ df1[, "x" , drop = FALSE]
   df[, c("x", "z")]
   ```
 
-기본 R은 또한 <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 <a href="https://dplyr.tidyverse.org/reference/select.html" class="orm:hideurl"><code>select()</code></a>의 기능이 결합된<sup><a href="ch27.html#idm44771262898928" id="idm44771262898928-marker" data-type="noteref">2</a></sup> <a href="https://rdrr.io/r/base/subset.html" class="orm:hideurl"><code>subset()</code></a>이라는 함수를 제공합니다:
+기본 R은 또한 <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 <a href="https://dplyr.tidyverse.org/reference/select.html" class="orm:hideurl"><code>select()</code></a>의 기능이 결합된<sup><a href="ch27.html#idm44771262898928" id="idm44771262898928-marker" data-type="noteref">2</a></sup> <a href="https://rdrr.io/r/base/subset.html" class="orm:hideurl"><code>subset()</code></a>이라는 함수를 제공합니다.
 
 ```
-df |> 
-  filter(x > 1) |> 
+df |>
+  filter(x > 1) |>
   select(y, z)
 #> # A tibble: 2 × 2
 #>   y           z
 #>   <chr>   <dbl>
-#> 1 a     0.157  
+#> 1 a     0.157
 #> 2 b     0.00740
 ```
 
@@ -206,7 +206,7 @@ df |> subset(x > 1, c(y, z))
 
 ## 연습문제 (Exercises)
 
-1.  벡터를 입력으로 취하고 다음을 반환하는 함수를 만드세요:
+1.  벡터를 입력으로 취하고 다음을 반환하는 함수를 만드세요.
     1.  짝수 번째 위치의 요소
     2.  마지막 값을 제외한 모든 요소
     3.  짝수 값만 (결측값 제외)
@@ -218,7 +218,7 @@ df |> subset(x > 1, c(y, z))
 
 ## 데이터 프레임 (Data Frames)
 
-`[[` 및 `$`를 사용하여 데이터 프레임에서 열을 추출할 수 있습니다. `[[`는 위치나 이름으로 접근할 수 있으며 `$`는 이름으로 접근하는 데 특화되어 있습니다:
+`[[` 및 `$`를 사용하여 데이터 프레임에서 열을 추출할 수 있습니다. `[[`는 위치나 이름으로 접근할 수 있으며 `$`는 이름으로 접근하는 데 특화되어 있습니다.
 
 ```
 tb <- tibble(
@@ -237,7 +237,7 @@ tb$x
 #> [1] 1 2 3 4
 ```
 
-이들은 또한 새로운 열을 생성하는 데 사용될 수 있는데, 이는 <a href="https://dplyr.tidyverse.org/reference/mutate.html" class="orm:hideurl"><code>mutate()</code></a>에 해당하는 기본 R입니다:
+이들은 또한 새로운 열을 생성하는 데 사용될 수 있는데, 이는 <a href="https://dplyr.tidyverse.org/reference/mutate.html" class="orm:hideurl"><code>mutate()</code></a>에 해당하는 기본 R입니다.
 
 ```
 tb$z <- tb$x + tb$y
@@ -247,6 +247,7 @@ tb
 #>   <int> <dbl> <dbl>
 #> 1     1    10    11
 ```
+
 ```
 #> 2     2     4     6
 #> 3     3     1     4
@@ -255,7 +256,7 @@ tb
 
 <a href="https://rdrr.io/r/base/transform.html" class="orm:hideurl"><code>transform()</code></a>, <a href="https://rdrr.io/r/base/with.html" class="orm:hideurl"><code>with()</code></a> 및 <a href="https://rdrr.io/r/base/with.html" class="orm:hideurl"><code>within()</code></a>을 포함하여 새 열을 만드는 다른 여러 가지 기본 R 접근 방식이 있습니다. Hadley는 몇 가지 [예제](https://oreil.ly/z6vyT)를 수집했습니다.
 
-빠른 요약을 수행할 때 `$`를 직접 사용하는 것이 편리합니다. 예를 들어, 가장 큰 다이아몬드의 크기나 `cut`의 가능한 값만 찾고 싶다면 <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a>를 사용할 필요가 없습니다:
+빠른 요약을 수행할 때 `$`를 직접 사용하는 것이 편리합니다. 예를 들어, 가장 큰 다이아몬드의 크기나 `cut`의 가능한 값만 찾고 싶다면 <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a>를 사용할 필요가 없습니다.
 
 ```
 max(diamonds$carat)
@@ -265,7 +266,7 @@ levels(diamonds$cut)
 #> [1] "Fair"      "Good"      "Very Good" "Premium"   "Ideal"
 ```
 
-dplyr은 또한 <a href="ch03.html#chp-data-transform" data-type="xref">3장</a>에서 언급하지 않았던 `[[`/`$`에 해당하는 <a href="https://dplyr.tidyverse.org/reference/pull.html" class="orm:hideurl"><code>pull()</code></a>을 제공합니다. <a href="https://dplyr.tidyverse.org/reference/pull.html" class="orm:hideurl"><code>pull()</code></a>은 변수 이름이나 변수 위치를 취하여 해당 열만 반환합니다. 즉, 파이프를 사용하도록 이전 코드를 다시 작성할 수 있습니다:
+dplyr은 또한 <a href="ch03.html#chp-data-transform" data-type="xref">3장</a>에서 언급하지 않았던 `[[`/`$`에 해당하는 <a href="https://dplyr.tidyverse.org/reference/pull.html" class="orm:hideurl"><code>pull()</code></a>을 제공합니다. <a href="https://dplyr.tidyverse.org/reference/pull.html" class="orm:hideurl"><code>pull()</code></a>은 변수 이름이나 변수 위치를 취하여 해당 열만 반환합니다. 즉, 파이프를 사용하도록 이전 코드를 다시 작성할 수 있습니다.
 
 ```
 diamonds |> pull(carat) |> mean()
@@ -277,7 +278,7 @@ diamonds |> pull(cut) |> levels()
 
 ## 티블 (Tibbles)
 
-`$`와 관련하여 티블(tibble)과 기본 `data.frame` 간에는 몇 가지 중요한 차이점이 있습니다. 데이터 프레임은 변수 이름의 접두사와 일치하며(소위 *부분 일치(partial matching)*), 열이 존재하지 않아도 불평하지 않습니다:
+`$`와 관련하여 티블(tibble)과 기본 `data.frame` 간에는 몇 가지 중요한 차이점이 있습니다. 데이터 프레임은 변수 이름의 접두사와 일치하며(소위 _부분 일치(partial matching)_), 열이 존재하지 않아도 불평하지 않습니다.
 
 ```
 df <- data.frame(x1 = 1)
@@ -288,7 +289,7 @@ df$z
 #> NULL
 ```
 
-티블은 더 엄격합니다. 항상 변수 이름과 정확히 일치하며 접근하려는 열이 존재하지 않으면 경고를 생성합니다:
+티블은 더 엄격합니다. 항상 변수 이름과 정확히 일치하며 접근하려는 열이 존재하지 않으면 경고를 생성합니다.
 
 ```
 tb <- tibble(x1 = 1)
@@ -305,13 +306,13 @@ tb$z
 
 ## 리스트 (Lists)
 
-`[[`와 `$`는 리스트 작업에도 정말 중요하며, `[`와 어떻게 다른지 이해하는 것이 중요합니다. `l`이라는 이름의 리스트로 차이점을 설명해 보겠습니다:
+`[[`와 `$`는 리스트 작업에도 정말 중요하며, `[`와 어떻게 다른지 이해하는 것이 중요합니다. `l`이라는 이름의 리스트로 차이점을 설명해 보겠습니다.
 
 ```
 l <- list(
-  a = 1:3, 
-  b = "a string", 
-  c = pi, 
+  a = 1:3,
+  b = "a string",
+  c = pi,
   d = list(-1, -5)
 )
 ```
@@ -359,7 +360,7 @@ l <- list(
 <h6 id="figure-27-1.-left-a-pepper-shaker-that-hadley-once-found-in-his-hotel-room.-middle-pepper1.-right-pepper1.">그림 27-1. (왼쪽) 해들리(Hadley)가 언젠가 자신의 호텔 방에서 발견한 후추병. (가운데) <code>pepper[1]</code>. (오른쪽) <code>pepper[[1]]</code>.</h6>
 </figure>
 
-이 동일한 원리는 데이터 프레임과 함께 1D `[`를 사용할 때도 적용됩니다: `df["x"]`는 단일 열 데이터 프레임을 반환하고, `df[["x"]]`는 벡터를 반환합니다.
+이 동일한 원리는 데이터 프레임과 함께 1D `[`를 사용할 때도 적용됩니다. `df["x"]`는 단일 열 데이터 프레임을 반환하고, `df[["x"]]`는 벡터를 반환합니다.
 
 ## 연습문제 (Exercises)
 
@@ -381,7 +382,7 @@ df <- tibble(a = 1, b = 2, c = "a", d = "b", e = 4)
 # First find numeric columns
 num_cols <- sapply(df, is.numeric)
 num_cols
-#>     a     b     c     d     e 
+#>     a     b     c     d     e
 #>  TRUE  TRUE FALSE FALSE  TRUE
 
 # Then transform each column with lapply() then replace the original values
@@ -395,21 +396,21 @@ df
 
 이전 코드는 새로운 함수인 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>sapply()</code></a>를 사용합니다. 이는 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>lapply()</code></a>와 유사하지만 항상 결과를 단순화하려고 시도하며(이름의 `s`는 이를 나타냅니다), 여기서는 리스트 대신 논리형 벡터를 생성합니다. 단순화가 실패하여 예기치 않은 유형을 반환할 수 있으므로 프로그래밍에 사용하는 것은 권장하지 않지만 대화형 사용에는 대개 괜찮습니다. purrr에는 <a href="ch26.html#chp-iteration" data-type="xref">26장</a>에서 언급하지 않은 <a href="https://purrr.tidyverse.org/reference/map.html" class="orm:hideurl"><code>map_vec()</code></a>라는 유사한 함수가 있습니다.
 
-기본 R은 *v*ector apply의 줄임말인 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>vapply()</code></a>라는 더 엄격한 버전의 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>sapply()</code></a>를 제공합니다. 이는 예상되는 유형을 지정하는 추가 인자를 취하여 입력에 관계없이 동일한 방식으로 단순화가 발생하도록 합니다. 예를 들어 이전의 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>sapply()</code></a> 호출을 다음 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>vapply()</code></a>로 바꿀 수 있습니다. 여기서는 <a href="https://rdrr.io/r/base/numeric.html" class="orm:hideurl"><code>is.numeric()</code></a>이 길이 1의 논리형 벡터를 반환할 것으로 예상한다고 지정합니다:
+기본 R은 *v*ector apply의 줄임말인 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>vapply()</code></a>라는 더 엄격한 버전의 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>sapply()</code></a>를 제공합니다. 이는 예상되는 유형을 지정하는 추가 인자를 취하여 입력에 관계없이 동일한 방식으로 단순화가 발생하도록 합니다. 예를 들어 이전의 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>sapply()</code></a> 호출을 다음 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>vapply()</code></a>로 바꿀 수 있습니다. 여기서는 <a href="https://rdrr.io/r/base/numeric.html" class="orm:hideurl"><code>is.numeric()</code></a>이 길이 1의 논리형 벡터를 반환할 것으로 예상한다고 지정합니다.
 
 ```
 vapply(df, is.numeric, logical(1))
-#>     a     b     c     d     e 
+#>     a     b     c     d     e
 #>  TRUE  TRUE FALSE FALSE  TRUE
 ```
 
 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>sapply()</code></a>와 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>vapply()</code></a> 사이의 구분은 이들이 함수 내부에 있을 때 정말 중요하지만(특이한 입력에 대한 함수의 견고성에 큰 차이를 만들기 때문입니다), 데이터 분석에서는 보통 중요하지 않습니다.
 
-apply 제품군의 또 다른 중요한 구성원은 단일 그룹화된 요약을 계산하는 <a href="https://rdrr.io/r/base/tapply.html" class="orm:hideurl"><code>tapply()</code></a>입니다:
+apply 제품군의 또 다른 중요한 구성원은 단일 그룹화된 요약을 계산하는 <a href="https://rdrr.io/r/base/tapply.html" class="orm:hideurl"><code>tapply()</code></a>입니다.
 
 ```
-diamonds |> 
-  group_by(cut) |> 
+diamonds |>
+  group_by(cut) |>
   summarize(price = mean(price))
 #> # A tibble: 5 × 2
 #>   cut       price
@@ -421,7 +422,7 @@ diamonds |>
 #> 5 Ideal     3458.
 
 tapply(diamonds$price, diamonds$cut, mean)
-#>      Fair      Good Very Good   Premium     Ideal 
+#>      Fair      Good Very Good   Premium     Ideal
 #>  4358.758  3928.864  3981.760  4584.258  3457.542
 ```
 
@@ -431,7 +432,7 @@ apply 제품군의 마지막 구성원은 이름과 같은 <a href="https://rdrr
 
 # for 루프 (for Loops)
 
-`for` 루프는 apply 및 map 제품군 모두가 내부적으로 사용하는 반복의 기본 구성 요소입니다. `for` 루프는 숙련된 R 프로그래머가 되기 위해 배워야 할 중요하고 강력하며 일반적인 도구입니다. `for` 루프의 기본 구조는 다음과 같습니다:
+`for` 루프는 apply 및 map 제품군 모두가 내부적으로 사용하는 반복의 기본 구성 요소입니다. `for` 루프는 숙련된 R 프로그래머가 되기 위해 배워야 할 중요하고 강력하며 일반적인 도구입니다. `for` 루프의 기본 구조는 다음과 같습니다.
 
 ```
 for (element in vector) {
@@ -439,13 +440,13 @@ for (element in vector) {
 }
 ```
 
-`for` 루프의 가장 직접적인 사용은 <a href="https://purrr.tidyverse.org/reference/map.html" class="orm:hideurl"><code>walk()</code></a>와 동일한 효과를 얻는 것입니다: 리스트의 각 요소에 부작용이 있는 함수를 호출하는 것입니다. 예를 들어, <a href="ch26.html#sec-save-database" data-type="xref">“데이터베이스에 쓰기”</a>에서 `walk()`를 사용하는 대신:
+`for` 루프의 가장 직접적인 사용은 <a href="https://purrr.tidyverse.org/reference/map.html" class="orm:hideurl"><code>walk()</code></a>와 동일한 효과를 얻는 것입니다. 리스트의 각 요소에 부작용이 있는 함수를 호출하는 것입니다. 예를 들어, <a href="ch26.html#sec-save-database" data-type="xref">“데이터베이스에 쓰기”</a>에서 `walk()`를 사용하는 대신:
 
 ```
 paths |> walk(append_file)
 ```
 
-우리는 `for` 루프를 사용할 수 있었습니다:
+우리는 `for` 루프를 사용할 수 있었습니다.
 
 ```
 for (path in paths) {
@@ -453,27 +454,27 @@ for (path in paths) {
 }
 ```
 
-예를 들어 <a href="ch26.html#chp-iteration" data-type="xref">26장</a>에서 했던 것처럼 디렉터리의 모든 Excel 파일을 읽는 것과 같이 `for` 루프의 출력을 저장하려는 경우 상황이 조금 더 까다로워집니다:
+예를 들어 <a href="ch26.html#chp-iteration" data-type="xref">26장</a>에서 했던 것처럼 디렉터리의 모든 Excel 파일을 읽는 것과 같이 `for` 루프의 출력을 저장하려는 경우 상황이 조금 더 까다로워집니다.
 
 ```
 paths <- dir("data/gapminder", pattern = "\\.xlsx$", full.names = TRUE)
 files <- map(paths, readxl::read_excel)
 ```
 
-사용할 수 있는 몇 가지 다양한 기술이 있지만, 처음에 출력이 어떤 모습일지 명시적으로 지정하는 것이 좋습니다. 이 경우 <a href="https://rdrr.io/r/base/vector.html" class="orm:hideurl"><code>vector()</code></a>를 사용하여 생성할 수 있는 `paths`와 길이가 같은 리스트를 원할 것입니다:
+사용할 수 있는 몇 가지 다양한 기술이 있지만, 처음에 출력이 어떤 모습일지 명시적으로 지정하는 것이 좋습니다. 이 경우 <a href="https://rdrr.io/r/base/vector.html" class="orm:hideurl"><code>vector()</code></a>를 사용하여 생성할 수 있는 `paths`와 길이가 같은 리스트를 원할 것입니다.
 
 ```
 files <- vector("list", length(paths))
 ```
 
-그런 다음 `paths`의 요소를 반복하는 대신 <a href="https://rdrr.io/r/base/seq.html" class="orm:hideurl"><code>seq_along()</code></a>을 사용하여 `paths`의 각 요소에 대해 하나의 인덱스를 생성하여 해당 인덱스를 반복합니다:
+그런 다음 `paths`의 요소를 반복하는 대신 <a href="https://rdrr.io/r/base/seq.html" class="orm:hideurl"><code>seq_along()</code></a>을 사용하여 `paths`의 각 요소에 대해 하나의 인덱스를 생성하여 해당 인덱스를 반복합니다.
 
 ```
 seq_along(paths)
 #>  [1]  1  2  3  4  5  6  7  8  9 10 11 12
 ```
 
-입력의 각 위치를 출력의 해당 위치와 연결할 수 있기 때문에 인덱스를 사용하는 것이 중요합니다:
+입력의 각 위치를 출력의 해당 위치와 연결할 수 있기 때문에 인덱스를 사용하는 것이 중요합니다.
 
 ```
 for (i in seq_along(paths)) {
@@ -481,7 +482,7 @@ for (i in seq_along(paths)) {
 }
 ```
 
-티블 리스트를 단일 티블로 결합하려면 <a href="https://rdrr.io/r/base/do.call.html" class="orm:hideurl"><code>do.call()</code></a> + <a href="https://rdrr.io/r/base/cbind.html" class="orm:hideurl"><code>rbind()</code></a>를 사용할 수 있습니다:
+티블 리스트를 단일 티블로 결합하려면 <a href="https://rdrr.io/r/base/do.call.html" class="orm:hideurl"><code>do.call()</code></a> + <a href="https://rdrr.io/r/base/cbind.html" class="orm:hideurl"><code>rbind()</code></a>를 사용할 수 있습니다.
 
 ```
 do.call(rbind, files)
@@ -497,7 +498,7 @@ do.call(rbind, files)
 #> # … with 1,698 more rows
 ```
 
-리스트를 만들고 결과를 저장하는 것보다 더 간단한 방법은 데이터 프레임을 하나씩 쌓아가는 것입니다:
+리스트를 만들고 결과를 저장하는 것보다 더 간단한 방법은 데이터 프레임을 하나씩 쌓아가는 것입니다.
 
 ```
 out <- NULL
@@ -512,7 +513,7 @@ for (path in paths) {
 
 그렇지 않으면 tidyverse를 사용하지 않는 많은 R 사용자는 현명한 기본값, 자동 범례 및 현대적인 모양과 같은 유용한 기능 때문에 플로팅에 ggplot2를 선호합니다. 그러나 기본 R 플로팅 함수는 매우 간결하기 때문에 여전히 유용할 수 있습니다. 기본 탐색 플롯을 수행하는 데 타이핑이 거의 필요하지 않습니다.
 
-야생에서 볼 수 있는 기본 플롯에는 산점도와 히스토그램의 두 가지 주요 유형이 있으며, 각각 <a href="https://rdrr.io/r/graphics/plot.default.html" class="orm:hideurl"><code>plot()</code></a> 및 <a href="https://rdrr.io/r/graphics/hist.html" class="orm:hideurl"><code>hist()</code></a>로 생성됩니다. 다음은 `diamonds` 데이터 세트의 간단한 예입니다:
+야생에서 볼 수 있는 기본 플롯에는 산점도와 히스토그램의 두 가지 주요 유형이 있으며, 각각 <a href="https://rdrr.io/r/graphics/plot.default.html" class="orm:hideurl"><code>plot()</code></a> 및 <a href="https://rdrr.io/r/graphics/hist.html" class="orm:hideurl"><code>hist()</code></a>로 생성됩니다. 다음은 `diamonds` 데이터 세트의 간단한 예입니다.
 
 ```
 # Left

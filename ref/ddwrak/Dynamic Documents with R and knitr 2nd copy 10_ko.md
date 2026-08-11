@@ -16,7 +16,7 @@ knitr 패키지의 설계는 이론상 어떠한 일반 텍스트 문서도 처�
 
 정규 표현식(Friedl, 2006, 또는 위키백과 참조)은 문서에서 인라인 코드와 같은 다른 요소 및 코드 블록(청크)을 식별하는 데 사용됩니다. 이러한 정규 표현식 패턴은 knitr의 all_patterns 객체에 저장됩니다. 예를 들어, Rnw 문서에서 코드 청크의 시작을 나타내는 패턴은 다음과 같습니다.
 
-all_patterns$rnw$chunk.begin ## [1] "^\\s*<<(.*)>>=.*$"
+all_patterns$rnw$chunk.begin ## [1] "^\\s*<<(.*)>>=.\*$"
 
 정규 표현식에서 ^는 문자열의 시작을 의미합니다. \s*는 임의의 개수(0개 포함)의 공백 문자와 일치합니다. .*는 임의의 문자와 임의의 개수로 일치합니다. 이 정규 표현식은 “줄 시작 부분의 임의의 공백 문자 + << + 임의의 문자 + >>=”를 의미하므로 아래의 줄들은 가능한 청크 헤더입니다.
 
@@ -33,12 +33,11 @@ hi<<>>= <<foo>= <<bar>>
 - 1. 정규 표현식에서 \s는 공백을 나타내지만, R에서는 이중 백슬래시를 작성해야 합니다. 왜냐하면 R 문자열에서 \\는 실제로는 하나의 백슬래시를 의미하기 때문입니다(첫 번째 백슬래시는 이스케이프 역할을 하여 역시 백슬래시인 두 번째 문자를 처리합니다). 초보자에게 이스케이프 문자로 사용되는 백슬래시는 꽤 혼란스러울 수 있으며, 경험상 실제 백슬래시를 원할 때는 두 개의 백슬래시가 필요할 수 있습니다.
 - 2. 정규 표현식의 괄호 ()는 문자열 그룹을 형성하여 후방 참조(back references)를 통해 이를 추출할 수 있도록 합니다. 예를 들어, abbbc에서 두 번째 문자 그룹을 추출합니다.
 
-
-# [b]+ means to match  b  for one or more times gsub("(a)([b]+)(c)", "\\2", "abbbc")
+# [b]+ means to match b for one or more times gsub("(a)([b]+)(c)", "\\2", "abbbc")
 
 ## [1] "bbb"
 
-우리는 청크 헤더에서 청크 옵션을 추출해야 하며, 이것이 바로 정규 표현식에서 .*를 ()로 감싸서 < <(.*)> >=와 같이 작성한 이유입니다.
+우리는 청크 헤더에서 청크 옵션을 추출해야 하며, 이것이 바로 정규 표현식에서 ._를 ()로 감싸서 < <(._)> >=와 같이 작성한 이유입니다.
 
 ###### 5.1.1 청크 옵션
 
@@ -51,7 +50,6 @@ R의 구문과 일관성이 있기 때문에 이 구문에 대해 특별히 기�
 <<foo, eval=if (bar < 5) TRUE else FALSE>>=
 
 이 청크 앞에 소스 문서에서 생성된 숫자 변수 bar가 있다고 가정해 보겠습니다. if (bar < 5) TRUE else FALSE 표현식을 eval 옵션에 전달할 수 있으며, 이로 인해 eval 옵션은 bar의 값에 의존하게 됩니다. 결과적으로 bar의 값에 따라 이 청크를 평가합니다(5보다 크면 청크가 평가되지 않음). 즉, 특정 청크를 선택적으로 평가할 수 있습니다. 이 예시는 청크 옵션에 아무리 복잡한 R 표현식도 작성할 수 있음을 보여줍니다. 사실, bar < 5 표현식이 일반적으로 TRUE 또는 FALSE를 반환하므로(bar가 NA가 아닌 경우) eval = bar < 5로 간소화할 수 있습니다.
-
 
 ###### 5.1.2 청크 레이블
 
@@ -89,20 +87,19 @@ Documentation here. <<>>= 1+1 <<>>= rnorm(10) @ More documentation.
 
 ###### 5.2.1 마크다운
 
-R 마크다운(Rmd) 문서의 경우, 우리는 ```{r}과 ``` 사이에 코드 청크를 작성하고 인라인 R 코드는 `r ` 안에 작성합니다. 청크 옵션은 청크 헤더의 닫는 중괄호 전에 작성됩니다. 인라인 R 코드는 백틱(`)을 포함할 수 없다는 점에 유의하세요. 예를 들어, `r pi*2`는 괜찮지만 `r `pi`*2`는 안 됩니다. `pi`*2가 유효한 R 코드라 할지라도 구문 분석기는 첫 번째 백틱이 인라인 R 코드 표현식을 종료하기 위한 것이 아님을 알 수 없습니다.
+R 마크다운(Rmd) 문서의 경우, 우리는 `{r}과 ` 사이에 코드 청크를 작성하고 인라인 R 코드는 `r ` 안에 작성합니다. 청크 옵션은 청크 헤더의 닫는 중괄호 전에 작성됩니다. 인라인 R 코드는 백틱(`)을 포함할 수 없다는 점에 유의하세요. 예를 들어, `r pi*2`는 괜찮지만 `r `pi`*2`는 안 됩니다. `pi`\*2가 유효한 R 코드라 할지라도 구문 분석기는 첫 번째 백틱이 인라인 R 코드 표현식을 종료하기 위한 것이 아님을 알 수 없습니다.
 
 표 5.1: 모든 문서 형식의 구문 요약: RLTX, R 마크다운, R HTML, R reStructuredText, RAE
 
-|inline| | | | | | | | |
-|---|---|---|---|---|---|---|---|---|
-|end| | | | | | | | |
-|start| | | | | |//<br><br>###|.| |
-|format|R<br><br>R|md<br><br>htm|l| | | | | |
+| inline |            |               |     |     |     |               |     |     |
+| ------ | ---------- | ------------- | --- | --- | --- | ------------- | --- | --- |
+| end    |            |               |     |     |     |               |     |     |
+| start  |            |               |     |     |     | //<br><br>### | .   |     |
+| format | R<br><br>R | md<br><br>htm | l   |     |     |               |     |     |
 
+in.rcode\*end.rcode--><!--rinlinex-->
 
-in.rcode*end.rcode--><!--rinlinex-->
-
-.rcode*%end.rcode\rinline{x}
+.rcode\*%end.rcode\rinline{x}
 
 @\Sexpr{x}
 
@@ -112,9 +109,9 @@ in.rcode*end.rcode--><!--rinlinex-->
 
 }````rx`
 
-n.rcode*//end.rcode`rx`
+n.rcode\*//end.rcode`rx`
 
-gin.rcode*###.end.rcode@rx@
+gin.rcode\*###.end.rcode@rx@
 
 endinline
 
@@ -127,8 +124,7 @@ AsciiDoc, R Textile, and brew.
 - - list item
 - - list item
 
-
-백틱은 `<code>` 태그를 생성합니다. This is [a link](url), and this is an ![image](url). A block of code ( <pre>  tag):
+백틱은 `<code>` 태그를 생성합니다. This is [a link](url), and this is an ![image](url). A block of code ( <pre> tag):
 
 1 + 1 rnorm(10)
 
@@ -137,23 +133,21 @@ AsciiDoc, R Textile, and brew.
 - 1. 항목 1
 - 2. 항목 2
 
-
 원래 마크다운 구문은 단순하게 설계되었으므로, 표 작성, LATEX 수학 수식 작성 또는 참고 문헌 등 저작 환경 측면에서 어느 정도 제약이 있는 것은 불가피합니다. 짧은 과제를 작성하는 것과 같은 일부 경우에는 복잡한 기능이 필요하지 않으므로 마크다운으로도 꽤 잘 작동할 것입니다.
 
 마크다운의 한 가지 문제는 파생 버전입니다. Pandoc의 마크다운(http://johnmacfarlane.net/pandoc), Github Flavored 마크다운(http://github.com), kramdown(http://kramdown.rubyforge.org) 등과 같이 수많은 변형이 존재합니다. 이러한 변형들은 표와 같은 특정 요소를 작성하는 방법에 대해 고유한 정의를 가질 수 있습니다. CommonMark(http://commonmark.org)는 마크다운 구문을 모호하지 않게 정의하기 위한 노력이며, Pandoc의 마크다운은 CommonMark 표준과 호환됩니다. 또한, 현재로서는 Pandoc이 마크다운을 위한 가장 포괄적인 도구일 것입니다. Pandoc은 원래 마크다운에 다음과 같은 유용한 확장 기능들을 많이 추가했습니다.
 
 - 1. 세 개의 백틱 쌍으로 둘러싸인 펜스 코드 블록
 - 2. 일반 LATEX(PDF 출력용) 또는 MathJax(http://mathjax.org, HTML 출력용)를 통한 LATEX 수학 수식 지원. 이를 통해 $math$ 또는 $$math$$와 같은 LATEX 구문을 사용하여 웹 페이지에 수학 방정식을 작성할 수 있습니다.
-- 3. 문서에 대한 메타데이터(예: 제목, 저자 및 날짜 정보)
+- 3. 문서에 대한 메타데이터(제목, 저자 및 날짜 정보)
 - 4. 공백이나 파이프로 기둥(열)이 구분된 표
 - 5. 정의 목록, 각주 및 인용구 등
-
 
 다음은 일부 확장 기능이 어떻게 보이는지 보여줍니다.
 
 --title: 내 보고서 제목 author: Yihui Xie
 
---평소처럼 4칸 들여쓰기하거나 아래에 코드를 작성합니다.    r 1 + 1 rnorm(10)
+--평소처럼 4칸 들여쓰기하거나 아래에 코드를 작성합니다. r 1 + 1 rnorm(10)
 
 인라인 수식: $\alpha + \beta$. 디스플레이 스타일: $$f(x) = x^{2} + 1$$ 인용에서 가져온 간단한 표 [@joe2014]:
 
@@ -161,7 +155,6 @@ AsciiDoc, R Textile, and brew.
 
 - | a | 49 | M |
 - | b | 32 | F |
-
 
 더 중요한 것은, Pandoc이 마크다운을 PDF/LATEX, HTML, 워드(Microsoft Word 또는 OpenOffice) 및 프레젠테이션 슬라이드(LATEX beamer 또는 HTML5 슬라이드)를 포함한 여러 다른 문서 형식으로 변환할 수 있다는 점입니다. R 패키지 rmarkdown(Allaire 외, 2015a)은 knitr과 Pandoc을 기반으로 하며, 사용자가 기본적으로 꽤 아름다운 출력을 빠르게 만들 수 있도록 자주 사용되는 몇 가지 출력 형식을 포함하고 있습니다.
 
@@ -172,7 +165,6 @@ rmarkdown 패키지는 RStudio 개발자들이 도입했으므로, RStudio가 R 
 LATEX 문서의 경우, 이전에 여러 번 보았듯이 R 코드 청크는 < <> >=와 @ 사이에 삽입되며 인라인 R 코드는 \Sexpr{} 안에 작성됩니다.
 
 - 5.2.3 HTML
-
 
 HTML(하이퍼텍스트 마크업 언어, Hyper-Text Markup Language)은 웹 페이지 이면에 있는 언어입니다. 보통 웹 브라우저가 이를 구문 분석하고 요소를 렌더링하기 때문에 HTML 코드를 직접 볼 일은 없습니다. 예를 들어 굵은 글씨를 볼 때 소스 코드는 <strong>굵은 글씨</strong>일 수 있습니다. 대부분의 웹 브라우저는 HTML 소스 코드를 표시할 수 있습니다. 예를 들어 파이어폭스와 구글 크롬에서는 Ctrl + U를 눌러 페이지 소스를 볼 수 있습니다.
 
@@ -206,7 +198,7 @@ knit_hooks$set(crop = hook_pdfcrop)
 이제 아래의 동일한 코드 청크에 의해 생성된 두 개의 플롯을 비교해 보겠습니다. 첫 번째 플롯은 잘리지 않았습니다(그림 10.3). 그다음 플롯은 동일하게 생성되었지만, 자르기 훅을 호출하는 청크 옵션 `crop = TRUE`가 추가되었습니다(그림 10.4).
 
 ```r
-par(mar = c(5, 4, 4, 2)) # large margin 
+par(mar = c(5, 4, 4, 2)) # large margin
 plot(lat ~ long, data = quakes, pch = 20, col = rgb(0, 0, 0, 0.2))
 ```
 
@@ -233,8 +225,8 @@ long
 `hook_rgl()` 훅을 사용하면 rgl 패키지에서 스냅샷을 쉽게 저장할 수 있습니다(Adler and Murdoch, 2014). rgl 훅은 훅 내에서 options 인자를 신중하게 사용하여 세부 사항을 처리하는 좋은 예입니다. 예를 들어, `rgl.snapshot()`이나 `rgl.postscript()`에서는 rgl 플롯의 너비와 높이를 직접 설정할 수 없으므로, options의 `fig.width`, `fig.height`, `dpi`를 활용하여 예상 창 크기를 계산한 다음, `par3d()`로 현재 창 크기를 조정하고 플롯을 저장합니다. 마지막으로 플롯을 출력에 삽입하기 위한 적절한 코드가 포함된 문자열을 반환합니다. 다음은 `hook_rgl()`의 빠르고 간단한 버전입니다.
 
 ```r
-knit_hooks$set(rgl = function(before, options, envir) { 
-  library(rgl) 
+knit_hooks$set(rgl = function(before, options, envir) {
+  library(rgl)
   if (before || rgl.cur() == 0)
     return() # return nothing before a chunk
 
@@ -246,7 +238,7 @@ knit_hooks$set(rgl = function(before, options, envir) {
 - FIGURE 10.5: An rgl plot captured by hook_rgl(): this hook function calls rgl.snapshot() in rgl to save the snapshot into a PNG image.
 
 ```r
-  rgl.snapshot(paste(name, ".png", sep = ""), fmt = "png") 
+  rgl.snapshot(paste(name, ".png", sep = ""), fmt = "png")
   paste("\\includegraphics{", name, "}\n", sep = "")
 })
 ```
@@ -260,8 +252,8 @@ knit_hooks$set(rgl = hook_rgl)
 그런 다음 청크 옵션을 `rgl = TRUE`로 설정하기만 하면 캡처된 플롯이 그림 10.5와 같이 나타납니다.
 
 ```r
-library(rgl) 
-demo("bivar", package = "rgl", echo = FALSE) 
+library(rgl)
+demo("bivar", package = "rgl", echo = FALSE)
 par3d(zoom = 0.7)
 ```
 
@@ -280,12 +272,12 @@ knit_hooks$set(custom_plot = hook_plot_custom)
 그 후 청크 옵션 `custom_plot = TRUE`로 설정하고 청크에서 직접 플롯 파일을 작성합니다. 다음은 rggobi 패키지의 `ggobi_display_save_picture()` 함수를 사용하여 GGobi 플롯을 캡처하는 예시입니다(Temple Lang et al., 2014).
 
 ```r
-<<ggobi-plot, custom_plot=TRUE, fig.ext="png">>= 
-library(rggobi) 
-data("flea", package = "tourr") 
-ggobi(flea) 
-Sys.sleep(1) # wait for snapshot 
-ggobi_display_save_picture(path = fig_path(".png")) 
+<<ggobi-plot, custom_plot=TRUE, fig.ext="png">>=
+library(rggobi)
+data("flea", package = "tourr")
+ggobi(flea)
+Sys.sleep(1) # wait for snapshot
+ggobi_display_save_picture(path = fig_path(".png"))
 @
 ```
 
@@ -297,19 +289,19 @@ ggobi_display_save_picture(path = fig_path(".png"))
 옵션 `fig.show = 'animate'`(7.3.1절 참조)를 사용하여 연속된 이미지를 저장해 애니메이션을 만들 수도 있습니다. 다음은 rgl을 사용하여 산점도를 확대하는 예시입니다(실제 애니메이션은 knitr의 메인 매뉴얼을 참조하시기 바랍니다).
 
 ```r
-## use chunk options: custom_plot=TRUE, fig.ext="png", 
-## out.width="2.5in", fig.show="animate", fig.num=20 
-library(animation) # adapted from demo("rgl_animation") 
-data(pollen) 
-uM <- matrix(c(-0.37, -0.51, -0.77, 0, -0.73, 0.67, -0.1, 0, 0.57, 0.53, -0.63, 0, 0, 0, 0, 1), 4, 4) 
-library(rgl) 
-open3d(userMatrix = uM, windowRect = c(0, 0, 400, 400)) 
-plot3d(pollen[, 1:3]) 
-zm <- seq(1, 0.05, length = 20) 
-par3d(zoom = 1) # change the zoom factor gradually later 
+## use chunk options: custom_plot=TRUE, fig.ext="png",
+## out.width="2.5in", fig.show="animate", fig.num=20
+library(animation) # adapted from demo("rgl_animation")
+data(pollen)
+uM <- matrix(c(-0.37, -0.51, -0.77, 0, -0.73, 0.67, -0.1, 0, 0.57, 0.53, -0.63, 0, 0, 0, 0, 1), 4, 4)
+library(rgl)
+open3d(userMatrix = uM, windowRect = c(0, 0, 400, 400))
+plot3d(pollen[, 1:3])
+zm <- seq(1, 0.05, length = 20)
+par3d(zoom = 1) # change the zoom factor gradually later
 for (i in 1:length(zm)) {
-  par3d(zoom = zm[i]) 
-  Sys.sleep(0.05) 
+  par3d(zoom = zm[i])
+  Sys.sleep(0.05)
   rgl.snapshot(paste(fig_path(i), "png", sep = "."))
 }
 ```
@@ -333,19 +325,19 @@ knit_hooks$set(optipng = hook_optipng)
 기본 rgl 훅인 `hook_rgl()`은 새 플롯을 그리기 전에 rgl 장치를 닫지 않습니다. 이는 나중에 그려지는 플롯이 이전 장면에 겹쳐서 그려지기 때문에 문제가 될 수 있습니다. 예를 들어, 아래의 두 줄을 함께 실행하면 두 개의 구가 있는 하나의 플롯(그림 10.7)이 그려지지만, 첫 번째 플롯을 닫고 두 번째 줄을 실행하면 각각 하나의 구가 있는 두 개의 플롯이 생성됩니다.
 
 ```r
-rgl.spheres(0, 0, 0) 
+rgl.spheres(0, 0, 0)
 rgl.spheres(0, 2, 0)
 ```
 
 일반적으로 서로 다른 코드 청크는 다른 그래픽 장치를 사용하므로 나중 청크의 그래픽 요소가 이전 청크에 추가되지 않지만, rgl 플롯의 경우에는 예외입니다. 플롯을 그리기 전에 장치를 닫으려면 훅을 약간 수정해야 합니다. 예를 들어,
 
 ```r
-knit_hooks$set(rgl = function(before, options, envir) { 
-  # if a device was opened before this chunk, close it 
+knit_hooks$set(rgl = function(before, options, envir) {
+  # if a device was opened before this chunk, close it
   if (before && rgl.cur() > 0)
     rgl.close()
 
-  hook_rgl(before, options, envir) 
+  hook_rgl(before, options, envir)
 })
 ```
 

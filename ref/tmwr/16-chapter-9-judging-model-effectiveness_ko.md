@@ -4,7 +4,7 @@
 
 ###### 경고 (Warning)
 
-경험적 검증에 대한 최선의 접근 방식은 [10장](ch10.xhtml#resampling)에서 소개될 *리샘플링(resampling)* 방법을 사용하는 것입니다. 이 장에서는 테스트 세트(test set)를 사용하여 경험적 검증의 필요성에 대한 동기를 부여할 것입니다. [5장](ch05.xhtml#splitting)에서 설명한 대로 테스트 세트는 단 한 번만 사용할 수 있다는 점을 명심하십시오.
+경험적 검증에 대한 최선의 접근 방식은 [10장](ch10.xhtml#resampling)에서 소개될 _리샘플링(resampling)_ 방법을 사용하는 것입니다. 이 장에서는 테스트 세트(test set)를 사용하여 경험적 검증의 필요성에 대한 동기를 부여할 것입니다. [5장](ch05.xhtml#splitting)에서 설명한 대로 테스트 세트는 단 한 번만 사용할 수 있다는 점을 명심하십시오.
 
 모델의 효과성을 판단할 때 어떤 지표(metrics)를 검사할지에 대한 여러분의 결정이 매우 중요할 수 있습니다. 이후 장에서는 특정 모델 파라미터가 경험적으로 최적화될 것이며 기본 성능 지표를 사용하여 가장 좋은 하위 모델(submodel)을 선택할 것입니다. 잘못된 지표를 선택하면 의도하지 않은 결과가 쉽게 발생할 수 있습니다. 예를 들어 회귀(regression) 모델의 두 가지 일반적인 지표는 평균 제곱근 오차(root mean squared error, RMSE)와 결정계수(coefficient of determination, 즉 *R*²)입니다. 전자는 *정확도(accuracy)*를 측정하고 후자는 *상관관계(correlation)*를 측정합니다. 이들은 반드시 같은 것은 아닙니다. [그림 9-1](#figure-9-1.-observed-versus-predicted-values-for-models-that-are-optimized-using-the-rmse-compared-to-the-coefficient-of-determination.)은 이 둘의 차이를 보여줍니다.
 
@@ -23,7 +23,7 @@ RMSE에 최적화된 모델은 변동성(variability)이 더 크지만 결과 �
 
 추론 통계 관행의 오랜 문제점은 추론에만 집중하면 모델의 신뢰성(credibility)을 평가하기 어렵다는 것입니다. 예를 들어 333명의 환자를 연구하여 인지 장애(cognitive impairment)에 영향을 미치는 요인을 확인한 Craig-Schapiro et al. (2011)의 알츠하이머병 데이터를 생각해 보십시오. 분석은 알려진 위험 인자를 사용하여 결과가 이진형(장애/비장애)인 로지스틱 회귀 모델을 구축할 수 있습니다. 나이, 성별 및 아폴로지단백 E 유전자형(apolipoprotein E genotype)에 대한 예측 변수를 고려해 보겠습니다. 후자는 이 유전자의 세 가지 주요 변이(variants)의 6가지 가능한 조합을 가진 범주형 변수입니다. 아폴로지단백 E는 치매와 관련이 있는 것으로 알려져 있습니다(Jungsu, Basak, and Holtzman 2009).
 
-이 분석에 대한 피상적이지만(superficial) 드물지 않은 접근 방식은 주효과(main effects)와 상호작용(interactions)이 있는 대형 모델을 피팅한 다음, 통계적 검정(statistical tests)을 사용하여 사전에 정의된 일부 수준에서 통계적으로 유의미한 모델 항들의 최소 집합을 찾는 것입니다. 3개의 요인과 이들의 2원(two-way) 및 3원(three-way) 상호작용이 있는 전체 모델(full model)이 사용된 경우, 초기 단계는 순차적 우도비 검정(sequential likelihood ratio tests)(Hosmer and Lemeshow 2000)을 사용하여 상호작용을 검정하는 것입니다. 예제 알츠하이머병 데이터에 대한 이러한 종류의 접근 방식을 단계별로 살펴보겠습니다:
+이 분석에 대한 피상적이지만(superficial) 드물지 않은 접근 방식은 주효과(main effects)와 상호작용(interactions)이 있는 대형 모델을 피팅한 다음, 통계적 검정(statistical tests)을 사용하여 사전에 정의된 일부 수준에서 통계적으로 유의미한 모델 항들의 최소 집합을 찾는 것입니다. 3개의 요인과 이들의 2원(two-way) 및 3원(three-way) 상호작용이 있는 전체 모델(full model)이 사용된 경우, 초기 단계는 순차적 우도비 검정(sequential likelihood ratio tests)(Hosmer and Lemeshow 2000)을 사용하여 상호작용을 검정하는 것입니다. 예제 알츠하이머병 데이터에 대한 이러한 종류의 접근 방식을 단계별로 살펴보겠습니다.
 
 - 모든 2원 상호작용이 있는 모델을 추가적인 3원 상호작용이 있는 모델과 비교할 때 우도비 검정은 0.888의 p-값을 생성합니다. 이는 3원 상호작용과 관련된 4개의 추가 모델 항이 이들을 모델에 유지할 만큼 데이터의 변동을 충분히 설명한다는 증거가 없음을 의미합니다.
 
@@ -43,7 +43,7 @@ RMSE에 최적화된 모델은 변동성(variability)이 더 크지만 결과 �
 
 # 회귀 지표 (Regression Metrics)
 
-[6장](ch06.xhtml#models)에서 tidymodels의 예측 함수가 예측값을 위한 열을 가진 티블(tibbles)을 생성한다는 것을 상기하십시오. 이 열들은 일관된 이름을 가지며, 성능 지표를 생성하는 yardstick 패키지의 함수들은 일관된 인터페이스를 가지고 있습니다. 이 함수들은 벡터(vector) 기반이 아닌 데이터 프레임(data frame) 기반이며 다음과 같은 일반적인 구문을 갖습니다:
+[6장](ch06.xhtml#models)에서 tidymodels의 예측 함수가 예측값을 위한 열을 가진 티블(tibbles)을 생성한다는 것을 상기하십시오. 이 열들은 일관된 이름을 가지며, 성능 지표를 생성하는 yardstick 패키지의 함수들은 일관된 인터페이스를 가지고 있습니다. 이 함수들은 벡터(vector) 기반이 아닌 데이터 프레임(data frame) 기반이며 다음과 같은 일반적인 구문을 갖습니다.
 
 ```
 function(data, truth, ...)
@@ -51,7 +51,7 @@ function(data, truth, ...)
 
 여기서 `data`는 데이터 프레임 또는 티블이고 `truth`는 관측된 결과 변수 값이 있는 열입니다. 줄임표(ellipses) 또는 기타 인수는 예측값이 포함된 열(들)을 지정하는 데 사용됩니다.
 
-이를 설명하기 위해 [8장](ch08.xhtml#recipes) 맨 끝에 있는 모델을 살펴보겠습니다. 이 모델 `lm_wflow_fit`은 선형 회귀 모델과 경도 및 위도에 대한 상호작용 및 스플라인 함수로 보강된(supplemented) 예측 변수 집합을 결합합니다. 이것은 훈련 세트(`ames_train`으로 명명됨)에서 생성되었습니다. 모델링 프로세스의 현시점에서는 테스트 세트를 사용하는 것을 권장하지 않지만 기능과 구문을 설명하기 위해 여기에서 사용하겠습니다. 데이터 프레임 `ames_test`는 588개의 부동산(properties)으로 구성됩니다. 시작하기 위해 예측을 생성해 보겠습니다:
+이를 설명하기 위해 [8장](ch08.xhtml#recipes) 맨 끝에 있는 모델을 살펴보겠습니다. 이 모델 `lm_wflow_fit`은 선형 회귀 모델과 경도 및 위도에 대한 상호작용 및 스플라인 함수로 보강된(supplemented) 예측 변수 집합을 결합합니다. 이것은 훈련 세트(`ames_train`으로 명명됨)에서 생성되었습니다. 모델링 프로세스의 현시점에서는 테스트 세트를 사용하는 것을 권장하지 않지만 기능과 구문을 설명하기 위해 여기에서 사용하겠습니다. 데이터 프레임 `ames_test`는 588개의 부동산(properties)으로 구성됩니다. 시작하기 위해 예측을 생성해 보겠습니다.
 
 ```
 ames_test_res <- predict(lm_fit, new_data = ames_test %>% select(-Sale_Price))
@@ -68,7 +68,7 @@ ames_test_res
 #> # … 582개 행이 더 있습니다
 ```
 
-회귀 모델에서 예측된 숫자 결과의 이름은 `.pred`입니다. 예측값을 대응하는 관측된 결과값과 맞춰(match) 보겠습니다:
+회귀 모델에서 예측된 숫자 결과의 이름은 `.pred`입니다. 예측값을 대응하는 관측된 결과값과 맞춰(match) 보겠습니다.
 
 ```
 ames_test_res <- bind_cols(ames_test_res, ames_test %>% select(Sale_Price))
@@ -87,21 +87,21 @@ ames_test_res
 
 이 값들은 대체로 가까워(close) 보이지만 성능 지표를 계산하지 않았기 때문에 모델이 어떻게 작동하고 있는지 아직 정량적으로 이해하지 못합니다. 예측된 결과와 관측된 결과 모두 로그 10 단위라는 점에 유의하세요. 예측값이 원래 단위를 사용하여 보고되더라도 (변환 척도가 사용된 경우) 변환된 척도에서 예측값을 분석하는 것이 가장 좋은 방법(best practice)입니다.
 
-지표를 계산하기 전에 [그림 9-2](#ames-performance-plot)에 데이터를 플로팅해 보겠습니다:
+지표를 계산하기 전에 [그림 9-2](#ames-performance-plot)에 데이터를 플로팅해 보겠습니다.
 
 ```
 ggplot(ames_test_res, aes(x = Sale_Price, y = .pred)) +
-  # 대각선을 만듭니다:
+  # 대각선을 만듭니다.
   geom_abline(lty = 2) +
   geom_point(alpha = 0.5) +
   labs(y = "Predicted Sale Price (log10)", x = "Sale Price (log10)") +
-  # x축과 y축의 비율을 동일하게 맞춥니다:
+  # x축과 y축의 비율을 동일하게 맞춥니다.
   coord_obs_pred()
 ```
 
 상당히 과대예측된(overpredicted), 즉 점선(dashed line) 위로 꽤 높이 있는 낮은 가격의 부동산이 하나 있습니다.
 
-`rmse()` 함수를 사용하여 이 모델의 평균 제곱근 오차(root mean squared error)를 계산해 보겠습니다:
+`rmse()` 함수를 사용하여 이 모델의 평균 제곱근 오차(root mean squared error)를 계산해 보겠습니다.
 
 ```
 rmse(ames_test_res, truth = Sale_Price, estimate = .pred)
@@ -113,7 +113,7 @@ rmse(ames_test_res, truth = Sale_Price, estimate = .pred)
 
 이것은 yardstick 함수 출력의 표준 형식을 보여줍니다. 숫자 결과에 대한 지표는 대개 `.estimator` 열의 값이 "standard"입니다. 이 열에 대해 다른 값을 가진 예가 다음 섹션에 나와 있습니다.
 
-여러 지표를 한 번에 계산하기 위해 *지표 세트(metric set)*를 만들 수 있습니다. *R*²와 평균 절대 오차(mean absolute error)를 추가해 보겠습니다:
+여러 지표를 한 번에 계산하기 위해 *지표 세트(metric set)*를 만들 수 있습니다. *R*²와 평균 절대 오차(mean absolute error)를 추가해 보겠습니다.
 
 ```
 ames_metrics <- metric_set(rmse, rsq, mae)
@@ -135,11 +135,11 @@ ames_metrics(ames_test_res, truth = Sale_Price, estimate = .pred)
 
 ###### 경고 (Warning)
 
-yardstick 패키지에는 조정된 *R*²(adjusted *R*²)에 대한 함수가 포함되어 있지 *않습니다*. 결정계수의 이러한 수정은 모델을 피팅하는 데 사용된 동일한 데이터가 모델을 평가하는 데 사용될 때 일반적으로 사용됩니다. 이 지표는 tidymodels에서 완전히 지원되지 않는데 그 이유는 모델 피팅에 사용된 데이터 세트와는 별도의 데이터 세트에서 성능을 계산하는 것이 항상 더 나은 접근 방식이기 때문입니다.
+yardstick 패키지에는 조정된 *R*²(adjusted *R*²)에 대한 함수가 포함되어 있지 _않습니다_. 결정계수의 이러한 수정은 모델을 피팅하는 데 사용된 동일한 데이터가 모델을 평가하는 데 사용될 때 일반적으로 사용됩니다. 이 지표는 tidymodels에서 완전히 지원되지 않는데 그 이유는 모델 피팅에 사용된 데이터 세트와는 별도의 데이터 세트에서 성능을 계산하는 것이 항상 더 나은 접근 방식이기 때문입니다.
 
 # 이진 분류 지표 (Binary Classification Metrics)
 
-모델 성능을 측정하는 다른 방법을 설명하기 위해 다른 예제로 넘어가겠습니다. modeldata 패키지(tidymodels 패키지 중 또 다른 하나)에는 두 개의 클래스("Class1" 및 "Class2")가 있는 테스트 데이터 세트의 예제 예측값이 포함되어 있습니다:
+모델 성능을 측정하는 다른 방법을 설명하기 위해 다른 예제로 넘어가겠습니다. modeldata 패키지(tidymodels 패키지 중 또 다른 하나)에는 두 개의 클래스("Class1" 및 "Class2")가 있는 테스트 데이터 세트의 예제 예측값이 포함되어 있습니다.
 
 ```
 data(two_class_example)
@@ -158,7 +158,7 @@ tibble(two_class_example)
 
 두 번째와 세 번째 열은 테스트 세트에 대한 예측된 클래스 확률인 반면 `predicted`는 이산형 예측(discrete predictions)입니다.
 
-엄격한(hard) 클래스 예측의 경우 다양한 yardstick 함수가 도움이 됩니다:
+엄격한(hard) 클래스 예측의 경우 다양한 yardstick 함수가 도움이 됩니다.
 
 ```
 # 혼동 행렬(confusion matrix):
@@ -200,7 +200,7 @@ classification_metrics(two_class_example, truth = truth, estimate = predicted)
 #> 3 f_meas   binary         0.849
 ```
 
-매튜스 상관계수와 F1 점수 모두 혼동 행렬을 요약하지만 긍정 및 부정 예제 모두의 질(quality)을 측정하는 `mcc()`에 비해 `f_meas()` 지표는 긍정 클래스, 즉 관심 사건(event of interest)을 강조합니다. 이 예제와 같은 이진 분류 데이터 세트의 경우 yardstick 함수에는 긍정(positive) 및 부정(negative) 수준(levels)을 구별하기 위한 `event_level`이라는 표준 인수가 있습니다. 기본값(이 코드에서 사용한 것)은 결과 팩터의 *첫 번째* 수준이 관심 사건이라는 것입니다.
+매튜스 상관계수와 F1 점수 모두 혼동 행렬을 요약하지만 긍정 및 부정 예제 모두의 질(quality)을 측정하는 `mcc()`에 비해 `f_meas()` 지표는 긍정 클래스, 즉 관심 사건(event of interest)을 강조합니다. 이 예제와 같은 이진 분류 데이터 세트의 경우 yardstick 함수에는 긍정(positive) 및 부정(negative) 수준(levels)을 구별하기 위한 `event_level`이라는 표준 인수가 있습니다. 기본값(이 코드에서 사용한 것)은 결과 팩터의 _첫 번째_ 수준이 관심 사건이라는 것입니다.
 
 ###### 참고 (Note)
 
@@ -218,9 +218,9 @@ f_meas(two_class_example, truth, predicted, event_level = "second")
 
 이 출력에서 "binary"라는 `.estimator` 값은 이진 클래스에 대한 표준 공식을 사용할 것임을 나타냅니다.
 
-엄격한(hard) 클래스 예측보다는 예측 확률을 입력으로 사용하는 수많은 분류 지표들이 있습니다. 예를 들어, 수신자 조작 특성(receiver operating characteristic, ROC) 곡선은 다양한 이벤트 임곗값(thresholds) 연속체(continuum)에 대한 민감도(sensitivity)와 특이도(specificity)를 계산합니다. 예측된 클래스 열은 사용되지 않습니다. 이 방법에 대한 두 가지 yardstick 함수가 있습니다: `roc_curve()`는 ROC 곡선을 구성하는 데이터 포인트를 계산하고 `roc_auc()`는 곡선 아래 면적(area under the curve)을 계산합니다.
+엄격한(hard) 클래스 예측보다는 예측 확률을 입력으로 사용하는 수많은 분류 지표들이 있습니다. 예를 들어, 수신자 조작 특성(receiver operating characteristic, ROC) 곡선은 다양한 이벤트 임곗값(thresholds) 연속체(continuum)에 대한 민감도(sensitivity)와 특이도(specificity)를 계산합니다. 예측된 클래스 열은 사용되지 않습니다. 이 방법에 대한 두 가지 yardstick 함수가 있습니다. `roc_curve()`는 ROC 곡선을 구성하는 데이터 포인트를 계산하고 `roc_auc()`는 곡선 아래 면적(area under the curve)을 계산합니다.
 
-이러한 유형의 지표 함수에 대한 인터페이스는 `...` 인수 자리표시자(placeholder)를 사용하여 적절한 클래스 확률 열을 전달합니다. 두 클래스(two-class) 문제의 경우 관심 사건에 대한 확률 열이 함수에 전달됩니다:
+이러한 유형의 지표 함수에 대한 인터페이스는 `...` 인수 자리표시자(placeholder)를 사용하여 적절한 클래스 확률 열을 전달합니다. 두 클래스(two-class) 문제의 경우 관심 사건에 대한 확률 열이 함수에 전달됩니다.
 
 ```
 two_class_curve <- roc_curve(two_class_example, truth, Class1)
@@ -248,6 +248,7 @@ roc_auc(two_class_example, truth, Class1)
 ```
 autoplot(two_class_curve)
 ```
+
 <figure>
 <img src="D:\sd\Practices\any2md\output\[2022] Tidy Modeling with R/assets/tmwr_0903.png" alt="tmwr 0903" />
 <h6 id="figure-9-3.-example-roc-curve.">그림 9-3. ROC 곡선 예시.</h6>
@@ -259,7 +260,7 @@ autoplot(two_class_curve)
 
 # 다중 클래스 분류 지표 (Multiclass Classification Metrics)
 
-세 개 이상의 클래스가 있는 데이터는 어떨까요? 이를 입증하기 위해 4개의 클래스가 있는 다른 예제 데이터 세트를 살펴보겠습니다:
+세 개 이상의 클래스가 있는 데이터는 어떨까요? 이를 입증하기 위해 4개의 클래스가 있는 다른 예제 데이터 세트를 살펴보겠습니다.
 
 ```
 data(hpc_cv)
@@ -278,7 +279,7 @@ tibble(hpc_cv)
 
 이전과 마찬가지로 각 클래스에 대한 예측 확률의 4가지 다른 열과 함께 관측 및 예측 결과에 대한 팩터가 있습니다. (이 데이터에는 `Resample` 열도 포함되어 있습니다. 이러한 `hpc_cv` 결과는 10-겹 교차 검증(10-fold cross-validation)과 연관된 표본 외(out-of-sample) 예측에 대한 것입니다. 당분간 이 열은 무시될 것이며 [10장](ch10.xhtml#resampling)에서 리샘플링에 대해 심도 있게 논의할 것입니다.)
 
-이산형(discrete) 클래스 예측을 사용하는 지표에 대한 함수는 이진 클래스의 대응 항목(counterparts)과 동일합니다:
+이산형(discrete) 클래스 예측을 사용하는 지표에 대한 함수는 이진 클래스의 대응 항목(counterparts)과 동일합니다.
 
 ```
 accuracy(hpc_cv, obs, pred)
@@ -308,7 +309,7 @@ mcc(hpc_cv, obs, pred)
 
 분류 지표를 3개 이상의 클래스가 있는 결과로 확장하는 방법에 대한 자세한 내용은 Wu and Zhou (2017) 및 Opitz and Burst (2019)를 참조하세요.
 
-민감도를 예로 들면 일반적인 2-클래스 계산은 올바르게 예측된 이벤트 수를 실제 이벤트 수로 나눈 비율입니다. 이러한 평균화 방법에 대한 수동 계산은 다음과 같습니다:
+민감도를 예로 들면 일반적인 2-클래스 계산은 올바르게 예측된 이벤트 수를 실제 이벤트 수로 나눈 비율입니다. 이러한 평균화 방법에 대한 수동 계산은 다음과 같습니다.
 
 ```
 class_totals <-
@@ -375,7 +376,7 @@ sensitivity(hpc_cv, obs, pred, estimator = "micro")
 #> 1 sensitivity micro          0.709
 ```
 
-확률 추정치를 다룰 때 다중 클래스 유사어(analogs)가 있는 일부 지표가 있습니다. 예를 들어, Hand and Till(2001)은 ROC 곡선에 대한 다중 클래스 기법을 결정했습니다. 이 경우 *모든* 클래스 확률 열이 함수에 제공되어야 합니다.
+확률 추정치를 다룰 때 다중 클래스 유사어(analogs)가 있는 일부 지표가 있습니다. 예를 들어, Hand and Till(2001)은 ROC 곡선에 대한 다중 클래스 기법을 결정했습니다. 이 경우 _모든_ 클래스 확률 열이 함수에 제공되어야 합니다.
 
 ```
 roc_auc(hpc_cv, obs, VF, F, M, L)
@@ -413,7 +414,7 @@ hpc_cv %>%
 #> # … 4개 행이 더 있습니다
 ```
 
-그룹화는 또한 `autoplot()` 메서드로 변환되며 그 결과는 [그림 9-4](#grouped-roc-curves)에 나와 있습니다:
+그룹화는 또한 `autoplot()` 메서드로 변환되며 그 결과는 [그림 9-4](#grouped-roc-curves)에 나와 있습니다.
 
 ```
 # 각 폴드(fold)에 대한 4개의 일대다(1-vs-all) ROC 곡선
@@ -433,4 +434,4 @@ hpc_cv %>%
 
 # 이 장의 요약 (Chapter Summary)
 
-서로 다른 지표는 모델 피팅의 서로 다른 측면을 측정합니다. 예를 들어 RMSE는 정확도를 측정하는 반면 *R*<sup>2</sup>는 상관관계를 측정합니다. 주어진 모델이 주로 예측에 사용되지 않더라도 모델 성능을 측정하는 것은 중요합니다. 예측력(predictive power)은 추론적 또는 설명적 모델에서도 중요합니다. yardstick 패키지의 함수는 데이터를 사용하여 모델의 효과성을 측정합니다. 주요 tidymodels 인터페이스는 (벡터 인수를 갖는 것과는 반대로) tidyverse 원칙과 데이터 프레임을 사용합니다. 회귀 및 분류 지표에 적합한 지표는 각기 다르며, 그 안에서도 다중 클래스 결과와 같이 통계를 추정하는 방법이 때때로 다릅니다.
+서로 다른 지표는 모델 피팅의 서로 다른 측면을 측정합니다. 예를 들어 RMSE는 정확도를 측정하는 반면 _R_<sup>2</sup>는 상관관계를 측정합니다. 주어진 모델이 주로 예측에 사용되지 않더라도 모델 성능을 측정하는 것은 중요합니다. 예측력(predictive power)은 추론적 또는 설명적 모델에서도 중요합니다. yardstick 패키지의 함수는 데이터를 사용하여 모델의 효과성을 측정합니다. 주요 tidymodels 인터페이스는 (벡터 인수를 갖는 것과는 반대로) tidyverse 원칙과 데이터 프레임을 사용합니다. 회귀 및 분류 지표에 적합한 지표는 각기 다르며, 그 안에서도 다중 클래스 결과와 같이 통계를 추정하는 방법이 때때로 다릅니다.

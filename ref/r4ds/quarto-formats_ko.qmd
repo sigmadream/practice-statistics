@@ -10,7 +10,7 @@ source("_common.R")
 지금까지(So far) HTML 문서를 생성하는 데 Quarto가 사용되는 것을 보았습니다(seen).
 이 장에서는 Quarto로 생성할 수 있는 다른 여러(many other) 유형의 출력(output)에 대해 간략하게(brief) 살펴봅니다(overview).
 
-문서의 출력을 설정하는 방법에는 두 가지가 있습니다:
+문서의 출력을 설정하는 방법에는 두 가지가 있습니다.
 
 1.  YAML 헤더를 수정(modifying)하여 영구적으로(Permanently) 설정:
 
@@ -37,10 +37,10 @@ source("_common.R")
 
 Quarto는 매우 다양한(wide range of) 출력 형식을 제공(offers)합니다.
 <https://quarto.org/docs/output-formats/all-formats.html>에서 전체 리스트(complete list)를 확인할 수 있습니다.
-많은 형식이 일부(some) 출력 옵션을 공유하지만(share)(예: 목차(table of contents)를 포함하기 위한 `toc: true`), 일부 다른 형식에는 형식별로 지정된 옵션이 있습니다(예: `code-fold: true`는 HTML 출력의 경우 사용자가 요청 시(on demand) 표시할 수 있도록 코드 청크를 `<details>` 태그로 축소(collapses)하지만, PDF 또는 Word 문서에는 적용되지 않음(not applicable)).
+많은 형식이 일부(some) 출력 옵션을 공유하지만(share)(목차(table of contents)를 포함하기 위한 `toc: true`), 일부 다른 형식에는 형식별로 지정된 옵션이 있습니다(`code-fold: true`는 HTML 출력의 경우 사용자가 요청 시(on demand) 표시할 수 있도록 코드 청크를 `<details>` 태그로 축소(collapses)하지만, PDF 또는 Word 문서에는 적용되지 않음(not applicable)).
 
 기본(default) 옵션을 재정의(override)하려면 확장된(expanded) `format` 필드를 사용해야 합니다.
-예를 들어 플로팅(floating) 목차가 있는 `html`을 렌더링(render)하려면 다음과 같이 사용합니다:
+예를 들어 플로팅(floating) 목차가 있는 `html`을 렌더링(render)하려면 다음과 같이 사용합니다.
 
 ``` yaml
 format:
@@ -49,7 +49,7 @@ format:
     toc_float: true
 ```
 
-형식 리스트(list of formats)를 제공(supplying)하여 여러 출력으로 렌더링할 수도(even) 있습니다:
+형식 리스트(list of formats)를 제공(supplying)하여 여러 출력으로 렌더링할 수도(even) 있습니다.
 
 ``` yaml
 format:
@@ -95,7 +95,7 @@ execute:
   echo: false
 ```
 
-`html` 문서의 경우 또 다른 옵션(another option)은 코드 청크를 기본적으로 숨김(hidden) 상태로 만들고, 클릭하면 표시(visible)되도록 하는 것입니다:
+`html` 문서의 경우 또 다른 옵션(another option)은 코드 청크를 기본적으로 숨김(hidden) 상태로 만들고, 클릭하면 표시(visible)되도록 하는 것입니다.
 
 ``` yaml
 format:
@@ -110,7 +110,7 @@ Keynote나 PowerPoint와 같은 도구보다 시각적 제어(visual control)는
 프레젠테이션은 콘텐츠를 슬라이드(slides)로 분할(dividing)하는 방식으로 작동(work)하며, 각 2단계(`##`) 헤더(header)에서 새 슬라이드가 시작(beginning)됩니다.
 또한(Additionally) 1단계(`#`) 헤더는 기본적으로(by default) 가운데 중앙(centered in the middle)에 맞춰진 섹션 제목 슬라이드가 있는 새 섹션의 시작을 나타냅니다(indicate).
 
-Quarto는 다음을 포함하여(including) 다양한 프레젠테이션 형식을 지원(supports)합니다:
+Quarto는 다음을 포함하여(including) 다양한 프레젠테이션 형식을 지원(supports)합니다.
 
 1.  `revealjs` - revealjs를 사용한 HTML 프레젠테이션
 
@@ -144,7 +144,7 @@ leaflet() |>
 htmlwidgets의 좋은 점(great thing)은 사용하기 위해 HTML이나 JavaScript에 대해 전혀 몰라도(don't need to know anything) 된다는 것입니다.
 모든 세부 사항이 패키지 내부에(inside) 래핑되어(wrapped) 있으므로 걱정(worry)할 필요가 없습니다.
 
-다음을 포함하여 htmlwidgets를 제공하는 여러(many) 패키지가 있습니다:
+다음을 포함하여 htmlwidgets를 제공하는 여러(many) 패키지가 있습니다.
 
 -   대화형 시계열(time series) 시각화를 위한 [**dygraphs**](https://rstudio.github.io/dygraphs).
 
@@ -163,7 +163,7 @@ htmlwidgets는 **클라이언트 측(client-side)** 상호 작용을 제공합�
 그러나 이것은 HTML과 JavaScript로 구현(implemented)된 작업만 수행할 수 있도록 기본적으로 제한(fundamentally limits)합니다.
 대안적인 접근 방식(alternative approach)은 JavaScript가 아닌 R 코드를 사용하여 상호 작용을 만들(create) 수 있는 패키지인 **shiny**를 사용하는 것입니다.
 
-Quarto 문서에서 Shiny 코드를 호출(call)하려면 YAML 헤더에 `server: shiny`를 추가하세요:
+Quarto 문서에서 Shiny 코드를 호출(call)하려면 YAML 헤더에 `server: shiny`를 추가하세요.
 
 ``` yaml
 title: "Shiny 웹 앱(Shiny Web App)"
@@ -171,7 +171,7 @@ format: html
 server: shiny
 ```
 
-그런 다음 "input" 함수를 사용하여 문서에 대화형 구성 요소를 추가할 수 있습니다:
+그런 다음 "input" 함수를 사용하여 문서에 대화형 구성 요소를 추가할 수 있습니다.
 
 ```{r}
 #| eval: false
@@ -198,13 +198,13 @@ shiny 상호 작용은 **서버 측(server-side)**에서 발생(occur)하기 때
 즉(This means that), JavaScript를 몰라도 대화형 앱을 작성할 수는(write) 있지만 이를 실행할 서버가 필요합니다.
 이로 인해 물류상의(logistical) 문제(issue)가 발생합니다(introduces): Shiny 앱을 온라인에서 실행하려면 Shiny 서버가 필요합니다.
 자신의(own) 컴퓨터에서 Shiny 앱을 실행(run)할 때 Shiny는 여러분을 위해 자동으로 Shiny 서버를 설정(sets up)하지만, 이러한 종류의(sort of) 상호 작용을 온라인에 게시(publish)하려면 공개용(public-facing) Shiny 서버가 필요합니다.
-이것이 shiny의 근본적인(fundamental) 트레이드오프(trade-off)입니다: shiny 문서에서는 R에서 할 수 있는 모든 작업을 수행할 수 있지만 누군가가(someone) R을 실행(running)하고 있어야(requires) 합니다.
+이것이 shiny의 근본적인(fundamental) 트레이드오프(trade-off)입니다. shiny 문서에서는 R에서 할 수 있는 모든 작업을 수행할 수 있지만 누군가가(someone) R을 실행(running)하고 있어야(requires) 합니다.
 
 Shiny에 대해 자세히 알아보려면 Hadley Wickham이 저술(by)한 Mastering Shiny([https://mastering-shiny.org](https://mastering-shiny.org/))를 읽어보실(reading) 것을 권장합니다.
 
 ## 웹사이트 및 책 (Websites and books)
 
-약간의(bit of) 추가 인프라(infrastructure)만 있으면 Quarto를 사용하여 완전한(complete) 웹사이트나 책을 생성할 수 있습니다:
+약간의(bit of) 추가 인프라(infrastructure)만 있으면 Quarto를 사용하여 완전한(complete) 웹사이트나 책을 생성할 수 있습니다.
 
 -   `.qmd` 파일을 단일 디렉터리에 넣으세요(Put).
     `index.qmd`가 홈페이지가 됩니다(become).
@@ -243,7 +243,7 @@ Quarto 웹사이트에 대한 자세한 내용(Read more)은 <https://quarto.org
 
 ## 기타 형식 (Other formats)
 
-Quarto는 훨씬 더(even) 많은 출력 형식을 제공합니다:
+Quarto는 훨씬 더(even) 많은 출력 형식을 제공합니다.
 
 -   Quarto Journal Templates(<https://quarto.org/docs/journals/templates.html>)를 사용하여 저널 기사(journal articles)를 작성할(write) 수 있습니다.
 
@@ -255,14 +255,14 @@ Quarto는 훨씬 더(even) 많은 출력 형식을 제공합니다:
 
 이 장에서는 정적(static) 및 대화형(interactive) 문서부터 프레젠테이션, 웹사이트 및 책에 이르기까지(from) Quarto로 결과(results)를 소통(communicating)하기 위한 다양한 옵션(variety of options)을 소개(presented)해 드렸습니다.
 
-이러한 다양한(different) 형식으로 효과적(effective)으로 소통하는 방법에 대해 자세히 알아보려면 다음 리소스(resources)를 추천(recommend)합니다:
+이러한 다양한(different) 형식으로 효과적(effective)으로 소통하는 방법에 대해 자세히 알아보려면 다음 리소스(resources)를 추천(recommend)합니다.
 
 -   프레젠테이션 스킬(skills)을 향상(improve)시키려면 Neal Ford, Matthew McCollough 및 Nathaniel Schutta의 [*Presentation Patterns*](https://presentationpatterns.com/)를 읽어보세요(try).
     이 책은 프레젠테이션을 향상시키기 위해 적용(apply)할 수 있는 효과적인 패턴(patterns) 세트(로우레벨(low-) 및 하이레벨(high-level) 모두(both))를 제공합니다.
 
 -   학술(academic) 강연(talks)을 하는 경우(give) [*Leek group guide to giving talks*](https://github.com/jtleek/talkguide)를 좋아하실(might like) 수 있습니다.
 
--   우리가 직접(ourselves) 수강(taken)해 보지는 않았지만, 대중 연설(public speaking)에 대한 Matt McGarrity의 온라인 과정(online course)에 대한 좋은 평가(good things)를 들은(heard) 적이 있습니다: <https://www.coursera.org/learn/public-speaking>.
+-   우리가 직접(ourselves) 수강(taken)해 보지는 않았지만, 대중 연설(public speaking)에 대한 Matt McGarrity의 온라인 과정(online course)에 대한 좋은 평가(good things)를 들은(heard) 적이 있습니다. <https://www.coursera.org/learn/public-speaking>.
 
 -   대시보드를 많이 만드는 경우 Stephen Few의 [*Information Dashboard Design: The Effective Visual Communication of Data*](https://www.amazon.com/Information-Dashboard-Design-Effective-Communication/dp/0596100167)를 꼭(make sure) 읽어보세요.
     단순히(just) 보기(look at)에 예쁜(pretty) 것이 아니라 진정으로(truly) 유용한(useful) 대시보드를 만드는 데 도움이 될 것입니다(help).

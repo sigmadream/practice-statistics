@@ -1,6 +1,6 @@
 # 4장. Ames 주택 데이터 (The Ames Housing Data)
 
-이 장에서는 이 책 전반에 걸쳐 모델링 예제에서 사용할 Ames 주택 데이터 세트 (De Cock 2011)를 소개합니다. 이 장에서 다루는 것과 같은 탐색적 데이터 분석(Exploratory data analysis)은 신뢰할 수 있는 모델을 구축하는 데 중요한 첫 번째 단계입니다. 이 데이터 세트에는 아이오와주 에임스(Ames)에 있는 2,930개 부동산에 대한 정보가 포함되어 있으며 다음과 관련된 열이 있습니다:
+이 장에서는 이 책 전반에 걸쳐 모델링 예제에서 사용할 Ames 주택 데이터 세트 (De Cock 2011)를 소개합니다. 이 장에서 다루는 것과 같은 탐색적 데이터 분석(Exploratory data analysis)은 신뢰할 수 있는 모델을 구축하는 데 중요한 첫 번째 단계입니다. 이 데이터 세트에는 아이오와주 에임스(Ames)에 있는 2,930개 부동산에 대한 정보가 포함되어 있으며 다음과 관련된 열이 있습니다.
 
 - 주택 특성 (침실, 차고, 벽난로, 수영장, 현관 등)
 
@@ -48,7 +48,7 @@ dim(ames)
 
 # Ames의 주택 특징 탐색 (Exploring Features of Homes in Ames)
 
-우리가 예측하려는 결과 변수인 주택의 마지막 판매 가격(USD)에 초점을 맞추어 탐색적 데이터 분석을 시작하겠습니다. [그림 4-2](#figure-4-2.-sale-prices-of-houses-in-ames-iowa.)에서 판매 가격의 분포를 보기 위해 히스토그램을 생성할 수 있습니다:
+우리가 예측하려는 결과 변수인 주택의 마지막 판매 가격(USD)에 초점을 맞추어 탐색적 데이터 분석을 시작하겠습니다. [그림 4-2](#figure-4-2.-sale-prices-of-houses-in-ames-iowa.)에서 판매 가격의 분포를 보기 위해 히스토그램을 생성할 수 있습니다.
 
 ```
 library(tidymodels)
@@ -63,7 +63,7 @@ ggplot(ames, aes(x = Sale_Price)) +
 <h6 id="figure-4-2.-sale-prices-of-houses-in-ames-iowa.">그림 4-2. 아이오와주 에임스의 주택 판매 가격.</h6>
 </figure>
 
-이 플롯은 데이터가 오른쪽으로 치우쳐(right-skewed) 있음을 보여줍니다. 비싼 주택보다 저렴한 주택이 더 많습니다. 판매 가격의 중앙값(median)은 $160,000이었고 가장 비싼 주택은 $755,000였습니다. 이 결과를 모델링할 때, 가격을 로그 변환(log-transformed)해야 한다는 강력한 주장이 제기될 수 있습니다. 이러한 유형의 변환이 갖는 이점은 음수 판매 가격으로 예측되는 주택이 없다는 점과, 비싼 주택을 예측할 때 발생하는 오차가 모델에 과도한 영향을 미치지 않는다는 점입니다. 또한 통계적인 관점에서 로그 변환은 추론을 더 합법적으로 만드는 방식으로 분산(variance)을 안정화시킬 수도 있습니다. 이제 유사한 단계를 사용하여 [그림 4-3](#figure-4-3.-sale-prices-of-houses-in-ames-iowa-after-a-log-base-10-transformation.)에 표시된 대로 변환된 데이터를 시각화할 수 있습니다:
+이 플롯은 데이터가 오른쪽으로 치우쳐(right-skewed) 있음을 보여줍니다. 비싼 주택보다 저렴한 주택이 더 많습니다. 판매 가격의 중앙값(median)은 $160,000이었고 가장 비싼 주택은 $755,000였습니다. 이 결과를 모델링할 때, 가격을 로그 변환(log-transformed)해야 한다는 강력한 주장이 제기될 수 있습니다. 이러한 유형의 변환이 갖는 이점은 음수 판매 가격으로 예측되는 주택이 없다는 점과, 비싼 주택을 예측할 때 발생하는 오차가 모델에 과도한 영향을 미치지 않는다는 점입니다. 또한 통계적인 관점에서 로그 변환은 추론을 더 합법적으로 만드는 방식으로 분산(variance)을 안정화시킬 수도 있습니다. 이제 유사한 단계를 사용하여 [그림 4-3](#figure-4-3.-sale-prices-of-houses-in-ames-iowa-after-a-log-base-10-transformation.)에 표시된 대로 변환된 데이터를 시각화할 수 있습니다.
 
 ```
 ggplot(ames, aes(x = Sale_Price)) +
@@ -82,15 +82,15 @@ ggplot(ames, aes(x = Sale_Price)) +
 
 결과 변수를 변환할 때의 단점은 대부분 모델 결과의 해석과 관련이 있습니다.
 
-성능 측정과 마찬가지로 모델 계수의 단위를 해석하기 더 어려울 수 있습니다. 예를 들어 *평균 제곱근 오차(root mean squared error)* (RMSE)는 회귀 모델에서 사용되는 일반적인 성능 지표입니다. 이것은 관측값과 예측값의 차이를 계산에 사용합니다. 판매 가격이 로그 척도(log scale)에 있는 경우 이 차이(즉, 잔차)도 로그 척도에 있습니다. 이러한 로그 척도에서 RMSE가 0.15인 모델의 품질을 이해하기 어려울 수 있습니다.
+성능 측정과 마찬가지로 모델 계수의 단위를 해석하기 더 어려울 수 있습니다. 예를 들어 _평균 제곱근 오차(root mean squared error)_ (RMSE)는 회귀 모델에서 사용되는 일반적인 성능 지표입니다. 이것은 관측값과 예측값의 차이를 계산에 사용합니다. 판매 가격이 로그 척도(log scale)에 있는 경우 이 차이(즉, 잔차)도 로그 척도에 있습니다. 이러한 로그 척도에서 RMSE가 0.15인 모델의 품질을 이해하기 어려울 수 있습니다.
 
-이러한 단점에도 불구하고 이 책에서 사용되는 모델은 이 결과 변수에 대해 로그 변환을 사용합니다. *이 시점부터*, 결과 변수 열은 `ames` 데이터 프레임에 사전 로그 변환(prelogged)됩니다:
+이러한 단점에도 불구하고 이 책에서 사용되는 모델은 이 결과 변수에 대해 로그 변환을 사용합니다. _이 시점부터_, 결과 변수 열은 `ames` 데이터 프레임에 사전 로그 변환(prelogged)됩니다.
 
 ```
 ames <- ames %>% mutate(Sale_Price = log10(Sale_Price))
 ```
 
-우리 모델링을 위한 이 데이터의 또 다른 중요한 측면은 지리적 위치입니다. 이 공간 정보는 두 가지 방식으로 데이터에 포함되어 있습니다: 질적인 `Neighborhood` 레이블과 양적인 경도 및 위도 데이터입니다. 공간 정보를 시각화하기 위해 [그림 4-4](#figure-4-4.-neighborhoods-in-ames-represented-using-a-convex-hull.)는 각 동네의 데이터 주변에 볼록 껍질(convex hulls)을 사용하여 [그림 4-1](#figure-4-1.-property-locations-in-ames-iowa.)의 데이터를 복제합니다.
+우리 모델링을 위한 이 데이터의 또 다른 중요한 측면은 지리적 위치입니다. 이 공간 정보는 두 가지 방식으로 데이터에 포함되어 있습니다. 질적인 `Neighborhood` 레이블과 양적인 경도 및 위도 데이터입니다. 공간 정보를 시각화하기 위해 [그림 4-4](#figure-4-4.-neighborhoods-in-ames-represented-using-a-convex-hull.)는 각 동네의 데이터 주변에 볼록 껍질(convex hulls)을 사용하여 [그림 4-1](#figure-4-1.-property-locations-in-ames-iowa.)의 데이터를 복제합니다.
 
 <figure>
 <img src="D:\sd\Practices\any2md\output\[2022] Tidy Modeling with R/assets/tmwr_0404.png" alt="tmwr 0404" />
@@ -132,7 +132,7 @@ ames <- ames %>% mutate(Sale_Price = log10(Sale_Price))
 <h6 id="figure-4-9.-homes-labeled-as-iowa-department-of-transportation-dot-and-rail-road.">그림 4-9. Iowa Department of Transportation (DOT) and Rail Road로 레이블이 지정된 주택들.</h6>
 </figure>
 
-[1장](ch01.xhtml#software-modeling)에서 설명했듯이 모델링을 시작하기 전에 탐색적 데이터 분석을 수행하는 것은 매우 중요합니다. 이러한 주택 데이터에는 데이터를 어떻게 처리하고 모델링해야 하는지에 대해 흥미로운 도전 과제를 제시하는 특징들이 있습니다. [17장](ch17.xhtml#categorical)과 같은 이후 장에서 이 중 많은 부분을 설명합니다. 이 탐색 단계에서 살펴볼 수 있는 몇 가지 기본적인 질문은 다음과 같습니다:
+[1장](ch01.xhtml#software-modeling)에서 설명했듯이 모델링을 시작하기 전에 탐색적 데이터 분석을 수행하는 것은 매우 중요합니다. 이러한 주택 데이터에는 데이터를 어떻게 처리하고 모델링해야 하는지에 대해 흥미로운 도전 과제를 제시하는 특징들이 있습니다. [17장](ch17.xhtml#categorical)과 같은 이후 장에서 이 중 많은 부분을 설명합니다. 이 탐색 단계에서 살펴볼 수 있는 몇 가지 기본적인 질문은 다음과 같습니다.
 
 - 개별 예측 변수의 분포에 이상하거나 눈에 띄는 것이 있는가? 치우침(skewness)이 심하거나 병적인 분포(pathological distributions)가 있는가?
 
@@ -146,7 +146,7 @@ ames <- ames %>% mutate(Sale_Price = log10(Sale_Price))
 
 이 장에서는 Ames 주택 데이터 세트를 소개하고 그 특징 중 일부를 조사했습니다. 이 데이터 세트는 이후 장에서 tidymodels 구문을 보여주기 위해 사용될 것입니다. 이와 같은 탐색적 데이터 분석은 모든 모델링 프로젝트의 필수적인 구성 요소입니다. EDA는 더 나은 모델링 실습에 기여하는 정보를 밝혀냅니다.
 
-이후 장으로 가져갈 Ames 데이터 세트를 준비하기 위한 중요한 코드는 다음과 같습니다:
+이후 장으로 가져갈 Ames 데이터 세트를 준비하기 위한 중요한 코드는 다음과 같습니다.
 
 ```
 library(tidymodels)

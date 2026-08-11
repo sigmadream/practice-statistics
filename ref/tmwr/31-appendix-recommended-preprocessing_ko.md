@@ -4,10 +4,10 @@
 
 [tinymodels 웹사이트](https://oreil.ly/Eco3u)에서 이러한 각 모델과 사용 가능한 다른 모델에 대해 자세히 알아볼 수 있습니다.
 
-이 부록에서는 다양한 모델 함수에 필요한 기본 수준의(baseline levels of) 전처리에 대한 권장 사항을 제공합니다. [표 A-1](#preprocessing)에서 전처리 방법은 다음과 같이 분류됩니다:
+이 부록에서는 다양한 모델 함수에 필요한 기본 수준의(baseline levels of) 전처리에 대한 권장 사항을 제공합니다. [표 A-1](#preprocessing)에서 전처리 방법은 다음과 같이 분류됩니다.
 
 더미 (Dummy)  
-질적(qualitative) 예측 변수에 숫자 인코딩(예: 더미 변수 또는 기타 방법)이 필요합니까?
+질적(qualitative) 예측 변수에 숫자 인코딩(더미 변수 또는 기타 방법)이 필요합니까?
 
 ZV  
 단일 고유값(즉, 분산이 0인)을 가진 열을 제거해야 합니까?
@@ -16,7 +16,7 @@ ZV
 일부 예측 변수가 누락된 경우 대체를 통해 추정(estimated via imputation)해야 합니까?
 
 상관관계 제거 (Decorrelate)  
-상관관계가 있는 예측 변수가 있는 경우 이 상관관계를 완화(mitigated)해야 합니까? 이는 예측 변수를 필터링하거나, 주성분 분석(principal component analysis)을 사용하거나, 모델 기반 기법(예: 정규화)을 사용하는 것을 의미할 수 있습니다.
+상관관계가 있는 예측 변수가 있는 경우 이 상관관계를 완화(mitigated)해야 합니까? 이는 예측 변수를 필터링하거나, 주성분 분석(principal component analysis)을 사용하거나, 모델 기반 기법(정규화)을 사용하는 것을 의미할 수 있습니다.
 
 정규화 (Normalize)  
 예측 변수의 중심을 맞추고 크기를 조정(centered and scaled)해야 합니까?
@@ -24,7 +24,7 @@ ZV
 변환 (Transform)  
 예측 변수를 보다 대칭적(symmetric)이도록 변환하는 것이 도움이 됩니까?
 
-[표 A-1](#preprocessing)의 정보가 완전한(exhaustive) 것은 아니며 구현(implementation)에 따라 다소 달라질 수 있습니다. 예를 들어, 표의 각주(footnotes)에 언급된 바와 같이 일부 모델은 특정 전처리 작업이 필요하지 않을 수 있지만 구현에는 필요할 수 있습니다. 표에서 ✓는 해당 모델에 방법이 필요함을 나타내고 ×는 그렇지 않음을 나타냅니다. ◌ 기호는 모델이 이 기법의 도움을 받을 *수도* 있지만 필수(required)는 아님을 의미합니다.
+[표 A-1](#preprocessing)의 정보가 완전한(exhaustive) 것은 아니며 구현(implementation)에 따라 다소 달라질 수 있습니다. 예를 들어, 표의 각주(footnotes)에 언급된 바와 같이 일부 모델은 특정 전처리 작업이 필요하지 않을 수 있지만 구현에는 필요할 수 있습니다. 표에서 ✓는 해당 모델에 방법이 필요함을 나타내고 ×는 그렇지 않음을 나타냅니다. ◌ 기호는 모델이 이 기법의 도움을 받을 _수도_ 있지만 필수(required)는 아님을 의미합니다.
 
 <table id="preprocessing" style="width:100%;">
 <caption>표 A-1. 여러 가지 모델에 대한 전처리 방법</caption>

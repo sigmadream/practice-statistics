@@ -14,7 +14,7 @@ source("_common.R")
 
 CSV 파일은 사람이 읽기 쉽도록 설계되었습니다.
 매우 단순하고 세상의(under 제약 sun) 모든 도구에서 읽을 수 있기 때문에 훌륭한 교환 형식(interchange format)입니다.
-하지만 CSV 파일은 그다지 효율적이지(efficient) 않습니다: R로 데이터를 읽어 들이려면 꽤 많은(quite a lot of) 작업(work)을 해야 합니다.
+하지만 CSV 파일은 그다지 효율적이지(efficient) 않습니다. R로 데이터를 읽어 들이려면 꽤 많은(quite a lot of) 작업(work)을 해야 합니다.
 이 장에서는 강력한(powerful) 대안(alternative)인 빅데이터 시스템에서 널리(widely) 사용되는 개방형(open) 표준(standards) 기반 형식인 [parquet 형식](https://parquet.apache.org/)에 대해 배울 것입니다.
 
 우리는 parquet 파일을 대규모 데이터셋의 효율적인 분석 및 전송(transport)을 위해 설계된 다국어(multi-language) 도구 상자인 [Apache Arrow](https://arrow.apache.org)와 페어링할(pair) 것입니다.
@@ -53,7 +53,7 @@ library(duckdb)
 
 다음 코드는 데이터의 캐시된 복사본(cached copy)을 가져옵니다.
 데이터는 9GB 크기의 CSV 파일이므로 다운로드하는 데 시간이 걸립니다(take some time).
-`curl::multi_download()`는 정확히(exactly) 이러한 목적(purpose)으로 제작(built)되었기 때문에 매우 큰 파일을 가져올 때 사용하는 것을 적극(highly) 권장합니다: 진행률 표시줄(progress bar)을 제공하며 다운로드가 중단(interrupted)될 경우 다운로드를 재개(resume)할 수 있습니다.
+`curl::multi_download()`는 정확히(exactly) 이러한 목적(purpose)으로 제작(built)되었기 때문에 매우 큰 파일을 가져올 때 사용하는 것을 적극(highly) 권장합니다. 진행률 표시줄(progress bar)을 제공하며 다운로드가 중단(interrupted)될 경우 다운로드를 재개(resume)할 수 있습니다.
 
 ```{r}
 #| eval: !expr "!file.exists('data/seattle-library-checkouts.csv')"
@@ -71,7 +71,7 @@ curl::multi_download(
 데이터를 살펴보는 것부터 시작해 봅시다.
 9GB인 이 파일은 메모리에 전체(whole thing)를 로드하고 싶지 않을 정도로 큽니다.
 경험 법칙(rule of thumb)상 일반적으로 데이터 크기의 두 배 이상(at least twice)의 메모리가 필요한데 많은 노트북은 16GB가 최대(top out)입니다.
-따라서 `read_csv()`를 피하고(avoid) 대신 `arrow::open_dataset()`을 사용하는 것이 좋습니다:
+따라서 `read_csv()`를 피하고(avoid) 대신 `arrow::open_dataset()`을 사용하는 것이 좋습니다.
 
 ```{r open-dataset}
 seattle_csv <- open_dataset(
@@ -85,7 +85,7 @@ seattle_csv <- open_dataset(
 `open_dataset()`은 처음 몇 천 개의 행을 스캔(scan)하여 데이터셋의 구조(structure)를 파악(figure out)합니다.
 `ISBN` 열에는 처음 80,000개 행에 빈 값(blank values)이 포함되어 있으므로 arrow가 데이터 구조를 파악(work out)하는 데 도움이 되도록 열 유형을 지정(specify)해야 합니다.
 `open_dataset()`이 데이터를 스캔(scanned)하면 찾은 내용(what it's found)을 기록하고 중지합니다; 사용자가 명시적으로(specifically) 요청(request)할 때만 추가(further) 행을 읽습니다.
-이 메타데이터(metadata)는 `seattle_csv`를 출력하면 볼 수 있는 내용입니다:
+이 메타데이터(metadata)는 `seattle_csv`를 출력하면 볼 수 있는 내용입니다.
 
 ```{r}
 seattle_csv
@@ -103,7 +103,7 @@ seattle_csv |> glimpse()
 ```
 
 dplyr 동사로 이 데이터셋을 사용하기 시작할 수 있으며, `collect()`를 사용하여 arrow가 연산(computation)을 수행하고 일부 데이터를 반환(return)하도록 강제(force)할 수 있습니다.
-예를 들어 다음 코드는 연도별 총 대출 횟수를 알려줍니다:
+예를 들어 다음 코드는 연도별 총 대출 횟수를 알려줍니다.
 
 ```{r}
 #| cache: true
@@ -115,7 +115,7 @@ seattle_csv |>
 ```
 
 arrow 덕분에 이 코드는 기본 데이터셋의 크기에 관계없이(regardless of) 작동합니다.
-하지만 현재로서는 다소(rather) 느립니다: 해들리의 컴퓨터에서는 실행하는 데 약(~) 10초가 걸렸습니다.
+하지만 현재로서는 다소(rather) 느립니다. 해들리의 컴퓨터에서는 실행하는 데 약(~) 10초가 걸렸습니다.
 가진 데이터의 양(how much data)을 고려하면 그리 끔찍하지는 않지만, 더 나은 형식(format)으로 전환(switching)하여 훨씬 더 빠르게 만들 수 있습니다.
 
 ## parquet 형식 (The parquet format) {#sec-parquet}
@@ -126,7 +126,7 @@ arrow 덕분에 이 코드는 기본 데이터셋의 크기에 관계없이(rega
 ### parquet의 장점 (Advantages of parquet)
 
 CSV와 마찬가지로 parquet은 사각형(rectangular) 데이터에 사용되지만 파일 편집기(file editor)로 읽을 수 있는 텍스트 형식 대신 빅데이터의 요구(needs)를 위해 특별히 설계된 사용자 지정(custom) 바이너리(binary) 형식입니다.
-이것이 의미하는 바는 다음과 같습니다:
+이것이 의미하는 바는 다음과 같습니다.
 
 -   parquet 파일은 일반적으로(usually) 동등한(equivalent) CSV 파일보다 더 작습니다.
     parquet은 파일 크기를 줄이기(keep down) 위해 [효율적인 인코딩(efficient encodings)](https://parquet.apache.org/docs/file-format/data-pages/encodings/)에 의존(relies on)하며 파일 압축(compression)을 지원(supports)합니다.
@@ -143,14 +143,14 @@ CSV와 마찬가지로 parquet은 사각형(rectangular) 데이터에 사용되�
 
 -   parquet 파일은 "청크화(chunked)"되어 있어 파일의 서로 다른 부분을 동시에(at the same time) 작업할 수 있으며 운이 좋다면 일부 청크를 아예(altogether) 건너뛸(skip) 수 있습니다.
 
-parquet 파일에는 한 가지 주된(primary) 단점(disadvantage)이 있습니다: 더 이상 "사람이 읽을 수(human readable)" 없다는 것입니다. 즉, `readr::read_file()`을 사용하여 parquet 파일을 보면 알 수 없는 말(gibberish) 덩어리(bunch of)만 보일 것입니다.
+parquet 파일에는 한 가지 주된(primary) 단점(disadvantage)이 있습니다. 더 이상 "사람이 읽을 수(human readable)" 없다는 것입니다. 즉, `readr::read_file()`을 사용하여 parquet 파일을 보면 알 수 없는 말(gibberish) 덩어리(bunch of)만 보일 것입니다.
 
 ### 파티셔닝 (Partitioning)
 
 데이터셋이 점점 더 커짐에 따라 모든 데이터를 단일 파일에 저장하는 것은 점점 더 고통스러워(painful)지며 큰 데이터셋을 여러 파일에 분할(split)하는 것이 종종(often) 유용(useful)합니다.
 이 구조화(structuring)가 지능적(intelligently)으로 이루어지면 많은 분석에서(many analyses) 파일의 하위 집합(subset)만 필요하기 때문에 이 전략(strategy)은 성능에 상당한(significant) 개선(improvements)을 가져올 수 있습니다.
 
-데이터셋을 파티셔닝하는 방법에 대한 확고한 규칙(hard and fast rules)은 없습니다: 결과는 데이터, 액세스 패턴(access patterns) 및 데이터를 읽는 시스템에 따라 달라집니다(depend on).
+데이터셋을 파티셔닝하는 방법에 대한 확고한 규칙(hard and fast rules)은 없습니다. 결과는 데이터, 액세스 패턴(access patterns) 및 데이터를 읽는 시스템에 따라 달라집니다(depend on).
 자신의 상황에 맞는 이상적인(ideal) 파티셔닝을 찾기 전에(before you find) 몇 가지 실험(experimentation)을 거쳐야 할 가능성이 높습니다.
 대략적인(rough) 가이드로서 arrow는 20MB보다 작거나 2GB보다 큰 파일을 피하고 10,000개 이상의 파일을 생성하는(produce) 파티션을 피할 것을 제안(suggests)합니다.
 또한 필터링(filter) 기준으로 삼을 변수로 파티셔닝하려고 노력(try to)해야 합니다. 조금 뒤에 보겠지만(as you'll see shortly), 이를 통해 arrow는 관련(relevant) 파일만 읽어 많은 작업을 건너뛸 수 있습니다(skip a lot of work).
@@ -177,7 +177,7 @@ seattle_csv |>
 
 실행하는 데 1분 정도(about a minute) 걸립니다. 곧 보겠지만, 이것은 향후(future) 작업을 훨씬 더 빠르게 만들어주는(pays off) 초기 투자(initial investment)입니다.
 
-방금(just) 생성(produced)한 항목을 살펴보겠습니다:
+방금(just) 생성(produced)한 항목을 살펴보겠습니다.
 
 ```{r show-parquet-files}
 tibble(
@@ -202,7 +202,7 @@ seattle_pq <- open_dataset(pq_path)
 ```
 
 이제 dplyr 파이프라인을 작성(write)할 수 있습니다.
-예를 들어 지난 5년간 매달 대출된(checked out) 도서의 총 개수를 셀 수 있습니다:
+예를 들어 지난 5년간 매달 대출된(checked out) 도서의 총 개수를 셀 수 있습니다.
 
 ```{r books-by-year-query}
 query <- seattle_pq |> 
@@ -212,15 +212,15 @@ query <- seattle_pq |>
   arrange(CheckoutYear, CheckoutMonth)
 ```
 
-arrow 데이터를 위한 dplyr 코드 작성은 개념적으로(conceptually) dbplyr(@sec-import-databases)와 유사합니다: dplyr 코드를 작성하면 Apache Arrow C++ 라이브러리가 이해(understands)할 수 있는 쿼리로 자동 변환(transformed)되며, `collect()`를 호출(call)할 때 실행(executed)됩니다.
-`query` 객체를 출력(print out)하면 실행이 일어날(takes place) 때 Arrow가 반환(return)할 것으로 예상(expect)되는 내용에 대한 약간의 정보를 볼 수 있습니다:
+arrow 데이터를 위한 dplyr 코드 작성은 개념적으로(conceptually) dbplyr(@sec-import-databases)와 유사합니다. dplyr 코드를 작성하면 Apache Arrow C++ 라이브러리가 이해(understands)할 수 있는 쿼리로 자동 변환(transformed)되며, `collect()`를 호출(call)할 때 실행(executed)됩니다.
+`query` 객체를 출력(print out)하면 실행이 일어날(takes place) 때 Arrow가 반환(return)할 것으로 예상(expect)되는 내용에 대한 약간의 정보를 볼 수 있습니다.
 
 ```{r}
 query
 ```
 ```
 
-그리고 `collect()`를 호출하여 결과를 얻을 수 있습니다:
+그리고 `collect()`를 호출하여 결과를 얻을 수 있습니다.
 
 ```{r books-by-year}
 query |> collect()
@@ -232,7 +232,7 @@ dbplyr와 마찬가지로 arrow는 일부 R 표현식만 이해하므로 평소�
 ### 성능 (Performance) {#sec-parquet-fast}
 
 CSV에서 parquet로 전환(switching)할 때의 성능 영향(impact)을 간단히 살펴보겠습니다.
-먼저(First), 데이터가 단일 대용량 csv로 저장된 경우 2021년 매월 대출된 도서 수를 계산하는 데 걸리는 시간을 측정(time)해 보겠습니다:
+먼저(First), 데이터가 단일 대용량 csv로 저장된 경우 2021년 매월 대출된 도서 수를 계산하는 데 걸리는 시간을 측정(time)해 보겠습니다.
 
 ```{r dataset-performance-csv}
 #| cache: true
@@ -246,7 +246,7 @@ seattle_csv |>
   system.time()
 ```
 
-이제 시애틀 도서관 대출 데이터가 18개의 작은 parquet 파일로 파티셔닝된 새 버전의 데이터셋을 사용해 보겠습니다:
+이제 시애틀 도서관 대출 데이터가 18개의 작은 parquet 파일로 파티셔닝된 새 버전의 데이터셋을 사용해 보겠습니다.
 
 ```{r dataset-performance-multiple-parquet}
 #| cache: true
@@ -260,7 +260,7 @@ seattle_pq |>
   system.time()
 ```
 
-약(~) 100배의 성능 향상(speedup)은 다중 파일 파티셔닝과 개별(individual) 파일 형식이라는 두 가지 요인(factors) 때문(attributable)입니다:
+약(~) 100배의 성능 향상(speedup)은 다중 파일 파티셔닝과 개별(individual) 파일 형식이라는 두 가지 요인(factors) 때문(attributable)입니다.
 
 -   파티셔닝은 성능을 향상시킵니다. 이 쿼리는 데이터를 필터링하기 위해 `CheckoutYear == 2021`을 사용하며, arrow는 18개의 parquet 파일 중 1개만 읽으면 된다는 것을 인식(recognize)할 만큼 똑똑하기(smart enough) 때문입니다.
 -   parquet 형식은 데이터를 메모리로 더 직접 읽을 수 있는 바이너리(binary) 형식으로 저장하여 성능을 향상시킵니다. 열 단위(column-wise) 형식과 풍부한 메타데이터(metadata)는 arrow가 쿼리에 실제로(actually) 사용된 4개의 열(`CheckoutYear`, `MaterialType`, `CheckoutMonth`, `Checkouts`)만 읽으면 된다는 것을 의미합니다.
@@ -269,7 +269,7 @@ seattle_pq |>
 
 ### arrow와 함께 duckdb 사용하기 (Using duckdb with arrow)
 
-parquet과 arrow의 마지막 장점(advantage)이 하나 있습니다. `arrow::to_duckdb()`를 호출하여 arrow 데이터셋을 DuckDB 데이터베이스(@sec-import-databases)로 바꾸는(turn) 것이 매우(very) 쉽다는 것입니다:
+parquet과 arrow의 마지막 장점(advantage)이 하나 있습니다. `arrow::to_duckdb()`를 호출하여 arrow 데이터셋을 DuckDB 데이터베이스(@sec-import-databases)로 바꾸는(turn) 것이 매우(very) 쉽다는 것입니다.
 
 ```{r use-duckdb}
 seattle_pq |> 

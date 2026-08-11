@@ -199,8 +199,8 @@ compareTrajectories()
 
 그들의 통산 궤적은 비슷했지만 Maddux가 전성기 동안 더 우수한 ERA를 기록했다는 점에 유의합니다.
 
-- 15.4 앱 공유하기 
-다른 사람과 Shiny 앱을 공유하는 방법에는 여러 가지가 있습니다.
+- 15.4 앱 공유하기
+  다른 사람과 Shiny 앱을 공유하는 방법에는 여러 가지가 있습니다.
 
 - app.R 파일 공유. 앱이 단일 파일 app.R에 포함되어 있으므로 이 스크립트 파일을 다른 사람과 단순히 공유할 수 있습니다.
 - 패키지에 넣기. 이것은 abdwr3edata 패키지의 compareTrajectories() 함수에 의해 설명된 방법입니다.
@@ -316,7 +316,7 @@ sc1 <- brushedPoints(sc_player, input$plot_brush)
 
 - A.1.1 소개
 
-1913년부터 2022년 사이의 모든 메이저 리그 시즌에 대한 플레이 바이 플레이 데이터 파일은 현재 Retrosheet 웹 페이지 https://www.retrosheet.org/game.htm 에서 사용할 수 있습니다. 단일 연도(예: 1950)를 클릭하면 일련의 파일이 포함된 압축(.zip) 파일을 얻습니다. 파일 중 하나는 모든 팀의 홈 경기에 대한 플레이 정보가 포함된 파일 집합이고, 다른 하나는 각 팀의 선수 명단이 포함된 파일 집합입니다. 이 부록은 Retrosheet 파일로 작업하는 가장 쉬운 방법을 설명합니다.
+1913년부터 2022년 사이의 모든 메이저 리그 시즌에 대한 플레이 바이 플레이 데이터 파일은 현재 Retrosheet 웹 페이지 https://www.retrosheet.org/game.htm 에서 사용할 수 있습니다. 단일 연도(1950)를 클릭하면 일련의 파일이 포함된 압축(.zip) 파일을 얻습니다. 파일 중 하나는 모든 팀의 홈 경기에 대한 플레이 정보가 포함된 파일 집합이고, 다른 하나는 각 팀의 선수 명단이 포함된 파일 집합입니다. 이 부록은 Retrosheet 파일로 작업하는 가장 쉬운 방법을 설명합니다.
 
 - A.1.2 Chadwick
 
@@ -480,13 +480,13 @@ Chadwick 도구는 모든 변수 이름을 대문자로 반환하지만 retroshe
 
 - A.2.2 게임 상태
 
-특정 이벤트가 발생했을 때 게임 상태를 정의하는 데 몇 가지 필드가 도움이 됩니다. 이닝 및 공격 팀 변수는 각각 INN_CT 및 BAT_HOME_ID 필드에 저장됩니다. 후자 필드는 
+특정 이벤트가 발생했을 때 게임 상태를 정의하는 데 몇 가지 필드가 도움이 됩니다. 이닝 및 공격 팀 변수는 각각 INN_CT 및 BAT_HOME_ID 필드에 저장됩니다. 후자 필드는
 
 "0"(원정 팀 타격, 즉 이닝 초) 또는 "1"(홈 팀 타격, 이닝 말)의 값을 가정할 수 있습니다. 원정팀 점수 및 홈팀 점수 변수는 AWAY_SCORE_CT 및 HOME_SCORE_CT에 기록됩니다.
 
 플레이 전의 아웃 횟수는 OUTS_CT 열에 표시되고, 주자 상황은 표 A.1에 표시된 대로 1에서 7까지의 숫자를 사용하여 START_BASES_CD 필드에 암호화됩니다.3
 
-이벤트의 실제 설명은 플레이 결과(예: 삼진, 단타 등)를 설명하는 문자열, 일부 추가 세부 정보(예: 타구의 유형 및 위치) 및 주자의 진루로 구성된 EVENT_TX 열에 있습니다. 
+이벤트의 실제 설명은 플레이 결과(삼진, 단타 등)를 설명하는 문자열, 일부 추가 세부 정보(타구의 유형 및 위치) 및 주자의 진루로 구성된 EVENT_TX 열에 있습니다.
 
 - 2모든 소프트웨어 도구에 대한 설명서는 https://chadwick.sourceforge.net/doc/cwtools.html에서 확인할 수 있습니다. 특히 이벤트 파일을 처리하는 도구(cwevent)는 https://chadwick.sourceforge.net/doc/cwevent.html#cwtools-cwevent에 문서화되어 있습니다.
 - 3END_BASES_CD라는 유사한 열에는 플레이 종료 시 베이스 상태가 동일한 방식으로 암호화되어 포함됩니다.
@@ -613,7 +613,7 @@ paste0("^", s, b, b, b,
 ) )
 ```
 
-2스트라이크 카운트에서 타자는 카운트에 영향을 미치지 않고 파울 공을 무한정 쳐낼 수 있습니다. 아래 줄에서 원하는 볼 수에 도달하기 전에 2스트라이크에 도달하는 시퀀스는 별표로 표시된 대로 0을 포함하여 횟수에 관계없이 발생하는 파울 공5을 나타내는 [FR]* 표현식을 특징으로 합니다.
+2스트라이크 카운트에서 타자는 카운트에 영향을 미치지 않고 파울 공을 무한정 쳐낼 수 있습니다. 아래 줄에서 원하는 볼 수에 도달하기 전에 2스트라이크에 도달하는 시퀀스는 별표로 표시된 대로 0을 포함하여 횟수에 관계없이 발생하는 파울 공5을 나타내는 [FR]\* 표현식을 특징으로 합니다.
 
 ```R
 retro2016 <- retro2016 |> mutate( c12 = grepl(
@@ -682,7 +682,7 @@ B.2 온라인 리소스
 
 .illinois.edu/): 야구 물리학에 대한 연구가 포함되어 있으며 http://baseball.physics.illinois.edu/pitchtracker.html에서 비디오 기술을 사용한 투구 추적에 전념하는 섹션이 있습니다.
 
-- Katron의 MLB Gameday BIP 위치(https://katron.org/projects/baseball/hit-location/): 지정된 구장의 안타 위치 데이터를 선택한 다른 구장으로 옮길 수 있습니다. 타구 데이터에 대해 앞서 설명한 모든 주의 사항을 염두에 두고 
+- Katron의 MLB Gameday BIP 위치(https://katron.org/projects/baseball/hit-location/): 지정된 구장의 안타 위치 데이터를 선택한 다른 구장으로 옮길 수 있습니다. 타구 데이터에 대해 앞서 설명한 모든 주의 사항을 염두에 두고
 
 362 PITCHf/x 데이터에 대한 역사적 참고 사항
 
@@ -705,7 +705,7 @@ B.2 온라인 리소스
 - pos8 person id 중견수의 Id
 
 - pos9 person id 우익수의 Id
-pitch number PA의 투구 번호
+  pitch number PA의 투구 번호
 
 더 간단한 방법은 7.5절에서와 같이 baseballr 패키지의 chadwick_player_lu() 함수를 사용하는 것입니다. 이 파일을 다운로드하고 처리하는 데 1분이 걸리므로 write_rds() 함수를 사용하여 로컬 사본을 저장할 수 있습니다.
 
@@ -732,7 +732,7 @@ here::here("data/chadwick_register.rds"), compress = "xz" )
 - pos7 person id 좌익수의 Id
 - pos8 person id 중견수의 Id
 - pos9 person id 우익수의 Id
-pitch number PA의 투구 번호
+  pitch number PA의 투구 번호
 
 투구 변수 365
 
@@ -745,12 +745,12 @@ pitch number PA의 투구 번호
 - release pos y 투구 방출 지점의 y 좌표
 
 - release pos z 투구 방출 지점의 z 좌표
-zone 투구의 구역 위치 pfx x 투구의 수평 움직임 pfx z 투구의 수직 움직임 sz top 스트라이크 존 상단 수직 위치 sz bot 스트라이크 존 하단 수직 위치 plate x 투구의 수평 위치 plate z 투구의 수직 위치 vx0 투구 속도의 x 좌표 vy0 투구 속도의 y 좌표 vz0 투구 속도의 z 좌표
+  zone 투구의 구역 위치 pfx x 투구의 수평 움직임 pfx z 투구의 수직 움직임 sz top 스트라이크 존 상단 수직 위치 sz bot 스트라이크 존 하단 수직 위치 plate x 투구의 수평 위치 plate z 투구의 수직 위치 vx0 투구 속도의 x 좌표 vy0 투구 속도의 y 좌표 vz0 투구 속도의 z 좌표
 
 - ax 투구 가속도의 x 좌표
 - ay 투구 가속도의 y 좌표
 - az 투구 가속도의 z 좌표
-release spin rate 회전 속도(rpm) spin axis 회전축 spin direction 회전 방향
+  release spin rate 회전 속도(rpm) spin axis 회전축 spin direction 회전 방향
 
 모든 현장 선수의 신원과 주자의 신원이 포함됩니다. 특정 타석과 관련하여 데이터 세트에는 투구 번호, 볼 및 스트라이크 수, 투수의 타격 측면 및 투구 손이 포함됩니다.
 
@@ -854,7 +854,7 @@ sapply( seq(0, cross_p, interval), pitchloc,
 - hc x 공이 착지한 위치의 x 위치
 
 - hc y 공이 착지한 위치의 y 위치
-launch speed 타구에서 벗어날 때 공의 속도 launch angle 타석에서 벗어날 때 공의 수직 각도 barrel 비교 가능한 타구 유형이 최소 .500 타율 및 1.500 장타율을 이끈 타구 이벤트에 대한 분류
+  launch speed 타구에서 벗어날 때 공의 속도 launch angle 타석에서 벗어날 때 공의 수직 각도 barrel 비교 가능한 타구 유형이 최소 .500 타율 및 1.500 장타율을 이끈 타구 이벤트에 대한 분류
 
 - C.7 타구 변수
 
@@ -911,4 +911,3 @@ McCutchen의 2000번째 안타는 분당 2500회 회전하는 86mph 슬라이더
 1년 이상의 Statcast 데이터를 저장하는 방법에 대한 자세한 내용은 12.2절을 참조하십시오.
 
 ![image 115](images/imageFile115.png)
-

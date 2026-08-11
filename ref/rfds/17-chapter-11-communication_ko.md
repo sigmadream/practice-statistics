@@ -6,7 +6,7 @@
 
 이제 데이터를 이해했으므로, 여러분의 이해를 다른 사람들에게 *소통(communicate)*해야 합니다. 여러분의 청중은 여러분의 배경지식을 공유하지 않을 것이며 데이터에 깊이 투자하지도 않았을 것입니다. 다른 사람들이 데이터에 대한 훌륭한 멘탈 모델을 빠르게 구축하도록 돕기 위해, 여러분은 플롯을 가능한 한 자명하게 만들기 위해 상당한 노력을 투자해야 합니다. 이 장에서는 ggplot2가 이를 수행하기 위해 제공하는 몇 가지 도구를 배울 것입니다.
 
-이 장은 좋은 그래픽을 만들기 위해 필요한 도구에 중점을 둡니다. 여러분이 원하는 것을 이미 알고 있고, 단지 그것을 어떻게 수행하는지 알 필요만 있다고 가정합니다. 그러한 이유로 이 장을 좋은 일반적인 시각화 서적과 함께 읽는 것을 적극 권장합니다. 우리는 알베르토 카이로(Albert Cairo)가 쓴 [*The Truthful Art*](https://oreil.ly/QIr_w) (New Riders 출판)를 특히 좋아합니다. 이 책은 시각화를 만드는 메커니즘을 가르치지는 않지만, 대신 효과적인 그래픽을 만들기 위해 생각해야 할 것에 중점을 둡니다.
+이 장은 좋은 그래픽을 만들기 위해 필요한 도구에 중점을 둡니다. 여러분이 원하는 것을 이미 알고 있고, 단지 그것을 어떻게 수행하는지 알 필요만 있다고 가정합니다. 그러한 이유로 이 장을 좋은 일반적인 시각화 서적과 함께 읽는 것을 적극 권장합니다. 우리는 알베르토 카이로(Albert Cairo)가 쓴 [_The Truthful Art_](https://oreil.ly/QIr_w) (New Riders 출판)를 특히 좋아합니다. 이 책은 시각화를 만드는 메커니즘을 가르치지는 않지만, 대신 효과적인 그래픽을 만들기 위해 생각해야 할 것에 중점을 둡니다.
 
 ## 사전 준비 (Prerequisites)
 
@@ -21,7 +21,7 @@ library(patchwork)
 
 # 레이블 (Labels)
 
-탐색적 그래픽을 설명적(expository) 그래픽으로 바꿀 때 가장 시작하기 쉬운 곳은 좋은 레이블을 사용하는 것입니다. <a href="https://ggplot2.tidyverse.org/reference/labs.html" class="orm:hideurl"><code>labs()</code></a> 함수로 레이블을 추가합니다:
+탐색적 그래픽을 설명적(expository) 그래픽으로 바꿀 때 가장 시작하기 쉬운 곳은 좋은 레이블을 사용하는 것입니다. <a href="https://ggplot2.tidyverse.org/reference/labs.html" class="orm:hideurl"><code>labs()</code></a> 함수로 레이블을 추가합니다.
 
 ```
 ggplot(mpg, aes(x = displ, y = hwy)) +
@@ -43,9 +43,9 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 플롯 제목(title)의 목적은 주요 발견 사항을 요약하는 것입니다. "엔진 배기량과 연비의 산점도(A scatterplot of engine displacement vs. fuel economy)"와 같이 플롯이 무엇인지 설명하기만 하는 제목은 피하십시오.
 
-더 많은 텍스트를 추가해야 하는 경우, 두 가지 다른 유용한 레이블이 있습니다: `subtitle`은 제목 아래에 작은 글꼴로 추가적인 세부 정보를 덧붙이고, `caption`은 주로 데이터의 출처를 설명하는 단위를 포함하는 것이 일반적으로 좋은 방법입니다.
+더 많은 텍스트를 추가해야 하는 경우, 두 가지 다른 유용한 레이블이 있습니다. `subtitle`은 제목 아래에 작은 글꼴로 추가적인 세부 정보를 덧붙이고, `caption`은 주로 데이터의 출처를 설명하는 단위를 포함하는 것이 일반적으로 좋은 방법입니다.
 
-텍스트 문자열 대신 수학 공식을 사용하는 것도 가능합니다. 단순히 `""`를 <a href="https://rdrr.io/r/base/substitute.html" class="orm:hideurl"><code>quote()</code></a>로 바꾸고, 사용 가능한 옵션에 대해서는 <a href="https://rdrr.io/r/grDevices/plotmath.html" class="orm:hideurl"><code>?plotmath</code></a>를 읽어보세요:
+텍스트 문자열 대신 수학 공식을 사용하는 것도 가능합니다. 단순히 `""`를 <a href="https://rdrr.io/r/base/substitute.html" class="orm:hideurl"><code>quote()</code></a>로 바꾸고, 사용 가능한 옵션에 대해서는 <a href="https://rdrr.io/r/grDevices/plotmath.html" class="orm:hideurl"><code>?plotmath</code></a>를 읽어보세요.
 
 ```
 df <- tibble(
@@ -70,9 +70,9 @@ ggplot(df, aes(x, y)) +
 1. 커스터마이즈된 `title`, `subtitle`, `caption`, `x`, `y`, `color` 레이블을 사용하여 연료 경제성(fuel economy) 데이터에 하나의 플롯을 만드세요.
 2. 연료 경제성 데이터를 사용하여 다음 플롯을 다시 만드세요. 점의 색상과 모양이 모두 구동 방식(drivetrain) 유형에 따라 다르다는 점에 유의하세요.
 
-    <figure>
-    <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_11in03.png" alt="Scatterplot of highway versus city fuel efficiency. Shapes and colors of points are determined by type of drivetrain." />
-    </figure>
+<figure>
+<img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_11in03.png" alt="Scatterplot of highway versus city fuel efficiency. Shapes and colors of points are determined by type of drivetrain." />
+</figure>
 
 3. 지난 한 달 동안 만든 탐색적 그래픽을 가져와서 다른 사람들이 이해하기 쉽도록 유익한 제목을 추가하세요.
 
@@ -80,7 +80,7 @@ ggplot(df, aes(x, y)) +
 
 플롯의 주요 구성 요소에 레이블을 지정하는 것 외에도, 개별 관측치나 관측치 그룹에 레이블을 지정하는 것이 유용할 때가 많습니다. 마음대로 사용할 수 있는 첫 번째 도구는 <a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="orm:hideurl"><code>geom_text()</code></a>입니다. <a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="orm:hideurl"><code>geom_text()</code></a>는 <a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="orm:hideurl"><code>geom_point()</code></a>와 유사하지만 `label`이라는 미적 매핑을 추가로 가지고 있습니다. 이를 통해 플롯에 텍스트 레이블을 추가할 수 있습니다.
 
-레이블의 출처(sources)는 두 가지가 가능합니다. 첫째, 레이블을 제공하는 티블(tibble)을 가질 수 있습니다. 다음 플롯에서는 각 구동 유형에서 엔진 크기가 가장 큰 자동차를 뽑아 그 정보를 `label_info`라는 새로운 데이터 프레임으로 저장합니다:
+레이블의 출처(sources)는 두 가지가 가능합니다. 첫째, 레이블을 제공하는 티블(tibble)을 가질 수 있습니다. 다음 플롯에서는 각 구동 유형에서 엔진 크기가 가장 큰 자동차를 뽑아 그 정보를 `label_info`라는 새로운 데이터 프레임으로 저장합니다.
 
 ```
 label_info <- mpg |>
@@ -99,9 +99,9 @@ label_info <- mpg |>
 label_info
 #> # A tibble: 3 × 4
 #> # Groups:   drv [3]
-#>   displ   hwy drv   drive_type       
-#>   <dbl> <int> <chr> <chr>            
-#> 1   6.5    17 4     4-wheel drive    
+#>   displ   hwy drv   drive_type
+#>   <dbl> <int> <chr> <chr>
+#> 1   6.5    17 4     4-wheel drive
 #> 2   5.3    25 f     front-wheel drive
 #> 3   7      24 r     rear-wheel drive
 ```
@@ -113,7 +113,7 @@ ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
   geom_point(alpha = 0.3) +
   geom_smooth(se = FALSE) +
   geom_text(
-    data = label_info, 
+    data = label_info,
     aes(x = displ, y = hwy, label = drive_type),
     fontface = "bold", size = 5, hjust = "right", vjust = "bottom"
   ) +
@@ -127,14 +127,14 @@ ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
 
 레이블의 정렬을 제어하기 위해 `hjust` (가로 정렬) 및 `vjust` (세로 정렬)를 사용한 점에 유의하세요.
 
-그러나 방금 만든 주석이 달린 플롯은 레이블들이 서로 겹치고 점들과 겹치기 때문에 읽기 어렵습니다. ggrepel 패키지의 <a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="orm:hideurl"><code>geom_label_repel()</code></a> 함수를 사용하여 이 두 가지 문제를 모두 해결할 수 있습니다. 이 유용한 패키지는 겹치지 않도록 레이블을 자동으로 조정합니다:
+그러나 방금 만든 주석이 달린 플롯은 레이블들이 서로 겹치고 점들과 겹치기 때문에 읽기 어렵습니다. ggrepel 패키지의 <a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="orm:hideurl"><code>geom_label_repel()</code></a> 함수를 사용하여 이 두 가지 문제를 모두 해결할 수 있습니다. 이 유용한 패키지는 겹치지 않도록 레이블을 자동으로 조정합니다.
 
 ```
 ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
   geom_point(alpha = 0.3) +
   geom_smooth(se = FALSE) +
   geom_label_repel(
-    data = label_info, 
+    data = label_info,
     aes(x = displ, y = hwy, label = drive_type),
     fontface = "bold", size = 5, nudge_y = 2
   ) +
@@ -146,18 +146,18 @@ ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_11in05.png" alt="Scatterplot of highway fuel efficiency versus engine size of cars, where points are colored according to the car class. Some points are labelled with the car&#39;s name. The labels are box with white, transparent background and positioned to not overlap." />
 </figure>
 
-ggrepel 패키지의 <a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="orm:hideurl"><code>geom_text_repel()</code></a>을 사용하여 플롯의 특정 점을 강조하는 동일한 아이디어를 사용할 수도 있습니다. 여기에 사용된 또 다른 편리한 기술에 주목하세요: 우리는 레이블이 지정된 점을 더 강조하기 위해 크고 속이 빈(hollow) 점들의 두 번째 레이어를 추가했습니다.
+ggrepel 패키지의 <a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="orm:hideurl"><code>geom_text_repel()</code></a>을 사용하여 플롯의 특정 점을 강조하는 동일한 아이디어를 사용할 수도 있습니다. 여기에 사용된 또 다른 편리한 기술에 주목하세요. 우리는 레이블이 지정된 점을 더 강조하기 위해 크고 속이 빈(hollow) 점들의 두 번째 레이어를 추가했습니다.
 
 ```
 potential_outliers <- mpg |>
   filter(hwy > 40 | (hwy > 20 & displ > 5))
-  
+
 ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point() +
   geom_text_repel(data = potential_outliers, aes(label = model)) +
   geom_point(data = potential_outliers, color = "red") +
   geom_point(
-    data = potential_outliers, 
+    data = potential_outliers,
     color = "red", size = 3, shape = "circle open"
   )
 ```
@@ -174,7 +174,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 플롯에 주석을 추가하는 또 다른 편리한 함수는 <a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="orm:hideurl"><code>annotate()</code></a>입니다. 경험칙상, geoms는 일반적으로 데이터의 하위 집합을 강조하는 데 유용한 반면, <a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="orm:hideurl"><code>annotate()</code></a>는 플롯에 하나 또는 몇 개의 주석 요소를 추가하는 데 유용합니다.
 
-<a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="orm:hideurl"><code>annotate()</code></a> 사용을 시연하기 위해, 플롯에 추가할 텍스트를 만들어 보겠습니다. 텍스트가 약간 길기 때문에 줄당 원하는 글자 수에 따라 자동으로 줄바꿈을 추가해 주는 <a href="https://stringr.tidyverse.org/reference/str_wrap.html" class="orm:hideurl"><code>stringr::str_wrap()</code></a>을 사용할 것입니다:
+<a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="orm:hideurl"><code>annotate()</code></a> 사용을 시연하기 위해, 플롯에 추가할 텍스트를 만들어 보겠습니다. 텍스트가 약간 길기 때문에 줄당 원하는 글자 수에 따라 자동으로 줄바꿈을 추가해 주는 <a href="https://stringr.tidyverse.org/reference/str_wrap.html" class="orm:hideurl"><code>stringr::str_wrap()</code></a>을 사용할 것입니다.
 
 ```
 trend_text <- "Larger engine sizes tend to\nhave lower fuel economy." |>
@@ -183,7 +183,7 @@ trend_text
 #> [1] "Larger engine sizes tend to\nhave lower fuel economy."
 ```
 
-그런 다음, 우리는 두 층의 주석을 추가합니다: 하나는 라벨 geom이고 다른 하나는 세그먼트(선분) geom입니다. 둘의 `x`와 `y` 미적 매핑은 주석이 시작되는 위치를 정의하고, 세그먼트 주석의 `xend`와 `yend` 미적 매핑은 세그먼트의 끝 위치가 시작되는 곳을 정의합니다. 세그먼트가 화살표 모양으로 지정된 것도 주목하세요.
+그런 다음, 우리는 두 층의 주석을 추가합니다. 하나는 라벨 geom이고 다른 하나는 세그먼트(선분) geom입니다. 둘의 `x`와 `y` 미적 매핑은 주석이 시작되는 위치를 정의하고, 세그먼트 주석의 `xend`와 `yend` 미적 매핑은 세그먼트의 끝 위치가 시작되는 곳을 정의합니다. 세그먼트가 화살표 모양으로 지정된 것도 주목하세요.
 
 ```
 ggplot(mpg, aes(x = displ, y = hwy)) +
@@ -227,7 +227,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point(aes(color = class))
 ```
 
-ggplot2는 보이지 않게 자동으로 기본 척도를 추가합니다:
+ggplot2는 보이지 않게 자동으로 기본 척도를 추가합니다.
 
 ```
 ggplot(mpg, aes(x = displ, y = hwy)) +
@@ -237,9 +237,10 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
   scale_color_discrete()
 ```
 
-척도의 명명 규칙(naming scheme)에 유의하세요: `scale_` 뒤에 미적 매핑의 이름, 그 다음에 `_`, 그리고 척도의 이름이 옵니다. 기본 척도는 척도가 정렬되는 변수 유형(연속형(continuous), 이산형(discrete), 날짜-시간(date-time) 또는 날짜(date))에 따라 명명됩니다. <a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="orm:hideurl"><code>scale_x_continuous()</code></a>는 `displ`의 숫자 값을 x축의 연속 숫자 선상에 놓고, <a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html" class="orm:hideurl"><code>scale_color_discrete()</code></a>는 자동차의 각 `class`에 대한 색상을 선택하는 식입니다. 다음으로 배울 기본이 아닌 많은 척도들이 있습니다.
+척도의 명명 규칙(naming scheme)에 유의하세요. `scale_` 뒤에 미적 매핑의 이름, 그 다음에 `_`, 그리고 척도의 이름이 옵니다. 기본 척도는 척도가 정렬되는 변수 유형(연속형(continuous), 이산형(discrete), 날짜-시간(date-time) 또는 날짜(date))에 따라 명명됩니다. <a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="orm:hideurl"><code>scale_x_continuous()</code></a>는 `displ`의 숫자 값을 x축의 연속 숫자 선상에 놓고, <a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html" class="orm:hideurl"><code>scale_color_discrete()</code></a>는 자동차의 각 `class`에 대한 색상을 선택하는 식입니다. 다음으로 배울 기본이 아닌 많은 척도들이 있습니다.
 
-기본 척도는 광범위한 입력에 대해 잘 작동하도록 신중하게 선택되었습니다. 그럼에도 불구하고 두 가지 이유로 기본값을 재정의(override)하고 싶을 수 있습니다:
+기본 척도는 광범위한 입력에 대해 잘 작동하도록 신중하게 선택되었습니다. 그럼에도 불구하고 두 가지 이유로 기본값을 재정의(override)하고 싶을 수 있습니다.
+
 - 기본 척도의 일부 매개변수(parameters)를 조정하고 싶을 수 있습니다. 이를 통해 축의 눈금을 변경하거나 범례의 주요 레이블을 변경하는 등의 작업을 할 수 있습니다.
 - 척도 전체를 대체하고 완전히 다른 알고리즘을 사용하고 싶을 수 있습니다. 데이터에 대해 더 많이 알고 있기 때문에 종종 기본값보다 더 나은 작업을 수행할 수 있습니다.
 
@@ -247,12 +248,12 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 축과 범례를 통틀어 *가이드(guides)*라고 부릅니다. 축은 `x`와 `y` 미적 매핑에 사용되고, 범례는 다른 모든 것에 사용됩니다.
 
-축의 눈금(ticks)과 범례의 키(keys) 모양에 영향을 주는 두 가지 주요 인자(arguments)가 있습니다: `breaks`와 `labels`입니다. `breaks` 인자는 눈금의 위치 또는 키와 연관된 값을 제어합니다. `labels` 인자는 각 눈금/키와 관련된 텍스트 레이블을 제어합니다. `breaks`의 가장 일반적인 용도는 기본 선택을 재정의(override)하는 것입니다:
+축의 눈금(ticks)과 범례의 키(keys) 모양에 영향을 주는 두 가지 주요 인자(arguments)가 있습니다. `breaks`와 `labels`입니다. `breaks` 인자는 눈금의 위치 또는 키와 연관된 값을 제어합니다. `labels` 인자는 각 눈금/키와 관련된 텍스트 레이블을 제어합니다. `breaks`의 가장 일반적인 용도는 기본 선택을 재정의(override)하는 것입니다.
 
 ```
 ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
   geom_point() +
-  scale_y_continuous(breaks = seq(15, 40, by = 5)) 
+  scale_y_continuous(breaks = seq(15, 40, by = 5))
 ```
 
 <figure>
@@ -285,7 +286,7 @@ ggplot(diamonds, aes(x = price, y = cut)) +
 ggplot(diamonds, aes(x = price, y = cut)) +
   geom_boxplot(alpha = 0.05) +
   scale_x_continuous(
-    labels = label_dollar(scale = 1/1000, suffix = "K"), 
+    labels = label_dollar(scale = 1/1000, suffix = "K"),
     breaks = seq(1000, 19000, by = 6000)
   )
 ```
@@ -294,7 +295,7 @@ ggplot(diamonds, aes(x = price, y = cut)) +
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_11in10.png" alt="Two side-by-side box plots of price versus cut of diamonds. The outliers are transparent. On both plots the x-axis labels are formatted as dollars. The x-axis labels on the plot start at $0 and go to $15,000, increasing by $5,000. The x-axis labels on the right plot start at $1K and go to $19K, increasing by $6K." />
 </figure>
 
-또 다른 편리한 레이블 함수는 <a href="https://scales.r-lib.org/reference/label_percent.html" class="orm:hideurl"><code>label_percent()</code></a>입니다:
+또 다른 편리한 레이블 함수는 <a href="https://scales.r-lib.org/reference/label_percent.html" class="orm:hideurl"><code>label_percent()</code></a>입니다.
 
 ```
 ggplot(diamonds, aes(x = cut, fill = clarity)) +
@@ -306,7 +307,7 @@ ggplot(diamonds, aes(x = cut, fill = clarity)) +
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_11in11.png" alt="Segmented bar plots of cut, filled with levels of clarity. The y-axis labels start at 0% and go to 100%, increasing by 25%. The y-axis label name is &quot;Percentage&quot;." />
 </figure>
 
-`breaks`의 또 다른 용도는 데이터 포인트가 비교적 적고 관측치가 정확히 어디에서 발생하는지 강조하고 싶을 때입니다. 예를 들어, 역대 미국 대통령의 임기 시작과 끝을 보여주는 이 플롯을 살펴보세요:
+`breaks`의 또 다른 용도는 데이터 포인트가 비교적 적고 관측치가 정확히 어디에서 발생하는지 강조하고 싶을 때입니다. 예를 들어, 역대 미국 대통령의 임기 시작과 끝을 보여주는 이 플롯을 살펴보세요.
 
 ```
 presidential |>
@@ -321,7 +322,7 @@ presidential |>
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_11in12.png" alt="Line plot of id number of presidents versus the year they started their presidency. Start year is marked with a point and a segment that starts there and ends at the end of the presidency. The x-axis labels are formatted as two digit years starting with an apostrophe, e.g., &#39;53." />
 </figure>
 
-이 인자에 대해서는 미적 매핑을 수행할 수 없기 때문에, `breaks` 인자를 위해 `start` 변수를 `presidential$start`라는 벡터로 추출했다는 점에 주목하세요. 또한 날짜 및 날짜-시간 척도에 대한 눈금과 레이블을 지정하는 방식이 약간 다릅니다:
+이 인자에 대해서는 미적 매핑을 수행할 수 없기 때문에, `breaks` 인자를 위해 `start` 변수를 `presidential$start`라는 벡터로 추출했다는 점에 주목하세요. 또한 날짜 및 날짜-시간 척도에 대한 눈금과 레이블을 지정하는 방식이 약간 다릅니다.
 
 - `date_labels`는 <a href="https://readr.tidyverse.org/reference/parse_datetime.html" class="orm:hideurl"><code>parse_datetime()</code></a>과 동일한 형식으로 형식 지정자(format specification)를 사용합니다.
 - `date_breaks` (여기서는 표시되지 않음)는 "2 days(2일)" 또는 "1 month(1개월)"과 같은 문자열을 취합니다.
@@ -330,7 +331,7 @@ presidential |>
 
 축을 조정할 때 `breaks`와 `labels`를 가장 자주 사용하게 될 것입니다. 이 둘은 범례에서도 모두 작동하지만, 더 자주 사용할 만한 몇 가지 다른 기술이 있습니다.
 
-범례의 전체적인 위치를 제어하려면 <a href="https://ggplot2.tidyverse.org/reference/theme.html" class="orm:hideurl"><code>theme()</code></a> 설정을 사용해야 합니다. 테마(themes)에 대해서는 이 장의 끝에서 다시 다루겠지만, 간단히 말해서 데이터가 아닌 플롯의 부분을 제어합니다. 테마 설정 `legend.position`은 범례가 그려지는 위치를 제어합니다:
+범례의 전체적인 위치를 제어하려면 <a href="https://ggplot2.tidyverse.org/reference/theme.html" class="orm:hideurl"><code>theme()</code></a> 설정을 사용해야 합니다. 테마(themes)에 대해서는 이 장의 끝에서 다시 다루겠지만, 간단히 말해서 데이터가 아닌 플롯의 부분을 제어합니다. 테마 설정 `legend.position`은 범례가 그려지는 위치를 제어합니다.
 
 ```
 base <- ggplot(mpg, aes(x = displ, y = hwy)) +
@@ -338,10 +339,10 @@ base <- ggplot(mpg, aes(x = displ, y = hwy)) +
 
 base + theme(legend.position = "right") # the default
 base + theme(legend.position = "left")
-base + 
+base +
   theme(legend.position = "top") +
   guides(col = guide_legend(nrow = 3))
-base + 
+base +
   theme(legend.position = "bottom") +
   guides(col = guide_legend(nrow = 3))
 ```
@@ -352,7 +353,7 @@ base +
 
 플롯이 짧고 넓은 경우에는 범례를 위쪽이나 아래쪽에 배치하고, 높고 좁은 경우에는 왼쪽이나 오른쪽에 배치하세요. `legend.position = "none"`을 사용하여 범례의 표시를 완전히 억제할 수도 있습니다.
 
-개별 범례의 표시를 제어하려면 <a href="https://ggplot2.tidyverse.org/reference/guides.html" class="orm:hideurl"><code>guides()</code></a>와 함께 <a href="https://ggplot2.tidyverse.org/reference/guide_legend.html" class="orm:hideurl"><code>guide_legend()</code></a> 또는 <a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="orm:hideurl"><code>guide_colorbar()</code></a>를 사용하세요. 다음 예제는 두 가지 중요한 설정을 보여줍니다: `nrow`로 범례가 사용하는 행 수를 제어하는 것, 그리고 점을 더 크게 만들기 위해 미적 매핑 중 하나를 재정의(override)하는 것입니다. 이 기능은 많은 점을 플롯에 표시하기 위해 낮은 `alpha` 값을 사용했을 때 특히 유용합니다.
+개별 범례의 표시를 제어하려면 <a href="https://ggplot2.tidyverse.org/reference/guides.html" class="orm:hideurl"><code>guides()</code></a>와 함께 <a href="https://ggplot2.tidyverse.org/reference/guide_legend.html" class="orm:hideurl"><code>guide_legend()</code></a> 또는 <a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="orm:hideurl"><code>guide_colorbar()</code></a>를 사용하세요. 다음 예제는 두 가지 중요한 설정을 보여줍니다. `nrow`로 범례가 사용하는 행 수를 제어하는 것, 그리고 점을 더 크게 만들기 위해 미적 매핑 중 하나를 재정의(override)하는 것입니다. 이 기능은 많은 점을 플롯에 표시하기 위해 낮은 `alpha` 값을 사용했을 때 특히 유용합니다.
 
 ```
 ggplot(mpg, aes(x = displ, y = hwy)) +
@@ -373,7 +374,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 세부 사항을 조금 조정하는 대신, 척도를 완전히 교체할 수도 있습니다. 가장 자주 바꾸고 싶어 할 두 가지 유형의 척도는 연속형 위치 척도(continuous position scales)와 색상 척도(color scales)입니다. 다행히 동일한 원리가 다른 모든 미적 매핑에도 적용되므로, 위치와 색상을 숙달하고 나면 다른 척도 대체 방법도 빠르게 익힐 수 있습니다.
 
-변수의 변환(transformations)을 플롯하는 것이 유용할 때가 있습니다. 예를 들어, `carat`과 `price`에 로그 변환(log transform)을 적용하면 둘 사이의 정확한 관계를 더 쉽게 볼 수 있습니다:
+변수의 변환(transformations)을 플롯하는 것이 유용할 때가 있습니다. 예를 들어, `carat`과 `price`에 로그 변환(log transform)을 적용하면 둘 사이의 정확한 관계를 더 쉽게 볼 수 있습니다.
 
 ```
 # Left
@@ -393,8 +394,8 @@ ggplot(diamonds, aes(x = log10(carat), y = log10(price))) +
 
 ```
 ggplot(diamonds, aes(x = carat, y = price)) +
-  geom_bin2d() + 
-  scale_x_log10() + 
+  geom_bin2d() +
+  scale_x_log10() +
   scale_y_log10()
 ```
 
@@ -436,7 +437,7 @@ ColorBrewer 척도는 [온라인에 문서화되어 있으며](https://oreil.ly/
 <h6 id="figure-11-1.-all-colorbrewer-scales.">그림 11-1. 모든 ColorBrewer 척도.</h6>
 </figure>
 
-값과 색상 사이에 사전 정의된 매핑이 있는 경우 <a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="orm:hideurl"><code>scale_color_manual()</code></a>을 사용하세요. 예를 들어, 대통령의 정당을 색상에 매핑한다면 공화당에는 빨간색, 민주당에는 파란색을 표준 매핑으로 사용하고 싶을 것입니다. 이러한 색상을 할당하는 한 가지 방법은 16진수 색상 코드(hex color codes)를 사용하는 것입니다:
+값과 색상 사이에 사전 정의된 매핑이 있는 경우 <a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="orm:hideurl"><code>scale_color_manual()</code></a>을 사용하세요. 예를 들어, 대통령의 정당을 색상에 매핑한다면 공화당에는 빨간색, 민주당에는 파란색을 표준 매핑으로 사용하고 싶을 것입니다. 이러한 색상을 할당하는 한 가지 방법은 16진수 색상 코드(hex color codes)를 사용하는 것입니다.
 
 ```
 presidential |>
@@ -487,7 +488,8 @@ ggplot(df, aes(x, y)) +
 
 ## 줌 (Zooming)
 
-플롯의 한계(limits)를 제어하는 데는 세 가지 방법이 있습니다:
+플롯의 한계(limits)를 제어하는 데는 세 가지 방법이 있습니다.
+
 - 어떤 데이터가 플롯될지 조정하기
 - 각 척도의 한계 설정하기
 - <a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="orm:hideurl"><code>coord_cartesian()</code></a>에서 `xlim`과 `ylim` 설정하기
@@ -533,7 +535,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_11in22.png" alt="On the left, scatterplot of highway mileage vs. displacement, with displacement ranging from 5 to 6 and highway mileage ranging from 10 to 25. The smooth curve overlaid shows a trend that&#39;s slightly increasing first and then decreasing. On the right, same variables are plotted with the same limits; however, the smooth curve overlaid shows a relatively flat trend with a slight increase at the end." />
 </figure>
 
-반면에, 개별 척도에 `limits`를 설정하는 것은 한계를 *확장(expand)*하고 싶을 때(예: 다른 플롯들 간에 척도를 일치시키기 위해) 일반적으로 더 유용합니다. 예를 들어, 두 종류의 자동차를 추출하여 별도로 플롯하는 경우, 세 가지 척도(x축, y축, 색상 미적 매핑)가 모두 다른 범위를 가지기 때문에 플롯을 비교하기가 어렵습니다.
+반면에, 개별 척도에 `limits`를 설정하는 것은 한계를 *확장(expand)*하고 싶을 때(다른 플롯들 간에 척도를 일치시키기 위해) 일반적으로 더 유용합니다. 예를 들어, 두 종류의 자동차를 추출하여 별도로 플롯하는 경우, 세 가지 척도(x축, y축, 색상 미적 매핑)가 모두 다른 범위를 가지기 때문에 플롯을 비교하기가 어렵습니다.
 
 ```
 suv <- mpg |> filter(class == "suv")
@@ -584,35 +586,35 @@ ggplot(compact, aes(x = displ, y = hwy, color = drv)) +
 
 1. 다음 코드가 기본 척도를 재정의하지 못하는 이유는 무엇입니까?
 
-    ```
-    df <- tibble(
-      x = rnorm(10000),
-      y = rnorm(10000)
-    )
+   ```
+   df <- tibble(
+     x = rnorm(10000),
+     y = rnorm(10000)
+   )
 
-    ggplot(df, aes(x, y)) +
-      geom_hex() +
-      scale_color_gradient(low = "white", high = "red") +
-      coord_fixed()
-    ```
+   ggplot(df, aes(x, y)) +
+     geom_hex() +
+     scale_color_gradient(low = "white", high = "red") +
+     coord_fixed()
+   ```
 
 2. 모든 척도에 대한 첫 번째 인자는 무엇입니까? 그것은 <a href="https://ggplot2.tidyverse.org/reference/labs.html" class="orm:hideurl"><code>labs()</code></a>와 어떻게 다릅니까?
-3. 다음을 통해 대통령 임기의 디스플레이를 변경하세요:
-    1. 색상과 x축 눈금을 사용자 정의하는 두 가지 변형(variants) 결합하기
-    2. y축의 디스플레이 개선하기
-    3. 각 임기에 대통령 이름으로 레이블 지정하기
-    4. 정보가 담긴 플롯 레이블 추가하기
-    5. 4년마다 눈금 배치하기 (이것은 생각보다 까다롭습니다!)
+3. 다음을 통해 대통령 임기의 디스플레이를 변경하세요.
+   1. 색상과 x축 눈금을 사용자 정의하는 두 가지 변형(variants) 결합하기
+   2. y축의 디스플레이 개선하기
+   3. 각 임기에 대통령 이름으로 레이블 지정하기
+   4. 정보가 담긴 플롯 레이블 추가하기
+   5. 4년마다 눈금 배치하기 (이것은 생각보다 까다롭습니다!)
 4. 먼저, 다음 플롯을 만드세요. 그런 다음 `override.aes`를 사용하여 범례를 보기 쉽게 만들도록 코드를 수정하세요.
 
-    ```
-    ggplot(diamonds, aes(x = carat, y = price)) +
-      geom_point(aes(color = cut), alpha = 1/20)
-    ```
+   ```
+   ggplot(diamonds, aes(x = carat, y = price)) +
+     geom_point(aes(color = cut), alpha = 1/20)
+   ```
 
 # 테마 (Themes)
 
-마지막으로, 테마(theme)를 사용하여 플롯의 데이터가 아닌 요소를 사용자 지정할 수 있습니다:
+마지막으로, 테마(theme)를 사용하여 플롯의 데이터가 아닌 요소를 사용자 지정할 수 있습니다.
 
 ```
 ggplot(mpg, aes(x = displ, y = hwy)) +
@@ -670,11 +672,11 @@ ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
 두 개의 플롯을 나란히 배치하려면, 단순히 그것들을 서로 더하기만 하면 됩니다. 먼저 플롯을 만들고 객체(다음 예제에서는 `p1`과 `p2`라고 부름)로 저장해야 한다는 점에 유의하세요. 그런 다음, `+`를 사용하여 그것들을 나란히 배치합니다.
 
 ```
-p1 <- ggplot(mpg, aes(x = displ, y = hwy)) + 
-  geom_point() + 
+p1 <- ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
   labs(title = "Plot 1")
-p2 <- ggplot(mpg, aes(x = drv, y = hwy)) + 
-  geom_boxplot() + 
+p2 <- ggplot(mpg, aes(x = drv, y = hwy)) +
+  geom_boxplot() +
   labs(title = "Plot 2")
 p1 + p2
 ```
@@ -685,11 +687,11 @@ p1 + p2
 
 이전 코드 청크에서 patchwork 패키지의 새로운 함수를 사용하지 않았다는 점에 유의하는 것이 중요합니다. 대신, 이 패키지는 `+` 연산자에 새로운 기능을 추가했습니다.
 
-patchwork를 사용하여 복잡한 플롯 레이아웃을 만들 수도 있습니다. 다음에서 `|`는 `p1`과 `p3`를 나란히 배치하고, `/`는 `p2`를 다음 줄로 이동시킵니다:
+patchwork를 사용하여 복잡한 플롯 레이아웃을 만들 수도 있습니다. 다음에서 `|`는 `p1`과 `p3`를 나란히 배치하고, `/`는 `p2`를 다음 줄로 이동시킵니다.
 
 ```
-p3 <- ggplot(mpg, aes(x = cty, y = hwy)) + 
-  geom_point() + 
+p3 <- ggplot(mpg, aes(x = cty, y = hwy)) +
+  geom_point() +
   labs(title = "Plot 3")
 (p1 | p3) / p2
 ```
@@ -701,24 +703,24 @@ p3 <- ggplot(mpg, aes(x = cty, y = hwy)) +
 게다가 patchwork를 사용하면 여러 플롯의 범례를 하나의 공통 범례로 모으고, 범례의 위치와 플롯의 크기를 사용자 지정하며, 플롯에 공통 제목, 부제목, 캡션 등을 추가할 수 있습니다. 여기서는 다섯 개의 플롯을 만들었습니다. 상자 그림과 산점도의 범례를 끄고, 밀도 플롯(density plots)의 범례를 `& theme(legend.position = "top")`을 사용하여 플롯 상단에 모았습니다. 여기서 일반적인 `+` 대신 `&` 연산자가 사용된 것에 주목하세요. 이는 개별 ggplot이 아니라 patchwork 플롯 전체에 대한 테마를 수정하고 있기 때문입니다. 범례는 플롯 상단의 <a href="https://patchwork.data-imaginist.com/reference/guide_area.html" class="orm:hideurl"><code>guide_area()</code></a> 안쪽에 배치됩니다. 마지막으로, patchwork의 다양한 구성 요소들의 높이(heights)도 사용자 지정했습니다. 가이드(guide)의 높이는 1, 상자 그림은 3, 밀도 플롯은 2, 그리고 분할된(faceted) 산점도는 4입니다. patchwork는 이 척도를 사용하여 플롯에 할당한 영역을 나누고 그에 따라 구성 요소를 배치합니다.
 
 ```
-p1 <- ggplot(mpg, aes(x = drv, y = cty, color = drv)) + 
-  geom_boxplot(show.legend = FALSE) + 
+p1 <- ggplot(mpg, aes(x = drv, y = cty, color = drv)) +
+  geom_boxplot(show.legend = FALSE) +
   labs(title = "Plot 1")
 
-p2 <- ggplot(mpg, aes(x = drv, y = hwy, color = drv)) + 
-  geom_boxplot(show.legend = FALSE) + 
+p2 <- ggplot(mpg, aes(x = drv, y = hwy, color = drv)) +
+  geom_boxplot(show.legend = FALSE) +
   labs(title = "Plot 2")
 
-p3 <- ggplot(mpg, aes(x = cty, color = drv, fill = drv)) + 
-  geom_density(alpha = 0.5) + 
+p3 <- ggplot(mpg, aes(x = cty, color = drv, fill = drv)) +
+  geom_density(alpha = 0.5) +
   labs(title = "Plot 3")
 
-p4 <- ggplot(mpg, aes(x = hwy, color = drv, fill = drv)) + 
-  geom_density(alpha = 0.5) + 
+p4 <- ggplot(mpg, aes(x = hwy, color = drv, fill = drv)) +
+  geom_density(alpha = 0.5) +
   labs(title = "Plot 4")
 
-p5 <- ggplot(mpg, aes(x = cty, y = hwy, color = drv)) + 
-  geom_point(show.legend = FALSE) + 
+p5 <- ggplot(mpg, aes(x = cty, y = hwy, color = drv)) +
+  geom_point(show.legend = FALSE) +
   facet_wrap(~drv) +
   labs(title = "Plot 5")
 
@@ -733,6 +735,7 @@ p5 <- ggplot(mpg, aes(x = cty, y = hwy, color = drv)) +
     ) &
   theme(legend.position = "top")
 ```
+
 <figure>
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_11in29.png" alt="Five plots laid out such that first two plots are next to each other. Plots three and four are underneath them. And the fifth plot stretches under them. The patchworked plot is titled &quot;City and highway mileage for cars with different drivetrains&quot; and captioned &quot;Source: https://fueleconomy.gov&quot;. The first two plots are side-by-side box plots. Plots 3 and 4 are density plots. And the fifth plot is a faceted scatterplot. Each of these plots show geoms colored by drivetrain, but the patchworked plot has only one legend that applies to all of them, above the plots and beneath the title." />
 </figure>
@@ -743,21 +746,21 @@ patchwork를 사용하여 여러 플롯을 결합하고 배치하는 방법에 �
 
 1. 다음 플롯 레이아웃에서 괄호를 생략하면 어떻게 되나요? 왜 그런 현상이 발생하는지 설명할 수 있나요?
 
-    ```
-    p1 <- ggplot(mpg, aes(x = displ, y = hwy)) + 
-      geom_point() + 
-      labs(title = "Plot 1")
-    p2 <- ggplot(mpg, aes(x = drv, y = hwy)) + 
-      geom_boxplot() + 
-      labs(title = "Plot 2")
-    p3 <- ggplot(mpg, aes(x = cty, y = hwy)) + 
-      geom_point() + 
-      labs(title = "Plot 3")
+   ```
+   p1 <- ggplot(mpg, aes(x = displ, y = hwy)) +
+     geom_point() +
+     labs(title = "Plot 1")
+   p2 <- ggplot(mpg, aes(x = drv, y = hwy)) +
+     geom_boxplot() +
+     labs(title = "Plot 2")
+   p3 <- ggplot(mpg, aes(x = cty, y = hwy)) +
+     geom_point() +
+     labs(title = "Plot 3")
 
-    (p1 | p2) / p3
-    ```
+   (p1 | p2) / p3
+   ```
 
-이전 연습문제의 세 가지 플롯을 사용하여 다음 patchwork를 다시 만드세요:
+이전 연습문제의 세 가지 플롯을 사용하여 다음 patchwork를 다시 만드세요.
 
 <figure>
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_11in30.png" alt="Three plots: Plot 1 is a scatterplot of highway mileage versus engine size. Plot 2 is side-by-side box plots of highway mileage versus drivetrain. Plot 3 is side-by-side box plots of city mileage versus drivetrain. Plots 1 is on the first row. Plots 2 and 3 are on the next row, each span half the width of Plot 1. Plot 1 is labelled &quot;Fig. A&quot;, Plot 2 is labelled &quot;Fig. B&quot;, and Plot 3 is labelled &quot;Fig. C&quot;." />
@@ -767,7 +770,7 @@ patchwork를 사용하여 여러 플롯을 결합하고 배치하는 방법에 �
 
 이 장에서는 제목, 부제목, 캡션과 같은 플롯 레이블을 추가하는 것뿐만 아니라 기본 축 레이블을 수정하는 방법, 플롯에 정보 텍스트를 추가하거나 특정 데이터 포인트를 강조하기 위해 주석을 사용하는 방법, 축 척도를 사용자 지정하고 플롯의 테마를 변경하는 방법에 대해 배웠습니다. 또한 단순한 플롯 레이아웃과 복잡한 플롯 레이아웃 모두를 사용하여 여러 플롯을 단일 그래프로 결합하는 방법도 배웠습니다.
 
-지금까지 여러 가지 다양한 유형의 플롯을 만드는 방법과 다양한 기술을 사용하여 이를 사용자 지정하는 방법에 대해 배웠지만, ggplot2로 만들 수 있는 것의 겉핥기만 했을 뿐입니다. ggplot2에 대한 포괄적인 이해를 원하신다면, [*ggplot2: Elegant Graphics for Data Analysis*](https://oreil.ly/T4Jxn) (Springer 출판) 책을 읽어보실 것을 권장합니다. 다른 유용한 리소스로는 Winston Chang의 [*R Graphics Cookbook*](https://oreil.ly/CK_sd) (O’Reilly 출판)과 Claus Wilke의 [*Fundamentals of Data Visualization*](https://oreil.ly/uJRYK) (O’Reilly 출판)가 있습니다.
+지금까지 여러 가지 다양한 유형의 플롯을 만드는 방법과 다양한 기술을 사용하여 이를 사용자 지정하는 방법에 대해 배웠지만, ggplot2로 만들 수 있는 것의 겉핥기만 했을 뿐입니다. ggplot2에 대한 포괄적인 이해를 원하신다면, [_ggplot2: Elegant Graphics for Data Analysis_](https://oreil.ly/T4Jxn) (Springer 출판) 책을 읽어보실 것을 권장합니다. 다른 유용한 리소스로는 Winston Chang의 [_R Graphics Cookbook_](https://oreil.ly/CK_sd) (O’Reilly 출판)과 Claus Wilke의 [_Fundamentals of Data Visualization_](https://oreil.ly/uJRYK) (O’Reilly 출판)가 있습니다.
 
 <sup>[1](ch11.html#idm44771304642976-marker)</sup> 색맹을 시뮬레이션하여 이러한 이미지를 테스트하려면 [SimDaltonism](https://oreil.ly/i11yd)과 같은 도구를 사용할 수 있습니다.
 

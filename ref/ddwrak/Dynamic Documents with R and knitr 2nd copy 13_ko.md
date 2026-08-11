@@ -4,7 +4,7 @@
 
 knitr를 통해 보고서를 컴파일한 후 출력된 문서가 바로 최종 결과물이 아닐 수도 있습니다. 특히 Rnw 문서와 Rmd 문서의 출력은 종종 추가적인 컴파일을 필요로 합니다. Rnw의 직접적인 출력은 PDF로 컴파일할 수 있는 LATEX입니다. Rmd의 출력은 마크다운(Markdown)이며, 우리가 실제로 읽는 것은 마크다운에서 변환된 웹 페이지입니다.
 
-LATEX의 경우 남은 작업이 많지 않습니다. 도구 체인이 꽤 표준적이고 성숙해 있기 때문입니다(LATEX, PDFTEX, XeTEX, LuaTEX 등). Rnw 원본 문서를 기반으로 보고서를 출판할 때 우리는 단지 하나의 PDF 파일만 출판하면 됩니다. 한 가지 필요할 수 있는 작업은 소스 코드를 숨기는 것인데, 독자가 이를 읽는 데 관심이 없을 수 있기 때문입니다. 이 경우 청크 옵션 echo를 전역적으로 FALSE로 설정할 수 있으며, 때로는 R에서 나오는 메시지와 경고도 숨기고 싶을 수 있습니다:
+LATEX의 경우 남은 작업이 많지 않습니다. 도구 체인이 꽤 표준적이고 성숙해 있기 때문입니다(LATEX, PDFTEX, XeTEX, LuaTEX 등). Rnw 원본 문서를 기반으로 보고서를 출판할 때 우리는 단지 하나의 PDF 파일만 출판하면 됩니다. 한 가지 필요할 수 있는 작업은 소스 코드를 숨기는 것인데, 독자가 이를 읽는 데 관심이 없을 수 있기 때문입니다. 이 경우 청크 옵션 echo를 전역적으로 FALSE로 설정할 수 있으며, 때로는 R에서 나오는 메시지와 경고도 숨기고 싶을 수 있습니다.
 
 <<setup, include=FALSE>>= knitr::opts_chunk$set(
 
@@ -24,9 +24,9 @@ Knit HTML 버튼을 클릭할 때 이면에서 일어나는 과정은, RStudio�
 
 ###### 13.2 Pandoc
 
-Pandoc(http://johnmacfarlane.net/pandoc)은 범용 문서 변환기입니다. 특히 Pandoc은 마크다운을 LATEX, HTML, 서식 있는 텍스트 형식(*.rtf), EBook(*.epub), 마이크로소프트 워드(*.docx), 개방형 문서 텍스트(*.odt) 등 다양한 문서 형식으로 변환할 수 있습니다. 이 절에서는 Pandoc이 이면에서 어떻게 작동하는지 설명하며, 이 절에서 소개하는 것보다 훨씬 편리하게 작업할 수 있는 R 마크다운 v2에 대해서는 14장을 참조하시기 바랍니다.
+Pandoc(http://johnmacfarlane.net/pandoc)은 범용 문서 변환기입니다. 특히 Pandoc은 마크다운을 LATEX, HTML, 서식 있는 텍스트 형식(_.rtf), EBook(_.epub), 마이크로소프트 워드(_.docx), 개방형 문서 텍스트(_.odt) 등 다양한 문서 형식으로 변환할 수 있습니다. 이 절에서는 Pandoc이 이면에서 어떻게 작동하는지 설명하며, 이 절에서 소개하는 것보다 훨씬 편리하게 작업할 수 있는 R 마크다운 v2에 대해서는 14장을 참조하시기 바랍니다.
 
-Pandoc은 명령줄 도구입니다. 리눅스 및 맥 사용자는 쉽게 사용할 수 있으며, 윈도우 사용자의 경우 시작 메뉴를 통해 명령 창에 접속한 다음 Run cmd를 실행하면 됩니다. 명령 창(또는 터미널)을 열고 나면 다음과 같은 명령을 입력하여 마크다운 파일(예: test.md)을 다른 형식으로 변환할 수 있습니다:
+Pandoc은 명령줄 도구입니다. 리눅스 및 맥 사용자는 쉽게 사용할 수 있으며, 윈도우 사용자의 경우 시작 메뉴를 통해 명령 창에 접속한 다음 Run cmd를 실행하면 됩니다. 명령 창(또는 터미널)을 열고 나면 다음과 같은 명령을 입력하여 마크다운 파일(test.md)을 다른 형식으로 변환할 수 있습니다.
 
 pandoc test.md -o test.html pandoc test.md -s --mathjax -o test.html pandoc test.md -o test.odt pandoc test.md -o test.rtf pandoc test.md -o test.docx pandoc test.md -o test.pdf pandoc test.md --latex-engine=xelatex -o test.html pandoc test.md -o test.epub
 
@@ -38,7 +38,7 @@ knitr에는 R에서 Pandoc을 호출하는 pandoc() 함수가 있습니다. 이 
 
 ###### 13.3 HTML5 슬라이드
 
-프레젠테이션을 만들기 위해 12.3.4절에서 언급한 Beamer 클래스를 사용할 수 있습니다. 웹 기술이 발전함에 따라 웹 브라우저에서 볼 수 있는 HTML 슬라이드를 웹상에 만들 수도 있는데, 이는 평소처럼 슬라이드를 (PDF 또는 PPT) 파일로 다운로드할 필요가 없습니다. HTML5 슬라이드는 비디오 클립 및 대화형 콘텐츠(예: 자바스크립트 애플리케이션)와 같은 리치 미디어를 슬라이드에 삽입할 수 있게 해줍니다.
+프레젠테이션을 만들기 위해 12.3.4절에서 언급한 Beamer 클래스를 사용할 수 있습니다. 웹 기술이 발전함에 따라 웹 브라우저에서 볼 수 있는 HTML 슬라이드를 웹상에 만들 수도 있는데, 이는 평소처럼 슬라이드를 (PDF 또는 PPT) 파일로 다운로드할 필요가 없습니다. HTML5 슬라이드는 비디오 클립 및 대화형 콘텐츠(자바스크립트 애플리케이션)와 같은 리치 미디어를 슬라이드에 삽입할 수 있게 해줍니다.
 
 HTML5 슬라이드를 만드는 방법에는 여러 가지가 있습니다. 한 가지 방법은 Pandoc을 통해 마크다운에서 시작하는 것입니다. 그림 13.2는 knitr를 통해 마크다운으로 컴파일할 수 있는 Rmd 문서를 보여줍니다. 그런 다음 명령줄에서 Pandoc을 호출하여 이를 HTML5 슬라이드로 변환할 수 있습니다(파일 이름이 test.md라고 가정):
 
@@ -61,14 +61,13 @@ fig.align='center'
 - knitr
 - pandoc # 코드 청크
 
-
-   {r computing} head(cars) cor(cars)
+  {r computing} head(cars) cor(cars)
 
 - 그림 13.2: HTML5 슬라이드 예제의 소스: 이 문서를 knitr를 통해 컴파일한 다음 Pandoc을 통해 마크다운 출력을 DZSlides로 변환할 수 있습니다.
 
 ###### 13.4 Jekyll
 
-Jekyll(http://jekyllrb.com)은 일반 텍스트 파일을 기반으로 하는 블로그 엔진입니다. 블로그 글을 마크다운으로 작성할 수 있으므로 knitr의 결과를 웹사이트에 출판하는 것이 가능합니다. 한 가지 주의해야 할 점은 코드 블록의 구문이 기존 마크다운(백틱 3개)과 다르다는 것입니다. Jekyll의 경우 코드 블록을 Liquid 태그 안에 넣어야 합니다:
+Jekyll(http://jekyllrb.com)은 일반 텍스트 파일을 기반으로 하는 블로그 엔진입니다. 블로그 글을 마크다운으로 작성할 수 있으므로 knitr의 결과를 웹사이트에 출판하는 것이 가능합니다. 한 가지 주의해야 할 점은 코드 블록의 구문이 기존 마크다운(백틱 3개)과 다르다는 것입니다. Jekyll의 경우 코드 블록을 Liquid 태그 안에 넣어야 합니다.
 
 {% highlight lang %} # 코드 입력 {% endhighlight %}
 
@@ -94,11 +93,11 @@ knitr가 다양한 문서 형식(5장)을 지원하지만 R 마크다운이 아�
 
 마크다운의 한계는 Pandoc에 의해 대부분 제거될 수 있지만 문제는 Pandoc이 명령줄 도구라는 것입니다. 파워 유저는 이것을 진짜 문제라고 생각하지 않을 수 있지만, 수많은 명령줄 인수는 초보자를 압도할 수 있습니다.
 
-rmarkdown과 R 마크다운 v2의 목표는 합리적이고 아름다운 템플릿을 사용하여 R 마크다운 파일을 다른 문서 형식으로 빠르게 변환하는 것입니다. 이 목표를 달성하는 방법은 자주 사용되는 명령줄 인수를 rmarkdown의 R 함수로 래핑하는 것입니다. R 마크다운 문서를 다른 문서 형식으로 렌더링하는 rmarkdown의 주요 함수는 render()입니다. 첫 번째 인수는 Rmd 파일 이름이고, 두 번째 인수는 출력 형식이며 이에 대해서는 이 장의 뒷부분에서 자세히 소개할 것입니다. 예를 들어 R 마크다운 문서 foo.Rmd를 워드로 변환하려면 코드 한 줄만 실행하면 됩니다:
+rmarkdown과 R 마크다운 v2의 목표는 합리적이고 아름다운 템플릿을 사용하여 R 마크다운 파일을 다른 문서 형식으로 빠르게 변환하는 것입니다. 이 목표를 달성하는 방법은 자주 사용되는 명령줄 인수를 rmarkdown의 R 함수로 래핑하는 것입니다. R 마크다운 문서를 다른 문서 형식으로 렌더링하는 rmarkdown의 주요 함수는 render()입니다. 첫 번째 인수는 Rmd 파일 이름이고, 두 번째 인수는 출력 형식이며 이에 대해서는 이 장의 뒷부분에서 자세히 소개할 것입니다. 예를 들어 R 마크다운 문서 foo.Rmd를 워드로 변환하려면 코드 한 줄만 실행하면 됩니다.
 
 rmarkdown::render("foo.Rmd", "word_document")
 
-물론 더 어려운 방법으로 할 수도 있습니다. 먼저 knitr의 knit()를 호출하여 foo.Rmd를 foo.md로 컴파일한 다음, 13.2절에서 소개한 것처럼 터미널을 열거나 R 함수 system()을 사용하여 다음과 같은 명령을 실행할 수 있습니다:
+물론 더 어려운 방법으로 할 수도 있습니다. 먼저 knitr의 knit()를 호출하여 foo.Rmd를 foo.md로 컴파일한 다음, 13.2절에서 소개한 것처럼 터미널을 열거나 R 함수 system()을 사용하여 다음과 같은 명령을 실행할 수 있습니다.
 
 pandoc foo.md --output foo.docx \
 --from markdown+tex_math_single_backslash \
@@ -114,14 +113,14 @@ rmarkdown 패키지는 RStudio IDE에서 잘 지원됩니다. render() 함수를
 
 ###### 14.2 Pandoc의 마크다운 확장
 
-먼저 Pandoc 마크다운의 구문을 소개합니다. R 마크다운 v1에 익숙하다면 Pandoc에서도 그 구문을 여전히 사용할 수 있으며, 유일한 중요한 변경 사항은 수식 요소가 아닌 윗첨자를 작성하는 방법입니다. v1에서는 단일 캐럿을 사용합니다(예: x^2). Pandoc의 마크다운에서는 윗첨자를 ^로 묶어야 합니다(예: x^2^). 수식 표현의 경우 여전히 캐럿 하나를 사용합니다(예: $x^2$).
+먼저 Pandoc 마크다운의 구문을 소개합니다. R 마크다운 v1에 익숙하다면 Pandoc에서도 그 구문을 여전히 사용할 수 있으며, 유일한 중요한 변경 사항은 수식 요소가 아닌 윗첨자를 작성하는 방법입니다. v1에서는 단일 캐럿을 사용합니다(x^2). Pandoc의 마크다운에서는 윗첨자를 ^로 묶어야 합니다(x^2^). 수식 표현의 경우 여전히 캐럿 하나를 사용합니다($x^2$).
 
 ###### 14.2.1 기본 구문
 
-다른 요소의 구문은 Pandoc의 마크다운에서도 다소 동일하게 유지됩니다. 예를 들어 1단계 섹션 헤더에는 # 기호 1개를 사용하고 2단계 헤더에는 # 기호 2개를 사용합니다. 마크다운의 기본 요소 구문은 5.2.1절을 참조하십시오. 다음은 유용할 수 있는 몇 가지 새로운 요소이며(전체 문서는 http://johnmacfarlane.net/pandoc/ 참조), 글머리 기호 아래에 이러한 요소의 짧은 예시를 보여줍니다:
+다른 요소의 구문은 Pandoc의 마크다운에서도 다소 동일하게 유지됩니다. 예를 들어 1단계 섹션 헤더에는 # 기호 1개를 사용하고 2단계 헤더에는 # 기호 2개를 사용합니다. 마크다운의 기본 요소 구문은 5.2.1절을 참조하십시오. 다음은 유용할 수 있는 몇 가지 새로운 요소이며(전체 문서는 http://johnmacfarlane.net/pandoc/ 참조), 글머리 기호 아래에 이러한 요소의 짧은 예시를 보여줍니다.
 
-- 정의 목록 및 예제 목록 
-특별 용어 : 용어에 대한 설명/해설을 입력합니다.
+- 정의 목록 및 예제 목록
+  특별 용어 : 용어에 대한 설명/해설을 입력합니다.
 
 (@) 번호가 매겨진 예제입니다. (@) 번호가 매겨진 또 다른 예제입니다.
 
@@ -136,21 +135,24 @@ rmarkdown 패키지는 RStudio IDE에서 잘 지원됩니다. render() 함수를
 - 그림/표 캡션
 
 Pandoc에는 기본적으로 활성화되어 있는 implicit_figures라는 마크다운 확장이 있습니다. 다음과 같은 이미지는
-![그림 캡션.](path/to/image.png) 
-LATEX에서 다음과 같이 렌더링됩니다: 
+![그림 캡션.](path/to/image.png)
+LATEX에서 다음과 같이 렌더링됩니다.
 \begin{figure}
 \includegraphics{path/to/image.png} \caption{그림 캡션.}
-\end{figure} 
+\end{figure}
 마찬가지로 다음과 같이 표 캡션을 추가할 수 있습니다. 표: 표 캡션입니다.
 
---- ---- ---
+---
+
 A B C
 
---- ---- ---
+---
+
 a 10 b
-c d 25 
-e f 
---- ---- ----
+c d 25
+e f
+
+---
 
 - 원시 TEX/HTML 콘텐츠
 
@@ -168,27 +170,27 @@ LATEX 버전: \begin{figure}
 
 --references:
 
-- id: joe2014 
-title: A Nice Paper 
-author:
+- id: joe2014
+  title: A Nice Paper
+  author:
 
 - family: Smith
-given: Joe 
-issued:
-year: 2014 
-container-title: The Journal of Awesome Research 
-type: article-journal
+  given: Joe
+  issued:
+  year: 2014
+  container-title: The Journal of Awesome Research
+  type: article-journal
 
-- id: john1980 
-title: A Great Book 
-author:
+- id: john1980
+  title: A Great Book
+  author:
 
-- family: Brown 
-given: John 
-issued:
-year: 1980 
-publisher: An Excellent Publisher 
-type: book
+- family: Brown
+  given: John
+  issued:
+  year: 1980
+  publisher: An Excellent Publisher
+  type: book
 
 ---
 
@@ -198,14 +200,14 @@ type: book
 
 ###### 14.2.2 YAML 메타데이터
 
-Pandoc 마크다운의 또 다른 중요한 확장은 YAML 메타데이터입니다. YAML은 "YAML은 마크업 언어가 아니다(YAML Ain't Markup Language)" 또는 "또 다른 마크업 언어(Yet Another Markup Language)"의 약자이며, 기본적으로 중첩된 목록 구조를 갖습니다. Pandoc은 YAML을 사용하여 제목, 저자, 날짜 정보와 같은 문서의 메타데이터를 작성합니다. 메타데이터는 대개 문서의 시작 부분에 나타나며 ---와 같은 대시 3개로 이루어진 두 줄 사이에 묶입니다. 전형적인 YAML 메타데이터는 다음과 같습니다:
+Pandoc 마크다운의 또 다른 중요한 확장은 YAML 메타데이터입니다. YAML은 "YAML은 마크업 언어가 아니다(YAML Ain't Markup Language)" 또는 "또 다른 마크업 언어(Yet Another Markup Language)"의 약자이며, 기본적으로 중첩된 목록 구조를 갖습니다. Pandoc은 YAML을 사용하여 제목, 저자, 날짜 정보와 같은 문서의 메타데이터를 작성합니다. 메타데이터는 대개 문서의 시작 부분에 나타나며 ---와 같은 대시 3개로 이루어진 두 줄 사이에 묶입니다. 전형적인 YAML 메타데이터는 다음과 같습니다.
 
---title: "A Nice Report" 
-author: "John Smith" 
-date: 2014/12/31 
+--title: "A Nice Report"
+author: "John Smith"
+date: 2014/12/31
 output:
-html_document: 
-toc: yes 
+html_document:
+toc: yes
 number_sections: yes
 word_document: default
 
@@ -215,25 +217,26 @@ rmarkdown에서 YAML 메타데이터의 가장 중요한 필드는 output 필드
 
 ###### 14.3 출력 형식
 
-rmarkdown에는 html_document(), pdf_document(), beamer_presentation() 등과 같이 _document 및 _presentation 접미사가 있는 일련의 형식 함수가 있습니다. 이 함수들은 render()의 두 번째 인수로 사용할 수 있습니다(예:
+rmarkdown에는 html_document(), pdf_document(), beamer_presentation() 등과 같이 \_document 및 \_presentation 접미사가 있는 일련의 형식 함수가 있습니다. 이 함수들은 render()의 두 번째 인수로 사용할 수 있습니다(예:
 
-library(rmarkdown) 
-render("foo.Rmd") 
-render("foo.Rmd", pdf_document()) 
-render("foo.Rmd", word_document()) 
-render("foo.Rmd", beamer_presentation()) 
+library(rmarkdown)
+render("foo.Rmd")
+render("foo.Rmd", pdf_document())
+render("foo.Rmd", word_document())
+render("foo.Rmd", beamer_presentation())
 render("foo.Rmd", ioslides_presentation())
 
-각 출력 형식 함수에는 고유한 인수가 있습니다. 예를 들어 HTML 문서에서 목차를 활성화하려면 다음과 같이 호출할 수 있습니다:
+각 출력 형식 함수에는 고유한 인수가 있습니다. 예를 들어 HTML 문서에서 목차를 활성화하려면 다음과 같이 호출할 수 있습니다.
 
-library(rmarkdown) 
+library(rmarkdown)
 render("foo.Rmd", html_document(toc = TRUE))
 
-이것은 YAML 메타데이터를 다음과 같이 제공하는 것과 동일합니다:
+이것은 YAML 메타데이터를 다음과 같이 제공하는 것과 동일합니다.
 
 --output:
-html_document: 
+html_document:
 toc: yes
+
 ---
 
 YAML에서 yes와 true는 모두 논리값 TRUE를 의미합니다. YAML 메타데이터를 사용하고 두 번째 인수 없이 render()를 호출할 수도 있고, YAML 메타데이터를 생략하거나 무시하고 render()에 두 번째 인수를 명시적으로 제공할 수도 있습니다. YAML 접근 방식이 더 편리하고 일반적입니다. 출력 정보가 원본 문서에 포함되기 때문입니다. 두 번째 접근 방식은 YAML에 정의된 출력 형식을 오버라이드하려는 경우 유용할 수 있습니다. 가능한 옵션이 무엇인지 알아보려면 각 출력 형식 함수의 도움말 페이지를 참조하십시오. 예를 들어 PDF 출력 옵션을 보려면 R 콘솔에 ?rmarkdown::pdf_document를 입력하십시오.
@@ -242,14 +245,14 @@ YAML에서 yes와 true는 모두 논리값 TRUE를 의미합니다. YAML 메타�
 
 ###### 14.3.1 HTML 문서
 
-html_document()가 실제로 반환하는 것을 확인하려면 이를 실행하고 반환된 객체의 구조를 인쇄해 볼 수 있습니다:
+html_document()가 실제로 반환하는 것을 확인하려면 이를 실행하고 반환된 객체의 구조를 인쇄해 볼 수 있습니다.
 
-library(rmarkdown) 
+library(rmarkdown)
 str(html_document(), width = 55, strict.width = "wrap")
 
 이 목록에는 Pandoc 옵션도 포함되어 있습니다. pandoc$to 요소에서 볼 수 있듯이 출력 형식은 html이며, --smart 및 --self-contained와 같은 몇 가지 Pandoc 인수도 이 목록에 포함되어 있습니다.
 
-rmarkdown을 위한 몇 가지 보조 옵션도 존재합니다. 예를 들어 clean_supporting은 HTML 파일이 렌더링된 후 중간 출력 파일을 정리할지 여부를 의미합니다. 중간 파일에는 그림 파일이 포함될 수 있습니다. HTML 파일을 자체 포함형으로 만들고 싶은 경우, Pandoc은 외부 리소스(예: 이미지)를 해당 파일 안에 모두 삽입하므로 더 이상 이러한 외부 파일이 필요하지 않게 됩니다. 이런 상황이라면 render()는 HTML 파일을 렌더링한 후 외부 파일들을 삭제할 것입니다.
+rmarkdown을 위한 몇 가지 보조 옵션도 존재합니다. 예를 들어 clean_supporting은 HTML 파일이 렌더링된 후 중간 출력 파일을 정리할지 여부를 의미합니다. 중간 파일에는 그림 파일이 포함될 수 있습니다. HTML 파일을 자체 포함형으로 만들고 싶은 경우, Pandoc은 외부 리소스(이미지)를 해당 파일 안에 모두 삽입하므로 더 이상 이러한 외부 파일이 필요하지 않게 됩니다. 이런 상황이라면 render()는 HTML 파일을 렌더링한 후 외부 파일들을 삭제할 것입니다.
 
 출력 형식 함수의 내부 구조를 알게 되면, 다른 knitr/Pandoc 옵션들을 사용하여 고유한 형식 함수를 만들 수 있습니다. 사용자 지정 형식을 구현하는 방법은 이 장의 후반부에서 소개하도록 하겠습니다.
 
@@ -259,16 +262,16 @@ rmarkdown을 위한 몇 가지 보조 옵션도 존재합니다. 예를 들어 c
 
 - 리 레이
 - 한 메이메이 date: "2015/01/01" output:
-html_document:
-fig_caption: yes pdf_document:
-template: null
-word_document: default bibliography: Rmd-v2.bib
---# 멋진 섹션으로 시작 약간의 _소개_입니다. [링크](http://yihui.name/knitr)와 코드와 같은 기존의 **마크다운** 구문을 사용할 수 있습니다. # 또 다른 섹션 계속 물론 다음과 같은 목록을 작성할 수 있습니다:
+  html*document:
+  fig_caption: yes pdf_document:
+  template: null
+  word_document: default bibliography: Rmd-v2.bib
+  --# 멋진 섹션으로 시작 약간의 *소개\_입니다. [링크](http://yihui.name/knitr)와 코드와 같은 기존의 **마크다운** 구문을 사용할 수 있습니다. # 또 다른 섹션 계속 물론 다음과 같은 목록을 작성할 수 있습니다.
 
 - 사과
 - 배
-- 바나나 
-또는 순서가 지정된 목록:
+- 바나나
+  또는 순서가 지정된 목록:
 
 1. 항목이
 1. 순서대로
@@ -282,7 +285,7 @@ word_document: default bibliography: Rmd-v2.bib
 
 bg = 'white' ) plot(fit)
 
-# 약간의 수학 우리의 회귀 방정식은 $Y= r b[1] + r b[2] x$이며 모델은 다음과 같습니다:
+# 약간의 수학 우리의 회귀 방정식은 $Y= r b[1] + r b[2] x$이며 모델은 다음과 같습니다.
 
 $$ Y = \beta_0 + \beta_1 x + \epsilon$$ # Pandoc 확장: 정의 목록 프로그래머 : 커피를 코드로 바꾸는 사람입니다. LATEX : 몇 개의 백슬래시가 있는 간단한 언어입니다. # Pandoc 확장: 예제 몇 가지 예제가 있습니다. (@) 0.3 + 0.4 - 0.7이 무엇인지 생각해 보세요. 영(0)입니다. 쉽죠. (@weird) 이제 0.3 - 0.7 + 0.4가 무엇인지 생각해 보세요. 여전히 영일까요? 사람들은 (@weird)에 종종 놀랍니다. # Pandoc 확장: 표 여기에 표가 있습니다. 표: 간단한 표 구문의 예. {r echo=FALSE} knitr::kable(head(iris))
 
@@ -304,6 +307,7 @@ HTML 출력에 맞게 조정할 수 있는 많은 옵션이 있습니다. 전체
 
 --output:
 html_document: fig_caption: yes number_sections: yes theme: readable toc: yes
+
 ---
 
 현재 이러한 CSS 테마는 rmarkdown에서 사용할 수 있습니다(http://bootswatch.com 에서 미리 볼 수 있음):
@@ -314,12 +318,14 @@ html_document: fig_caption: yes number_sections: yes theme: readable toc: yes
 
 --output:
 html_document: css: my_own.css
+
 ---
 
-단지 자신만의 CSS를 사용하고 rmarkdown이 제공하는 테마(구문 강조 테마 포함)를 원하지 않는 경우, theme 및 highlight를 null로 지정하여 이를 완전히 제거할 수 있습니다:
+단지 자신만의 CSS를 사용하고 rmarkdown이 제공하는 테마(구문 강조 테마 포함)를 원하지 않는 경우, theme 및 highlight를 null로 지정하여 이를 완전히 제거할 수 있습니다.
 
 --output:
 html_document: css: my_own.css theme: null highlight: null
+
 ---
 
 HTML 페이지는 CSS, 자바스크립트, 이미지 파일과 같은 외부 종속성이 있는 경우가 많기 때문에 다른 사람과 HTML 파일을 공유할 때 불편할 수 있습니다. 파일을 보낼 때 이러한 종속성도 함께 포함되었는지 확인해야 하기 때문입니다.
@@ -330,6 +336,7 @@ Pandoc에는 모든 외부 종속성을 HTML 파일에 임베딩하여 HTML 파�
 
 --output:
 html_document: self_contained: no lib_dir: assets
+
 ---
 
 때때로 문서의 본문 이전이나 이후, 또는 HTML 헤더에 추가 콘텐츠를 넣고 싶을 수 있습니다. 이러한 경우 rmarkdown에는 추가 콘텐츠 파일의 이름을 지정할 수 있는 includes 옵션이 있습니다. HTML 출력에서 자바스크립트 라이브러리 D3(http://d3js.org)를 사용하고 싶다면, doc_header.html 파일에 다음과 같이 작성할 수 있습니다.
@@ -354,6 +361,7 @@ includes: in_header: doc_header.html before_body: doc_before.html after_body: do
 
 --output:
 html_document: template: my_template.html
+
 ---
 
 마지막으로 pandoc_args 필드를 사용하여 Pandoc에 전달할 명령줄 인수를 사용자 지정할 수 있습니다. 실제로는 html_document()에 있는 R 인수가 최종적으로 Pandoc 인수로 변환됩니다. 예를 들어 R 인수 self_contained = TRUE(또는 YAML의 self_contained: yes)는 Pandoc 인수 --self-contained와 동일하며 YAML의 다음 설정과도 같습니다.
@@ -388,10 +396,10 @@ pdf_document: number_sections: yes toc: yes
 
 Pandoc에는 YAML 메타데이터에서 사용할 수 있는 LATEX 전용 옵션이 몇 가지 있으며 전체 설명서는 Pandoc 웹사이트에서 확인할 수 있습니다. 여기에 그 중 몇 가지만 나열합니다.
 
-fontsize 문서의 글꼴 크기(예: 10pt, 11pt, 12pt) 
-documentclass 문서 클래스(예: article, book, report) 
-classoption 문서 클래스에 대한 옵션(예: a4paper, twocolumn) 
-geometry geometry 패키지의 옵션(예: tmargin=2cm, bmargin=2cm, lmargin=3cm, rmargin=3cm)
+fontsize 문서의 글꼴 크기(10pt, 11pt, 12pt)
+documentclass 문서 클래스(article, book, report)
+classoption 문서 클래스에 대한 옵션(a4paper, twocolumn)
+geometry geometry 패키지의 옵션(tmargin=2cm, bmargin=2cm, lmargin=3cm, rmargin=3cm)
 
 이들은 YAML의 최상위 레벨 옵션이며 pdf_document 필드 아래에 두어서는 안 됩니다.
 
@@ -408,6 +416,7 @@ geometry geometry 패키지의 옵션(예: tmargin=2cm, bmargin=2cm, lmargin=3cm
 
 output:
 pdf_document: latex_engine: xelatex keep_tex: yes
+
 ---
 
 앞 절에서 includes와 template 옵션을 소개했는데, 이는 LATEX 출력에 더 유용할 수 있습니다. 왜냐하면 LATEX 사용자는 문서 서문(preamble)에서 특정 LATEX 패키지를 사용하여 출력을 커스터마이징하는 것이 매우 일반적이기 때문입니다. 이러한 내용을 외부 파일에 넣고 includes 옵션 아래의 in_header 옵션을 통해 서문에 포함시킬 수 있습니다. 기본 LATEX 템플릿에 만족하지 못하는 경우 직접 작성할 수도 있습니다. 실제로 템플릿을 작성하기 전에, YAML 옵션을 통해 원하는 결과를 얻을 수 있는지 확인하기 위해 Pandoc 문서를 주의 깊게 살펴보시기 바랍니다. 새로운 LATEX 템플릿을 작성하는 것은 비교적 쉽지만, 향후 Pandoc의 변경 가능성을 인지하고 있어야 하므로 그 템플릿을 관리하는 것은 간단하지 않을 수 있습니다.
@@ -434,8 +443,7 @@ word_document:
 
 - 그림 14.7: 워드에서 스타일 패널 열기: 도구 모음에서 "스타일"이라는 창을 찾아 플로팅 패널로 확장합니다.
 
-renference_docx: template.docx
----
+## renference_docx: template.docx
 
 요소의 스타일 외에도 Pandoc 버전을 1.13 이상으로 사용하는 경우 레이아웃 스타일도 반영될 수 있습니다. 예를 들어 참조 문서의 여백, 페이지 크기, 페이지 방향, 머리글 및 바닥글이 새로운 워드 문서에도 그대로 적용됩니다.
 
@@ -457,11 +465,12 @@ ioslides의 경우 각 최상위(1단계) 섹션 제목은 기본적으로 짙�
 
 --output:
 ioslides_presentation: default
+
 ---
 
 프레젠테이션을 할 때 전체 화면 모드를 사용하고 싶을 수 있는데, 키보드 단축키 f(문자 F 키 누르기)를 통해 이 모드를 켤 수 있습니다. W 키를 누르면 와이드스크린 모드가 켜고 꺼집니다. 슬라이드 크기가 너무 크거나 작으면 화면을 확대/축소할 수 있습니다. 일반적으로 Ctrl(또는 Command) 키를 누른 상태에서 플러스(+) 또는 마이너스(-)를 누르면 됩니다.
 
-슬라이드의 모양을 조절하기 위해 ioslides_presentation 형식에서 사용할 수 있는 몇 가지 옵션은 다음과 같습니다:
+슬라이드의 모양을 조절하기 위해 ioslides_presentation 형식에서 사용할 수 있는 몇 가지 옵션은 다음과 같습니다.
 
 incremental (yes/no) 글머리 기호를 순차적으로 표시할지 여부
 logo 슬라이드 로고로 사용할 이미지(각 슬라이드의 바닥글에 표시됨)
@@ -485,16 +494,16 @@ Slidy를 위한 슬라이드 작성 규칙은 ioslides와 같습니다. rmarkdow
 
 이전에 언급한 incremental 및 css 옵션 외에도 Slidy에는 유용할 수 있는 몇 가지 추가 기능이 있습니다. 이러한 옵션은 다음과 같습니다.
 
-duration 지정한 시간을 알 수 있도록 바닥글에 카운트다운 타이머를 설정합니다(예: 50분 동안 발표를 해야 하는 경우 YAML에 duration: 50을 설정할 수 있음).
+duration 지정한 시간을 알 수 있도록 바닥글에 카운트다운 타이머를 설정합니다(50분 동안 발표를 해야 하는 경우 YAML에 duration: 50을 설정할 수 있음).
 
-footer 바닥글에 사용자 지정 메시지를 표시합니다(예: 기관명이나 저작권 정보를 표시할 수 있음).
+footer 바닥글에 사용자 지정 메시지를 표시합니다(기관명이나 저작권 정보를 표시할 수 있음).
 
 Slidy 슬라이드를 인쇄하려면 Google Chrome을 사용할 수도 있습니다.
 
 ###### 14.3.7 Beamer 프레젠테이션
 
 12.3.4절에서 소개된 Beamer는 LATEX 애플리케이션이므로 12.3.4절에서 살펴본 것처럼 코드 청크가 포함된 Rnw 파일을 LATEX 문서로 빌드하여 직접 PDF 형식으로 컴파일할 수 있습니다. 숙련된 LATEX 사용자를 제외하면 마크다운이 더 간단하고 빠르기 때문에 beamer_presentation 형식을 사용하는 것을 권장합니다. 보다 고급 형태의 Beamer 또는 LATEX 기능이 필요하다면 Pandoc이 마크다운 내에서 LATEX 코드를 지원하므로 마크다운 내에 추가할 수 있습니다.
-그림 14.11은 이전 R 마크다운 예제에서 생성된 Beamer 프레젠테이션의 슬라이드 두 장을 보여줍니다. 우리가 한 일이라고는 YAML 메타데이터를 다음과 같이 변경한 것뿐입니다:
+그림 14.11은 이전 R 마크다운 예제에서 생성된 Beamer 프레젠테이션의 슬라이드 두 장을 보여줍니다. 우리가 한 일이라고는 YAML 메타데이터를 다음과 같이 변경한 것뿐입니다.
 
 --title: "R 마크다운 v2 데모" author:
 
@@ -506,7 +515,7 @@ beamer_presentation: theme: AnnArbor bibliography: Rmd-v2.bib
 
 ---
 
-슬라이드를 원시 LATEX로 작성한다면 소스 문서는 다음과 같을 것입니다:
+슬라이드를 원시 LATEX로 작성한다면 소스 문서는 다음과 같을 것입니다.
 
 ###### \documentclass{beamer} \usetheme{AnnArbor}
 
@@ -518,7 +527,7 @@ beamer_presentation: theme: AnnArbor bibliography: Rmd-v2.bib
 
 - 그림 14.11: R 마크다운으로 만든 Beamer 프레젠테이션의 슬라이드 두 장: 제목 슬라이드와 예제 환경의 Pandoc 확장을 보여주는 슬라이드.
 
-물론 다음과 같은 목록을 작성할 수 있습니다:
+물론 다음과 같은 목록을 작성할 수 있습니다.
 
 \begin{itemize} \item
 
@@ -534,7 +543,7 @@ beamer_presentation: theme: AnnArbor bibliography: Rmd-v2.bib
 
 이를 14.3.1절의 R 마크다운 소스 코드와 비교해 보면 원시 LATEX로 작성할 때 마크다운으로 작성할 때보다 얼마나 더 많은 코드를 입력해야 하는지 알 수 있을 것입니다.
 
-각각의 새로운 슬라이드는 마크다운의 새로운 섹션이 되며, 섹션의 레벨은 슬라이드 콘텐츠 바로 앞에 오는 문서 계층 구조의 가장 높은 레벨에 의해 결정됩니다. 다음 예에서 각 첫 번째 레벨 헤딩(#)은 새로운 슬라이드가 됩니다:
+각각의 새로운 슬라이드는 마크다운의 새로운 섹션이 되며, 섹션의 레벨은 슬라이드 콘텐츠 바로 앞에 오는 문서 계층 구조의 가장 높은 레벨에 의해 결정됩니다. 다음 예에서 각 첫 번째 레벨 헤딩(#)은 새로운 슬라이드가 됩니다.
 
 --output: beamer_presentation
 
@@ -543,7 +552,7 @@ beamer_presentation: theme: AnnArbor bibliography: Rmd-v2.bib
 - 내용
 - 내용 # 또 다른 섹션 ![](foo.png)
 
-이 예에서는 각 하위 섹션(##)이 새로운 슬라이드입니다:
+이 예에서는 각 하위 섹션(##)이 새로운 슬라이드입니다.
 
 --output: beamer_presentation
 
@@ -563,7 +572,7 @@ Beamer에는 (글꼴 테마 및 색상 테마를 포함하여) 많은 테마가 
 
 문서 및 프레젠테이션 형식 외에도 rmarkdown에는 두 가지 특수한 출력 형식이 있습니다. HTML 패키지 비네트를 위한 html_vignette()(15.4절)와 Tufte 핸드아웃(Tufte handout, 여기서 Tufte는 Edward R. Tufte를 뜻함)을 위한 tufte_handout()입니다.
 
-html_vignette() 형식은 특별한 CSS 테마를 가진 html_document()의 래퍼입니다. 기본적으로 트위터 부트스트랩 리소스, jQuery 라이브러리 및 highlight.js를 포함하기 때문에 html_document()에서 생성한 HTML 비네트의 파일 크기는 너무 큽니다. html_vignette() 형식은 이러한 구성 요소를 모두 제거하고 가벼운 단일 CSS 파일을 사용합니다. 또한 이미지 파일 크기를 더 줄이기 위해 fig_retina 옵션을 1로 설정했습니다. 이 형식 함수는 기존 형식 함수를 기반으로 자신만의 형식을 빌드하는 방법을 보여주는 좋은 예이며, 그 소스 코드는 매우 간단합니다:
+html_vignette() 형식은 특별한 CSS 테마를 가진 html_document()의 래퍼입니다. 기본적으로 트위터 부트스트랩 리소스, jQuery 라이브러리 및 highlight.js를 포함하기 때문에 html_document()에서 생성한 HTML 비네트의 파일 크기는 너무 큽니다. html_vignette() 형식은 이러한 구성 요소를 모두 제거하고 가벼운 단일 CSS 파일을 사용합니다. 또한 이미지 파일 크기를 더 줄이기 위해 fig_retina 옵션을 1로 설정했습니다. 이 형식 함수는 기존 형식 함수를 기반으로 자신만의 형식을 빌드하는 방법을 보여주는 좋은 예이며, 그 소스 코드는 매우 간단합니다.
 
 html_vignette <- function(fig_width = 3, fig_height = 3, dev = "png", css = NULL,
 
@@ -579,7 +588,7 @@ fig_height = fig_height, dev = dev, fig_retina = FALSE, css = css, theme = NULL,
 
 }
 
-tufte_handout() 형식은 LATEX 문서 클래스 tufte-handout.cls의 래퍼입니다. Tufte 핸드아웃 스타일의 가장 두드러진 특징은 아마도 여백 노트(sidenotes)를 사용하고 조판이 잘 설계되었다는 점일 것입니다. 그림 14.12에서 예제 페이지를 참조하십시오. 그 YAML 메타데이터는 다음과 같습니다:
+tufte_handout() 형식은 LATEX 문서 클래스 tufte-handout.cls의 래퍼입니다. Tufte 핸드아웃 스타일의 가장 두드러진 특징은 아마도 여백 노트(sidenotes)를 사용하고 조판이 잘 설계되었다는 점일 것입니다. 그림 14.12에서 예제 페이지를 참조하십시오. 그 YAML 메타데이터는 다음과 같습니다.
 
 --title: "Tufte Handout" author: "John Smith" date: "2014년 8월 13일" output: rmarkdown::tufte_handout
 
@@ -589,7 +598,7 @@ tufte_handout() 형식은 LATEX 문서 클래스 tufte-handout.cls의 래퍼입�
 
 Shiny(Chang 등, 2015)는 R을 사용하여 대화형 앱을 쉽게 만들 수 있게 해주는 웹 애플리케이션 프레임워크입니다. 텍스트 입력 상자, 드롭다운 목록, 라디오 버튼, 슬라이더 등과 같은 Shiny UI 함수를 사용하여 웹 사용자 인터페이스(UI)를 만들 수 있습니다. 이러한 UI 요소들은 버튼을 클릭한 후 R에서 기대하는 동작 등 R 내의 서버 로직을 지정한 뒤에 R과 상호 작용할 수 있습니다. Shiny에 익숙하지 않은 경우 웹사이트 http://shiny.rstudio.com 에서 Shiny에 대한 기본 사항을 알아보시기 바랍니다.
 
-Shiny 앱은 기본적으로 HTML 페이지이고 R 마크다운 역시 HTML로 렌더링될 수 있기 때문에 R 마크다운과 Shiny를 하나의 문서에 결합하는 것이 가능합니다. 이러한 문서를 "대화형 문서(interactive documents)"라고 부르며 여기에는 Shiny의 대화형 구성 요소가 포함되어 있습니다. 그림 14.13은 대화형 문서의 최소 예제를 보여줍니다. 소스 문서는 다음과 같습니다:
+Shiny 앱은 기본적으로 HTML 페이지이고 R 마크다운 역시 HTML로 렌더링될 수 있기 때문에 R 마크다운과 Shiny를 하나의 문서에 결합하는 것이 가능합니다. 이러한 문서를 "대화형 문서(interactive documents)"라고 부르며 여기에는 Shiny의 대화형 구성 요소가 포함되어 있습니다. 그림 14.13은 대화형 문서의 최소 예제를 보여줍니다. 소스 문서는 다음과 같습니다.
 
 - 그림 14.12: Tufte 핸드아웃 스타일을 사용한 예제 페이지: 각주, 그림, 수식 등과 같은 요소들을 측면 여백에 정렬할 수 있습니다.
 
@@ -621,11 +630,11 @@ renderPlot({ x <- faithful[, 2] # Old Faithful Geyser 데이터 bins <- seq(min(
 
 ---
 
-위의 YAML 메타데이터는 기존의 pdf_document() 형식을 활용합니다. 대안으로 다음과 같은 템플릿을 준비할 수도 있습니다: \documentclass{tufte-handout} $if(title)$ \title{$title$} $endif$ $if(author)$ \author{$for(author)$$author$$sep$ \and $endfor$} $endif$ $if(date)$ \date{$date$}
+위의 YAML 메타데이터는 기존의 pdf_document() 형식을 활용합니다. 대안으로 다음과 같은 템플릿을 준비할 수도 있습니다. \documentclass{tufte-handout} $if(title)$ \title{$title$} $endif$ $if(author)$ \author{$for(author)$$author$$sep$ \and $endfor$} $endif$ $if(date)$ \date{$date$}
 
 $endif$ \begin{document} $if(title)$ \maketitle $endif$ $body$ \end{document}
 
-그런 다음 pdf_document의 template 옵션을 사용합니다. 이처럼 사용자 지정 템플릿을 작성할 때 몇 가지 단점이 있습니다:
+그런 다음 pdf_document의 template 옵션을 사용합니다. 이처럼 사용자 지정 템플릿을 작성할 때 몇 가지 단점이 있습니다.
 
 - Pandoc의 기본 LATEX 템플릿(https://github.com/jgm/pandoc-templates)이 훨씬 유연하여, 목차, 그림 목록 및 초록 등도 처리할 수 있습니다.
 - 새로운 템플릿을 작성하는 것은 YAML의 기존 옵션을 사용하는 것보다 더 많은 수고가 듭니다.
@@ -639,13 +648,13 @@ rmarkdown 확장의 첫 번째 유형은 새로운 템플릿을 정의하는 것
 
 https://github.com/jgm/pandoc-templates 저장소에는 Pandoc에서 사용하는 모든 템플릿이 포함되어 있으며, rmarkdown 소스 패키지(https://github.com/rstudio/rmarkdown)에서 사용자 지정 템플릿을 살펴볼 수도 있습니다. 템플릿 변수 중에 이해가 가지 않는 것이 있으면 http://johnmacfarlane.net/pandoc/ 에 있는 문서를 확인해 보시기 바랍니다.
 
-템플릿을 다른 사용자와 공유하는 가장 쉬운 방법은 이를 R 패키지의 inst/rmarkdown/templates/ 디렉터리에 넣는 것입니다. 새로운 디렉터리(예: my_template)를 만들고 그 안에 템플릿 파일을 넣을 수 있습니다. 템플릿에는 CSS/JavaScript 파일이나 LATEX 패키지와 같은 특정 종속성이 필요할 수 있습니다. 이러한 파일들은 my_template 아래의 하위 디렉터리인 skeleton/에 수집할 수 있습니다. skeleton/ 디렉터리에는 샘플 Rmd 파일 skeleton.Rmd도 제공할 수 있습니다. 마지막으로 my_template 아래의 YAML 파일인 template.yaml에 3개의 YAML 필드를 사용하여 템플릿을 설명할 수 있습니다:
+템플릿을 다른 사용자와 공유하는 가장 쉬운 방법은 이를 R 패키지의 inst/rmarkdown/templates/ 디렉터리에 넣는 것입니다. 새로운 디렉터리(my_template)를 만들고 그 안에 템플릿 파일을 넣을 수 있습니다. 템플릿에는 CSS/JavaScript 파일이나 LATEX 패키지와 같은 특정 종속성이 필요할 수 있습니다. 이러한 파일들은 my_template 아래의 하위 디렉터리인 skeleton/에 수집할 수 있습니다. skeleton/ 디렉터리에는 샘플 Rmd 파일 skeleton.Rmd도 제공할 수 있습니다. 마지막으로 my_template 아래의 YAML 파일인 template.yaml에 3개의 YAML 필드를 사용하여 템플릿을 설명할 수 있습니다.
 
-name 템플릿의 이름(예: "Journal of Statistical Software") 
-description 템플릿에 대한 간단한 설명(예: "JSS 논문을 위한 템플릿입니다")
+name 템플릿의 이름("Journal of Statistical Software")
+description 템플릿에 대한 간단한 설명("JSS 논문을 위한 템플릿입니다")
 create_dir yes 또는 no, 혹은 true 또는 false(곧 설명함)
 
-이런 형태의 R 패키지(예를 들어 이름이 myPackage)를 설치했다면 draft() 함수를 사용하여 템플릿에서 새 초안을 만들 수 있습니다:
+이런 형태의 R 패키지(예를 들어 이름이 myPackage)를 설치했다면 draft() 함수를 사용하여 템플릿에서 새 초안을 만들 수 있습니다.
 
 rmarkdown::draft("my_article.Rmd", template = "my_template", package = "myPackage")
 
@@ -657,7 +666,7 @@ rticles 패키지(https://github.com/rstudio/rticles)는 여러 LATEX 문서 클
 
 ###### 14.5.2 새 형식
 
-rmarkdown 확장의 두 번째 유형은 새로운 출력 형식입니다. 새로운 형식은 기존 출력 형식을 기반으로 할 수도 있고 완전히 새로운 형식일 수도 있습니다. 전자는 매우 쉽습니다. 기존 출력 형식 함수에서 일부 옵션을 수정하여 출력 형식 객체를 반환하는 R 함수를 정의하기만 하면 됩니다. 최소한의 예시로, 아래와 같이 toc 인수의 기본값을 FALSE에서 TRUE로 바꾸는 html_toc 함수를 생성해 봅니다:
+rmarkdown 확장의 두 번째 유형은 새로운 출력 형식입니다. 새로운 형식은 기존 출력 형식을 기반으로 할 수도 있고 완전히 새로운 형식일 수도 있습니다. 전자는 매우 쉽습니다. 기존 출력 형식 함수에서 일부 옵션을 수정하여 출력 형식 객체를 반환하는 R 함수를 정의하기만 하면 됩니다. 최소한의 예시로, 아래와 같이 toc 인수의 기본값을 FALSE에서 TRUE로 바꾸는 html_toc 함수를 생성해 봅니다.
 
 - 그림 14.14: 템플릿에서 새 R 마크다운 문서 만들기: 목록에서 템플릿을 선택할 수 있습니다.
 
@@ -665,7 +674,7 @@ html_toc <- function(toc = TRUE, ...) {
 
 rmarkdown::html_document(toc = toc, ...) }
 
-새 형식 함수는 (여전히 패키지 이름이 myPackage라고 가정할 때) R 패키지에 넣어야 하며, 그런 다음 YAML에서 사용할 수 있습니다. 다음은 두 가지 예입니다:
+새 형식 함수는 (여전히 패키지 이름이 myPackage라고 가정할 때) R 패키지에 넣어야 하며, 그런 다음 YAML에서 사용할 수 있습니다. 다음은 두 가지 예입니다.
 
 --output: myPackage::html_toc
 
@@ -679,11 +688,11 @@ myPackage::html_toc: toc: no self_contained: no
 
 - 그림 14.15: R 마크다운에서 E-book 만들기: 이 그림은 FBReader(무료 E-book 리더)에 표시된 EPUB 책의 제목 페이지를 보여줍니다.
 
-두 번째 예의 경우, 이 Rmd 파일을 렌더링할 때 다음이 호출됩니다: rmarkdown::render("foo.Rmd", myPackage::html_doc(toc = FALSE,
+두 번째 예의 경우, 이 Rmd 파일을 렌더링할 때 다음이 호출됩니다. rmarkdown::render("foo.Rmd", myPackage::html_doc(toc = FALSE,
 
 self_contained = FALSE)) # 즉 본질적으로는 다음을 의미합니다 render('foo.Rmd', # html_document(toc = FALSE, self_contained = FALSE))
 
-14.3.1절에서 설명했듯이 출력 형식은 knitr 옵션, Pandoc 옵션, rmarkdown 옵션 등 세 가지 옵션으로 이루어진 목록입니다. 위의 최소 예제에서는 Pandoc toc를 사용자 지정했지만 출력 형식 함수에서 더 많은 옵션을 원하는 대로 사용자 지정할 수 있습니다. rmarkdown에는 출력 형식을 구성할 때 사용할 수 있는 output_format(), knitr_options() 및 pandoc_options() 등 몇 가지 도움 함수가 있습니다. reveal.js(HTML5 프레젠테이션 형식)용 새 형식을 만드는 방법에 대한 예시는 https://github.com/jjallaire/revealjs 저장소를 참조하십시오. 아래에서는 EPUB(E-book 형식)용 출력을 만드는 방법에 대한 최소한의 예를 보여줍니다:
+14.3.1절에서 설명했듯이 출력 형식은 knitr 옵션, Pandoc 옵션, rmarkdown 옵션 등 세 가지 옵션으로 이루어진 목록입니다. 위의 최소 예제에서는 Pandoc toc를 사용자 지정했지만 출력 형식 함수에서 더 많은 옵션을 원하는 대로 사용자 지정할 수 있습니다. rmarkdown에는 출력 형식을 구성할 때 사용할 수 있는 output_format(), knitr_options() 및 pandoc_options() 등 몇 가지 도움 함수가 있습니다. reveal.js(HTML5 프레젠테이션 형식)용 새 형식을 만드는 방법에 대한 예시는 https://github.com/jjallaire/revealjs 저장소를 참조하십시오. 아래에서는 EPUB(E-book 형식)용 출력을 만드는 방법에 대한 최소한의 예를 보여줍니다.
 
 # @importFrom rmarkdown output_format # @importFrom rmarkdown knitr_options # @importFrom rmarkdown pandoc_options
 
@@ -702,14 +711,13 @@ date: "2015/01/01" output: myPackage::epub_book
 
 - --# 멋진 섹션으로 시작
 
-
-   {r} 1 + 1
+  {r} 1 + 1
 
 형식 함수 epub_book()의 핵심은 pandoc_options()의 to 인수를 epub 또는 epub3로 지정하는 것이었습니다. Pandoc은 매우 다양한 문서 형식을 지원하며 rmarkdown은 그중 일부만 포함하고 있습니다. 여러분은 위에서 소개한 접근 방식을 사용하여 자신만의 형식 함수를 만들 수 있습니다.
 
-###### 14.5.3 HTML 위젯 
+###### 14.5.3 HTML 위젯
 
-14.3.1절에서 YAML 메타데이터의 includes 옵션을 설명했습니다. HTML 문서 출력에 자바스크립트 라이브러리를 포함하려는 경우 includes 옵션을 사용할 수 있습니다. 이 접근 방식에는 두 가지 단점이 있습니다:
+14.3.1절에서 YAML 메타데이터의 includes 옵션을 설명했습니다. HTML 문서 출력에 자바스크립트 라이브러리를 포함하려는 경우 includes 옵션을 사용할 수 있습니다. 이 접근 방식에는 두 가지 단점이 있습니다.
 
 1. 휴대성(이동성)이 부족합니다. 다른 사람과 R 마크다운 문서를 공유할 때 includes 옵션에 지정된 종속성을 항상 함께 복사해야 하기 때문입니다. 이 방식은 다른 사람들이 여러분의 종속성을 재사용하기에도 불편합니다.
 2. 자바스크립트 라이브러리를 호출하려면 R 마크다운에 자바스크립트 코드(때로는 매우 많은 양의 코드)를 작성해야 합니다. 하지만 모든 R 사용자가 자바스크립트에 익숙한 것은 아니기 때문에 R 마크다운 문서를 온전히 다루지 못할 수 있습니다.
@@ -727,19 +735,18 @@ date: "2015/01/01" output: html_document
 
 - --이 표는 DataTables 라이브러리를 통해 생성되었습니다.
 
-
-   {r} DT::datatable(iris)
+  {r} DT::datatable(iris)
 
 그림 14.16은 그 출력을 보여줍니다. DT 패키지는 자바스크립트 라이브러리 DataTables(http://datatables.net)에 대한 인터페이스입니다. 보시다시피 R 마크다운 소스 문서는 매우 단순하며 자바스크립트 파일이나 자바스크립트 코드가 전혀 보이지 않습니다. datatable() 함수를 호출하기만 하면 데이터 프레임이 DataTables를 통해 표시됩니다. 데이터를 HTML 페이지로 전달하고 이를 구문 분석 및 렌더링하는 어려운 작업은 패키지 작성자에 의해 이미 완료되었으므로 사용자는 모든 기본 기술 세부 사항을 이해할 필요가 없습니다.
 
 ###### 14.6 R 마크다운 v1에서 v2로 변경된 사항
 
-v1 시절에 R 마크다운을 사용하기 시작했다면, v1에서 v2로 전환할 때 다음과 같은 변경 사항을 알아두어야 합니다:
+v1 시절에 R 마크다운을 사용하기 시작했다면, v1에서 v2로 전환할 때 다음과 같은 변경 사항을 알아두어야 합니다.
 
 - 그림 14.16: R 마크다운의 DataTables 라이브러리에 의해 생성된 표: 열을 정렬하고, 표에서 검색할 수 있으며, 전체 표를 여러 페이지에 걸쳐 표시할 수 있습니다.
 
 - v2에서는 기본적으로 knitr 패키지가 로드되지 않습니다(엄밀히 말하면 attach되지 않습니다). 즉, library(knitr) 명령 등을 통해 명시적으로 패키지를 로드하지 않는 한 knitr 패키지의 함수와 객체를 사용할 수 없습니다. 그렇지 않으면 "'opts_chunk' 객체를 찾을 수 없습니다(object 'opts_chunk' not found)"와 같은 오류가 발생할 수 있습니다.
-- Rmd 파일을 렌더링할 때 청크 옵션 fig.path(그림 경로)와 cache.path(캐시 경로)가 rmarkdown에서 수정됩니다. knitr에서는 각각 figure/와 cache/입니다. 현재 rmarkdown에서는 각각 foo_files/figure-format/과 foo_files/cache-format/이며, 여기서 foo는 파일 확장자가 없는 입력 Rmd 파일의 기본 이름이고 format은 출력 형식(예: tex 또는 html)입니다.
+- Rmd 파일을 렌더링할 때 청크 옵션 fig.path(그림 경로)와 cache.path(캐시 경로)가 rmarkdown에서 수정됩니다. knitr에서는 각각 figure/와 cache/입니다. 현재 rmarkdown에서는 각각 foo_files/figure-format/과 foo_files/cache-format/이며, 여기서 foo는 파일 확장자가 없는 입력 Rmd 파일의 기본 이름이고 format은 출력 형식(tex 또는 html)입니다.
 - 청크 옵션 error가 TRUE에서 FALSE로 변경되었습니다. 이는 R 마크다운 출력 문서에 오류 메시지를 표시하는 대신 기본적으로 R이 중지됨을 의미합니다(6.2.4절 참조).
 - 출력 형식에 따라 청크 옵션 fig.width, fig.height, fig.retina가 각기 다른 값을 가질 수 있습니다. 출력 형식 함수에 대한 rmarkdown 설명서를 확인하거나, R 마크다운 문서에 str(knitr::opts_chunk$get())을 인쇄하여 청크 옵션의 값을 확인할 수 있습니다.
 
@@ -768,7 +775,7 @@ $Y|X = x \sim \mathcal{N} \left( \mu_Y + \frac{\sigma_Y}{\sigma_X}\rho(x - \mu_X
 
 (15.2)
 
-따라서 우리는 깁스 샘플링을 사용하여 결합 정규 분포(joint Normal distribution)에서 난수를 생성할 수 있습니다. 먼저 x(0)과 y(0)을 초기화한 다음 $x^{(k)} \sim f(x|y^{(k-1)})$와 $y^{(k)} \sim f(y|x^{(k)})$를 반복적으로 생성합니다. 아래의 R 코드는 식 15.2를 변환한 것입니다:
+따라서 우리는 깁스 샘플링을 사용하여 결합 정규 분포(joint Normal distribution)에서 난수를 생성할 수 있습니다. 먼저 x(0)과 y(0)을 초기화한 다음 $x^{(k)} \sim f(x|y^{(k-1)})$와 $y^{(k)} \sim f(y|x^{(k)})$를 반복적으로 생성합니다. 아래의 R 코드는 식 15.2를 변환한 것입니다.
 
 rbinormal <- function(n, mu1, mu2, sigma1, sigma2, rho) { # 초기화
 
@@ -777,13 +784,13 @@ rbinormal <- function(n, mu1, mu2, sigma1, sigma2, rho) { # 초기화
 
 c("X", "Y"))) # 조건부 분포로부터의 샘플링 for (i in 1:n) {
 
-- x <- rnorm(1, mu1 + sigma1/sigma2 * rho * (y - mu2),
+- x <- rnorm(1, mu1 + sigma1/sigma2 _ rho _ (y - mu2),
 
-- sqrt(1 - rho^2) * sigma1)
+- sqrt(1 - rho^2) \* sigma1)
 
-y <- rnorm(1, mu2 + sigma2/sigma1 * rho * (x - mu1),
+y <- rnorm(1, mu2 + sigma2/sigma1 _ rho _ (x - mu1),
 
-- sqrt(1 - rho^2) * sigma2)
+- sqrt(1 - rho^2) \* sigma2)
 
 xy[i, ] <- c(x, y)
 
@@ -799,7 +806,7 @@ rho = 0.7) plot(z, pch = 19) arrows(z[-n, 1], z[-n, 2], z[-1, 1], z[-1, 2], leng
 
 col = "gray40")
 
-그리고 우리는 일부 샘플을 추출할 수도 있습니다:
+그리고 우리는 일부 샘플을 추출할 수도 있습니다.
 
 z <- rbinormal(5000, 0, 1, 2, 3, 0.7) smoothScatter(z, nbin = 64) points(0, 1, col = "white", pch = 19) # 이론적 평균
 
@@ -827,7 +834,7 @@ cor(z) # 표본 상관 관계
 
 Huang 및 Gottardo (2013) 생체의학 데이터의 비교 가능성과 재현 가능성
 
-재현 가능한 연구를 위해 사람들은 데이터 분석에서 데이터, 코드 및 소프트웨어를 공유할 것을 제안해 왔습니다(예: Huang 및 Gottardo (2013)). 우리는 교육 분야에서 더 많은 노력이 필요하다고 믿으며 재현 가능한 과제부터 그 시작을 도모할 수 있습니다.
+재현 가능한 연구를 위해 사람들은 데이터 분석에서 데이터, 코드 및 소프트웨어를 공유할 것을 제안해 왔습니다(Huang 및 Gottardo (2013)). 우리는 교육 분야에서 더 많은 노력이 필요하다고 믿으며 재현 가능한 과제부터 그 시작을 도모할 수 있습니다.
 
 ###### 15.2 동적 문서 제공하기(서빙)
 
@@ -851,7 +858,7 @@ R 마크다운 게시물이나 페이지를 마크다운으로 반복해서 계�
 
 나중에 15.4절에서 패키지 비네트를 소개할 텐데 R 패키지를 개발할 때 servr의 vign() 함수를 사용하여 HTML 비네트를 제공할 수 있습니다. 이것의 장점은 비네트를 서빙할 때 HTML 출력 파일을 소스 패키지에 보존하지 않아 소스 패키지를 깔끔하게 유지한다는 것입니다.
 
-기술적 세부 사항이 궁금한 분들을 위해 덧붙이자면, 이 구현은 WebSockets를 기반으로 합니다. servr는 HTML 페이지를 표시할 때 그 안에 자바스크립트 코드 조각도 함께 주입하여 주기적으로(예: 1초 간격으로) R과 통신하는 WebSocket 연결을 설정합니다. R은 WebSocket에서 요청을 받을 때마다 Rmd 파일의 타임스탬프를 HTML 출력 파일의 타임스탬프와 비교합니다. Rmd 파일이 HTML 출력보다 최신 파일인 경우 servr는 knitr 또는 rmarkdown을 호출하여 Rmd 파일을 HTML로 다시 컴파일한 다음 WebSocket에 메시지를 다시 보냅니다.
+기술적 세부 사항이 궁금한 분들을 위해 덧붙이자면, 이 구현은 WebSockets를 기반으로 합니다. servr는 HTML 페이지를 표시할 때 그 안에 자바스크립트 코드 조각도 함께 주입하여 주기적으로(1초 간격으로) R과 통신하는 WebSocket 연결을 설정합니다. R은 WebSocket에서 요청을 받을 때마다 Rmd 파일의 타임스탬프를 HTML 출력 파일의 타임스탬프와 비교합니다. Rmd 파일이 HTML 출력보다 최신 파일인 경우 servr는 knitr 또는 rmarkdown을 호출하여 Rmd 파일을 HTML로 다시 컴파일한 다음 WebSocket에 메시지를 다시 보냅니다.
 
 all: example.html %.html: %.Rmd
 
@@ -863,7 +870,7 @@ WebSocket이 이 메시지를 받으면 자바스크립트에서 location.reload
 
 이 과정에서 중요한 단계는 Rmd 파일을 다시 컴파일해야 하는지 여부를 확인하는 것입니다. 이는 GNU Make(http://www.gnu.org/software/make/)가 잘 수행하는 작업이므로 servr는 필요할 때 사용자가 고유한 Makefile을 제공하여 Rmd 파일을 재빌드할 수 있도록 make() 함수도 제공했습니다. 그림 15.4는 make() 함수의 예제 Makefile입니다.
 
-기본적으로 서버 기능은 현재 R 세션을 차단하며, 이는 동일한 R 세션에서 계속 작업하려는 경우 문제가 될 수 있습니다. 이 문제를 해결하려면 서버 함수에 대해 daemon = TRUE 인수(예: httd(daemon = TRUE) 또는 rmdv2(daemon = TRUE))를 사용할 수 있습니다. 이는 servr에 현재 R 세션을 차단하지 않는 데몬화된 서버를 실행하도록 지시합니다.
+기본적으로 서버 기능은 현재 R 세션을 차단하며, 이는 동일한 R 세션에서 계속 작업하려는 경우 문제가 될 수 있습니다. 이 문제를 해결하려면 서버 함수에 대해 daemon = TRUE 인수(httd(daemon = TRUE) 또는 rmdv2(daemon = TRUE))를 사용할 수 있습니다. 이는 servr에 현재 R 세션을 차단하지 않는 데몬화된 서버를 실행하도록 지시합니다.
 
 ###### 15.3 웹사이트 및 블로깅
 
@@ -873,7 +880,7 @@ WebSocket이 이 메시지를 받으면 자바스크립트에서 location.reload
 
 Vistat(http://vis.supstat.com)은 R 마크다운과 Jekyll(13.4절) 기반의 웹사이트입니다. 이 웹사이트의 목표는 재현 가능한 통계 그래픽의 갤러리를 제공하는 것입니다. 웹사이트용 저장소는 Github(https://github.com/supstat/vistat)에서 공개적으로 사용할 수 있습니다.
 
-이 저장소의 핵심은 일부 전역 청크 옵션을 설정하고 Rmd 문서를 마크다운 출력으로 컴파일하는 R 스크립트 ./_bin/knit입니다. 수학 수식은 MathJax에 의해 렌더링되며 애니메이션은 SciAnimator 라이브러리(7.3.1절)를 통해 지원되고 D3 라이브러리를 통해 웹 그래픽을 만들 수도 있습니다.
+이 저장소의 핵심은 일부 전역 청크 옵션을 설정하고 Rmd 문서를 마크다운 출력으로 컴파일하는 R 스크립트 ./\_bin/knit입니다. 수학 수식은 MathJax에 의해 렌더링되며 애니메이션은 SciAnimator 라이브러리(7.3.1절)를 통해 지원되고 D3 라이브러리를 통해 웹 그래픽을 만들 수도 있습니다.
 
 knitr가 Rmd 소스 파일을 마크다운 파일로 컴파일하고 나면, Jekyll이 마크다운을 HTML로 컴파일하여 웹사이트를 제공할 수 있습니다.
 
@@ -893,13 +900,13 @@ RHadoop 프로젝트도 https://github.com/RevolutionAnalytics/RHadoop/wiki 에 
 
 ###### 15.3.4 ggbio 패키지
 
-ggbio 패키지(Yin 등, 2012)는 ggplot2 패키지를 기반으로 유전체 데이터에 대한 그래픽 문법(Grammar of Graphics)을 확장하기 위한 R 구현체입니다. http://tengfei.github.com/ggbio/ 라는 자체 웹사이트가 있으며 여기에서 관련 문서를 확인할 수 있습니다. knit_rd() 함수(12.4.8절)를 사용하여 R 설명서 페이지를 HTML로 컴파일함으로써 예제의 출력을 직접 볼 수 있게 했습니다. 이 패키지가 한 번 설치되면 단 한 줄의 코드로 HTML 페이지를 얻을 수 있습니다:
+ggbio 패키지(Yin 등, 2012)는 ggplot2 패키지를 기반으로 유전체 데이터에 대한 그래픽 문법(Grammar of Graphics)을 확장하기 위한 R 구현체입니다. http://tengfei.github.com/ggbio/ 라는 자체 웹사이트가 있으며 여기에서 관련 문서를 확인할 수 있습니다. knit_rd() 함수(12.4.8절)를 사용하여 R 설명서 페이지를 HTML로 컴파일함으로써 예제의 출력을 직접 볼 수 있게 했습니다. 이 패키지가 한 번 설치되면 단 한 줄의 코드로 HTML 페이지를 얻을 수 있습니다.
 
 knitr::knit_rd("ggbio")
 
 그런 다음 HTML 파일을 Github에 게시할 수 있습니다. 이미지들은 HTML 파일 내에 base64로 인코딩되어 있으므로 별도의 이미지 파일을 다룰 필요가 없습니다.
 
-참고로 ggbio 패키지에는 knitr로 작성된 PDF 비네트도 있습니다. 이는 웹사이트에서 확인하거나 다음 명령어로 찾아볼 수 있습니다: vignette("ggbio", package = "ggbio")
+참고로 ggbio 패키지에는 knitr로 작성된 PDF 비네트도 있습니다. 이는 웹사이트에서 확인하거나 다음 명령어로 찾아볼 수 있습니다. vignette("ggbio", package = "ggbio")
 
 ###### 15.3.5 Geospatial Data in R and Beyond
 
@@ -915,19 +922,19 @@ R 3.0.0 이후로 패키지 비네트의 컴파일은 훨씬 자연스럽고 쉬
 
 ###### 15.4.1 비네트 메타데이터와 엔진
 
-knitr를 사용하여 비네트를 빌드하려면 다음과 같은 간단한 단계를 따르기만 하면 됩니다:
+knitr를 사용하여 비네트를 빌드하려면 다음과 같은 간단한 단계를 따르기만 하면 됩니다.
 
-- 비네트 소스 문서(예: Rnw 또는 Rmd 파일)에 %\VignetteEngine{knitr::knitr}와 같은 비네트 엔진을 지정합니다.
+- 비네트 소스 문서(Rnw 또는 Rmd 파일)에 %\VignetteEngine{knitr::knitr}와 같은 비네트 엔진을 지정합니다.
 - 패키지 DESCRIPTION 파일에 VignetteBuilder: knitr 필드를 추가합니다.
 - DESCRIPTION의 Suggests 필드에 knitr를 추가합니다.
 
-그런 다음 knitr 구문(예: 코드 청크의 경우 < <> >= 또는 {r})을 사용하여 비네트를 작성할 수 있습니다. 비네트는 패키지 루트의 vignettes/ 디렉터리에 위치해야 함을 명심하십시오.
+그런 다음 knitr 구문(코드 청크의 경우 < <> >= 또는 {r})을 사용하여 비네트를 작성할 수 있습니다. 비네트는 패키지 루트의 vignettes/ 디렉터리에 위치해야 함을 명심하십시오.
 
 R 매뉴얼인 "Writing R Extensions"에 따라 \VignetteIndexEntry{}에 비네트 제목도 적어야 합니다. \VignetteKeyword{}와 같은 다른 몇 가지 선택적인 메타데이터 사양도 존재합니다. knitr의 R 마크다운 v2 비네트에 대한 비네트 메타데이터(제목 및 비네트 엔진) 예제는 그림 15.5를 참조하십시오. 패키지를 빌드하고 나면 해당 비네트는 HTML 인덱스 페이지에 나열됩니다.
 
-knitr 패키지에는 이런 식으로 컴파일된 여러 PDF 및 HTML 비네트가 있으며, 다음 명령을 실행하여 볼 수 있습니다: browseVignettes(package = "knitr") # 파일 이름을 아는 경우 특정 비네트 보기 vignette("knitr-intro", package = "knitr") vignette("knitr-refcard", package = "knitr")
+knitr 패키지에는 이런 식으로 컴파일된 여러 PDF 및 HTML 비네트가 있으며, 다음 명령을 실행하여 볼 수 있습니다. browseVignettes(package = "knitr") # 파일 이름을 아는 경우 특정 비네트 보기 vignette("knitr-intro", package = "knitr") vignette("knitr-refcard", package = "knitr")
 
-비네트 엔진 knitr::knitr는 knitr에서 사용 가능한 여러 엔진 중 하나일 뿐입니다. 모든 엔진을 확인하려면 tools 패키지의 vignetteEngine() 함수를 사용할 수 있습니다:
+비네트 엔진 knitr::knitr는 knitr에서 사용 가능한 여러 엔진 중 하나일 뿐입니다. 모든 엔진을 확인하려면 tools 패키지의 vignetteEngine() 함수를 사용할 수 있습니다.
 
 --title: "knitr 소개가 아닙니다" author: "Yihui Xie" date: "`r Sys.Date()`" bibliography:
 
@@ -947,11 +954,11 @@ library(knitr) sort(names(tools::vignetteEngine(package = "knitr")))
 
 ## [1] "knitr::docco_classic" ## [2] "knitr::docco_classic_notangle" ## [3] "knitr::docco_linear" ## [4] "knitr::docco_linear_notangle" ## [5] "knitr::knitr" ## [6] "knitr::knitr_notangle" ## [7] "knitr::rmarkdown" ## [8] "knitr::rmarkdown_notangle"
 
-접미사 _notangle이 있는 엔진은 접미사가 없는 엔진과 같은 weave 기능을 가지고 있지만 tangle 기능이 비활성화되어 있습니다. 즉 R CMD build 또는 R CMD check 중에 비네트에서 R 스크립트가 생성되지 않음을 의미합니다. 코드가 위빙(weave)에서 이미 실행되었기 때문에 R CMD check에서 동일한 코드를 다시 실행하는 것이 중복되기도 하고, 현재 인라인 R 코드 표현식이 탱글(tangle) 출력에 포함되지 않아 문제를 일으킬 수도 있기 때문에 가끔 우리는 비네트에서 R 스크립트를 탱글하고 싶지 않을 수 있습니다.
+접미사 \_notangle이 있는 엔진은 접미사가 없는 엔진과 같은 weave 기능을 가지고 있지만 tangle 기능이 비활성화되어 있습니다. 즉 R CMD build 또는 R CMD check 중에 비네트에서 R 스크립트가 생성되지 않음을 의미합니다. 코드가 위빙(weave)에서 이미 실행되었기 때문에 R CMD check에서 동일한 코드를 다시 실행하는 것이 중복되기도 하고, 현재 인라인 R 코드 표현식이 탱글(tangle) 출력에 포함되지 않아 문제를 일으킬 수도 있기 때문에 가끔 우리는 비네트에서 R 스크립트를 탱글하고 싶지 않을 수 있습니다.
 
-비네트 엔진 내에서 :: 연산자는 특별한 의미가 없다는 점에 유의하십시오. base R에서 패키지의 내보낸 객체를 가져오는 연산자가 ::(예: stats::lm)이므로 혼동을 줄 수 있습니다. 하지만 비네트 엔진 표기법에서 ::는 패키지 이름과 엔진 이름을 구분하는 구분 기호에 불과합니다. 따라서 knitr::rmarkdown은 rmarkdown이 knitr 내의 함수라는 의미가 아니라 knitr의 비네트 엔진 중 하나일 뿐임을 의미합니다.
+비네트 엔진 내에서 :: 연산자는 특별한 의미가 없다는 점에 유의하십시오. base R에서 패키지의 내보낸 객체를 가져오는 연산자가 ::(stats::lm)이므로 혼동을 줄 수 있습니다. 하지만 비네트 엔진 표기법에서 ::는 패키지 이름과 엔진 이름을 구분하는 구분 기호에 불과합니다. 따라서 knitr::rmarkdown은 rmarkdown이 knitr 내의 함수라는 의미가 아니라 knitr의 비네트 엔진 중 하나일 뿐임을 의미합니다.
 
-rmarkdown 비네트 엔진을 사용할 때는 현재 R이 이 두 가지 유형의 비네트 출력만 인식하기 때문에, 파일 확장자가 .html 또는 .pdf이기만 하다면 어떠한 출력 형식을 선택하든 자유롭습니다. 출력 형식이 HTML인 경우 HTML 문서이거나 HTML5 프레젠테이션(예: ioslides 또는 Slidy) 중 하나일 수 있습니다. PDF인 경우에는 PDF 문서나 Beamer 슬라이드가 될 수 있습니다.
+rmarkdown 비네트 엔진을 사용할 때는 현재 R이 이 두 가지 유형의 비네트 출력만 인식하기 때문에, 파일 확장자가 .html 또는 .pdf이기만 하다면 어떠한 출력 형식을 선택하든 자유롭습니다. 출력 형식이 HTML인 경우 HTML 문서이거나 HTML5 프레젠테이션(ioslides 또는 Slidy) 중 하나일 수 있습니다. PDF인 경우에는 PDF 문서나 Beamer 슬라이드가 될 수 있습니다.
 
 ###### 15.4.2 비네트 예제
 
@@ -961,7 +968,7 @@ Murphy (2012)의 ggplot2 transition guide(전환 가이드)는 ggplot2 패키지
 
 이 가이드의 좋은 기능 중 하나는 Rnw 문서를 컬러나 흑백 버전으로 컴파일할 수 있다는 점입니다. 이는 전역 변수 bw_version에 의해 제어되는데, 값이 TRUE이면 흑백 버전이 생성됩니다. 이는 흑백 플롯을 생성하는 청크(ggplot2의 경우 theme_bw() 및 scale_fill_gray()와 같은 회색조)에 대해 청크 옵션 eval = bw_version 및 echo = bw_version을 설정하여 달성할 수 있습니다. bw_version이 FALSE인 경우 이러한 청크는 출력에서 숨겨집니다(소스 코드는 평가되지 않고 메아리치지 않습니다). 마찬가지로 옵션 eval = !bw_version 및 echo = !bw_version을 가진 다른 청크들이 있으며 이 청크들은 컬러 플롯을 생성합니다. 요약하자면 단일 변수를 통해 PDF 출력을 컬러 또는 흑백으로 설정할지 제어할 수 있으며 이는 매우 편리합니다(5.1.1절 참고). 그림 15.6은 컬러 버전 전환 가이드의 샘플 페이지입니다.
 
-corrplot 패키지(Wei, 2013)에는 HTML 비네트의 예제가 있습니다. Github의 https://github.com/taiyun/corrplot/tree/master/vignettes 에서 그 비네트 소스 문서를 찾을 수 있습니다. 분명히 그것은 Rmd 문서입니다(5.2.1절). 여기서 R 마크다운 v1을 사용한다는 점에 유의하십시오. 텍스트 편집기(예: RStudio)로 이 문서를 열면 그 안에 있는 R 코드 청크를 볼 수 있습니다. 다음을 실행하여 컴파일된 HTML 비네트를 웹 브라우저에서 볼 수 있습니다:
+corrplot 패키지(Wei, 2013)에는 HTML 비네트의 예제가 있습니다. Github의 https://github.com/taiyun/corrplot/tree/master/vignettes 에서 그 비네트 소스 문서를 찾을 수 있습니다. 분명히 그것은 Rmd 문서입니다(5.2.1절). 여기서 R 마크다운 v1을 사용한다는 점에 유의하십시오. 텍스트 편집기(RStudio)로 이 문서를 열면 그 안에 있는 R 코드 청크를 볼 수 있습니다. 다음을 실행하여 컴파일된 HTML 비네트를 웹 브라우저에서 볼 수 있습니다.
 
 help(package = "corrplot", help_type = "html")
 
@@ -971,9 +978,9 @@ help(package = "corrplot", help_type = "html")
 
 PDFS= foo.pdf bar.pdf all: $(PDFS) clean:
 
-rm -f *.tex *.bbl *.blg *.aux *.out *.log %.pdf: %.Rnw
+rm -f _.tex _.bbl _.blg _.aux _.out _.log %.pdf: %.Rnw
 
-$(R_HOME)/bin/Rscript -e "knitr::knit2pdf('$*.Rnw')"
+$(R_HOME)/bin/Rscript -e "knitr::knit2pdf('$\*.Rnw')"
 
 - 그림 15.7: knitr를 사용하여 PDF 비네트를 컴파일하기 위한 Makefile: Rnw 문서를 PDF로 컴파일하기 위해 knit2pdf()를 사용합니다.
 
@@ -992,9 +999,9 @@ R 3.0.0 이하 버전에 맞추어 knitr로 비네트를 빌드하려면 약간�
 물론, 이 방식의 단점은 이후의 과정으로 넘어가기 전에 먼저 모든 Rnw 문서를 Sweave로 컴파일해야 한다는 점입니다.
 HTMLS= foo.html bar.html all: $(HTMLS) clean:
 
-rm -rf figure/ *.md %.html: %.Rmd
+rm -rf figure/ \*.md %.html: %.Rmd
 
-$(R_HOME)/bin/Rscript -e "knitr::knit2html( '$*.Rmd' )"
+$(R_HOME)/bin/Rscript -e "knitr::knit2html( '$\*.Rmd' )"
 
 - 그림 15.8: HTML 비네트 컴파일을 위한 Makefile: knit2html()을 사용하여 Rmd 문서를 HTML로 컴파일합니다.
 
@@ -1053,21 +1060,21 @@ Jockers (2014)의 저서 'Text Analysis with R for Students of Literature(문학
 
 흥미롭게도 Knuth의 원래 LP 패러다임이 가장 흔하게 응용되는 분야는 패키지 작성자를 위한 "프로그래밍"이 아니라 사용자를 위해 (특수한 형태의 주석을 사용하여) 소프트웨어를 문서화하는 것으로 보입니다. 즉, 소스 코드를 문서화하는 대신 소프트웨어의 사용법을 문서화하는 데 LP를 사용합니다. Doxygen(van Heesch, 2008), Javadoc(http://en.wikipedia.org/wiki/Javadoc), roxygen2(Wickham 등, 2015)의 예를 참조하십시오. 하지만 LATEX 세계에는 한 가지 예외가 존재합니다. 일부 LATEX 패키지 작성자는 LATEX 코드와 설명서를 모두 하나의 문서로 작성하고, 소스 코드와 설명서가 모두 포함된 PDF 문서로 엮습니다(weave). TEX와 Pascal을 사용한 Knuth의 원래 LP 구현을 고려하면 이는 완전히 놀라운 일은 아닙니다. Terry Therneau의 survival 및 coxme 패키지와 같이 LP를 사용하는 소수의 R 패키지도 있습니다.
 
-LP는 널리 쓰이는 프로그래밍 접근 방식은 아닌 듯하지만 여전히 흥미로운 아이디어이며, 자신이 선호하는 언어에 적용될 때 특히 유용할 수 있습니다. LATEX 소스 코드를 읽는 것은 일부 사람들에게는 지루할 수 있지만 R 소스 코드를 읽는 것은 더 즐거울 수 있습니다. 객관적인 의견을 떠나 우리는 LP에 적어도 두 가지 장점이 있다고 믿습니다:
+LP는 널리 쓰이는 프로그래밍 접근 방식은 아닌 듯하지만 여전히 흥미로운 아이디어이며, 자신이 선호하는 언어에 적용될 때 특히 유용할 수 있습니다. LATEX 소스 코드를 읽는 것은 일부 사람들에게는 지루할 수 있지만 R 소스 코드를 읽는 것은 더 즐거울 수 있습니다. 객관적인 의견을 떠나 우리는 LP에 적어도 두 가지 장점이 있다고 믿습니다.
 
 1. 평소에 주석으로 남기는 것보다 훨씬 광범위하고 풍부한 설명서를 작성할 수 있습니다. 일반적으로 코드의 주석은 간결하고(혹은 간결해야 하며) 일반 텍스트에 한정됩니다. 보통은 몇 줄의 코드를 설명하기 위해 다섯 문단의 주석을 작성하지 않을 것이며, 읽을 수 있는 수학 표현식을 쓰거나 비디오를 주석 안에 삽입할 수도 없습니다.
 2. 코드 청크에 레이블을 지정하고 레이블을 사용하여 이를 참조/재사용할 수 있으므로 여러 코드 청크를 결합하여 유연하게 프로그램을 구성할 수 있습니다. 예를 들어, 나중에 문서에서 코드 청크를 정의하고 설명하더라도 해당 레이블을 사용하여 이전의 코드 청크에 이를 삽입할 수 있습니다. 이 기능은 Knuth에 의해 강조되었지만 어떤 이유에서인지 널리 채택되지는 않았습니다. 아마도 대부분의 사람들이 코드 청크 대신 함수와 같은 더 작은 단위로 큰 프로그램을 디자인하는 것에 더 익숙해져 있을 수 있으며, 이것은 실제로 좋은 아이디어입니다.
 
-실제로 R 패키지 개발에 LP를 적용할 수 있습니다. 목표를 달성하는 방법은 여러 가지가 있지만 여기서는 다음 도구들을 사용하여 한 가지 방법만 소개합니다:
+실제로 R 패키지 개발에 LP를 적용할 수 있습니다. 목표를 달성하는 방법은 여러 가지가 있지만 여기서는 다음 도구들을 사용하여 한 가지 방법만 소개합니다.
 
 1. 소스 문서에서 프로그램 코드를 추출할 수 있게 해 주는 knitr의 purl() 함수
 2. 프로그램 코드와 설명서를 모두 포함할 수 있는 패키지 비네트
 3. 소스 파일에서 출력 파일을 생성하는 시기와 방법을 정의할 수 있게 해 주는 GNU Make
 
-rlp 패키지(https://github.com/yihui/rlp)는 LP 기법을 사용하여 R 패키지를 작성하는 예입니다. 이 저장소에서 세부 사항을 확인할 수 있으며 그 구현의 기본 아이디어는 다음과 같습니다:
+rlp 패키지(https://github.com/yihui/rlp)는 LP 기법을 사용하여 R 패키지를 작성하는 예입니다. 이 저장소에서 세부 사항을 확인할 수 있으며 그 구현의 기본 아이디어는 다음과 같습니다.
 
 1. 패키지의 R/ 디렉터리 아래에 R 소스 코드를 작성하는 대신, vignettes/ 디렉터리 아래의 패키지 비네트(R 마크다운)에 코드를 작성할 수 있습니다.
-2. Makefile을 사용하여 비네트 vignettes/*.Rmd에서 R 스크립트 R/*.R을 생성하는 방법을 정의합니다.
+2. Makefile을 사용하여 비네트 vignettes/_.Rmd에서 R 스크립트 R/_.R을 생성하는 방법을 정의합니다.
 3. make를 실행하여 R/에 R 스크립트를 생성하고 R CMD build를 실행하여 패키지를 빌드합니다.
 
 이러한 단계는 RStudio IDE를 사용하면 쉽게 만들 수 있으며, 버튼 하나만 클릭하면 이 작업을 모두 완료할 수 있습니다. 이에 대한 구현 세부 사항은 이 책에서 다루기에는 너무 기술적이고 구체적이므로 해당 패키지의 문서를 살펴보는 것은 독자의 몫으로 남겨두겠습니다.
@@ -1093,17 +1100,18 @@ Sweave는 base R의 일부이기 때문에 그 개발이 최근 몇 년 동안 �
 knitr의 청크 옵션 중 eval, echo, results 등 많은 것들이 Sweave에서 차용되었지만 그 디자인이 다르기 때문에 이 둘 사이에는 몇 가지 차이점이 있습니다. 1.0 버전 이전의 knitr는 Sweave와 호환되려고 노력했습니다. 내부적으로 몇 가지 함수들이 자동으로 차이점을 고쳐주어 knitr가 Sweave 문서를 컴파일할 수 있었습니다. 하지만 v1.0 이후로는 호환성이 더 이상 유지되지 않으며, 대신 Sweave 문서를 수동으로 knitr 문서로 변환하는 Sweave2knitr() 함수를 제공합니다. 아래는 utils 패키지의 Rnw 문서를 변환하고 그 전후의 차이점(<는 원본 문서, >는 변환된 문서)을 보여주는 예제입니다.
 
 testfile <- system.file("Sweave", "Sweave-test-1.Rnw",
-package = "utils") outfile <- tempfile(fileext = ".Rnw") Sweave2knitr(testfile, output = outfile) # true/false를 대문자 TRUE/FALSE로 변경: # * fig=true # 불필요한 옵션 fig=TRUE 제거: # * fig=TRUE # * fig=TRUE # results 옵션을 따옴표로 묶음: # * results='hide' # 'print', 'term', 'prefix' 옵션 제거: # * print=TRUE # * echo=TRUE,print=TRUE # true/false를 대문자 TRUE/FALSE로 변경: # * echo=true # \SweaveOpts{}를 opts_chunk$set()으로 변경: # * \SweaveOpts{echo=FALSE} # * \SweaveOpts{echo=true} # 잉여 줄 제거(#n은 줄 번호를 보여줌): # * (#69) @ cat(system(sprintf("diff %s %s", shQuote(testfile),
+package = "utils") outfile <- tempfile(fileext = ".Rnw") Sweave2knitr(testfile, output = outfile) # true/false를 대문자 TRUE/FALSE로 변경: # _ fig=true # 불필요한 옵션 fig=TRUE 제거: # _ fig=TRUE # _ fig=TRUE # results 옵션을 따옴표로 묶음: # _ results='hide' # 'print', 'term', 'prefix' 옵션 제거: # _ print=TRUE # _ echo=TRUE,print=TRUE # true/false를 대문자 TRUE/FALSE로 변경: # _ echo=true # \SweaveOpts{}를 opts_chunk$set()으로 변경: # _ \SweaveOpts{echo=FALSE} # _ \SweaveOpts{echo=true} # 잉여 줄 제거(#n은 줄 번호를 보여줌): # _ (#69) @ cat(system(sprintf("diff %s %s", shQuote(testfile),
 shQuote(outfile)), intern = TRUE), sep = "\n")
 
 # 7c7,14 # < \SweaveOpts{echo=FALSE} # --# > # > <<include=FALSE>>= # > library(knitr) # > opts_chunk$set( # > echo=FALSE
+
 # > ) # > @ # > # 15c22 # < <<print=TRUE>>= # --# > <<>>= # 17c24 # < <<results=hide>>= # --# > <<results='hide'>>= # 22c29 # < <<echo=TRUE,print=TRUE>>= # --# > <<echo=TRUE>>= # 43c50,57 # < \SweaveOpts{echo=true} # --# > # > <<include=FALSE>>= # > library(knitr) # > opts_chunk$set( # > echo=TRUE # > ) # > @ # > # 53c67 # < <<fig=TRUE>>= # --# > <<>>= # 63c77 # < <<fig=true>>= # --# > <<>>= # 69d82 # < @
 
 ###### 16.1.1 구문
 
 기본적으로 knitr는 R 함수 인수와 유사한, 청크 옵션을 분석하기 위한 새로운 유형의 구문을 사용합니다. 이는 기존의 Sweave 구문보다 훨씬 더 강력한 힘을 제공합니다. 우리는 청크 옵션에서 임의의 객체를 사용할 수 있고 R의 모든 강력한 기능을 활용할 수 있습니다.
 
-Sweave는 청크 옵션을 문자열로 처리하고 옵션들을 쉼표로 분할하여 구문 분석을 진행하는 반면, knitr는 R 구문을 사용합니다. 옵션이 문자값을 사용하는 경우 R에서 하는 것처럼 따옴표로 묶어야 합니다(예: results = 'hide' (Sweave에서는 results = hide라고 씁니다)). 청크 옵션 내에서 직접 연산을 수행하는 예제는 12.1.3절을 참조하십시오. 아래는 이 새로운 구문이 얼마나 유연한지 보여주는 또 다른 예입니다(그림 캡션을 동적으로 만들 수 있습니다).
+Sweave는 청크 옵션을 문자열로 처리하고 옵션들을 쉼표로 분할하여 구문 분석을 진행하는 반면, knitr는 R 구문을 사용합니다. 옵션이 문자값을 사용하는 경우 R에서 하는 것처럼 따옴표로 묶어야 합니다(results = 'hide' (Sweave에서는 results = hide라고 씁니다)). 청크 옵션 내에서 직접 연산을 수행하는 예제는 12.1.3절을 참조하십시오. 아래는 이 새로운 구문이 얼마나 유연한지 보여주는 또 다른 예입니다(그림 캡션을 동적으로 만들 수 있습니다).
 
 <<cap, fig.cap=paste('P값은', t.test(x)$p.value, '입니다')>>= x <- rnorm(100) boxplot(x) @
 
@@ -1115,13 +1123,13 @@ Sweave2knitr()는 이 문제를 자동으로 해결할 수 있습니다.
 
 ###### 16.1.2 옵션
 
-Sweave의 일부 옵션이 knitr에서 삭제되었으며 일부는 변경되었습니다. 여기에는 다음이 포함됩니다:
+Sweave의 일부 옵션이 knitr에서 삭제되었으며 일부는 변경되었습니다. 여기에는 다음이 포함됩니다.
 
 concordance는 주로 RStudio를 지원하기 위해 변경되었습니다. 패키지 옵션 opts_knit$get('concordance')가 TRUE이면 출력 줄 번호가 입력 줄 번호에 매핑된 input-concordance.tex라는 파일이 작성됩니다. 그 구현이 Sweave보다 덜 정확하다는 점을 유의하십시오.
 
 keep.source는 더 유연한 옵션인 tidy로 병합되었습니다.
 
-print가 삭제되었습니다. R 표현식이 인쇄될지 여부는 R 사용 경험과 일치합니다(예: x <- 1은 인쇄되지 않지만 1:10은 인쇄됩니다. 단순히 R 콘솔에서 명령을 입력한다고 상상해 보십시오). 표현식의 출력이 진정으로 보이지 않게 하려면 invisible() 함수를 사용할 수 있습니다.
+print가 삭제되었습니다. R 표현식이 인쇄될지 여부는 R 사용 경험과 일치합니다(x <- 1은 인쇄되지 않지만 1:10은 인쇄됩니다. 단순히 R 콘솔에서 명령을 입력한다고 상상해 보십시오). 표현식의 출력이 진정으로 보이지 않게 하려면 invisible() 함수를 사용할 수 있습니다.
 
 term이 삭제되었습니다(term = TRUE라고 생각하십시오).
 prefix가 삭제되었습니다(prefix = TRUE라고 생각하십시오).
@@ -1137,7 +1145,7 @@ width, height는 각각 fig.width 및 fig.height로 이름이 변경되었습니
 
 ###### 16.1.3 문제점
 
-Sweave에서 알려진 몇 가지 문제점과 자주 묻는 질문들이 knitr에서는 해결되었습니다:
+Sweave에서 알려진 몇 가지 문제점과 자주 묻는 질문들이 knitr에서는 해결되었습니다.
 
 - 빈 그림 청크는 Sweave에서 LATEX 오류를 유발하지만, knitr에서는 그림이 전혀 생성되지 않기 때문에 오류가 발생하지 않습니다. knitr는 청크에 플롯이 있을 때만 그림을 LATEX에 작성합니다.
 - lattice(및 ggplot2) 그래픽은 명시적으로 print()를 실행하지 않으면 Sweave에서 작동하지 않지만, knitr에서는 R 콘솔에서와 마찬가지로 작동합니다(이러한 플롯 객체가 최상위 환경에 나타나면 인쇄할 필요가 없습니다).
@@ -1158,15 +1166,15 @@ cacheSweave 패키지(Peng, 2012)는 캐시 시스템이라는 중요한 기능�
 
 pgfSweave 패키지(Bracken 및 Sharpsteen, 2012)는 highlight 및 cacheSweave의 기능을 결합하고 그래픽에 대한 추가 지원을 제공했습니다. 특히 글꼴 스타일 일관성을 위해 플롯도 캐시할 수 있으며 tikzDevice 패키지를 통한 TikZ 그래픽도 지원됩니다. 이 책의 저자는 pgfSweave가 출시되었을 때 Sweave에서 교체하였고, formatR 지원(tidy 옵션)에 기여했지만, 시간이 지나면서 Sweave의 변화를 따라잡는 것이 점점 더 어려워졌습니다. 이 패키지는 CRAN 저장소에서 삭제되었습니다. 어찌되었든, knitr의 디자인은 저자가 pgfSweave를 다룬 경험에서 많은 이점을 얻었습니다.
 
-brew 패키지(Horner, 2011)는 가벼운 템플릿 프레임워크이며 그 구문은 PHP(<?php ?>)와 유사합니다. 기본적으로 템플릿 태그 <% %> 내부의 R 코드를 구문 분석하고 실행합니다. 이것을 Sweave와 knitr의 인라인 R 코드라고 생각할 수 있습니다. 캐시 시스템이 있지만 직접적인 그래픽 지원은 없습니다. knitr 패키지에도 brew 구문에 대한 부분적 지원이 있는데 이것은 5장에서는 언급하지 않았습니다. 아래는 knitr를 통해 컴파일할 수 있는 예제입니다:
+brew 패키지(Horner, 2011)는 가벼운 템플릿 프레임워크이며 그 구문은 PHP(<?php ?>)와 유사합니다. 기본적으로 템플릿 태그 <% %> 내부의 R 코드를 구문 분석하고 실행합니다. 이것을 Sweave와 knitr의 인라인 R 코드라고 생각할 수 있습니다. 캐시 시스템이 있지만 직접적인 그래픽 지원은 없습니다. knitr 패키지에도 brew 구문에 대한 부분적 지원이 있는데 이것은 5장에서는 언급하지 않았습니다. 아래는 knitr를 통해 컴파일할 수 있는 예제입니다.
 
-pi 값은 <% pi %>이고, 2 곱하기 pi는 <% 2*pi %>입니다.
+pi 값은 <% pi %>이고, 2 곱하기 pi는 <% 2\*pi %>입니다.
 
-입력 파일의 확장자가 *.brew인 경우 knitr는 brew 구문을 자동으로 사용합니다. 실제로 brew는 여러 인라인 식에서 불완전한 코드 조각을 지원하므로 PHP와 정말 유사합니다. 다음은 brew에서 가져온 예시이지만 knitr는 이를 컴파일할 수 없습니다:
+입력 파일의 확장자가 \*.brew인 경우 knitr는 brew 구문을 자동으로 사용합니다. 실제로 brew는 여러 인라인 식에서 불완전한 코드 조각을 지원하므로 PHP와 정말 유사합니다. 다음은 brew에서 가져온 예시이지만 knitr는 이를 컴파일할 수 없습니다.
 
 <% for (i in c('1+1', '1+pi', '1+pi', 'sin(pi/2)')) { -%> > <%=i%> <% print(eval(parse(text=i))) %> <% } -%>
 
-R2HTML 패키지(Lecoutre, 2014)에는 R 객체를 HTML로 내보내는 많은 함수가 포함되어 있습니다. 주 기능은 S3 제네릭 함수 HTML()로, 데이터 프레임, 표, (lm()에 의해 반환된) lm 객체 등과 같은 다양한 R 객체에 적용될 수 있습니다. 아래는 iris 데이터의 하위 집합을 HTML 표로 변환한 것입니다:
+R2HTML 패키지(Lecoutre, 2014)에는 R 객체를 HTML로 내보내는 많은 함수가 포함되어 있습니다. 주 기능은 S3 제네릭 함수 HTML()로, 데이터 프레임, 표, (lm()에 의해 반환된) lm 객체 등과 같은 다양한 R 객체에 적용될 수 있습니다. 아래는 iris 데이터의 하위 집합을 HTML 표로 변환한 것입니다.
 
 library(R2HTML) HTML(head(iris[, -5], 1), "", caption = NULL)
 
@@ -1194,14 +1202,14 @@ Dexy(http://www.dexy.it)는 범용적인 설계가 돋보이는 무료 파이썬
 
 Dexy는 코드가 통합된 어떠한 형태의 기술 문서든 작성할 수 있게 해 주는 자유 형식의 문학적 문서 작성 도구입니다. Dexy는 코드가 변경되더라도 오랜 기간 올바른 문서를 쉽게 작성하고 유지 관리할 수 있도록 도와줍니다.
 
-네 가지 주요 특징은 다음과 같습니다:
+네 가지 주요 특징은 다음과 같습니다.
 
 1. 모든 언어 (소스 코드)
 2. 모든 마크업 (출력)
 3. 모든 템플릿
 4. 모든 API (프로그래밍)
 
-다국어 지원 등 Dexy와 knitr 사이에는 분명 유사점이 있습니다. Dexy의 중요한 개념은 "필터(filter)"입니다. 필터는 입력 파일을 받아서 출력 파일로 변환하는데, 이는 쉘 스크립트의 파이프 |와 비슷합니다. Dexy의 필터는 사실 knitr에 있는 개념들의 조합입니다. 필터는 출력을 렌더링하거나(예: 마크다운에서 HTML로), 프로그래밍 언어를 실행하거나(knitr의 언어 엔진처럼), 또는 knitr의 청크 후크와 같이 추가 작업을 수행할 수 있습니다.
+다국어 지원 등 Dexy와 knitr 사이에는 분명 유사점이 있습니다. Dexy의 중요한 개념은 "필터(filter)"입니다. 필터는 입력 파일을 받아서 출력 파일로 변환하는데, 이는 쉘 스크립트의 파이프 |와 비슷합니다. Dexy의 필터는 사실 knitr에 있는 개념들의 조합입니다. 필터는 출력을 렌더링하거나(마크다운에서 HTML로), 프로그래밍 언어를 실행하거나(knitr의 언어 엔진처럼), 또는 knitr의 청크 후크와 같이 추가 작업을 수행할 수 있습니다.
 
 일반적으로 Dexy는 컴퓨터 코드와 템플릿을 분리하는데, 이는 장단점이 될 수 있습니다. 좋은 점은 소스 스크립트를 재사용할 수 있다는 것이고, 나쁜 점은 보고서 환경과 소스 코드 사이를 앞뒤로 왔다 갔다 해야 한다는 점입니다. 기본적으로 knitr는 보고서에 코드 청크를 직접 삽입하지만 9장에 소개된 것처럼 코드 청크를 외부화할 수도 있습니다.
 
@@ -1219,7 +1227,7 @@ PythonTEX는 LATEX 내에서 빠르고 사용자 친화적인 파이썬 접근 �
 - y = 345
 - z = x + y z def f(expr):
 
-return(expr**4)
+return(expr\*\*4)
 
 - f(x) print('콘솔에서 파이썬이 인사합니다!') \end{pyconsole}
 
@@ -1235,7 +1243,7 @@ IPython(http://ipython.org)은 코드, 텍스트, 수식 표현, 인라인 플�
 
 보고서 생성과 관련하여 가장 주목할 만한 기능은 웹 기반 노트북입니다. 웹 브라우저에서 파이썬 명령으로 작업하고 결과(수치 및 그래픽 결과 모두 포함)를 실시간으로 확인할 수 있으며 노트북에 콘텐츠를 추가 입력함에 따라 지속적으로 노트북이 업데이트될 수 있습니다. 이는 knitr에서 코드 청크를 작성하는 것과 매우 비슷합니다.
 
-IPython 노트북은 확장자가 *.ipynb인 JSON 파일로 저장할 수 있으며 다른 사람과 공유할 수 있습니다. 노트북에는 출력이 포함될 수도 있고 포함되지 않을 수도 있습니다. 출력이 없는 노트북은 knitr용 소스 문서(예: Rnw 및 Rmd 문서)와 유사합니다.
+IPython 노트북은 확장자가 \*.ipynb인 JSON 파일로 저장할 수 있으며 다른 사람과 공유할 수 있습니다. 노트북에는 출력이 포함될 수도 있고 포함되지 않을 수도 있습니다. 출력이 없는 노트북은 knitr용 소스 문서(Rnw 및 Rmd 문서)와 유사합니다.
 
 IPython에서 영감을 받아 knitr도 유사한 웹 노트북(하지만 기능이 더 적은)을 얻었으며 이에 대해서는 3.2.2절에서 언급했습니다.
 
@@ -1247,7 +1255,7 @@ R 및 파이썬 패키지 외에도 다른 프로그램에 여러 도구가 있�
 
 ###### 16.4.1 Org-mode
 
-Org-mode는 일반 텍스트 마크업 언어이며 Emacs 텍스트 편집기에 구현되어 있습니다(Schulte 등, 2012). 문학적 프로그래밍과 재현 가능한 연구(동적 문서의 관점에서)를 모두 지원합니다. 이는 다소간 WEB 및 noweb과 같은 초기 문학적 프로그래밍 구현의 구문을 따릅니다. 즉, 코드 청크와 텍스트 청크(텍스트 청크는 종종 "산문(prose)"이라고 불림)의 개념이 있습니다. Org-mode의 코드 청크는 다음과 같습니다:
+Org-mode는 일반 텍스트 마크업 언어이며 Emacs 텍스트 편집기에 구현되어 있습니다(Schulte 등, 2012). 문학적 프로그래밍과 재현 가능한 연구(동적 문서의 관점에서)를 모두 지원합니다. 이는 다소간 WEB 및 noweb과 같은 초기 문학적 프로그래밍 구현의 구문을 따릅니다. 즉, 코드 청크와 텍스트 청크(텍스트 청크는 종종 "산문(prose)"이라고 불림)의 개념이 있습니다. Org-mode의 코드 청크는 다음과 같습니다.
 
 #+name: c-chunk #+begin_src C
 
@@ -1257,7 +1265,7 @@ return 0; }
 
 #+end_src
 
-비교를 위해, 동일한 청크를 knitr에서는 다음과 같이 씁니다: <<c-chunk, engine='c'>>= int main(){
+비교를 위해, 동일한 청크를 knitr에서는 다음과 같이 씁니다. <<c-chunk, engine='c'>>= int main(){
 
 return 0;
 
@@ -1265,7 +1273,7 @@ return 0;
 
 메타데이터는 청크 헤더에 저장됩니다. Org-mode는 출력을 LATEX 또는 HTML 형식으로 하여 어떠한 입력 언어도 지원할 수 있습니다.
 
-Schulte 등 (2012)은 기존 도구들의 문학적 프로그래밍 기능(예: Sweave에는 없는 기능)을 언급했는데, 저희는 이 책에서 보고서 작성자에게 별로 흥미로울 것 같지 않아 강조하지 않았습니다. 사실 knitr에도 코드 청크를 재구성하는 기능이 있습니다(9장 참조). 아래는 청크 B를 나중에 정의하지만 이전 청크 A에 삽입하는 간단한 예입니다.
+Schulte 등 (2012)은 기존 도구들의 문학적 프로그래밍 기능(Sweave에는 없는 기능)을 언급했는데, 저희는 이 책에서 보고서 작성자에게 별로 흥미로울 것 같지 않아 강조하지 않았습니다. 사실 knitr에도 코드 청크를 재구성하는 기능이 있습니다(9장 참조). 아래는 청크 B를 나중에 정의하지만 이전 청크 A에 삽입하는 간단한 예입니다.
 
 - <<A>>= df <- data.frame(x = 1:10, y = rnorm(10))
 - <<B>> coef(fit) @
@@ -1298,14 +1306,14 @@ SASweave(http://homepage.cs.uiowa.edu/~rlenth/SASweave)는 SAS와 R을 사용한
 
 knitr에는 R 설명서(Rd), PDF 매뉴얼, 웹사이트 등 세 가지 유형의 문서화 방식이 있습니다.
 
-R 설명서는 roxygen2(Wickham 등, 2015)를 기반으로 하며, roxygen 주석(#') 안에 태그를 달아서 Rd를 작성할 수 있습니다. 이 주석들은 실제 Rd로 변환됩니다. 다음은 roxygen 주석의 예입니다:
+R 설명서는 roxygen2(Wickham 등, 2015)를 기반으로 하며, roxygen 주석(#') 안에 태그를 달아서 Rd를 작성할 수 있습니다. 이 주석들은 실제 Rd로 변환됩니다. 다음은 roxygen 주석의 예입니다.
 
 # @author Yihui Xie
 
-이것은 Rd로 변환되면 다음과 같습니다: \author{Yihui Xie}
+이것은 Rd로 변환되면 다음과 같습니다. \author{Yihui Xie}
 
-roxygen에는 @usage, @param, @return 및 @examples와 같은 일련의 태그가 있으며 이는 Rd의 \usage{}, \arguments{\item{}}, \value{} 및 \examples{}에 해당합니다. 공식 Rd에 비해 roxygen 주석을 사용하는 것의 장점은 설명서와 소스 코드를 같은 파일에 유지할 수 있다는 것입니다. 이에 반해 R 패키지를 작성하는 공식적인 접근 방식은 R 소스를 R/ 디렉터리 아래에 작성하고 매뉴얼 페이지는 man/ 아래에 *.Rd 파일로 작성하는 것입니다. 이 방식은 두 파일 사이를 왔다 갔다 해야 하므로 불편하며, R 소스를 업데이트하고 설명서를 업데이트하는 것을 잊어버리기 쉽습니다. roxygen 주석은 소스의 R 함수 바로 위에 표시되므로 소스와 설명서를 모두 유지 관리하기가 훨씬 쉽습니다.
-하지만 왜 모든 문서에 Rnw 구문을 사용하지 않는 것일까요? 그 결정은 저술 형식에 따라 더 자연스러운 구문을 사용하고 싶었기 때문입니다. < <> >=는 어떤 문서 형식에서도 유효한 마크업이 아닙니다(예: LATEX 명령도 아니고 HTML 태그도 아닙니다). 사실 Sweave에는 LATEX와 유사한 다른 구문 세트가 있습니다. 예:
+roxygen에는 @usage, @param, @return 및 @examples와 같은 일련의 태그가 있으며 이는 Rd의 \usage{}, \arguments{\item{}}, \value{} 및 \examples{}에 해당합니다. 공식 Rd에 비해 roxygen 주석을 사용하는 것의 장점은 설명서와 소스 코드를 같은 파일에 유지할 수 있다는 것입니다. 이에 반해 R 패키지를 작성하는 공식적인 접근 방식은 R 소스를 R/ 디렉터리 아래에 작성하고 매뉴얼 페이지는 man/ 아래에 \*.Rd 파일로 작성하는 것입니다. 이 방식은 두 파일 사이를 왔다 갔다 해야 하므로 불편하며, R 소스를 업데이트하고 설명서를 업데이트하는 것을 잊어버리기 쉽습니다. roxygen 주석은 소스의 R 함수 바로 위에 표시되므로 소스와 설명서를 모두 유지 관리하기가 훨씬 쉽습니다.
+하지만 왜 모든 문서에 Rnw 구문을 사용하지 않는 것일까요? 그 결정은 저술 형식에 따라 더 자연스러운 구문을 사용하고 싶었기 때문입니다. < <> >=는 어떤 문서 형식에서도 유효한 마크업이 아닙니다(LATEX 명령도 아니고 HTML 태그도 아닙니다). 사실 Sweave에는 LATEX와 유사한 다른 구문 세트가 있습니다. 예:
 
 \begin{Scode}{fig = TRUE, echo = FALSE} library("graphics") boxplot(Ozone ~ Month, data = airquality) \end{Scode}
 
@@ -1341,7 +1349,7 @@ Falcon, S. (2013). weaver: Tools and extensions for processing Sweave documents.
 
 Fomel, S. 및 Claerbout, J. (2009). Guest editors’ introduction: Reproducible research. Computing in Science & Engineering, 11(1):5–7.
 
-Francois, R. (2013). highlight: Syntax highlighter. R package version 0.4.3. 
+Francois, R. (2013). highlight: Syntax highlighter. R package version 0.4.3.
 
 Friedl, J. (2006). Mastering Regular Expressions. O’Reilly Media, Incorporated.
 
@@ -1382,9 +1390,9 @@ Lenth, R. V. 및 Højsgaard, S. (2007). Sasweave: Literate programming using sas
 
 Murdoch, D. (2012). tables: Formula-driven table generation. R package version 0.7.
 
-Murphy, D. (2012). Changes and additions to ggplot2 0.9.0. URL: https://github.com/djmurphy420/ggplot2-transition-guide. 
+Murphy, D. (2012). Changes and additions to ggplot2 0.9.0. URL: https://github.com/djmurphy420/ggplot2-transition-guide.
 
-Murrell, P. (2011). R Graphics, Second Edition. Chapman & Hall/CRC. 
+Murrell, P. (2011). R Graphics, Second Edition. Chapman & Hall/CRC.
 
 Murrell, P. 및 Ripley, B. (2006). Non-standard fonts in PostScript and PDF graphics. R News, 6(2):41–47.
 

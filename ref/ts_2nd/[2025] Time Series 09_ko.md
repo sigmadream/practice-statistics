@@ -1,4 +1,3 @@
-
 ---
 
 <a role="toc_link" id="appA"></a>
@@ -555,7 +554,7 @@ x^t에 동일한 커널을 다시 적용하면,
 
 ## A.10 테일러 전개 (Taylor Expansion)
 
-테일러 정리는 확률과 통계에서 중요하며, 무엇보다 수치적 최적화(예: [섹션 4.5](#chapter4#sec4_5))의 필수 구성 요소입니다. 정리는 다음과 같습니다.
+테일러 정리는 확률과 통계에서 중요하며, 무엇보다 수치적 최적화([섹션 4.5](#chapter4#sec4_5))의 필수 구성 요소입니다. 정리는 다음과 같습니다.
 
 정리 A.10 253\. (테일러 정리, Taylor's Theorem). _f가 구간 \[a,b\] 상의 실수값 함수이고 n이 양의 정수라고 가정합니다._ f(x)_의_ (n−1)_계 도함수인_ f(n−1)(x)_가 \[a,b\]에서 연속이고 n계 도함수인_ f(n)(x)_가_ (a,b)_에 존재하면,_ x∈\[a,b\]_에 대해,_
 
@@ -582,7 +581,7 @@ a\=0인 특수한 경우를 맥로린 급수(Maclaurin series)라고 합니다. 
 ---
 
 <a role="toc_link" id="appB"></a>
-255\. 
+255\.
 
 # B 복소수 입문 (B Complex Number Primer)
 
@@ -600,15 +599,13 @@ x±\=−b±b2−4ac2a.
 
 b2−4ac≥0이면 이 공식은 두 개의 실수 해를 제공합니다. 그러나 b2−4ac<0이면 실수 해는 존재하지 않습니다.
 
-
-
-예를 들어, 방정식 x2+1\=0은 실수 해를 가지지 않는데, 이는 임의의 실수 _x_에 대해 제곱 _x_2이 음수가 아니기 때문입니다. 그럼에도 불구하고 다음과 같은 수 _i_가 존재한다고 가정하는 것은 매우 유용합니다.
+예를 들어, 방정식 x2+1\=0은 실수 해를 가지지 않는데, 이는 임의의 실수 *x*에 대해 제곱 *x_2이 음수가 아니기 때문입니다. 그럼에도 불구하고 다음과 같은 수 \_i*가 존재한다고 가정하는 것은 매우 유용합니다.
 
 i2\=−1,
 
 따라서 x2\=−1의 두 해는 ±i가 됩니다.
 
-임의의 복소수(complex number)는 z\=a+bi 형태의 수식입니다. 여기서 a\=ℜ(z)와 b\=ℑ(z)는 실수이며, 각각 _z_의 실수부(real part)와 허수부(imaginary part)라고 부릅니다.
+임의의 복소수(complex number)는 z\=a+bi 형태의 수식입니다. 여기서 a\=ℜ(z)와 b\=ℑ(z)는 실수이며, 각각 *z*의 실수부(real part)와 허수부(imaginary part)라고 부릅니다.
 
 임의의 복소수는 두 개의 실수로 지정되므로, 복소수 z\=a+bi에 대해 평면상의 좌표가 (a,b)인 점을 찍음으로써 시각화할 수 있습니다. 이러한 복소수들을 표시하는 평면을 복소 평면(complex plane)이라고 부르며, [그림 B.1](#appB#figB_1)에 나타나 있습니다.
 
@@ -622,7 +619,7 @@ z+w\=(a+bi)+(c+di)\=(a+c)+(b+d)i,
 
 z−w\=(a+bi)−(c+di)\=(a−c)+(b−d)i.
 
-256\. _z_와 _w_를 곱할 때는 다음과 같습니다.
+256\. *z*와 *w*를 곱할 때는 다음과 같습니다.
 
 zw\=(a+bi)(c+di)\=a(c+di)+bi(c+di)\=ac+adi+bci+bdi2\=(ac−bd)+(ad+bc)i
 
@@ -634,7 +631,7 @@ zw\=a+bic+di\=a+bic+di⋅c−dic−di\=(a+bi)(c−di)(c+di)(c−di)\=ac+bdc2+d2+
 
 1i\=−i,
 
-이는 분자에서 a\=1, b\=0이고 분모에서 c\=0, d\=1이기 때문입니다. 이 결과는 1/i가 _i_의 역수여야 한다는 점에서도 타당하며, 실제로도 그렇습니다.
+이는 분자에서 a\=1, b\=0이고 분모에서 c\=0, d\=1이기 때문입니다. 이 결과는 1/i가 *i*의 역수여야 한다는 점에서도 타당하며, 실제로도 그렇습니다.
 
 1i i\=−i⋅i\=−i2\=1.
 
@@ -648,9 +645,9 @@ zw\=a+bic+di\=a+bic+di⋅c−dic−di\=(a+bi)(c−di)(c+di)(c−di)\=ac+bdc2+d2+
 
 |z|\=a2+b2
 
-즉, |z|는 [그림 B.1](#appB#figB_1)에 표시된 것처럼 복소 평면에서 원점으로부터 점 _z_까지의 거리입니다.
+즉, |z|는 [그림 B.1](#appB#figB_1)에 표시된 것처럼 복소 평면에서 원점으로부터 점 *z*까지의 거리입니다.
 
-[그림 B.1](#appB#figB_1)의 각도 _θ_는 복소수 _z_의 편각(argument)이라고 부르며, 다음과 같습니다.
+[그림 B.1](#appB#figB_1)의 각도 *θ*는 복소수 *z*의 편각(argument)이라고 부르며, 다음과 같습니다.
 
 argz\=θ,
 
@@ -668,15 +665,15 @@ tan(θ)\=sin(θ)cos(θ)\=ba,
 
 θ\=arctanba.
 
-임의의 _θ_에 대해, 다음 수는
+임의의 *θ*에 대해, 다음 수는
 
 z\=cos(θ)+isin(θ)
 
-단위 원 위에 위치하며, 결과적으로 길이가 1입니다. 그 편각은 argz\=θ입니다. 역으로, 단위 원 위의 임의의 복소수는 cos(θ)+isin(θ) 형태를 가지며, 여기서 _θ_는 그 복소수의 편각입니다.
+단위 원 위에 위치하며, 결과적으로 길이가 1입니다. 그 편각은 argz\=θ입니다. 역으로, 단위 원 위의 임의의 복소수는 cos(θ)+isin(θ) 형태를 가지며, 여기서 *θ*는 그 복소수의 편각입니다.
 
 ## B.3 복소 지수 함수 (Complex Exponential Function)
 
-복소수 _z_에 대해, 이제 ez\=ea+ib의 의미에 초점을 맞추겠습니다. 먼저 a\=0인 경우를 고려해 보겠습니다.
+복소수 *z*에 대해, 이제 ez\=ea+ib의 의미에 초점을 맞추겠습니다. 먼저 a\=0인 경우를 고려해 보겠습니다.
 
 정의 B.1 (Definition B.1). [본문으로 돌아가기.⏎](#appB#bdefiB_1) _임의의 실수 b에 대해 다음과 같이 설정합니다._
 
@@ -702,7 +699,7 @@ eiπ+1\=0,
 
 이 공식은 수학에서 가장 기본적인 다섯 가지 양인 _e_, _π_, _i_, 1, 0을 결합합니다.
 
-[정의 B.1](#appB#defiB_1)은 타당해 보이는데, 왜냐하면 _e_ _x_의 테일러 급수에 _bi_를 대입하면 다음과 같은 결과를 얻기 때문입니다. 실수 _x_를 복소수 _ib_로 대체할 수 있다고 가정합니다.
+[정의 B.1](#appB#defiB_1)은 타당해 보이는데, 왜냐하면 _e_ *x*의 테일러 급수에 *bi*를 대입하면 다음과 같은 결과를 얻기 때문입니다. 실수 *x*를 복소수 *ib*로 대체할 수 있다고 가정합니다.
 
 ebi\=1+bi+(bi)22!+(bi)33!+(bi)44!+⋯\=1+bi−b22!−ib33!+b44!+ib55!−⋯\=1−b2/2!+b4/4!−⋯+i(b−b3/3!+b5/5!−⋯)\=cos(b)+isin(b),
 
@@ -712,7 +709,7 @@ eibeid\=\[cos(b)+isin(b)\]\[cos(d)+isin(d)\]\=cos(b+d)+isin(b+d)\=ei(b+d),
 
 모든 복소수에 대해 ex⋅ey\=ex+y가 참이 되도록 요구하면, 임의의 복소수 a+bi에 대한 ea+bi의 정의가 도출됩니다.
 
-정의 B.2 (Definition B.2). 259\. _임의의 복소수_ a+bi_에 대해 다음과 같이 설정합니다._
+정의 B.2 (Definition B.2). 259\. _임의의 복소수_ a+bi*에 대해 다음과 같이 설정합니다.*
 
 ea+bi\=ea⋅ebi\=ea\[cos(b)+isin(b)\].
 
@@ -720,7 +717,7 @@ ea+bi\=ea⋅ebi\=ea\[cos(b)+isin(b)\].
 
 ### 거듭제곱 (Powers)
 
-복소수를 극좌표 z\=reiθ로 작성하면, 정수 _n_에 대해 다음과 같습니다.
+복소수를 극좌표 z\=reiθ로 작성하면, 정수 *n*에 대해 다음과 같습니다.
 
 zn\=rneinθ.
 
@@ -746,22 +743,22 @@ I\=∫e(3+2i)xdx\=e(3+2i)x3+2i+C
 
 ∫eaxdx\=1aeax+C,
 
-이는 _a_가 복소수일 때도 성립합니다.
+이는 *a*가 복소수일 때도 성립합니다.
 
 ### 합 (Summations)
 
-다음 결과는 본 서의 여러 곳에서 사용됩니다. 260\. 
+다음 결과는 본 서의 여러 곳에서 사용됩니다. 260\.
 
-속성 B.3 (Property B.3). _임의의 양의 정수 n과 정수_ j,k\=0,1,…,n−1_에 대해 다음이 성립합니다._
+속성 B.3 (Property B.3). _임의의 양의 정수 n과 정수_ j,k\=0,1,…,n−1*에 대해 다음이 성립합니다.*
 
-1. j\=0 _또는_ j\=n/2_인 경우를 제외하고,_  
-∑t\=1ncos2(2πtj/n)\=∑t\=1nsin2(2πtj/n)\=n/2.
-2. j\=0 _또는_ j\=n/2_인 경우,_  
-∑t\=1ncos2(2πtj/n)\=n_이지만_ ∑t\=1nsin2(2πtj/n)\=0_입니다._
-3. j≠k_인 경우,_  
-∑t\=1ncos(2πtj/n)cos(2πtk/n)\=∑t\=1nsin(2πtj/n)sin(2πtk/n)\=0.
+1. j\=0 _또는_ j\=n/2*인 경우를 제외하고,*  
+   ∑t\=1ncos2(2πtj/n)\=∑t\=1nsin2(2πtj/n)\=n/2.
+2. j\=0 _또는_ j\=n/2*인 경우,*  
+   ∑t\=1ncos2(2πtj/n)\=n*이지만* ∑t\=1nsin2(2πtj/n)\=0*입니다.*
+3. j≠k*인 경우,*  
+   ∑t\=1ncos(2πtj/n)cos(2πtk/n)\=∑t\=1nsin(2πtj/n)sin(2πtk/n)\=0.
 4. _또한 임의의 j와 k에 대해,_  
-∑t\=1ncos(2πtj/n)sin(2πtk/n)\=0.
+   ∑t\=1ncos(2πtj/n)sin(2πtk/n)\=0.
 
 _증명._ 대부분의 결과가 같은 방식으로 증명되므로, (a)의 첫 번째 부분만 보여드리겠습니다. 식 (B.1)을 사용하면,
 
@@ -781,13 +778,13 @@ Sn\=z+z2+⋯+zn,z Sn\=z+ z2+⋯+zn+zn+1.
 
 (1−z)Sn\=z−zn+1,
 
-이것이 (B.2)입니다. z\=1이면, 이는 1을 _n_번 더한 것이므로 Sn\=n입니다.
+이것이 (B.2)입니다. z\=1이면, 이는 1을 *n*번 더한 것이므로 Sn\=n입니다.
 
 결과적으로, j\=0,1,…,n−1에 대해 ωj\=j/n 형태의 임의의 주파수에 대해,
 
 ∑t\=1ne2πiωjt\={0if ωj≠0nif ωj\=0.
 
-ω\=0일 때 합은 1을 _n_번 더한 것인 반면, ω≠0일 때 (B.2)의 분자는 다음과 같습니다.
+ω\=0일 때 합은 1을 *n*번 더한 것인 반면, ω≠0일 때 (B.2)의 분자는 다음과 같습니다.
 
 1−e2πin(j/n)\=1−e2πij\=1−\[cos(2πj)+isin(2πj)\]\=0.
 
@@ -795,67 +792,66 @@ Sn\=z+z2+⋯+zn,z Sn\=z+ z2+⋯+zn+zn+1.
 
 우리에게 유용한 몇 가지 항등식을 나열합니다. 이것들은 복소 지수함수를 사용하여 쉽게 증명할 수 있으며, 일부는 다른 것들로부터 직접 도출됩니다.
 
-(i)cos2(α)+sin2(α)\=1.(ii)sin(α±β)\=sin(α)cos(β)±cos(α)sin(β).(iii)cos(α±β)\=cos(α)cos(β)∓sin(α)sin(β).(iv) 2cos(α)cos(β)\=cos(α+β)+cos(α−β).(v)sin(2α)\=2sin(α)cos(α).(vi)cos(2α)\=cos2(α)−sin2(α)\=2cos2(α)−1.(B.3)262쪽은 공백입니다. 
+(i)cos2(α)+sin2(α)\=1.(ii)sin(α±β)\=sin(α)cos(β)±cos(α)sin(β).(iii)cos(α±β)\=cos(α)cos(β)∓sin(α)sin(β).(iv) 2cos(α)cos(β)\=cos(α+β)+cos(α−β).(v)sin(2α)\=2sin(α)cos(α).(vi)cos(2α)\=cos2(α)−sin2(α)\=2cos2(α)−1.(B.3)262쪽은 공백입니다.
 
 <a role="toc_link" id="bibref1"></a>
-271\. 
+271\.
 
 # 참고문헌 (References)
 
-* Akaike, H. (1974). A new look at the statistical model identification. IEEE Transactions on Automatic Control, 19(6):716–723.[본문으로 돌아가기.⏎](#chapter3#b3refbib_1)
-* Blackman, R. and Tukey, J. (1959). The measurement of power spectra, from the point of view of communications engineering. Dover, pages 185–282.[본문으로 돌아가기.⏎](#chapter7#b7refbib_2)
-* Bloomfield, P. (2004). Fourier Analysis of Time Series: An Introduction. John Wiley & Sons.[본문으로 돌아가기.⏎](#chapter7#b7refbib_3)
-* Bogert, R., Healy, M., and Tukey, J. (1963). The Quefrency Alanysis of Time Series for Echoes: Cepstrum, Pseudo-Autocovariance, Cross-Cepstrum and Saphe Cracking. In _Proc. Symposium Time Series Analysis, 1963_, pages 209–243.[본문으로 돌아가기.⏎](#chapter7#b7refbib_4)
-* Bollerslev, T. (1986). Generalized autoregressive conditional heteroskedasticity. J. Econometrics, 31:307–327.[본문으로 돌아가기.⏎](#chapter8#b8refbib_5)
-* Bollerslev, T., Engle, R. F., and Nelson, D. B. (1994). ARCH models. Handbook of Econometrics, 4:2959–3038.[본문으로 돌아가기.⏎](#chapter8#b8refbib_6)
-* Box, G. and Jenkins, G. (1970). Time Series Analysis, Forecasting, and Control. Holden–Day.[본문으로 돌아가기.⏎](#chapter5#b5refbib_7)
-* Brockwell, P. J. and Davis, R. A. (2013). Time Series: Theory and Methods. Springer Science & Business Media.[본문으로 돌아가기.⏎](#chapter7#b7refbib_8)
-* CDC (2023). Flu Season. Centers for Disease Control and Prevention. <https://www.cdc.gov/flu/about/season/index.html>.[본문으로 돌아가기.⏎](#chapter8#b8refbib_9)
-* Chan, N. H. (2002). Time Series Applications to Finance. John Wiley & Sons, Inc.[본문으로 돌아가기.⏎](#chapter8#b8refbib_10)
-* Cleveland, W. S. (1979). Robust locally weighted regression and smoothing scatterplots. Journal of the American Statistical Association, 74(368):829–836.[본문으로 돌아가기.⏎](#chapter3#b3refbib_11)
-* Cochrane, D. and Orcutt, G. H. (1949). Application of least squares regression to relationships containing auto-correlated error terms. Journal of the American Statistical Association, 44(245):32–61.272\. [본문으로 돌아가기.⏎](#chapter5#b5refbib_12)
-* Cooley, J. W. and Tukey, J. W. (1965). An algorithm for the machine calculation of complex Fourier series. Mathematics of Computation, 19(90):297–301.[본문으로 돌아가기.⏎](#chapter7#b7refbib_13)
-* Edelstein-Keshet, L. (2005). Mathematical Models in Biology. Society for Industrial and Applied Mathematics, Philadelphia.[본문으로 돌아가기.⏎](#chapter1#b1refbib_14)
-* Efron, B. and Tibshirani, R. J. (1994). An Introduction to the Bootstrap. CRC Press.[본문으로 돌아가기.⏎](#chapter8#b8refbib_15)
-* Engle, R. F. (1982). Autoregressive conditional heteroscedasticity with estimates of the variance of United Kingdom inflation. Econometrica, 50:987–1007.[본문으로 돌아가기.⏎](#chapter8#b8refbib_16)
-* Fabio Di Narzo, A., Aznarte, J. L., and Stigler, M. (2009). _tsDyn: Time series analysis based on dynamical systems theory_. <https://CRAN.R-project.org/package=tsDyn>.
-* Freund, J. E. and Walpole, R. E. (1986). Mathematical Statistics. Prentice-Hall, 4th edition. <https://archive.org/details/mathematical%5Fstatistics>.[본문으로 돌아가기.⏎](#appA#brefbib_18)
-* Gentle, J. E. (2003). Random Number Generation and Monte Carlo Methods. Springer.[본문으로 돌아가기.⏎](#chapter1#b1refbib_19)
-* Granger, C. W. and Joyeux, R. (1980). An introduction to long-memory time series models and fractional differencing. Journal of Time Series Analysis, 1(1):15–29.[본문으로 돌아가기.⏎](#chapter8#b8refbib_20)
-* Grenander, U. and Rosenblatt, M. (2008). Statistical Analysis of Stationary Time Series. American Mathematical Soc.[본문으로 돌아가기.⏎](#chapter3#b3refbib_21)
-* Hansen, J. and Lebedeff, S. (1987). Global trends of measured surface air temperature. Journal of Geophysical Research: Atmospheres, 92(D11):13345–13372.[본문으로 돌아가기.⏎](#chapter3#b3refbib_22)
-* Hansen, J., Sato, M., Ruedy, R., Lo, K., Lea, D. W., and Medina-Elizade, M. (2006). Global temperature change. Proceedings of the National Academy of Sciences, 103(39):14288–14293.[본문으로 돌아가기.⏎](#chapter1#b1refbib_23)
-* Hosking, J. R. (1981). Fractional differencing. Biometrika, 68(1):165–176.[본문으로 돌아가기.⏎](#chapter8#b8refbib_24)
-* Hurst, H. E. (1951). Long-term storage capacity of reservoirs. Trans. Amer. Soc. Civil Eng., 116:770–799.[본문으로 돌아가기.⏎](#chapter8#b8refbib_25)
-* Hurvich, C. M. and Tsai, C.-L. (1989). Regression and time series model selection in small samples. Biometrika, 76(2):297–307.[본문으로 돌아가기.⏎](#chapter3#b3refbib_26)
-* Hyndman, R. J. and Khandakar, Y. (2008). Automatic time series forecasting: the forecast package for R. Journal of Statistical Software, 27(3):1–22\. <https://CRAN.R-project.org/package=forecast>.273\.
-* IMSL (2020). IMSL Numerical Libraries: Auto Arima. <https://www.imsl.com/blog/auto-arima>.[본문으로 돌아가기.⏎](#chapter4#b4refbib_28)
-* Johnson, R. A. and Wichern, D. W. (2002). Applied Multivariate Statistical Analysis. Prentice Hall.[본문으로 돌아가기.⏎](#chapter3#b3refbib_29)
-* Kalman, R. E. (1960). A new approach to linear filtering and prediction problems. Journal of Basic Engineering, 82(1):35–45.[본문으로 돌아가기.⏎](#chapter8#b8refbib_30)
-* Kalman, R. E. and Bucy, R. S. (1961). New results in linear filtering and prediction theory. Journal of Basic Engineering, 83(1):95–108.[본문으로 돌아가기.⏎](#chapter8#b8refbib_31)
-* Kitchin, J. (1923). Cycles and trends in economic factors. The Review of Economic Statistics, pages 10–16.[본문으로 돌아가기.⏎](#chapter3#b3refbib_32)
-* McLeod, A. I. and Hipel, K. W. (1978). Preservation of the rescaled adjusted range: 1\. A reassessment of the Hurst phenomenon. Water Resources Research, 14(3):491–508.[본문으로 돌아가기.⏎](#chapter8#b8refbib_33)
-* McQuarrie, A. D. and Tsai, C.-L. (1998). Regression and Time Series Model Selection. World Scientific.[본문으로 돌아가기.⏎](#chapter3#b3refbib_34)
-* Parzen, E. (1983). Autoregressive Spectral Estimation. Handbook of Statistics, 3:221–247.[본문으로 돌아가기.⏎](#chapter7#b7refbib_35)
-* Pozzer, A., Anenberg, S., Dey, S., Haines, A., Lelieveld, J., and Chowdhury, S. (2023). Mortality attributable to ambient air pollution: A review of global estimates. GeoHealth, 7(1):e2022GH000711.[본문으로 돌아가기.⏎](#chapter3#b3refbib_36)
-* Press, W. H., Teukolsky, S. A., Vetterling, W. T., and Flannery, B. P. (2007). Numerical Recipes: The Art of Scientific Computing. Cambridge University Press.[본문으로 돌아가기.⏎](#chapter1#b1refbib_37)
-* R Core 기여자 (2025). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.[본문으로 돌아가기.⏎](#preface1#brefbib_38)
-* Ryan, J. A. and Ulrich, J. M. (2024). _xts: eXtensible Time Series_. <https://CRAN.R-project.org/package=xts>.
-* Schwarz, G. (1978). Estimating the dimension of a model. The Annals of Statistics, 6(2):461–464.[본문으로 돌아가기.⏎](#chapter3#b3refbib_40)
-* Shephard, N. (1996). Statistical aspects of arch and stochastic volatility. Monographs on Statistics and Applied Probability, 65:1–68.[본문으로 돌아가기.⏎](#chapter8#b8refbib_41)
-* Shewhart, W. A. (1931). Economic Control of Quality of Manufactured Product. ASQ Quality Press.274\. [본문으로 돌아가기.⏎](#chapter5#b5refbib_42)
-* Shumway, R., Azari, A., and Pawitan, Y. (1988). Modeling mortality fluctuations in Los Angeles as functions of pollution and weather effects. Environmental Research, 45(2):224–241.[본문으로 돌아가기.⏎](#chapter3#b3refbib_43)
-* Shumway, R. and Stoffer, D. (2025). Time Series Analysis and Its Applications: With R Examples. Springer, New York, 5th edition.[본문으로 돌아가기.⏎](#chapter4#b4refbib_44)
-* Shumway, R. H. and Verosub, K. L. (1992). State space modeling of paleoclimatic time series. In _Proc. 5th Int. Meeting Stat. Climatol_, pages 22–26.[본문으로 돌아가기.⏎](#chapter3#b3refbib_45)
-* Stoffer, D. S. (2026). _astsa: Applied Statistical Time Series Analysis_. <https://CRAN.R-project.org/package=astsa>.
-* Sugiura, N. (1978). Further analysts of the data by Akaike's information criterion and the finite corrections: Further analysts of the data by Akaike's. Communications in Statistics-Theory and Methods, 7(1):13–26.[본문으로 돌아가기.⏎](#chapter3#b3refbib_47)
-* Tong, H. (1983). Threshold Models in Non-linear Time Series Analysis. Springer-Verlag, New York.[본문으로 돌아가기.⏎](#chapter8#b8refbib_48)
-* Trapletti, A. and Hornik, K. (2024). _tseries: Time Series Analysis and Computational Finance_. <https://CRAN.R-project.org/package=tseries>.
-* Tsay, R., Chen, R., and Liu, X. (2023). _NTS: Nonlinear Time Series Analysis_. <https://CRAN.R-project.org/package=NTS>.
-* Tsay, R. S. (2005). Analysis of Financial Time Series, volume 543. John Wiley & Sons.[본문으로 돌아가기.⏎](#chapter8#b8refbib_51)
-* Veenstra, J. Q. (2012). Persistence and Anti-persistence: Theory and Software. PhD thesis, Western University. <https://CRAN.R-project.org/package=arfima>.
-* Winters, P. R. (1960). Forecasting sales by exponentially weighted moving averages. Management Science, 6(3):324–342.[본문으로 돌아가기.⏎](#chapter5#b5refbib_53)
-* Wold, H. (1954). Causality and econometrics. Econometrica: Journal of the Econometric Society, pages 162–177.[본문으로 돌아가기.⏎](#chapter2#b2refbib_54)
-* Wuertz, D., Chalabi, Y., Setz, T., Maechler, M., and Boshnakov, G. N. (2024). _fGarch: Rmetrics - Autoregressive Conditional Heteroskedastic Modelling_. <https://CRAN.R-project.org/package=fGarch>.
-* Young, P. C. and Pedregal, D. J. (1999). Macro-economic relativity: government spending, private investment and unemployment in the usa 1948–1998. Structural Change and Economic Dynamics, 10(3-4):359–380.[본문으로 돌아가기.⏎](#chapter3#b3refbib_56)
-
+- Akaike, H. (1974). A new look at the statistical model identification. IEEE Transactions on Automatic Control, 19(6):716–723.[본문으로 돌아가기.⏎](#chapter3#b3refbib_1)
+- Blackman, R. and Tukey, J. (1959). The measurement of power spectra, from the point of view of communications engineering. Dover, pages 185–282.[본문으로 돌아가기.⏎](#chapter7#b7refbib_2)
+- Bloomfield, P. (2004). Fourier Analysis of Time Series: An Introduction. John Wiley & Sons.[본문으로 돌아가기.⏎](#chapter7#b7refbib_3)
+- Bogert, R., Healy, M., and Tukey, J. (1963). The Quefrency Alanysis of Time Series for Echoes: Cepstrum, Pseudo-Autocovariance, Cross-Cepstrum and Saphe Cracking. In _Proc. Symposium Time Series Analysis, 1963_, pages 209–243.[본문으로 돌아가기.⏎](#chapter7#b7refbib_4)
+- Bollerslev, T. (1986). Generalized autoregressive conditional heteroskedasticity. J. Econometrics, 31:307–327.[본문으로 돌아가기.⏎](#chapter8#b8refbib_5)
+- Bollerslev, T., Engle, R. F., and Nelson, D. B. (1994). ARCH models. Handbook of Econometrics, 4:2959–3038.[본문으로 돌아가기.⏎](#chapter8#b8refbib_6)
+- Box, G. and Jenkins, G. (1970). Time Series Analysis, Forecasting, and Control. Holden–Day.[본문으로 돌아가기.⏎](#chapter5#b5refbib_7)
+- Brockwell, P. J. and Davis, R. A. (2013). Time Series: Theory and Methods. Springer Science & Business Media.[본문으로 돌아가기.⏎](#chapter7#b7refbib_8)
+- CDC (2023). Flu Season. Centers for Disease Control and Prevention. <https://www.cdc.gov/flu/about/season/index.html>.[본문으로 돌아가기.⏎](#chapter8#b8refbib_9)
+- Chan, N. H. (2002). Time Series Applications to Finance. John Wiley & Sons, Inc.[본문으로 돌아가기.⏎](#chapter8#b8refbib_10)
+- Cleveland, W. S. (1979). Robust locally weighted regression and smoothing scatterplots. Journal of the American Statistical Association, 74(368):829–836.[본문으로 돌아가기.⏎](#chapter3#b3refbib_11)
+- Cochrane, D. and Orcutt, G. H. (1949). Application of least squares regression to relationships containing auto-correlated error terms. Journal of the American Statistical Association, 44(245):32–61.272\. [본문으로 돌아가기.⏎](#chapter5#b5refbib_12)
+- Cooley, J. W. and Tukey, J. W. (1965). An algorithm for the machine calculation of complex Fourier series. Mathematics of Computation, 19(90):297–301.[본문으로 돌아가기.⏎](#chapter7#b7refbib_13)
+- Edelstein-Keshet, L. (2005). Mathematical Models in Biology. Society for Industrial and Applied Mathematics, Philadelphia.[본문으로 돌아가기.⏎](#chapter1#b1refbib_14)
+- Efron, B. and Tibshirani, R. J. (1994). An Introduction to the Bootstrap. CRC Press.[본문으로 돌아가기.⏎](#chapter8#b8refbib_15)
+- Engle, R. F. (1982). Autoregressive conditional heteroscedasticity with estimates of the variance of United Kingdom inflation. Econometrica, 50:987–1007.[본문으로 돌아가기.⏎](#chapter8#b8refbib_16)
+- Fabio Di Narzo, A., Aznarte, J. L., and Stigler, M. (2009). _tsDyn: Time series analysis based on dynamical systems theory_. <https://CRAN.R-project.org/package=tsDyn>.
+- Freund, J. E. and Walpole, R. E. (1986). Mathematical Statistics. Prentice-Hall, 4th edition. <https://archive.org/details/mathematical%5Fstatistics>.[본문으로 돌아가기.⏎](#appA#brefbib_18)
+- Gentle, J. E. (2003). Random Number Generation and Monte Carlo Methods. Springer.[본문으로 돌아가기.⏎](#chapter1#b1refbib_19)
+- Granger, C. W. and Joyeux, R. (1980). An introduction to long-memory time series models and fractional differencing. Journal of Time Series Analysis, 1(1):15–29.[본문으로 돌아가기.⏎](#chapter8#b8refbib_20)
+- Grenander, U. and Rosenblatt, M. (2008). Statistical Analysis of Stationary Time Series. American Mathematical Soc.[본문으로 돌아가기.⏎](#chapter3#b3refbib_21)
+- Hansen, J. and Lebedeff, S. (1987). Global trends of measured surface air temperature. Journal of Geophysical Research: Atmospheres, 92(D11):13345–13372.[본문으로 돌아가기.⏎](#chapter3#b3refbib_22)
+- Hansen, J., Sato, M., Ruedy, R., Lo, K., Lea, D. W., and Medina-Elizade, M. (2006). Global temperature change. Proceedings of the National Academy of Sciences, 103(39):14288–14293.[본문으로 돌아가기.⏎](#chapter1#b1refbib_23)
+- Hosking, J. R. (1981). Fractional differencing. Biometrika, 68(1):165–176.[본문으로 돌아가기.⏎](#chapter8#b8refbib_24)
+- Hurst, H. E. (1951). Long-term storage capacity of reservoirs. Trans. Amer. Soc. Civil Eng., 116:770–799.[본문으로 돌아가기.⏎](#chapter8#b8refbib_25)
+- Hurvich, C. M. and Tsai, C.-L. (1989). Regression and time series model selection in small samples. Biometrika, 76(2):297–307.[본문으로 돌아가기.⏎](#chapter3#b3refbib_26)
+- Hyndman, R. J. and Khandakar, Y. (2008). Automatic time series forecasting: the forecast package for R. Journal of Statistical Software, 27(3):1–22\. <https://CRAN.R-project.org/package=forecast>.273\.
+- IMSL (2020). IMSL Numerical Libraries: Auto Arima. <https://www.imsl.com/blog/auto-arima>.[본문으로 돌아가기.⏎](#chapter4#b4refbib_28)
+- Johnson, R. A. and Wichern, D. W. (2002). Applied Multivariate Statistical Analysis. Prentice Hall.[본문으로 돌아가기.⏎](#chapter3#b3refbib_29)
+- Kalman, R. E. (1960). A new approach to linear filtering and prediction problems. Journal of Basic Engineering, 82(1):35–45.[본문으로 돌아가기.⏎](#chapter8#b8refbib_30)
+- Kalman, R. E. and Bucy, R. S. (1961). New results in linear filtering and prediction theory. Journal of Basic Engineering, 83(1):95–108.[본문으로 돌아가기.⏎](#chapter8#b8refbib_31)
+- Kitchin, J. (1923). Cycles and trends in economic factors. The Review of Economic Statistics, pages 10–16.[본문으로 돌아가기.⏎](#chapter3#b3refbib_32)
+- McLeod, A. I. and Hipel, K. W. (1978). Preservation of the rescaled adjusted range: 1\. A reassessment of the Hurst phenomenon. Water Resources Research, 14(3):491–508.[본문으로 돌아가기.⏎](#chapter8#b8refbib_33)
+- McQuarrie, A. D. and Tsai, C.-L. (1998). Regression and Time Series Model Selection. World Scientific.[본문으로 돌아가기.⏎](#chapter3#b3refbib_34)
+- Parzen, E. (1983). Autoregressive Spectral Estimation. Handbook of Statistics, 3:221–247.[본문으로 돌아가기.⏎](#chapter7#b7refbib_35)
+- Pozzer, A., Anenberg, S., Dey, S., Haines, A., Lelieveld, J., and Chowdhury, S. (2023). Mortality attributable to ambient air pollution: A review of global estimates. GeoHealth, 7(1):e2022GH000711.[본문으로 돌아가기.⏎](#chapter3#b3refbib_36)
+- Press, W. H., Teukolsky, S. A., Vetterling, W. T., and Flannery, B. P. (2007). Numerical Recipes: The Art of Scientific Computing. Cambridge University Press.[본문으로 돌아가기.⏎](#chapter1#b1refbib_37)
+- R Core 기여자 (2025). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.[본문으로 돌아가기.⏎](#preface1#brefbib_38)
+- Ryan, J. A. and Ulrich, J. M. (2024). _xts: eXtensible Time Series_. <https://CRAN.R-project.org/package=xts>.
+- Schwarz, G. (1978). Estimating the dimension of a model. The Annals of Statistics, 6(2):461–464.[본문으로 돌아가기.⏎](#chapter3#b3refbib_40)
+- Shephard, N. (1996). Statistical aspects of arch and stochastic volatility. Monographs on Statistics and Applied Probability, 65:1–68.[본문으로 돌아가기.⏎](#chapter8#b8refbib_41)
+- Shewhart, W. A. (1931). Economic Control of Quality of Manufactured Product. ASQ Quality Press.274\. [본문으로 돌아가기.⏎](#chapter5#b5refbib_42)
+- Shumway, R., Azari, A., and Pawitan, Y. (1988). Modeling mortality fluctuations in Los Angeles as functions of pollution and weather effects. Environmental Research, 45(2):224–241.[본문으로 돌아가기.⏎](#chapter3#b3refbib_43)
+- Shumway, R. and Stoffer, D. (2025). Time Series Analysis and Its Applications: With R Examples. Springer, New York, 5th edition.[본문으로 돌아가기.⏎](#chapter4#b4refbib_44)
+- Shumway, R. H. and Verosub, K. L. (1992). State space modeling of paleoclimatic time series. In _Proc. 5th Int. Meeting Stat. Climatol_, pages 22–26.[본문으로 돌아가기.⏎](#chapter3#b3refbib_45)
+- Stoffer, D. S. (2026). _astsa: Applied Statistical Time Series Analysis_. <https://CRAN.R-project.org/package=astsa>.
+- Sugiura, N. (1978). Further analysts of the data by Akaike's information criterion and the finite corrections: Further analysts of the data by Akaike's. Communications in Statistics-Theory and Methods, 7(1):13–26.[본문으로 돌아가기.⏎](#chapter3#b3refbib_47)
+- Tong, H. (1983). Threshold Models in Non-linear Time Series Analysis. Springer-Verlag, New York.[본문으로 돌아가기.⏎](#chapter8#b8refbib_48)
+- Trapletti, A. and Hornik, K. (2024). _tseries: Time Series Analysis and Computational Finance_. <https://CRAN.R-project.org/package=tseries>.
+- Tsay, R., Chen, R., and Liu, X. (2023). _NTS: Nonlinear Time Series Analysis_. <https://CRAN.R-project.org/package=NTS>.
+- Tsay, R. S. (2005). Analysis of Financial Time Series, volume 543. John Wiley & Sons.[본문으로 돌아가기.⏎](#chapter8#b8refbib_51)
+- Veenstra, J. Q. (2012). Persistence and Anti-persistence: Theory and Software. PhD thesis, Western University. <https://CRAN.R-project.org/package=arfima>.
+- Winters, P. R. (1960). Forecasting sales by exponentially weighted moving averages. Management Science, 6(3):324–342.[본문으로 돌아가기.⏎](#chapter5#b5refbib_53)
+- Wold, H. (1954). Causality and econometrics. Econometrica: Journal of the Econometric Society, pages 162–177.[본문으로 돌아가기.⏎](#chapter2#b2refbib_54)
+- Wuertz, D., Chalabi, Y., Setz, T., Maechler, M., and Boshnakov, G. N. (2024). _fGarch: Rmetrics - Autoregressive Conditional Heteroskedastic Modelling_. <https://CRAN.R-project.org/package=fGarch>.
+- Young, P. C. and Pedregal, D. J. (1999). Macro-economic relativity: government spending, private investment and unemployment in the usa 1948–1998. Structural Change and Economic Dynamics, 10(3-4):359–380.[본문으로 돌아가기.⏎](#chapter3#b3refbib_56)

@@ -24,7 +24,7 @@
 
 웹 스크래핑을 시작하기 전에 먼저 웹 페이지로 이동하여 다운로드하려는 내용을 확인하세요.
 
-다음 코드를 사용하면 `for` 루프를 사용하여 Python으로 스크래핑할 수 있습니다. 장을 건너뛰었거나 복습이 필요한 경우, <a href="ch06.html#sec-chp-6-ipmm" data-type="xref">"개별 선수 시장 및 모델링(Individual Player Markets and Modeling)"</a>에서 `for` 루프에 대한 소개를 제공합니다. *URL(Uniform Resource Locator)* 또는 웹 주소를 `url` 객체에 저장합니다. 이 경우 URL은 2022년 NFL 드래프트의 URL일 뿐입니다.
+다음 코드를 사용하면 `for` 루프를 사용하여 Python으로 스크래핑할 수 있습니다. 장을 건너뛰었거나 복습이 필요한 경우, <a href="ch06.html#sec-chp-6-ipmm" data-type="xref">"개별 선수 시장 및 모델링(Individual Player Markets and Modeling)"</a>에서 `for` 루프에 대한 소개를 제공합니다. _URL(Uniform Resource Locator)_ 또는 웹 주소를 `url` 객체에 저장합니다. 이 경우 URL은 2022년 NFL 드래프트의 URL일 뿐입니다.
 
 다음으로, `pandas` 패키지의 `read_html()`을 사용하여 주어진 URL에서 테이블을 읽어오기만 하면 됩니다. Python은 0부터 계산을 시작한다는 것을 기억하세요. 따라서 `read_html()`에서 가져온 `draft_py` 데이터프레임의 0번째 요소는 단순히 웹 페이지의 첫 번째 테이블입니다. 또한 `NA` 초안 대략적인 값(draft approximate values)을 `0`으로 변경해야 합니다.
 
@@ -57,7 +57,7 @@ Rnd Pick Tm Sk College/Univ Unnamed: 28 0 1 1 JAX 3.5 Georgia College Stats 1 1 
 
 웹 스크래핑을 할 때 웹사이트를 너무 많이 *조회(hit)*하거나 웹사이트에서 데이터를 너무 많이 가져오지 않도록 주의하세요. 웹사이트에서 차단당할 수도 있습니다. 이런 경우 다시 시도할 때까지 잠시 기다려야 합니다. 또한 많은 웹사이트에는 웹페이지를 스크래핑할 수 있는지 여부와 스크래핑 방법에 대한 지침을 제공하는 규정(보다 공식적으로는 *이용 약관(Terms & Conditions)*으로 알려짐)이 있습니다.
 
-다소 조잡하지만 이 웹 스크래핑 프로세스는 실행 가능합니다! 여러 연도(예: 2000~2022년)를 스크래핑하려면 간단한 `for` 루프를 사용할 수 있으며, 이는 종종 데이터의 체계적인 변경 덕분에 가능합니다. 실험이 핵심입니다.
+다소 조잡하지만 이 웹 스크래핑 프로세스는 실행 가능합니다! 여러 연도(2000~2022년)를 스크래핑하려면 간단한 `for` 루프를 사용할 수 있으며, 이는 종종 데이터의 체계적인 변경 덕분에 가능합니다. 실험이 핵심입니다.
 
 ###### 팁 (Tip)
 
@@ -94,13 +94,13 @@ else:
     draft_py.loc[draft_py["DrAV"].isnull(), "DrAV"] = 0
 ```
 
-또한 자체적으로 `for` 루프를 생성할 때 종종 간단한 인덱스 값(예: `i = 1`로 설정)으로 시작한 다음 코드가 작동하도록 만듭니다. 코드가 제대로 작동하게 한 후에 코드를 여러 값에 대해 실행하도록 `for` 줄을 추가합니다.
+또한 자체적으로 `for` 루프를 생성할 때 종종 간단한 인덱스 값(`i = 1`로 설정)으로 시작한 다음 코드가 작동하도록 만듭니다. 코드가 제대로 작동하게 한 후에 코드를 여러 값에 대해 실행하도록 `for` 줄을 추가합니다.
 
 ###### 경고 (Warning)
 
-`for` 루프를 작성하는 동안 인덱스 값을 `1`과 같은 값으로 설정할 때 코드에서 자리 표시자 인덱스(예: `i = 1`)를 제거해야 합니다. 그렇지 않으면 루프는 동일한 함수나 데이터에 대해 여러 번 실행될 뿐입니다. 저희도 인정하고 싶지 않지만 코딩할 때 이런 실수를 저지른 적이 있습니다.
+`for` 루프를 작성하는 동안 인덱스 값을 `1`과 같은 값으로 설정할 때 코드에서 자리 표시자 인덱스(`i = 1`)를 제거해야 합니다. 그렇지 않으면 루프는 동일한 함수나 데이터에 대해 여러 번 실행될 뿐입니다. 저희도 인정하고 싶지 않지만 코딩할 때 이런 실수를 저지른 적이 있습니다.
 
-이제 Python에서 더 많은 데이터를 다운로드해 보겠습니다. 이 프로세스의 일부로 데이터를 정리해야 합니다. 여기에는 `pandas`에 어떤 행이 헤더인지 알려주는 것이 포함됩니다. 이 경우 두 번째 행 또는 `header=1`입니다. Python은 0부터 계산하므로 1은 두 번째 항목에 해당한다는 점을 기억하세요. 마찬가지로 루프의 일부로 `season`을 자체 열에 저장해야 합니다. 또한 추가 헤딩 정보가 포함된 행을 제거합니다(이상하게도 데이터 세트의 일부 행은 데이터 헤더의 중복입니다). 이렇게 하려면 값이 열 이름과 같지 않은 행만 저장합니다(예: `tm != "Tm"` 사용).
+이제 Python에서 더 많은 데이터를 다운로드해 보겠습니다. 이 프로세스의 일부로 데이터를 정리해야 합니다. 여기에는 `pandas`에 어떤 행이 헤더인지 알려주는 것이 포함됩니다. 이 경우 두 번째 행 또는 `header=1`입니다. Python은 0부터 계산하므로 1은 두 번째 항목에 해당한다는 점을 기억하세요. 마찬가지로 루프의 일부로 `season`을 자체 열에 저장해야 합니다. 또한 추가 헤딩 정보가 포함된 행을 제거합니다(이상하게도 데이터 세트의 일부 행은 데이터 헤더의 중복입니다). 이렇게 하려면 값이 열 이름과 같지 않은 행만 저장합니다(`tm != "Tm"` 사용).
 
 ```
 ## Python
@@ -169,7 +169,7 @@ Index(\['Unnamed: 0', 'Rnd', 'Pick', 'Tm', 'Player', 'Pos', 'Age', 'To', 'AP1', 
 
 R과 Python의 경우 보통 컴퓨터에 업데이트 내용을 저장하도록 지시해야 합니다. 따라서 `draft_py = draft_py.drop(labels = 0, axis = 0)`처럼 동일한 이름 위에 객체를 저장하는 경우가 많습니다. 일반적으로 원하거나 필요한 데이터를 나중에 삭제하지 않도록 이 복사 동작을 이해하세요.
 
-마지막으로, 분석 목적으로 관리할 데이터에 대한 메타데이터 또는 *데이터 사전(data dictionary)* (데이터에 관한 데이터)은 다음과 같습니다.
+마지막으로, 분석 목적으로 관리할 데이터에 대한 메타데이터 또는 _데이터 사전(data dictionary)_ (데이터에 관한 데이터)은 다음과 같습니다.
 
 - 선수가 드래프트된 시즌 (`Season`)
 
@@ -203,7 +203,7 @@ Season Pick Tm Player Pos wAV DrAV 0 2000 1 CLE Courtney Brown DE 27.0 21.0 1 20
 
 ###### 경고 (Warning)
 
-웹 스크래핑을 통해 얻은 데이터는 당사의 예제 데이터와 다를 수 있습니다. 예를 들어 기술 검토자는 *draft pick* 열을 연속적인 정수나 숫자가 아닌 이산적인 문자(discrete character)로 취급했습니다. 데이터가 이상해 보인다면(예: 플롯이 맞지 않는 경우) <a href="ch02.html#sec-EDA-stable" data-type="xref">2장</a>과 다른 장의 도구를 사용하여 데이터를 검사하여 데이터 타입을 확인하세요.
+웹 스크래핑을 통해 얻은 데이터는 당사의 예제 데이터와 다를 수 있습니다. 예를 들어 기술 검토자는 _draft pick_ 열을 연속적인 정수나 숫자가 아닌 이산적인 문자(discrete character)로 취급했습니다. 데이터가 이상해 보인다면(플롯이 맞지 않는 경우) <a href="ch02.html#sec-EDA-stable" data-type="xref">2장</a>과 다른 장의 도구를 사용하여 데이터를 검사하여 데이터 타입을 확인하세요.
 
 # R로 웹 스크래핑하기 (Web Scraping in R)
 
@@ -297,7 +297,7 @@ print(draft_r_use)
 
 두 웹 스크래핑 방법을 비교해 보세요. Python 함수는 더 자립적인(self-contained) 경향이 있으며 객체에 속하는 경향이 있습니다(Python에서 객체에 속하는 함수를 *메서드(methods)*라고 합니다). 반대로 R은 동일한 객체에 여러 함수를 사용하는 경향이 있습니다. 이것은 언어의 설계 특성입니다. Python은 객체 지향 언어(object-oriented language)에 가까운 반면, R은 함수형 언어(functional language)에 가깝습니다. 당신은 어떤 스타일이 더 마음에 드십니까?
 
-여기서 이 장의 분석에는 영향을 주지 않지만 이 데이터로 계속 작업을 진행하려는 경우 영향을 줄 수 있는 한 가지 사항을 발견할 수 있습니다. 2000년 NFL 드래프트의 9번째 지명 이름은 *Brian Urlacher HOF*입니다. *HOF* 부분은 그가 결국 NFL 명예의 전당(Hall of Fame)에 입성했음을 나타냅니다. 이 데이터를 사용하여 다른 데이터 세트와 병합하려는 경우 그러한 세부 정보가 제외되도록 이름을 변경해야 합니다.
+여기서 이 장의 분석에는 영향을 주지 않지만 이 데이터로 계속 작업을 진행하려는 경우 영향을 줄 수 있는 한 가지 사항을 발견할 수 있습니다. 2000년 NFL 드래프트의 9번째 지명 이름은 *Brian Urlacher HOF*입니다. _HOF_ 부분은 그가 결국 NFL 명예의 전당(Hall of Fame)에 입성했음을 나타냅니다. 이 데이터를 사용하여 다른 데이터 세트와 병합하려는 경우 그러한 세부 정보가 제외되도록 이름을 변경해야 합니다.
 
 # NFL 드래프트 분석하기 (Analyzing the NFL Draft)
 
@@ -378,7 +378,7 @@ ggplot(draft_r_use_pre2019, aes(Pick, DrAV)) +
 
 ###### 참고 (Note)
 
-시계열(series)이 포함된 데이터 세트(예: 일일 온도 또는 드래프트 픽)에는 종종 패턴과 노이즈가 모두 포함되어 있습니다. 이 노이즈를 평활화하는(smooth out) 한 가지 방법은 여러 순차적인 관측값에 대한 평균을 계산하는 것입니다. 이 평균을 흔히 *이동 평균(rolling average, moving mean, running average)*이라고 부르며 평균을 나타내는 다른 유사한 용어들이 사용되기도 합니다. 이동 평균의 주요 입력값에는 *창(window)* (사용할 입력 개수), 방법(예: 평균 또는 중앙값), 시계열의 시작과 끝을 어떻게 처리할지(예: 전체 창이 없는 첫 번째 항목을 삭제해야 하는지 아니면 다른 규칙을 사용해야 하는지)가 포함됩니다.
+시계열(series)이 포함된 데이터 세트(일일 온도 또는 드래프트 픽)에는 종종 패턴과 노이즈가 모두 포함되어 있습니다. 이 노이즈를 평활화하는(smooth out) 한 가지 방법은 여러 순차적인 관측값에 대한 평균을 계산하는 것입니다. 이 평균을 흔히 *이동 평균(rolling average, moving mean, running average)*이라고 부르며 평균을 나타내는 다른 유사한 용어들이 사용되기도 합니다. 이동 평균의 주요 입력값에는 _창(window)_ (사용할 입력 개수), 방법(평균 또는 중앙값), 시계열의 시작과 끝을 어떻게 처리할지(전체 창이 없는 첫 번째 항목을 삭제해야 하는지 아니면 다른 규칙을 사용해야 하는지)가 포함됩니다.
 
 각 픽에 대한 가치를 평활화(smooth out)하려면 먼저 각 픽에 대한 평균 가치를 계산하세요. 일부 낮은 픽에는 `NaN` 값이 있으므로 이러한 값을 `0`으로 바꿉니다. 그런 다음 각 픽의 평균 가치를 둘러싼 6픽 이동 평균(moving mean) `DrAV`를 계산합니다(즉, `13`개의 창에 대해 각각의 `DrAV` 값과 이전 `6`개 및 이후 `6`개를 사용). 또한 `rolling()` 함수에 `min_periods=1`을 사용하고 평균을 중앙에 배치(`center`)하도록 지시합니다(이동 평균이 현재 `DrAV`를 중심으로 함). 마지막으로 `pick`을 기준으로 `groupby()`를 수행한 다음 각 픽 위치에 대한 평균 `DrAV`를 계산합니다. Python에서는 이 코드를 사용합니다.
 
@@ -455,7 +455,7 @@ ggplot(draft_chart_r, aes(Pick, roll_DrAV)) +
     xlab("Draft pick")
 ```
 
-여기서부터는 결과를 정량화하는 데 도움을 주기 위해 단순히 데이터에 모델을 맞출 수 있습니다. 이 모델을 사용하면 단순히 그림만 조사하는 것이 아니라 숫자를 사용할 수 있습니다. 다양한 모델을 사용할 수 있으며, 일부 모델(예: LOESS 곡선 또는 GAM)은 이 책의 범위를 벗어납니다. 우리는 y절편을 고정한 채 데이터의 로그에 단순 선형 모델을 맞추고, 지수 함수(exponential function)를 사용하여 다시 역변환하게 할 것입니다.
+여기서부터는 결과를 정량화하는 데 도움을 주기 위해 단순히 데이터에 모델을 맞출 수 있습니다. 이 모델을 사용하면 단순히 그림만 조사하는 것이 아니라 숫자를 사용할 수 있습니다. 다양한 모델을 사용할 수 있으며, 일부 모델(LOESS 곡선 또는 GAM)은 이 책의 범위를 벗어납니다. 우리는 y절편을 고정한 채 데이터의 로그에 단순 선형 모델을 맞추고, 지수 함수(exponential function)를 사용하여 다시 역변환하게 할 것입니다.
 
 <figure>
 <img src="D:\sd\Practicesny2md\output\[2023] Football Analytics with Python &amp; R/assets/fapr_0704.png" />
@@ -568,7 +568,7 @@ team |>
 ```
 
 | Receiving team | Pick             | Value                            |
-|----------------|------------------|----------------------------------|
+| -------------- | ---------------- | -------------------------------- |
 | Jets           | 3                | 30.8                             |
 | Colts          | 6                | 29.9                             |
 | Colts          | 37               | 22.2                             |
@@ -587,35 +587,35 @@ library(kableExtra)
 ```
 
 future_pick <-
-    tibble(
-        Pick = "Future 2nd round",
-        Value = "14.8 (discounted at rate of 25)"
-    )
+tibble(
+Pick = "Future 2nd round",
+Value = "14.8 (discounted at rate of 25)"
+)
 
 results_trade <-
-    tibble(
-        Team = c("Jets", rep("Colts", 5)),
-        Pick = c(
-            3, 6, 37,
-            "49-traded for 52",
-            "49-traded for 169",
-            "52 in 2019"
-        ),
-        Player = c(
-            "Sam Darnold",
-            "Quenton Nelson",
-            "Braden Smith",
-            "Kemoko Turay",
-            "Jordan Wilkins",
-            "Rock Ya-Sin"
-        ),
-        "DrAV" = c(25, 55, 32, 5, 8, 11)
-    )
-
+tibble(
+Team = c("Jets", rep("Colts", 5)),
+Pick = c(
+3, 6, 37,
+"49-traded for 52",
+"49-traded for 169",
+"52 in 2019"
+),
+Player = c(
+"Sam Darnold",
+"Quenton Nelson",
+"Braden Smith",
+"Kemoko Turay",
+"Jordan Wilkins",
+"Rock Ya-Sin"
+),
+"DrAV" = c(25, 55, 32, 5, 8, 11)
+)
 
 results_trade |>
-    kbl(format = "pipe") |>
-    kable_styling()
+kbl(format = "pipe") |>
+kable_styling()
+
 ```
 
 | Team  | Pick              | Player         | DrAV |
@@ -640,16 +640,19 @@ results_trade |>
 어떤 팀이 다른 팀보다 드래프트를 더 잘하는지에 대한 질문은 드래프트 픽이 팀에 할당되는 방식 때문에 대답하기 어렵습니다. 최고의 팀이 각 라운드의 마지막에 선택하며, 앞서 살펴보았듯이 더 나은 선수가 약한 선수보다 먼저 선택됩니다. 따라서 최악의 팀이 드래프트를 가장 잘하는 팀이라고 잘못 가정할 수 있으며 그 반대의 경우도 마찬가지입니다. 이를 고려하려면 이전에 만든 모델을 사용하여 각 픽에 대한 기대치를 조정해야 합니다. 그렇게 하고 `DrAV`와 `fitted_DrAV` 간의 차이에 대한 평균과 표준 편차를 취하여 2000-2019년 드래프트에 걸쳐 집계하면 Python을 사용하여 다음 순위에 도달합니다.
 
 ```
+
 ## Python
-draft_py_use_pre2019 =     draft_py_use_pre2019    .merge(draft_chart_py[["Pick", "fitted_DrAV"]],
-           on="Pick")
+
+draft_py_use_pre2019 = draft_py_use_pre2019 .merge(draft_chart_py[["Pick", "fitted_DrAV"]],
+on="Pick")
 
 draft_py_use_pre2019["OE"] = (
-    draft_py_use_pre2019["DrAV"] -
-    draft_py_use_pre2019["fitted_DrAV"]
+draft_py_use_pre2019["DrAV"] -
+draft_py_use_pre2019["fitted_DrAV"]
 )
 
-draft_py_use_pre2019    .groupby("Tm")    .agg({"OE": ["count", "mean", "std"]})    .reset_index()    .sort_values([("OE", "mean")], ascending=False)
+draft_py_use_pre2019 .groupby("Tm") .agg({"OE": ["count", "mean", "std"]}) .reset_index() .sort_values([("OE", "mean")], ascending=False)
+
 ```
 
 결과는 다음과 같습니다.
@@ -663,22 +666,25 @@ Python의 `.reset_index()` 함수는 `pandas`의 데이터프레임에 값을 �
 또는 R에서는 다음과 같습니다.
 
 ```
+
 ## R
+
 draft_r_use_pre2019 <-
-    draft_r_use_pre2019 |>
-    left_join(draft_chart_r |> select(Pick, fitted_DrAV),
-        by = "Pick"
-    )
+draft_r_use_pre2019 |>
+left_join(draft_chart_r |> select(Pick, fitted_DrAV),
+by = "Pick"
+)
 
 draft_r_use_pre2019 |>
-    group_by(Tm) |>
-    summarize(
-        total_picks = n(),
-        DrAV_OE = mean(DrAV - fitted_DrAV, na.rm = TRUE),
-        DrAV_sigma = sd(DrAV - fitted_DrAV, na.rm = TRUE)
-    ) |>
-    arrange(-DrAV_OE) |>
-    print(n = Inf)
+group_by(Tm) |>
+summarize(
+total_picks = n(),
+DrAV_OE = mean(DrAV - fitted_DrAV, na.rm = TRUE),
+DrAV_sigma = sd(DrAV - fitted_DrAV, na.rm = TRUE)
+) |>
+arrange(-DrAV_OE) |>
+print(n = Inf)
+
 ```
 
 결과는 다음과 같습니다.
@@ -692,35 +698,38 @@ draft_r_use_pre2019 |>
 문제는 이러한 성공과 헛수고(futility)가 통계적으로 유의미한가 하는 것입니다. <a href="app02.html#sec-ssdw-pass" data-type="xref">부록 B</a>에서는 표준 오차와 신뢰 구간에 대해 이야기합니다. 이 표에 표준 편차를 추가한 이유 중 하나는 각 팀의 표준 오차를 쉽게 계산할 수 있도록 하기 위해서입니다. 이는 Python에서 수행할 수 있습니다.
 
 ```
+
 ## Python
-draft_py_use_pre2019 =     draft_py_use_pre2019    .merge(draft_chart_py[["Pick", "fitted_DrAV"]],
-           on="Pick")
+
+draft_py_use_pre2019 = draft_py_use_pre2019 .merge(draft_chart_py[["Pick", "fitted_DrAV"]],
+on="Pick")
 
 draft_py_use_pre2019_tm = (
-    draft_py_use_pre2019.groupby("Tm")
-    .agg({"OE": ["count", "mean", "std"]})
-    .reset_index()
-    .sort_values([("OE", "mean")], ascending=False)
+draft_py_use_pre2019.groupby("Tm")
+.agg({"OE": ["count", "mean", "std"]})
+.reset_index()
+.sort_values([("OE", "mean")], ascending=False)
 )
 
-draft_py_use_pre2019_tm.columns =     list(map("_".join, draft_py_use_pre2019_tm.columns))
+draft*py_use_pre2019_tm.columns = list(map("*".join, draft_py_use_pre2019_tm.columns))
 
 draft_py_use_pre2019_tm.reset_index(inplace=True)
 
 draft_py_use_pre2019_tm["se"] = (
-    draft_py_use_pre2019_tm["OE_std"] /
-    np.sqrt(draft_py_use_pre2019_tm["OE_count"])
+draft_py_use_pre2019_tm["OE_std"] /
+np.sqrt(draft_py_use_pre2019_tm["OE_count"])
 )
 
 draft_py_use_pre2019_tm["lower_bound"] = (
-    draft_py_use_pre2019_tm["OE_mean"] - 1.96 * draft_py_use_pre2019_tm["se"]
+draft_py_use_pre2019_tm["OE_mean"] - 1.96 \* draft_py_use_pre2019_tm["se"]
 )
 
 draft_py_use_pre2019_tm["upper_bound"] = (
-    draft_py_use_pre2019_tm["OE_mean"] + 1.96 * draft_py_use_pre2019_tm["se"]
+draft_py_use_pre2019_tm["OE_mean"] + 1.96 \* draft_py_use_pre2019_tm["se"]
 )
 
 print(draft_py_use_pre2019_tm)
+
 ```
 
 결과는 다음과 같습니다.
@@ -730,25 +739,28 @@ index Tm\_ OE_count ... se lower_bound upper_bound 0 26 PIT 161 ... 1.487838 0.6
 또는 R에서는 다음과 같습니다.
 
 ```
+
 ## R
+
 draft_r_use_pre2019 |>
-    group_by(Tm) |>
-    summarize(
-        total_picks = n(),
-        DrAV_OE = mean(DrAV - fitted_DrAV,
-            na.rm = TRUE
-        ),
-        DrAV_sigma = sd(DrAV - fitted_DrAV,
-            na.rm = TRUE
-        )
-    ) |>
-    mutate(
-        se = DrAV_sigma / sqrt(total_picks),
-        lower_bound = DrAV_OE - 1.96 * se,
-        upper_bound = DrAV_OE + 1.96 * se
-    ) |>
-    arrange(-DrAV_OE) |>
-    print(n = Inf)
+group_by(Tm) |>
+summarize(
+total_picks = n(),
+DrAV_OE = mean(DrAV - fitted_DrAV,
+na.rm = TRUE
+),
+DrAV_sigma = sd(DrAV - fitted_DrAV,
+na.rm = TRUE
+)
+) |>
+mutate(
+se = DrAV_sigma / sqrt(total_picks),
+lower_bound = DrAV_OE - 1.96 _ se,
+upper_bound = DrAV_OE + 1.96 _ se
+) |>
+arrange(-DrAV_OE) |>
+print(n = Inf)
+
 ```
 
 결과는 다음과 같습니다.
@@ -759,7 +771,7 @@ draft_r_use_pre2019 |>
 
 이 긴 코드 출력을 볼 때 95% 신뢰 구간(CI)은 어느 팀의 `DrAV_OE`가 0과 다른지 확인하는 데 도움이 될 수 있습니다. Python과 R 출력 모두에서 95% 신뢰 구간은 `lower_bound` 및 `upper_bound`입니다. 이 구간에 값이 포함되지 않으면 통계적으로 0과 다르다고 간주할 수 있습니다. `DrAV_OE`가 이 구간보다 크면 팀이 통계적으로 평균보다 우수한 성과를 거둔 것입니다. `DrAV_OE`가 이 구간보다 작으면 팀이 통계적으로 평균보다 나쁜 성과를 거둔 것입니다.
 
-따라서 95% 신뢰 구간을 사용하여 볼 때 두 팀(스틸러스와 패커스)은 픽 단위로 다른 팀에 비해 선수 드래프트를 통계적으로 유의미하게 더 잘하는 반면, 두 팀(레이더스와 브라운스)은 다른 팀에 비해 선수 드래프트를 통계적으로 유의미하게 더 못하는 것으로 보입니다. 이는 적절한 시간 간격(예: 단장이나 코치의 평균 경력 길이)에 걸쳐서 드래프트 재능을 파악하기가 매우 어렵다는 것을 시사하는 이 주제에 대한 연구와 일치합니다.
+따라서 95% 신뢰 구간을 사용하여 볼 때 두 팀(스틸러스와 패커스)은 픽 단위로 다른 팀에 비해 선수 드래프트를 통계적으로 유의미하게 더 잘하는 반면, 두 팀(레이더스와 브라운스)은 다른 팀에 비해 선수 드래프트를 통계적으로 유의미하게 더 못하는 것으로 보입니다. 이는 적절한 시간 간격(단장이나 코치의 평균 경력 길이)에 걸쳐서 드래프트 재능을 파악하기가 매우 어렵다는 것을 시사하는 이 주제에 대한 연구와 일치합니다.
 
 NFL 드래프트에서 "승리(win)"하는 방법은 콜츠가 제츠를 상대로 했던 것처럼 드래프트 픽 트레이드를 성사시켜 말하자면 사과를 더 많이 베어 물 수 있는(more bites at the apple) 기회를 스스로에게 주는 것입니다. 티모 리스케(Timo Riske)는 PFF 기사 ["A New Look at Historical Draft Success for all 32 NFL Teams(32개 NFL 팀 전체의 역사적 드래프트 성공에 대한 새로운 시각)"](https://oreil.ly/-KdlX)에서 이에 대해 더 자세히 논의합니다.
 
@@ -771,7 +783,7 @@ NFL 드래프트에서 "승리(win)"하는 방법은 콜츠가 제츠를 상대�
 
 ###### 팁 (Tip)
 
-URL을 찾기 위한 한 가지 제안은 웹 브라우저(예: Google Chrome, Microsoft Edge, Firefox)의 검사(inspection) 도구를 사용하는 것입니다. 이는 방문 중인 웹 페이지의 HTML 코드를 보여줍니다. 이 코드를 사용하면 HTML 및 CSS 선택자를 기반으로 원하는 테이블의 경로를 찾는 데 도움이 될 수 있습니다.
+URL을 찾기 위한 한 가지 제안은 웹 브라우저(Google Chrome, Microsoft Edge, Firefox)의 검사(inspection) 도구를 사용하는 것입니다. 이는 방문 중인 웹 페이지의 HTML 코드를 보여줍니다. 이 코드를 사용하면 HTML 및 CSS 선택자를 기반으로 원하는 테이블의 경로를 찾는 데 도움이 될 수 있습니다.
 
 # 이 장에서 사용된 데이터 과학 도구 (Data Science Tools Used in This Chapter)
 
@@ -806,3 +818,4 @@ URL을 찾기 위한 한 가지 제안은 웹 브라우저(예: Google Chrome, M
 - <a href="https://learning.oreilly.com/library/view/web-scraping-with/9781491985564/" class="orm:hideurl"><em>Web Scraping with Python,</em> 2판,</a> (Ryan Mitchell 저, O’Reilly, 2018); 2024년에 3판 출간 예정
 
 이 장의 앞부분에서 언급한 *The Drafting Stage: Creating a Marketplace for NFL Draft Picks*는 많은 훌륭한 세부 정보와 함께 NFL 드래프트에 대한 개요를 제공합니다.
+```

@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d55203e86ba1a699a1ae3c3642d34712.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-05671fd07ca6d6876311839a4a0c21df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -184,6 +184,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../notes/data-visualize.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">데이터 시각화 (Data visualization)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/data-transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">소개</span></a>
   </div>
 </li>
       </ul>
@@ -293,7 +299,7 @@ Figure&nbsp;1: RStudio의 명령 팔레트를 사용하면 키보드만 사용�
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 피해야 할 것</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>flights<span class="sc">|&gt;</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(arr_delay), <span class="sc">!</span><span class="fu">is.na</span>(tailnum))<span class="sc">|&gt;</span><span class="fu">count</span>(dest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>파이프라인으로 연결되는 함수에 이름이 있는 인수(named arguments)(예: <code>mutate()</code> 또는 <code>summarize()</code>)가 있는 경우 각 인수를 새 줄에 배치하세요. 함수에 이름이 있는 인수가 없는 경우(예: <code>select()</code> 또는 <code>filter()</code>) 너무 길지 않은 한 모든 것을 한 줄에 유지하고, 한 줄을 넘어간다면 각 인수를 자체 줄(own line)에 배치해야 합니다.</p>
+<p>파이프라인으로 연결되는 함수에 이름이 있는 인수(named arguments)(<code>mutate()</code> 또는 <code>summarize()</code>)가 있는 경우 각 인수를 새 줄에 배치하세요. 함수에 이름이 있는 인수가 없는 경우(<code>select()</code> 또는 <code>filter()</code>) 너무 길지 않은 한 모든 것을 한 줄에 유지하고, 한 줄을 넘어간다면 각 인수를 자체 줄(own line)에 배치해야 합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 권장</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span>  </span>
@@ -363,7 +369,7 @@ Figure&nbsp;1: RStudio의 명령 팔레트를 사용하면 키보드만 사용�
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>다시 한번 말씀드리지만, 함수의 모든 인수를 한 줄에 넣을 수 없다면 각 인수를 자체 줄에 배치하세요:</p>
+<p>다시 한번 말씀드리지만, 함수의 모든 인수를 한 줄에 넣을 수 없다면 각 인수를 자체 줄에 배치하세요.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dest) <span class="sc">|&gt;</span> </span>
@@ -385,7 +391,7 @@ Figure&nbsp;1: RStudio의 명령 팔레트를 사용하면 키보드만 사용�
 </section>
 <section id="섹션-주석-sectioning-comments" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="섹션-주석-sectioning-comments"><span class="header-section-number">1.5</span> 섹션 주석 (Sectioning comments)</h2>
-<p>스크립트가 길어지면 <strong>섹션(sectioning)</strong> 주석을 사용하여 파일을 관리하기 쉬운 여러 조각으로 나눌 수 있습니다:</p>
+<p>스크립트가 길어지면 <strong>섹션(sectioning)</strong> 주석을 사용하여 파일을 관리하기 쉬운 여러 조각으로 나눌 수 있습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data --------------------------------------</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -423,7 +429,7 @@ Figure&nbsp;2: 스크립트에 섹션 주석을 추가한 후 스크립트 에�
 </section>
 <section id="요약-summary" class="level2" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="요약-summary"><span class="header-section-number">1.7</span> 요약 (Summary)</h2>
-<p>이 장에서는 코드 스타일의 가장 중요한 원칙에 대해 배웠습니다. 처음에는 이들이 (실제로 그렇듯이!) 임의적인 규칙의 집합처럼 느껴질 수 있지만, 시간이 지나면서 더 많은 코드를 작성하고 더 많은 사람과 코드를 공유하게 되면 일관된 스타일이 얼마나 중요한지 알게 될 것입니다. 그리고 styler 패키지를 잊지 마세요: 스타일이 좋지 않은 코드의 품질을 빠르게 향상시키는 훌륭한 방법입니다.</p>
+<p>이 장에서는 코드 스타일의 가장 중요한 원칙에 대해 배웠습니다. 처음에는 이들이 (실제로 그렇듯이!) 임의적인 규칙의 집합처럼 느껴질 수 있지만, 시간이 지나면서 더 많은 코드를 작성하고 더 많은 사람과 코드를 공유하게 되면 일관된 스타일이 얼마나 중요한지 알게 될 것입니다. 그리고 styler 패키지를 잊지 마세요. 스타일이 좋지 않은 코드의 품질을 빠르게 향상시키는 훌륭한 방법입니다.</p>
 <p>다음 장에서는 다시 데이터 과학 도구로 돌아가 타이디 데이터(tidy data)에 대해 알아봅니다. 타이디 데이터는 전체 tidyverse에서 사용되는, 데이터 프레임을 구성하는 일관된 방법입니다. 이러한 일관성은 타이디 데이터를 가지고 있으면 대부분의 tidyverse 함수와 잘 작동하기 때문에 당신의 삶을 더 편하게 만들어줍니다. 물론 현실 세계는 결코 쉽지 않으며, 여러분이 마주치게 될 대부분의 데이터셋은 아직 타이디한(tidy) 상태가 아닐 것입니다. 그래서 저희는 깔끔하지 않은(untidy) 데이터를 정리하기 위해 tidyr 패키지를 사용하는 방법도 알려드릴 것입니다.</p>
 
 

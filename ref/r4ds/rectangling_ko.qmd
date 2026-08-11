@@ -32,14 +32,14 @@ library(jsonlite)
 
 지금까지 정수, 숫자, 문자, 날짜-시간 및 요인(factors)과 같은 간단한(simple) 벡터가 포함된 데이터 프레임으로 작업했습니다.
 이러한 벡터는 동질적(homogeneous)이기 때문에, 즉 모든 요소가 동일한 데이터 유형이기 때문에 간단합니다.
-동일한 벡터에 다른 유형의 요소를 저장(store)하려면 `list()`를 사용하여 생성하는 **리스트(list)**가 필요합니다:
+동일한 벡터에 다른 유형의 요소를 저장(store)하려면 `list()`를 사용하여 생성하는 **리스트(list)**가 필요합니다.
 
 ```{r}
 x1 <- list(1:4, "a", TRUE)
 x1
 ```
 
-티블의 열 이름을 지정(naming)하는 것과 같은 방식으로 리스트의 구성 요소(components) 또는 **자식(children)**의 이름을 지정하는 것이 종종(often) 편리(convenient)합니다:
+티블의 열 이름을 지정(naming)하는 것과 같은 방식으로 리스트의 구성 요소(components) 또는 **자식(children)**의 이름을 지정하는 것이 종종(often) 편리(convenient)합니다.
 
 ```{r}
 x2 <- list(a = 1:2, b = 1:3, c = 1:4)
@@ -47,7 +47,7 @@ x2
 ```
 
 이러한 매우 간단한 리스트의 경우에도(Even for) 인쇄(printing)하는 데 꽤 많은 공간이 필요(takes up)합니다.
-유용한 대안(alternative)은 `str()`로, 내용(contents)을 덜 강조하면서(de-emphasizing) **구조(structure)**를 간결하게(compact) 표시합니다:
+유용한 대안(alternative)은 `str()`로, 내용(contents)을 덜 강조하면서(de-emphasizing) **구조(structure)**를 간결하게(compact) 표시합니다.
 
 ```{r}
 str(x1)
@@ -60,14 +60,14 @@ str(x2)
 ### 계층 구조 (Hierarchy)
 
 리스트는 다른 리스트를 포함하여 모든 유형의 객체를 포함할 수 있습니다.
-이로 인해(This makes them) 계층적(트리형) 구조를 나타내는 데 적합(suitable for)합니다:
+이로 인해(This makes them) 계층적(트리형) 구조를 나타내는 데 적합(suitable for)합니다.
 
 ```{r}
 x3 <- list(list(1, 2), list(3, 4))
 str(x3)
 ```
 
-이것은 평면(flat) 벡터를 생성하는 `c()`와 현저하게(notably) 다릅니다:
+이것은 평면(flat) 벡터를 생성하는 `c()`와 현저하게(notably) 다릅니다.
 
 ```{r}
 c(c(1, 2), c(3, 4))
@@ -76,7 +76,7 @@ x4 <- c(list(1, 2), list(3, 4))
 str(x4)
 ```
 
-리스트가 복잡(complex)해짐에 따라 `str()`은 계층 구조를 한눈에(at a glance) 볼 수 있게 해주므로 더 유용해집니다:
+리스트가 복잡(complex)해짐에 따라 `str()`은 계층 구조를 한눈에(at a glance) 볼 수 있게 해주므로 더 유용해집니다.
 
 ```{r}
 x5 <- list(1, list(2, list(3, list(4, list(5)))))
@@ -95,7 +95,7 @@ str(x5)
 #|   뷰어는 리스트의 최상위 수준만 표시하며 열립니다.
 #| fig.alt: >
 #|   리스트 뷰어를 보여주는 RStudio의 스크린샷입니다. x5의 두 자식을 
-#|   보여줍니다: 첫 번째 자식은 이중(double) 벡터이고 
+#|   보여줍니다. 첫 번째 자식은 이중(double) 벡터이고 
 #|   두 번째 자식은 리스트입니다. 오른쪽을 향한 삼각형은 
 #|   두 번째 자식 자체에 자식이 있지만 보이지 않음을 나타냅니다.
 #| echo: false
@@ -121,7 +121,7 @@ knitr::include_graphics("screenshots/View-2.png", dpi = 220)
 #| label: fig-view-expand-2
 #| fig.cap: >
 #|   관심 있는 데이터를 얻기 위해 필요한 만큼 이 작업을 
-#|   반복할 수 있습니다. 왼쪽 하단 모서리에 유의하세요: 리스트의 
+#|   반복할 수 있습니다. 왼쪽 하단 모서리에 유의하세요. 리스트의 
 #|   요소를 클릭하면 RStudio에서 해당 요소에 액세스하는 데 필요한 하위 집합
 #|   코드(subsetting code)를 제공합니다(이 경우 `x5[[2]][[2]][[2]]`).
 #| fig.alt: >
@@ -138,7 +138,7 @@ knitr::include_graphics("screenshots/View-3.png", dpi = 220)
 리스트-열은 일반적(usually)으로 티블에 속하지(belong) 않는(wouldn't) 객체를 티블에 배치(place)할 수 있기 때문에 유용합니다.
 특히 리스트-열은 모델 출력이나 재샘플(resamples)과 같은 것들을 데이터 프레임에 저장할 수 있게 해주기 때문에 [tidymodels](https://www.tidymodels.org) 생태계에서 많이 사용됩니다.
 
-리스트 열의 간단한 예시(simple example)는 다음과 같습니다:
+리스트 열의 간단한 예시(simple example)는 다음과 같습니다.
 
 ```{r}
 df <- tibble(
@@ -149,7 +149,7 @@ df <- tibble(
 df
 ```
 
-티블의 리스트에는 특별한(special) 점이 없으며 다른 열과 똑같이 작동(behave like)합니다:
+티블의 리스트에는 특별한(special) 점이 없으며 다른 열과 똑같이 작동(behave like)합니다.
 
 ```{r}
 df |> 
@@ -161,7 +161,7 @@ df |>
 
 기본(default) 인쇄 메서드는 내용의 대략적인 요약(rough summary)만 표시합니다.
 리스트 열은 임의로(arbitrarily) 복잡할 수 있으므로 잘 인쇄할 방법(good way to print it)이 없습니다.
-확인하려면(If you want to see it) 하나의 리스트-열만 추출(pull out)하여 위에서 배운 기술(techniques) 중 하나를 적용해야 합니다(예: `df |> pull(z) |> str()` 또는 `df |> pull(z) |> View()`).
+확인하려면(If you want to see it) 하나의 리스트-열만 추출(pull out)하여 위에서 배운 기술(techniques) 중 하나를 적용해야 합니다(`df |> pull(z) |> str()` 또는 `df |> pull(z) |> View()`).
 
 ::: callout-note
 ## 기본 R (Base R)
@@ -172,7 +172,7 @@ df |>
 data.frame(x = list(1:3, 3:5))
 ```
 
-리스트 `I()`로 래핑(wrapping)하여 `data.frame()`이 리스트를 행의 리스트로 처리하도록 강제(force)할 수 있지만 결과가 특별히 잘(particularly well) 인쇄되지는 않습니다:
+리스트 `I()`로 래핑(wrapping)하여 `data.frame()`이 리스트를 행의 리스트로 처리하도록 강제(force)할 수 있지만 결과가 특별히 잘(particularly well) 인쇄되지는 않습니다.
 
 ```{r}
 data.frame(
@@ -192,7 +192,7 @@ data.frame(
 리스트-열은 두 가지 기본 형태인 명명된(named) 형태와 명명되지 않은(unnamed) 형태로 나타나는(come in) 경향(tend to)이 있습니다.
 자식의 이름이 지정된 경우(When the children are **named**), 모든 행에서 동일한(same) 이름을 갖는 경향이 있습니다.
 예를 들어 `df1`에서 리스트 열 `y`의 모든 요소에는 `a`와 `b`라는 두 개의 요소가 있습니다.
-명명된 리스트-열은 자연스럽게(naturally) 열로 중첩 해제(unnest into)됩니다: 각각의 명명된 요소는 새로운 명명된 열이 됩니다.
+명명된 리스트-열은 자연스럽게(naturally) 열로 중첩 해제(unnest into)됩니다. 각각의 명명된 요소는 새로운 명명된 열이 됩니다.
 
 ```{r}
 df1 <- tribble(
@@ -205,7 +205,7 @@ df1 <- tribble(
 
 자식의 이름이 없는 경우(When the children are **unnamed**), 요소 수는 행마다(from row-to-row) 다를(vary) 수 있습니다.
 예를 들어 `df2`에서 리스트-열 `y`의 요소는 이름이 없으며 길이(length)가 하나에서 세 개까지 다릅니다.
-명명되지 않은 리스트-열은 자연스럽게 행으로 중첩 해제(unnest into)됩니다: 각 자식마다 하나의 행을 얻게 됩니다.
+명명되지 않은 리스트-열은 자연스럽게 행으로 중첩 해제(unnest into)됩니다. 각 자식마다 하나의 행을 얻게 됩니다.
 
 ```{r}
 df2 <- tribble(
@@ -221,7 +221,7 @@ tidyr은 이 두 가지 경우(cases)에 대해 `unnest_wider()`와 `unnest_long
 
 ### `unnest_wider()`
 
-`df1`처럼 각 행에 이름이 같은(same names) 요소가 같은(same) 수만큼 있는 경우 `unnest_wider()`를 사용하여 각 구성 요소를 고유한(its own) 열에 넣는 것이 자연스럽습니다:
+`df1`처럼 각 행에 이름이 같은(same names) 요소가 같은(same) 수만큼 있는 경우 `unnest_wider()`를 사용하여 각 구성 요소를 고유한(its own) 열에 넣는 것이 자연스럽습니다.
 
 ```{r}
 df1 |> 
@@ -238,7 +238,7 @@ df1 |>
 
 ### `unnest_longer()`
 
-각 행에 명명되지 않은 리스트가 포함된 경우 `unnest_longer()`를 사용하여 각 요소를 자체(its own) 행에 넣는 것이 가장 자연스럽습니다:
+각 행에 명명되지 않은 리스트가 포함된 경우 `unnest_longer()`를 사용하여 각 요소를 자체(its own) 행에 넣는 것이 가장 자연스럽습니다.
 
 ```{r}
 df2 |> 
@@ -292,7 +292,7 @@ df4 |>
 
 ### 다른 함수들 (Other functions)
 
-tidyr에는 이 책에서 다루지 않을 몇 가지 다른 유용한 직사각형화(rectangling) 함수가 있습니다:
+tidyr에는 이 책에서 다루지 않을 몇 가지 다른 유용한 직사각형화(rectangling) 함수가 있습니다.
 
 -   `unnest_auto()`는 리스트-열의 구조를 기반으로 `unnest_longer()`와 `unnest_wider()` 중 하나를 자동으로(automatically) 선택(picks)합니다. 빠른 탐색(rapid exploration)에는 유용하지만, 데이터가 어떻게 구성되어 있는지 이해하도록 강제(force)하지 않고 코드를 이해하기 어렵게 만들기 때문에 궁극적으로(ultimately) 나쁜 생각(bad idea)입니다.
 -   `unnest()`는 행과 열을 모두 확장(expands)합니다. 이 책에서는 볼 수 없지만 [tidymodels](https://www.tmwr.org/base-r.html#combining-base-r-models-and-the-tidyverse) 생태계를 사용하는 경우 접할 수 있는(encounter), 데이터 프레임과 같은 2D 구조를 포함하는 리스트-열이 있을 때 유용합니다.
@@ -343,15 +343,15 @@ repos
 
 이 티블은 `gh_repos`의 각 자식(child)에 대해 하나씩(one row for each), 6개의 행을 포함합니다.
 각 행에는 26개 또는 30개의 행이 있는 명명되지 않은 리스트가 포함됩니다.
-이들은 명명되지 않았으므로 각 자식을 자체 행(its own row)에 넣기 위해 `unnest_longer()`로 시작합니다:
+이들은 명명되지 않았으므로 각 자식을 자체 행(its own row)에 넣기 위해 `unnest_longer()`로 시작합니다.
 
 ```{r}
 repos |> 
   unnest_longer(json)
 ```
 
-언뜻 보기에(At first glance)는 상황(situation)이 개선(improved)되지 않은 것 같을 수 있습니다: 행은 더 많아졌지만(6개 대신 176개) `json`의 각 요소는 여전히 리스트입니다.
-하지만 중요한 차이점이 있습니다: 이제 각 요소가 **명명된** 리스트이므로 `unnest_wider()`를 사용하여 각 요소를 고유한 열(its own column)에 넣을 수 있습니다:
+언뜻 보기에(At first glance)는 상황(situation)이 개선(improved)되지 않은 것 같을 수 있습니다. 행은 더 많아졌지만(6개 대신 176개) `json`의 각 요소는 여전히 리스트입니다.
+하지만 중요한 차이점이 있습니다. 이제 각 요소가 **명명된** 리스트이므로 `unnest_wider()`를 사용하여 각 요소를 고유한 열(its own column)에 넣을 수 있습니다.
 
 ```{r}
 repos |> 
@@ -359,8 +359,8 @@ repos |>
   unnest_wider(json) 
 ```
 
-이 작업은 잘 되었지만 결과(result)는 조금 압도적(overwhelming)입니다: 열이 너무 많아서 티블이 모두 인쇄하지조차 못합니다(doesn't even print all of them)!
-`names()`를 사용하여 모두(them all) 볼 수 있으며, 여기서는 처음 10개만 봅니다:
+이 작업은 잘 되었지만 결과(result)는 조금 압도적(overwhelming)입니다. 열이 너무 많아서 티블이 모두 인쇄하지조차 못합니다(doesn't even print all of them)!
+`names()`를 사용하여 모두(them all) 볼 수 있으며, 여기서는 처음 10개만 봅니다.
 
 ```{r}
 repos |> 
@@ -381,7 +381,7 @@ repos |>
 
 이것을 사용하여(use this to) `gh_repos`가 어떻게 구성(structured)되었는지 거꾸로(work back) 이해(understand)할 수 있습니다. 각 자식은 자신이 생성(created)한 최대 30개의 GitHub 리포지토리 리스트를 포함하는 GitHub 사용자였습니다.
 
-`owner`는 또 다른 리스트-열이며 명명된 리스트가 포함되어 있으므로 `unnest_wider()`를 사용하여 값에 접근할(get at) 수 있습니다:
+`owner`는 또 다른 리스트-열이며 명명된 리스트가 포함되어 있으므로 `unnest_wider()`를 사용하여 값에 접근할(get at) 수 있습니다.
 
 ```{r}
 #| error: true
@@ -393,7 +393,7 @@ repos |>
 ```
 
 어어(Uh oh), 이 리스트 열에도 `id` 열이 포함되어 있는데(contains) 같은 데이터 프레임에 두 개의 `id` 열을 가질(have) 수 없습니다.
-제안(suggested)된 대로 `names_sep`을 사용하여 문제(problem)를 해결(resolve)해 봅시다:
+제안(suggested)된 대로 `names_sep`을 사용하여 문제(problem)를 해결(resolve)해 봅시다.
 
 ```{r}
 repos |> 
@@ -409,21 +409,21 @@ repos |>
 
 중첩된(Nested) 데이터는 일반적으로 여러 데이터 프레임에 걸쳐(across) 분산되어(spread) 있는 데이터를 나타내는(represent) 데 종종 사용됩니다(sometimes used to).
 예를 들어 왕좌의 게임(Game of Thrones) 책과 TV 시리즈에 등장하는(appear in) 캐릭터에 대한 데이터가 포함된 `got_chars`를 살펴보겠습니다(take).
-`gh_repos`와 마찬가지로 리스트이므로(it's a list) 티블의 리스트 열로 전환(turning)하는 것부터 시작합니다:
+`gh_repos`와 마찬가지로 리스트이므로(it's a list) 티블의 리스트 열로 전환(turning)하는 것부터 시작합니다.
 
 ```{r}
 chars <- tibble(json = got_chars)
 chars
 ```
 
-`json` 열에는 명명된 요소가 포함되어 있으므로(contains named elements) 넓히기(widening)로 시작하겠습니다:
+`json` 열에는 명명된 요소가 포함되어 있으므로(contains named elements) 넓히기(widening)로 시작하겠습니다.
 
 ```{r}
 chars |> 
   unnest_wider(json)
 ```
 
-그리고 읽기 쉽도록(easier to read) 몇 개의 열을 선택합니다:
+그리고 읽기 쉽도록(easier to read) 몇 개의 열을 선택합니다.
 
 ```{r}
 characters <- chars |> 
@@ -432,7 +432,7 @@ characters <- chars |>
 characters
 ```
 
-이 데이터셋에는 여러(many) 리스트 열도 포함되어 있습니다:
+이 데이터셋에는 여러(many) 리스트 열도 포함되어 있습니다.
 
 ```{r}
 chars |> 
@@ -468,13 +468,13 @@ titles
 ### 깊은 중첩 (Deeply nested)
 
 풀기(unravel) 위해(requires) `unnest_wider()`와 `unnest_longer()`를 여러 번 반복해서(repeated rounds of) 호출해야 하는 매우 깊게(very deeply) 중첩된 리스트-열인 `gmaps_cities`로 이 사례 연구를 마무리(finish off)하겠습니다.
-이것은 5개의 도시 이름과 Google의 [geocoding API](https://developers.google.com/maps/documentation/geocoding)를 사용하여 위치(location)를 확인한(determine) 결과(results)가 포함된(containing) 2열짜리 티블입니다:
+이것은 5개의 도시 이름과 Google의 [geocoding API](https://developers.google.com/maps/documentation/geocoding)를 사용하여 위치(location)를 확인한(determine) 결과(results)가 포함된(containing) 2열짜리 티블입니다.
 
 ```{r}
 gmaps_cities
 ```
 
-`json`은 내부(internal) 이름이 있는 리스트-열이므로 `unnest_wider()`로 시작합니다:
+`json`은 내부(internal) 이름이 있는 리스트-열이므로 `unnest_wider()`로 시작합니다.
 
 ```{r}
 gmaps_cities |> 
@@ -483,7 +483,7 @@ gmaps_cities |>
 
 이것은 우리에게 `status`와 `results`를 줍니다(gives us).
 이것들이(they're) 모두 `OK`이므로(since) status 열을 삭제(drop)할 것입니다; 실제(real) 분석에서는 `status != "OK"`인 모든 행을 캡처(capture)하고 무엇이 잘못되었는지(went wrong) 파악(figure out)하려고 할 것입니다.
-`results`는 하나 또는 두 개의 요소가 있는 이름 없는 리스트이므로(이유는 잠시 후에 알게 될 것입니다) 행으로 중첩 해제합니다:
+`results`는 하나 또는 두 개의 요소가 있는 이름 없는 리스트이므로(이유는 잠시 후에 알게 될 것입니다) 행으로 중첩 해제합니다.
 
 ```{r}
 gmaps_cities |> 
@@ -492,7 +492,7 @@ gmaps_cities |>
   unnest_longer(results)
 ```
 
-이제 `results`가 이름이 지정된(named) 리스트이므로 `unnest_wider()`를 사용합니다:
+이제 `results`가 이름이 지정된(named) 리스트이므로 `unnest_wider()`를 사용합니다.
 
 ```{r}
 locations <- gmaps_cities |> 
@@ -503,10 +503,10 @@ locations <- gmaps_cities |>
 locations
 ```
 
-이제 왜(why) 두 도시가 두 개의 결과를 얻었는지(got) 알 수 있습니다: 워싱턴(Washington)은 워싱턴 주(state)와 워싱턴 DC 모두 일치(matched)했고 알링턴(Arlington)은 버지니아주(Virginia) 알링턴과 텍사스주(Texas) 알링턴 모두 일치했습니다.
+이제 왜(why) 두 도시가 두 개의 결과를 얻었는지(got) 알 수 있습니다. 워싱턴(Washington)은 워싱턴 주(state)와 워싱턴 DC 모두 일치(matched)했고 알링턴(Arlington)은 버지니아주(Virginia) 알링턴과 텍사스주(Texas) 알링턴 모두 일치했습니다.
 
 여기서(from here) 우리가 갈 수 있는 몇 가지 다양한(different) 곳이 있습니다.
-우리는 일치하는 항목의 정확한 위치(exact location)를 확인(determine)하고 싶을 수 있으며 이는 `geometry` 리스트 열에 저장(stored)되어 있습니다:
+우리는 일치하는 항목의 정확한 위치(exact location)를 확인(determine)하고 싶을 수 있으며 이는 `geometry` 리스트 열에 저장(stored)되어 있습니다.
 
 ```{r}
 locations |> 
@@ -515,7 +515,7 @@ locations |>
 ```
 
 새로운(new) `bounds`(직사각형 영역)와 `location`(포인트)을 제공(gives)합니다.
-위도(latitude, `lat`)와 경도(longitude, `lng`)를 보려면 `location`을 중첩 해제(unnest)할 수 있습니다:
+위도(latitude, `lat`)와 경도(longitude, `lng`)를 보려면 `location`을 중첩 해제(unnest)할 수 있습니다.
 
 ```{r}
 locations |> 
@@ -524,7 +524,7 @@ locations |>
   unnest_wider(location)
 ```
 
-경계를 추출(Extracting)하려면 몇 가지 단계(steps)가 더 필요(requires)합니다:
+경계를 추출(Extracting)하려면 몇 가지 단계(steps)가 더 필요(requires)합니다.
 
 ```{r}
 locations |> 
@@ -549,7 +549,7 @@ locations |>
 
 변수(variable) 이름 벡터를 `unnest_wider()`에 제공(supplying)하여 어떻게(how) 두 열을 동시에(simultaneously) 중첩 해제(unnest)하는지 주목하세요(Note).
 
-관심 있는 구성 요소로 가는(get to) 경로(path)를 발견(discovered)하면(Once) 또 다른 tidyr 함수인 `hoist()`를 사용하여 구성 요소를 직접(directly) 추출(extract)할 수 있습니다:
+관심 있는 구성 요소로 가는(get to) 경로(path)를 발견(discovered)하면(Once) 또 다른 tidyr 함수인 `hoist()`를 사용하여 구성 요소를 직접(directly) 추출(extract)할 수 있습니다.
 
 ```{r}
 #| results: false
@@ -609,11 +609,11 @@ JSON과 R의 데이터 유형은 꽤 비슷하지만(pretty similar) 완벽한 1
 
 JSON은 사람이 아닌 기계가 쉽게 읽고 쓸 수 있도록 설계된 간단한 형식(simple format)입니다.
 여기에는 6가지 핵심(key) 데이터 유형이 있습니다.
-그중 4개는 스칼라(scalars)입니다:
+그중 4개는 스칼라(scalars)입니다.
 
 -   가장 간단한(simplest) 유형은 R의 `NA`와 같은 역할(role)을 하는 null(`null`)입니다. 데이터의 부재(absence)를 나타냅니다(represents).
 -   **문자열(string)**은 R의 문자열과 매우 유사하지만(much like) 항상 큰따옴표(double quotes)를 사용해야 합니다.
--   **숫자(number)**는 R의 숫자와 유사합니다(similar to): 정수(예: 123), 소수(decimal, 예: 123.45) 또는 과학적(scientific, 예: 1.23e3) 표기법(notation)을 사용할 수 있습니다. JSON은 `Inf`, `-Inf` 또는 `NaN`을 지원하지 않습니다.
+-   **숫자(number)**는 R의 숫자와 유사합니다(similar to): 정수(123), 소수(decimal, 예: 123.45) 또는 과학적(scientific, 예: 1.23e3) 표기법(notation)을 사용할 수 있습니다. JSON은 `Inf`, `-Inf` 또는 `NaN`을 지원하지 않습니다.
 -   **부울(boolean)**은 R의 `TRUE` 및 `FALSE`와 유사하지만 소문자 `true` 및 `false`를 사용합니다.
 
 JSON의 문자열, 숫자 및 부울은 R의 문자, 숫자 및 논리(logical) 벡터와 꽤 유사합니다(pretty similar).
@@ -636,7 +636,7 @@ JSON에는 날짜(dates)나 날짜-시간(date-times)을 나타내는(represent)
 JSON을 R 데이터 구조로 변환하려면 Jeroen Ooms의 jsonlite 패키지를 추천(recommend)합니다.
 여기서는 `read_json()`과 `parse_json()`이라는 두 가지 jsonlite 함수만 사용할 것입니다.
 실생활(In real life)에서는 디스크에서 JSON 파일을 읽기 위해 `read_json()`을 사용합니다.
-예를 들어 repurrsive 패키지는 `gh_user`의 소스도 JSON 파일로 제공하며 `read_json()`을 사용하여 읽을 수 있습니다:
+예를 들어 repurrsive 패키지는 `gh_user`의 소스도 JSON 파일로 제공하며 `read_json()`을 사용하여 읽을 수 있습니다.
 
 ```{r}
 # 패키지 내부의 json 파일에 대한 경로:
@@ -650,7 +650,7 @@ identical(gh_users, gh_users2)
 ```
 
 이 책에서는 JSON이 포함된 문자열을 가져와(takes) 간단한 예제를 생성하는 데 적합(good for)하므로 `parse_json()`도 사용할 것입니다.
-시작하기(To get started) 위해 여기 세 가지 간단한 JSON 데이터셋이 있습니다. 숫자로 시작한 다음 배열에 몇 개의 숫자를 넣고 마지막으로 해당 배열을 객체에 넣습니다:
+시작하기(To get started) 위해 여기 세 가지 간단한 JSON 데이터셋이 있습니다. 숫자로 시작한 다음 배열에 몇 개의 숫자를 넣고 마지막으로 해당 배열을 객체에 넣습니다.
 
 ```{r}
 str(parse_json('1'))
@@ -664,8 +664,8 @@ jsonlite에는 `fromJSON()`이라는 또 다른 중요한 함수가 있습니다
 
 ### 직사각형화 과정 시작하기 (Starting the rectangling process)
 
-대부분의 경우 JSON 파일에는 단일 최상위(top-level) 배열이 포함되어 있습니다. 여러 "항목(things)"(예: 여러 페이지, 여러 레코드 또는 여러 결과)에 대한 데이터를 제공하도록 설계(designed)되었기 때문입니다.
-이 경우 각 요소가 행이 되도록(becomes a row) `tibble(json)`을 사용하여 직사각형화(rectangling)를 시작하게 됩니다:
+대부분의 경우 JSON 파일에는 단일 최상위(top-level) 배열이 포함되어 있습니다. 여러 "항목(things)"(여러 페이지, 여러 레코드 또는 여러 결과)에 대한 데이터를 제공하도록 설계(designed)되었기 때문입니다.
+이 경우 각 요소가 행이 되도록(becomes a row) `tibble(json)`을 사용하여 직사각형화(rectangling)를 시작하게 됩니다.
 
 ```{r}
 json <- '[
@@ -700,7 +700,7 @@ df |>
   unnest_wider(results)
 ```
 
-또는 구문 분석된 JSON 내부에 접근(reach inside)하여 실제로 관심 있는(care about) 부분(bit)부터 시작할 수도 있습니다:
+또는 구문 분석된 JSON 내부에 접근(reach inside)하여 실제로 관심 있는(care about) 부분(bit)부터 시작할 수도 있습니다.
 
 ```{r}
 df <- tibble(results = parse_json(json)$results)

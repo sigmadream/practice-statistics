@@ -185,6 +185,50 @@
       "Author": "Michael Friendly [aut, cre] (ORCID: <https://orcid.org/0000-0002-3237-0941>), Stephane Dray [aut] (ORCID: <https://orcid.org/0000-0003-0153-1105>), Peter Li [aut] (ORCID: <https://orcid.org/0000-0001-9602-9550>), David Bellhouse [aut], Hadley Wickham [ctb], James Hanley [ctb], Dennis Murphy [ctb], Luiz Droubi [ctb], James Riley [ctb], Antoine de Falguerolles [ctb], Monique Graf [ctb], Neville Verlander [ctb], Brian Clair [ctb], Jim Oeppen [ctb], Ivan Lokhov [ctb], John Russell [ctb]",
       "Repository": "CRAN"
     },
+    "Lahman": {
+      "Package": "Lahman",
+      "Version": "14.0-0",
+      "Source": "Repository",
+      "Type": "Package",
+      "Title": "Sean 'Lahman' Baseball Database",
+      "Date": "2026-02-11",
+      "Authors@R": "c(person(given = \"Michael\", family = \"Friendly\", role=\"aut\", email=\"friendly@yorku.ca\"),  person(given =\"Chris\", family = \"Dalzell\", role=c(\"cre\",\"aut\"), email=\"cdalzell@gmail.com\"), person(given =\"Martin\", family = \"Monkman\", role=\"aut\"), person(given= \"Dennis\", family = \"Murphy\", role=\"aut\"),  person(given =\"Vanessa\", family = \"Foot\", role=\"ctb\"), person(given = \"Justeena\", family = \"Zaki-Azat\", role=\"ctb\"), person(given = \"Daniel J\", family = \"Eck\", role=\"ctb\", email=\"dje13@illinois.edu\"), person(given = \"Sean\", family = \"Lahman\", role=\"cph\") )",
+      "Author": "Michael Friendly [aut], Chris Dalzell [cre, aut], Martin Monkman [aut], Dennis Murphy [aut], Vanessa Foot [ctb], Justeena Zaki-Azat [ctb], Daniel J Eck [ctb], Sean Lahman [cph]",
+      "Maintainer": "Chris Dalzell <cdalzell@gmail.com>",
+      "Description": "Provides the tables from the 'Sean Lahman Baseball Database' as a set of R data.frames. It uses the data on pitching, hitting and fielding performance and other tables from 1871 through 2024, as recorded in the 2025 version of the database. Documentation examples show how many baseball questions can be investigated.",
+      "Language": "en-US",
+      "Depends": [
+        "R (>= 3.5.0)"
+      ],
+      "Suggests": [
+        "lattice",
+        "ggplot2",
+        "googleVis",
+        "data.table",
+        "vcd",
+        "reshape2",
+        "tidyr",
+        "knitr",
+        "rmarkdown",
+        "car",
+        "plyr",
+        "tidyverse"
+      ],
+      "Imports": [
+        "dplyr"
+      ],
+      "Encoding": "UTF-8",
+      "License": "GPL",
+      "URL": "https://cdalzell.github.io/Lahman/, https://CRAN.R-project.org/package=Lahman",
+      "LazyLoad": "yes",
+      "LazyData": "yes",
+      "LazyDataCompression": "xz",
+      "BugReports": "https://github.com/cdalzell/Lahman/issues",
+      "Repository": "CRAN",
+      "NeedsCompilation": "no",
+      "RoxygenNote": "7.3.3",
+      "VignetteBuilder": "knitr"
+    },
     "MASS": {
       "Package": "MASS",
       "Version": "7.3-65",
@@ -2687,6 +2731,34 @@
       "NeedsCompilation": "no",
       "Author": "Hadley Wickham [aut, cre], Posit Software, PBC [cph, fnd]",
       "Maintainer": "Hadley Wickham <hadley@posit.co>",
+      "Repository": "CRAN"
+    },
+    "nycflights13": {
+      "Package": "nycflights13",
+      "Version": "1.0.2",
+      "Source": "Repository",
+      "Title": "Flights that Departed NYC in 2013",
+      "Authors@R": "c(person(given = \"Hadley\", family = \"Wickham\", role = c(\"aut\", \"cre\"), email = \"hadley@rstudio.com\"), person(given = \"RStudio\", role = \"cph\"))",
+      "Description": "Airline on-time data for all flights departing NYC in 2013. Also includes useful 'metadata' on airlines, airports, weather, and planes.",
+      "License": "CC0",
+      "URL": "https://github.com/hadley/nycflights13",
+      "BugReports": "https://github.com/hadley/nycflights13/issues",
+      "Depends": [
+        "R (>= 3.2)"
+      ],
+      "Imports": [
+        "tibble"
+      ],
+      "Suggests": [
+        "dplyr"
+      ],
+      "Encoding": "UTF-8",
+      "LazyData": "true",
+      "LazyDataCompression": "bzip2",
+      "RoxygenNote": "7.1.1",
+      "NeedsCompilation": "no",
+      "Author": "Hadley Wickham [aut, cre], RStudio [cph]",
+      "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
       "Repository": "CRAN"
     },
     "openssl": {

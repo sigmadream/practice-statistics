@@ -1,7 +1,7 @@
 # 환영합니다 {.unnumbered}
 
 이 웹사이트는 **"R for Data Science"** 2판의 웹사이트입니다.
-이 책은 R을 사용하여 데이터 과학을 수행하는 방법을 가르쳐줍니다: 데이터를 R로 가져오고, 가장 유용한 구조로 만들고, 변환하고 시각화하는 방법을 배우게 됩니다.
+이 책은 R을 사용하여 데이터 과학을 수행하는 방법을 가르쳐줍니다. 데이터를 R로 가져오고, 가장 유용한 구조로 만들고, 변환하고 시각화하는 방법을 배우게 됩니다.
 
 이 책에서는 데이터 과학을 위한 실무 기술을 찾을 수 있습니다.
 화학자가 시험관을 닦고 실험실을 채우는 방법을 배우는 것처럼, 데이터를 정리하고 플롯을 그리는 방법은 물론 그 밖의 여러 가지를 배우게 됩니다.
@@ -11,9 +11,9 @@
 
 이 웹사이트는 항상 무료이며, [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) 라이선스에 따라 배포됩니다.
 책의 실물 버전을 원하신다면, [Amazon](https://www.amazon.com/dp/1492097403?&tag=hadlwick-20)에서 주문하실 수 있습니다.
-무료로 책을 읽고 감사의 뜻을 전하고 싶으시다면, [Kākāpō Recovery](https://www.doc.govt.nz/kakapo-donate)에 기부해 주시기 바랍니다: R4DS 표지에 등장하는 [카카포(kākāpō)](https://www.youtube.com/watch?v=9T1vfsHYiKY)는 뉴질랜드 토착종으로 심각한 멸종 위기에 처한 앵무새이며, 현재 단 244마리만 남아 있습니다.
+무료로 책을 읽고 감사의 뜻을 전하고 싶으시다면, [Kākāpō Recovery](https://www.doc.govt.nz/kakapo-donate)에 기부해 주시기 바랍니다. R4DS 표지에 등장하는 [카카포(kākāpō)](https://www.youtube.com/watch?v=9T1vfsHYiKY)는 뉴질랜드 토착종으로 심각한 멸종 위기에 처한 앵무새이며, 현재 단 244마리만 남아 있습니다.
 
-다른 언어를 사용하신다면, 1판의 무료 번역본에 관심이 있으실 수 있습니다:
+다른 언어를 사용하신다면, 1판의 무료 번역본에 관심이 있으실 수 있습니다.
 
 -   [스페인어(Spanish)](http://es.r4ds.hadley.nz)
 -   [이탈리아어(Italian)](https://it.r4ds.hadley.nz)

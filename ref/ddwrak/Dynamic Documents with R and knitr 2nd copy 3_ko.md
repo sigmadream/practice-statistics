@@ -24,7 +24,7 @@ knitr가 설치되면 knit() 함수를 사용하여 소스 문서를 컴파일�
 
 library(knitr) knit("your-file.Rnw")
 
-*.Rnw 파일은 일반적으로 R 코드가 포함된 LATEX 문서입니다. 이는 다음 섹션과 더 많은 유형의 문서를 소개하는 5장에서 확인할 수 있습니다.
+\*.Rnw 파일은 일반적으로 R 코드가 포함된 LATEX 문서입니다. 이는 다음 섹션과 더 많은 유형의 문서를 소개하는 5장에서 확인할 수 있습니다.
 
 ###### 3.2 간단한 예제
 
@@ -34,7 +34,7 @@ LATEX나 Markdown의 구문에 대해서는 논의하지 않습니다(대신 5�
 
 str(cars)
 
-##  data.frame : 50 obs. of 2 variables: ## $ speed: num 4 4 7 7 8 9 10 10 10 11 ... ## $ dist : num 2 10 4 22 16 10 18 26 34 17 ...
+## data.frame : 50 obs. of 2 variables: ## $ speed: num 4 4 7 7 8 9 10 10 10 11 ... ## $ dist : num 2 10 4 22 16 10 18 26 34 17 ...
 
 ###### 3.2.1 LATEX 예제
 
@@ -42,17 +42,14 @@ str(cars)
 
 - 3.2는 Rnw 문서에서 컴파일된 PDF 문서입니다.
 
-
 여기서 핵심은 R 코드를 LATEX에 포함하는 방법입니다. Rnw 문서에서 < <> >=는 코드 청크의 시작을 나타내고 @는 코드 청크를 종료합니다(이 설명은 엄밀하지 않지만 이해하기 쉬운 경우가 많습니다).
 
-|\documentclass{article} \begin{document} \title{간단한 예제} \author{Yihui Xie} \maketitle<br><br>단순 선형 회귀 모델을 사용하여 속도와 정지 거리 사이의 관계를 조사합니다: $Y = \beta_0 + \beta_1 x + \epsilon$.<br><br><<model, fig.width=4, fig.height=3, fig.align= center >>= par(mar = c(4, 4, 1, 1), mgp = c(2, 1, 0), cex = 0.8) plot(cars, pch = 20, col =  darkgray ) fit <- lm(dist ~ speed, data = cars) abline(fit, lwd = 2) @<br><br>단순 선형 회귀의 기울기는 다음과 같습니다. \Sexpr{coef(fit)[2]}. \end{document}|
-|---|
-
+| \documentclass{article} \begin{document} \title{간단한 예제} \author{Yihui Xie} \maketitle<br><br>단순 선형 회귀 모델을 사용하여 속도와 정지 거리 사이의 관계를 조사합니다. $Y = \beta_0 + \beta_1 x + \epsilon$.<br><br><<model, fig.width=4, fig.height=3, fig.align= center >>= par(mar = c(4, 4, 1, 1), mgp = c(2, 1, 0), cex = 0.8) plot(cars, pch = 20, col = darkgray ) fit <- lm(dist ~ speed, data = cars) abline(fit, lwd = 2) @<br><br>단순 선형 회귀의 기울기는 다음과 같습니다. \Sexpr{coef(fit)[2]}. \end{document} |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 - 그림 3.1: 간단한 Rnw 문서의 소스입니다. 그림 3.2의 출력을 참조하세요.
 
-
-이 예제에서는 두 마커 사이에 산점도를 그리고 선형 모델을 적합하며 산점도에 회귀선을 추가하는 네 줄의 R 코드가 있습니다. \Sexpr{} 명령은 인라인 R 코드를 포함하는 데 사용됩니다(예: 이 예제의 coef(fit)[2]). < < 및 > >= 사이에 코드 청크에 대한 청크 옵션을 작성할 수 있습니다. 이 예제의 청크 옵션은 플롯 크기를 4 x 3인치(fig.width 및 fig.height)로 지정하고 플롯을 가운데 정렬(fig.align)하도록 지정했습니다.
+이 예제에서는 두 마커 사이에 산점도를 그리고 선형 모델을 적합하며 산점도에 회귀선을 추가하는 네 줄의 R 코드가 있습니다. \Sexpr{} 명령은 인라인 R 코드를 포함하는 데 사용됩니다(이 예제의 coef(fit)[2]). < < 및 > >= 사이에 코드 청크에 대한 청크 옵션을 작성할 수 있습니다. 이 예제의 청크 옵션은 플롯 크기를 4 x 3인치(fig.width 및 fig.height)로 지정하고 플롯을 가운데 정렬(fig.align)하도록 지정했습니다.
 
 이 간단한 예제에는 보고서의 기본적인 요소가 대부분 포함되어 있습니다.
 
@@ -62,24 +59,19 @@ str(cars)
 - 4. 그래픽
 - 5. 수치 결과
 
-
 모든 출력은 R에서 동적으로 생성됩니다. 데이터가 변경되더라도
 
-|간단한 예제<br><br>Yihui Xie 2015년 4월 11일<br><br>단순 선형 회귀 모델을 사용하여 속도와 정지 거리 사이의 관계를 조사합니다: Y = β0 + β1x + .<br><br>par(mar = c(4, 4, 1, 1), mgp = c(2, 1, 0), cex = 0.8) plot(cars, pch = 20, col = "darkgray") fit <- lm(dist ~ speed, data = cars) abline(fit, lwd = 2)<br><br>5 10 15 20 25<br><br>020406080100<br><br>speed<br><br>dist<br><br>단순 선형 회귀의 기울기는 3.9324088입니다.|
-|---|
-
+| 간단한 예제<br><br>Yihui Xie 2015년 4월 11일<br><br>단순 선형 회귀 모델을 사용하여 속도와 정지 거리 사이의 관계를 조사합니다. Y = β0 + β1x + .<br><br>par(mar = c(4, 4, 1, 1), mgp = c(2, 1, 0), cex = 0.8) plot(cars, pch = 20, col = "darkgray") fit <- lm(dist ~ speed, data = cars) abline(fit, lwd = 2)<br><br>5 10 15 20 25<br><br>020406080100<br><br>speed<br><br>dist<br><br>단순 선형 회귀의 기울기는 3.9324088입니다. |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 - 그림 3.2: R 코드 청크, 플롯, 수치 출력(회귀 계수)이 포함된 LATEX의 간단한 예제입니다.
 
-
 1
 
-|--title: 간단한 예제<br><br>--단순 선형 회귀 모델을 사용하여 속도와 정지 거리 사이의 관계를 조사합니다: $Y = \beta_0 + \beta_1 x + \epsilon$.    {r fig.width=4, fig.height=3, fig.align= center } par(mar = c(4, 4, 1, 1), mgp = c(2, 1, 0), cex = 0.8) plot(cars, pch = 20, col =  darkgray ) fit <- lm(dist ~ speed, data = cars) abline(fit, lwd = 2)<br><br>단순 선형 회귀의 기울기는 다음과 같습니다.  r coef(fit)[2] .|
-|---|
-
+| --title: 간단한 예제<br><br>--단순 선형 회귀 모델을 사용하여 속도와 정지 거리 사이의 관계를 조사합니다. $Y = \beta_0 + \beta_1 x + \epsilon$. {r fig.width=4, fig.height=3, fig.align= center } par(mar = c(4, 4, 1, 1), mgp = c(2, 1, 0), cex = 0.8) plot(cars, pch = 20, col = darkgray ) fit <- lm(dist ~ speed, data = cars) abline(fit, lwd = 2)<br><br>단순 선형 회귀의 기울기는 다음과 같습니다. r coef(fit)[2] . |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 - 그림 3.3: 간단한 Rmd 문서의 소스입니다. 그림 3.4의 출력을 참조하세요.
-
 
 보고서를 처음부터 다시 작성할 필요가 없으며, 데이터를 업데이트하고 보고서를 다시 컴파일하면 그에 따라 출력이 업데이트됩니다.
 
@@ -94,7 +86,6 @@ knitr에서 약간 더 긴 예제는 Markdown을 기반으로 하는 notebook이
 ![image 2](Dynamic Documents with R and knitr 2nd_images/imageFile2.png)
 
 - 그림 3.4: 그림 3.2와 동일한 분석을 수행하는 Markdown의 간단한 예제입니다. 단, 현재 출력은 PDF 대신 HTML입니다.
-
 
 if (!require("shiny")) install.packages("shiny") demo("notebook", package = "knitr")
 
@@ -117,6 +108,7 @@ library(knitr) purl("your-file.Rnw") purl("your-file.Rmd")
 탱글링의 결과는 R 스크립트입니다. 위 예제에서 기본 출력은 your-file.R이며, 소스 문서의 모든 코드 청크로 구성됩니다.
 
 지금까지 knitr의 명령줄 사용법을 소개했는데, 명령어를 반복해서 입력하는 것은 번거로운 경우가 많습니다. 다음 장에서는 좋은 편집기가 마우스 클릭 한 번이나 키보드 단축키로 소스 문서를 편집하고 컴파일하는 데 어떻게 도움이 되는지 보여줍니다.
+
 ###### 10.2.1 Crop Plots (플롯 자르기)
 
 일부 R 사용자는 R 플롯의 흰 여백(margin), 특히 기본 그래픽에서의 여백 때문에 불편을 겪었을 것입니다(ggplot2는 보통 이 부분에서 낫습니다). 그림 10.1에서 언급했듯이(또한 `?par` 참조) 기본 그래픽 옵션인 mar는 대략 c(5, 4, 4, 2)인데, 이는 종종 지나치게 큽니다. `par(mar)`를 끊임없이 조정하는 대신, 흰 여백을 자동으로 잘라주는 프로그램인 pdfcrop을 고려해 볼 수 있습니다(http://www.ctan.org/pkg/pdfcrop). knitr에서는 `hook_pdfcrop()` 훅이 가령 `crop`이라는 청크 옵션과 함께 작동하도록 설정할 수 있습니다.
@@ -144,7 +136,7 @@ knit_hooks$set(crop = hook_pdfcrop)
 이제 아래의 동일한 코드 청크에 의해 생성된 두 개의 플롯을 비교해 보겠습니다. 첫 번째 플롯은 잘리지 않았습니다(그림 10.3). 그다음 플롯은 동일하게 생성되었지만, 자르기 훅을 호출하는 청크 옵션 `crop = TRUE`가 추가되었습니다(그림 10.4).
 
 ```r
-par(mar = c(5, 4, 4, 2)) # large margin 
+par(mar = c(5, 4, 4, 2)) # large margin
 plot(lat ~ long, data = quakes, pch = 20, col = rgb(0, 0, 0, 0.2))
 ```
 
@@ -171,8 +163,8 @@ long
 `hook_rgl()` 훅을 사용하면 rgl 패키지에서 스냅샷을 쉽게 저장할 수 있습니다(Adler and Murdoch, 2014). rgl 훅은 훅 내에서 options 인자를 신중하게 사용하여 세부 사항을 처리하는 좋은 예입니다. 예를 들어, `rgl.snapshot()`이나 `rgl.postscript()`에서는 rgl 플롯의 너비와 높이를 직접 설정할 수 없으므로, options의 `fig.width`, `fig.height`, `dpi`를 활용하여 예상 창 크기를 계산한 다음, `par3d()`로 현재 창 크기를 조정하고 플롯을 저장합니다. 마지막으로 플롯을 출력에 삽입하기 위한 적절한 코드가 포함된 문자열을 반환합니다. 다음은 `hook_rgl()`의 빠르고 간단한 버전입니다.
 
 ```r
-knit_hooks$set(rgl = function(before, options, envir) { 
-  library(rgl) 
+knit_hooks$set(rgl = function(before, options, envir) {
+  library(rgl)
   if (before || rgl.cur() == 0)
     return() # return nothing before a chunk
 
@@ -184,7 +176,7 @@ knit_hooks$set(rgl = function(before, options, envir) {
 - FIGURE 10.5: An rgl plot captured by hook_rgl(): this hook function calls rgl.snapshot() in rgl to save the snapshot into a PNG image.
 
 ```r
-  rgl.snapshot(paste(name, ".png", sep = ""), fmt = "png") 
+  rgl.snapshot(paste(name, ".png", sep = ""), fmt = "png")
   paste("\\includegraphics{", name, "}\n", sep = "")
 })
 ```
@@ -198,8 +190,8 @@ knit_hooks$set(rgl = hook_rgl)
 그런 다음 청크 옵션을 `rgl = TRUE`로 설정하기만 하면 캡처된 플롯이 그림 10.5와 같이 나타납니다.
 
 ```r
-library(rgl) 
-demo("bivar", package = "rgl", echo = FALSE) 
+library(rgl)
+demo("bivar", package = "rgl", echo = FALSE)
 par3d(zoom = 0.7)
 ```
 
@@ -218,12 +210,12 @@ knit_hooks$set(custom_plot = hook_plot_custom)
 그 후 청크 옵션 `custom_plot = TRUE`로 설정하고 청크에서 직접 플롯 파일을 작성합니다. 다음은 rggobi 패키지의 `ggobi_display_save_picture()` 함수를 사용하여 GGobi 플롯을 캡처하는 예시입니다(Temple Lang et al., 2014).
 
 ```r
-<<ggobi-plot, custom_plot=TRUE, fig.ext="png">>= 
-library(rggobi) 
-data("flea", package = "tourr") 
-ggobi(flea) 
-Sys.sleep(1) # wait for snapshot 
-ggobi_display_save_picture(path = fig_path(".png")) 
+<<ggobi-plot, custom_plot=TRUE, fig.ext="png">>=
+library(rggobi)
+data("flea", package = "tourr")
+ggobi(flea)
+Sys.sleep(1) # wait for snapshot
+ggobi_display_save_picture(path = fig_path(".png"))
 @
 ```
 
@@ -235,19 +227,19 @@ ggobi_display_save_picture(path = fig_path(".png"))
 옵션 `fig.show = 'animate'`(7.3.1절 참조)를 사용하여 연속된 이미지를 저장해 애니메이션을 만들 수도 있습니다. 다음은 rgl을 사용하여 산점도를 확대하는 예시입니다(실제 애니메이션은 knitr의 메인 매뉴얼을 참조하시기 바랍니다).
 
 ```r
-## use chunk options: custom_plot=TRUE, fig.ext="png", 
-## out.width="2.5in", fig.show="animate", fig.num=20 
-library(animation) # adapted from demo("rgl_animation") 
-data(pollen) 
-uM <- matrix(c(-0.37, -0.51, -0.77, 0, -0.73, 0.67, -0.1, 0, 0.57, 0.53, -0.63, 0, 0, 0, 0, 1), 4, 4) 
-library(rgl) 
-open3d(userMatrix = uM, windowRect = c(0, 0, 400, 400)) 
-plot3d(pollen[, 1:3]) 
-zm <- seq(1, 0.05, length = 20) 
-par3d(zoom = 1) # change the zoom factor gradually later 
+## use chunk options: custom_plot=TRUE, fig.ext="png",
+## out.width="2.5in", fig.show="animate", fig.num=20
+library(animation) # adapted from demo("rgl_animation")
+data(pollen)
+uM <- matrix(c(-0.37, -0.51, -0.77, 0, -0.73, 0.67, -0.1, 0, 0.57, 0.53, -0.63, 0, 0, 0, 0, 1), 4, 4)
+library(rgl)
+open3d(userMatrix = uM, windowRect = c(0, 0, 400, 400))
+plot3d(pollen[, 1:3])
+zm <- seq(1, 0.05, length = 20)
+par3d(zoom = 1) # change the zoom factor gradually later
 for (i in 1:length(zm)) {
-  par3d(zoom = zm[i]) 
-  Sys.sleep(0.05) 
+  par3d(zoom = zm[i])
+  Sys.sleep(0.05)
   rgl.snapshot(paste(fig_path(i), "png", sep = "."))
 }
 ```
@@ -271,19 +263,19 @@ knit_hooks$set(optipng = hook_optipng)
 기본 rgl 훅인 `hook_rgl()`은 새 플롯을 그리기 전에 rgl 장치를 닫지 않습니다. 이는 나중에 그려지는 플롯이 이전 장면에 겹쳐서 그려지기 때문에 문제가 될 수 있습니다. 예를 들어, 아래의 두 줄을 함께 실행하면 두 개의 구가 있는 하나의 플롯(그림 10.7)이 그려지지만, 첫 번째 플롯을 닫고 두 번째 줄을 실행하면 각각 하나의 구가 있는 두 개의 플롯이 생성됩니다.
 
 ```r
-rgl.spheres(0, 0, 0) 
+rgl.spheres(0, 0, 0)
 rgl.spheres(0, 2, 0)
 ```
 
 일반적으로 서로 다른 코드 청크는 다른 그래픽 장치를 사용하므로 나중 청크의 그래픽 요소가 이전 청크에 추가되지 않지만, rgl 플롯의 경우에는 예외입니다. 플롯을 그리기 전에 장치를 닫으려면 훅을 약간 수정해야 합니다. 예를 들어,
 
 ```r
-knit_hooks$set(rgl = function(before, options, envir) { 
-  # if a device was opened before this chunk, close it 
+knit_hooks$set(rgl = function(before, options, envir) {
+  # if a device was opened before this chunk, close it
   if (before && rgl.cur() > 0)
     rgl.close()
 
-  hook_rgl(before, options, envir) 
+  hook_rgl(before, options, envir)
 })
 ```
 

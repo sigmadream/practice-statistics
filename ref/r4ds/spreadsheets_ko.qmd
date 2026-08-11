@@ -33,13 +33,13 @@ library(writexl)
 
 ### 시작하기 (Getting started)
 
-대부분의 readxl 함수를 사용하여 Excel 스프레드시트를 R로 로드할 수 있습니다:
+대부분의 readxl 함수를 사용하여 Excel 스프레드시트를 R로 로드할 수 있습니다.
 
 -   `read_xls()`는 `xls` 형식의 Excel 파일을 읽습니다.
 -   `read_xlsx()`는 `xlsx` 형식의 Excel 파일을 읽습니다.
 -   `read_excel()`은 `xls` 및 `xlsx` 형식의 파일을 모두 읽을 수 있습니다. 입력을 기반으로 파일 유형을 추측(guesses)합니다.
 
-이러한 함수들은 다른 유형의 파일을 읽기 위해 이전에 소개한 다른 함수(예: `read_csv()`, `read_table()` 등)와 마찬가지로 모두 유사한 구문(syntax)을 갖습니다.
+이러한 함수들은 다른 유형의 파일을 읽기 위해 이전에 소개한 다른 함수(`read_csv()`, `read_table()` 등)와 마찬가지로 모두 유사한 구문(syntax)을 갖습니다.
 이 장의 나머지 부분에서는 `read_excel()` 사용에 초점을 맞출 것입니다.
 
 ### 엑셀 스프레드시트 읽기 (Reading Excel spreadsheets) {#sec-reading-spreadsheets-excel}
@@ -73,7 +73,7 @@ students
 ```
 
 데이터에는 6명의 학생이 있고 각 학생에 대해 5개의 변수가 있습니다.
-그러나 이 데이터셋에서 해결(address)하고 싶은 몇 가지 사항이 있습니다:
+그러나 이 데이터셋에서 해결(address)하고 싶은 몇 가지 사항이 있습니다.
 
 1.  열 이름이 엉망입니다(all over the place).
     일관된 형식을 따르는 열 이름을 제공할 수 있습니다. `col_names` 인수를 사용하여 `snake_case`를 권장합니다.
@@ -274,11 +274,11 @@ deaths
 상위 3개 행과 하위 4개 행은 데이터 프레임의 일부가 아닙니다.
 `skip` 및 `n_max` 인수를 사용하여 이러한 외적인(extraneous) 행을 제거(eliminate)할 수 있지만 셀 범위를 사용하는 것을 권장합니다.
 Excel에서 왼쪽 상단 셀은 `A1`입니다.
-열을 가로질러 오른쪽으로 이동하면 셀 레이블이 알파벳순으로 이동합니다(예: `B1`, `C1` 등).
-그리고 열 아래로 이동하면 셀 레이블의 숫자가 증가합니다(예: `A2`, `A3` 등).
+열을 가로질러 오른쪽으로 이동하면 셀 레이블이 알파벳순으로 이동합니다(`B1`, `C1` 등).
+그리고 열 아래로 이동하면 셀 레이블의 숫자가 증가합니다(`A2`, `A3` 등).
 
 여기서 우리가 읽고자 하는 데이터는 셀 `A5`에서 시작하여 셀 `F15`에서 끝납니다.
-스프레드시트 표기법(notation)으로는 `A5:F15`이며, 이를 `range` 인수에 제공합니다:
+스프레드시트 표기법(notation)으로는 `A5:F15`이며, 이를 `range` 인수에 제공합니다.
 
 ```{r}
 read_excel(deaths_path, range = "A5:F15")
@@ -287,10 +287,10 @@ read_excel(deaths_path, range = "A5:F15")
 ### 데이터 유형 (Data types)
 
 CSV 파일에서 모든 값은 문자열(strings)입니다.
-이것이 데이터에 특히 충실한(true) 것은 아니지만 단순합니다: 모든 것이 문자열입니다.
+이것이 데이터에 특히 충실한(true) 것은 아니지만 단순합니다. 모든 것이 문자열입니다.
 
 Excel 스프레드시트의 근본적인(underlying) 데이터는 더 복잡합니다.
-셀은 다음 네 가지 중 하나일 수 있습니다:
+셀은 다음 네 가지 중 하나일 수 있습니다.
 
 -   `TRUE`, `FALSE` 또는 `NA`와 같은 부울(boolean).
 
@@ -305,13 +305,13 @@ Excel 스프레드시트의 근본적인(underlying) 데이터는 더 복잡합�
 모든 숫자는 부동 소수점(floating points)으로 저장되지만 사용자 지정 가능한(customizable) 소수점 이하 자릿수(decimal points)로 데이터를 표시하도록 선택할 수 있습니다.
 마찬가지로 날짜는 실제로는 숫자, 구체적으로는 1900년 1월 1일 이후의 일수로 저장됩니다.
 Excel에서 서식을 적용하여 날짜 표시 방식을 사용자 지정할 수 있습니다.
-혼란스럽게도(Confusingly), 숫자처럼 보이지만 실제로는 문자열인 것도 가능합니다(예: Excel 셀에 `'10`을 입력).
+혼란스럽게도(Confusingly), 숫자처럼 보이지만 실제로는 문자열인 것도 가능합니다(Excel 셀에 `'10`을 입력).
 
 근본적인 데이터가 저장되는 방식과 표시되는 방식 간의 이러한 차이로 인해 데이터가 R에 로드될 때 놀라움(surprises)을 유발할 수 있습니다.
 기본적으로 readxl은 주어진 열의 데이터 유형을 추측합니다.
 권장하는 워크플로는 readxl이 열 유형을 추측하도록 하고, 추측된 열 유형에 만족하는지(happy) 확인한 다음, 그렇지 않은 경우 @sec-reading-spreadsheets-excel에 표시된 대로 `col_types`를 지정하여 다시 가져오는(re-import) 것입니다.
 
-또 다른 과제는 Excel 스프레드시트에 이러한 유형이 혼합된 열이 있는 경우입니다(예: 일부 셀은 숫자, 일부는 텍스트, 일부는 날짜).
+또 다른 과제는 Excel 스프레드시트에 이러한 유형이 혼합된 열이 있는 경우입니다(일부 셀은 숫자, 일부는 텍스트, 일부는 날짜).
 데이터를 R로 가져올 때 readxl은 몇 가지 결정을 내려야 합니다.
 이러한 경우 이 열의 유형을 `"list"`로 설정할 수 있으며, 그러면 열이 길이 1인 벡터들의 목록으로 로드되며 각 벡터 요소의 유형이 추측됩니다.
 
@@ -335,7 +335,7 @@ bake_sale <- tibble(
 bake_sale
 ```
 
-[writexl 패키지](https://docs.ropensci.org/writexl/)의 `write_xlsx()` 함수를 사용하여 데이터를 디스크에 Excel 파일로 다시 쓸(write back) 수 있습니다:
+[writexl 패키지](https://docs.ropensci.org/writexl/)의 `write_xlsx()` 함수를 사용하여 데이터를 디스크에 Excel 파일로 다시 쓸(write back) 수 있습니다.
 
 ```{r}
 #| eval: false
@@ -536,7 +536,7 @@ readxl과 googlesheets4 패키지는 모두 @sec-data-import에서 보았던 `re
 knitr::include_graphics("screenshots/import-googlesheets-students.png")
 ```
 
-`read_sheet()`의 첫 번째 인수는 읽을 파일의 URL이며 티블(tibble)을 반환합니다:\
+`read_sheet()`의 첫 번째 인수는 읽을 파일의 URL이며 티블(tibble)을 반환합니다.\
 <https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w>.
 이러한 URL은 작업하기(work with) 편하지(pleasant) 않으므로 종종 해당 ID로 시트를 식별하려고 할 것입니다.
 
@@ -568,14 +568,14 @@ students
 예를 들어 "dcccc"는 "double, character, character, character, character"를 나타냅니다.
 
 Google 스프레드시트에서 개별 시트를 읽는 것도 가능합니다.
-[펭귄 구글 스프레드시트(penguins Google Sheet)](https://pos.it/r4ds-penguins)에서 "Torgersen Island" 시트를 읽어봅시다:
+[펭귄 구글 스프레드시트(penguins Google Sheet)](https://pos.it/r4ds-penguins)에서 "Torgersen Island" 시트를 읽어봅시다.
 
 ```{r}
 penguins_sheet_id <- "1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY"
 read_sheet(penguins_sheet_id, sheet = "Torgersen Island")
 ```
 
-`sheet_names()`를 사용하여 Google 스프레드시트 내의 모든 시트 목록을 얻을(obtain) 수 있습니다:
+`sheet_names()`를 사용하여 Google 스프레드시트 내의 모든 시트 목록을 얻을(obtain) 수 있습니다.
 
 ```{r}
 sheet_names(penguins_sheet_id)
@@ -593,7 +593,7 @@ deaths
 ### 구글 스프레드시트에 쓰기 (Writing to Google Sheets)
 
 `write_sheet()`를 사용하여 R에서 Google 스프레드시트로 쓸 수 있습니다.
-첫 번째 인수는 작성할 데이터 프레임이고 두 번째 인수는 작성할 Google 스프레드시트의 이름(또는 다른 식별자)입니다:
+첫 번째 인수는 작성할 데이터 프레임이고 두 번째 인수는 작성할 Google 스프레드시트의 이름(또는 다른 식별자)입니다.
 
 ```{r}
 #| eval: false
@@ -612,7 +612,7 @@ write_sheet(bake_sale, ss = "bake-sale", sheet = "Sales")
 공개(public) Google 스프레드시트의 경우 Google 계정 인증 없이 그리고 `gs4_deauth()`를 사용하여 읽을 수 있지만, 비공개(private) 시트를 읽거나 시트에 쓰려면(writing) googlesheets4가 *여러분의* Google 스프레드시트를 보고 관리할 수 있도록 인증(authentication)이 필요합니다.
 
 인증이 필요한 시트를 읽으려고 시도할(attempt) 때, googlesheets4는 웹 브라우저로 안내하여 Google 계정에 로그인하고 Google 스프레드시트를 대신(on your behalf) 운영(operate)할 수 있는 권한을 부여하라는 메시지(prompt)를 표시합니다.
-그러나 특정 Google 계정, 인증 범위(scope) 등을 지정하려는 경우 `gs4_auth()`를 사용할 수 있습니다(예: `gs4_auth(email = "mine@example.com")`). 이렇게 하면 특정 이메일과 연결된 토큰을 강제로 사용하게 됩니다.
+그러나 특정 Google 계정, 인증 범위(scope) 등을 지정하려는 경우 `gs4_auth()`를 사용할 수 있습니다(`gs4_auth(email = "mine@example.com")`). 이렇게 하면 특정 이메일과 연결된 토큰을 강제로 사용하게 됩니다.
 인증에 대한 자세한 내용은 googlesheets4 인증 비네트(auth vignette) 문서(<https://googlesheets4.tidyverse.org/articles/auth.html>)를 읽어보실 것을 권장합니다.
 
 ### 연습 문제 (Exercises)

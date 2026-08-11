@@ -22,7 +22,7 @@ source("_common.R")
 ### 전제 조건 (Prerequisites)
 
 이 장은 ggplot2에 중점을 둡니다.
-이 장에서 사용된 데이터셋, 도움말 페이지 및 함수에 액세스하려면 다음 코드를 실행하여 tidyverse를 로드하세요:
+이 장에서 사용된 데이터셋, 도움말 페이지 및 함수에 액세스하려면 다음 코드를 실행하여 tidyverse를 로드하세요.
 
 ```{r}
 #| label: setup
@@ -40,7 +40,7 @@ ggplot2 패키지와 함께 번들로 제공되는 `mpg` 데이터 프레임에�
 mpg
 ```
 
-`mpg`의 변수 중에는 다음이 있습니다:
+`mpg`의 변수 중에는 다음이 있습니다.
 
 1.  `displ`: 자동차의 엔진 크기(리터).
     숫자형(numerical) 변수입니다.
@@ -77,7 +77,7 @@ ggplot(mpg, aes(x = displ, y = hwy, shape = class)) +
   geom_point()
 ```
 
-`class`가 `shape`에 매핑되면 두 가지 경고가 표시됩니다:
+`class`가 `shape`에 매핑되면 두 가지 경고가 표시됩니다.
 
 > 1: The shape palette can deal with a maximum of 6 discrete values because more than 6 becomes difficult to discriminate; you have 7.
 > Consider specifying shapes manually if you must have them.
@@ -114,7 +114,7 @@ ggplot(mpg, aes(x = displ, y = hwy, alpha = class)) +
   geom_point()
 ```
 
-이 두 가지 모두 경고를 생성합니다:
+이 두 가지 모두 경고를 생성합니다.
 
 > Using alpha for a discrete variable is not advised.
 > (이산형 변수에 대해 alpha를 사용하는 것은 권장되지 않습니다.)
@@ -127,7 +127,7 @@ x 및 y 심미성에 대해 ggplot2는 범례를 만들지 않지만 눈금 마�
 축 선은 범례와 동일한 정보를 제공합니다. 즉 위치와 값 간의 매핑을 설명합니다.
 
 모양(appearance)을 결정하기 위해 변수 매핑에 의존하는 대신 `aes()`의 *외부*에서 지옴 함수의 인수로 지옴의 시각적 속성을 수동으로 설정할 수도 있습니다.
-예를 들어 플롯의 모든 점을 파란색으로 만들 수 있습니다:
+예를 들어 플롯의 모든 점을 파란색으로 만들 수 있습니다.
 
 ```{r}
 #| fig-alt: |
@@ -138,7 +138,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 ```
 
 여기서 색상은 변수에 대한 정보를 전달하지 않고 플롯의 모양만 변경합니다.
-해당 심미성에 적합한 값을 선택해야 합니다:
+해당 심미성에 적합한 값을 선택해야 합니다.
 
 -   문자열로 된 색상 이름, 예: `color = "blue"`
 -   mm 단위의 점 크기, 예: `size = 1`
@@ -241,7 +241,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 왼쪽의 플롯은 point 지옴을 사용하고 오른쪽의 플롯은 데이터에 적합된(fitted) 매끄러운 선인 smooth 지옴을 사용합니다.
 
 플롯에서 지옴을 변경하려면 `ggplot()`에 추가하는 지옴 함수를 변경하세요.
-예를 들어 위와 같은 플롯을 만들려면 다음 코드를 사용할 수 있습니다:
+예를 들어 위와 같은 플롯을 만들려면 다음 코드를 사용할 수 있습니다.
 
 ```{r}
 #| fig-show: hide
@@ -413,7 +413,7 @@ ggplot(mpg, aes(x = hwy, y = drv, fill = drv, color = drv)) +
 ```
 
 ggplot2가 제공하는 모든 지옴과 패키지의 모든 함수에 대한 포괄적인 개요를 볼 수 있는 가장 좋은 곳은 참조 페이지인 <https://ggplot2.tidyverse.org/reference>입니다.
-단일 지옴에 대해 더 자세히 알아보려면 도움말(예: `?geom_smooth`)을 사용하세요.
+단일 지옴에 대해 더 자세히 알아보려면 도움말(`?geom_smooth`)을 사용하세요.
 
 ### 연습 문제 (Exercises)
 
@@ -422,7 +422,7 @@ ggplot2가 제공하는 모든 지옴과 패키지의 모든 함수에 대한 �
     히스토그램(histogram)은요?
     영역 차트(area chart)는요?
 
-2.  이 장의 앞부분에서 우리는 설명 없이 `show.legend`를 사용했습니다:
+2.  이 장의 앞부분에서 우리는 설명 없이 `show.legend`를 사용했습니다.
 
     ```{r}
     #| fig-show: hide
@@ -501,7 +501,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 #|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 행에 걸쳐 
 #|   실린더 수로 패싯 처리되고 열에 걸쳐 구동계 유형으로 
 #|   패싯 처리되었습니다. 이로 인해 12개의 패싯으로 구성된 4x3 그리드가 생성됩니다. 
-#|   이들 패싯 중 일부에는 관측치가 없습니다: 5기통 4륜 구동, 
+#|   이들 패싯 중 일부에는 관측치가 없습니다. 5기통 4륜 구동, 
 #|   4기통 또는 5기통 전륜 구동,
 #|   4기통 또는 5기통 전륜 구동.
 ggplot(mpg, aes(x = displ, y = hwy)) + 
@@ -518,7 +518,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 #|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 행에 걸쳐 
 #|   실린더 수로 패싯 처리되고 열에 걸쳐 구동계 유형으로 
 #|   패싯 처리되었습니다. 이로 인해 12개의 패싯으로 구성된 4x3 그리드가 생성됩니다. 
-#|   이들 패싯 중 일부에는 관측치가 없습니다: 5기통 4륜 구동, 
+#|   이들 패싯 중 일부에는 관측치가 없습니다. 5기통 4륜 구동, 
 #|   4기통 또는 5기통 전륜 구동. 행 내의 패싯들은 
 #|   동일한 y-스케일을 공유하고 열 내의 패싯들은 
 #|   동일한 x-스케일을 공유합니다.
@@ -555,7 +555,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
       facet_grid(. ~ cyl)
     ```
 
-4.  이 섹션의 첫 번째 패싯 플롯을 살펴봅시다:
+4.  이 섹션의 첫 번째 패싯 플롯을 살펴봅시다.
 
     ```{r}
     #| fig-show: hide
@@ -619,7 +619,7 @@ x축에는 `diamonds`의 변수인 `cut`이 표시됩니다.
 y축에는 개수(count)가 표시되지만 개수는 `diamonds`의 변수가 아닙니다!
 개수는 어디에서 올까요?
 산점도와 같은 많은 그래프는 데이터셋의 원시 값(raw values)을 플롯합니다.
-막대 차트와 같은 다른 그래프들은 플롯할 새로운 값을 계산합니다:
+막대 차트와 같은 다른 그래프들은 플롯할 새로운 값을 계산합니다.
 
 -   막대 차트, 히스토그램 및 빈도 다각형(frequency polygons)은 데이터를 구간(bin)으로 나누고 각 구간에 속하는 점의 수인 구간 개수를 플롯합니다.
 
@@ -654,7 +654,7 @@ knitr::include_graphics("images/visualization-stat-bar.png")
 
 모든 지옴에는 기본(default) stat이 있으며 모든 stat에는 기본 지옴이 있습니다.
 이것은 일반적으로 기본 통계적 변환에 대해 걱정하지 않고 지옴을 사용할 수 있음을 의미합니다.
-그러나 stat을 명시적으로 사용해야 하는 세 가지 이유가 있습니다:
+그러나 stat을 명시적으로 사용해야 하는 세 가지 이유가 있습니다.
 
 1.  기본 stat을 재정의(override)하고 싶을 수 있습니다.
     아래 코드에서는 `geom_bar()`의 stat을 개수(count)(기본값)에서 항등(identity)으로 변경합니다.
@@ -673,7 +673,7 @@ knitr::include_graphics("images/visualization-stat-bar.png")
     ```
 
 2.  변환된 변수에서 심미성으로의 기본 매핑을 재정의하고 싶을 수 있습니다.
-    예를 들어 개수 대신 비율(proportions) 막대 차트를 표시하고 싶을 수 있습니다:
+    예를 들어 개수 대신 비율(proportions) 막대 차트를 표시하고 싶을 수 있습니다.
 
     ```{r}
     #| fig-alt: |
@@ -687,7 +687,7 @@ knitr::include_graphics("images/visualization-stat-bar.png")
     stat에 의해 계산될 수 있는 가능한 변수를 찾으려면 `geom_bar()` 도움말에서 "computed variables"라는 제목의 섹션을 찾으세요.
 
 3.  코드에서 통계적 변환에 더 많은 주의를 끌고 싶을 수 있습니다.
-    예를 들어 고유한 각 x 값에 대한 y 값을 요약하는 `stat_summary()`를 사용하여 계산하려는 요약 수치에 주의를 끌 수 있습니다:
+    예를 들어 고유한 각 x 값에 대한 y 값을 요약하는 `stat_summary()`를 사용하여 계산하려는 요약 수치에 주의를 끌 수 있습니다.
 
     ```{r}
     #| fig-alt: |
@@ -706,7 +706,7 @@ knitr::include_graphics("images/visualization-stat-bar.png")
     ```
 
 ggplot2는 여러분이 사용할 수 있는 20개 이상의 stat을 제공합니다.
-각 stat은 함수이므로 일반적인 방법(예: `?stat_bin`)으로 도움말을 볼 수 있습니다.
+각 stat은 함수이므로 일반적인 방법(`?stat_bin`)으로 도움말을 볼 수 있습니다.
 
 ### 연습 문제 (Exercises)
 
@@ -739,7 +739,7 @@ ggplot2는 여러분이 사용할 수 있는 20개 이상의 stat을 제공합�
 ## 위치 조정 (Position adjustments)
 
 막대 차트와 관련된 또 다른 마법이 있습니다.
-`color` 심미성을 사용하거나, 더 유용하게는 `fill` 심미성을 사용하여 막대 차트에 색을 입힐 수 있습니다:
+`color` 심미성을 사용하거나, 더 유용하게는 `fill` 심미성을 사용하여 막대 차트에 색을 입힐 수 있습니다.
 
 ```{r}
 #| layout-ncol: 2
@@ -962,7 +962,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ## 그래픽의 레이어 문법 (The layered grammar of graphics)
 
-우리는 @sec-ggplot2-calls에서 배운 그래프 작성 템플릿에 위치 조정, stats, 좌표계, 패싯 처리를 추가하여 다음과 같이 확장할 수 있습니다:
+우리는 @sec-ggplot2-calls에서 배운 그래프 작성 템플릿에 위치 조정, stats, 좌표계, 패싯 처리를 추가하여 다음과 같이 확장할 수 있습니다.
 
 ```         
 ggplot(data = <DATA>) + 
@@ -981,7 +981,7 @@ ggplot(data = <DATA>) +
 템플릿의 7개 매개변수는 플롯을 구축하기 위한 형식적 시스템(formal system)인 그래픽의 문법(grammar of graphics)을 구성합니다.
 그래픽의 문법은 *어떤* 플롯이든 데이터셋, 지옴, 매핑 집합, stat, 위치 조정, 좌표계, 패싯 체계(faceting scheme) 및 테마(theme)의 조합으로 고유하게 설명할 수 있다는 통찰(insight)에 기반합니다.
 
-이것이 어떻게 작동하는지 보려면 처음부터 기본적인 플롯을 어떻게 만들 수 있는지 생각해 보세요: 데이터셋으로 시작하여 표시하려는 정보로 변환할 수 있습니다(stat 사용).
+이것이 어떻게 작동하는지 보려면 처음부터 기본적인 플롯을 어떻게 만들 수 있는지 생각해 보세요. 데이터셋으로 시작하여 표시하려는 정보로 변환할 수 있습니다(stat 사용).
 다음으로, 변환된 데이터의 각 관측치를 나타낼 기하 객체를 선택할 수 있습니다.
 그런 다음 지옴의 심미성 속성을 사용하여 데이터의 변수들을 나타낼 수 있습니다.
 각 변수의 값을 심미성의 수준(levels)에 매핑하게 됩니다.

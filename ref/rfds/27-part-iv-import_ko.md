@@ -7,7 +7,7 @@
 <h6 id="figure-iv-1.-data-import-is-the-beginning-of-the-data-science-process-without-data-you-cant-do-data-science">그림 IV-1. 데이터 가져오기는 데이터 사이언스 프로세스의 시작입니다. 데이터 없이는 데이터 사이언스를 할 수 없습니다!</h6>
 </figure>
 
-책의 이 부분에서는 다음과 같은 방식으로 저장된 데이터에 액세스하는 방법을 배웁니다:
+책의 이 부분에서는 다음과 같은 방식으로 저장된 데이터에 액세스하는 방법을 배웁니다.
 
 - <a href="ch20.html#chp-spreadsheets" data-type="xref">20장</a>에서는 Excel 스프레드시트 및 Google 스프레드시트에서 데이터를 가져오는 방법을 배웁니다.
 
@@ -19,4 +19,4 @@
 
 - <a href="ch24.html#chp-webscraping" data-type="xref">24장</a>에서는 웹 페이지에서 데이터를 추출하는 기술이자 과학인 웹 "스크래핑(scraping)"을 배웁니다.
 
-여기에서 논의하지 않는 두 가지 중요한 tidyverse 패키지가 있습니다: haven과 xml2입니다. SPSS, Stata 및 SAS 파일의 데이터로 작업하는 경우 [haven 패키지](https://oreil.ly/cymF4)를 확인하세요. XML 데이터로 작업하는 경우 [xml2 패키지](https://oreil.ly/lQNBa)를 확인하세요. 그 외의 경우에는 어떤 패키지를 사용해야 할지 알아내기 위해 약간의 조사를 해야 할 것입니다. 이럴 때는 Google이 당신의 친구입니다.
+여기에서 논의하지 않는 두 가지 중요한 tidyverse 패키지가 있습니다. haven과 xml2입니다. SPSS, Stata 및 SAS 파일의 데이터로 작업하는 경우 [haven 패키지](https://oreil.ly/cymF4)를 확인하세요. XML 데이터로 작업하는 경우 [xml2 패키지](https://oreil.ly/lQNBa)를 확인하세요. 그 외의 경우에는 어떤 패키지를 사용해야 할지 알아내기 위해 약간의 조사를 해야 할 것입니다. 이럴 때는 Google이 당신의 친구입니다.

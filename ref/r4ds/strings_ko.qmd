@@ -53,7 +53,7 @@ string1 <- "This is a string"
 string2 <- 'If I want to include a "quote" inside a string, I use single quotes'
 ```
 
-따옴표를 닫는 것을 잊어버리면 연속(continuation) 프롬프트(prompt)인 `+`가 표시됩니다:
+따옴표를 닫는 것을 잊어버리면 연속(continuation) 프롬프트(prompt)인 `+`가 표시됩니다.
 
 ```         
 > "This is a string without a closing quote
@@ -66,21 +66,21 @@ string2 <- 'If I want to include a "quote" inside a string, I use single quotes'
 
 ### 이스케이프 (Escapes)
 
-문자열에 리터럴 단일 또는 이중 따옴표(literal single or double quote)를 포함하려면 `\`를 사용하여 "이스케이프(escape)"할 수 있습니다:
+문자열에 리터럴 단일 또는 이중 따옴표(literal single or double quote)를 포함하려면 `\`를 사용하여 "이스케이프(escape)"할 수 있습니다.
 
 ```{r}
 double_quote <- "\"" # or '"'
 single_quote <- '\'' # or "'"
 ```
 
-따라서 문자열에 리터럴 백슬래시(literal backslash)를 포함하려면 `"\\"`로 이스케이프해야 합니다:
+따라서 문자열에 리터럴 백슬래시(literal backslash)를 포함하려면 `"\\"`로 이스케이프해야 합니다.
 
 ```{r}
 backslash <- "\\"
 ```
 
 문자열의 출력된 표현(printed representation)은 인쇄된 표현에 이스케이프가 표시되기 때문에 문자열 자체와 동일하지 않다는 점에 주의하세요(다시 말해 문자열을 인쇄할 때 출력을 복사하고 붙여넣어 그 문자열을 다시 만들 수 있습니다).
-문자열의 원래 내용(raw contents)을 보려면 `str_view()`[^strings-1]를 사용하세요:
+문자열의 원래 내용(raw contents)을 보려면 `str_view()`[^strings-1]를 사용하세요.
 
 [^strings-1]: 또는 기본 R 함수인 `writeLines()`를 사용하세요.
 
@@ -93,7 +93,7 @@ str_view(x)
 ### 원시 문자열 (Raw strings) {#sec-raw-strings}
 
 여러 개의 따옴표나 백슬래시를 사용하여 문자열을 만들면 금방 혼란스러워집니다.
-문제를 설명(illustrate)하기 위해, `double_quote`와 `single_quote` 변수를 정의하는 코드 블록의 내용을 포함하는 문자열을 만들어 보겠습니다:
+문제를 설명(illustrate)하기 위해, `double_quote`와 `single_quote` 변수를 정의하는 코드 블록의 내용을 포함하는 문자열을 만들어 보겠습니다.
 
 ```{r}
 tricky <- "double_quote <- \"\\\"\" # or '\"'
@@ -102,7 +102,7 @@ str_view(tricky)
 ```
 
 백슬래시가 참 많습니다!
-(이것을 때때로 [기울어진 이쑤시개 증후군(leaning toothpick syndrome)](https://en.wikipedia.org/wiki/Leaning_toothpick_syndrome)이라고 합니다.) 이스케이프를 없애려면(eliminate) 대신 **원시 문자열(raw string)**[^strings-2]을 사용할 수 있습니다:
+(이것을 때때로 [기울어진 이쑤시개 증후군(leaning toothpick syndrome)](https://en.wikipedia.org/wiki/Leaning_toothpick_syndrome)이라고 합니다.) 이스케이프를 없애려면(eliminate) 대신 **원시 문자열(raw string)**[^strings-2]을 사용할 수 있습니다.
 
 [^strings-2]: R 4.0.0 이상에서 사용 가능합니다.
 
@@ -135,7 +135,7 @@ str_view(x)
 
 ### 연습 문제 (Exercises)
 
-1.  다음 값을 포함하는 문자열을 만드세요:
+1.  다음 값을 포함하는 문자열을 만드세요.
 
     1.  `He said "That's amazing!"`
 
@@ -162,7 +162,7 @@ str_view(x)
 
 ### `str_c()`
 
-`str_c()`는 여러 개의 벡터를 인수로 받고 문자형 벡터를 반환합니다:
+`str_c()`는 여러 개의 벡터를 인수로 받고 문자형 벡터를 반환합니다.
 
 ```{r}
 str_c("x", "y")
@@ -170,7 +170,7 @@ str_c("x", "y", "z")
 str_c("Hello ", c("John", "Susan"))
 ```
 
-`str_c()`는 기본 `paste0()`과 매우 유사하지만 결측값을 재활용(recycling)하고 전파(propagating)하는 일반적인 tidyverse 규칙을 따름으로써 `mutate()`와 함께 사용하도록 설계되었습니다:
+`str_c()`는 기본 `paste0()`과 매우 유사하지만 결측값을 재활용(recycling)하고 전파(propagating)하는 일반적인 tidyverse 규칙을 따름으로써 `mutate()`와 함께 사용하도록 설계되었습니다.
 
 ```{r}
 df <- tibble(name = c("Flora", "David", "Terra", NA))
@@ -178,7 +178,7 @@ df |> mutate(greeting = str_c("Hi ", name, "!"))
 ```
 
 결측값이 다른 방식으로 표시되게 하려면 `coalesce()`를 사용하여 대체하세요.
-원하는 방식에 따라 `str_c()` 내부 또는 외부에서 사용할 수 있습니다:
+원하는 방식에 따라 `str_c()` 내부 또는 외부에서 사용할 수 있습니다.
 
 ```{r}
 df |> 
@@ -190,7 +190,7 @@ df |>
 
 ### `str_glue()` {#sec-glue}
 
-`str_c()`로 많은 고정 문자열과 변수 문자열을 섞다(mixing) 보면 `"`를 많이 입력하게 되어 코드의 전체적인 목표를 파악하기 어렵다는 것을 알게 될 것입니다. 이에 대한 대안적 접근 방식은 `str_glue()`[^strings-4]를 통한 [glue 패키지](https://glue.tidyverse.org)에 의해 제공됩니다. 이 함수에는 특별한 기능이 있는 단일 문자열을 제공합니다: `{}` 안의 모든 내용은 따옴표 밖에 있는 것처럼 평가(evaluated)됩니다:
+`str_c()`로 많은 고정 문자열과 변수 문자열을 섞다(mixing) 보면 `"`를 많이 입력하게 되어 코드의 전체적인 목표를 파악하기 어렵다는 것을 알게 될 것입니다. 이에 대한 대안적 접근 방식은 `str_glue()`[^strings-4]를 통한 [glue 패키지](https://glue.tidyverse.org)에 의해 제공됩니다. 이 함수에는 특별한 기능이 있는 단일 문자열을 제공합니다. `{}` 안의 모든 내용은 따옴표 밖에 있는 것처럼 평가(evaluated)됩니다.
 
 [^strings-4]: stringr을 사용하지 않는 경우 `glue::glue()`로 직접 액세스할 수도 있습니다.
 
@@ -202,7 +202,7 @@ df |> mutate(greeting = str_glue("Hi {name}!"))
 
 문자열 안에 일반적인 `{`나 `}`를 포함해야 하는 경우 어떻게 되는지 궁금할 수도 있습니다.
 어떻게든 이스케이프해야 할 것이라고 짐작했다면 올바른 방향(on the right track)입니다.
-요령(trick)은 glue가 약간 다른 이스케이프 기술을 사용한다는 것입니다: `\`와 같은 특수 문자로 접두사(prefixing)를 붙이는 대신 특수 문자를 두 번 씁니다(double up):
+요령(trick)은 glue가 약간 다른 이스케이프 기술을 사용한다는 것입니다. `\`와 같은 특수 문자로 접두사(prefixing)를 붙이는 대신 특수 문자를 두 번 씁니다(double up):
 
 ```{r}
 df |> mutate(greeting = str_glue("{{Hi {name}!}}"))
@@ -212,7 +212,7 @@ df |> mutate(greeting = str_glue("{{Hi {name}!}}"))
 
 `str_c()`와 `str_glue()`는 출력이 입력과 길이가 동일하기 때문에 `mutate()`와 잘 작동합니다.
 `summarize()`와 잘 작동하는 함수, 즉 항상 단일 문자열을 반환하는 함수를 원한다면 어떻게 할까요?
-그것이 바로 `str_flatten()`[^strings-5]의 임무(job)입니다: 문자형 벡터를 취하고 벡터의 각 요소를 단일 문자열로 결합합니다:
+그것이 바로 `str_flatten()`[^strings-5]의 임무(job)입니다. 문자형 벡터를 취하고 벡터의 각 요소를 단일 문자열로 결합합니다.
 
 [^strings-5]: 기본 R에 해당하는 것은 `collapse` 인수가 사용된 `paste()`입니다.
 
@@ -222,7 +222,7 @@ str_flatten(c("x", "y", "z"), ", ")
 str_flatten(c("x", "y", "z"), ", ", last = ", and ")
 ```
 
-이렇게 하면 `summarize()`와 잘 작동합니다:
+이렇게 하면 `summarize()`와 잘 작동합니다.
 
 ```{r}
 df <- tribble(
@@ -241,7 +241,7 @@ df |>
 
 ### 연습 문제 (Exercises)
 
-1.  다음 입력에 대해 `paste0()`과 `str_c()`의 결과를 비교하고 대조(contrast)해 보세요:
+1.  다음 입력에 대해 `paste0()`과 `str_c()`의 결과를 비교하고 대조(contrast)해 보세요.
 
     ```{r}
     #| eval: false
@@ -252,7 +252,7 @@ df |>
 2.  `paste()`와 `paste0()`의 차이점은 무엇입니까?
     `str_c()`를 사용하여 `paste()`와 동일한(equivalent) 결과를 어떻게 다시 만들 수 있습니까?
 
-3.  다음 표현식을 `str_c()`에서 `str_glue()`로 또는 그 반대로 변환하세요:
+3.  다음 표현식을 `str_c()`에서 `str_glue()`로 또는 그 반대로 변환하세요.
 
     a.  `str_c("The price of ", food, " is ", price)`
 
@@ -263,15 +263,15 @@ df |>
 ## 데이터에서 문자열 추출하기 (Extracting data from strings)
 
 여러 변수가 단일 문자열에 함께 쑤셔 넣어지는(crammed together) 경우는 매우 흔합니다.
-이 섹션에서는 네 가지 tidyr 함수를 사용하여 이를 추출하는 방법을 배웁니다:
+이 섹션에서는 네 가지 tidyr 함수를 사용하여 이를 추출하는 방법을 배웁니다.
 
 -   `df |> separate_longer_delim(col, delim)`
 -   `df |> separate_longer_position(col, width)`
 -   `df |> separate_wider_delim(col, delim, names)`
 -   `df |> separate_wider_position(col, widths)`
 
-자세히 보면 여기에 공통된 패턴이 있다는 것을 알 수 있습니다: `separate_`, 그다음 `longer` 또는 `wider`, 그다음 `_`, 그리고 `delim` 또는 `position`.
-이 네 가지 함수가 두 가지 더 단순한 원시 요소(primitives)로 구성(composed)되어 있기 때문입니다:
+자세히 보면 여기에 공통된 패턴이 있다는 것을 알 수 있습니다. `separate_`, 그다음 `longer` 또는 `wider`, 그다음 `_`, 그리고 `delim` 또는 `position`.
+이 네 가지 함수가 두 가지 더 단순한 원시 요소(primitives)로 구성(composed)되어 있기 때문입니다.
 
 -   `pivot_longer()` 및 `pivot_wider()`와 마찬가지로 `_longer` 함수는 새 행을 만들어 입력 데이터 프레임을 더 길게(longer) 만들고, `_wider` 함수는 새 열을 생성하여 입력 데이터 프레임을 더 넓게(wider) 만듭니다.
 -   `delim`은 `", "` 또는 `" "`와 같은 구분 기호(delimiter)로 문자열을 분할합니다; `position`은 `c(3, 5, 2)`와 같이 지정된 너비로 분할합니다.
@@ -285,7 +285,7 @@ df |>
 ### 행으로 분리하기 (Separating into rows)
 
 문자열을 행으로 분리하는 것은 구성 요소(components)의 수가 행마다 다를 때(varies) 가장 유용합니다.
-가장 일반적인 경우는 구분 기호를 기준으로 분할하기 위해 `separate_longer_delim()`이 필요한 경우입니다:
+가장 일반적인 경우는 구분 기호를 기준으로 분할하기 위해 `separate_longer_delim()`이 필요한 경우입니다.
 
 ```{r}
 df1 <- tibble(x = c("a,b,c", "d,e", "f"))
@@ -293,7 +293,7 @@ df1 |>
   separate_longer_delim(x, delim = ",")
 ```
 
-실전에서(in the wild) `separate_longer_position()`을 보는 것은 더 드물지만(rarer), 일부 오래된 데이터셋은 각 문자가 하나의 값을 기록하는 데 사용되는 매우 조밀한 형식(compact format)을 사용합니다:
+실전에서(in the wild) `separate_longer_position()`을 보는 것은 더 드물지만(rarer), 일부 오래된 데이터셋은 각 문자가 하나의 값을 기록하는 데 사용되는 매우 조밀한 형식(compact format)을 사용합니다.
 
 ```{r}
 df2 <- tibble(x = c("1211", "131", "21"))
@@ -306,7 +306,7 @@ df2 |>
 문자열을 열로 분리하는 것은 각 문자열에 고정된 수의 구성 요소가 있고 그것들을 열로 펼치고자(spread) 할 때 가장 유용합니다.
 열의 이름을 지정해야 하기 때문에 상응하는 `longer`에 비해 약간 더 복잡합니다.
 예를 들어 다음 데이터셋에서 `x`는 코드, 에디션 번호 및 연도로 구성되어 있으며 `"."`으로 구분되어 있습니다.
-`separate_wider_delim()`을 사용하기 위해 우리는 구분 기호와 이름(names)을 두 개의 인수로 제공합니다:
+`separate_wider_delim()`을 사용하기 위해 우리는 구분 기호와 이름(names)을 두 개의 인수로 제공합니다.
 
 ```{r}
 df3 <- tibble(x = c("a10.1.2022", "b10.2.2011", "e15.1.2015"))
@@ -318,7 +318,7 @@ df3 |>
   )
 ```
 
-특정 조각(piece)이 유용하지 않은 경우 `NA` 이름을 사용하여 결과에서 생략할 수 있습니다:
+특정 조각(piece)이 유용하지 않은 경우 `NA` 이름을 사용하여 결과에서 생략할 수 있습니다.
 
 ```{r}
 df3 |> 
@@ -331,7 +331,7 @@ df3 |>
 
 `separate_wider_position()`은 일반적으로 각 열의 너비를 지정해야 하기 때문에 조금 다르게 작동합니다.
 따라서 이름(name)이 새 열의 이름을 제공하고 값(value)이 그것이 차지하는(occupies) 문자 수를 나타내는 이름이 있는(named) 정수형 벡터를 제공합니다.
-이름을 지정하지 않으면 출력에서 값을 생략할 수 있습니다:
+이름을 지정하지 않으면 출력에서 값을 생략할 수 있습니다.
 
 ```{r}
 df4 <- tibble(x = c("202215TX", "202122LA", "202325CA")) 
@@ -346,7 +346,7 @@ df4 |>
 
 `separate_wider_delim()`[^strings-6]에는 고정되어 있고 알려진(known) 열 집합이 필요합니다.
 일부 행에 예상되는 개수의 조각이 없다면 어떻게 될까요?
-너무 적거나(too few) 너무 많은(too many) 조각이라는 두 가지 가능한 문제가 있으므로 `separate_wider_delim()`은 도움이 되는 두 가지 인수인 `too_few`와 `too_many`를 제공합니다. 먼저 다음 샘플 데이터셋으로 `too_few` 경우를 살펴보겠습니다:
+너무 적거나(too few) 너무 많은(too many) 조각이라는 두 가지 가능한 문제가 있으므로 `separate_wider_delim()`은 도움이 되는 두 가지 인수인 `too_few`와 `too_many`를 제공합니다. 먼저 다음 샘플 데이터셋으로 `too_few` 경우를 살펴보겠습니다.
 
 [^strings-6]: `separate_wider_position()` 및 `separate_wider_regex()`에도 동일한 원리가 적용됩니다.
 
@@ -363,7 +363,7 @@ df |>
 ```
 
 오류가 발생한다는 것을 알 수 있지만, 이 오류는 어떻게 진행(proceed)할 수 있는지에 대한 몇 가지 제안(suggestions)을 제공합니다.
-문제를 디버깅(debugging)하는 것부터 시작하겠습니다:
+문제를 디버깅(debugging)하는 것부터 시작하겠습니다.
 
 ```{r}
 debug <- df |> 
@@ -376,8 +376,8 @@ debug <- df |>
 debug
 ```
 
-디버그 모드를 사용하면 출력에 세 개의 추가 열이 더해집니다: `a_ok`, `a_pieces`, `a_remainder` (변수를 다른 이름으로 분리하면 접두사가 다르게 됩니다).
-여기서 `a_ok`를 사용하면 실패한 입력을 빠르게 찾을 수 있습니다:
+디버그 모드를 사용하면 출력에 세 개의 추가 열이 더해집니다. `a_ok`, `a_pieces`, `a_remainder` (변수를 다른 이름으로 분리하면 접두사가 다르게 됩니다).
+여기서 `a_ok`를 사용하면 실패한 입력을 빠르게 찾을 수 있습니다.
 
 ```{r}
 debug |> filter(!a_ok)
@@ -390,7 +390,7 @@ debug |> filter(!a_ok)
 이런 경우, 상류(upstream)에서 문제를 수정하고 `too_few = "debug"`를 제거하여 새로운 문제가 오류가 되도록 하세요.
 
 다른 경우에는 누락된 부분을 `NA`로 채우고 계속 진행(move on)하고 싶을 수 있습니다.
-이것이 `too_few = "align_start"` 및 `too_few = "align_end"`의 임무(job)이며, 이를 통해 `NA`가 위치해야 할 곳을 제어할 수 있습니다:
+이것이 `too_few = "align_start"` 및 `too_few = "align_end"`의 임무(job)이며, 이를 통해 `NA`가 위치해야 할 곳을 제어할 수 있습니다.
 
 ```{r}
 df |> 
@@ -402,7 +402,7 @@ df |>
   )
 ```
 
-너무 많은 조각이 있는 경우에도 동일한 원리가 적용됩니다:
+너무 많은 조각이 있는 경우에도 동일한 원리가 적용됩니다.
 
 ```{r}
 #| error: true
@@ -416,7 +416,7 @@ df |>
   )
 ```
 
-하지만 이제 결과를 디버깅해 보면 `a_remainder`의 목적을 볼 수 있습니다:
+하지만 이제 결과를 디버깅해 보면 `a_remainder`의 목적을 볼 수 있습니다.
 
 ```{r}
 debug <- df |> 
@@ -429,7 +429,7 @@ debug <- df |>
 debug |> filter(!a_ok)
 ```
 
-너무 많은 조각을 처리하기 위한 약간 다른 옵션 세트가 있습니다: 추가 조각을 조용히 "삭제(drop)"하거나 모두 최종 열로 "병합(merge)"할 수 있습니다:
+너무 많은 조각을 처리하기 위한 약간 다른 옵션 세트가 있습니다. 추가 조각을 조용히 "삭제(drop)"하거나 모두 최종 열로 "병합(merge)"할 수 있습니다.
 
 ```{r}
 df |> 
@@ -457,7 +457,7 @@ df |>
 
 ### 길이 (Length)
 
-`str_length()`는 문자열에 있는 글자의 개수를 알려줍니다:
+`str_length()`는 문자열에 있는 글자의 개수를 알려줍니다.
 
 ```{r}
 str_length(c("a", "R for data science", NA))
@@ -479,25 +479,25 @@ babynames |>
 ### 부분집합 (Subsetting)
 
 `str_sub(string, start, end)`를 사용하여 문자열의 일부를 추출할 수 있으며, 여기서 `start`와 `end`는 부분 문자열이 시작되고 끝나야 하는 위치입니다.
-`start`와 `end` 인수는 포함(inclusive)되므로, 반환되는 문자열의 길이는 `end - start + 1`이 됩니다:
+`start`와 `end` 인수는 포함(inclusive)되므로, 반환되는 문자열의 길이는 `end - start + 1`이 됩니다.
 
 ```{r}
 x <- c("Apple", "Banana", "Pear")
 str_sub(x, 1, 3)
 ```
 
-음수 값을 사용하여 문자열의 끝에서부터 거꾸로(back) 셀 수 있습니다: -1은 마지막 문자, -2는 끝에서 두 번째 문자 등입니다.
+음수 값을 사용하여 문자열의 끝에서부터 거꾸로(back) 셀 수 있습니다. -1은 마지막 문자, -2는 끝에서 두 번째 문자 등입니다.
 
 ```{r}
 str_sub(x, -3, -1)
 ```
 
-문자열이 너무 짧아도 `str_sub()`는 실패하지 않는다는 점에 유의하세요: 단지 가능한 만큼 반환할 것입니다:
+문자열이 너무 짧아도 `str_sub()`는 실패하지 않는다는 점에 유의하세요. 단지 가능한 만큼 반환할 것입니다.
 
 ```{r}
 str_sub("a", 1, 5)
 ```
-우리는 `mutate()`와 함께 `str_sub()`를 사용하여 각 이름의 첫 글자와 마지막 글자를 찾을 수 있습니다:
+우리는 `mutate()`와 함께 `str_sub()`를 사용하여 각 이름의 첫 글자와 마지막 글자를 찾을 수 있습니다.
 
 ```{r}
 babynames |> 
@@ -516,7 +516,7 @@ babynames |>
 ## 영어가 아닌 텍스트 (Non-English text) {#sec-other-languages}
 
 지금까지 우리는 영어 텍스트에 초점을 맞췄는데, 이는 두 가지 이유로 다루기 특히 쉽습니다.
-첫째, 영어 알파벳은 비교적 간단합니다: 단 26개의 글자만 있습니다.
+첫째, 영어 알파벳은 비교적 간단합니다. 단 26개의 글자만 있습니다.
 둘째 (아마 더 중요하게도), 오늘날 우리가 사용하는 컴퓨팅 인프라는 주로(predominantly) 영어 사용자에 의해 설계되었습니다.
 안타깝게도 영어가 아닌 언어를 온전히(full treatment) 다룰 공간이 없습니다.
 그럼에도 불구하고(Still) 우리는 인코딩(encoding), 글자 변형(letter variations), 그리고 로케일 종속 함수(locale-dependent functions)와 같이 여러분이 마주칠(encounter) 수 있는 가장 큰 과제 중 일부에 여러분의 주의를 환기(draw your attention)하고 싶었습니다.
@@ -525,19 +525,19 @@ babynames |>
 
 영어가 아닌 텍스트로 작업할 때 첫 번째 과제는 종종 **인코딩(encoding)**입니다.
 무슨 일이 일어나고 있는지 이해하려면 컴퓨터가 문자열을 표현하는 방식을 파헤쳐봐야(dive into) 합니다.
-R에서는 `charToRaw()`를 사용하여 문자열의 기본 표현(underlying representation)을 알 수 있습니다:
+R에서는 `charToRaw()`를 사용하여 문자열의 기본 표현(underlying representation)을 알 수 있습니다.
 
 ```{r}
 charToRaw("Hadley")
 ```
 
-이 여섯 개의 16진수(hexadecimal numbers) 각각은 하나의 글자를 나타냅니다: `48`은 H, `61`은 a 등등.
+이 여섯 개의 16진수(hexadecimal numbers) 각각은 하나의 글자를 나타냅니다. `48`은 H, `61`은 a 등등.
 16진수에서 문자로의 매핑(mapping)을 인코딩이라고 하며, 이 경우 인코딩을 ASCII라고 합니다.
 ASCII는 정보 교환을 위한 **미국** 표준 코드(American Standard Code for Information Interchange)이기 때문에 영어 문자를 훌륭하게 표현합니다.
 
 영어 이외의 언어에 대해서는 상황이 그렇게 쉽지 않습니다.
 컴퓨팅 초창기에는 영어 이외의 문자를 인코딩하기 위한 여러 경쟁 표준(competing standards)이 있었습니다.
-예를 들어 유럽에는 두 가지 다른 인코딩이 있었습니다: 서유럽 언어에는 Latin1(일명 ISO-8859-1)이 사용되었고, 중부 유럽 언어에는 Latin2(일명 ISO-8859-2)가 사용되었습니다.
+예를 들어 유럽에는 두 가지 다른 인코딩이 있었습니다. 서유럽 언어에는 Latin1(일명 ISO-8859-1)이 사용되었고, 중부 유럽 언어에는 Latin2(일명 ISO-8859-2)가 사용되었습니다.
 Latin1에서 바이트 `b1`은 "±"이지만, Latin2에서는 "ą"입니다!
 다행히 오늘날에는 거의 모든 곳에서 지원되는 하나의 표준인 UTF-8이 있습니다.
 UTF-8은 오늘날 인간이 사용하는 거의 모든 문자와 이모티콘 같은 많은 추가 기호를 인코딩할 수 있습니다.
@@ -562,7 +562,7 @@ read_csv(x2)$text
 #> [1] "\x82\xb1\x82\xf1\x82ɂ\xbf\x82\xcd"
 ```
 
-이들을 올바르게 읽으려면 `locale` 인수를 통해 인코딩을 지정합니다:
+이들을 올바르게 읽으려면 `locale` 인수를 통해 인코딩을 지정합니다.
 
 ```{r}
 #| eval: false
@@ -584,22 +584,22 @@ read_csv(x2, locale = locale(encoding = "Shift-JIS"))$text
 
 ### 글자 변형 (Letter variations)
 
-강세(accents)가 있는 언어로 작업할 때, 악센트가 있는 문자가 단일 개별 문자(예: ü)로 인코딩되거나 강세가 없는 문자(예: u)와 발음 구별 기호(diacritic mark)(예: ¨)를 결합하여 두 문자로 인코딩될 수 있기 때문에 문자의 위치를 결정할 때(예: `str_length()` 및 `str_sub()` 사용 시) 중대한(significant) 과제가 제기(poses)됩니다.
-예를 들어, 이 코드는 똑같이(identical) 보이는 ü를 나타내는 두 가지 방법을 보여줍니다:
+강세(accents)가 있는 언어로 작업할 때, 악센트가 있는 문자가 단일 개별 문자(ü)로 인코딩되거나 강세가 없는 문자(u)와 발음 구별 기호(diacritic mark)(¨)를 결합하여 두 문자로 인코딩될 수 있기 때문에 문자의 위치를 결정할 때(`str_length()` 및 `str_sub()` 사용 시) 중대한(significant) 과제가 제기(poses)됩니다.
+예를 들어, 이 코드는 똑같이(identical) 보이는 ü를 나타내는 두 가지 방법을 보여줍니다.
 
 ```{r}
 u <- c("\u00fc", "u\u0308")
 str_view(u)
 ```
 
-하지만 두 문자열은 길이가 다르고 첫 번째 문자도 다릅니다:
+하지만 두 문자열은 길이가 다르고 첫 번째 문자도 다릅니다.
 
 ```{r}
 str_length(u)
 str_sub(u, 1, 1)
 ```
 
-마지막으로, `==`를 사용하여 이러한 문자열을 비교하면 이러한 문자열이 다르다고 해석하는 반면, stringr의 편리한 `str_equal()` 함수는 둘의 외형(appearance)이 동일함을 인식한다는 점에 유의하세요:
+마지막으로, `==`를 사용하여 이러한 문자열을 비교하면 이러한 문자열이 다르다고 해석하는 반면, stringr의 편리한 `str_equal()` 함수는 둘의 외형(appearance)이 동일함을 인식한다는 점에 유의하세요.
 
 ```{r}
 u[[1]] == u[[2]]
@@ -622,7 +622,7 @@ str_equal(u[[1]], u[[2]])
 
 대소문자 변경 규칙은 언어마다 다릅니다.
 예를 들어 터키어에는 점이 있는 i와 점이 없는 i, 두 개의 i가 있습니다.
-이들은 서로 다른 두 글자이므로 대문자로 표기하는 방법이 다릅니다:
+이들은 서로 다른 두 글자이므로 대문자로 표기하는 방법이 다릅니다.
 
 ```{r}
 str_to_upper(c("i", "ı"))
@@ -630,7 +630,7 @@ str_to_upper(c("i", "ı"), locale = "tr")
 ```
 
 문자열 정렬은 알파벳 순서에 따라 달라지며, 알파벳 순서가 모든 언어에서 동일하지는 않습니다[^strings-9]!
-예를 들면 다음과 같습니다: 체코어에서 "ch"는 알파벳 `h` 다음에 나오는 복합 문자(compound letter)입니다.
+예를 들면 다음과 같습니다. 체코어에서 "ch"는 알파벳 `h` 다음에 나오는 복합 문자(compound letter)입니다.
 
 [^strings-9]: 중국어처럼 알파벳이 없는 언어의 정렬은 이보다 더 복잡합니다.
 

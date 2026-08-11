@@ -9,18 +9,18 @@ source("_common.R")
 
 데이터 과학자로서 여러분의 도달 범위(reach)를 넓히는(improve) 가장 좋은 방법 중 하나는 함수(functions)를 작성하는 것입니다.
 함수를 사용하면(allow you to) 복사 및 붙여넣기(copy-and-pasting)보다 더 강력(powerful)하고 일반적인(general) 방법으로 일반적인 작업(common tasks)을 자동화(automate)할 수 있습니다.
-함수를 작성하면 복사 및 붙여넣기를 사용하는 것에 비해 4가지 큰 이점(advantages)이 있습니다:
+함수를 작성하면 복사 및 붙여넣기를 사용하는 것에 비해 4가지 큰 이점(advantages)이 있습니다.
 
 1.  함수에 연상되는(evocative) 이름을 부여(give)하여 코드를 더 쉽게(easier) 이해할 수 있습니다.
 
 2.  요구 사항(requirements)이 변경될 때(change) 여러 곳(many)이 아닌 한 곳(one place)에서만 코드를 업데이트(update)하면 됩니다.
 
-3.  복사 및 붙여넣기할 때 발생하는 우발적인 실수(incidental mistakes)(예: 한 곳에서는 변수 이름을 업데이트하지만 다른 곳에서는 업데이트하지 않는 경우)의 가능성(chance)을 제거(eliminate)할 수 있습니다.
+3.  복사 및 붙여넣기할 때 발생하는 우발적인 실수(incidental mistakes)(한 곳에서는 변수 이름을 업데이트하지만 다른 곳에서는 업데이트하지 않는 경우)의 가능성(chance)을 제거(eliminate)할 수 있습니다.
 
 4.  프로젝트 간(from project-to-project)에 작업(work)을 더 쉽게 재사용(reuse)할 수 있어 시간이 지남에 따라(over time) 생산성(productivity)이 향상됩니다(increasing).
 
 좋은 경험 법칙(rule of thumb)은 코드 블록을 두 번 이상(more than twice) 복사하여 붙여넣은 경우(즉, 동일한 코드의 사본(copies)이 세 개 있는 경우) 함수 작성을 고려(consider)하는 것입니다.
-이 장에서는 세 가지 유용한(useful) 유형의 함수에 대해 배웁니다:
+이 장에서는 세 가지 유용한(useful) 유형의 함수에 대해 배웁니다.
 
 -   벡터 함수(Vector functions)는 하나 이상의 벡터를 입력(input)으로 받아 벡터를 출력(output)으로 반환(return)합니다.
 -   데이터 프레임 함수(Data frame functions)는 데이터 프레임을 입력으로 받아 데이터 프레임을 출력으로 반환합니다.
@@ -75,7 +75,7 @@ Hadley가 이 코드를 작성할 때 복사 및 붙여넣기를 하다가 오�
 ### 함수 작성 (Writing a function)
 
 함수를 작성하려면 먼저(first) 반복되는 코드를 분석(analyse)하여 어느 부분이 일정하고(constant) 어느 부분이 달라지는지(vary) 파악(figure what)해야 합니다.
-위의 코드를 가져와서(take) `mutate()` 외부로 꺼내면(pull it outside of), 각 반복(repetition)이 이제 한 줄(one line)이므로 패턴(pattern)을 보기가 조금 더 쉽습니다:
+위의 코드를 가져와서(take) `mutate()` 외부로 꺼내면(pull it outside of), 각 반복(repetition)이 이제 한 줄(one line)이므로 패턴(pattern)을 보기가 조금 더 쉽습니다.
 
 ```{r}
 #| eval: false
@@ -92,7 +92,7 @@ Hadley가 이 코드를 작성할 때 복사 및 붙여넣기를 하다가 오�
 (█ - min(█, na.rm = TRUE)) / (max(█, na.rm = TRUE) - min(█, na.rm = TRUE))
 ```
 
-이것을 함수로 바꾸려면(turn this into) 세 가지가 필요합니다:
+이것을 함수로 바꾸려면(turn this into) 세 가지가 필요합니다.
 
 1.  **이름(name)**.
     이 함수는 벡터의 크기를 0과 1 사이(lie between)에 놓이도록 조정(rescales)하므로 여기서는 `rescale01`을 사용하겠습니다.
@@ -104,7 +104,7 @@ Hadley가 이 코드를 작성할 때 복사 및 붙여넣기를 하다가 오�
 3.  **본문(body)**.
     본문은 모든 호출에서 반복되는 코드입니다.
 
-그런 다음 템플릿(template)을 따라 함수 시생성합니다:
+그런 다음 템플릿(template)을 따라 함수 시생성합니다.
 
 ```{r}
 name <- function(arguments) {
@@ -120,14 +120,14 @@ rescale01 <- function(x) {
 }
 ```
 
-이 시점(point)에서 논리(logic)를 올바르게(correctly) 캡처(captured)했는지 확인(make sure)하기 위해 몇 가지 간단한 입력으로 테스트(test)해 볼 수 있습니다:
+이 시점(point)에서 논리(logic)를 올바르게(correctly) 캡처(captured)했는지 확인(make sure)하기 위해 몇 가지 간단한 입력으로 테스트(test)해 볼 수 있습니다.
 
 ```{r}
 rescale01(c(-10, 0, 10))
 rescale01(c(1, 2, 3, NA, 5))
 ```
 
-그런 다음 `mutate()` 호출을 다음과 같이 다시 작성(rewrite)할 수 있습니다:
+그런 다음 `mutate()` 호출을 다음과 같이 다시 작성(rewrite)할 수 있습니다.
 
 ```{r}
 df |> mutate(
@@ -158,7 +158,7 @@ x <- c(1:10, Inf)
 rescale01(x)
 ```
 
-해당 결과는 특별히 유용하지 않으므로(not particularly useful) `range()`에 무한한 값을 무시(ignore)하도록 요청(ask)할 수 있습니다:
+해당 결과는 특별히 유용하지 않으므로(not particularly useful) `range()`에 무한한 값을 무시(ignore)하도록 요청(ask)할 수 있습니다.
 
 ```{r}
 rescale01 <- function(x) {
@@ -177,7 +177,7 @@ rescale01(x)
 먼저 "변이(mutate)" 함수, 즉 입력과 동일한 길이의 출력을 반환하므로 `mutate()` 및 `filter()` 내부(inside of)에서 잘 작동하는 함수를 살펴보는 것으로 시작하겠습니다(start by).
 
 `rescale01()`의 간단한 변형(variation)부터 시작하겠습니다.
-평균이 0이고 표준 편차(standard deviation)가 1이 되도록 벡터의 크기를 조정하는(rescaling) Z-점수(Z-score)를 계산(compute)하고 싶을 수 있습니다:
+평균이 0이고 표준 편차(standard deviation)가 1이 되도록 벡터의 크기를 조정하는(rescaling) Z-점수(Z-score)를 계산(compute)하고 싶을 수 있습니다.
 
 ```{r}
 z_score <- function(x) {
@@ -213,7 +213,7 @@ first_upper <- function(x) {
 first_upper("hello")
 ```
 
-또는 숫자로 변환(converting it into a number)하기 전에 문자열에서 퍼센트 기호(percent signs), 쉼표(commas) 및 달러 기호(dollar signs)를 제거(strip)하고 싶을 수 있습니다:
+또는 숫자로 변환(converting it into a number)하기 전에 문자열에서 퍼센트 기호(percent signs), 쉼표(commas) 및 달러 기호(dollar signs)를 제거(strip)하고 싶을 수 있습니다.
 
 ```{r}
 # https://twitter.com/NVlabormarket/status/1571939851922198530
@@ -232,7 +232,7 @@ clean_number("45%")
 ```
 
 때로는 함수가 하나의 데이터 분석 단계(step)에 매우 특화(highly specialized)되어 있을 수 있습니다.
-예를 들어 결측값을 997, 998 또는 999로 기록(record)하는 변수가 여러 개(a bunch of) 있는 경우 이를 `NA`로 대체(replace)하는 함수를 작성하고 싶을 수 있습니다:
+예를 들어 결측값을 997, 998 또는 999로 기록(record)하는 변수가 여러 개(a bunch of) 있는 경우 이를 `NA`로 대체(replace)하는 함수를 작성하고 싶을 수 있습니다.
 
 ```{r}
 fix_na <- function(x) {
@@ -246,7 +246,7 @@ fix_na <- function(x) {
 ### 요약 함수 (Summary functions)
 
 벡터 함수의 또 다른(Another) 중요한 제품군(family)은 `summarize()`에 사용(use in)할 단일 값을 반환하는 요약(summary) 함수입니다.
-때로는 기본(default) 인수를 하나 또는 두 개 설정하는(setting) 문제일 수 있습니다:
+때로는 기본(default) 인수를 하나 또는 두 개 설정하는(setting) 문제일 수 있습니다.
 
 ```{r}
 commas <- function(x) {
@@ -256,7 +256,7 @@ commas <- function(x) {
 commas(c("cat", "dog", "pigeon"))
 ```
 
-또는 표준 편차를 평균으로 나누는 변동 계수(coefficient of variation)와 같이(like for) 간단한 계산(computation)을 정리(wrap up)할 수도 있습니다:
+또는 표준 편차를 평균으로 나누는 변동 계수(coefficient of variation)와 같이(like for) 간단한 계산(computation)을 정리(wrap up)할 수도 있습니다.
 
 ```{r}
 cv <- function(x, na.rm = FALSE) {
@@ -267,7 +267,7 @@ cv(runif(100, min = 0, max = 50))
 cv(runif(100, min = 0, max = 500))
 ```
 
-또는 기억하기 쉬운(memorable) 이름을 부여(giving)하여 일반적인 패턴(common pattern)을 더 기억하기(remember) 쉽게 만들고 싶을 수도 있습니다:
+또는 기억하기 쉬운(memorable) 이름을 부여(giving)하여 일반적인 패턴(common pattern)을 더 기억하기(remember) 쉽게 만들고 싶을 수도 있습니다.
 
 ```{r}
 # https://twitter.com/gbganalyst/status/1571619641390252033
@@ -277,7 +277,7 @@ n_missing <- function(x) {
 ```
 
 여러(multiple) 벡터 입력을 가진 함수를 작성할 수도 있습니다.
-예를 들어, 모델 예측(model predictions)을 실제 값(actual values)과 비교(compare)하는 데 도움이 되도록 평균 절대 백분율 오차(mean absolute percentage error)를 계산하고(compute) 싶을 수 있습니다:
+예를 들어, 모델 예측(model predictions)을 실제 값(actual values)과 비교(compare)하는 데 도움이 되도록 평균 절대 백분율 오차(mean absolute percentage error)를 계산하고(compute) 싶을 수 있습니다.
 
 ```{r}
 # https://twitter.com/neilgcurrie/status/1571607727255834625
@@ -289,7 +289,7 @@ mape <- function(actual, predicted) {
 ::: callout-note
 ## RStudio
 
-함수 작성을 시작(start writing)하면(Once) 매우 유용한(super useful) 두 가지 RStudio 단축키(shortcuts)가 있습니다:
+함수 작성을 시작(start writing)하면(Once) 매우 유용한(super useful) 두 가지 RStudio 단축키(shortcuts)가 있습니다.
 
 -   작성한 함수의 정의(definition)를 찾으려면(find) 함수 이름에 커서(cursor)를 놓고 `F2` 키를 누릅니다(press).
 
@@ -345,7 +345,7 @@ mape <- function(actual, predicted) {
 벡터 함수는 dplyr 동사(verb) 내에서 반복되는 코드를 뽑아내는(pulling out) 데 유용합니다.
 하지만 종종(often) 동사 자체(themselves)를 반복하는 경우도 있으며, 특히 대규모(large) 파이프라인(pipeline) 내에서 그렇습니다.
 여러(multiple) 동사를 여러 번 복사하여 붙여넣고 있다는 것을 알게 되면(notice) 데이터 프레임 함수 작성을 고려(might think about)해 볼 수 있습니다.
-데이터 프레임 함수는 dplyr 동사처럼 작동합니다: 첫 번째 인수로 데이터 프레임을, 그 데이터 프레임으로 무엇을 할지 알려주는 몇 가지 추가(extra) 인수를 받고 데이터 프레임이나 벡터를 반환합니다.
+데이터 프레임 함수는 dplyr 동사처럼 작동합니다. 첫 번째 인수로 데이터 프레임을, 그 데이터 프레임으로 무엇을 할지 알려주는 몇 가지 추가(extra) 인수를 받고 데이터 프레임이나 벡터를 반환합니다.
 
 dplyr 동사를 사용하는 함수를 작성할 수 있도록 먼저 간접 참조(indirection)의 문제점(challenge)과 이를 껴안기(embracing, `{{{ }}}`)를 사용하여 극복(overcome)하는 방법에 대해 소개하겠습니다(introduce).
 이러한 이론을 숙지한(under your belt) 후에는 이를 사용하여 수행(might do)할 수 있는 작업을 보여주는(illustrate) 여러(a bunch of) 예제를 보여드리겠습니다(show you).
@@ -354,7 +354,7 @@ dplyr 동사를 사용하는 함수를 작성할 수 있도록 먼저 간접 참
 
 dplyr 동사를 사용하는 함수를 작성하기 시작하면 간접 참조(indirection) 문제에 빠르게(rapidly) 부딪힙니다(hit).
 매우 간단한 함수인 `grouped_mean()`을 통해 문제를 설명(illustrate)해 보겠습니다.
-이 함수의 목표(goal)는 `group_var`로 그룹화된 `mean_var`의 평균을 계산하는 것입니다:
+이 함수의 목표(goal)는 `group_var`로 그룹화된 `mean_var`의 평균을 계산하는 것입니다.
 
 ```{r}
 grouped_mean <- function(df, group_var, mean_var) {
@@ -364,14 +364,14 @@ grouped_mean <- function(df, group_var, mean_var) {
 }
 ```
 
-이것을 사용해 보려고 하면(try and use it) 오류가 발생합니다:
+이것을 사용해 보려고 하면(try and use it) 오류가 발생합니다.
 
 ```{r}
 #| error: true
 diamonds |> grouped_mean(cut, carat)
 ```
 
-문제를 조금 더 명확하게 하기 위해 가상(made up)의 데이터 프레임을 사용할 수 있습니다:
+문제를 조금 더 명확하게 하기 위해 가상(made up)의 데이터 프레임을 사용할 수 있습니다.
 
 ```{r}
 df <- tibble(
@@ -398,7 +398,7 @@ df |> grouped_mean(group, y)
 변수를 껴안으면 dplyr은 인수를 리터럴(literal) 변수 이름으로 사용하지 않고 인수 내부에 저장된(stored) 값을 사용하도록 지시(tells)합니다.
 무슨 일이 일어나고 있는지 기억(remember)하는 한 가지 방법은 `{{{ }}}`를 터널 안을 들여다보는 것(looking down a tunnel)이라고 생각하는 것입니다 --- `{{{ var }}}`는 dplyr 함수가 `var`라는 이름의 변수를 찾기(looking for)보다 `var` 내부를 들여다보게(look inside of) 만듭니다(make).
 
-따라서 `grouped_mean()`이 작동하도록 하려면 `group_var`와 `mean_var`를 `{{{ }}}`로 감싸야(surround) 합니다:
+따라서 `grouped_mean()`이 작동하도록 하려면 `group_var`와 `mean_var`를 `{{{ }}}`로 감싸야(surround) 합니다.
 
 ```{r}
 grouped_mean <- function(df, group_var, mean_var) {
@@ -416,7 +416,7 @@ df |> grouped_mean(group, x)
 
 데이터 프레임 함수를 작성할 때 핵심적인 과제(key challenge)는 어떤 인수를 껴안아야 하는지 파악(figuring out)하는 것입니다.
 다행히도(Fortunately) 설명서(documentation)에서 찾을(look it up) 수 있기 때문에 쉽습니다(easy) 😄.
-깔끔한 평가의 두 가지 가장 일반적인(most common) 하위 유형(sub-types)에 해당하는 문서에서 찾아볼 두 가지 용어(terms)가 있습니다:
+깔끔한 평가의 두 가지 가장 일반적인(most common) 하위 유형(sub-types)에 해당하는 문서에서 찾아볼 두 가지 용어(terms)가 있습니다.
 
 -   **데이터 마스킹(Data-masking)**: 이것은 변수를 사용해 계산하는(compute) `arrange()`, `filter()`, `summarize()`와 같은 함수에서 사용됩니다.
 
@@ -428,7 +428,7 @@ df |> grouped_mean(group, x)
 
 ### 일반적인 사용 사례 (Common use cases)
 
-초기 데이터 탐색(initial data exploration)을 수행(doing)할 때 일반적으로(commonly) 동일한 일련의 요약(same set of summaries)을 수행(perform)하는 경우 이를 도우미 함수(helper function)로 묶는(wrapping) 것을 고려해 볼 수 있습니다:
+초기 데이터 탐색(initial data exploration)을 수행(doing)할 때 일반적으로(commonly) 동일한 일련의 요약(same set of summaries)을 수행(perform)하는 경우 이를 도우미 함수(helper function)로 묶는(wrapping) 것을 고려해 볼 수 있습니다.
 
 ```{r}
 summary6 <- function(data, var) {
@@ -448,7 +448,7 @@ diamonds |> summary6(carat)
 
 (`summarize()`를 도우미 함수로 감쌀(wrap) 때마다(Whenever) 메시지를 피하고(avoid) 데이터를 그룹화되지 않은 상태(ungrouped state)로 두기 위해(leave) `.groups = "drop"`을 설정(set)하는 것이 좋은 관행(good practice)이라고 생각합니다.)
 
-이 함수의 좋은 점(nice thing)은 `summarize()`를 래핑(wraps)하기 때문에 그룹화된(grouped) 데이터에 사용할 수 있다는(use it on) 것입니다:
+이 함수의 좋은 점(nice thing)은 `summarize()`를 래핑(wraps)하기 때문에 그룹화된(grouped) 데이터에 사용할 수 있다는(use it on) 것입니다.
 
 ```{r}
 diamonds |> 
@@ -457,7 +457,7 @@ diamonds |>
 ```
 
 게다가(Furthermore) summarize의 인수가 데이터 마스킹(data-masking)을 사용하므로(so is) `summary6()`의 `var` 인수도(so is) 마찬가지입니다.
-즉(That means), 계산된(computed) 변수를 요약할(summarize) 수도 있습니다:
+즉(That means), 계산된(computed) 변수를 요약할(summarize) 수도 있습니다.
 
 ```{r}
 diamonds |> 
@@ -467,7 +467,7 @@ diamonds |>
 
 여러 변수(multiple variables)를 요약하려면(To summarize) `across()` 사용 방법을 배우는 @sec-across까지 기다려야(wait) 합니다.
 
-널리 사용되는(popular) 또 다른 `summarize()` 도우미 함수는 비율(proportions)도 계산하는 `count()` 버전(version)입니다:
+널리 사용되는(popular) 또 다른 `summarize()` 도우미 함수는 비율(proportions)도 계산하는 `count()` 버전(version)입니다.
 
 ```{r}
 # https://twitter.com/Diabb6/status/1571635146658402309
@@ -484,7 +484,7 @@ diamonds |> count_prop(clarity)
 사용자가 자신의 값을 제공(supply)하지 않으면 기본값(default)인 `FALSE`가 되도록(will default to) `sort`에 대해 기본값을 사용(use a default value)한다는 점에 유의하세요.
 
 또는 데이터의 하위 집합(subset)에 대해 정렬된(sorted) 고유(unique) 값을 찾고 싶을 수 있습니다.
-필터링을 수행할 변수와 값을 제공(supplying)하는 대신(Rather than), 사용자가 조건(condition)을 제공(supply)하도록 허용(allow)합니다:
+필터링을 수행할 변수와 값을 제공(supplying)하는 대신(Rather than), 사용자가 조건(condition)을 제공(supply)하도록 허용(allow)합니다.
 
 ```{r}
 unique_where <- function(df, condition, var) {
@@ -515,7 +515,7 @@ subset_flights <- function(rows, cols) {
 
 때로는 데이터 마스킹(data-masking)을 사용하는 함수 내부(inside)에서 변수를 선택(select)하고 싶을 수 있습니다.
 예를 들어, 행에서 결측 관측치(missing observations)의 개수를 세는 `count_missing()`을 작성(write)하려고 한다고 상상(imagine)해 보세요.
-다음과 같이 작성해 볼(might try writing) 수 있습니다:
+다음과 같이 작성해 볼(might try writing) 수 있습니다.
 
 ```{r}
 #| error: true
@@ -533,7 +533,7 @@ flights |>
 ```
 
 `group_by()`는 깔끔한 선택(tidy-selection)이 아닌 데이터 마스킹을 사용하므로 작동하지(doesn't work) 않습니다.
-데이터 마스킹 함수 내부(inside)에서 깔끔한 선택을 사용할 수 있게 해주는 편리한(handy) `pick()` 함수를 사용하여 이 문제를 우회(work around)할 수 있습니다:
+데이터 마스킹 함수 내부(inside)에서 깔끔한 선택을 사용할 수 있게 해주는 편리한(handy) `pick()` 함수를 사용하여 이 문제를 우회(work around)할 수 있습니다.
 
 ```{r}
 count_missing <- function(df, group_vars, x_var) {
@@ -550,7 +550,7 @@ flights |>
 ```
 
 `pick()`을 편리하게 사용하는 또 다른 방법은 카운트(counts)의 2차원 표(2d table)를 만드는(make) 것입니다.
-여기서는 `rows`와 `columns`의 모든 변수를 사용하여 계수(count)한 다음 `pivot_wider()`를 사용하여 카운트를 격자(grid)로 재배열(rearrange)합니다:
+여기서는 `rows`와 `columns`의 모든 변수를 사용하여 계수(count)한 다음 `pivot_wider()`를 사용하여 카운트를 격자(grid)로 재배열(rearrange)합니다.
 
 ```{r}
 # https://twitter.com/pollicipes/status/1571606508944719876
@@ -572,7 +572,7 @@ diamonds |> count_wide(c(clarity, color), cut)
 
 ### 연습 문제 (Exercises)
 
-1.  nycflights13의 데이터셋을 사용하여 다음(that:)을 수행하는 함수를 작성하세요:
+1.  nycflights13의 데이터셋을 사용하여 다음(that:)을 수행하는 함수를 작성하세요.
 
     1.  취소된(cancelled, 즉 `is.na(arr_time)`) 또는 1시간 이상(more than an hour) 지연된 모든 항공편(flights)을 찾습니다(Finds).
 
@@ -588,14 +588,14 @@ diamonds |> count_wide(c(clarity, color), cut)
         flights |> group_by(dest) |> summarize_severe()
         ```
 
-    3.  취소되거나 사용자가 제공한 시간(hours) 이상 지연된 모든 항공편을 찾습니다:
+    3.  취소되거나 사용자가 제공한 시간(hours) 이상 지연된 모든 항공편을 찾습니다.
 
         ```{r}
         #| eval: false
         flights |> filter_severe(hours = 2)
         ```
 
-    4.  날씨(weather)를 요약(Summarizes)하여 사용자가 제공한 변수의 최소, 평균, 최대값을 계산(compute)합니다:
+    4.  날씨(weather)를 요약(Summarizes)하여 사용자가 제공한 변수의 최소, 평균, 최대값을 계산(compute)합니다.
         ```{r}
         #| eval: false
         weather |> summarize_weather(temp)
@@ -608,7 +608,7 @@ diamonds |> count_wide(c(clarity, color), cut)
         flights |> standardize_time(sched_dep_time)
         ```
 
-2.  다음 각 함수에 대해 깔끔한 평가를 사용하는 모든 인수를 나열하고 데이터 마스킹을 사용하는지 깔끔한 선택을 사용하는지 설명(describe)하세요: `distinct()`, `count()`, `group_by()`, `rename_with()`, `slice_min()`, `slice_sample()`.
+2.  다음 각 함수에 대해 깔끔한 평가를 사용하는 모든 인수를 나열하고 데이터 마스킹을 사용하는지 깔끔한 선택을 사용하는지 설명(describe)하세요. `distinct()`, `count()`, `group_by()`, `rename_with()`, `slice_min()`, `slice_sample()`.
 
 3.  계수할(to count) 변수를 개수와 상관없이 제공할(supply any number of variables) 수 있도록 다음 함수를 일반화(Generalize)하세요.
 
@@ -624,7 +624,7 @@ diamonds |> count_wide(c(clarity, color), cut)
 
 데이터 프레임을 반환하는 대신 플롯을 반환하고 싶을(might want to) 수 있습니다.
 다행히도 `aes()`는 데이터 마스킹 함수이므로 ggplot2와 동일한 기술(same techniques)을 사용할 수 있습니다.
-예를 들어 많은 히스토그램(histograms)을 만들고 있다고 상상해 보세요:
+예를 들어 많은 히스토그램(histograms)을 만들고 있다고 상상해 보세요.
 
 ```{r}
 #| fig-show: hide
@@ -638,7 +638,7 @@ diamonds |>
 ```
 
 이것을 히스토그램 함수로 감쌀 수 있다면 좋지 않을까요(Wouldn't it be nice if you could)?
-`aes()`가 데이터 마스킹 함수이고 껴안기(embrace)가 필요하다는 것을 알고 나면 식은 죽 먹기(easy as pie)입니다:
+`aes()`가 데이터 마스킹 함수이고 껴안기(embrace)가 필요하다는 것을 알고 나면 식은 죽 먹기(easy as pie)입니다.
 
 ```{r}
 #| fig-alt: |
@@ -654,7 +654,7 @@ diamonds |> histogram(carat, 0.1)
 ```
 
 `histogram()`이 ggplot2 플롯을 반환하므로 원하는 경우 추가 구성 요소(additional components)를 계속(still) 추가(add on)할 수 있습니다.
-단지 `|>`에서 `+`로 전환(switch from)하는 것을 기억하세요:
+단지 `|>`에서 `+`로 전환(switch from)하는 것을 기억하세요.
 
 ```{r}
 #| fig.show: hide
@@ -666,7 +666,7 @@ diamonds |>
 ### 더 많은 변수 (More variables)
 
 더 많은 변수를 혼합(mix)에 추가하는 것은 간단(straightforward)합니다.
-예를 들어 평활 선(smooth line)과 직선(straight line)을 겹쳐서(overlaying) 데이터셋이 선형(linear)인지 여부(whether or not)를 쉽게(easy way) 눈으로 확인(eyeball)하고 싶을 수 있습니다:
+예를 들어 평활 선(smooth line)과 직선(straight line)을 겹쳐서(overlaying) 데이터셋이 선형(linear)인지 여부(whether or not)를 쉽게(easy way) 눈으로 확인(eyeball)하고 싶을 수 있습니다.
 
 ```{r}
 #| fig-alt: |
@@ -687,7 +687,7 @@ starwars |>
   linearity_check(mass, height)
 ```
 
-또는 과잉 플로팅(overplotting)이 문제(problem)가 되는 매우 큰 데이터셋을 위한 색상이 지정된 산점도(colored scatterplots)에 대한 대안(alternative)이 필요할 수 있습니다:
+또는 과잉 플로팅(overplotting)이 문제(problem)가 되는 매우 큰 데이터셋을 위한 색상이 지정된 산점도(colored scatterplots)에 대한 대안(alternative)이 필요할 수 있습니다.
 
 ```{r}
 #| fig-alt: |
@@ -711,7 +711,7 @@ diamonds |> hex_plot(carat, price, depth)
 
 가장 유용한 도우미 함수(helpers) 중 일부는 약간의 데이터 조작(data manipulation)과 ggplot2를 결합(combine)합니다.
 예를 들어 `fct_infreq()`를 사용하여 막대(bars)를 빈도(frequency) 순서로 자동으로 정렬하는(sort) 수직(vertical) 막대 차트를 그리고 싶을(might want to do) 수 있습니다.
-막대 차트가 수직이므로 가장 높은 값을 맨 위(top)로 가져오려면(get) 일반적인 순서(usual order)를 반전(reverse)해야 합니다:
+막대 차트가 수직이므로 가장 높은 값을 맨 위(top)로 가져오려면(get) 일반적인 순서(usual order)를 반전(reverse)해야 합니다.
 
 ```{r}
 #| fig-alt: |
@@ -732,7 +732,7 @@ diamonds |> sorted_bars(clarity)
 변수 이름은 `=`의 왼쪽(left hand side)에 위치(go on)하지만, R의 구문(syntax)은 단일 리터럴 이름(single literal name)을 제외하고는 `=`의 왼쪽에 아무것도 허용하지 않습니다.
 이 문제를 우회(work around)하기 위해 우리는 깔끔한 평가가 `=`와 완전히 동일한 방식(exactly the same way)으로 처리하는 특수(special) 연산자 `:=`를 사용합니다.
 
-또는 데이터의 하위 집합(subset)에 대해서만 막대 플롯을 쉽게(easy to) 그릴 수 있게 하고 싶을 수 있습니다:
+또는 데이터의 하위 집합(subset)에 대해서만 막대 플롯을 쉽게(easy to) 그릴 수 있게 하고 싶을 수 있습니다.
 
 ```{r}
 #| fig-alt: |
@@ -772,7 +772,7 @@ rlang은 깔끔한 평가(및 다른 많은 유용한 도구)를 구현(implemen
 
 라벨링 문제를 해결(solve)하기 위해 `rlang::englue()`를 사용할 수 있습니다.
 이것은 `str_glue()`와 비슷하게(similarly) 작동하므로 `{ }`로 감싼 값(value wrapped in)은 문자열에 삽입(inserted)됩니다.
-그러나(But) 적절한(appropriate) 변수 이름을 자동으로(automatically) 삽입하는 `{{{ }}}`도 이해(understands)합니다:
+그러나(But) 적절한(appropriate) 변수 이름을 자동으로(automatically) 삽입하는 `{{{ }}}`도 이해(understands)합니다.
 
 ```{r}
 #| fig-alt: |
@@ -794,7 +794,7 @@ ggplot2 플롯에서 문자열을 제공(supply)하려는 다른(any other) 위�
 
 ### 연습 문제 (Exercises)
 
-아래의 각 단계를 점진적으로(incrementally) 구현하여 풍부한(rich) 플로팅 함수를 구축(Build up)하세요:
+아래의 각 단계를 점진적으로(incrementally) 구현하여 풍부한(rich) 플로팅 함수를 구축(Build up)하세요.
 
 1.  데이터셋과 `x` 및 `y` 변수가 주어지면 산점도를 그립니다(Draw).
 
@@ -810,7 +810,7 @@ R은 여러분의 함수나 인수가 어떻게 불리든 상관하지(doesn't c
 하지만(But) RStudio의 자동 완성(autocomplete) 기능을 사용하면 긴 이름을 쉽게 입력(type)할 수 있으므로 짧은 것보다 명확한(clear) 것이 좋습니다.
 
 일반적으로 함수 이름은 동사(verbs), 인수는 명사(nouns)여야 합니다.
-몇 가지 예외(exceptions)가 있습니다: 함수가 아주 잘 알려진 명사를 계산(computes)하거나(예: `compute_mean()`보다 `mean()`이 더 좋음), 객체의 속성(property)에 액세스하는 경우(예: `get_coefficients()`보다 `coef()`가 더 좋음) 명사여도 괜찮습니다(ok).
+몇 가지 예외(exceptions)가 있습니다. 함수가 아주 잘 알려진 명사를 계산(computes)하거나(`compute_mean()`보다 `mean()`이 더 좋음), 객체의 속성(property)에 액세스하는 경우(`get_coefficients()`보다 `coef()`가 더 좋음) 명사여도 괜찮습니다(ok).
 최선의 판단(best judgement)을 사용하고, 나중에(later) 더 나은 이름을 생각해 냈다면(figure out) 함수 이름을 바꾸는(rename) 것을 두려워하지 마세요(don't be afraid).
 
 ```{r}
@@ -878,7 +878,7 @@ density <- function(color, facets, binwidth = 0.1) {
 그 과정(Along the way)에서 창의력을 자극하기 시작했을(started to get your creative juices flowing) 많은 예제를 보았으며, 여러분의 분석 코드에 함수가 어디에 도움이 될 수 있는지에 대한 아이디어를 얻었길 바랍니다(hopefully).
 
 우리는 함수를 시작하기(get started with) 위한 최소한의 것(bare minimum)만 보여드렸으며 배울 것이 더 많이(much more) 있습니다.
-더 자세히(more) 알아볼 수 있는 몇 군데(places)는 다음과 같습니다:
+더 자세히(more) 알아볼 수 있는 몇 군데(places)는 다음과 같습니다.
 
 -   깔끔한 평가(tidy evaluation)를 사용한 프로그래밍에 대해 자세히 알아보려면(learn more about) [dplyr을 사용한 프로그래밍(programming 유with dplyr)](https://dplyr.tidyverse.org/articles/programming.html) 및 [tidyr을 사용한 프로그래밍(programming with tidyr)](https://tidyr.tidyverse.org/articles/programming.html)에서 유용한 레시피(recipes)를 참조하고 [데이터 마스킹이란 무엇이며 {{?가 왜 필요한가요(What is data-masking and why do I need {{?)](https://rlang.r-lib.org/reference/topic-data-mask.html)에서 이론에 대해 자세히 알아보세요.
 -   ggplot2 코드에서 중복을 줄이는 방법에 대해 자세히 알아보려면 ggplot2 책의 [ggplot2를 사용한 프로그래밍(Programming with ggplot2)](https://ggplot2-book.org/programming.html){.uri} 장을 읽어보세요.

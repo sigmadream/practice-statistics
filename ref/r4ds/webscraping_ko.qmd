@@ -66,7 +66,7 @@ library(rvest)
 
 데이터가 공개되어 있더라도(Even if) 이름, 이메일 주소, 전화번호, 생년월일 등 개인 식별 정보(personally identifiable information)를 스크랩할 때는 극도로(extremely) 주의(careful)해야 합니다.
 유럽은 이러한 데이터의 수집(collection)이나 저장(storage)에 대해 특히 엄격한 법률([GDPR](https://gdpr-info.eu/))을 가지고 있으며 거주지(where you live)에 관계없이(regardless of) 윤리적 수렁(ethical quagmire)에 빠질 가능성(likely to be entering)이 높습니다.
-예를 들어 2016년에 한 연구자(researchers) 그룹은 데이팅 사이트인 OkCupid에서 70,000명의 공개 프로필(profile) 정보(예: 사용자 이름, 나이, 성별, 위치 등)를 스크랩하고 비식별화(anonymization)를 위한 어떠한 시도(attempts)도 없이 이 데이터를 공개적으로 발표(publicly released)했습니다.
+예를 들어 2016년에 한 연구자(researchers) 그룹은 데이팅 사이트인 OkCupid에서 70,000명의 공개 프로필(profile) 정보(사용자 이름, 나이, 성별, 위치 등)를 스크랩하고 비식별화(anonymization)를 위한 어떠한 시도(attempts)도 없이 이 데이터를 공개적으로 발표(publicly released)했습니다.
 연구자들은 데이터가 이미 공개되어 있었기 때문에(since) 아무 문제(wrong)가 없다고 느꼈지만, 이 연구는 데이터셋에 정보가 공개된(released) 사용자의 식별 가능성(identifiability)을 둘러싼 윤리적 우려(ethics concerns)로 인해 널리 비난(widely condemned)을 받았습니다.
 작업(work)에 개인 식별 정보를 스크랩하는 내용이 포함(involves)되어 있다면, 개인 식별 정보의 획득(acquisition) 및 공개와 관련된 의심스러운(questionable) 연구 윤리(research ethics) 문제가 있는 유사한(similar) 연구뿐만 아니라 OkCupid 연구[^webscraping-3]에 대해서도 읽어보는 것을 강력히(strongly) 권장(recommend)합니다.
 
@@ -75,7 +75,7 @@ library(rvest)
 ### 저작권 (Copyright)
 
 마지막으로(Finally), 저작권(copyright)법에 대해서도 걱정(worry about)해야 합니다.
-저작권법은 복잡하지만(complicated), 정확히(exactly) 보호되는(protected) 대상을 설명(describes)하는 [미국법(US law)](https://www.law.cornell.edu/uscode/text/17/102)을 살펴볼(taking a look at) 가치(worth)가 있습니다: "\[...\] 어떤 형태의(in any) 유형적인(tangible) 표현 매체(medium of expression)에 고정된(fixed) 저자(authorship)의 독창적인(original) 저작물(works), \[...\]".
+저작권법은 복잡하지만(complicated), 정확히(exactly) 보호되는(protected) 대상을 설명(describes)하는 [미국법(US law)](https://www.law.cornell.edu/uscode/text/17/102)을 살펴볼(taking a look at) 가치(worth)가 있습니다. "\[...\] 어떤 형태의(in any) 유형적인(tangible) 표현 매체(medium of expression)에 고정된(fixed) 저자(authorship)의 독창적인(original) 저작물(works), \[...\]".
 그런 다음(It then goes on) 어문 저작물(literary works), 음악 저작물(musical works), 영화(motion pictures) 등과 같이 적용되는(it applies) 특정(specific) 범주(categories)를 설명합니다.
 데이터는 저작권 보호(copyright protection)에서 눈에 띄게 빠져 있습니다(Notably absent).
 이는(This means that) 스크래핑을 사실(facts)에 한정(limit)하는 한(as long as) 저작권 보호가 적용(apply)되지 않음을 의미합니다.
@@ -120,9 +120,9 @@ HTML은 시작(start) 태그(tag, 예: `<tag>`), 선택적(optional) **속성(at
 ### 요소 (Elements)
 
 100개가 넘는(over) HTML 요소가 있습니다.
-가장 중요한 몇 가지는 다음과 같습니다:
+가장 중요한 몇 가지는 다음과 같습니다.
 
--   모든 HTML 페이지는 `<html>` 요소 안에 있어야(must be in) 하며 두 개의 자식(children)이 있어야(must have) 합니다: 페이지 제목과 같은 문서 메타데이터(document metadata)를 포함하는 `<head>`와 브라우저(browser)에 표시되는 콘텐츠(content you see)를 포함하는 `<body>`입니다.
+-   모든 HTML 페이지는 `<html>` 요소 안에 있어야(must be in) 하며 두 개의 자식(children)이 있어야(must have) 합니다. 페이지 제목과 같은 문서 메타데이터(document metadata)를 포함하는 `<head>`와 브라우저(browser)에 표시되는 콘텐츠(content you see)를 포함하는 `<body>`입니다.
 
 -   `<h1>`(제목 1, heading 1), `<section>`(섹션, section), `<p>`(단락, paragraph), `<ol>`(순서가 있는 리스트, ordered list)과 같은 블록(Block) 태그는 페이지의 전체적인(overall) 구조를 형성(form)합니다.
 
@@ -155,7 +155,7 @@ HTML은 시작(start) 태그(tag, 예: `<tag>`), 선택적(optional) **속성(at
 
 스크래핑을 시작(get started)하려면 스크랩할 페이지의 URL이 필요(need)하며, 일반적으로 웹 브라우저에서 복사(copy)할 수 있습니다.
 그런 다음 `read_html()`을 사용하여 해당 페이지의 HTML을 R로 읽어야(read) 합니다.
-이 함수는 `xml_document`[^webscraping-5] 객체를 반환(returns)하며 이후(then) rvest 함수를 사용하여 이 객체를 조작(manipulate)합니다:
+이 함수는 `xml_document`[^webscraping-5] 객체를 반환(returns)하며 이후(then) rvest 함수를 사용하여 이 객체를 조작(manipulate)합니다.
 
 [^webscraping-5]: 이 클래스(class)는 [xml2](https://xml2.r-lib.org) 패키지에서 제공됩니다(comes from).
     xml2는 rvest가 그 위에(on top of) 구축되는(builds) 저수준(low-level) 패키지입니다.
@@ -197,7 +197,7 @@ CSS 선택자는 HTML 요소를 찾기(locating) 위한 패턴을 정의하며 �
 -   `#title`은 "title"과 같은(equals) `id` 속성을 가진 요소를 선택합니다.
     Id 속성은 문서 내에서 고유(unique)해야 하므로 이는 항상 단일(single) 요소만 선택합니다(only ever select).
 
-간단한 예시로 이러한 선택자를 시험(try out)해 봅시다:
+간단한 예시로 이러한 선택자를 시험(try out)해 봅시다.
 
 ```{r}
 html <- minimal_html("
@@ -215,7 +215,7 @@ html |> html_elements("#first")
 ```
 
 또 다른 중요한 함수는 항상 입력과 같은 수의 출력을 반환하는 `html_element()`입니다.
-전체 문서에 적용하면 첫 번째로 일치하는 항목(first match)을 제공합니다:
+전체 문서에 적용하면 첫 번째로 일치하는 항목(first match)을 제공합니다.
 
 ```{r}
 html |> html_element("p")
@@ -234,7 +234,7 @@ html |> html_element("b")
 
 대부분의 경우 `html_elements()`와 `html_element()`를 함께 사용하게 되며, 일반적으로 `html_elements()`를 사용하여 관측치(observations)가 될 요소를 식별한 다음 `html_element()`를 사용하여 변수(variables)가 될 요소를 찾습니다.
 간단한 예제를 통해 이것이 어떻게 작동하는지(in action) 살펴봅시다.
-여기 StarWars의 네 명의 캐릭터에 대한 일부 정보가 포함된 순서 없는 리스트(unordered list, `<ul>`)가 있으며 각 리스트 항목(`<li>`)이 있습니다:
+여기 StarWars의 네 명의 캐릭터에 대한 일부 정보가 포함된 순서 없는 리스트(unordered list, `<ul>`)가 있으며 각 리스트 항목(`<li>`)이 있습니다.
 
 ```{r}
 html <- minimal_html("
@@ -247,14 +247,14 @@ html <- minimal_html("
   ")
 ```
 
-`html_elements()`를 사용하여 각 요소가 다른 캐릭터에 해당하는 벡터를 만들 수 있습니다:
+`html_elements()`를 사용하여 각 요소가 다른 캐릭터에 해당하는 벡터를 만들 수 있습니다.
 
 ```{r}
 characters <- html |> html_elements("li")
 characters
 ```
 
-각 캐릭터의 이름을 추출하기 위해 `html_element()`를 사용합니다. `html_elements()`의 출력에 적용할 때 각 요소당 하나의 응답을 반환하도록 보장(guaranteed)되기 때문입니다:
+각 캐릭터의 이름을 추출하기 위해 `html_element()`를 사용합니다. `html_elements()`의 출력에 적용할 때 각 요소당 하나의 응답을 반환하도록 보장(guaranteed)되기 때문입니다.
 
 ```{r}
 characters |> html_element("b")
@@ -262,7 +262,7 @@ characters |> html_element("b")
 
 `html_element()`와 `html_elements()`의 차이(distinction)는 이름(name)에는 중요하지 않지만 체중(weight)에는 중요합니다.
 체중 `<span>`이 없는 경우라도(even if) 각 캐릭터마다 하나의 체중을 얻고 싶습니다(want to get).
-그것이 바로 `html_element()`가 하는 일입니다:
+그것이 바로 `html_element()`가 하는 일입니다.
 
 ```{r}
 characters |> html_element(".weight")
@@ -279,7 +279,7 @@ characters |> html_elements(".weight")
 
 ### 텍스트와 속성 (Text and attributes)
 
-`html_text2()`[^webscraping-6]는 HTML 요소의 일반 텍스트(plain text) 콘텐츠를 추출합니다:
+`html_text2()`[^webscraping-6]는 HTML 요소의 일반 텍스트(plain text) 콘텐츠를 추출합니다.
 
 [^webscraping-6]: rvest는 `html_text()`도 제공하지만 중첩된 HTML을 텍스트로 변환하는 작업을 더 잘 수행하므로(does a better job of) 거의 항상 `html_text2()`를 사용해야 합니다.
 
@@ -295,7 +295,7 @@ characters |>
 
 모든 이스케이프는 자동으로 처리됩니다. rvest가 반환하는 데이터가 아닌 원본(source) HTML에서만 HTML 이스케이프를 볼 수 있습니다.
 
-`html_attr()`은 속성에서 데이터를 추출합니다:
+`html_attr()`은 속성에서 데이터를 추출합니다.
 
 ```{r}
 html <- minimal_html("
@@ -316,8 +316,8 @@ html |>
 운이 좋다면(If you're lucky) 데이터가 이미 HTML 표(table)에 저장되어 있어서 해당 표에서 읽어오기만(just reading it) 하면 될 것입니다.
 일반적으로 브라우저에서 표를 인식(recognize)하는 것은 간단(straightforward)합니다. 행과 열의 직사각형 구조를 가지고 있으며 Excel과 같은 도구에 복사(copy)하여 붙여넣을(paste) 수 있습니다.
 
-HTML 표는 주로 4가지 요소(main elements)로 구성(built up from)됩니다: `<table>`, `<tr>`(표 행, table row), `<th>`(표 제목, table heading), `<td>`(표 데이터, table data).
-다음은 2열 3행으로 구성된 간단한 HTML 표입니다:
+HTML 표는 주로 4가지 요소(main elements)로 구성(built up from)됩니다. `<table>`, `<tr>`(표 행, table row), `<th>`(표 제목, table heading), `<td>`(표 데이터, table data).
+다음은 2열 3행으로 구성된 간단한 HTML 표입니다.
 
 ```{r}
 html <- minimal_html("
@@ -332,7 +332,7 @@ html <- minimal_html("
 
 rvest는 이러한 종류의 데이터를 읽을 수 있는(knows how to read) `html_table()`이라는 함수를 제공합니다.
 이 함수는 페이지에서 발견된 각 표에 대해 하나의 티블(tibble)을 포함하는 리스트를 반환합니다.
-추출하려는 표를 식별하려면 `html_element()`를 사용하세요:
+추출하려는 표를 식별하려면 `html_element()`를 사용하세요.
 
 ```{r}
 html |> 
@@ -348,7 +348,7 @@ html |>
 데이터에 필요한 선택자를 파악하는 것(Figuring out)은 일반적으로 이 문제(problem)에서 가장 어려운(hardest) 부분입니다.
 특정하고(specific, 즉 관심 없는 항목은 선택하지 않음) 민감한(sensitive, 즉 관심 있는 모든 항목을 선택함) 선택자를 찾기 위해 약간의 실험(experimenting)을 해야 하는(need to do) 경우가 많습니다.
 많은 시행착오(trial and error)는 과정의 정상적인(normal) 부분입니다!
-이 과정에 도움이 되는 두 가지 주요 도구가 있습니다: SelectorGadget과 브라우저의 개발자 도구(developer tools)입니다.
+이 과정에 도움이 되는 두 가지 주요 도구가 있습니다. SelectorGadget과 브라우저의 개발자 도구(developer tools)입니다.
 
 [SelectorGadget](https://rvest.tidyverse.org/articles/selectorgadget.html)은 제공하는 긍정적(positive) 및 부정적(negative) 예시(examples)를 기반으로 CSS 선택자를 자동으로 생성(generates)하는 자바스크립트 북마크릿(javascript bookmarklet)입니다.
 항상 작동하는 것은 아니지만, 작동할 때는(when it does) 마법과도 같습니다(it's magic)!
@@ -395,7 +395,7 @@ rvest에는 `vignette("starwars")`에 매우 간단한 예제가 포함되어 �
 ```
 
 우리의 목표(goal)는 이 데이터를 `title`(제목), `year`(연도), `director`(감독), `intro`(소개) 변수가 있는 7행(7 row) 데이터 프레임으로 바꾸는(turn) 것입니다.
-HTML을 읽고 모든 `<section>` 요소를 추출하는 것(extracting)부터 시작하겠습니다:
+HTML을 읽고 모든 `<section>` 요소를 추출하는 것(extracting)부터 시작하겠습니다.
 
 ```{r}
 url <- "https://rvest.tidyverse.org/articles/starwars.html"
@@ -407,7 +407,7 @@ section
 
 이것은 해당 페이지에 있는 7편의 영화와 일치(matching)하는 7개의 요소를 검색(retrieves)하므로 `section`을 선택자로 사용하는 것이 좋다는(good) 것을 시사(suggesting)합니다.
 데이터가 항상(always) 텍스트에 있기 때문에(found in) 개별(individual) 요소를 추출하는 것은 간단(straightforward)합니다.
-올바른 선택자를 찾는(finding) 문제일 뿐입니다:
+올바른 선택자를 찾는(finding) 문제일 뿐입니다.
 
 ```{r}
 section |> html_element("h2") |> html_text2()
@@ -415,7 +415,7 @@ section |> html_element("h2") |> html_text2()
 section |> html_element(".director") |> html_text2()
 ```
 
-각 구성 요소에 대해 그 작업을 수행하고 나면(Once we've done that) 모든 결과를 티블로 감쌀(wrap all the results up into) 수 있습니다:
+각 구성 요소에 대해 그 작업을 수행하고 나면(Once we've done that) 모든 결과를 티블로 감쌀(wrap all the results up into) 수 있습니다.
 ```{r}
 tibble(
   title = section |> 
@@ -456,7 +456,7 @@ tibble(
 knitr::include_graphics("screenshots/scraping-imdb.png", dpi = 300)
 ```
 
-이 데이터는 명확한 표 구조(tabular structure)를 가지고 있으므로 `html_table()`로 시작할 가치(worth)가 있습니다:
+이 데이터는 명확한 표 구조(tabular structure)를 가지고 있으므로 `html_table()`로 시작할 가치(worth)가 있습니다.
 
 ```{r}
 url <- "https://web.archive.org/web/20220201012049/https://www.imdb.com/chart/top/"
@@ -505,7 +505,7 @@ html |>
   html_attr("title")
 ```
 
-이것을 표 데이터와 결합(combine)하고 다시 `separate_wider_regex()`를 적용하여 관심 있는(care about) 데이터를 추출(extract out)할 수 있습니다:
+이것을 표 데이터와 결합(combine)하고 다시 `separate_wider_regex()`를 적용하여 관심 있는(care about) 데이터를 추출(extract out)할 수 있습니다.
 
 ```{r}
 ratings |>

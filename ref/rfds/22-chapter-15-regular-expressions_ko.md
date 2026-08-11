@@ -2,7 +2,7 @@
 
 # 소개
 
-<a href="ch14.html#chp-strings" data-type="xref">14장</a>에서는 문자열을 다루는 데 유용한 여러 가지 함수에 대해 배웠습니다. 이 장에서는 문자열 내의 패턴을 설명하기 위한 간결하고 강력한 언어인 *정규 표현식(regular expressions)*을 사용하는 함수에 중점을 둡니다. *regular expression*이라는 용어는 다소 길기 때문에 대부분의 사람들은 *regex*<sup><a href="ch15.html#idm44771294160112" id="idm44771294160112-marker" data-type="noteref">1</a></sup> 또는 *regexp*로 축약하여 부릅니다.
+<a href="ch14.html#chp-strings" data-type="xref">14장</a>에서는 문자열을 다루는 데 유용한 여러 가지 함수에 대해 배웠습니다. 이 장에서는 문자열 내의 패턴을 설명하기 위한 간결하고 강력한 언어인 *정규 표현식(regular expressions)*을 사용하는 함수에 중점을 둡니다. *regular expression*이라는 용어는 다소 길기 때문에 대부분의 사람들은 _regex_<sup><a href="ch15.html#idm44771294160112" id="idm44771294160112-marker" data-type="noteref">1</a></sup> 또는 *regexp*로 축약하여 부릅니다.
 
 이 장은 정규 표현식의 기초와 데이터 분석에 가장 유용한 stringr 함수들로 시작합니다. 그런 다음 패턴에 대한 지식을 확장하여 일곱 가지 중요한 새로운 주제(이스케이핑(escaping), 앵커링(anchoring), 문자 클래스(character classes), 단축 클래스(shorthand classes), 수량자(quantifiers), 우선순위(precedence) 및 그룹화(grouping))를 다룰 것입니다. 다음으로, stringr 함수가 다룰 수 있는 다른 유형의 패턴들과 정규 표현식의 동작을 미세 조정할 수 있는 다양한 "플래그(flags)"에 대해 이야기할 것입니다. 마지막으로, tidyverse 및 기본 R에서 정규 표현식을 사용할 수 있는 다른 곳들을 살펴보며 마무리하겠습니다.
 
@@ -15,7 +15,7 @@ library(tidyverse)
 library(babynames)
 ```
 
-이 장 전반에 걸쳐 기본 개념을 파악할 수 있는 간단한 인라인 예제와, 아기 이름(baby names) 데이터, 그리고 stringr의 세 가지 문자 벡터를 혼합하여 사용할 것입니다:
+이 장 전반에 걸쳐 기본 개념을 파악할 수 있는 간단한 인라인 예제와, 아기 이름(baby names) 데이터, 그리고 stringr의 세 가지 문자 벡터를 혼합하여 사용할 것입니다.
 
 - `fruit`는 80개의 과일 이름을 포함합니다.
 - `words`는 980개의 흔한 영어 단어를 포함합니다.
@@ -25,7 +25,7 @@ library(babynames)
 
 정규 표현식 패턴이 어떻게 작동하는지 배우기 위해 <a href="https://stringr.tidyverse.org/reference/str_view.html" class="orm:hideurl"><code>str_view()</code></a>를 사용할 것입니다. 이전 장에서 우리는 문자열과 그 출력 형태를 더 잘 이해하기 위해 <a href="https://stringr.tidyverse.org/reference/str_view.html" class="orm:hideurl"><code>str_view()</code></a>를 사용했었지만, 이제는 두 번째 인수로 정규 표현식을 전달하여 사용할 것입니다. 이것이 제공되면, <a href="https://stringr.tidyverse.org/reference/str_view.html" class="orm:hideurl"><code>str_view()</code></a>는 일치하는 문자열 벡터의 요소만 표시하고, 각 일치 항목을 `<>`로 둘러싸며, 가능한 경우 일치 항목을 파란색으로 강조 표시합니다.
 
-가장 단순한 패턴은 해당 문자와 정확히 일치하는 문자와 숫자로 구성됩니다:
+가장 단순한 패턴은 해당 문자와 정확히 일치하는 문자와 숫자로 구성됩니다.
 
 ```
 str_view(fruit, "berry")
@@ -38,7 +38,7 @@ str_view(fruit, "berry")
 #> ... and 8 more
 ```
 
-문자와 숫자는 정확히 일치하며 이를 *리터럴 문자(literal characters)*라고 합니다. `.`, `+`, `*`, `[`, `]`, `?`와 같은 대부분의 구두점 문자는 특별한 의미를 가지며<sup><a href="ch15.html#idm44771294089152" id="idm44771294089152-marker" data-type="noteref">2</a></sup> *메타문자(metacharacters)*라고 부릅니다. 예를 들어, `.`는 임의의 문자와 일치하므로,<sup><a href="ch15.html#idm44771294083376" id="idm44771294083376-marker" data-type="noteref">3</a></sup> `"a."`는 "a" 뒤에 다른 문자가 오는 모든 문자열과 일치합니다:
+문자와 숫자는 정확히 일치하며 이를 *리터럴 문자(literal characters)*라고 합니다. `.`, `+`, `*`, `[`, `]`, `?`와 같은 대부분의 구두점 문자는 특별한 의미를 가지며<sup><a href="ch15.html#idm44771294089152" id="idm44771294089152-marker" data-type="noteref">2</a></sup> *메타문자(metacharacters)*라고 부릅니다. 예를 들어, `.`는 임의의 문자와 일치하므로,<sup><a href="ch15.html#idm44771294083376" id="idm44771294083376-marker" data-type="noteref">3</a></sup> `"a."`는 "a" 뒤에 다른 문자가 오는 모든 문자열과 일치합니다.
 
 ```
 str_view(c("a", "ab", "ae", "bd", "ea", "eab"), "a.")
@@ -47,7 +47,7 @@ str_view(c("a", "ab", "ae", "bd", "ea", "eab"), "a.")
 #> [6] │ e<ab>
 ```
 
-또는 "a"로 시작해서 세 글자가 오고 그 뒤에 "e"가 오는 모든 과일을 찾을 수도 있습니다:
+또는 "a"로 시작해서 세 글자가 오고 그 뒤에 "e"가 오는 모든 과일을 찾을 수도 있습니다.
 
 ```
 str_view(fruit, "a...e")
@@ -60,7 +60,7 @@ str_view(fruit, "a...e")
 #> ... and 2 more
 ```
 
-*수량자(Quantifiers)*는 패턴이 일치할 수 있는 횟수를 제어합니다:
+*수량자(Quantifiers)*는 패턴이 일치할 수 있는 횟수를 제어합니다.
 
 - `?`는 패턴을 선택 사항으로 만듭니다 (즉, 0번 또는 1번 일치).
 - `+`는 패턴이 반복되게 합니다 (즉, 적어도 1번 일치).
@@ -85,7 +85,7 @@ str_view(c("a", "ab", "abb"), "ab*")
 #> [3] │ <abb>
 ```
 
-*문자 클래스(Character classes)*는 `[]`로 정의되며 여러 문자 집합 중 하나와 일치하게 합니다; 예: `[abcd]`는 "a", "b", "c", "d" 중 하나와 일치합니다. `^`로 시작하여 일치를 반전시킬 수도 있습니다: `[^abcd]`는 "a", "b", "c", "d"를 *제외한* 모든 것과 일치합니다. 이 아이디어를 사용하여 모음으로 둘러싸인 "x"나 자음으로 둘러싸인 "y"를 포함하는 단어를 찾을 수 있습니다:
+*문자 클래스(Character classes)*는 `[]`로 정의되며 여러 문자 집합 중 하나와 일치하게 합니다; 예: `[abcd]`는 "a", "b", "c", "d" 중 하나와 일치합니다. `^`로 시작하여 일치를 반전시킬 수도 있습니다. `[^abcd]`는 "a", "b", "c", "d"를 _제외한_ 모든 것과 일치합니다. 이 아이디어를 사용하여 모음으로 둘러싸인 "x"나 자음으로 둘러싸인 "y"를 포함하는 단어를 찾을 수 있습니다.
 
 ```
 str_view(words, "[aeiou]x[aeiou]")
@@ -98,7 +98,7 @@ str_view(words, "[^aeiou]y[^aeiou]")
 #> [901] │ <typ>e
 ```
 
-*대체(alternation)* 기호인 `|`를 사용하여 하나 이상의 대안 패턴 중 하나를 선택할 수 있습니다. 예를 들어, 다음 패턴들은 "apple", "melon", "nut"을 포함하거나 모음이 반복되는 과일을 찾습니다:
+_대체(alternation)_ 기호인 `|`를 사용하여 하나 이상의 대안 패턴 중 하나를 선택할 수 있습니다. 예를 들어, 다음 패턴들은 "apple", "melon", "nut"을 포함하거나 모음이 반복되는 과일을 찾습니다.
 
 ```
 str_view(fruit, "apple|melon|nut")
@@ -116,7 +116,7 @@ str_view(fruit, "aa|ee|ii|oo|uu")
 #> [66] │ purple mangost<ee>n
 ```
 
-정규 표현식은 매우 압축적이고 구두점 문자를 많이 사용하므로 처음에는 압도적이고 읽기 어려워 보일 수 있습니다. 걱정하지 마세요: 연습을 통해 점차 나아질 것이며, 간단한 패턴들은 곧 자연스러워질 것입니다. 유용한 stringr 함수들로 연습하며 그 과정을 시작해 보겠습니다.
+정규 표현식은 매우 압축적이고 구두점 문자를 많이 사용하므로 처음에는 압도적이고 읽기 어려워 보일 수 있습니다. 걱정하지 마세요. 연습을 통해 점차 나아질 것이며, 간단한 패턴들은 곧 자연스러워질 것입니다. 유용한 stringr 함수들로 연습하며 그 과정을 시작해 보겠습니다.
 
 # 주요 함수
 
@@ -124,18 +124,18 @@ str_view(fruit, "aa|ee|ii|oo|uu")
 
 ## 일치 항목 감지
 
-<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>는 패턴이 문자 벡터의 요소와 일치하면 `TRUE`를, 그렇지 않으면 `FALSE`를 반환하는 논리 벡터를 반환합니다:
+<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>는 패턴이 문자 벡터의 요소와 일치하면 `TRUE`를, 그렇지 않으면 `FALSE`를 반환하는 논리 벡터를 반환합니다.
 
 ```
 str_detect(c("a", "b", "c"), "[aeiou]")
 #> [1]  TRUE FALSE FALSE
 ```
 
-<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>는 초기 벡터와 동일한 길이의 논리 벡터를 반환하기 때문에, <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 잘 맞습니다. 예를 들어, 이 코드는 소문자 "x"를 포함하는 가장 인기 있는 이름들을 모두 찾습니다:
+<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>는 초기 벡터와 동일한 길이의 논리 벡터를 반환하기 때문에, <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 잘 맞습니다. 예를 들어, 이 코드는 소문자 "x"를 포함하는 가장 인기 있는 이름들을 모두 찾습니다.
 
 ```
-babynames |> 
-  filter(str_detect(name, "x")) |> 
+babynames |>
+  filter(str_detect(name, "x")) |>
   count(name, wt = n, sort = TRUE)
 #> # A tibble: 974 × 2
 #>   name           n
@@ -149,23 +149,23 @@ babynames |>
 #> # … with 968 more rows
 ```
 
-<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>를 <a href="https://rdrr.io/r/base/sum.html" class="orm:hideurl"><code>sum()</code></a>이나 <a href="https://rdrr.io/r/base/mean.html" class="orm:hideurl"><code>mean()</code></a>과 짝지어 <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a>와 함께 사용할 수도 있습니다: `sum(str_detect(x, pattern))`는 일치하는 관측치의 수를 알려주고, `mean(str_detect(x, pattern))`는 일치하는 비율을 알려줍니다. 예를 들어, 다음 코드는 연도별로 분류하여 "x"를 포함하는 아기 이름의 비율<sup><a href="ch15.html#idm44771293675344" id="idm44771293675344-marker" data-type="noteref">4</a></sup>을 계산하고 시각화합니다. 최근에 인기가 급격히 상승한 것 같네요!
+<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>를 <a href="https://rdrr.io/r/base/sum.html" class="orm:hideurl"><code>sum()</code></a>이나 <a href="https://rdrr.io/r/base/mean.html" class="orm:hideurl"><code>mean()</code></a>과 짝지어 <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a>와 함께 사용할 수도 있습니다. `sum(str_detect(x, pattern))`는 일치하는 관측치의 수를 알려주고, `mean(str_detect(x, pattern))`는 일치하는 비율을 알려줍니다. 예를 들어, 다음 코드는 연도별로 분류하여 "x"를 포함하는 아기 이름의 비율<sup><a href="ch15.html#idm44771293675344" id="idm44771293675344-marker" data-type="noteref">4</a></sup>을 계산하고 시각화합니다. 최근에 인기가 급격히 상승한 것 같네요!
 
 ```
-babynames |> 
-  group_by(year) |> 
-  summarize(prop_x = mean(str_detect(name, "x"))) |> 
-  ggplot(aes(x = year, y = prop_x)) + 
+babynames |>
+  group_by(year) |>
+  summarize(prop_x = mean(str_detect(name, "x"))) |>
+  ggplot(aes(x = year, y = prop_x)) +
   geom_line()
 ```
 
 ![x라는 문자를 포함하는 아기 이름의 비율을 나타내는 시계열 그래프. 비율은 1880년에 1000명당 8명에서 1980년에 1000명당 4명으로 점차 감소하다가 2019년에 1000명당 16명으로 빠르게 증가합니다.](D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_15in01.png)
 
-<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>와 밀접하게 관련된 두 가지 함수가 있습니다: <a href="https://stringr.tidyverse.org/reference/str_subset.html" class="orm:hideurl"><code>str_subset()</code></a>과 <a href="https://stringr.tidyverse.org/reference/str_which.html" class="orm:hideurl"><code>str_which()</code></a>. <a href="https://stringr.tidyverse.org/reference/str_subset.html" class="orm:hideurl"><code>str_subset()</code></a>은 일치하는 문자열만 포함하는 문자 벡터를 반환합니다. <a href="https://stringr.tidyverse.org/reference/str_which.html" class="orm:hideurl"><code>str_which()</code></a>는 일치하는 문자열의 위치를 나타내는 정수 벡터를 반환합니다.
+<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>와 밀접하게 관련된 두 가지 함수가 있습니다. <a href="https://stringr.tidyverse.org/reference/str_subset.html" class="orm:hideurl"><code>str_subset()</code></a>과 <a href="https://stringr.tidyverse.org/reference/str_which.html" class="orm:hideurl"><code>str_which()</code></a>. <a href="https://stringr.tidyverse.org/reference/str_subset.html" class="orm:hideurl"><code>str_subset()</code></a>은 일치하는 문자열만 포함하는 문자 벡터를 반환합니다. <a href="https://stringr.tidyverse.org/reference/str_which.html" class="orm:hideurl"><code>str_which()</code></a>는 일치하는 문자열의 위치를 나타내는 정수 벡터를 반환합니다.
 
 ## 일치 항목 수 세기
 
-<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>에서 한 단계 더 복잡해진 함수는 <a href="https://stringr.tidyverse.org/reference/str_count.html" class="orm:hideurl"><code>str_count()</code></a>입니다: 참이나 거짓이 아니라 각 문자열에서 몇 개의 일치 항목이 있는지 알려줍니다.
+<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>에서 한 단계 더 복잡해진 함수는 <a href="https://stringr.tidyverse.org/reference/str_count.html" class="orm:hideurl"><code>str_count()</code></a>입니다. 참이나 거짓이 아니라 각 문자열에서 몇 개의 일치 항목이 있는지 알려줍니다.
 
 ```
 x <- c("apple", "banana", "pear")
@@ -173,7 +173,7 @@ str_count(x, "p")
 #> [1] 2 0 1
 ```
 
-각 일치 항목은 이전 일치 항목의 끝에서 시작한다는 점에 유의하세요; 즉, 정규 표현식의 일치 항목은 절대 겹치지 않습니다. 예를 들어, `"abababa"`에서 `"aba"` 패턴은 몇 번 일치할까요? 정규 표현식에 따르면 3번이 아니라 2번입니다:
+각 일치 항목은 이전 일치 항목의 끝에서 시작한다는 점에 유의하세요; 즉, 정규 표현식의 일치 항목은 절대 겹치지 않습니다. 예를 들어, `"abababa"`에서 `"aba"` 패턴은 몇 번 일치할까요? 정규 표현식에 따르면 3번이 아니라 2번입니다.
 
 ```
 str_count("abababa", "aba")
@@ -182,11 +182,11 @@ str_view("abababa", "aba")
 #> [1] │ <aba>b<aba>
 ```
 
-<a href="https://stringr.tidyverse.org/reference/str_count.html" class="orm:hideurl"><code>str_count()</code></a>를 <a href="https://dplyr.tidyverse.org/reference/mutate.html" class="orm:hideurl"><code>mutate()</code></a>와 함께 사용하는 것이 자연스럽습니다. 다음 예제는 각 이름의 모음과 자음의 개수를 세기 위해 문자 클래스와 함께 <a href="https://stringr.tidyverse.org/reference/str_count.html" class="orm:hideurl"><code>str_count()</code></a>를 사용합니다:
+<a href="https://stringr.tidyverse.org/reference/str_count.html" class="orm:hideurl"><code>str_count()</code></a>를 <a href="https://dplyr.tidyverse.org/reference/mutate.html" class="orm:hideurl"><code>mutate()</code></a>와 함께 사용하는 것이 자연스럽습니다. 다음 예제는 각 이름의 모음과 자음의 개수를 세기 위해 문자 클래스와 함께 <a href="https://stringr.tidyverse.org/reference/str_count.html" class="orm:hideurl"><code>str_count()</code></a>를 사용합니다.
 
 ```
-babynames |> 
-  count(name) |> 
+babynames |>
+  count(name) |>
   mutate(
     vowels = str_count(name, "[aeiou]"),
     consonants = str_count(name, "[^aeiou]")
@@ -203,19 +203,19 @@ babynames |>
 #> # … with 97,304 more rows
 ```
 
-자세히 살펴보면, 계산에 무언가 문제가 있다는 것을 알 수 있습니다: "Aaban"에는 세 개의 a가 있지만, 요약 결과에는 모음이 두 개만 보고됩니다. 그 이유는 정규 표현식이 대소문자를 구분하기 때문입니다. 이를 해결할 수 있는 세 가지 방법이 있습니다:
+자세히 살펴보면, 계산에 무언가 문제가 있다는 것을 알 수 있습니다. "Aaban"에는 세 개의 a가 있지만, 요약 결과에는 모음이 두 개만 보고됩니다. 그 이유는 정규 표현식이 대소문자를 구분하기 때문입니다. 이를 해결할 수 있는 세 가지 방법이 있습니다.
 
-- 문자 클래스에 대문자 모음을 추가합니다: `str_count(name, "[aeiouAEIOU]")`.
-- 정규 표현식에 대소문자를 무시하라고 알려줍니다: `str_count(name, regex("[aeiou]", ignore_case = TRUE))`. 자세한 내용은 <a href="#sec-flags" data-type="xref">“정규 표현식 플래그”</a>에서 논의하겠습니다.
-- 이름을 소문자로 변환하기 위해 <a href="https://stringr.tidyverse.org/reference/case.html" class="orm:hideurl"><code>str_to_lower()</code></a>를 사용합니다: `str_count(str_to_lower(name), "[aeiou]")`.
+- 문자 클래스에 대문자 모음을 추가합니다. `str_count(name, "[aeiouAEIOU]")`.
+- 정규 표현식에 대소문자를 무시하라고 알려줍니다. `str_count(name, regex("[aeiou]", ignore_case = TRUE))`. 자세한 내용은 <a href="#sec-flags" data-type="xref">“정규 표현식 플래그”</a>에서 논의하겠습니다.
+- 이름을 소문자로 변환하기 위해 <a href="https://stringr.tidyverse.org/reference/case.html" class="orm:hideurl"><code>str_to_lower()</code></a>를 사용합니다. `str_count(str_to_lower(name), "[aeiou]")`.
 
 문자열로 작업할 때 이러한 다양한 접근 방식은 꽤 일반적입니다. 패턴을 더 복잡하게 만들거나 문자열에 전처리를 수행하는 등 목표에 도달하는 여러 가지 방법이 종종 존재합니다. 한 가지 접근 방식을 시도하다 막힌다면, 방식을 바꿔서 다른 관점에서 문제에 접근해 보는 것이 종종 유용할 수 있습니다.
 
-여기서는 이름에 두 가지 함수를 적용하고 있으므로, 먼저 변환하는 것이 더 쉽다고 생각합니다:
+여기서는 이름에 두 가지 함수를 적용하고 있으므로, 먼저 변환하는 것이 더 쉽다고 생각합니다.
 
 ```
-babynames |> 
-  count(name) |> 
+babynames |>
+  count(name) |>
   mutate(
     name = str_to_lower(name),
     vowels = str_count(name, "[aeiou]"),
@@ -235,7 +235,7 @@ babynames |>
 
 ## 값 변경하기
 
-일치 항목을 감지하고 개수를 세는 것 외에도, <a href="https://stringr.tidyverse.org/reference/str_replace.html" class="orm:hideurl"><code>str_replace()</code></a>와 <a href="https://stringr.tidyverse.org/reference/str_replace.html" class="orm:hideurl"><code>str_replace_all()</code></a>을 사용하여 일치 항목을 수정할 수도 있습니다. <a href="https://stringr.tidyverse.org/reference/str_replace.html" class="orm:hideurl"><code>str_replace()</code></a>는 첫 번째 일치 항목을 변경하고, 이름에서 유추할 수 있듯이 <a href="https://stringr.tidyverse.org/reference/str_replace.html" class="orm:hideurl"><code>str_replace_all()</code></a>은 모든 일치 항목을 변경합니다:
+일치 항목을 감지하고 개수를 세는 것 외에도, <a href="https://stringr.tidyverse.org/reference/str_replace.html" class="orm:hideurl"><code>str_replace()</code></a>와 <a href="https://stringr.tidyverse.org/reference/str_replace.html" class="orm:hideurl"><code>str_replace_all()</code></a>을 사용하여 일치 항목을 수정할 수도 있습니다. <a href="https://stringr.tidyverse.org/reference/str_replace.html" class="orm:hideurl"><code>str_replace()</code></a>는 첫 번째 일치 항목을 변경하고, 이름에서 유추할 수 있듯이 <a href="https://stringr.tidyverse.org/reference/str_replace.html" class="orm:hideurl"><code>str_replace_all()</code></a>은 모든 일치 항목을 변경합니다.
 
 ```
 x <- c("apple", "pear", "banana")
@@ -243,21 +243,21 @@ str_replace_all(x, "[aeiou]", "-")
 #> [1] "-ppl-"  "p--r"   "b-n-n-"
 ```
 
-<a href="https://stringr.tidyverse.org/reference/str_remove.html" class="orm:hideurl"><code>str_remove()</code></a>와 <a href="https://stringr.tidyverse.org/reference/str_remove.html" class="orm:hideurl"><code>str_remove_all()</code></a>은 `str_replace(x, pattern, "")`를 위한 유용한 단축키입니다:
+<a href="https://stringr.tidyverse.org/reference/str_remove.html" class="orm:hideurl"><code>str_remove()</code></a>와 <a href="https://stringr.tidyverse.org/reference/str_remove.html" class="orm:hideurl"><code>str_remove_all()</code></a>은 `str_replace(x, pattern, "")`를 위한 유용한 단축키입니다.
 
 ```
 x <- c("apple", "pear", "banana")
 str_remove_all(x, "[aeiou]")
 
-입력에 출력의 한 셀에 해당하는 여러 행이 있는 경우 어떻게 되는지 궁금할 수도 있습니다. 다음 예에는 `id A` 및 `measurement bp1`에 해당하는 두 개의 행이 있습니다:
+입력에 출력의 한 셀에 해당하는 여러 행이 있는 경우 어떻게 되는지 궁금할 수도 있습니다. 다음 예에는 `id A` 및 `measurement bp1`에 해당하는 두 개의 행이 있습니다.
 
 `df` `<-` `tribble``(` `~``id``,` `~``measurement``,` `~``value``,` `"A"``,` `"bp1"``,` `100``,` `"A"``,` `"bp1"``,` `102``,` `"A"``,` `"bp2"``,` `120``,` `"B"``,` `"bp1"``,` `140``,` `"B"``,` `"bp2"``,` `115` `)`
 
-이 데이터를 피벗하려고 하면 리스트 열(list-columns)이 포함된 출력을 얻게 됩니다. 이에 대해서는 <a href="ch23.html#chp-rectangling" data-type="xref">23장</a>에서 자세히 알아볼 것입니다:
+이 데이터를 피벗하려고 하면 리스트 열(list-columns)이 포함된 출력을 얻게 됩니다. 이에 대해서는 <a href="ch23.html#chp-rectangling" data-type="xref">23장</a>에서 자세히 알아볼 것입니다.
 
 `df` `|>` `pivot_wider``(` `names_from` `=` `measurement``,` `values_from` `=` `value` `)` `` #> Warning: Values from `value` are not uniquely identified; output will contain `` `#> list-cols.` `` #> • Use `values_fn = list` to suppress this warning. `` `` #> • Use `values_fn = {summary_fun}` to summarise duplicates. `` `#> • Use the following dplyr code to identify duplicates.` `#> {data} %>%` `#> dplyr::group_by(id, measurement) %>%` `#> dplyr::summarise(n = dplyr::n(), .groups = "drop") %>%` `#> dplyr::filter(n > 1L)` `#> # A tibble: 2 × 3` `#> id bp1 bp2 ` `#> <chr> <list> <list> ` `#> 1 A <dbl [2]> <dbl [1]>` `#> 2 B <dbl [1]> <dbl [1]>`
 
-아직 이런 종류의 데이터로 작업하는 방법을 모르기 때문에, 어디에 문제가 있는지 파악하기 위해 경고 메시지의 힌트를 따르고 싶을 것입니다:
+아직 이런 종류의 데이터로 작업하는 방법을 모르기 때문에, 어디에 문제가 있는지 파악하기 위해 경고 메시지의 힌트를 따르고 싶을 것입니다.
 
 `df` `|>` `group_by``(``id``,` `measurement``)` `|>` `summarize``(``n` `=` `n``(),` `.groups` `=` `"drop"``)` `|>` `filter``(``n` `>` `1``)` `#> # A tibble: 1 × 3` `#> id measurement n` `#> <chr> <chr> <int>` `#> 1 A bp1 2`
 
@@ -283,7 +283,7 @@ str_remove_all(x, "[aeiou]")
 #> [73] │ s<alal> berry
 ```
 
-이 패턴은 같은 두 글자 쌍으로 시작하고 끝나는 모든 단어를 찾습니다:
+이 패턴은 같은 두 글자 쌍으로 시작하고 끝나는 모든 단어를 찾습니다.
 
 ```
 str_view(words, "^(..).*\\1$")
@@ -294,11 +294,11 @@ str_view(words, "^(..).*\\1$")
 #> [739] │ <sense>
 ```
 
-<a href="https://stringr.tidyverse.org/reference/str_replace.html" class="orm:hideurl"><code>str_replace()</code></a>에서도 역참조를 사용할 수 있습니다. 예를 들어, 이 코드는 `sentences`의 두 번째 단어와 세 번째 단어의 순서를 바꿉니다:
+<a href="https://stringr.tidyverse.org/reference/str_replace.html" class="orm:hideurl"><code>str_replace()</code></a>에서도 역참조를 사용할 수 있습니다. 예를 들어, 이 코드는 `sentences`의 두 번째 단어와 세 번째 단어의 순서를 바꿉니다.
 
 ```
-sentences |> 
-  str_replace("(\\w+) (\\w+) (\\w+)", "\\1 \\3 \\2") |> 
+sentences |>
+  str_replace("(\\w+) (\\w+) (\\w+)", "\\1 \\3 \\2") |>
   str_view()
 #> [1] │ The canoe birch slid on the smooth planks.
 #> [2] │ Glue sheet the to the dark blue background.
@@ -309,37 +309,37 @@ sentences |>
 #> ... and 714 more
 ```
 
-각 그룹에 대한 일치 항목을 추출하려면 <a href="https://stringr.tidyverse.org/reference/str_match.html" class="orm:hideurl"><code>str_match()</code></a>를 사용할 수 있습니다. 하지만 <a href="https://stringr.tidyverse.org/reference/str_match.html" class="orm:hideurl"><code>str_match()</code></a>는 행렬을 반환하므로 다루기가 그리 쉽지 않습니다:<sup><a href="ch15.html#idm44771292399008" id="idm44771292399008-marker" data-type="noteref">8</a></sup>
+각 그룹에 대한 일치 항목을 추출하려면 <a href="https://stringr.tidyverse.org/reference/str_match.html" class="orm:hideurl"><code>str_match()</code></a>를 사용할 수 있습니다. 하지만 <a href="https://stringr.tidyverse.org/reference/str_match.html" class="orm:hideurl"><code>str_match()</code></a>는 행렬을 반환하므로 다루기가 그리 쉽지 않습니다.<sup><a href="ch15.html#idm44771292399008" id="idm44771292399008-marker" data-type="noteref">8</a></sup>
 
 ```
-sentences |> 
-  str_match("the (\\w+) (\\w+)") |> 
+sentences |>
+  str_match("the (\\w+) (\\w+)") |>
   head()
-#>      [,1]                [,2]     [,3]    
+#>      [,1]                [,2]     [,3]
 #> [1,] "the smooth planks" "smooth" "planks"
-#> [2,] "the sheet to"      "sheet"  "to"    
-#> [3,] "the depth of"      "depth"  "of"    
-#> [4,] NA                  NA       NA      
-#> [5,] NA                  NA       NA      
+#> [2,] "the sheet to"      "sheet"  "to"
+#> [3,] "the depth of"      "depth"  "of"
+#> [4,] NA                  NA       NA
+#> [5,] NA                  NA       NA
 #> [6,] NA                  NA       NA
 ```
 
-이를 티블로 변환하고 열의 이름을 지정할 수 있습니다:
+이를 티블로 변환하고 열의 이름을 지정할 수 있습니다.
 
 ```
-sentences |> 
-  str_match("the (\\w+) (\\w+)") |> 
-  as_tibble(.name_repair = "minimal") |> 
+sentences |>
+  str_match("the (\\w+) (\\w+)") |>
+  as_tibble(.name_repair = "minimal") |>
   set_names("match", "word1", "word2")
 #> # A tibble: 720 × 3
-#>   match             word1  word2 
-#>   <chr>             <chr>  <chr> 
+#>   match             word1  word2
+#>   <chr>             <chr>  <chr>
 #> 1 the smooth planks smooth planks
-#> 2 the sheet to      sheet  to    
-#> 3 the depth of      depth  of    
-#> 4 <NA>              <NA>   <NA>  
-#> 5 <NA>              <NA>   <NA>  
-#> 6 <NA>              <NA>   <NA>  
+#> 2 the sheet to      sheet  to
+#> 3 the depth of      depth  of
+#> 4 <NA>              <NA>   <NA>
+#> 5 <NA>              <NA>   <NA>
+#> 6 <NA>              <NA>   <NA>
 #> # … with 714 more rows
 ```
 
@@ -351,10 +351,10 @@ sentences |>
 x <- c("a gray cat", "a grey dog")
 str_match(x, "gr(e|a)y")
 #>      [,1]   [,2]
-#> [1,] "gray" "a" 
+#> [1,] "gray" "a"
 #> [2,] "grey" "e"
 str_match(x, "gr(?:e|a)y")
-#>      [,1]  
+#>      [,1]
 #> [1,] "gray"
 #> [2,] "grey"
 ```
@@ -363,32 +363,30 @@ str_match(x, "gr(?:e|a)y")
 
 1. 리터럴 문자열 `"'\`와 어떻게 일치시킬 수 있을까요? `"$^$"`는 어떻게 할까요?
 
-2. 다음 패턴들이 각각 왜 `\`와 일치하지 않는지 설명하세요: `"\"`, `"\\"`, `"\\\"`.
+2. 다음 패턴들이 각각 왜 `\`와 일치하지 않는지 설명하세요. `"\"`, `"\\"`, `"\\\"`.
 
-3. <a href="https://stringr.tidyverse.org/reference/stringr-data.html" class="orm:hideurl"><code>stringr::words</code></a>에 있는 흔한 단어들의 말뭉치(corpus)가 주어졌을 때, 다음에 해당하는 모든 단어를 찾는 정규 표현식을 작성하세요:
+3. <a href="https://stringr.tidyverse.org/reference/stringr-data.html" class="orm:hideurl"><code>stringr::words</code></a>에 있는 흔한 단어들의 말뭉치(corpus)가 주어졌을 때, 다음에 해당하는 모든 단어를 찾는 정규 표현식을 작성하세요.
+   1. "y"로 시작하는 단어.
+   2. "y"로 시작하지 않는 단어.
+   3. "x"로 끝나는 단어.
+   4. 정확히 세 글자 길이인 단어. (<a href="https://stringr.tidyverse.org/reference/str_length.html" class="orm:hideurl"><code>str_length()</code></a>를 사용하여 속이지 마세요!)
+   5. 7글자 이상인 단어.
+   6. 모음-자음 쌍을 포함하는 단어.
+   7. 최소 두 개의 모음-자음 쌍이 연속으로 포함된 단어.
+   8. 오직 반복되는 모음-자음 쌍으로만 구성된 단어.
 
-    1. "y"로 시작하는 단어.
-    2. "y"로 시작하지 않는 단어.
-    3. "x"로 끝나는 단어.
-    4. 정확히 세 글자 길이인 단어. (<a href="https://stringr.tidyverse.org/reference/str_length.html" class="orm:hideurl"><code>str_length()</code></a>를 사용하여 속이지 마세요!)
-    5. 7글자 이상인 단어.
-    6. 모음-자음 쌍을 포함하는 단어.
-    7. 최소 두 개의 모음-자음 쌍이 연속으로 포함된 단어.
-    8. 오직 반복되는 모음-자음 쌍으로만 구성된 단어.
-
-4. 다음 각 단어에 대해 영국식 또는 미국식 철자와 일치하는 11개의 정규 표현식을 만드세요: airplane/aeroplane, aluminum/aluminium, analog/analogue, ass/arse, center/centre, defense/defence, donut/doughnut, gray/grey, modeling/modelling, skeptic/sceptic, summarize/summarise. 가능한 가장 짧은 정규 표현식을 만들어 보세요!
+4. 다음 각 단어에 대해 영국식 또는 미국식 철자와 일치하는 11개의 정규 표현식을 만드세요. airplane/aeroplane, aluminum/aluminium, analog/analogue, ass/arse, center/centre, defense/defence, donut/doughnut, gray/grey, modeling/modelling, skeptic/sceptic, summarize/summarise. 가능한 가장 짧은 정규 표현식을 만들어 보세요!
 
 5. `words`의 첫 글자와 마지막 글자를 바꾸세요. 변경된 문자열 중 여전히 `words`에 있는 것은 무엇인가요?
 
 6. 다음 정규 표현식들이 무엇과 일치하는지 말로 설명하세요 (각 항목이 정규 표현식인지 정규 표현식을 정의하는 문자열인지 주의 깊게 읽어보세요):
-
-    1. `^.*$`
-    2. `"\\{.+\\}"`
-    3. `\d{4}-\d{2}-\d{2}`
-    4. `"\\\\{4}"`
-    5. `\..\..\..`
-    6. `(.)\1\1`
-    7. `"(..)\\1"`
+   1. `^.*$`
+   2. `"\\{.+\\}"`
+   3. `\d{4}-\d{2}-\d{2}`
+   4. `"\\\\{4}"`
+   5. `\..\..\..`
+   6. `(.)\1\1`
+   7. `"(..)\\1"`
 
 7. [초보자용 정규 표현식 십자말풀이](https://oreil.ly/Db3NF)를 풀어보세요.
 
@@ -398,7 +396,7 @@ str_match(x, "gr(?:e|a)y")
 
 ## 정규 표현식 플래그
 
-정규 표현식의 세부 사항을 제어하는 데 여러 가지 설정을 사용할 수 있습니다. 이러한 설정들은 다른 프로그래밍 언어에서 종종 *플래그(flags)*라고 불립니다. stringr에서는 패턴을 <a href="https://stringr.tidyverse.org/reference/modifiers.html" class="orm:hideurl"><code>regex()</code></a> 호출로 감싸서 이를 사용할 수 있습니다. 문자가 대문자나 소문자 형태 중 하나와 일치할 수 있게 해 주기 때문에 가장 유용한 플래그는 아마도 `ignore_case = TRUE`일 것입니다:
+정규 표현식의 세부 사항을 제어하는 데 여러 가지 설정을 사용할 수 있습니다. 이러한 설정들은 다른 프로그래밍 언어에서 종종 *플래그(flags)*라고 불립니다. stringr에서는 패턴을 <a href="https://stringr.tidyverse.org/reference/modifiers.html" class="orm:hideurl"><code>regex()</code></a> 호출로 감싸서 이를 사용할 수 있습니다. 문자가 대문자나 소문자 형태 중 하나와 일치할 수 있게 해 주기 때문에 가장 유용한 플래그는 아마도 `ignore_case = TRUE`일 것입니다.
 
 ```
 bananas <- c("banana", "Banana", "BANANA")
@@ -410,9 +408,9 @@ str_view(bananas, regex("banana", ignore_case = TRUE))
 #> [3] │ <BANANA>
 ```
 
-여러 줄로 된 문자열(즉, `\n`을 포함하는 문자열) 작업을 많이 한다면, `dotall`과 `multiline`도 유용할 수 있습니다:
+여러 줄로 된 문자열(즉, `\n`을 포함하는 문자열) 작업을 많이 한다면, `dotall`과 `multiline`도 유용할 수 있습니다.
 
-- `dotall = TRUE`는 `.`이 `\n`을 포함한 모든 것과 일치하게 합니다:
+- `dotall = TRUE`는 `.`이 `\n`을 포함한 모든 것과 일치하게 합니다.
 
   ```
   x <- "Line 1\nLine 2\nLine 3"
@@ -423,7 +421,7 @@ str_view(bananas, regex("banana", ignore_case = TRUE))
   #>     │ Line> 3
   ```
 
-- `multiline = TRUE`는 `^`와 `$`가 전체 문자열의 시작과 끝이 아니라 각 줄의 시작과 끝과 일치하게 합니다:
+- `multiline = TRUE`는 `^`와 `$`가 전체 문자열의 시작과 끝이 아니라 각 줄의 시작과 끝과 일치하게 합니다.
 
   ```
   x <- "Line 1\nLine 2\nLine 3"
@@ -437,7 +435,7 @@ str_view(bananas, regex("banana", ignore_case = TRUE))
   #>     │ <Line> 3
   ```
 
-마지막으로, 복잡한 정규 표현식을 작성 중이고 나중에 이해하지 못할까 봐 걱정된다면, `comments = TRUE`를 시도해 볼 수 있습니다. 이것은 패턴 언어를 조정하여 공백과 줄바꿈, 그리고 `#` 뒤의 모든 것을 무시하게 합니다. 이를 통해 주석과 공백을 사용하여 복잡한 정규 표현식을 더 이해하기 쉽게 만들 수 있습니다,<sup><a href="ch15.html#idm44771291954256" id="idm44771291954256-marker" data-type="noteref">9</a></sup> 다음 예제처럼 말입니다:
+마지막으로, 복잡한 정규 표현식을 작성 중이고 나중에 이해하지 못할까 봐 걱정된다면, `comments = TRUE`를 시도해 볼 수 있습니다. 이것은 패턴 언어를 조정하여 공백과 줄바꿈, 그리고 `#` 뒤의 모든 것을 무시하게 합니다. 이를 통해 주석과 공백을 사용하여 복잡한 정규 표현식을 더 이해하기 쉽게 만들 수 있습니다,<sup><a href="ch15.html#idm44771291954256" id="idm44771291954256-marker" data-type="noteref">9</a></sup> 다음 예제처럼 말입니다.
 
 ```
 phone <- regex(
@@ -449,7 +447,7 @@ phone <- regex(
     (\d{3}) # another three numbers
     [\ -]?  # optional space or dash
     (\d{4}) # four more numbers
-  )", 
+  )",
   comments = TRUE
 )
 
@@ -461,14 +459,14 @@ str_extract(c("514-791-8141", "(123) 456 7890", "123456"), phone)
 
 ## 고정된 일치 항목
 
-<a href="https://stringr.tidyverse.org/reference/modifiers.html" class="orm:hideurl"><code>fixed()</code></a>를 사용하여 정규 표현식 규칙에서 벗어날 수 있습니다:
+<a href="https://stringr.tidyverse.org/reference/modifiers.html" class="orm:hideurl"><code>fixed()</code></a>를 사용하여 정규 표현식 규칙에서 벗어날 수 있습니다.
 
 ```
 str_view(c("", "a", "."), fixed("."))
 #> [3] │ <.>
 ```
 
-<a href="https://stringr.tidyverse.org/reference/modifiers.html" class="orm:hideurl"><code>fixed()</code></a>는 또한 대소문자를 무시하는 기능을 제공합니다:
+<a href="https://stringr.tidyverse.org/reference/modifiers.html" class="orm:hideurl"><code>fixed()</code></a>는 또한 대소문자를 무시하는 기능을 제공합니다.
 
 ```
 str_view("x X", "X")
@@ -488,7 +486,7 @@ str_view("i İ ı I", coll("İ", ignore_case = TRUE, locale = "tr"))
 
 # 실습
 
-이러한 아이디어들을 실제로 적용해 보기 위해, 다음으로 몇 가지 반쯤 실제와 같은 문제들을 해결해 보겠습니다. 세 가지 일반적인 기법에 대해 논의할 것입니다:
+이러한 아이디어들을 실제로 적용해 보기 위해, 다음으로 몇 가지 반쯤 실제와 같은 문제들을 해결해 보겠습니다. 세 가지 일반적인 기법에 대해 논의할 것입니다.
 
 - 간단한 양성 및 음성 대조군(positive and negative controls)을 생성하여 작업 확인하기
 - 정규 표현식을 불리언 대수(Boolean algebra)와 결합하기
@@ -496,7 +494,7 @@ str_view("i İ ı I", coll("İ", ignore_case = TRUE, locale = "tr"))
 
 ## 작업 확인하기
 
-먼저 "The"로 시작하는 모든 문장을 찾아봅시다. `^` 앵커만 사용하는 것으로는 충분하지 않습니다:
+먼저 "The"로 시작하는 모든 문장을 찾아봅시다. `^` 앵커만 사용하는 것으로는 충분하지 않습니다.
 
 ```
 str_view(sentences, "^The")
@@ -509,7 +507,7 @@ str_view(sentences, "^The")
 #> ... and 271 more
 ```
 
-그 패턴은 `They`나 `These`와 같은 단어로 시작하는 문장과도 일치합니다. 우리는 "e"가 단어의 마지막 글자인지 확인해야 하며, 단어 경계를 추가하여 이를 수행할 수 있습니다:
+그 패턴은 `They`나 `These`와 같은 단어로 시작하는 문장과도 일치합니다. 우리는 "e"가 단어의 마지막 글자인지 확인해야 하며, 단어 경계를 추가하여 이를 수행할 수 있습니다.
 
 ```
 str_view(sentences, "^The\\b")
@@ -535,7 +533,7 @@ str_view(sentences, "^She|He|It|They\\b")
 #> ... and 57 more
 ```
 
-결과를 빠르게 살펴보면 일부 잘못된 일치 항목이 발생하고 있음을 알 수 있습니다. 그 이유는 우리가 괄호 사용을 잊었기 때문입니다:
+결과를 빠르게 살펴보면 일부 잘못된 일치 항목이 발생하고 있음을 알 수 있습니다. 그 이유는 우리가 괄호 사용을 잊었기 때문입니다.
 
 ```
 str_view(sentences, "^(She|He|It|They)\\b")
@@ -548,7 +546,7 @@ str_view(sentences, "^(She|He|It|They)\\b")
 #> ... and 51 more
 ```
 
-만약 그런 실수가 처음 몇 개의 일치 항목에서 발생하지 않았다면 어떻게 발견할 수 있었을지 궁금할 것입니다. 좋은 기법 중 하나는 몇 개의 양성 및 음성 일치 항목을 생성하여 이를 통해 여러분의 패턴이 예상대로 작동하는지 테스트하는 것입니다:
+만약 그런 실수가 처음 몇 개의 일치 항목에서 발생하지 않았다면 어떻게 발견할 수 있었을지 궁금할 것입니다. 좋은 기법 중 하나는 몇 개의 양성 및 음성 일치 항목을 생성하여 이를 통해 여러분의 패턴이 예상대로 작동하는지 테스트하는 것입니다.
 
 ```
 pos <- c("He is a boy", "She had a good time")
@@ -565,7 +563,7 @@ str_detect(neg, pattern)
 
 ## 불리언 연산(Boolean Operations)
 
-자음만 포함된 단어를 찾고 싶다고 상상해 봅시다. 한 가지 방법은 모음을 제외한 모든 글자를 포함하는 문자 클래스(`[^aeiou]`)를 만든 다음, 그것이 임의의 수의 글자와 일치하도록 허용(`[^aeiou]+`)하고, 시작과 끝에 앵커를 고정하여 전체 문자열과 일치하도록 강제(`^[^aeiou]+$`)하는 것입니다:
+자음만 포함된 단어를 찾고 싶다고 상상해 봅시다. 한 가지 방법은 모음을 제외한 모든 글자를 포함하는 문자 클래스(`[^aeiou]`)를 만든 다음, 그것이 임의의 수의 글자와 일치하도록 허용(`[^aeiou]+`)하고, 시작과 끝에 앵커를 고정하여 전체 문자열과 일치하도록 강제(`^[^aeiou]+$`)하는 것입니다.
 
 ```
 str_view(words, "^[^aeiou]+$")
@@ -577,7 +575,7 @@ str_view(words, "^[^aeiou]+$")
 #> [952] │ <why>
 ```
 
-하지만 문제를 거꾸로 뒤집으면 이 문제를 조금 더 쉽게 만들 수 있습니다. 자음만 포함하는 단어를 찾는 대신, 모음이 전혀 포함되지 않은 단어를 찾을 수 있습니다:
+하지만 문제를 거꾸로 뒤집으면 이 문제를 조금 더 쉽게 만들 수 있습니다. 자음만 포함하는 단어를 찾는 대신, 모음이 전혀 포함되지 않은 단어를 찾을 수 있습니다.
 
 ```
 str_view(words[!str_detect(words, "[aeiou]")])
@@ -589,7 +587,7 @@ str_view(words[!str_detect(words, "[aeiou]")])
 #> [6] │ why
 ```
 
-이것은 특히 "and" 또는 "not"과 관련된 논리적 조합을 다룰 때마다 유용한 기법입니다. 예를 들어 "a"와 "b"를 모두 포함하는 단어를 찾고 싶다고 상상해 봅시다. 정규 표현식에는 "and" 연산자가 내장되어 있지 않으므로, "a" 뒤에 "b"가 오거나 "b" 뒤에 "a"가 오는 모든 단어를 찾는 식으로 해결해야 합니다:
+이것은 특히 "and" 또는 "not"과 관련된 논리적 조합을 다룰 때마다 유용한 기법입니다. 예를 들어 "a"와 "b"를 모두 포함하는 단어를 찾고 싶다고 상상해 봅시다. 정규 표현식에는 "and" 연산자가 내장되어 있지 않으므로, "a" 뒤에 "b"가 오거나 "b" 뒤에 "a"가 오는 모든 단어를 찾는 식으로 해결해야 합니다.
 
 ```
 str_view(words, "a.*b|b.*a")
@@ -602,18 +600,18 @@ str_view(words, "a.*b|b.*a")
 #> ... and 24 more
 ```
 
-<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>를 두 번 호출한 결과를 결합하는 것이 더 간단합니다:
+<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>를 두 번 호출한 결과를 결합하는 것이 더 간단합니다.
 
 ```
 words[str_detect(words, "a") & str_detect(words, "b")]
-#>  [1] "able"      "about"     "absolute"  "available" "baby"      "back"     
-#>  [7] "bad"       "bag"       "balance"   "ball"      "bank"      "bar"      
-#> [13] "base"      "basis"     "bear"      "beat"      "beauty"    "because"  
-#> [19] "black"     "board"     "boat"      "break"     "brilliant" "britain"  
+#>  [1] "able"      "about"     "absolute"  "available" "baby"      "back"
+#>  [7] "bad"       "bag"       "balance"   "ball"      "bank"      "bar"
+#> [13] "base"      "basis"     "bear"      "beat"      "beauty"    "because"
+#> [19] "black"     "board"     "boat"      "break"     "brilliant" "britain"
 #> [25] "debate"    "husband"   "labour"    "maybe"     "probable"  "table"
 ```
 
-모든 모음을 포함하는 단어가 있는지 확인하고 싶다면 어떻게 해야 할까요? 패턴으로 이 작업을 수행한다면 `5!`(120)개의 서로 다른 패턴을 생성해야 합니다:
+모든 모음을 포함하는 단어가 있는지 확인하고 싶다면 어떻게 해야 할까요? 패턴으로 이 작업을 수행한다면 `5!`(120)개의 서로 다른 패턴을 생성해야 합니다.
 
 ```
 words[str_detect(words, "a.*e.*i.*o.*u")]
@@ -621,7 +619,7 @@ words[str_detect(words, "a.*e.*i.*o.*u")]
 words[str_detect(words, "u.*o.*i.*e.*a")]
 ```
 
-<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>를 다섯 번 호출하여 결합하는 것이 훨씬 간단합니다:
+<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>를 다섯 번 호출하여 결합하는 것이 훨씬 간단합니다.
 
 ```
 words[
@@ -638,7 +636,7 @@ words[
 
 ## 코드로 패턴 생성하기
 
-색상을 언급하는 모든 `sentences`를 찾고 싶다면 어떻게 해야 할까요? 기본 아이디어는 간단합니다: 대체(alternation) 기호를 단어 경계와 결합하기만 하면 됩니다:
+색상을 언급하는 모든 `sentences`를 찾고 싶다면 어떻게 해야 할까요? 기본 아이디어는 간단합니다. 대체(alternation) 기호를 단어 경계와 결합하기만 하면 됩니다.
 
 ```
 str_view(sentences, "\\b(red|green|blue)\\b")
@@ -657,14 +655,14 @@ str_view(sentences, "\\b(red|green|blue)\\b")
 rgb <- c("red", "green", "blue")
 ```
 
-글쎄요, 가능합니다! <a href="https://stringr.tidyverse.org/reference/str_c.html" class="orm:hideurl"><code>str_c()</code></a>와 <a href="https://stringr.tidyverse.org/reference/str_flatten.html" class="orm:hideurl"><code>str_flatten()</code></a>을 사용하여 벡터로부터 패턴을 생성하기만 하면 됩니다:
+글쎄요, 가능합니다! <a href="https://stringr.tidyverse.org/reference/str_c.html" class="orm:hideurl"><code>str_c()</code></a>와 <a href="https://stringr.tidyverse.org/reference/str_flatten.html" class="orm:hideurl"><code>str_flatten()</code></a>을 사용하여 벡터로부터 패턴을 생성하기만 하면 됩니다.
 
 ```
 str_c("\\b(", str_flatten(rgb, "|"), ")\\b")
 #> [1] "\\b(red|green|blue)\\b"
 ```
 
-좋은 색상 목록이 있다면 이 패턴을 더 포괄적으로 만들 수 있습니다. 시작할 수 있는 곳 중 하나는 R이 플롯(plot)에 사용할 수 있는 내장 색상 목록입니다:
+좋은 색상 목록이 있다면 이 패턴을 더 포괄적으로 만들 수 있습니다. 시작할 수 있는 곳 중 하나는 R이 플롯(plot)에 사용할 수 있는 내장 색상 목록입니다.
 
 ```
 str_view(colors())
@@ -677,7 +675,7 @@ str_view(colors())
 #> ... and 651 more
 ```
 
-하지만 먼저 번호가 매겨진 변형들을 제거해 봅시다:
+하지만 먼저 번호가 매겨진 변형들을 제거해 봅시다.
 
 ```
 cols <- colors()
@@ -692,7 +690,7 @@ str_view(cols)
 #> ... and 137 more
 ```
 
-그런 다음 이것을 하나의 거대한 패턴으로 바꿀 수 있습니다. 패턴이 너무 크기 때문에 여기에 표시하지는 않겠지만, 작동하는 것을 볼 수는 있습니다:
+그런 다음 이것을 하나의 거대한 패턴으로 바꿀 수 있습니다. 패턴이 너무 크기 때문에 여기에 표시하지는 않겠지만, 작동하는 것을 볼 수는 있습니다.
 
 ```
 pattern <- str_c("\\b(", str_flatten(cols, "|"), ")\\b")
@@ -710,17 +708,16 @@ str_view(sentences, pattern)
 
 ## 연습문제
 
-1. 다음 각 과제에 대해 단일 정규 표현식을 사용하는 방법과 다중 <a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a> 호출의 조합을 사용하는 방법 모두를 시도해 보세요:
-
-    1. `x`로 시작하거나 끝나는 모든 `words` 찾기.
-    2. 모음으로 시작하고 자음으로 끝나는 모든 `words` 찾기.
-    3. 서로 다른 각 모음을 최소한 하나씩 모두 포함하는 `words`가 있나요?
+1. 다음 각 과제에 대해 단일 정규 표현식을 사용하는 방법과 다중 <a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a> 호출의 조합을 사용하는 방법 모두를 시도해 보세요.
+   1. `x`로 시작하거나 끝나는 모든 `words` 찾기.
+   2. 모음으로 시작하고 자음으로 끝나는 모든 `words` 찾기.
+   3. 서로 다른 각 모음을 최소한 하나씩 모두 포함하는 `words`가 있나요?
 
 2. "c 뒤를 제외하고는 e 앞에 i(i before e except after c)" 규칙에 대한 찬성과 반대의 증거를 찾기 위한 패턴을 구성하세요.
 
 3. <a href="https://rdrr.io/r/grDevices/colors.html" class="orm:hideurl"><code>colors()</code></a>는 "lightgray" 및 "darkblue"와 같은 많은 수식어를 포함합니다. 이러한 수식어들을 어떻게 자동으로 식별할 수 있을까요? (수식어가 붙은 색상들을 감지한 다음 제거하는 방법에 대해 생각해 보세요.)
 
-4. 어떤 기본 R 데이터셋이든 찾는 정규 표현식을 작성하세요. <a href="https://rdrr.io/r/utils/data.html" class="orm:hideurl"><code>data()</code></a> 함수의 특별한 사용을 통해 이러한 데이터셋 목록을 얻을 수 있습니다: `data(package = "datasets")$results[, "Item"]`. 많은 옛날 데이터셋들이 개별 벡터라는 점에 유의하세요; 이것들은 괄호 안에 그룹화된 "데이터 프레임(data frame)"의 이름을 포함하므로, 이것들을 떼어내야 할 것입니다.
+4. 어떤 기본 R 데이터셋이든 찾는 정규 표현식을 작성하세요. <a href="https://rdrr.io/r/utils/data.html" class="orm:hideurl"><code>data()</code></a> 함수의 특별한 사용을 통해 이러한 데이터셋 목록을 얻을 수 있습니다. `data(package = "datasets")$results[, "Item"]`. 많은 옛날 데이터셋들이 개별 벡터라는 점에 유의하세요; 이것들은 괄호 안에 그룹화된 "데이터 프레임(data frame)"의 이름을 포함하므로, 이것들을 떼어내야 할 것입니다.
 
 # 다른 곳에서의 정규 표현식
 
@@ -728,26 +725,26 @@ stringr 및 tidyr 함수에서와 마찬가지로 R에서 정규 표현식을 �
 
 ## Tidyverse
 
-정규 표현식을 사용하고 싶을 수 있는 특별히 유용한 세 군데의 다른 곳이 있습니다:
+정규 표현식을 사용하고 싶을 수 있는 특별히 유용한 세 군데의 다른 곳이 있습니다.
 
-- `matches(pattern)`는 이름이 제공된 패턴과 일치하는 모든 변수를 선택합니다. 이것은 변수를 선택하는 모든 tidyverse 함수(예: <a href="https://dplyr.tidyverse.org/reference/select.html" class="orm:hideurl"><code>select()</code></a>, <a href="https://dplyr.tidyverse.org/reference/rename.html" class="orm:hideurl"><code>rename_with()</code></a> 및 <a href="https://dplyr.tidyverse.org/reference/across.html" class="orm:hideurl"><code>across()</code></a>)에서 사용할 수 있는 "tidyselect" 함수입니다.
+- `matches(pattern)`는 이름이 제공된 패턴과 일치하는 모든 변수를 선택합니다. 이것은 변수를 선택하는 모든 tidyverse 함수(<a href="https://dplyr.tidyverse.org/reference/select.html" class="orm:hideurl"><code>select()</code></a>, <a href="https://dplyr.tidyverse.org/reference/rename.html" class="orm:hideurl"><code>rename_with()</code></a> 및 <a href="https://dplyr.tidyverse.org/reference/across.html" class="orm:hideurl"><code>across()</code></a>)에서 사용할 수 있는 "tidyselect" 함수입니다.
 
 - `pivot_longer()`의 `names_pattern` 인수는 <a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="orm:hideurl"><code>separate_wider_regex()</code></a>처럼 정규 표현식 벡터를 받습니다. 복잡한 구조를 가진 변수 이름에서 데이터를 추출할 때 유용합니다.
 
-- <a href="https://tidyr.tidyverse.org/reference/separate_longer_delim.html" class="orm:hideurl"><code>separate_longer_delim()</code></a> 및 <a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="orm:hideurl"><code>sepa⁠rate_​wider_delim()</code></a>의 `delim` 인수는 보통 고정된 문자열과 일치하지만, <a href="https://stringr.tidyverse.org/reference/modifiers.html" class="orm:hideurl"><code>regex()</code></a>를 사용하여 패턴과 일치시킬 수 있습니다. 이것은 예를 들어, 선택적으로 공백이 뒤따르는 쉼표와 일치시키고 싶을 때, 즉 `regex(", ?")`를 사용할 때 유용합니다.
+- <a href="https://tidyr.tidyverse.org/reference/separate_longer_delim.html" class="orm:hideurl"><code>separate*longer_delim()</code></a> 및 <a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="orm:hideurl"><code>sepa⁠rate*​wider_delim()</code></a>의 `delim` 인수는 보통 고정된 문자열과 일치하지만, <a href="https://stringr.tidyverse.org/reference/modifiers.html" class="orm:hideurl"><code>regex()</code></a>를 사용하여 패턴과 일치시킬 수 있습니다. 이것은 예를 들어, 선택적으로 공백이 뒤따르는 쉼표와 일치시키고 싶을 때, 즉 `regex(", ?")`를 사용할 때 유용합니다.
 
 ## Base R
 
-`apropos(pattern)`는 전역 환경(global environment)에서 사용할 수 있는 주어진 패턴과 일치하는 모든 객체를 검색합니다. 이것은 함수 이름이 잘 기억나지 않을 때 유용합니다:
+`apropos(pattern)`는 전역 환경(global environment)에서 사용할 수 있는 주어진 패턴과 일치하는 모든 객체를 검색합니다. 이것은 함수 이름이 잘 기억나지 않을 때 유용합니다.
 
 ```
 apropos("replace")
-#> [1] "%+replace%"       "replace"          "replace_na"      
-#> [4] "setReplaceMethod" "str_replace"      "str_replace_all" 
+#> [1] "%+replace%"       "replace"          "replace_na"
+#> [4] "setReplaceMethod" "str_replace"      "str_replace_all"
 #> [7] "str_replace_na"   "theme_replace"
 ```
 
-`list.files(path, pattern)`는 `path`에 있는 파일 중 정규 표현식 `pattern`과 일치하는 모든 파일을 나열합니다. 예를 들어, 다음과 같이 현재 디렉터리의 모든 R Markdown 파일을 찾을 수 있습니다:
+`list.files(path, pattern)`는 `path`에 있는 파일 중 정규 표현식 `pattern`과 일치하는 모든 파일을 나열합니다. 예를 들어, 다음과 같이 현재 디렉터리의 모든 R Markdown 파일을 찾을 수 있습니다.
 
 ```
 head(list.files(pattern = "\\.Rmd$"))
@@ -762,7 +759,7 @@ head(list.files(pattern = "\\.Rmd$"))
 
 이 장에서 여러분은 가장 유용한 stringr 함수와 정규 표현식 언어의 가장 중요한 구성 요소를 배움으로써 정규 표현식 마스터가 되기 위한 여정을 시작했습니다. 그리고 더 배울 수 있는 리소스도 많이 있습니다.
 
-시작하기 좋은 곳은 <a href="https://stringr.tidyverse.org/articles/regular-expressions.html" class="orm:hideurl"><code>vignette("regular-expressions", package = "stringr")</code></a>입니다. 이 문서는 stringr에서 지원하는 전체 구문 집합을 문서화합니다. 또 다른 유용한 참고 자료는 [*https://oreil.ly/MVwoC*](https://oreil.ly/MVwoC)입니다. R에 국한된 것은 아니지만, 정규 표현식의 가장 고급 기능들과 그 기능이 내부적으로 어떻게 작동하는지 배우는 데 사용할 수 있습니다.
+시작하기 좋은 곳은 <a href="https://stringr.tidyverse.org/articles/regular-expressions.html" class="orm:hideurl"><code>vignette("regular-expressions", package = "stringr")</code></a>입니다. 이 문서는 stringr에서 지원하는 전체 구문 집합을 문서화합니다. 또 다른 유용한 참고 자료는 [_https://oreil.ly/MVwoC_](https://oreil.ly/MVwoC)입니다. R에 국한된 것은 아니지만, 정규 표현식의 가장 고급 기능들과 그 기능이 내부적으로 어떻게 작동하는지 배우는 데 사용할 수 있습니다.
 
 stringr가 Marek Gagolewski의 stringi 패키지 위에 구현되어 있다는 것을 알아두는 것도 좋습니다. 만약 stringr에서 원하는 작업을 수행하는 함수를 찾는 데 어려움을 겪고 있다면, 주저하지 말고 stringi를 살펴보세요. stringi는 stringr과 동일한 규칙을 많이 따르기 때문에 쉽게 익힐 수 있을 것입니다.
 

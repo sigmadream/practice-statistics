@@ -8,7 +8,7 @@
 
 그러나 매년 남아의 초과를 얻는 것은 공정한 동전을 연속으로 82번 던져 매번 앞면이 나오는 것과 같습니다. 이러한 일이 발생할 확률은 1/2^82인데, 이는 소수점 아래 24개의 0이 있는 실로 매우 작은 숫자입니다. 실제 실험에서 이런 현상을 관찰했다면 우리는 그 동전이 공정하지 않다고 자신 있게 주장할 것입니다. 마찬가지로 아버스넛은 더 많은 남성을 만들어내는 어떤 힘이 작용하고 있다고 결론지었으며, 그는 그것이 남성의 높은 사망률에 대처하기 위한 것임에 틀림없다고 생각했습니다. '그 손실을 복구하기 위해 현명한 창조주의 섭리에 의해 미래를 대비하는 자연(provident Nature)은 여성보다 남성을 더 많이, 그리고 거의 일정한 비율로 낳습니다.'[**1**](./36-chapter010_notes.md#ch10-end1)
 
-![Figure 10.1 The sex ratio (number of boys per 100 girls) for London baptisms between 1629 and 1710, published by John Arbuthnot in 1710. The solid line represents an equal number of boys and girls; the curve is fitted to the empirical data. In all years there were more baptized boys than girls.](./images/p254.png) 
+![Figure 10.1 The sex ratio (number of boys per 100 girls) for London baptisms between 1629 and 1710, published by John Arbuthnot in 1710. The solid line represents an equal number of boys and girls; the curve is fitted to the empirical data. In all years there were more baptized boys than girls.](./images/p254.png)
 
 그림 10.1 (Figure 10.1)  
 1710년 존 아버스넛(John Arbuthnot)이 발표한 1629년부터 1710년까지의 런던 세례 성비(여아 100명당 남아의 수)입니다. 실선은 남아와 여아의 동수(equal number)를 나타내며, 곡선은 경험적 데이터에 맞춰진 것입니다. 모든 연도에서 세례받은 남아의 수가 여아보다 많았습니다.
@@ -46,7 +46,7 @@
 
 ### 귀무 가설의 공식적인 검정이 필요한 이유는 무엇입니까? (Why Do We Need Formal Testing of Null Hypotheses?)
 
-발견을 중요하게 생각하는 것은 과학자만이 아닙니다. 새로운 것을 찾는 기쁨은 보편적입니다. 사실 너무나도 바람직한 것이어서, 우리가 아무것도 찾지 못했을 때 무언가를 찾았다고 느끼려는 타고난 경향이 있습니다. 우리는 이전에 존재하지 않는 곳에서 패턴을 보는 능력을 설명하기 위해 _아포페니아(apophenia)_라는 용어를 사용했으며, 이러한 경향이 진화적 이점을 제공할 수도 있다고 제안되었습니다. 덤불 속의 바스락거리는 소리가 확실히 호랑이인지 기다리지 않고 도망친 조상들이 생존할 가능성이 더 높았을 수도 있습니다.
+발견을 중요하게 생각하는 것은 과학자만이 아닙니다. 새로운 것을 찾는 기쁨은 보편적입니다. 사실 너무나도 바람직한 것이어서, 우리가 아무것도 찾지 못했을 때 무언가를 찾았다고 느끼려는 타고난 경향이 있습니다. 우리는 이전에 존재하지 않는 곳에서 패턴을 보는 능력을 설명하기 위해 *아포페니아(apophenia)*라는 용어를 사용했으며, 이러한 경향이 진화적 이점을 제공할 수도 있다고 제안되었습니다. 덤불 속의 바스락거리는 소리가 확실히 호랑이인지 기다리지 않고 도망친 조상들이 생존할 가능성이 더 높았을 수도 있습니다.
 
 그러나 이러한 태도가 수렵 채집인에게는 괜찮을지 몰라도 과학에서는 작동할 수 없습니다. 진정으로, 주장이 단지 상상의 산물에 불과하다면 과학의 전체 과정은 약화됩니다. 잘못된 발견(false discoveries)으로부터 우리를 보호할 방법이 있어야 하며 가설 검정은 그 역할을 수행하려고 시도합니다.
 
@@ -68,11 +68,11 @@
 
 전반적으로 다수가 오른쪽 팔을 위에 두었습니다(32/54 = 59%). 그러나 남성(23/40 = 57%)보다 여성(9/14 = 64%)에서 더 높은 비율이 '오른팔파(right-armers)'였습니다. 관찰된 비율의 차이는 64% - 57% = 7%입니다. 이 경우 귀무 가설은 팔짱 끼는 것과 성별 사이에 전혀 연관성이 없다는 것이며, 이 경우 성별 간 비율의 관찰된 차이가 0%일 것으로 예상할 수 있습니다. 그러나 물론 이러한 귀무 가정 하에서도 사람들 간의 피할 수 없는 무작위 변동성은 관찰된 차이가 정확히 0%가 되지 않을 것임을 의미합니다. 중요한 질문은 관찰된 7%의 차이가 귀무 가설에 대한 증거를 제공할 만큼 충분히 큰지 여부입니다.
 
-| | 여성 (Female)           | 남성 (Male) | 합계 (Total) |
-| ---------------- | ---- | ----- | -- |
-| 왼쪽 팔 위 (Left arm on top)  | 5    | 17    | 22 |
-| 오른쪽 팔 위 (Right arm on top) | 9    | 23    | 32 |
-| 합계 (Total)            | 14   | 40    | 54 |
+|                                 | 여성 (Female) | 남성 (Male) | 합계 (Total) |
+| ------------------------------- | ------------- | ----------- | ------------ |
+| 왼쪽 팔 위 (Left arm on top)    | 5             | 17          | 22           |
+| 오른쪽 팔 위 (Right arm on top) | 9             | 23          | 32           |
+| 합계 (Total)                    | 14            | 40          | 54           |
 
 표 10.1 (Table 10.1)  
 54명의 대학원생에 대한 성별과 팔짱 끼기 습관의 교차표입니다.
@@ -89,7 +89,7 @@
 
 불행히도 그러한 순열의 수는 방대하여 1초에 백만 개씩 계산하더라도 모든 순열을 통과하는 데 걸리는 시간(연수) 뒤에는 57개의 0이 붙습니다.[**3**](./36-chapter010_notes.md#ch10-end3) 다행히 귀무 가설 하에서 관측된 비율의 차이에 대한 확률 분포는 이론적으로 계산할 수 있으므로 이러한 계산을 수행할 필요가 없습니다. 이는 [그림 10.2](./20-CHAPTER_10__Answering_Questions_and_Claiming_Discoveries.md#fig10-2)(b)에 나타나 있으며, 이는 표의 특정 셀이 무작위 순열 하에서 가능한 각 값을 취할 확률을 제공하는 **[초기하 분포(hypergeometric distribution)](./25-GLOSSARY.md#gloss_58)**로 알려진 것을 기반으로 합니다.
 
-![Figure 10.2 Empirical distribution of difference in proportions of women and men who crossed their arms with their right arm on top: (a) from 1,000 random permutations of arm-crossing, (b) from all possible equally likely permutations of the arm-crossing response. The observed difference in proportions (7%) is indicated by a vertical dashed line.](./images/p263.png) 
+![Figure 10.2 Empirical distribution of difference in proportions of women and men who crossed their arms with their right arm on top: (a) from 1,000 random permutations of arm-crossing, (b) from all possible equally likely permutations of the arm-crossing response. The observed difference in proportions (7%) is indicated by a vertical dashed line.](./images/p263.png)
 
 그림 10.2 (Figure 10.2)  
 오른팔을 위로 하여 팔짱을 낀 여성과 남성의 비율 차이에 대한 경험적 분포입니다. (a) 팔짱 끼기의 1,000번의 무작위 순열, (b) 팔짱 끼기 반응의 발생 가능성이 동일한 가능한 모든 순열에서 비롯되었습니다. 관찰된 비율의 차이(7%)는 수직 점선으로 표시됩니다.
@@ -116,7 +116,7 @@
 
 요약하자면 다음 단계를 설명했습니다.
 
-1. 확인하려는 귀무 가설의 관점에서 질문을 설정합니다. 이것은 일반적으로 _H_ _0_라는 기호로 주어집니다.
+1. 확인하려는 귀무 가설의 관점에서 질문을 설정합니다. 이것은 일반적으로 _H_ *0*라는 기호로 주어집니다.
 2. 어떤 것을 추정하는 검정 통계량을 선택합니다. 이 통계량이 충분히 극단적인 것으로 판명되면 귀무 가설을 의심하게 됩니다(일반적으로 통계량 값이 클수록 귀무 가설과 양립할 수 없음을 나타냅니다).
 3. 귀무 가설이 참이라면, 이 검정 통계량의 표본 분포를 생성합니다.
 4. 관찰된 통계량이 이 분포의 꼬리에 있는지 확인하고 이를 P-값으로 요약합니다. 이는 귀무 가설이 참일 때 이처럼 극단적인 통계량을 관찰할 확률입니다. 따라서 P-값은 특정한 꼬리 면적입니다.
@@ -135,11 +135,11 @@
 
 이러한 검정 통계량은 연관성이 없다는 귀무 가설이 참인 경우 표의 각 셀에 예상되는 이벤트 수를 계산한 다음 관찰된 개수와 예상된 개수 사이의 총 불일치를 카이제곱 통계량이 측정하는 것을 포함합니다. [표 10.2](./20-CHAPTER_10__Answering_Questions_and_Claiming_Discoveries.md#tab10-2)는 귀무 가설을 가정할 때 표의 셀에 예상되는 숫자를 보여줍니다. 예를 들어, 왼쪽 팔을 위에 올릴 것으로 예상되는 여성의 수는 여성의 총 수(14)에 왼팔파의 전체 비율(22/54)을 곱한 값인 5.7명입니다.
 
-| | 여성 (Female)        | 남성 (Male)    | 합계 (Total)     |    |
-| ---------------- | ------- | --------- | -- | -- |
-| 왼쪽 팔 위 (Left arm on top)  | 5 (5.7) | 17 (16.3) | 22 |
-| 오른쪽 팔 위 (Right arm on top) | 9 (8.3) | 23 (23.7) | 32 |
-| 합계 (Total)            | 14      | 40        | 54 |
+|                                 | 여성 (Female) | 남성 (Male) | 합계 (Total) |     |
+| ------------------------------- | ------------- | ----------- | ------------ | --- |
+| 왼쪽 팔 위 (Left arm on top)    | 5 (5.7)       | 17 (16.3)   | 22           |
+| 오른쪽 팔 위 (Right arm on top) | 9 (8.3)       | 23 (23.7)   | 32           |
+| 합계 (Total)                    | 14            | 40          | 54           |
 
 표 10.2 (Table 10.2)  
 성별에 따른 팔짱 끼기 관측수 및 예상수(괄호 안). 예상수는 팔짱 끼기와 성별이 연관되지 않는다는 귀무 가설 하에 계산됩니다.
@@ -160,19 +160,19 @@
 
 이것은 가설 검정과 신뢰 구간 사이의 본질적인 동일성을 보여줍니다.
 
-* 95% 신뢰 구간에 귀무 가설(일반적으로 0)이 포함되지 않은 경우 양측 P-값은 0.05 미만입니다.
-* 95% 신뢰 구간은 P < 0.05에서 기각되지 않는 귀무 가설의 집합입니다.
+- 95% 신뢰 구간에 귀무 가설(일반적으로 0)이 포함되지 않은 경우 양측 P-값은 0.05 미만입니다.
+- 95% 신뢰 구간은 P < 0.05에서 기각되지 않는 귀무 가설의 집합입니다.
 
 | 1일 살인 발생 건수 (Number of homicide incidents per day) | 관측된 일수 (Observed days) | 귀무 가설에서의 예상 일수 (Expected days under null hypothesis) |
-| ------------------------------------ | ------------- | ----------------------------------- |
-| 0                                    | 259           | 267.1                               |
-| 1                                    | 387           | 376.8                               |
-| 2                                    | 261           | 265.9                               |
-| 3                                    | 131           | 125.0                               |
-| 4                                    | 40            | 44.1                                |
-| 5                                    | 13            | 12.4                                |
-| 6건 이상 (6 or more)                           | 3             | 3.6                                 |
-| 합계 (Total)                                | 1,095         | 1,095                               |
+| --------------------------------------------------------- | --------------------------- | --------------------------------------------------------------- |
+| 0                                                         | 259                         | 267.1                                                           |
+| 1                                                         | 387                         | 376.8                                                           |
+| 2                                                         | 261                         | 265.9                                                           |
+| 3                                                         | 131                         | 125.0                                                           |
+| 4                                                         | 40                          | 44.1                                                            |
+| 5                                                         | 13                          | 12.4                                                            |
+| 6건 이상 (6 or more)                                      | 3                           | 3.6                                                             |
+| 합계 (Total)                                              | 1,095                       | 1,095                                                           |
 
 표 10.3 (Table 10.3)  
 2014년 4월부터 2016년 3월까지 잉글랜드와 웨일즈에서 특정 수의 살인 사건이 관찰된 일수와 예상 일수입니다. 카이제곱 적합도 검정 결과 P-값은 0.96으로, 포아송 분포라는 귀무 가설에 반하는 증거가 없음을 나타냅니다.
@@ -187,13 +187,13 @@
 
 4. 아버지의 키를 고려했을 때, 어머니의 키가 아들의 키와 연관되어 있습니까?
 
-![Table 10.4 The results reported at the end of the Heart Protection Study, showing the estimated relative effects, their standard errors, confidence intervals and P-values testing the null hypothesis of ‘no effect’.](./images/p274.png) 
+![Table 10.4 The results reported at the end of the Heart Protection Study, showing the estimated relative effects, their standard errors, confidence intervals and P-values testing the null hypothesis of ‘no effect’.](./images/p274.png)
 
-| 사건 (Event)               | 스타틴 투여군 10,269명의 발생률(%) (Percentage in 10,269 people allocated statin) | 위약 투여군 10,267명의 발생률(%) (Percentage in 10,267 people allocated placebo) | 스타틴 투여군의 상대 위험 감소율(%) (% (relative) risk reduction in those allocated statins) | 위험 감소의 표준 오차 (Standard error of risk reduction) | % 감소의 신뢰 구간 (Confidence Interval for % reduction) | P-값 (P-value)    |
-| -------------------- | -------------------------------------------- | --------------------------------------------- | ------------------------------------------------------ | -------------------------------- | ----------------------------------- | ---------- |
-| 심장 마비 (Heart attack)         | 8.7                                          | 11.8                                          | 27%                                                    | 4%                               | 21% ~ 33%                          | P < 0.0001 |
-| 뇌졸중 (Stroke)               | 4.3                                          | 5.7                                           | 25%                                                    | 5%                               | 15% ~ 34%                          | P < 0.0001 |
-| 모든 원인에 의한 사망 (Death from any cause) | 12.9                                         | 14.7                                          | 13%                                                    | 4%                               | 6% ~ 19%                           | P = 0.0003 |
+| 사건 (Event)                                 | 스타틴 투여군 10,269명의 발생률(%) (Percentage in 10,269 people allocated statin) | 위약 투여군 10,267명의 발생률(%) (Percentage in 10,267 people allocated placebo) | 스타틴 투여군의 상대 위험 감소율(%) (% (relative) risk reduction in those allocated statins) | 위험 감소의 표준 오차 (Standard error of risk reduction) | % 감소의 신뢰 구간 (Confidence Interval for % reduction) | P-값 (P-value) |
+| -------------------------------------------- | --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------- |
+| 심장 마비 (Heart attack)                     | 8.7                                                                               | 11.8                                                                             | 27%                                                                                          | 4%                                                       | 21% ~ 33%                                                | P < 0.0001     |
+| 뇌졸중 (Stroke)                              | 4.3                                                                               | 5.7                                                                              | 25%                                                                                          | 5%                                                       | 15% ~ 34%                                                | P < 0.0001     |
+| 모든 원인에 의한 사망 (Death from any cause) | 12.9                                                                              | 14.7                                                                             | 13%                                                                                          | 4%                                                       | 6% ~ 19%                                                 | P = 0.0003     |
 
 표 10.4 (Table 10.4)  
 심장 보호 연구가 끝날 때 보고된 결과로, 추정된 상대적 효과, 표준 오차, 신뢰 구간, '효과 없음'이라는 귀무 가설을 검정하는 P-값을 보여줍니다.
@@ -202,16 +202,16 @@
 
 [표 5.3](./15-CHAPTER_5__Modelling_Relationships_Using_Regression.md#tab5-3)과 같이 절편(intercept)은 아들 키의 평균이며 계수(출력에서 'Estimates'로 표시됨)는 어머니와 아버지의 키가 평균 어머니와 아버지 키에서 1인치 달라질 때마다 예상되는 아들 키의 변화를 나타냅니다. 표준 오차는 알려진 공식에서 계산되며 계수의 크기에 비해 분명히 작습니다.
 
-**_t_-값(t-value)**, 또는 **_t_-통계량(t-statistic)**은 설명 변수와 반응 변수 간의 연관성이 통계적으로 유의미한지 여부를 알려주는 연결 고리이기 때문에 주요 관심의 대상입니다. _t_-값은 **스튜던트 _t_-통계량(Student's t-statistic)**으로 알려진 것의 특별한 경우입니다. '스튜던트(Student)'는 1908년 더블린의 기네스 양조장에서 런던 유니버시티 칼리지(University College London)로 파견 근무하는 동안 이 방법을 개발한 윌리엄 고셋(William Gosset)의 가명이었습니다. 기네스는 직원의 익명성을 유지하기를 원했습니다. _t_-값은 단순히 추정치를 표준 오차로 나눈 값이며([표 10.5](./20-CHAPTER_10__Answering_Questions_and_Claiming_Discoveries.md#tab10-5)의 숫자로 확인할 수 있음) 따라서 표준 오차 수로 측정한 추정치가 0에서 얼마나 떨어져 있는지로 해석할 수 있습니다. _t_-값과 표본 크기가 주어지면 소프트웨어는 정확한 P-값을 제공할 수 있습니다. 대규모 표본의 경우 2보다 크거나 -2보다 작은 _t_-값은 P < 0.05에 해당하지만 표본 크기가 작을수록 이 임계값은 커집니다. R은 P-값에 대해 간단한 별표 시스템을 사용하는데, P < 0.05를 나타내는 한 개의 별(*)부터 P < 0.001을 나타내는 세 개의 별(***)까지 있습니다. [표 10.5](./20-CHAPTER_10__Answering_Questions_and_Claiming_Discoveries.md#tab10-5)에서 _t_-값은 너무 커서 P-값이 극히 작습니다.
+**_t_-값(t-value)**, 또는 ***t*-통계량(t-statistic)**은 설명 변수와 반응 변수 간의 연관성이 통계적으로 유의미한지 여부를 알려주는 연결 고리이기 때문에 주요 관심의 대상입니다. _t_-값은 **스튜던트 *t*-통계량(Student's t-statistic)**으로 알려진 것의 특별한 경우입니다. '스튜던트(Student)'는 1908년 더블린의 기네스 양조장에서 런던 유니버시티 칼리지(University College London)로 파견 근무하는 동안 이 방법을 개발한 윌리엄 고셋(William Gosset)의 가명이었습니다. 기네스는 직원의 익명성을 유지하기를 원했습니다. _t_-값은 단순히 추정치를 표준 오차로 나눈 값이며([표 10.5](./20-CHAPTER_10__Answering_Questions_and_Claiming_Discoveries.md#tab10-5)의 숫자로 확인할 수 있음) 따라서 표준 오차 수로 측정한 추정치가 0에서 얼마나 떨어져 있는지로 해석할 수 있습니다. _t_-값과 표본 크기가 주어지면 소프트웨어는 정확한 P-값을 제공할 수 있습니다. 대규모 표본의 경우 2보다 크거나 -2보다 작은 _t_-값은 P < 0.05에 해당하지만 표본 크기가 작을수록 이 임계값은 커집니다. R은 P-값에 대해 간단한 별표 시스템을 사용하는데, P < 0.05를 나타내는 한 개의 별(\*)부터 P < 0.001을 나타내는 세 개의 별(\*\*\*)까지 있습니다. [표 10.5](./20-CHAPTER_10__Answering_Questions_and_Claiming_Discoveries.md#tab10-5)에서 _t_-값은 너무 커서 P-값이 극히 작습니다.
 
-![Table 10.5 A reproduction of the output in R of a multiple regression using Galton’s data, with son’s height as the response variable, and mother’s and father’s height as explanatory variables. The t-value is the estimate divided by the standard error. The column headed Pr(>|t|) represents a two-sided P-value; the probability of getting such a large t-value, either positive or negative, under the null hypothesis that the true relationship is 0. The notation ‘2 e-16’ means the P-value is less than 0.0000000000000002 (that is 15 zeros). The final line shows the interpretations of the stars in terms of P-values.](./images/p276.png) 
+![Table 10.5 A reproduction of the output in R of a multiple regression using Galton’s data, with son’s height as the response variable, and mother’s and father’s height as explanatory variables. The t-value is the estimate divided by the standard error. The column headed Pr(>|t|) represents a two-sided P-value; the probability of getting such a large t-value, either positive or negative, under the null hypothesis that the true relationship is 0. The notation ‘2 e-16’ means the P-value is less than 0.0000000000000002 (that is 15 zeros). The final line shows the interpretations of the stars in terms of P-values.](./images/p276.png)
 
-| | 추정치 (Estimate)                                                | 표준 오차 (Std Error) | _t_-값 (_t_-value) | Pr(>\|t|) |                  |
-| ------------------------------------------------------- | --------- | ---------- | --------- | ---------------- |
-| (절편) ((Intercept))                                             | 69.22882  | 0.10664    | 649.168   | < 2 e–16 \*\*\*  |
-| 어머니의 키 (mother’s height)                                         | 0.33355   | 0.04600    | 7.252     | 1.74 e–12 \*\*\* |
-| 아버지의 키 (father’s height)                                         | 0.41175   | 0.04668    | 8.820     | < 2 e–16 \*\*\*  |
-| 유의성 코드 (Significant codes): \*\*\* = 0.001 \*\* = 0.01 \* = 0.05 |           |            |           |                  |
+|                                                                       | 추정치 (Estimate) | 표준 오차 (Std Error) | _t_-값 (_t_-value) | Pr(>\|t          | )   |     |
+| --------------------------------------------------------------------- | ----------------- | --------------------- | ------------------ | ---------------- | --- | --- |
+| (절편) ((Intercept))                                                  | 69.22882          | 0.10664               | 649.168            | < 2 e–16 \*\*\*  |
+| 어머니의 키 (mother’s height)                                         | 0.33355           | 0.04600               | 7.252              | 1.74 e–12 \*\*\* |
+| 아버지의 키 (father’s height)                                         | 0.41175           | 0.04668               | 8.820              | < 2 e–16 \*\*\*  |
+| 유의성 코드 (Significant codes): \*\*\* = 0.001 \*\* = 0.01 \* = 0.05 |                   |                       |                    |                  |
 
 표 10.5 (Table 10.5)  
 골턴의 데이터를 사용한 다중 회귀의 R 출력값을 재현한 것으로, 아들의 키를 반응 변수로, 어머니와 아버지의 키를 설명 변수로 사용했습니다. t-값은 추정치를 표준 오차로 나눈 값입니다. Pr(>|t|)라는 제목의 열은 양측 P-값을 나타냅니다. 참 관계가 0이라는 귀무 가설 하에서 양수든 음수든 그렇게 큰 t-값을 얻을 확률입니다. '2 e-16' 표기법은 P-값이 0.0000000000000002(즉, 0이 15개) 미만임을 의미합니다. 마지막 줄은 P-값의 관점에서 별의 해석을 보여줍니다.
@@ -232,7 +232,7 @@
 
 반전은 '피험자'가 스캔 당시 살아있지 않은 무게 4파운드의 대서양 연어였다는 것입니다. 이 커다란 죽은 물고기의 뇌에 있는 총 8,064개 부위 중 16개 부위가 사진에 통계적으로 유의미한 반응을 보였습니다. 죽은 연어가 기적적인 능력을 가지고 있다고 결론 내리기보다는 이 팀은 다중 검정 문제를 올바르게 파악했습니다. 8,000개가 넘는 유의성 검정은 위양성 결과를 초래할 수밖에 없습니다.[**4**](./36-chapter010_notes.md#ch10-end4) P < 0.001이라는 엄격한 기준을 사용하더라도 우연에 의해서만 8개의 유의미한 결과가 나올 것으로 예상할 수 있습니다.
 
-이 문제를 피하는 한 가지 방법은 유의성이 선언되는 매우 낮은 P-값을 요구하는 것이며 **[본페로니 교정(Bonferroni correction)](./25-GLOSSARY.md#gloss_17)**으로 알려진 가장 간단한 방법은 0.05/_n_ 임계값을 사용하는 것입니다. 여기서 _n_은 수행된 검정 수입니다. 따라서 예를 들어 연어 두뇌의 각 부위에서의 검정은 P-값 0.05/8,000 = 0.00000625, 즉 1/160,000을 요구하여 수행할 수 있습니다. 이 기술은 질병과 연관성이 있는 부위를 인간 게놈에서 찾을 때 표준 관행이 되었습니다. 유전자를 위한 부위가 대략 1,000,000개 있기 때문에 발견을 주장하기 전에 일상적으로 0.05/1,000,000 = 20,000,000분의 1보다 작은 P-값이 요구됩니다.
+이 문제를 피하는 한 가지 방법은 유의성이 선언되는 매우 낮은 P-값을 요구하는 것이며 **[본페로니 교정(Bonferroni correction)](./25-GLOSSARY.md#gloss_17)**으로 알려진 가장 간단한 방법은 0.05/_n_ 임계값을 사용하는 것입니다. 여기서 *n*은 수행된 검정 수입니다. 따라서 예를 들어 연어 두뇌의 각 부위에서의 검정은 P-값 0.05/8,000 = 0.00000625, 즉 1/160,000을 요구하여 수행할 수 있습니다. 이 기술은 질병과 연관성이 있는 부위를 인간 게놈에서 찾을 때 표준 관행이 되었습니다. 유전자를 위한 부위가 대략 1,000,000개 있기 때문에 발견을 주장하기 전에 일상적으로 0.05/1,000,000 = 20,000,000분의 1보다 작은 P-값이 요구됩니다.
 
 따라서 뇌 스캔이나 유전체학에서처럼 다수의 가설을 동시에 검정하는 경우 본페로니 방법을 사용하여 가장 극단적인 결과가 유의미한지 여부를 결정할 수 있습니다. 잘못된 주장으로 판명되는 '발견(discoveries)'의 전체 비율, 즉 소위 **[발견 오류율(false discovery rate)](./25-GLOSSARY.md#gloss_50)**을 제어하도록 고안되어 두 번째, 세 번째 등으로 가장 극단적인 결과에 대해 본페로니 기준을 약간 완화하는 단순한 기술도 개발되었습니다.
 
@@ -260,18 +260,18 @@ P-값과 유의성 검정의 아이디어는 1920년대 로널드 피셔에 의�
 
 그들의 프레임워크는 귀무 가설뿐만 아니라 데이터에 대한 더 복잡한 설명을 나타내는 대안 가설(alternative hypothesis)의 사양을 요구했습니다. 그런 다음 가설 검정 후 가능한 결정을 고려했는데, 이는 대안을 위해 귀무 가설을 기각하거나 귀무 가설을 기각하지 않는 것입니다.[fn6](./45-footnotes.md#ch10-fn6) 따라서 두 가지 유형의 실수가 가능합니다. 귀무 가설이 참일 때 이를 기각하는 경우 **[제1종 오류(Type I error)](./25-GLOSSARY.md#gloss_152)**가 발생하고, 실제로 대안 가설이 성립하는데 귀무 가설을 기각하지 않는 경우 **[제2종 오류(Type II error)](./25-GLOSSARY.md#gloss_153)**가 발생합니다. [표 10.6](./20-CHAPTER_10__Answering_Questions_and_Claiming_Discoveries.md#tab10-6)에 설명된 강력한 법적 비유가 있습니다. 제1종 법적 오류는 무고한 사람에게 거짓으로 유죄 판결을 내리는 것이고 제2종 오류는 실제로 범죄를 저질렀을 때 누군가를 '무죄'로 판결하는 것입니다.
 
-실험을 계획할 때 네이만과 피어슨은 실험의 규모를 결정할 두 가지 양을 선택해야 한다고 제안했습니다. 첫째, 귀무 가설이 참이라고 가정할 때 제1종 오류의 확률을 사전 지정된 값(예: 0.05)으로 고정해야 합니다. 이를 **[검정력(size of a test)](./25-GLOSSARY.md#gloss_139)**(size of a test)이라고 하며 일반적으로 α(알파)로 나타냅니다. 둘째, 대안 가설이 참이라고 가정할 때 제2종 오류의 확률을 사전 지정해야 하며, 이는 일반적으로 β(베타)로 알려져 있습니다. 실제로 연구자들은 일반적으로 1 – β의 관점에서 작업하는데, 이를 **[검정력(power of a test)](./25-GLOSSARY.md#gloss_105)**(power of a test)이라고 하며 대안 가설이 참일 때 대안 가설을 선호하여 귀무 가설을 기각할 확률입니다. 즉 실험의 검정력은 진정한 효과를 올바르게 감지할 확률입니다.
+실험을 계획할 때 네이만과 피어슨은 실험의 규모를 결정할 두 가지 양을 선택해야 한다고 제안했습니다. 첫째, 귀무 가설이 참이라고 가정할 때 제1종 오류의 확률을 사전 지정된 값(0.05)으로 고정해야 합니다. 이를 **[검정력(size of a test)](./25-GLOSSARY.md#gloss_139)**(size of a test)이라고 하며 일반적으로 α(알파)로 나타냅니다. 둘째, 대안 가설이 참이라고 가정할 때 제2종 오류의 확률을 사전 지정해야 하며, 이는 일반적으로 β(베타)로 알려져 있습니다. 실제로 연구자들은 일반적으로 1 – β의 관점에서 작업하는데, 이를 **[검정력(power of a test)](./25-GLOSSARY.md#gloss_105)**(power of a test)이라고 하며 대안 가설이 참일 때 대안 가설을 선호하여 귀무 가설을 기각할 확률입니다. 즉 실험의 검정력은 진정한 효과를 올바르게 감지할 확률입니다.
 
-| 진실 (Truth)                                                     | 가설 검정 결과 (Outcome of hypothesis test)                                                             |                                                                          |
-| --------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| 귀무 가설 기각 안 함 (용의자를 '무죄'로 판결) (Do not reject null hypothesis (find suspect ‘not guilty’)) | 대안을 위해 귀무 가설 기각 (용의자를 유죄로 판결) (Reject null hypothesis in favour of alternative (find suspect guilty))                  |                                                                          |
-| 귀무 가설 (용의자는 무죄임) (Null hypothesis (suspect is innocent))                     | 귀무 가설을 기각하지 않은 것이 맞음. 무고한 사람을 '무죄'로 올바르게 판결. (Correct in not rejecting null.Correctly find an innocent person ‘not guilty’.)          | 제1종 오류: 귀무 가설을 잘못 기각. 무고한 사람에게 잘못 유죄 판결을 내림 (Type I error: Incorrectly reject null.Wrongly convict an innocent person) |
-| 대안 가설 (용의자는 유죄임) (Alternative hypothesis (suspect is guilty))                | 제2종 오류: 귀무 가설을 잘못 기각하지 못함. 유죄인 사람에게 잘못 유죄 판결을 내리지 못함 (Type II error: Incorrectly fail to reject null.Wrongly fail to convict a guilty person) | 귀무 가설을 올바르게 기각. 유죄인 사람에게 올바르게 유죄 판결을 내림 (Correctly reject null.Correctly convict a guilty person)                  |
+| 진실 (Truth)                                                                                              | 가설 검정 결과 (Outcome of hypothesis test)                                                                                                                                       |                                                                                                                                                     |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 귀무 가설 기각 안 함 (용의자를 '무죄'로 판결) (Do not reject null hypothesis (find suspect ‘not guilty’)) | 대안을 위해 귀무 가설 기각 (용의자를 유죄로 판결) (Reject null hypothesis in favour of alternative (find suspect guilty))                                                         |                                                                                                                                                     |
+| 귀무 가설 (용의자는 무죄임) (Null hypothesis (suspect is innocent))                                       | 귀무 가설을 기각하지 않은 것이 맞음. 무고한 사람을 '무죄'로 올바르게 판결. (Correct in not rejecting null.Correctly find an innocent person ‘not guilty’.)                        | 제1종 오류: 귀무 가설을 잘못 기각. 무고한 사람에게 잘못 유죄 판결을 내림 (Type I error: Incorrectly reject null.Wrongly convict an innocent person) |
+| 대안 가설 (용의자는 유죄임) (Alternative hypothesis (suspect is guilty))                                  | 제2종 오류: 귀무 가설을 잘못 기각하지 못함. 유죄인 사람에게 잘못 유죄 판결을 내리지 못함 (Type II error: Incorrectly fail to reject null.Wrongly fail to convict a guilty person) | 귀무 가설을 올바르게 기각. 유죄인 사람에게 올바르게 유죄 판결을 내림 (Correctly reject null.Correctly convict a guilty person)                      |
 
 표 10.6 (Table 10.6)  
 형사 재판의 비유를 사용한 가설 검정의 가능한 결과.
 
-크기 α와 피셔의 P-값 사이에는 밀접한 관련이 있습니다. 결과를 유의미하다고 생각하는 임계값으로 α를 사용하면 귀무 가설을 기각하게 만드는 결과는 정확히 _P_가 α보다 작은 결과가 됩니다. 따라서 α는 임계값 유의 수준으로 간주될 수 있습니다. α가 0.05라는 것은 0.05 미만의 모든 P-값에 대해 귀무 가설을 기각한다는 것을 의미합니다.
+크기 α와 피셔의 P-값 사이에는 밀접한 관련이 있습니다. 결과를 유의미하다고 생각하는 임계값으로 α를 사용하면 귀무 가설을 기각하게 만드는 결과는 정확히 *P*가 α보다 작은 결과가 됩니다. 따라서 α는 임계값 유의 수준으로 간주될 수 있습니다. α가 0.05라는 것은 0.05 미만의 모든 P-값에 대해 귀무 가설을 기각한다는 것을 의미합니다.
 
 다양한 형태의 실험의 크기와 검정력에 대한 공식이 존재하며, 이는 모두 표본 크기에 결정적으로 의존합니다. 그러나 표본 크기가 고정되어 있으면 피할 수 없는 절충점이 있습니다. 검정력을 높이려면 항상 '유의성'에 대한 임계값을 덜 엄격하게 만들어 진정한 효과를 올바르게 식별할 가능성을 높일 수 있지만, 이는 제1종 오류(크기)의 가능성을 높이는 것을 의미합니다. 법적 비유에서 우리는 '합리적인 의심의 여지 없이' 증명해야 한다는 요건을 완화하는 등 유죄 판결 기준을 덜 엄격하게 만들 수 있으며, 이로 인해 더 많은 범죄자가 올바르게 유죄 판결을 받게 되지만 불가피하게 무고한 사람들이 잘못 유죄 판결을 받는 비용을 치르게 될 것입니다.
 
@@ -295,7 +295,7 @@ P-값과 유의성 검정의 아이디어는 1920년대 로널드 피셔에 의�
 
 어떤 허구의 역사에서 누군가가 쉽먼의 사망자를 매년 모니터링하고 [그림 10.3](./20-CHAPTER_10__Answering_Questions_and_Claiming_Discoveries.md#fig10-3)을 생성하는 데 필요한 계산을 하고 있었다고 가정해 봅시다. 언제 호루라기를 불었을 수 있을까요? 예를 들어 그들은 매년 말에 유의성 검정을 수행할 수 있었습니다. 살인과 같은 사망 횟수는 사건이 발생할 확률이 작은 많은 개체의 결과이며 포아송 분포를 갖는 것으로 가정할 수 있으므로, 귀무 가설은 누적된 관찰 사망자 수가 누적된 예상 횟수에 의해 주어진 기댓값을 갖는 포아송 분포의 관찰치라는 것입니다.
 
-![Figure 10.3 Cumulative number of death certificates signed by Shipman for patients who were age 65 or over and who died at home or in his practice. The expected number, given the composition of his practice list, has been subtracted.](./images/p289.png) 
+![Figure 10.3 Cumulative number of death certificates signed by Shipman for patients who were age 65 or over and who died at home or in his practice. The expected number, given the composition of his practice list, has been subtracted.](./images/p289.png)
 
 그림 10.3 (Figure 10.3)  
 65세 이상이고 자택이나 병원에서 사망한 환자에 대해 쉽먼이 서명한 누적 사망 진단서 수입니다. 그의 병원 명단의 구성을 고려할 때 예상되는 수가 차감되었습니다.
@@ -316,7 +316,7 @@ P-값과 유의성 검정의 아이디어는 1920년대 로널드 피셔에 의�
 
 약 25,000명의 일반의가 있다는 점을 감안할 때 0.05/25,000 또는 50만 분의 1의 임계값 P-값이 합리적일 수 있습니다. 여성만 놓고 보면 쉽먼은 1985년에 0.000001, 즉 백만 분의 1이라는 더 엄격한 알파 임계값을 넘었을 것이며 남성과 여성을 합치면 1984년에 그렇게 되었을 것입니다. 따라서 이 경우 올바른 순차 검정은 순진하게 반복적인 유의성 검정과 동시에 경보를 울렸을 것입니다.
 
-![Figure 10.4 Sequential Probability Ratio Test (SPRT) statistic for detection of a doubling in mortality risk: patients aged >64 and dying in home/practice. The straight lines indicate thresholds for ‘alerting’, which provide the overall Type 1 (alpha) and Type II (beta) error rates that are shown – these are assumed to be equal. Looking at the line for females, it is apparent that Shipman would have crossed the outer threshold in 1985.](./images/p293.png) 
+![Figure 10.4 Sequential Probability Ratio Test (SPRT) statistic for detection of a doubling in mortality risk: patients aged >64 and dying in home/practice. The straight lines indicate thresholds for ‘alerting’, which provide the overall Type 1 (alpha) and Type II (beta) error rates that are shown – these are assumed to be equal. Looking at the line for females, it is apparent that Shipman would have crossed the outer threshold in 1985.](./images/p293.png)
 
 그림 10.4 (Figure 10.4)  
 사망 위험의 두 배 증가를 감지하기 위한 순차 확률 비 검정(SPRT) 통계량: 자택/병원에서 사망하는 >64세 환자. 직선은 표시된 전체 제1종(알파) 및 제2종(베타) 오류율을 제공하는 '경보'에 대한 임계값을 나타냅니다(이 오류율들은 같다고 가정됨). 여성을 위한 선을 보면 쉽먼이 1985년에 바깥쪽 임계값을 넘었음이 분명합니다.
@@ -335,7 +335,7 @@ P-값에 무슨 문제가 생길 수 있을까요?
 
 이것은 우리가 125개의 '발견'을 주장할 것으로 예상하지만, 이 중 45개는 위양성이라는 것을 보여줍니다. 다시 말해, 기각된 귀무 가설('발견') 중 36% 또는 1/3 이상이 잘못된 주장입니다. 이 다소 우울한 그림은 실제로 과학 문헌에 무엇이 실리는지를 고려할 때 훨씬 더 나빠집니다. 왜냐하면 저널은 긍정적인 결과를 출판하는 편향이 있기 때문입니다. 과학적 연구에 대한 유사한 분석으로 인해 2005년 스탠포드 의대 및 통계학 교수 존 이오아니디스(John Ioannidis)는 '대부분의 발표된 연구 결과는 거짓이다'라는 유명한 주장을 하게 되었습니다.[**9**](./36-chapter010_notes.md#ch10-end9) 우리는 [12장](./22-CHAPTER_12__How_Things_Go_Wrong.md)에서 그의 암울한 결론에 대한 이유로 돌아갈 것입니다.
 
-![Figure 10.5 The expected frequencies of the outcomes of 1,000 hypothesis tests carried out with size 5% (Type I error, α) and 80% power (1 − Type II error, 1−β). Only 10% (100) of the null hypotheses are false, and we correctly detect 80% of them (80). Of the 900 null hypotheses that are true, we incorrectly reject 45 (5%). Overall, of 125 ‘discoveries’, 36% (45) are false discoveries.](./images/p296.png) 
+![Figure 10.5 The expected frequencies of the outcomes of 1,000 hypothesis tests carried out with size 5% (Type I error, α) and 80% power (1 − Type II error, 1−β). Only 10% (100) of the null hypotheses are false, and we correctly detect 80% of them (80). Of the 900 null hypotheses that are true, we incorrectly reject 45 (5%). Overall, of 125 ‘discoveries’, 36% (45) are false discoveries.](./images/p296.png)
 
 그림 10.5 (Figure 10.5)  
 크기 5%(제1종 오류, α)와 검정력 80%(1 − 제2종 오류, 1−β)로 수행된 가설 검정 1,000건의 예상 결과 빈도. 귀무 가설 중 10%(100건)만 거짓이며, 그중 80%(80건)를 올바르게 감지합니다. 참인 900개의 귀무 가설 중 우리는 잘못하여 45개(5%)를 기각합니다. 전반적으로 125개의 '발견' 중 36%(45개)는 잘못된 발견입니다.
@@ -356,7 +356,7 @@ P-값에 무슨 문제가 생길 수 있을까요?
 
 P-값과 관련하여 유사한 문제가 발생할 수 있습니다. P-값은 귀무 가설이 참인 경우 그렇게 극단적인 데이터가 발생할 확률을 측정하며 그렇게 극단적인 데이터가 발생한 경우 귀무 가설이 참일 확률은 측정하지 _않습니다_. 이것은 미묘하지만 근본적인 차이입니다.
 
-CERN 팀이 힉스 보손에 대해 '5 시그마' 결과, 약 350만 분의 1의 P-값에 해당하는 것을 보고했을 때, BBC는 결론을 올바르게 보고하면서 이것이 '힉스 입자가 없다면 그들이 보는 신호가 나타날 가능성이 350만 분의 1 정도'를 의미한다고 말했습니다. 그러나 거의 모든 다른 매체는 이 P-값의 의미를 잘못 이해했습니다. 예를 들어 포브스 매거진(Forbes Magazine)은 '그것이 힉스 보손이 아닐 확률은 백만 분의 1 미만'이라고 보도했는데, 이는 검사의 오류의 전형적인 예입니다. 인디펜던트(The Independent)는 '그들의 결과가 통계적 요행일 확률이 백만 분의 1 미만'이라고 주장한 대표적인 매체였습니다. 이것은 포브스만큼 노골적으로 잘못된 것은 아니지만 여전히 그 작은 확률을 '그들의 결과는 통계적 요행이다'라는 데 할당하고 있으며, 이는 논리적으로 이것이 검증 중인 귀무 가설의 확률이라고 말하는 것과 같습니다. 그렇기 때문에 ASA는 P-값이 '데이터가 오로지 무작위 우연에 의해 생성되었을 확률'이 _아님_을 강조하려고 노력합니다.
+CERN 팀이 힉스 보손에 대해 '5 시그마' 결과, 약 350만 분의 1의 P-값에 해당하는 것을 보고했을 때, BBC는 결론을 올바르게 보고하면서 이것이 '힉스 입자가 없다면 그들이 보는 신호가 나타날 가능성이 350만 분의 1 정도'를 의미한다고 말했습니다. 그러나 거의 모든 다른 매체는 이 P-값의 의미를 잘못 이해했습니다. 예를 들어 포브스 매거진(Forbes Magazine)은 '그것이 힉스 보손이 아닐 확률은 백만 분의 1 미만'이라고 보도했는데, 이는 검사의 오류의 전형적인 예입니다. 인디펜던트(The Independent)는 '그들의 결과가 통계적 요행일 확률이 백만 분의 1 미만'이라고 주장한 대표적인 매체였습니다. 이것은 포브스만큼 노골적으로 잘못된 것은 아니지만 여전히 그 작은 확률을 '그들의 결과는 통계적 요행이다'라는 데 할당하고 있으며, 이는 논리적으로 이것이 검증 중인 귀무 가설의 확률이라고 말하는 것과 같습니다. 그렇기 때문에 ASA는 P-값이 '데이터가 오로지 무작위 우연에 의해 생성되었을 확률'이 *아님*을 강조하려고 노력합니다.
 
 ASA의 세 번째 원칙은 통계적 유의성에 대한 집착을 억제하고자 합니다.
 
@@ -388,14 +388,14 @@ ASA의 네 번째 원칙은 꽤 무해하게 들립니다.
 
 이제 독자들은 결론에 대한 잠재적인 우려 사항 목록을 준비해야 하지만 저자들은 이를 선점했습니다. 그들의 연구 결과와 함께 그들은 다음을 인정했습니다.
 
-* 인과적 해석을 내릴 수 없었습니다.
-* 알코올 소비와 같은 잠재적인 생활 방식 교란 요인에 대한 조정이 이루어지지 않았습니다.
-* 경제적 지위가 높은 사람은 진료를 받으려는 경향이 더 강할 수 있으며 따라서 보고 편향이 있을 수 있습니다.
+- 인과적 해석을 내릴 수 없었습니다.
+- 알코올 소비와 같은 잠재적인 생활 방식 교란 요인에 대한 조정이 이루어지지 않았습니다.
+- 경제적 지위가 높은 사람은 진료를 받으려는 경향이 더 강할 수 있으며 따라서 보고 편향이 있을 수 있습니다.
 
 하지만 한 가지 중요한 특징이 언급되지 않았습니다. 겉보기 연관성의 크기가 작다는 것입니다. 가장 낮은 교육 수준과 가장 높은 교육 수준 사이의 19% 증가는 많은 암에서 발견되는 것보다 훨씬 낮습니다. 이 논문은 18년 동안 2,000,000명이 넘는 남성에게서 3,715건의 뇌종양이 진단되었다고 보고했으며(대략 600명 중 1명), 따라서 [1장](./11-CHAPTER_1__Getting_Things_in_Proportion__Categorical_Data_and_Percentages.md)에 설명된 절차에 따라 상대 위험을 절대 위험의 변화로 변환하면 다음과 같이 계산할 수 있습니다.
 
-* 교육 수준이 가장 낮은 약 3,000명의 남성 중 약 5명의 종양이 진단될 것으로 예상합니다(기준 위험 600분의 1).
-* 교육 수준이 가장 높은 3,000명의 남성 중 6명을 예상합니다(상대적 위험 19% 증가).
+- 교육 수준이 가장 낮은 약 3,000명의 남성 중 약 5명의 종양이 진단될 것으로 예상합니다(기준 위험 600분의 1).
+- 교육 수준이 가장 높은 3,000명의 남성 중 6명을 예상합니다(상대적 위험 19% 증가).
 
 이것은 결과에 대해 다소 다른 인상을 주며, 사실 오히려 안심이 됩니다. 희귀암에서 이처럼 작은 위험 증가는 200만 명이 넘는 엄청난 수의 사람들을 대상으로 한 연구에서만 통계적으로 유의미하다는 것을 발견할 수 있습니다.
 
@@ -409,18 +409,17 @@ ASA의 마지막 원칙은 훨씬 더 미묘합니다.
 
 이것이 어떤 효과를 미칠까요? [그림 10.5](./20-CHAPTER_10__Answering_Questions_and_Claiming_Discoveries.md#fig10-5)에서 '유의성' 기준을 0.05(20분의 1)에서 0.005(200분의 1)로 변경하면 위양성 '발견'이 45개가 아니라 4.5개에 불과함을 의미할 것입니다. 이렇게 하면 전체 발견 건수가 84.5건으로 줄어들고 그중 4.5건(5%)만이 위양성 발견이 될 것입니다. 이는 36%에서 상당히 개선된 수치입니다.
 
-가설을 검증하기 위한 피셔의 원래 아이디어는 통계 관행과 정당화되지 않은 과학적 주장을 예방하는 데 큰 도움이 되었습니다. 그러나 통계학자들은 종종 잘못 설계된 연구에서 가져온 P-값을 통해 확신에 찬 일반화할 수 있는 추론으로 아무렇지 않게 비틀거리는 일부 연구자들의 의향에 대해 불평해 왔습니다. 통계 검정을 기계적으로 적용하여 모든 결과를 '유의미한' 것과 '유의미하지 않은' 것으로 나누는 것은 불확실성을 확실성으로 바꾸는 일종의 연금술과 같습니다. 우리는 [12장](./22-CHAPTER_12__ 초과_Things_Go_Wrong.md)에서 이러한 행동의 좋지 않은 결과 중 일부를 살펴볼 것이지만 그전에 먼저 귀무 가설 유의성 검정이라는 아이디어 전체를 기각하는 통계적 추론에 대한 대안적 접근 방식에 대해 알아보겠습니다.
+가설을 검증하기 위한 피셔의 원래 아이디어는 통계 관행과 정당화되지 않은 과학적 주장을 예방하는 데 큰 도움이 되었습니다. 그러나 통계학자들은 종종 잘못 설계된 연구에서 가져온 P-값을 통해 확신에 찬 일반화할 수 있는 추론으로 아무렇지 않게 비틀거리는 일부 연구자들의 의향에 대해 불평해 왔습니다. 통계 검정을 기계적으로 적용하여 모든 결과를 '유의미한' 것과 '유의미하지 않은' 것으로 나누는 것은 불확실성을 확실성으로 바꾸는 일종의 연금술과 같습니다. 우리는 [12장](./22-CHAPTER_12\_\_ 초과\_Things_Go_Wrong.md)에서 이러한 행동의 좋지 않은 결과 중 일부를 살펴볼 것이지만 그전에 먼저 귀무 가설 유의성 검정이라는 아이디어 전체를 기각하는 통계적 추론에 대한 대안적 접근 방식에 대해 알아보겠습니다.
 
 따라서 통계 과학의 또 다른 머리를 써야 하는 요구 사항으로서, 당신이 이 장과 이전 장에서 배운 모든 것을 (일시적으로) 잊을 수 있다면 도움이 될 것입니다.
 
 #### 요약 (Summary)
 
-* 귀무 가설에 대한 검정(통계 모델에 대한 기본 가정)은 통계 관행의 주요 부분을 형성합니다.
-* P-값은 관찰된 데이터와 귀무 가설 간의 비호환성 척도입니다. 공식적으로 귀무 가설이 참일 때 이처럼 극단적인 결과를 관찰할 확률입니다.
-* 전통적으로 0.05와 0.01의 P-값 임계값은 '통계적 유의성'을 선언하도록 설정되었습니다.
-* 이러한 임계값은 데이터의 여러 하위 집합이나 여러 결과 척도에서 여러 번의 검정이 수행되는 경우에 조정해야 합니다.
-* 신뢰 구간과 P-값 사이에는 정확한 대응 관계가 있습니다. 예를 들어 95% 구간에 0이 제외되면 P < 0.05에서 0의 귀무 가설을 기각할 수 있습니다.
-* 네이만-피어슨 이론은 대안 가설을 지정하고 가설 검정에서 가능한 두 가지 종류의 오류에 대해 제1종 및 제2종 오류율을 고정합니다.
-* 순차 검정을 위해 별도의 가설 검정 형식이 개발되었습니다.
-* P-값은 오해되는 경우가 많습니다. 특히 P-값은 귀무 가설이 참일 확률을 전달하지 않으며, 유의미하지 않은 결과가 귀무 가설이 참임을 의미하지도 않습니다.
-
+- 귀무 가설에 대한 검정(통계 모델에 대한 기본 가정)은 통계 관행의 주요 부분을 형성합니다.
+- P-값은 관찰된 데이터와 귀무 가설 간의 비호환성 척도입니다. 공식적으로 귀무 가설이 참일 때 이처럼 극단적인 결과를 관찰할 확률입니다.
+- 전통적으로 0.05와 0.01의 P-값 임계값은 '통계적 유의성'을 선언하도록 설정되었습니다.
+- 이러한 임계값은 데이터의 여러 하위 집합이나 여러 결과 척도에서 여러 번의 검정이 수행되는 경우에 조정해야 합니다.
+- 신뢰 구간과 P-값 사이에는 정확한 대응 관계가 있습니다. 예를 들어 95% 구간에 0이 제외되면 P < 0.05에서 0의 귀무 가설을 기각할 수 있습니다.
+- 네이만-피어슨 이론은 대안 가설을 지정하고 가설 검정에서 가능한 두 가지 종류의 오류에 대해 제1종 및 제2종 오류율을 고정합니다.
+- 순차 검정을 위해 별도의 가설 검정 형식이 개발되었습니다.
+- P-값은 오해되는 경우가 많습니다. 특히 P-값은 귀무 가설이 참일 확률을 전달하지 않으며, 유의미하지 않은 결과가 귀무 가설이 참임을 의미하지도 않습니다.

@@ -14,15 +14,15 @@
 
 마지막으로 이 책의 마지막 섹션인 [16장](ch16.xhtml#dimensionality)에서 [21장](ch21.xhtml#inferential)까지는 모델 구축을 위한 기타 중요한 주제를 다룹니다. 차원 축소(Dimensionality Reduction) 및 고차원 범주형 예측 변수(High-Cardinality Predictors) 인코딩과 같은 더 고급 특징 공학(Feature Engineering) 접근 방식은 물론, 모델이 특정 예측을 내리는 이유와 모델 예측을 언제 신뢰해야 하는지에 대한 질문에 답하는 방법을 논의합니다.
 
-저희는 독자가 모델 구축 및 통계에 대한 폭넓은 경험이 있다고 가정하지 않습니다. 무작위 샘플링(Random Sampling), 분산(Variance), 상관관계(Correlation), 기초적인 선형 회귀(Linear Regression) 및 일반적으로 기초 학부 통계 또는 데이터 분석 과정에서 다루는 기타 주제와 같은 약간의 통계 지식이 필요합니다. 저희는 독자가 R의 dplyr, ggplot2 및 `%>%` "파이프" 연산자에 대해 최소한 약간은 익숙하고 이러한 도구를 모델링에 적용하는 데 관심이 있다고 가정합니다. 아직 이러한 배경 R 지식이 없는 사용자의 경우 Wickham과 Grolemund(2016)가 저술한 [*R for Data Science*](https://r4ds.had.co.nz)와 같은 책을 권장합니다. 데이터를 조사하고 분석하는 것은 모든 모델 프로세스에서 중요한 부분입니다.
+저희는 독자가 모델 구축 및 통계에 대한 폭넓은 경험이 있다고 가정하지 않습니다. 무작위 샘플링(Random Sampling), 분산(Variance), 상관관계(Correlation), 기초적인 선형 회귀(Linear Regression) 및 일반적으로 기초 학부 통계 또는 데이터 분석 과정에서 다루는 기타 주제와 같은 약간의 통계 지식이 필요합니다. 저희는 독자가 R의 dplyr, ggplot2 및 `%>%` "파이프" 연산자에 대해 최소한 약간은 익숙하고 이러한 도구를 모델링에 적용하는 데 관심이 있다고 가정합니다. 아직 이러한 배경 R 지식이 없는 사용자의 경우 Wickham과 Grolemund(2016)가 저술한 [_R for Data Science_](https://r4ds.had.co.nz)와 같은 책을 권장합니다. 데이터를 조사하고 분석하는 것은 모든 모델 프로세스에서 중요한 부분입니다.
 
 이 책은 모델링 기법에 대한 포괄적인 참고서로 의도된 것이 아닙니다. 통계적 방법론 자체에 대해 자세히 알아보려면 다른 리소스를 제안합니다. 가장 일반적인 모델 유형인 선형 모델에 대한 일반적인 배경지식은 Fox(2008)를 제안합니다. 예측 모델의 경우 Kuhn과 Johnson(2013) 및 Kuhn과 Johnson(2020)이 좋은 리소스입니다. 머신러닝 방법의 경우 Goodfellow, Bengio 및 Courville(2016)이 훌륭한(하지만 형식적인) 정보 출처입니다. 경우에 따라 저희가 사용하는 모델에 대해 다소 자세히 설명하기도 하지만, 덜 수학적이고 더 직관적인 방식으로 설명하기를 희망합니다.
 
 # 이 책에서 사용된 표기 규칙
 
-이 책에서는 다음과 같은 타이포그래피 규칙이 사용됩니다:
+이 책에서는 다음과 같은 타이포그래피 규칙이 사용됩니다.
 
-*기울임꼴 (Italic)*  
+_기울임꼴 (Italic)_  
 새로운 용어, URL, 이메일 주소, 파일 이름 및 파일 확장자를 나타냅니다.
 
 `고정 폭 (Constant width)`  
@@ -31,7 +31,7 @@
 **`고정 폭 굵게 (Constant width bold)`**  
 사용자가 문자 그대로 입력해야 하는 명령 또는 기타 텍스트를 보여줍니다.
 
-*`고정 폭 기울임꼴 (Constant width italic)`*  
+_`고정 폭 기울임꼴 (Constant width italic)`_  
 사용자가 제공한 값이나 문맥에 따라 결정된 값으로 대체되어야 하는 텍스트를 보여줍니다.
 
 ###### 팁 (Tip)
@@ -48,13 +48,13 @@
 
 # 코드 예제 사용
 
-보충 자료(코드 예제, 연습 문제 등)는 [*https://github.com/tidymodels/TMwR*](https://github.com/tidymodels/TMwR)에서 다운로드할 수 있습니다. 이 책은 [bookdown](http://bookdown.org)(Xie 2016)을 사용하여 [RStudio](https://oreil.ly/bcWV6)로 작성되었습니다. 이 책의 모든 플롯은 [ggplot2](https://oreil.ly/vEJBy)와 그 흑백 테마(`theme_bw()`)를 사용하여 생성되었습니다. 이 책의 [온라인 버전](https://tmwr.org)이 제공되며 실제 책 출판 후에도 계속 발전할 것입니다.
+보충 자료(코드 예제, 연습 문제 등)는 [_https://github.com/tidymodels/TMwR_](https://github.com/tidymodels/TMwR)에서 다운로드할 수 있습니다. 이 책은 [bookdown](http://bookdown.org)(Xie 2016)을 사용하여 [RStudio](https://oreil.ly/bcWV6)로 작성되었습니다. 이 책의 모든 플롯은 [ggplot2](https://oreil.ly/vEJBy)와 그 흑백 테마(`theme_bw()`)를 사용하여 생성되었습니다. 이 책의 [온라인 버전](https://tmwr.org)이 제공되며 실제 책 출판 후에도 계속 발전할 것입니다.
 
 기술적인 질문이 있거나 코드 예제 사용에 문제가 있는 경우 *bookquestions@oreilly.com*으로 이메일을 보내주세요.
 
 이 책은 여러분의 작업을 돕기 위해 여기에 있습니다. 일반적으로 이 책과 함께 제공되는 예제 코드는 여러분의 프로그램과 문서에서 사용할 수 있습니다. 코드의 상당 부분을 재현하지 않는 한 허락을 받기 위해 저희에게 연락할 필요는 없습니다. 예를 들어, 이 책의 여러 코드 청크를 사용하는 프로그램을 작성하는 것은 허락이 필요하지 않습니다. O'Reilly 책의 예제를 판매하거나 배포하는 데는 허가가 필요합니다. 이 책을 인용하고 예제 코드를 인용하여 질문에 답하는 것은 허락이 필요하지 않습니다. 이 책의 예제 코드를 상당량 여러분 제품의 문서에 통합하는 데는 허락이 필요합니다.
 
-저희는 감사를 표하는 것을 높이 평가하지만 일반적으로 요구하지는 않습니다. 표창에는 대개 제목, 저자, 출판사 및 ISBN이 포함됩니다. 예: "*Tidy Modeling with R* by Max Kuhn and Julia Silge (O’Reilly). Copyright 2022 Max Kuhn and Julia Silge, 978-1-492-09648-1."
+저희는 감사를 표하는 것을 높이 평가하지만 일반적으로 요구하지는 않습니다. 표창에는 대개 제목, 저자, 출판사 및 ISBN이 포함됩니다. 예: "_Tidy Modeling with R_ by Max Kuhn and Julia Silge (O’Reilly). Copyright 2022 Max Kuhn and Julia Silge, 978-1-492-09648-1."
 
 코드 예제 사용이 공정 사용이나 위에 명시된 허가 범위를 벗어난다고 느끼시면 언제든지 *permissions@oreilly.com*으로 연락해 주세요.
 
@@ -146,7 +146,7 @@
 
 # 연락처 (How to Contact Us)
 
-이 책과 관련된 의견이나 질문은 다음 출판사로 보내주시기 바랍니다:
+이 책과 관련된 의견이나 질문은 다음 출판사로 보내주시기 바랍니다.
 
 - O’Reilly Media, Inc.
 - 1005 Gravenstein Highway North
@@ -155,17 +155,17 @@
 - 707-829-0515 (해외 또는 현지)
 - 707-829-0104 (팩스)
 
-이 책의 웹페이지에서 정오표, 예제 및 추가 정보를 확인할 수 있습니다. 이 페이지는 [*https://oreil.ly/tidy-modeling-r*](https://oreil.ly/tidy-modeling-r)에서 접근 가능합니다.
+이 책의 웹페이지에서 정오표, 예제 및 추가 정보를 확인할 수 있습니다. 이 페이지는 [_https://oreil.ly/tidy-modeling-r_](https://oreil.ly/tidy-modeling-r)에서 접근 가능합니다.
 
 이 책에 대한 의견이나 기술적인 질문은 *bookquestions@oreilly.com*으로 이메일을 보내주세요.
 
-책과 과정에 대한 뉴스 및 정보를 얻으시려면 [*https://oreilly.com*](https://oreilly.com)을 방문해 주세요.
+책과 과정에 대한 뉴스 및 정보를 얻으시려면 [_https://oreilly.com_](https://oreilly.com)을 방문해 주세요.
 
-LinkedIn에서 저희를 찾으실 수 있습니다: [*https://linkedin.com/company/oreilly-media*](https://linkedin.com/company/oreilly-media).
+LinkedIn에서 저희를 찾으실 수 있습니다. [_https://linkedin.com/company/oreilly-media_](https://linkedin.com/company/oreilly-media).
 
-Twitter에서 팔로우하세요: [*https://twitter.com/oreillymedia*](https://twitter.com/oreillymedia).
+Twitter에서 팔로우하세요. [_https://twitter.com/oreillymedia_](https://twitter.com/oreillymedia).
 
-YouTube에서 확인하세요: [*https://youtube.com/oreillymedia*](https://youtube.com/oreillymedia).
+YouTube에서 확인하세요. [_https://youtube.com/oreillymedia_](https://youtube.com/oreillymedia).
 
 # 감사의 글 (Acknowledgments)
 

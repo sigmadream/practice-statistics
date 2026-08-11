@@ -10,7 +10,7 @@ source("_common.R")
 Quarto는 데이터 과학을 위한 통합된(unified) 저작 프레임워크(authoring framework)를 제공하여 코드, 코드의 결과(results), 여러분의 산문(prose)을 결합(combining)합니다.
 Quarto 문서는 완벽하게(fully) 재현 가능(reproducible)하며 PDF, Word 파일, 프레젠테이션 등과 같은 수십(dozens) 가지의 출력 형식(output formats)을 지원합니다.
 
-Quarto 파일은 세 가지 방법(three ways)으로 사용하도록 설계(designed)되었습니다:
+Quarto 파일은 세 가지 방법(three ways)으로 사용하도록 설계(designed)되었습니다.
 
 1.  분석 이면의(behind the analysis) 코드가 아니라 결론(conclusions)에 집중(focus on)하고자 하는 의사 결정자(decision-makers)와 소통(communicating)하기 위해.
 
@@ -47,7 +47,7 @@ library(tidyverse)
 cat(readr::read_file("quarto/diamond-sizes.qmd"))
 ```
 
-여기에는 중요한 세 가지 유형의 콘텐츠가 포함(contains)되어 있습니다:
+여기에는 중요한 세 가지 유형의 콘텐츠가 포함(contains)되어 있습니다.
 
 1.  `---`로 둘러싸인(surrounded by) (선택적(optional)) **YAML 헤더(YAML header)**.
 2.  ```` ``` ````로 둘러싸인 R 코드의 **청크(Chunks)**.
@@ -222,7 +222,7 @@ cat(readr::read_file("quarto/markdown.qmd"))
     각 섹션에는 직업/학위에 대한 글머리 기호(bulleted) 리스트가 포함되어야 합니다.
     연도(year)를 굵게(bold) 강조(Highlight) 표시하세요.
 
-2.  소스 편집기와 마크다운 빠른 참조(Markdown quick reference)를 사용하여 다음 작업을 수행하는 방법을 알아내세요:
+2.  소스 편집기와 마크다운 빠른 참조(Markdown quick reference)를 사용하여 다음 작업을 수행하는 방법을 알아내세요.
 
     a.  각주 추가.
     b.  가로줄 추가.
@@ -238,7 +238,7 @@ cat(readr::read_file("quarto/markdown.qmd"))
 ## 코드 청크 (Code chunks)
 
 Quarto 문서 내에서 코드를 실행하려면 청크를 삽입(insert)해야 합니다.
-이 작업을 수행하는 데는 세 가지 방법이 있습니다:
+이 작업을 수행하는 데는 세 가지 방법이 있습니다.
 
 1.  키보드 단축키(keyboard shortcut) Cmd + Option + I / Ctrl + Alt + I.
 
@@ -258,7 +258,7 @@ Quarto 문서 내에서 코드를 실행하려면 청크를 삽입(insert)해야
 
 ### 청크 레이블 (Chunk label)
 
-청크에는 다음과 같이 선택적 레이블을 지정(given)할 수 있습니다:
+청크에는 다음과 같이 선택적 레이블을 지정(given)할 수 있습니다.
 
 ```{r}
 #| echo: fenced
@@ -266,9 +266,9 @@ Quarto 문서 내에서 코드를 실행하려면 청크를 삽입(insert)해야
 1 + 1
 ```
 
-이것은 세 가지 장점(advantages)이 있습니다:
+이것은 세 가지 장점(advantages)이 있습니다.
 
-1.  스크립트 편집기(script editor)의 왼쪽 하단(bottom-left)에 있는 드롭다운(drop-down) 코드 탐색기(code navigator)를 사용하여 특정(specific) 청크로 더 쉽게 이동(navigate to)할 수 있습니다:
+1.  스크립트 편집기(script editor)의 왼쪽 하단(bottom-left)에 있는 드롭다운(drop-down) 코드 탐색기(code navigator)를 사용하여 특정(specific) 청크로 더 쉽게 이동(navigate to)할 수 있습니다.
 
     ```{r}
     #| echo: false
@@ -290,7 +290,7 @@ Quarto 문서 내에서 코드를 실행하려면 청크를 삽입(insert)해야
 청크 레이블은 짧으면서도 연상(evocative)하기 쉬워야 하며 공백(spaces)을 포함(contain)해서는 안 됩니다.
 단어를 구분(separate)할 때는 밑줄(`_`) 대신(instead of) 대시(`-`)를 사용하고 청크 레이블에 다른 특수 문자(special characters)를 사용하지 않는 것을 권장(recommend)합니다.
 
-일반적으로(generally) 원하는 대로(however you like) 청크에 레이블을 지정할 수 있지만, 특별한 동작(special behavior)을 부여(imbues)하는 청크 이름이 하나 있습니다: `setup`입니다.
+일반적으로(generally) 원하는 대로(however you like) 청크에 레이블을 지정할 수 있지만, 특별한 동작(special behavior)을 부여(imbues)하는 청크 이름이 하나 있습니다. `setup`입니다.
 노트북 모드(notebook mode)에 있을 때, setup이라는 이름의 청크는 다른 코드가 실행되기 전에 한 번 자동으로(automatically) 실행됩니다.
 
 또한(Additionally) 청크 레이블은 중복(duplicated)될 수 없습니다.
@@ -303,7 +303,7 @@ Knitr는 코드 청크를 사용자 지정하는 데 사용할 수 있는 거의
 여기서는 여러분이 자주(frequently) 사용할 가장 중요한 청크 옵션을 다룰(cover) 것입니다.
 [https://yihui.org/knitr/options](https://yihui.org/knitr/options/){.uri}에서 전체 리스트(full list)를 볼 수 있습니다.
 
-가장 중요한 옵션 세트(set of options)는 코드 블록이 실행(executed)되는지 여부와 완료된(finished) 보고서에 삽입(inserted)되는 결과를 제어(controls)합니다:
+가장 중요한 옵션 세트(set of options)는 코드 블록이 실행(executed)되는지 여부와 완료된(finished) 보고서에 삽입(inserted)되는 결과를 제어(controls)합니다.
 
 -   `eval: false`는 코드가 평가(evaluated)되는 것을 방지(prevents)합니다.
     (그리고 당연히(obviously) 코드가 실행되지 않으면 결과도 생성되지 않습니다).
@@ -333,7 +333,7 @@ Knitr는 코드 청크를 사용자 지정하는 데 사용할 수 있는 거의
 2 * 2
 ```
 
-다음 표는 각 옵션이 어떤(which) 유형의 출력을 억제(suppresses)하는지 요약(summarizes)한 것입니다:
+다음 표는 각 옵션이 어떤(which) 유형의 출력을 억제(suppresses)하는지 요약(summarizes)한 것입니다.
 
 | 옵션(Option)     | 코드 실행(Run code) | 코드 표시(Show code) | 출력(Output) | 플롯(Plots) | 메시지(Messages) | 경고(Warnings) |
 |------------------|:--------:|:---------:|:------:|:-----:|:--------:|:--------:|
@@ -360,9 +360,9 @@ execute:
   echo: false
 ```
 
-Quarto는 다국어(multi-lingual)(R뿐만 아니라(as well as) Python, Julia 등과 같은 다른 언어에서도 작동)를 지원하도록 설계되었기 때문에, 모든 knitr 옵션을 문서 실행 수준(document execution level)에서 사용할 수는 없습니다. 일부 옵션은 Quarto가 다른 언어에서 코드를 실행하는 데 사용하는 다른 엔진(engines)(예: Jupyter)에서는 작동하지 않고 knitr에서만 작동하기 때문입니다.
+Quarto는 다국어(multi-lingual)(R뿐만 아니라(as well as) Python, Julia 등과 같은 다른 언어에서도 작동)를 지원하도록 설계되었기 때문에, 모든 knitr 옵션을 문서 실행 수준(document execution level)에서 사용할 수는 없습니다. 일부 옵션은 Quarto가 다른 언어에서 코드를 실행하는 데 사용하는 다른 엔진(engines)(Jupyter)에서는 작동하지 않고 knitr에서만 작동하기 때문입니다.
 그러나 `knitr` 필드 아래의 `opts_chunk` 아래에서 문서에 대한 전역 옵션으로 이러한 옵션을 설정할 수는 있습니다.
-예를 들어 책과 튜토리얼을 작성할 때 우리는 다음을 설정합니다:
+예를 들어 책과 튜토리얼을 작성할 때 우리는 다음을 설정합니다.
 
 ``` yaml
 title: "튜토리얼(Tutorial)"
@@ -376,23 +376,23 @@ knitr:
 
 ### 인라인 코드 (Inline code)
 
-R 코드를 Quarto 문서에 포함(embed)시키는 또 다른(one other) 방법이 있습니다: `r inline()`을 사용하여 텍스트에 직접(directly into the text) 포함시키는 것입니다.
+R 코드를 Quarto 문서에 포함(embed)시키는 또 다른(one other) 방법이 있습니다. `r inline()`을 사용하여 텍스트에 직접(directly into the text) 포함시키는 것입니다.
 이것은 텍스트에서 데이터의 속성(properties)을 언급(mention)할 때 매우 유용(very useful)할 수 있습니다.
-예를 들어 이 장의 시작(start) 부분에서 사용된 예제 문서는 다음과 같습니다:
+예를 들어 이 장의 시작(start) 부분에서 사용된 예제 문서는 다음과 같습니다.
 
 > 우리는 `r inline('nrow(diamonds)')`개의 다이아몬드에 대한 데이터를 가지고 있습니다.
 > 단지(Only) `r inline('nrow(diamonds) - nrow(smaller)')`개만이 2.5캐럿보다 큽니다(larger than).
 > 나머지(remainder)의 분포(distribution)는 다음과 같습니다(shown below):
 
-보고서가 렌더링될 때 이러한 계산 결과(results of these computations)가 텍스트에 삽입(inserted)됩니다:
+보고서가 렌더링될 때 이러한 계산 결과(results of these computations)가 텍스트에 삽입(inserted)됩니다.
 
 > 우리는 53940개의 다이아몬드에 대한 데이터를 가지고 있습니다.
 > 단지 126개만이 2.5캐럿보다 큽니다.
-> 나머지의 분포는 다음과 같습니다:
+> 나머지의 분포는 다음과 같습니다.
 
 텍스트에 숫자를 삽입할 때 `format()`은 여러분의 친구(friend)입니다.
 숫자를 쉽게 읽을 수 있도록 `digits`의 수(number of `digits`)를 설정하여 터무니없는 정확도(ridiculous degree of precision)까지 인쇄하지(don't print) 않도록 하고, `big.mark`를 설정할 수 있습니다(allows you to).
-도우미(helper) 함수로 결합(combine)할 수 있습니다:
+도우미(helper) 함수로 결합(combine)할 수 있습니다.
 
 ```{r}
 comma <- function(x) format(x, digits = 2, big.mark = ",")
@@ -413,21 +413,21 @@ comma(.12358124331)
 
 ## 그림 (Figures) {#sec-figures}
 
-Quarto 문서의 그림(figures)은 포함(embedded)되거나(예: PNG 또는 JPEG 파일) 코드 청크의 결과로 생성(generated)될 수 있습니다.
+Quarto 문서의 그림(figures)은 포함(embedded)되거나(PNG 또는 JPEG 파일) 코드 청크의 결과로 생성(generated)될 수 있습니다.
 
 외부(external) 파일의 이미지를 포함하려면 RStudio의 비주얼 편집기(Visual Editor)에 있는 Insert 메뉴를 사용하여 Figure / Image를 선택할 수 있습니다.
 이렇게 하면(This will) 삽입하려는 이미지를 찾을 수 있을(browse to) 뿐만 아니라 대체 텍스트나 캡션을 추가하고 크기를 조정(adjust)할 수 있는 메뉴가 팝업으로 열립니다(pop open).
 비주얼 편집기에서는 클립보드의 이미지를 문서에 단순히(simply) 붙여넣기(paste)만 하면 RStudio가 프로젝트 폴더(folder)에 해당 이미지의 사본을 넣습니다(place).
 
-그림을 생성하는 코드 청크를 포함(include)하는 경우(예: `ggplot()` 호출 포함), 생성된 그림이 Quarto 문서에 자동으로(automatically) 포함됩니다.
+그림을 생성하는 코드 청크를 포함(include)하는 경우(`ggplot()` 호출 포함), 생성된 그림이 Quarto 문서에 자동으로(automatically) 포함됩니다.
 
 ### 그림 크기 조정 (Figure sizing)
 
 Quarto에서 그래픽의 가장 큰 과제(biggest challenge)는 그림의 크기(size)와 모양(shape)을 적절하게(right) 맞추는 것입니다.
-그림 크기를 제어하는 다섯 가지 주요 옵션이 있습니다: `fig-width`, `fig-height`, `fig-asp`, `out-width` 및 `out-height`입니다.
+그림 크기를 제어하는 다섯 가지 주요 옵션이 있습니다. `fig-width`, `fig-height`, `fig-asp`, `out-width` 및 `out-height`입니다.
 이미지 크기 조정이 까다로운(challenging) 이유는 두 가지 크기(R이 생성한 그림의 크기와 출력 문서에 삽입되는(inserted) 크기)가 있고, 크기를 지정하는 방법(ways of specifying)(즉, 높이(height), 너비(width), 가로 세로 비율(aspect ratio): 세 개 중 두 개 선택(pick two of three))이 여러 가지(multiple)이기 때문입니다.
 
-다섯 가지 옵션 중 세 가지를 권장(recommend)합니다:
+다섯 가지 옵션 중 세 가지를 권장(recommend)합니다.
 
 -   플롯은 일관된 너비를 가질 때 더 심미적으로 만족스러운(aesthetically pleasing) 경향(tend to)이 있습니다.
     이를 강제(enforce)하기 위해 기본값(defaults)으로 `fig-width: 6`(6") 및 `fig-asp: 0.618`(황금비(golden ratio))을 설정합니다.
@@ -440,12 +440,12 @@ Quarto에서 그래픽의 가장 큰 과제(biggest challenge)는 그림의 크�
 
 -   여러 플롯을 단일 행(single row)에 배치(put)하려면 `layout-ncol`을 두 개의 플롯에는 2, 세 개의 플롯에는 3 등으로 설정합니다.
     이것은 `layout-ncol`이 2인 경우 각 플롯에 대해 효과적으로(effectively) `out-width`를 "50%"로, `layout-ncol`이 3인 경우 "33%" 등으로 설정합니다.
-    설명하려는 내용(예: 데이터 표시 또는 플롯 변형(variations) 표시)에 따라(Depending on) 아래에서 논의하는 것처럼 `fig-width`를 조정(tweak)할 수도 있습니다.
+    설명하려는 내용(데이터 표시 또는 플롯 변형(variations) 표시)에 따라(Depending on) 아래에서 논의하는 것처럼 `fig-width`를 조정(tweak)할 수도 있습니다.
 
 플롯의 텍스트를 읽기 위해 눈을 가늘게 떠야(squint) 하는 경우 `fig-width`를 조정해야 합니다.
 `fig-width`가 최종 문서(final doc)에서 렌더링된(rendered) 그림의 크기보다 크면(larger than) 텍스트가 너무 작아지고(too small), `fig-width`가 작으면(smaller) 텍스트가 너무 커집니다(too big).
 종종 문서의 `fig-width`와 최종(eventual) 너비 사이의 올바른 비율을 파악하기 위해(to figure out) 약간의 실험(experimentation)이 필요합니다(need to do).
-원리를 설명하기 위해(To illustrate the principle) 다음 세 플롯의 `fig-width`는 각각(respectively) 4, 6, 8입니다:
+원리를 설명하기 위해(To illustrate the principle) 다음 세 플롯의 `fig-width`는 각각(respectively) 4, 6, 8입니다.
 
 ```{r}
 #| include: false
@@ -506,7 +506,7 @@ PDF는 고품질(high quality) 벡터(vector) 그래픽이므로 이것은 좋�
 이들은 약간 낮은 품질(slightly lower quality)이지만 훨씬 더 압축적(much more compact)입니다.
 
 다른 청크에는 정기적(routinely)으로 레이블을 지정하지 않더라도(even if you don't) 그림을 생성하는 코드 청크의 이름은 지정하는 것이 좋습니다.
-청크 레이블은 디스크에 그래픽의 파일 이름을 생성(generate)하는 데 사용되므로 청크의 이름을 지정하면 다른 상황(other circumstances)에서 재사용(reuse)하거나 플롯을 골라내기가(pick out) 훨씬 쉬워집니다(예: 단일 플롯을 이메일에 빠르게 드롭(drop)하려는 경우).
+청크 레이블은 디스크에 그래픽의 파일 이름을 생성(generate)하는 데 사용되므로 청크의 이름을 지정하면 다른 상황(other circumstances)에서 재사용(reuse)하거나 플롯을 골라내기가(pick out) 훨씬 쉬워집니다(단일 플롯을 이메일에 빠르게 드롭(drop)하려는 경우).
 
 ### 연습 문제 (Exercises)
 
@@ -527,7 +527,7 @@ PDF는 고품질(high quality) 벡터(vector) 그래픽이므로 이것은 좋�
 (Insert Table 메뉴를 사용하여) Quarto 문서에서 직접(directly) 생성하는 마크다운 표일 수도 있고 코드 청크의 결과(result)로 생성되는 표일 수도 있습니다.
 이 섹션에서는 후자(latter), 즉 계산(computation)을 통해 생성된 표에 초점을 맞출 것입니다.
 
-기본적(By default)으로 Quarto는 콘솔(console)에 표시되는 대로(as you'd see them) 데이터 프레임과 행렬을 인쇄합니다:
+기본적(By default)으로 Quarto는 콘솔(console)에 표시되는 대로(as you'd see them) 데이터 프레임과 행렬을 인쇄합니다.
 
 ```{r}
 mtcars[1:5, ]
@@ -559,7 +559,7 @@ knitr::kable(mtcars[1:5, ], )
 그러나(However) 시간이 오래 걸리는(take a long time) 계산이 있는 경우 고통스러울(painful) 수 있습니다.
 해결책(solution)은 `cache: true`입니다.
 
-표준(standard) YAML 옵션을 사용하여 문서의 모든 계산 결과를 캐싱하기 위해 문서 수준(document level)에서 Knitr 캐시를 활성화(enable)할 수 있습니다:
+표준(standard) YAML 옵션을 사용하여 문서의 모든 계산 결과를 캐싱하기 위해 문서 수준(document level)에서 Knitr 캐시를 활성화(enable)할 수 있습니다.
 
 ``` yaml
 ---
@@ -569,7 +569,7 @@ execute:
 ---
 ```
 
-특정(specific) 청크에서 계산 결과를 캐싱하기 위해 청크 수준(chunk level)에서 캐싱을 활성화할 수도 있습니다:
+특정(specific) 청크에서 계산 결과를 캐싱하기 위해 청크 수준(chunk level)에서 캐싱을 활성화할 수도 있습니다.
 
 ```{r}
 #| echo: fenced
@@ -581,7 +581,7 @@ execute:
 후속 실행(subsequent runs) 시(On) knitr는 코드가 변경되었는지 확인(check to see)하고, 변경되지 않았다면 캐시된 결과를 재사용(reuse)합니다.
 
 캐싱 시스템은 기본적으로 종속성(dependencies)이 아닌 코드만(code only)을 기반으로(based on) 하기 때문에 주의해서(with care) 사용해야 합니다.
-예를 들어(For example) 여기에서 `processed_data` 청크는 `raw-data` 청크에 종속(depends on)됩니다:
+예를 들어(For example) 여기에서 `processed_data` 청크는 `raw-data` 청크에 종속(depends on)됩니다.
 
 ````         
 ``` {{r}}
@@ -602,7 +602,7 @@ processed_data <- rawdata |>
 ````
 
 `processed_data` 청크를 캐싱하면 dplyr 파이프라인(pipeline)이 변경될 경우(if changed) 다시 실행되지만(get re-run), `read_csv()` 호출이 변경되는 경우에는 다시 실행되지 않습니다(won't get rerun).
-`dependson` 청크 옵션을 사용하여 이 문제를 피할(avoid) 수 있습니다:
+`dependson` 청크 옵션을 사용하여 이 문제를 피할(avoid) 수 있습니다.
 
 ````         
 ``` {{r}}
@@ -622,7 +622,7 @@ knitr 캐싱은 `.qmd` 파일 내의 변경 사항(changes)만 추적(tracks)하
 해당 파일의 변경 사항도(also) 추적하려는 경우 `cache.extra` 옵션을 사용할 수 있습니다.
 이것은 변경될 때마다 캐시를 무효화(invalidate)하는 임의의(arbitrary) R 표현식(expression)입니다.
 사용하기 좋은(good) 함수는 `file.mtime()`입니다. 이 함수는 언제(when) 마지막으로(last) 수정(modified)되었는지를 반환(returns)합니다.
-그러면 다음과 같이 작성할(write) 수 있습니다:
+그러면 다음과 같이 작성할(write) 수 있습니다.
 
 ````         
 ``` {{r}}
@@ -633,7 +633,7 @@ rawdata <- readr::read_csv("a_very_large_file.csv")
 ```
 ````
 
-우리는 [David Robinson](https://twitter.com/drob/status/738786604731490304)의 조언(advice)에 따라 이러한 청크의 이름을 지정했습니다: 각 청크의 이름은 해당 청크가 생성하는(creates) 기본 객체(primary object)의 이름(named after)을 따릅니다.
+우리는 [David Robinson](https://twitter.com/drob/status/738786604731490304)의 조언(advice)에 따라 이러한 청크의 이름을 지정했습니다. 각 청크의 이름은 해당 청크가 생성하는(creates) 기본 객체(primary object)의 이름(named after)을 따릅니다.
 이렇게 하면 `dependson` 사양(specification)을 이해하기가 더 쉬워집니다.
 캐싱 전략(caching strategies)이 점차 더(progressively more) 복잡해짐(complicated)에 따라 `knitr::clean_cache()`를 사용하여 모든 캐시를 정기적으로 지우는(clear out) 것이 좋습니다.
 
@@ -665,16 +665,16 @@ R 세션과 Quarto 세션에서 이러한 항목이(they're) 동일(same)한지 
 ## YAML 헤더 (YAML header)
 
 YAML 헤더의 매개변수(parameters)를 조정(tweaking)하여 다른 여러 "전체 문서(whole document)" 설정을 제어할 수 있습니다.
-YAML이 무엇을 의미하는지(stands for) 궁금할(wonder) 수 있습니다: "YAML은 마크업 언어가 아니다(YAML Ain't Markup Language)"의 약자로, 사람이 쉽게 읽고 쓸 수 있는 방식(way)으로 계층적(hierarchical) 데이터를 표현(representing)하도록 설계되었습니다.
+YAML이 무엇을 의미하는지(stands for) 궁금할(wonder) 수 있습니다. "YAML은 마크업 언어가 아니다(YAML Ain't Markup Language)"의 약자로, 사람이 쉽게 읽고 쓸 수 있는 방식(way)으로 계층적(hierarchical) 데이터를 표현(representing)하도록 설계되었습니다.
 Quarto는 이것을 사용하여 출력의 많은 세부 사항(details)을 제어합니다.
 여기서는 자체 포함 문서(self-contained documents), 문서 매개변수(document parameters), 서지(bibliographies)라는 세 가지를 논의(discuss)하겠습니다.
 
 ### 자체 포함 (Self-contained)
 
-일반적으로(typically) HTML 문서에는 다수의(number of) 외부 종속성(external dependencies)(예: 이미지, CSS 스타일 시트, JavaScript 등)이 있으며, 기본적으로(by default) Quarto는 이러한 종속성을 `.qmd` 파일과 동일한 디렉터리에 있는 `_files` 폴더에 넣습니다(places).
-호스팅 플랫폼(hosting platform)(예: QuartoPub, <https://quartopub.com/>)에 HTML 파일을 게시(publish)하는 경우 이 디렉터리의 종속성도 문서와 함께 게시되므로 게시된 보고서에서 사용할 수 있습니다(available).
+일반적으로(typically) HTML 문서에는 다수의(number of) 외부 종속성(external dependencies)(이미지, CSS 스타일 시트, JavaScript 등)이 있으며, 기본적으로(by default) Quarto는 이러한 종속성을 `.qmd` 파일과 동일한 디렉터리에 있는 `_files` 폴더에 넣습니다(places).
+호스팅 플랫폼(hosting platform)(QuartoPub, <https://quartopub.com/>)에 HTML 파일을 게시(publish)하는 경우 이 디렉터리의 종속성도 문서와 함께 게시되므로 게시된 보고서에서 사용할 수 있습니다(available).
 그러나 보고서를 동료(colleague)에게 이메일로 보내고 싶다면 모든 종속성이 포함된 단일 자체 포함 HTML 문서(single, self-contained, HTML document)를 갖는 것을 선호(prefer)할 수 있습니다.
-`embed-resources` 옵션을 지정(specifying)하여 이를 수행(do this)할 수 있습니다:
+`embed-resources` 옵션을 지정(specifying)하여 이를 수행(do this)할 수 있습니다.
 
 ``` yaml
 format:
@@ -691,7 +691,7 @@ Quarto 문서에는 보고서를 렌더링할 때 그 값을 설정(set)할 수 
 예를 들어 지점별(per branch) 판매 보고서, 학생별(by student) 시험 결과, 국가별(by country) 인구통계학적(demographic) 요약을 생성(producing)할 수 있습니다.
 하나 이상의 매개변수를 선언(declare)하려면 `params` 필드를 사용합니다.
 
-이 예제에서는 어떤 자동차 등급(class of cars)을 표시할지 결정(determine)하기 위해 `my_class` 매개변수를 사용합니다:
+이 예제에서는 어떤 자동차 등급(class of cars)을 표시할지 결정(determine)하기 위해 `my_class` 매개변수를 사용합니다.
 
 ```{r}
 #| echo: false
@@ -718,7 +718,7 @@ Quarto는 여러 가지 스타일(number of styles)로 인용 및 서지를 자�
 Quarto 문서에 인용 및 서지를 추가하는 가장 직관적인 방법(most straightforward way of)은 RStudio의 비주얼 편집기(visual editor)를 사용하는 것입니다.
 
 비주얼 편집기를 사용하여 인용을 추가하려면 Insert \> Citation으로 이동하세요.
-인용은 다양한(variety of) 소스(sources)에서 삽입할 수 있습니다:
+인용은 다양한(variety of) 소스(sources)에서 삽입할 수 있습니다.
 
 1.  [DOI](https://quarto.org/docs/visual-editor/technical.html#citations-from-dois) (Document Object Identifier) 참조(references).
 
@@ -728,7 +728,7 @@ Quarto 문서에 인용 및 서지를 추가하는 가장 직관적인 방법(mo
 
 4.  문서 서지(문서 디렉터리에 있는 `.bib` 파일).
 
-내부적으로 시각적 모드(visual mode)는 인용을 위해 표준(standard) Pandoc 마크다운 표현(representation)을 사용합니다(예: `[@citation]`).
+내부적으로 시각적 모드(visual mode)는 인용을 위해 표준(standard) Pandoc 마크다운 표현(representation)을 사용합니다(`[@citation]`).
 
 처음 세 가지 방법 중 하나를 사용하여 인용을 추가하면 비주얼 편집기에서 자동으로 `bibliography.bib` 파일을 만들어주고 참조를 거기에 추가합니다.
 문서 YAML에 `bibliography` 필드도 추가합니다.
@@ -737,18 +737,18 @@ BibLaTeX, BibTeX, EndNote, Medline 등 여러 일반적인(common) 서지 형식
 
 소스 편집기의 .qmd 파일 내에 인용을 생성하려면 '\@' + 서지 파일의 인용 식별자(citation identifier)로 구성된(composed of) 키를 사용합니다.
 그런 다음 인용을 대괄호(square brackets) 안에 넣습니다(place).
-다음은 몇 가지 예제(examples)입니다:
+다음은 몇 가지 예제(examples)입니다.
 
 ``` markdown
-여러 인용(multiple citations)은 `;`로 구분(Separate)합니다: 어쩌구 저쩌구(Blah blah) [@smith04; @doe99].
+여러 인용(multiple citations)은 `;`로 구분(Separate)합니다. 어쩌구 저쩌구(Blah blah) [@smith04; @doe99].
 
-대괄호 안에 임의의 주석(arbitrary comments)을 추가할 수 있습니다: 
+대괄호 안에 임의의 주석(arbitrary comments)을 추가할 수 있습니다. 
 어쩌구 저쩌구 [see @doe99, pp. 33-35; also @smith04, ch. 1].
 
-본문 내 인용(in-text citation)을 만들려면 대괄호를 제거(Remove)하세요: @smith04 
+본문 내 인용(in-text citation)을 만들려면 대괄호를 제거(Remove)하세요. @smith04 
 어쩌구(says blah) 하거나(or) @smith04 [p. 33] 어쩌구(says blah).
 
-작성자 이름(author's name)을 표시하지 않으려면 인용 앞에 `-`를 추가(Add)하세요: 
+작성자 이름(author's name)을 표시하지 않으려면 인용 앞에 `-`를 추가(Add)하세요. 
 Smith 어쩌구 [-@smith04].
 ```
 
@@ -756,7 +756,7 @@ Quarto가 파일을 렌더링하면 문서 끝에(end of) 서지를 작성(build
 서지에는 서지 파일에 있는 각(each of) 인용 참조가 포함(contain)되지만 섹션 제목(section heading)은 포함되지 않습니다.
 그 결과 문서 끝에 `# 참고 문헌(References)` 또는 `# 서지(Bibliography)`와 같은 서지 섹션 헤더(section header)를 추가하는 것이 일반적인 관행(common practice)입니다.
 
-`csl` 필드에서 CSL(citation style language) 파일을 참조하여 인용 및 서지 스타일을 변경할 수 있습니다:
+`csl` 필드에서 CSL(citation style language) 파일을 참조하여 인용 및 서지 스타일을 변경할 수 있습니다.
 
 ``` yaml
 bibliography: rmarkdown.bib
@@ -796,7 +796,7 @@ Quarto를 사용하면 코드를 개발(develop)하고 생각을 기록(record)�
 
 -   각 노트북에는 설명적인 제목(descriptive title), 연상하기 쉬운(evocative) 파일 이름, 분석 목적(aims of the analysis)을 간략하게(briefly) 설명(describes)하는 첫 단락(first paragraph)이 있는지 확인(Ensure)합니다.
 
--   YAML 헤더의 날짜(date) 필드를 사용하여 노트북 작업을 시작한(started working on) 날짜를 기록합니다:
+-   YAML 헤더의 날짜(date) 필드를 사용하여 노트북 작업을 시작한(started working on) 날짜를 기록합니다.
 
     ``` yaml
     date: 2016-08-23
@@ -838,10 +838,10 @@ RStudio에서 비주얼 또는 소스 편집기를 사용하여 Quarto 문서를
 Quarto는 아직 비교적 초기 단계(relatively young)이며 여전히 빠르게(rapidly) 성장(growing)하고 있습니다.
 혁신(innovations)을 최신(on top of) 상태로 유지하는 가장 좋은 장소(best place)는 공식(official) Quarto 웹사이트([https://quarto.org](https://quarto.org/){.uri})입니다.
 
-여기서 다루지 않은(haven't covered) 중요한 주제가 두 가지 있습니다: 협업(collaboration)과 아이디어를 다른 사람에게 정확하게(accurately) 전달(communicating)하는 세부 사항(details)입니다.
+여기서 다루지 않은(haven't covered) 중요한 주제가 두 가지 있습니다. 협업(collaboration)과 아이디어를 다른 사람에게 정확하게(accurately) 전달(communicating)하는 세부 사항(details)입니다.
 협업은 최신 데이터 과학의 필수적인(vital) 부분(part)이며, Git 및 GitHub와 같은 버전 제어 도구(version control tools)를 사용하면 삶(life)을 훨씬 더(much) 수월(easier)하게 만들 수 있습니다.
 Jenny Bryan이 저술한, R 사용자를 위한 Git 및 GitHub에 대한 사용자 친화적인 소개서(user friendly introduction)인 "Happy Git with R"을 추천(recommend)합니다.
-이 책은 온라인에서 무료로 읽을(freely available) 수 있습니다: <https://happygitwithr.com>.
+이 책은 온라인에서 무료로 읽을(freely available) 수 있습니다. <https://happygitwithr.com>.
 
 또한 분석 결과를 명확하게(clearly) 전달하기 위해 무엇을 실질적으로(actually) 작성해야(write) 하는지에 대해서는 다루지(touched on) 않았습니다.
 글쓰기를 향상(improve)시키려면 Joseph M. Williams와 Joseph Bizup의 [*Style: Lessons in Clarity and Grace*](https://www.amazon.com/Style-Lessons-Clarity-Grace-12th/dp/0134080416)나 George Gopen의 [*The Sense of Structure: Writing from the Reader's Perspective*](https://www.amazon.com/Sense-Structure-Writing-Readers-Perspective/dp/0205296327)를 읽는 것을 적극 권장(highly recommend)합니다.

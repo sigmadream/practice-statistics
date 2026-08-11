@@ -115,13 +115,13 @@ pass_pct_r |>
 
 다중 회귀의 또 다른 주요 가정은 잔차 분포가 정규 분포 또는 종 모양 곡선(bell-curve) 분포를 따른다는 것입니다. 거의 모든 데이터 세트가 이 마지막 가정을 위반하지만 대개 이 가정은 "충분히 잘" 작동합니다. 하지만 어떤 데이터 구조는 다중 회귀 분석을 실패하게 하거나 무의미한 결과를 산출하게 만듭니다. 예를 들어, 패스는 불완전(`pass_complete = 0`)하거나 성공(`pass_complete = 1`)하기 때문에 패스 성공률은 0과 1 사이로 제한된(bounded) 값입니다(*제한된(bounded)*이라는 것은 값이 0보다 작거나 1보다 클 수 없음을 의미합니다). 따라서 반응 변수에 경계가 없다고 가정하는 선형 회귀는 부적절한 경우가 많습니다.
 
-마찬가지로 다른 데이터도 흔히 이 가정을 위반합니다. 예를 들어, 카운트(count) 데이터(예: 경기당 색(sack))는 0이 너무 많아서 정규 분포를 이룰 수 없으며 음수도 될 수 없습니다. 마찬가지로, 두 가지 결과(예: 승리/패배 또는 패스 실패/성공)가 있는 이진 데이터 및 이산 결과(discrete outcomes, 예: 패스 위치가 우측, 좌측 또는 중앙)도 반응 데이터로서 다중 회귀 분석과 함께 사용되지 않습니다.
+마찬가지로 다른 데이터도 흔히 이 가정을 위반합니다. 예를 들어, 카운트(count) 데이터(경기당 색(sack))는 0이 너무 많아서 정규 분포를 이룰 수 없으며 음수도 될 수 없습니다. 마찬가지로, 두 가지 결과(승리/패배 또는 패스 실패/성공)가 있는 이진 데이터 및 이산 결과(discrete outcomes, 예: 패스 위치가 우측, 좌측 또는 중앙)도 반응 데이터로서 다중 회귀 분석과 함께 사용되지 않습니다.
 
-이러한 유형의 결과를 모델링하기 위해 존재하는 회귀 모델의 범주가 *일반화 선형 모델(generalized linear models)*(*GLM*)입니다. GLM은 *선형 모델*을 *일반화(generalize)*하거나 확장하여 정규 분포가 아닌 분포에서 가져온 것으로 가정되는 반응 변수(이진 응답 또는 카운트 등)를 허용합니다. 특정 유형의 반응 분포를 *패밀리(family)*라고 부릅니다. 특수한 유형의 GLM 중 하나가 이진 데이터를 모델링하는 데 사용될 수 있으며 이 장에서 다룹니다. <a href="ch06.html#sec-pos-td" data-type="xref">6장</a>에서는 카운트 데이터와 함께 푸아송 회귀(Poisson regression)라는 다른 유형의 GLM을 사용하는 방법을 다룹니다.
+이러한 유형의 결과를 모델링하기 위해 존재하는 회귀 모델의 범주가 _일반화 선형 모델(generalized linear models)_(_GLM_)입니다. GLM은 *선형 모델*을 *일반화(generalize)*하거나 확장하여 정규 분포가 아닌 분포에서 가져온 것으로 가정되는 반응 변수(이진 응답 또는 카운트 등)를 허용합니다. 특정 유형의 반응 분포를 *패밀리(family)*라고 부릅니다. 특수한 유형의 GLM 중 하나가 이진 데이터를 모델링하는 데 사용될 수 있으며 이 장에서 다룹니다. <a href="ch06.html#sec-pos-td" data-type="xref">6장</a>에서는 카운트 데이터와 함께 푸아송 회귀(Poisson regression)라는 다른 유형의 GLM을 사용하는 방법을 다룹니다.
 
-GLM을 통해 다른 유형의 데이터를 분석할 수 있습니다. 예를 들어, 순서형 회귀(ordinal regression) (순서 분류(ordinal classification)라고도 함)를 사용하여 이산 결과를 분석할 수 있지만 이 책의 범위를 벗어납니다. 마지막으로 선형 모델(*선형 회귀(linear regression)* 및 *일반 최소 제곱(ordinary least squares)*이라고도 함)은 GLM의 특별한 유형으로, 구체적으로 정규 또는 가우스(Gaussian) 패밀리를 갖는 GLM입니다.
+GLM을 통해 다른 유형의 데이터를 분석할 수 있습니다. 예를 들어, 순서형 회귀(ordinal regression) (순서 분류(ordinal classification)라고도 함)를 사용하여 이산 결과를 분석할 수 있지만 이 책의 범위를 벗어납니다. 마지막으로 선형 모델(_선형 회귀(linear regression)_ 및 *일반 최소 제곱(ordinary least squares)*이라고도 함)은 GLM의 특별한 유형으로, 구체적으로 정규 또는 가우스(Gaussian) 패밀리를 갖는 GLM입니다.
 
-GLM이 작동하는 방식 이면의 기본 이론을 이해하기 위해, 1(성공) 또는 0(실패)이 될 수 있는 완료된 패스를 살펴보겠습니다. 두 가지 결과가 가능하기 때문에 이는 *이진(binary)* 응답이며, *이항(binomial)* 분포가 데이터를 설명하는 데 "충분히 좋은" 역할을 한다고 가정할 수 있습니다. 정규 분포는 두 가지 매개변수를 가정하는데, 하나는 종 모양 곡선의 중심(평균)이고 두 번째는 종 모양 곡선의 너비(표준 편차)를 나타냅니다. 반면 이항 분포는 하나의 매개변수인 성공 확률만 필요로 합니다. 패스의 예를 들면, 패스를 성공시킬 확률이 될 것입니다. 그러나 확률을 통계적으로 모델링하는 것은 0과 1에 의해 제한되기 때문에 어렵습니다. 따라서 *연결 함수(link function)*가 확률(0과 1 사이의 값)을 $`- \infty`$에서 $`\infty`$ 범위의 값으로 변환(또는 *연결*)합니다. 가장 일반적인 연결 함수는 *로짓(logit)*으로, GLM의 가장 일반적인 유형 중 하나인 *로지스틱 회귀(logistic regression)*에 이름을 부여합니다.
+GLM이 작동하는 방식 이면의 기본 이론을 이해하기 위해, 1(성공) 또는 0(실패)이 될 수 있는 완료된 패스를 살펴보겠습니다. 두 가지 결과가 가능하기 때문에 이는 _이진(binary)_ 응답이며, _이항(binomial)_ 분포가 데이터를 설명하는 데 "충분히 좋은" 역할을 한다고 가정할 수 있습니다. 정규 분포는 두 가지 매개변수를 가정하는데, 하나는 종 모양 곡선의 중심(평균)이고 두 번째는 종 모양 곡선의 너비(표준 편차)를 나타냅니다. 반면 이항 분포는 하나의 매개변수인 성공 확률만 필요로 합니다. 패스의 예를 들면, 패스를 성공시킬 확률이 될 것입니다. 그러나 확률을 통계적으로 모델링하는 것은 0과 1에 의해 제한되기 때문에 어렵습니다. 따라서 *연결 함수(link function)*가 확률(0과 1 사이의 값)을 $`- \infty`$에서 $`\infty`$ 범위의 값으로 변환(또는 _연결_)합니다. 가장 일반적인 연결 함수는 *로짓(logit)*으로, GLM의 가장 일반적인 유형 중 하나인 *로지스틱 회귀(logistic regression)*에 이름을 부여합니다.
 
 # GLM 구축하기 (Building a GLM)
 
@@ -168,7 +168,7 @@ Python과 R의 출력이 모두 <a href="ch03.html#sec-lm-ryoa" data-type="xref"
 
 ###### 경고 (Warning)
 
-그림 <a href="#fig-py-pass-comp" data-type="xref" data-xrefstyle="select:labelnumber">5-3</a> 및 <a href="#fig-r-pass-comp" data-type="xref" data-xrefstyle="select:labelnumber">5-4</a>와 같은 이 책의 일부 플롯은 완료하는 데 시간이 꽤(몇 분 이상) 걸릴 수 있습니다. 데이터로 작업할 때 정기적인 플롯 생성 시간 때문에 작업이 지연된다고 느껴진다면 원시 데이터 대신 데이터 요약을 표시하는 것을 고려해 보세요. 예를 들어, <a href="ch03.html#sec-eda-bin" data-type="xref">"탐색적 데이터 분석 (Exploratory Data Analysis)"</a>에서 사용한 구간화(binning)가 그 중 한 방법입니다. 이 책에서 다루지 않은 다른 도구로는 `hexbin` [R 패키지](https://oreil.ly/_QQDZ) 또는 [`matplotlib`의 `hexbin()` 플롯 함수](https://oreil.ly/CdSQF)에서 만든 것과 같은 *hexbin* 플롯이 있습니다.
+그림 <a href="#fig-py-pass-comp" data-type="xref" data-xrefstyle="select:labelnumber">5-3</a> 및 <a href="#fig-r-pass-comp" data-type="xref" data-xrefstyle="select:labelnumber">5-4</a>와 같은 이 책의 일부 플롯은 완료하는 데 시간이 꽤(몇 분 이상) 걸릴 수 있습니다. 데이터로 작업할 때 정기적인 플롯 생성 시간 때문에 작업이 지연된다고 느껴진다면 원시 데이터 대신 데이터 요약을 표시하는 것을 고려해 보세요. 예를 들어, <a href="ch03.html#sec-eda-bin" data-type="xref">"탐색적 데이터 분석 (Exploratory Data Analysis)"</a>에서 사용한 구간화(binning)가 그 중 한 방법입니다. 이 책에서 다루지 않은 다른 도구로는 `hexbin` [R 패키지](https://oreil.ly/_QQDZ) 또는 [`matplotlib`의 `hexbin()` 플롯 함수](https://oreil.ly/CdSQF)에서 만든 것과 같은 _hexbin_ 플롯이 있습니다.
 
 로지스틱 회귀 결과를 볼 수 있도록 돕기 위해 Python과 R은 모두 플롯 생성 도구를 제공합니다. Python의 경우 `seaborn`의 `regplot()`을 사용하되 `logistic` 옵션을 `True`로 설정하여 <a href="#fig-py-pass-comp" data-type="xref">그림 5-3</a>을 생성하세요 (이 모델에 선형 회귀 분석을 적용하는 것이 좋지 않은 아이디어인 이유를 확인하려면 기본 옵션인 `False`를 사용하여 선이 데이터의 위아래로 어떻게 나타나는지 확인해 보세요).
 
@@ -622,7 +622,7 @@ complete_ay_r |>
 
 오즈비 척도에서는 값이 1과 다른지에 주의를 기울여야 하는데, 1:1의 오즈비는 예측 변수(predictor)가 사건의 결과를 바꾸지 않거나 계수가 모델의 예측에 영향을 미치지 않음을 의미하기 때문입니다. 이제 이 절편은 남은 야드가 0일 때 패스 성공 오즈비가 `2.92`임을 알려줍니다. 그러나 남은 거리가 1야드 증가할 때마다 오즈비는 `0.94`만큼 감소합니다.
 
-1야드가 추가될 때마다 오즈비가 얼마나 감소하는지 확인하려면 절편과 `air_yards` 계수를 곱합니다. 먼저 추가로 필요한 매 야드마다 `air_yards` 계수를 자체적으로 곱하거나(예: `air_yards` × `air_yards`) 더 일반적으로 `air_yards`를 남은 거리만큼 거듭제곱합니다(예: 2야드인 경우 `air_yards`<sup>2</sup>, 9야드인 경우 `air_yards`<sup>9</sup>). 예를 들어 그림 <a href="#fig-py-pass-comp" data-type="xref" data-xrefstyle="select:labelnumber">5-3</a> 또는 <a href="#fig-r-pass-comp" data-type="xref" data-xrefstyle="select:labelnumber">5-4</a>를 보면 에어 야드가 약 20야드 이상인 패스는 성공 확률이 50% 미만이라는 것을 알 수 있습니다. 2.92에 0.94의 20제곱을 곱하면(2.92 × 20<sup>20</sup>) 남은 거리가 20야드일 때 패스 성공 확률이 0.85임을 알 수 있습니다. 이는 50%보다 약간 적으며 그림 <a href="#fig-py-pass-comp" data-type="xref" data-xrefstyle="select:labelnumber">5-3</a> 및 <a href="#fig-r-pass-comp" data-type="xref" data-xrefstyle="select:labelnumber">5-4</a>의 내용과 일치합니다.
+1야드가 추가될 때마다 오즈비가 얼마나 감소하는지 확인하려면 절편과 `air_yards` 계수를 곱합니다. 먼저 추가로 필요한 매 야드마다 `air_yards` 계수를 자체적으로 곱하거나(`air_yards` × `air_yards`) 더 일반적으로 `air_yards`를 남은 거리만큼 거듭제곱합니다(2야드인 경우 `air_yards`<sup>2</sup>, 9야드인 경우 `air_yards`<sup>9</sup>). 예를 들어 그림 <a href="#fig-py-pass-comp" data-type="xref" data-xrefstyle="select:labelnumber">5-3</a> 또는 <a href="#fig-r-pass-comp" data-type="xref" data-xrefstyle="select:labelnumber">5-4</a>를 보면 에어 야드가 약 20야드 이상인 패스는 성공 확률이 50% 미만이라는 것을 알 수 있습니다. 2.92에 0.94의 20제곱을 곱하면(2.92 × 20<sup>20</sup>) 남은 거리가 20야드일 때 패스 성공 확률이 0.85임을 알 수 있습니다. 이는 50%보다 약간 적으며 그림 <a href="#fig-py-pass-comp" data-type="xref" data-xrefstyle="select:labelnumber">5-3</a> 및 <a href="#fig-r-pass-comp" data-type="xref" data-xrefstyle="select:labelnumber">5-4</a>의 내용과 일치합니다.
 
 오즈비를 더 잘 이해할 수 있도록 R에서 오즈비를 계산하는 방법을 보여 드리겠습니다. R 언어에 `glm()` 결과물을 다루기 위한 더 나은 도구가 있고 계산을 직접 할 수 있는 것보다 계산 과정을 따라가는 것이 더 중요하기 때문에 R을 사용합니다. 먼저 플레이별 패스 데이터세트의 모든 데이터에 대한 패스 성공률을 계산합니다. 다음으로 패스 성공률을 1에서 패스 성공률을 뺀 값으로 나누어 오즈를 계산합니다. 그런 다음 자연로그를 취하여 로그 오즈를 계산합니다.
 
@@ -692,6 +692,6 @@ complete_global_r |>
 
 - 쿼터백에 관한 에릭의 PFF 기사, ["통제 하의 쿼터백: 누가 압박률을 통제하는지에 대한 PFF 데이터 연구(Quarterbacks in Control: A PFF Data Study of Who Controls Pressure Rates)"](https://oreil.ly/lhIJu).
 
-- Paul Roback과 Julie Legler가 저술한 *Beyond Multiple Linear Regression: Applied Generalized Linear Models and Multilevel Models in R* (CRC Press, 2021). 제목에서 알 수 있듯이 이 책은 선형 회귀 분석을 넘어 모델의 중요한 가정을 포함하여 일반화 선형 모델을 가르치는 훌륭한 교재입니다.
+- Paul Roback과 Julie Legler가 저술한 _Beyond Multiple Linear Regression: Applied Generalized Linear Models and Multilevel Models in R_ (CRC Press, 2021). 제목에서 알 수 있듯이 이 책은 선형 회귀 분석을 넘어 모델의 중요한 가정을 포함하여 일반화 선형 모델을 가르치는 훌륭한 교재입니다.
 
-- Andrew Gelman 외 공저, *Bayesian Data Analysis* 3판 (CRC Press, 2013). 이 책은 고급 모델링 기술을 위한 고전적인 서적이지만 선형 대수에 대한 탄탄한 이해를 필요로 합니다.
+- Andrew Gelman 외 공저, _Bayesian Data Analysis_ 3판 (CRC Press, 2013). 이 책은 고급 모델링 기술을 위한 고전적인 서적이지만 선형 대수에 대한 탄탄한 이해를 필요로 합니다.

@@ -22,7 +22,7 @@ library(writexl)
 
 ## 시작하기
 
-readxl의 대부분의 함수는 엑셀 스프레드시트를 R로 불러올 수 있게 해줍니다:
+readxl의 대부분의 함수는 엑셀 스프레드시트를 R로 불러올 수 있게 해줍니다.
 
 - <a href="https://readxl.tidyverse.org/reference/read_excel.html" class="orm:hideurl"><code>read_xls()</code></a>는 `XLS` 형식의 엑셀 파일을 읽습니다.
 - <a href="https://readxl.tidyverse.org/reference/read_excel.html" class="orm:hideurl"><code>read_xlsx()</code></a>는 `XLSX` 형식의 엑셀 파일을 읽습니다.
@@ -50,17 +50,17 @@ students <- read_excel("data/students.xlsx")
 ```
 students
 #> # A tibble: 6 × 5
-#>   `Student ID` `Full Name`      favourite.food     mealPlan            AGE  
+#>   `Student ID` `Full Name`      favourite.food     mealPlan            AGE
 #>          <dbl> <chr>            <chr>              <chr>               <chr>
-#> 1            1 Sunil Huffmann   Strawberry yoghurt Lunch only          4    
-#> 2            2 Barclay Lynn     French fries       Lunch only          5    
-#> 3            3 Jayendra Lyne    N/A                Breakfast and lunch 7    
-#> 4            4 Leon Rossini     Anchovies          Lunch only          <NA> 
-#> 5            5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
+#> 1            1 Sunil Huffmann   Strawberry yoghurt Lunch only          4
+#> 2            2 Barclay Lynn     French fries       Lunch only          5
+#> 3            3 Jayendra Lyne    N/A                Breakfast and lunch 7
+#> 4            4 Leon Rossini     Anchovies          Lunch only          <NA>
+#> 5            5 Chidiegwu Dunkel Pizza              Breakfast and lunch five
 #> 6            6 Güvenç Attila    Ice cream          Lunch only          6
 ```
 
-데이터에는 6명의 학생과 각 학생에 대한 5개의 변수가 있습니다. 하지만 이 데이터 세트에서 처리하고 싶은 몇 가지 사항이 있습니다:
+데이터에는 6명의 학생과 각 학생에 대한 5개의 변수가 있습니다. 하지만 이 데이터 세트에서 처리하고 싶은 몇 가지 사항이 있습니다.
 
 1.  열 이름이 제각각입니다. 일관된 형식을 따르는 열 이름을 제공할 수 있습니다. `col_names` 인자를 사용하여 `snake_case`를 사용하는 것을 권장합니다.
 
@@ -71,14 +71,14 @@ students
         "student_id", "full_name", "favourite_food", "meal_plan", "age")
     )
     #> # A tibble: 7 × 5
-    #>   student_id full_name        favourite_food     meal_plan           age  
+    #>   student_id full_name        favourite_food     meal_plan           age
     #>   <chr>      <chr>            <chr>              <chr>               <chr>
-    #> 1 Student ID Full Name        favourite.food     mealPlan            AGE  
-    #> 2 1          Sunil Huffmann   Strawberry yoghurt Lunch only          4    
-    #> 3 2          Barclay Lynn     French fries       Lunch only          5    
-    #> 4 3          Jayendra Lyne    N/A                Breakfast and lunch 7    
-    #> 5 4          Leon Rossini     Anchovies          Lunch only          <NA> 
-    #> 6 5          Chidiegwu Dunkel Pizza              Breakfast and lunch five 
+    #> 1 Student ID Full Name        favourite.food     mealPlan            AGE
+    #> 2 1          Sunil Huffmann   Strawberry yoghurt Lunch only          4
+    #> 3 2          Barclay Lynn     French fries       Lunch only          5
+    #> 4 3          Jayendra Lyne    N/A                Breakfast and lunch 7
+    #> 5 4          Leon Rossini     Anchovies          Lunch only          <NA>
+    #> 6 5          Chidiegwu Dunkel Pizza              Breakfast and lunch five
     #> 7 6          Güvenç Attila    Ice cream          Lunch only          6
     ```
 
@@ -91,13 +91,13 @@ students
       skip = 1
     )
     #> # A tibble: 6 × 5
-    #>   student_id full_name        favourite_food     meal_plan           age  
+    #>   student_id full_name        favourite_food     meal_plan           age
     #>        <dbl> <chr>            <chr>              <chr>               <chr>
-    #> 1          1 Sunil Huffmann   Strawberry yoghurt Lunch only          4    
-    #> 2          2 Barclay Lynn     French fries       Lunch only          5    
-    #> 3          3 Jayendra Lyne    N/A                Breakfast and lunch 7    
-    #> 4          4 Leon Rossini     Anchovies          Lunch only          <NA> 
-    #> 5          5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
+    #> 1          1 Sunil Huffmann   Strawberry yoghurt Lunch only          4
+    #> 2          2 Barclay Lynn     French fries       Lunch only          5
+    #> 3          3 Jayendra Lyne    N/A                Breakfast and lunch 7
+    #> 4          4 Leon Rossini     Anchovies          Lunch only          <NA>
+    #> 5          5 Chidiegwu Dunkel Pizza              Breakfast and lunch five
     #> 6          6 Güvenç Attila    Ice cream          Lunch only          6
     ```
 
@@ -111,13 +111,13 @@ students
       na = c("", "N/A")
     )
     #> # A tibble: 6 × 5
-    #>   student_id full_name        favourite_food     meal_plan           age  
+    #>   student_id full_name        favourite_food     meal_plan           age
     #>        <dbl> <chr>            <chr>              <chr>               <chr>
-    #> 1          1 Sunil Huffmann   Strawberry yoghurt Lunch only          4    
-    #> 2          2 Barclay Lynn     French fries       Lunch only          5    
-    #> 3          3 Jayendra Lyne    <NA>               Breakfast and lunch 7    
-    #> 4          4 Leon Rossini     Anchovies          Lunch only          <NA> 
-    #> 5          5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
+    #> 1          1 Sunil Huffmann   Strawberry yoghurt Lunch only          4
+    #> 2          2 Barclay Lynn     French fries       Lunch only          5
+    #> 3          3 Jayendra Lyne    <NA>               Breakfast and lunch 7
+    #> 4          4 Leon Rossini     Anchovies          Lunch only          <NA>
+    #> 5          5 Chidiegwu Dunkel Pizza              Breakfast and lunch five
     #> 6          6 Güvenç Attila    Ice cream          Lunch only          6
     ```
 
@@ -174,7 +174,7 @@ students
 
 원하는 형식으로 데이터를 로드하는 데 여러 단계와 시행착오를 거쳤으며, 이는 예상 밖의 일이 아닙니다. 데이터 과학은 반복적인 과정이며, 사람들이 스프레드시트에 데이터를 입력하고 그것을 단지 데이터 저장 목적뿐만 아니라 공유와 의사소통을 위해 사용하는 경향이 있기 때문에 다른 일반 텍스트, 직사각형 구조의 데이터 파일과 비교할 때 스프레드시트에서 데이터를 읽어오는 과정에서 이런 반복 작업이 훨씬 더 번거로울 수 있습니다.
 
-데이터를 로드해서 살펴보기 전까지는 데이터가 정확히 어떻게 생겼는지 알 수 있는 방법은 없습니다. 글쎄요, 사실 한 가지 방법이 있기는 합니다. 엑셀에서 파일을 열어서 살짝 엿보는 것입니다. 그렇게 하려면 원본 데이터 파일은 그대로 두고 상호작용 방식으로 열어서 살펴볼 엑셀 파일의 복사본을 만든 다음, R에서는 그대로 둔 원본 파일에서 데이터를 읽는 것을 권장합니다. 이렇게 하면 데이터를 살펴보는 중에 실수로 스프레드시트의 내용을 덮어쓰는 일을 방지할 수 있습니다. 또한 여기서 우리가 했던 방식을 두려워해서는 안 됩니다: 데이터를 로드하고, 살펴보고, 코드를 수정하고, 다시 로드하고, 결과에 만족할 때까지 반복하세요.
+데이터를 로드해서 살펴보기 전까지는 데이터가 정확히 어떻게 생겼는지 알 수 있는 방법은 없습니다. 글쎄요, 사실 한 가지 방법이 있기는 합니다. 엑셀에서 파일을 열어서 살짝 엿보는 것입니다. 그렇게 하려면 원본 데이터 파일은 그대로 두고 상호작용 방식으로 열어서 살펴볼 엑셀 파일의 복사본을 만든 다음, R에서는 그대로 둔 원본 파일에서 데이터를 읽는 것을 권장합니다. 이렇게 하면 데이터를 살펴보는 중에 실수로 스프레드시트의 내용을 덮어쓰는 일을 방지할 수 있습니다. 또한 여기서 우리가 했던 방식을 두려워해서는 안 됩니다. 데이터를 로드하고, 살펴보고, 코드를 수정하고, 다시 로드하고, 결과에 만족할 때까지 반복하세요.
 
 ## 워크시트 읽기
 
@@ -186,13 +186,13 @@ students
 read_excel("data/penguins.xlsx", sheet = "Torgersen Island")
 #> # A tibble: 52 × 8
 #>   species island    bill_length_mm     bill_depth_mm      flipper_length_mm
-#>   <chr>   <chr>     <chr>              <chr>              <chr>            
-#> 1 Adelie  Torgersen 39.1               18.7               181              
-#> 2 Adelie  Torgersen 39.5               17.399999999999999 186              
-#> 3 Adelie  Torgersen 40.299999999999997 18                 195              
-#> 4 Adelie  Torgersen NA                 NA                 NA               
-#> 5 Adelie  Torgersen 36.700000000000003 19.3               193              
-#> 6 Adelie  Torgersen 39.299999999999997 20.6               190              
+#>   <chr>   <chr>     <chr>              <chr>              <chr>
+#> 1 Adelie  Torgersen 39.1               18.7               181
+#> 2 Adelie  Torgersen 39.5               17.399999999999999 186
+#> 3 Adelie  Torgersen 40.299999999999997 18                 195
+#> 4 Adelie  Torgersen NA                 NA                 NA
+#> 5 Adelie  Torgersen 36.700000000000003 19.3               193
+#> 6 Adelie  Torgersen 39.299999999999997 20.6               190
 #> # … with 46 more rows, and 3 more variables: body_mass_g <chr>, sex <chr>,
 #> #   year <dbl>
 ```
@@ -247,7 +247,9 @@ dim(penguins_biscoe)
 dim(penguins_dream)
 #> [1] 124   8
 ```
-#> [1] "ppl" "pr"  "bnn"
+
+#> [1] "ppl" "pr" "bnn"
+
 ```
 
 데이터 정리를 할 때 이러한 함수들은 <a href="https://dplyr.tidyverse.org/reference/mutate.html" class="orm:hideurl"><code>mutate()</code></a>와 자연스럽게 짝을 이루며, 일관성 없는 형식의 레이어를 벗겨내기 위해 이들을 반복적으로 적용하는 경우가 많습니다.
@@ -256,45 +258,49 @@ dim(penguins_dream)
 
 우리가 논의할 마지막 함수는 정규 표현식을 사용하여 한 열의 데이터를 하나 이상의 새로운 열로 추출하는 <a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="orm:hideurl"><code>separate_wider_regex()</code></a>입니다. 이 함수는 <a href="ch14.html#sec-string-columns" data-type="xref">"열로 분리하기(Separating into Columns)"</a>에서 배웠던 <a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="orm:hideurl"><code>separate_wider_position()</code></a> 및 <a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="orm:hideurl"><code>separate_wider_delim()</code></a> 함수와 동급입니다. 이 함수들은 개별 벡터가 아닌 데이터 프레임(의 열)에서 작동하기 때문에 tidyr에 속해 있습니다.
 
-이 함수가 어떻게 작동하는지 보여주기 위해 간단한 데이터셋을 만들어 보겠습니다. 여기 `babynames`에서 파생된 데이터가 있는데, 이름, 성별, 나이가 다소 이상한 형식으로 되어 있습니다:<sup><a href="ch15.html#idm44771293255808" id="idm44771293255808-marker" data-type="noteref">5</a></sup>
+이 함수가 어떻게 작동하는지 보여주기 위해 간단한 데이터셋을 만들어 보겠습니다. 여기 `babynames`에서 파생된 데이터가 있는데, 이름, 성별, 나이가 다소 이상한 형식으로 되어 있습니다.<sup><a href="ch15.html#idm44771293255808" id="idm44771293255808-marker" data-type="noteref">5</a></sup>
 
 ```
+
 df <- tribble(
-  ~str,
-  "<Sheryl>-F_34",
-  "<Kisha>-F_45", 
-  "<Brandon>-N_33",
-  "<Sharon>-F_38", 
-  "<Penny>-F_58",
-  "<Justin>-M_41", 
-  "<Patricia>-F_84", 
+~str,
+"<Sheryl>-F_34",
+"<Kisha>-F_45",
+"<Brandon>-N_33",
+"<Sharon>-F_38",
+"<Penny>-F_58",
+"<Justin>-M_41",
+"<Patricia>-F_84",
 )
-```
-
-<a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="orm:hideurl"><code>separate_wider_regex()</code></a>를 사용하여 이 데이터를 추출하려면 각 조각과 일치하는 정규 표현식 시퀀스를 구성하기만 하면 됩니다. 해당 조각의 내용이 출력에 나타나기를 원한다면, 거기에 이름을 부여합니다:
 
 ```
-df |> 
-  separate_wider_regex(
-    str,
-    patterns = c(
-      "<", 
-      name = "[A-Za-z]+", 
-      ">-", 
-      gender = ".", "_", 
-      age = "[0-9]+"
-    )
-  )
+
+<a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="orm:hideurl"><code>separate_wider_regex()</code></a>를 사용하여 이 데이터를 추출하려면 각 조각과 일치하는 정규 표현식 시퀀스를 구성하기만 하면 됩니다. 해당 조각의 내용이 출력에 나타나기를 원한다면, 거기에 이름을 부여합니다.
+
+```
+
+df |>
+separate*wider_regex(
+str,
+patterns = c(
+"<",
+name = "[A-Za-z]+",
+">-",
+gender = ".", "*",
+age = "[0-9]+"
+)
+)
 #> # A tibble: 7 × 3
-#>   name    gender age  
-#>   <chr>   <chr>  <chr>
-#> 1 Sheryl  F      34   
-#> 2 Kisha   F      45   
-#> 3 Brandon N      33   
-#> 4 Sharon  F      38   
-#> 5 Penny   F      58   
-#> 6 Justin  M      41   
+#> name gender age  
+#> <chr> <chr> <chr>
+#> 1 Sheryl F 34  
+#> 2 Kisha F 45  
+#> 3 Brandon N 33  
+#> 4 Sharon F 38  
+#> 5 Penny F 58  
+#> 6 Justin M 41  
 #> # … with 1 more row
+
 ```
 
 일치가 실패할 경우 <a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="orm:hideurl"><code>separate_wider_delim()</code></a> 및 <a href="https://tidyr.tidyverse.org/reference/separate_wider_position.html" class="orm:hideurl"><code>separate_wider_position()</code></a>처럼 `too_short = "debug"`를 사용하여 무엇이 잘못되었는지 파악할 수 있습니다.
@@ -317,19 +323,24 @@ df |>
 
 ## 이스케이핑
 
-리터럴 `.`과 일치시키려면, 정규 표현식에 메타문자들을<sup><a href="ch15.html#idm44771293083536" id="idm44771293083536-marker" data-type="noteref">6</a></sup> 문자 그대로 일치시키라고 알려주는 *이스케이프(escape)*가 필요합니다. 문자열과 마찬가지로 정규 표현식은 이스케이핑을 위해 백슬래시를 사용합니다. 따라서 `.`과 일치시키려면 정규 표현식 `\.`이 필요합니다. 안타깝게도 이것은 문제를 발생시킵니다. 우리는 정규 표현식을 나타내기 위해 문자열을 사용하고, `\`는 문자열에서도 이스케이프 기호로 사용됩니다. 따라서 정규 표현식 `\.`을 생성하려면, 다음 예제에서 보여주듯이 문자열 `"\\."`이 필요합니다:
+리터럴 `.`과 일치시키려면, 정규 표현식에 메타문자들을<sup><a href="ch15.html#idm44771293083536" id="idm44771293083536-marker" data-type="noteref">6</a></sup> 문자 그대로 일치시키라고 알려주는 *이스케이프(escape)*가 필요합니다. 문자열과 마찬가지로 정규 표현식은 이스케이핑을 위해 백슬래시를 사용합니다. 따라서 `.`과 일치시키려면 정규 표현식 `\.`이 필요합니다. 안타깝게도 이것은 문제를 발생시킵니다. 우리는 정규 표현식을 나타내기 위해 문자열을 사용하고, `\`는 문자열에서도 이스케이프 기호로 사용됩니다. 따라서 정규 표현식 `\.`을 생성하려면, 다음 예제에서 보여주듯이 문자열 `"\\."`이 필요합니다.
 
 ```
+
 # 정규 표현식 \. 을 생성하려면 \\. 을 사용해야 합니다.
+
 dot <- "\\."
 
 # 하지만 표현식 자체는 \ 를 하나만 포함합니다.
+
 str_view(dot)
 #> [1] │ \.
 
 # 그리고 이것은 R에게 명시적인 . 을 찾으라고 지시합니다.
+
 str_view(c("abc", "a.c", "bef"), "a\\.c")
 #> [2] │ <a.c>
+
 ```
 
 이 책에서 우리는 대개 `\.`처럼 정규 표현식을 따옴표 없이 작성할 것입니다. 만약 실제로 입력해야 할 내용을 강조할 필요가 있다면, 따옴표로 감싸고 추가적인 이스케이프를 더하여 `"\\."`처럼 작성할 것입니다.
@@ -337,62 +348,73 @@ str_view(c("abc", "a.c", "bef"), "a\\.c")
 정규 표현식에서 `\`가 이스케이프 문자로 사용된다면, 리터럴 `\`와 어떻게 일치시킬 수 있을까요? 글쎄요, 이를 이스케이프하여 정규 표현식 `\\`를 생성해야 합니다. 그 정규 표현식을 생성하려면 문자열을 사용해야 하고, 이 문자열 또한 `\`를 이스케이프해야 합니다. 이는 리터럴 `\`와 일치시키기 위해 `"\\\\"`를 작성해야 한다는 것을 의미합니다 — 한 개의 백슬래시와 일치시키기 위해 네 개가 필요합니다!
 
 ```
+
 x <- "a\\b"
 str_view(x)
 #> [1] │ a\b
 str_view(x, "\\\\")
 #> [1] │ a<\>b
-```
-
-대안으로, <a href="ch14.html#sec-raw-strings" data-type="xref">"원시 문자열(Raw Strings)"</a>에서 배운 원시 문자열을 사용하는 것이 더 쉬울 수도 있습니다. 이를 통해 한 단계의 이스케이핑을 피할 수 있습니다:
 
 ```
+
+대안으로, <a href="ch14.html#sec-raw-strings" data-type="xref">"원시 문자열(Raw Strings)"</a>에서 배운 원시 문자열을 사용하는 것이 더 쉬울 수도 있습니다. 이를 통해 한 단계의 이스케이핑을 피할 수 있습니다.
+
+```
+
 str_view(x, r"{\\}")
 #> [1] │ a<\>b
-```
-
-만약 리터럴 `.`, `$`, `|`, `*`, `+`, `?`, `{`, `}`, `(`, `)`와 일치시키려 한다면, 백슬래시 이스케이프를 사용하는 것의 대안이 있습니다. 문자 클래스를 사용할 수 있습니다: `[.]`, `[$]`, `[|]`, ... 은 모두 리터럴 값과 일치합니다:
 
 ```
+
+만약 리터럴 `.`, `$`, `|`, `*`, `+`, `?`, `{`, `}`, `(`, `)`와 일치시키려 한다면, 백슬래시 이스케이프를 사용하는 것의 대안이 있습니다. 문자 클래스를 사용할 수 있습니다. `[.]`, `[$]`, `[|]`, ... 은 모두 리터럴 값과 일치합니다.
+
+```
+
 str_view(c("abc", "a.c", "a*c", "a c"), "a[.]c")
 #> [2] │ <a.c>
 str_view(c("abc", "a.c", "a*c", "a c"), ".[*]c")
-#> [3] │ <a*c>
+#> [3] │ <a\*c>
+
 ```
 
 ## 앵커
 
-기본적으로 정규 표현식은 문자열의 어떤 부분과도 일치합니다. 시작이나 끝에서 일치시키고 싶다면, 시작과 일치하는 `^`나 끝과 일치하는 `$`를 사용하여 정규 표현식을 *고정(anchor)*해야 합니다:
+기본적으로 정규 표현식은 문자열의 어떤 부분과도 일치합니다. 시작이나 끝에서 일치시키고 싶다면, 시작과 일치하는 `^`나 끝과 일치하는 `$`를 사용하여 정규 표현식을 *고정(anchor)*해야 합니다.
 
 ```
+
 str_view(fruit, "^a")
 #> [1] │ <a>pple
 #> [2] │ <a>pricot
 #> [3] │ <a>vocado
 str_view(fruit, "a$")
-#>  [4] │ banan<a>
+#> [4] │ banan<a>
 #> [15] │ cherimoy<a>
 #> [30] │ feijo<a>
 #> [36] │ guav<a>
 #> [56] │ papay<a>
 #> [74] │ satsum<a>
+
 ```
 
 달러 금액을 표기하는 방식 때문에 `$`가 문자열의 시작과 일치해야 한다고 생각하기 쉽지만, 정규 표현식에서는 그렇지 않습니다.
 
-정규 표현식이 전체 문자열과만 일치하도록 강제하려면, `^`와 `$` 둘 다 사용하여 고정합니다:
+정규 표현식이 전체 문자열과만 일치하도록 강제하려면, `^`와 `$` 둘 다 사용하여 고정합니다.
 
 ```
+
 str_view(fruit, "apple")
-#>  [1] │ <apple>
+#> [1] │ <apple>
 #> [62] │ pine<apple>
 str_view(fruit, "^apple$")
 #> [1] │ <apple>
-```
-
-단어 간의 경계(즉, 단어의 시작이나 끝)도 `\b`와 일치시킬 수 있습니다. 이것은 RStudio의 찾기 및 바꾸기 도구를 사용할 때 특히 유용할 수 있습니다. 예를 들어, <a href="https://rdrr.io/r/base/sum.html" class="orm:hideurl"><code>sum()</code></a>의 모든 사용을 찾으려면, `summarize`, `summary`, `rowsum` 등과 일치하는 것을 피하기 위해 `\bsum\b`를 검색할 수 있습니다:
 
 ```
+
+단어 간의 경계(즉, 단어의 시작이나 끝)도 `\b`와 일치시킬 수 있습니다. 이것은 RStudio의 찾기 및 바꾸기 도구를 사용할 때 특히 유용할 수 있습니다. 예를 들어, <a href="https://rdrr.io/r/base/sum.html" class="orm:hideurl"><code>sum()</code></a>의 모든 사용을 찾으려면, `summarize`, `summary`, `rowsum` 등과 일치하는 것을 피하기 위해 `\bsum\b`를 검색할 수 있습니다.
+
+```
+
 x <- c("summary(x)", "summarize(df)", "rowsum(x)", "sum(x)")
 str_view(x, "sum")
 #> [1] │ <sum>mary(x)
@@ -401,34 +423,40 @@ str_view(x, "sum")
 #> [4] │ <sum>(x)
 str_view(x, "\\bsum\\b")
 #> [4] │ <sum>(x)
-```
-
-단독으로 사용될 때, 앵커는 길이가 0인 일치를 생성합니다:
 
 ```
+
+단독으로 사용될 때, 앵커는 길이가 0인 일치를 생성합니다.
+
+```
+
 str_view("abc", c("$", "^", "\\b"))
 #> [1] │ abc<>
 #> [2] │ <>abc
 #> [3] │ <>abc<>
-```
-
-이것은 독립적인 앵커를 교체할 때 무슨 일이 일어나는지 이해하는 데 도움이 됩니다:
 
 ```
+
+이것은 독립적인 앵커를 교체할 때 무슨 일이 일어나는지 이해하는 데 도움이 됩니다.
+
+```
+
 str_replace_all("abc", c("$", "^", "\\b"), "--")
-#> [1] "abc--"   "--abc"   "--abc--"
+#> [1] "abc--" "--abc" "--abc--"
+
 ```
 
 ## 문자 클래스
 
-*문자 클래스(character class)* 또는 문자 *집합(set)*을 사용하면 집합 내의 임의의 문자와 일치시킬 수 있습니다. 앞서 논의했듯이, `[]`를 사용하여 자신만의 집합을 구성할 수 있으며, 여기서 `[abc]`는 "a", "b", "c" 중 하나와 일치하고 `[^abc]`는 "a", "b", "c"를 제외한 모든 문자와 일치합니다. `^` 외에도 `[]` 안에서 특별한 의미를 갖는 두 개의 문자가 더 있습니다:
+*문자 클래스(character class)* 또는 문자 *집합(set)*을 사용하면 집합 내의 임의의 문자와 일치시킬 수 있습니다. 앞서 논의했듯이, `[]`를 사용하여 자신만의 집합을 구성할 수 있으며, 여기서 `[abc]`는 "a", "b", "c" 중 하나와 일치하고 `[^abc]`는 "a", "b", "c"를 제외한 모든 문자와 일치합니다. `^` 외에도 `[]` 안에서 특별한 의미를 갖는 두 개의 문자가 더 있습니다.
 
 - `-`는 범위를 정의합니다; 예: `[a-z]`는 소문자, `[0-9]`는 숫자와 일치합니다.
 - `\`는 특수 문자를 이스케이프하므로, `[\^\-\]]`는 `^`, `-`, 또는 `]`와 일치합니다.
 
-몇 가지 예시입니다:
+몇 가지 예시입니다.
 
 ```
+
 x <- "abcd ABCD 12345 -!@#%."
 str_view(x, "[abc]+")
 #> [1] │ <abc>d ABCD 12345 -!@#%.
@@ -438,24 +466,27 @@ str_view(x, "[^a-z0-9]+")
 #> [1] │ abcd< ABCD >12345< -!@#%.>
 
 # [] 안에서 원래 특별한 문자와 일치시키려면 이스케이프가 필요합니다.
+
 str_view("a-b-c", "[a-c]")
 #> [1] │ <a>-<b>-<c>
 str_view("a-b-c", "[a\\-c]")
 #> [1] │ <a><->b<-><c>
+
 ```
 
-일부 문자 클래스들은 너무 자주 사용되어 그들만의 단축키를 갖게 되었습니다. 여러분은 이미 줄바꿈을 제외한 모든 문자와 일치하는 `.`을 보았습니다. 특히 유용한 세 가지 다른 쌍이 있습니다:<sup><a href="ch15.html#idm44771292559200" id="idm44771292559200-marker" data-type="noteref">7</a></sup>
+일부 문자 클래스들은 너무 자주 사용되어 그들만의 단축키를 갖게 되었습니다. 여러분은 이미 줄바꿈을 제외한 모든 문자와 일치하는 `.`을 보았습니다. 특히 유용한 세 가지 다른 쌍이 있습니다.<sup><a href="ch15.html#idm44771292559200" id="idm44771292559200-marker" data-type="noteref">7</a></sup>
 
 - `\d`는 숫자와 일치합니다.\
   `\D`는 숫자가 아닌 모든 것과 일치합니다.
-- `\s`는 공백 문자(예: 스페이스, 탭, 줄바꿈)와 일치합니다.\
+- `\s`는 공백 문자(스페이스, 탭, 줄바꿈)와 일치합니다.\
   `\S`는 공백 문자가 아닌 모든 것과 일치합니다.
 - `\w`는 "단어" 문자(즉, 문자와 숫자)와 일치합니다.\
   `\W`는 "단어" 문자가 아닌 모든 것과 일치합니다.
 
-다음 코드는 문자와 숫자, 구두점 문자를 선택하여 여섯 가지 단축키를 시연합니다:
+다음 코드는 문자와 숫자, 구두점 문자를 선택하여 여섯 가지 단축키를 시연합니다.
 
 ```
+
 x <- "abcd ABCD 12345 -!@#%."
 str_view(x, "\\d+")
 #> [1] │ abcd ABCD <12345> -!@#%.
@@ -469,11 +500,12 @@ str_view(x, "\\w+")
 #> [1] │ <abcd> <ABCD> <12345> -!@#%.
 str_view(x, "\\W+")
 #> [1] │ abcd< >ABCD< >12345< -!@#%.>
+
 ```
 
 ## 수량자
 
-*수량자(Quantifiers)*는 패턴이 일치하는 횟수를 제어합니다. <a href="#sec-reg-basics" data-type="xref">"패턴 기초(Pattern Basics)"</a>에서 우리는 `?` (0번 또는 1번 일치), `+` (1번 이상 일치), 그리고 `*` (0번 이상 일치)에 대해 배웠습니다. 예를 들어, `colou?r`는 미국식 또는 영국식 철자와 일치할 것이고, `\d+`는 하나 이상의 숫자와 일치하며, `\s?`는 단일 공백 항목과 선택적으로 일치할 것입니다. <a href="https://rdrr.io/r/base/Paren.html" class="orm:hideurl"><code>{}</code></a>를 사용하여 일치 횟수를 정확하게 지정할 수도 있습니다:
+*수량자(Quantifiers)*는 패턴이 일치하는 횟수를 제어합니다. <a href="#sec-reg-basics" data-type="xref">"패턴 기초(Pattern Basics)"</a>에서 우리는 `?` (0번 또는 1번 일치), `+` (1번 이상 일치), 그리고 `*` (0번 이상 일치)에 대해 배웠습니다. 예를 들어, `colou?r`는 미국식 또는 영국식 철자와 일치할 것이고, `\d+`는 하나 이상의 숫자와 일치하며, `\s?`는 단일 공백 항목과 선택적으로 일치할 것입니다. <a href="https://rdrr.io/r/base/Paren.html" class="orm:hideurl"><code>{}</code></a>를 사용하여 일치 횟수를 정확하게 지정할 수도 있습니다.
 
 - `{n}`는 정확히 n번 일치합니다.
 - `{n,}`는 적어도 n번 일치합니다.
@@ -491,19 +523,23 @@ str_view(x, "\\W+")
 
 연산자 우선순위를 재정의하는 것 외에도 괄호에는 또 다른 중요한 효과가 있습니다. 일치 항목의 하위 구성 요소를 사용할 수 있게 해주는 *캡처 그룹(capturing groups)*을 생성합니다.
 
-캡처 그룹을 사용하는 첫 번째 방법은 *역참조(back reference)*를 사용하여 일치 항목 내에서 참조하는 것입니다. `\1`은 첫 번째 괄호에 포함된 일치 항목을, `\2`는 두 번째 괄호를 참조하는 식입니다. 예를 들어, 다음 패턴은 반복되는 두 글자 쌍을 가진 모든 과일을 찾습니다:
+캡처 그룹을 사용하는 첫 번째 방법은 *역참조(back reference)*를 사용하여 일치 항목 내에서 참조하는 것입니다. `\1`은 첫 번째 괄호에 포함된 일치 항목을, `\2`는 두 번째 괄호를 참조하는 식입니다. 예를 들어, 다음 패턴은 반복되는 두 글자 쌍을 가진 모든 과일을 찾습니다.
 
 ```
+
 str_view(fruit, "(..)\\1")
-#>  [4] │ b<anan>a
+#> [4] │ b<anan>a
+
 ```
 전체 개수에 의해 결정되는 높이가 `cut`에 따라 너무 많이 달라서 분포 모양의 차이를 보기 어렵기 때문에, 여기서는 <a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="orm:hideurl"><code>geom_freqpoly()</code></a>의 기본 모양이 그다지 유용하지 않습니다.
 
-비교를 더 쉽게 하려면 y축에 표시되는 것을 바꿔야 합니다. 개수를 표시하는 대신, 각 도수 다각형(frequency polygon) 아래의 면적이 1이 되도록 표준화된 개수인 *밀도(density)*를 표시할 것입니다:
+비교를 더 쉽게 하려면 y축에 표시되는 것을 바꿔야 합니다. 개수를 표시하는 대신, 각 도수 다각형(frequency polygon) 아래의 면적이 1이 되도록 표준화된 개수인 *밀도(density)*를 표시할 것입니다.
 
 ```
-ggplot(diamonds, aes(x = price, y = after_stat(density))) + 
-  geom_freqpoly(aes(color = cut), binwidth = 500, linewidth = 0.75)
+
+ggplot(diamonds, aes(x = price, y = after_stat(density))) +
+geom_freqpoly(aes(color = cut), binwidth = 500, linewidth = 0.75)
+
 ```
 
 <figure>
@@ -512,13 +548,15 @@ ggplot(diamonds, aes(x = price, y = after_stat(density))) +
 
 우리는 밀도를 `y`에 매핑하고 있지만, `density`는 `diamonds` 데이터세트의 변수가 아니기 때문에 먼저 계산해야 한다는 점에 유의하세요. 이를 위해 <a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="orm:hideurl"><code>after_stat()</code></a> 함수를 사용합니다.
 
-이 플롯에는 꽤 놀라운 점이 있습니다: (품질이 가장 낮은) Fair 다이아몬드가 가장 높은 평균 가격을 가지는 것처럼 보입니다! 하지만 이는 도수 다각형을 해석하기가 약간 어렵기 때문일 수 있습니다. 이 플롯에서는 많은 일이 벌어지고 있습니다.
+이 플롯에는 꽤 놀라운 점이 있습니다. (품질이 가장 낮은) Fair 다이아몬드가 가장 높은 평균 가격을 가지는 것처럼 보입니다! 하지만 이는 도수 다각형을 해석하기가 약간 어렵기 때문일 수 있습니다. 이 플롯에서는 많은 일이 벌어지고 있습니다.
 
-이 관계를 탐색하기 위한 시각적으로 더 간단한 플롯은 나란히 놓인 상자 그림(side-by-side boxplots)을 사용하는 것입니다:
+이 관계를 탐색하기 위한 시각적으로 더 간단한 플롯은 나란히 놓인 상자 그림(side-by-side boxplots)을 사용하는 것입니다.
 
 ```
+
 ggplot(diamonds, aes(x = cut, y = price)) +
-  geom_boxplot()
+geom_boxplot()
+
 ```
 
 <figure>
@@ -527,33 +565,39 @@ ggplot(diamonds, aes(x = cut, y = price)) +
 
 우리는 분포에 대한 정보는 훨씬 덜 보게 되지만, 상자 그림은 훨씬 더 간결하기 때문에 더 쉽게 비교할 수 있습니다 (그리고 하나의 플롯에 더 많이 들어맞게 할 수 있습니다). 이는 품질이 좋은 다이아몬드가 일반적으로 더 저렴하다는 직관에 반하는 발견을 뒷받침합니다! 연습문제에서 여러분은 왜 그런지 알아내는 도전을 받게 될 것입니다.
 
-`cut`은 순서형 요인(ordered factor)입니다: Fair는 Good보다 나쁘고, Good은 Very Good보다 나쁜 식입니다. 많은 범주형 변수는 이와 같은 내재적 순서를 가지고 있지 않으므로, 더 많은 정보를 제공하는 디스플레이를 만들기 위해 그것들을 다시 정렬하고 싶을 수 있습니다. 이를 수행하는 한 가지 방법은 <a href="https://forcats.tidyverse.org/reference/fct_reorder.html" class="orm:hideurl"><code>fct_reorder()</code></a>를 사용하는 것입니다. 그 함수에 대해서는 <a href="ch16.html#sec-modifying-factor-order" data-type="xref">“팩터 순서 수정하기(Modifying Factor Order)”</a>에서 자세히 배우겠지만, 너무 유용하기 때문에 여기서 간단히 미리 보여드리고자 합니다. 예를 들어, `mpg` 데이터세트의 `class` 변수를 생각해 보세요. 클래스에 따라 고속도로 연비(highway mileage)가 어떻게 달라지는지 알고 싶을 수 있습니다:
+`cut`은 순서형 요인(ordered factor)입니다. Fair는 Good보다 나쁘고, Good은 Very Good보다 나쁜 식입니다. 많은 범주형 변수는 이와 같은 내재적 순서를 가지고 있지 않으므로, 더 많은 정보를 제공하는 디스플레이를 만들기 위해 그것들을 다시 정렬하고 싶을 수 있습니다. 이를 수행하는 한 가지 방법은 <a href="https://forcats.tidyverse.org/reference/fct_reorder.html" class="orm:hideurl"><code>fct_reorder()</code></a>를 사용하는 것입니다. 그 함수에 대해서는 <a href="ch16.html#sec-modifying-factor-order" data-type="xref">“팩터 순서 수정하기(Modifying Factor Order)”</a>에서 자세히 배우겠지만, 너무 유용하기 때문에 여기서 간단히 미리 보여드리고자 합니다. 예를 들어, `mpg` 데이터세트의 `class` 변수를 생각해 보세요. 클래스에 따라 고속도로 연비(highway mileage)가 어떻게 달라지는지 알고 싶을 수 있습니다.
 
 ```
+
 ggplot(mpg, aes(x = class, y = hwy)) +
-  geom_boxplot()
+geom_boxplot()
+
 ```
 
 <figure>
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_10in10.png" alt="Side-by-side boxplots of highway mileages of cars by class. Classes are on the x-axis (2seaters, compact, midsize, minivan, pickup, subcompact, and suv)." />
 </figure>
 
-추세를 더 쉽게 보기 위해, `hwy`의 중앙값(median)을 기준으로 `class`를 다시 정렬할 수 있습니다:
+추세를 더 쉽게 보기 위해, `hwy`의 중앙값(median)을 기준으로 `class`를 다시 정렬할 수 있습니다.
 
 ```
+
 ggplot(mpg, aes(x = fct_reorder(class, hwy, median), y = hwy)) +
-  geom_boxplot()
+geom_boxplot()
+
 ```
 
 <figure>
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_10in11.png" alt="Side-by-side boxplots of highway mileages of cars by class. Classes are on the x-axis and ordered by increasing median highway mileage (pickup, suv, minivan, 2seater, subcompact, compact, and midsize)." />
 </figure>
 
-변수 이름이 긴 경우, <a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="orm:hideurl"><code>geom_boxplot()</code></a>을 90° 뒤집으면 더 잘 작동할 것입니다. x와 y의 미적 매핑(aesthetic mappings)을 서로 교환하여 그렇게 할 수 있습니다:
+변수 이름이 긴 경우, <a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="orm:hideurl"><code>geom_boxplot()</code></a>을 90° 뒤집으면 더 잘 작동할 것입니다. x와 y의 미적 매핑(aesthetic mappings)을 서로 교환하여 그렇게 할 수 있습니다.
 
 ```
+
 ggplot(mpg, aes(x = hwy, y = fct_reorder(class, hwy, median))) +
-  geom_boxplot()
+geom_boxplot()
+
 ```
 
 <figure>
@@ -571,11 +615,13 @@ ggplot(mpg, aes(x = hwy, y = fct_reorder(class, hwy, median))) +
 
 ## 두 개의 범주형 변수 (Two Categorical Variables)
 
-범주형 변수 간의 공변동을 시각화하려면 이 범주형 변수들의 수준(levels)의 각 조합에 대한 관측치 수를 계산해야 합니다. 이를 수행하는 한 가지 방법은 내장된 <a href="https://ggplot2.tidyverse.org/reference/geom_count.html" class="orm:hideurl"><code>geom_count()</code></a>에 의존하는 것입니다:
+범주형 변수 간의 공변동을 시각화하려면 이 범주형 변수들의 수준(levels)의 각 조합에 대한 관측치 수를 계산해야 합니다. 이를 수행하는 한 가지 방법은 내장된 <a href="https://ggplot2.tidyverse.org/reference/geom_count.html" class="orm:hideurl"><code>geom_count()</code></a>에 의존하는 것입니다.
 
 ```
+
 ggplot(diamonds, aes(x = cut, y = color)) +
-  geom_count()
+geom_count()
+
 ```
 
 <figure>
@@ -584,30 +630,34 @@ ggplot(diamonds, aes(x = cut, y = color)) +
 
 플롯에서 각 원의 크기는 값의 각 조합에서 얼마나 많은 관측치가 발생했는지를 표시합니다. 공변동은 특정 x 값과 특정 y 값 사이의 강한 상관관계로 나타날 것입니다.
 
-이러한 변수 간의 관계를 탐색하는 또 다른 접근 방식은 dplyr을 사용하여 개수를 계산하는 것입니다:
+이러한 변수 간의 관계를 탐색하는 또 다른 접근 방식은 dplyr을 사용하여 개수를 계산하는 것입니다.
 
 ```
-diamonds |> 
-  count(color, cut)
+
+diamonds |>
+count(color, cut)
 #> # A tibble: 35 × 3
-#>   color cut           n
-#>   <ord> <ord>     <int>
-#> 1 D     Fair        163
-#> 2 D     Good        662
-#> 3 D     Very Good  1513
-#> 4 D     Premium    1603
-#> 5 D     Ideal      2834
-#> 6 E     Fair        224
+#> color cut n
+#> <ord> <ord> <int>
+#> 1 D Fair 163
+#> 2 D Good 662
+#> 3 D Very Good 1513
+#> 4 D Premium 1603
+#> 5 D Ideal 2834
+#> 6 E Fair 224
 #> # … with 29 more rows
-```
-
-그런 다음 <a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="orm:hideurl"><code>geom_tile()</code></a>과 fill 미적 매핑을 사용하여 시각화합니다:
 
 ```
-diamonds |> 
-  count(color, cut) |>  
-  ggplot(aes(x = color, y = cut)) +
-  geom_tile(aes(fill = n))
+
+그런 다음 <a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="orm:hideurl"><code>geom_tile()</code></a>과 fill 미적 매핑을 사용하여 시각화합니다.
+
+```
+
+diamonds |>
+count(color, cut) |>  
+ ggplot(aes(x = color, y = cut)) +
+geom_tile(aes(fill = n))
+
 ```
 
 <figure>
@@ -624,11 +674,13 @@ diamonds |>
 
 ## 두 개의 수치형 변수 (Two Numerical Variables)
 
-두 수치형 변수 간의 공변동을 시각화하는 훌륭한 방법을 이미 보았습니다: <a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="orm:hideurl"><code>geom_point()</code></a>를 사용하여 산점도(scatterplot)를 그리는 것입니다. 점들의 패턴으로 공변동을 볼 수 있습니다. 예를 들어, 다이아몬드의 캐럿 크기와 가격 사이의 양의 관계를 볼 수 있습니다: 캐럿이 높은 다이아몬드가 가격이 높습니다. 이 관계는 기하급수적(exponential)입니다.
+두 수치형 변수 간의 공변동을 시각화하는 훌륭한 방법을 이미 보았습니다. <a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="orm:hideurl"><code>geom_point()</code></a>를 사용하여 산점도(scatterplot)를 그리는 것입니다. 점들의 패턴으로 공변동을 볼 수 있습니다. 예를 들어, 다이아몬드의 캐럿 크기와 가격 사이의 양의 관계를 볼 수 있습니다. 캐럿이 높은 다이아몬드가 가격이 높습니다. 이 관계는 기하급수적(exponential)입니다.
 
 ```
+
 ggplot(smaller, aes(x = carat, y = price)) +
-  geom_point()
+geom_point()
+
 ```
 
 <figure>
@@ -637,11 +689,13 @@ ggplot(smaller, aes(x = carat, y = price)) +
 
 (이 섹션에서는 3캐럿보다 작은 대다수의 다이아몬드에 집중하기 위해 `smaller` 데이터세트를 사용할 것입니다.)
 
-데이터세트의 크기가 커짐에 따라, 점들이 겹쳐 그려지고(overplot) 균일한 검은색 영역으로 쌓이기 시작하므로 산점도의 유용성이 떨어집니다. 이는 2차원 공간 전체에서 데이터 밀도의 차이를 판단하기 어렵게 만들고 추세를 파악하기 어렵게 만듭니다. 우리는 이 문제를 해결하는 한 가지 방법을 이미 보았습니다: `alpha` 미적 매핑을 사용하여 투명도(transparency)를 추가하는 것입니다.
+데이터세트의 크기가 커짐에 따라, 점들이 겹쳐 그려지고(overplot) 균일한 검은색 영역으로 쌓이기 시작하므로 산점도의 유용성이 떨어집니다. 이는 2차원 공간 전체에서 데이터 밀도의 차이를 판단하기 어렵게 만들고 추세를 파악하기 어렵게 만듭니다. 우리는 이 문제를 해결하는 한 가지 방법을 이미 보았습니다. `alpha` 미적 매핑을 사용하여 투명도(transparency)를 추가하는 것입니다.
 
 ```
-ggplot(smaller, aes(x = carat, y = price)) + 
-  geom_point(alpha = 1 / 100)
+
+ggplot(smaller, aes(x = carat, y = price)) +
+geom_point(alpha = 1 / 100)
+
 ```
 
 <figure>
@@ -653,24 +707,29 @@ ggplot(smaller, aes(x = carat, y = price)) +
 <a href="https://ggplot2.tidyverse.org/reference/geom_bin_2d.html" class="orm:hideurl"><code>geom_bin2d()</code></a>와 <a href="https://ggplot2.tidyverse.org/reference/geom_hex.html" class="orm:hideurl"><code>geom_hex()</code></a>는 좌표 평면을 2D 구간으로 나누고 채우기 색상(fill color)을 사용하여 각 구간에 몇 개의 점이 속하는지 표시합니다. <a href="https://ggplot2.tidyverse.org/reference/geom_bin_2d.html" class="orm:hideurl"><code>geom_bin2d()</code></a>는 직사각형 구간을 만듭니다. <a href="https://ggplot2.tidyverse.org/reference/geom_hex.html" class="orm:hideurl"><code>geom_hex()</code></a>는 육각형 구간을 만듭니다. <a href="https://ggplot2.tidyverse.org/reference/geom_hex.html" class="orm:hideurl"><code>geom_hex()</code></a>를 사용하려면 hexbin 패키지를 설치해야 합니다.
 
 ```
+
 ggplot(smaller, aes(x = carat, y = price)) +
-  geom_bin2d()
+geom_bin2d()
 
 # install.packages("hexbin")
+
 ggplot(smaller, aes(x = carat, y = price)) +
-  geom_hex()
+geom_hex()
+
 ```
 
 <figure>
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_10in17.png" alt="Plot 1: A binned density plot of price vs. carat. Plot 2: A hexagonal bin plot of price vs. carat. Both plots show that the highest density of diamonds have low carats and low prices." />
 </figure>
 
-또 다른 선택지는 하나의 연속형 변수를 구간으로 나누어 범주형 변수처럼 작동하게 만드는 것입니다. 그런 다음, 여러분이 배웠던 범주형 변수와 연속형 변수의 조합을 시각화하는 기술 중 하나를 사용할 수 있습니다. 예를 들어, `carat`을 구간으로 나눈 다음 각 그룹에 대해 상자 그림을 표시할 수 있습니다:
+또 다른 선택지는 하나의 연속형 변수를 구간으로 나누어 범주형 변수처럼 작동하게 만드는 것입니다. 그런 다음, 여러분이 배웠던 범주형 변수와 연속형 변수의 조합을 시각화하는 기술 중 하나를 사용할 수 있습니다. 예를 들어, `carat`을 구간으로 나눈 다음 각 그룹에 대해 상자 그림을 표시할 수 있습니다.
 
 ```
-ggplot(smaller, aes(x = carat, y = price)) + 
-  geom_boxplot(aes(group = cut_width(carat, 0.1)))
-```
+
+ggplot(smaller, aes(x = carat, y = price)) +
+geom_boxplot(aes(group = cut_width(carat, 0.1)))
+
+````
 
 <figure>
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_10in18.png" alt="Side-by-side box plots of price by carat. Each box plot represents diamonds that are 0.1 carats apart in weight. The box plots show that as carat increases the median price increases as well. Additionally, diamonds with 1.5 carats or lower have right skewed price distributions, 1.5 to 2 have roughly symmetric price distributions, and diamonds that weigh more have left skewed distributions. Cheaper, smaller diamonds have outliers on the higher end, more expensive, bigger diamonds have outliers on the lower end." />
@@ -687,8 +746,8 @@ ggplot(smaller, aes(x = carat, y = price)) +
 5. 2차원 플롯은 1차원 플롯에서는 보이지 않는 이상치를 드러냅니다. 예를 들어, 다음 플롯의 일부 점들은 이례적인 `x`와 `y` 값의 조합을 가지고 있어, 개별적으로 검토할 때 `x`와 `y` 값이 정상으로 보임에도 불구하고 이 점들을 이상치로 만듭니다. 이 경우 구간화된 플롯(binned plot)보다 산점도가 더 나은 디스플레이인 이유는 무엇입니까?
 
     ```
-    diamonds |> 
-      filter(x >= 4) |> 
+    diamonds |>
+      filter(x >= 4) |>
       ggplot(aes(x = x, y = y)) +
       geom_point() +
       coord_cartesian(xlim = c(4, 11), ylim = c(4, 11))
@@ -697,13 +756,13 @@ ggplot(smaller, aes(x = carat, y = price)) +
 6. <a href="https://ggplot2.tidyverse.org/reference/cut_interval.html" class="orm:hideurl"><code>cut_width()</code></a>를 사용하여 너비가 같은 상자를 만드는 대신, <a href="https://ggplot2.tidyverse.org/reference/cut_interval.html" class="orm:hideurl"><code>cut_number()</code></a>를 사용하여 대략 같은 수의 점을 포함하는 상자를 만들 수 있습니다. 이 접근 방식의 장점과 단점은 무엇입니까?
 
     ```
-    ggplot(smaller, aes(x = carat, y = price)) + 
+    ggplot(smaller, aes(x = carat, y = price)) +
       geom_boxplot(aes(group = cut_number(carat, 20)))
     ```
 
 # 패턴과 모델 (Patterns and Models)
 
-두 변수 사이에 체계적인 관계가 존재한다면, 이는 데이터에 패턴으로 나타날 것입니다. 패턴을 발견하면 스스로에게 물어보세요:
+두 변수 사이에 체계적인 관계가 존재한다면, 이는 데이터에 패턴으로 나타날 것입니다. 패턴을 발견하면 스스로에게 물어보세요.
 
 - 이 패턴이 우연(즉, 무작위 확률)에 의한 것일 수 있는가?
 - 패턴이 암시하는 관계를 어떻게 설명할 수 있는가?
@@ -715,21 +774,25 @@ ggplot(smaller, aes(x = carat, y = price)) +
 
 모델(Models)은 데이터에서 패턴을 추출하기 위한 도구입니다. 예를 들어 다이아몬드 데이터를 생각해 보겠습니다. cut과 carat, carat과 price가 밀접하게 관련되어 있기 때문에 cut과 price 사이의 관계를 이해하기 어렵습니다. 모델을 사용하여 price와 carat 사이의 매우 강한 관계를 제거하여 남아있는 미묘한 차이를 탐색하는 것이 가능합니다. 다음 코드는 `carat`으로부터 `price`를 예측하는 모델을 피팅(fit)한 다음, 잔차(residuals; 예측된 값과 실제 값의 차이)를 계산합니다. 잔차는 carat의 효과가 제거된 후의 다이아몬드 가격을 보여줍니다. `price`와 `carat`의 원래 값(raw values)을 사용하는 대신, 먼저 로그 변환을 수행하고 로그 변환된 값에 모델을 피팅한다는 점에 유의하세요. 그런 다음, 우리는 잔차를 원래 가격 척도로 되돌려놓기 위해 지수화(exponentiate)합니다.
 
-```
+````
+
 library(tidymodels)
 
 diamonds <- diamonds |>
-  mutate(
-    log_price = log(price),
-    log_carat = log(carat)
-  )
+mutate(
+log_price = log(price),
+log_carat = log(carat)
+)
 
 diamonds_fit <- linear_reg() |>
-  fit(log_price ~ log_carat, data = diamonds)
+fit(log_price ~ log_carat, data = diamonds)
 
 diamonds_aug <- augment(diamonds_fit, new_data = diamonds) |>
-  mutate(.resid = exp(.resid))
+mutate(.resid = exp(.resid))
 
-ggplot(diamonds_aug, aes(x = carat, y = .resid)) + 
-  geom_point()
+ggplot(diamonds_aug, aes(x = carat, y = .resid)) +
+geom_point()
+
+```
+
 ```
