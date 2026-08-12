@@ -30,11 +30,11 @@ website:
         contents:
           - notes/data-visualize.qmd
           - notes/data-transform.qmd
+          - notes/data-tidy.qmd
+          - notes/data-import.qmd
           # - notes/workflow-basics.qmd
           # - notes/workflow-style.qmd
-          # - notes/data-tidy.qmd
           # - notes/workflow-scripts.qmd
-          # - notes/data-import.qmd
           # - notes/workflow-help.qmd
 
       # - section: "R로 배우는 확률"
