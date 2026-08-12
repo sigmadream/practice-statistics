@@ -95,7 +95,7 @@ str_view(tricky)
 
 ## 기타 특수 문자 (Other Special Characters)
 
-`\"`, `\'`, `\\` 외에도 유용하게 사용할 수 있는 다른 특수 문자들이 몇 가지 있습니다. 가장 흔한 것은 줄바꿈인 `\n`과 탭인 `\t`입니다. 또한 `\u` 또는 `\U`로 시작하는 유니코드 이스케이프가 포함된 문자열을 가끔 볼 수도 있습니다. 이것은 모든 시스템에서 작동하는 비영어권 문자를 작성하는 방법입니다. <a href="https://rdrr.io/r/base/Quotes.html" class="orm:hideurl"><code>?Quotes</code></a>에서 다른 특수 문자의 전체 목록을 확인할 수 있습니다.
+`\"`, `\'`, `\\` 외에도 유용하게 사용할 수 있는 다른 특수 문자들이 몇 가지 있습니다. 흔한 것은 줄바꿈인 `\n`과 탭인 `\t`입니다. 또한 `\u` 또는 `\U`로 시작하는 유니코드 이스케이프가 포함된 문자열을 가끔 볼 수도 있습니다. 이것은 모든 시스템에서 작동하는 비영어권 문자를 작성하는 방법입니다. <a href="https://rdrr.io/r/base/Quotes.html" class="orm:hideurl"><code>?Quotes</code></a>에서 다른 특수 문자의 전체 목록을 확인할 수 있습니다.
 
 ```
 x <- c("one\ntwo", "one\ttwo", "\u00b5", "\U0001f604")
@@ -265,13 +265,13 @@ df |>
 - <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="orm:hideurl"><code>pivot_longer()</code></a> 및 <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="orm:hideurl"><code>pivot_wider()</code></a>와 마찬가지로 `_longer` 함수는 새로운 행을 만들어 입력 데이터 프레임을 더 길게(longer) 만들고, `_wider` 함수는 새로운 열을 생성하여 입력 데이터 프레임을 더 넓게(wider) 만듭니다.
 - `delim`은 `", "`나 `" "` 같은 구분 기호(delimiter)를 기준으로 문자열을 나눕니다. `position`은 `c(3, 5, 2)`와 같이 지정된 너비(width)에서 나눕니다.
 
-이 제품군의 마지막 구성원인 `separate_wider_regex()`로 <a href="ch15.html#chp-regexps" data-type="xref">제15장</a>에서 다시 돌아올 것입니다. 이것은 `wider` 함수들 중에서 가장 유연하지만 이것을 사용하려면 정규 표현식에 대해 알아야 합니다.
+이 제품군의 마지막 구성원인 `separate_wider_regex()`로 <a href="ch15.html#chp-regexps" data-type="xref">제15장</a>에서 다시 돌아올 것입니다. 이것은 `wider` 함수들 중에서 유연하지만 이것을 사용하려면 정규 표현식에 대해 알아야 합니다.
 
 다음 두 섹션에서는 이러한 분리 함수(separate functions) 이면에 있는 기본 아이디어를 설명할 것입니다. 먼저 행으로 분리하는 방법(이것이 약간 더 간단합니다)을 알아보고, 그 다음 열로 분리하는 방법을 알아볼 것입니다. 마지막으로 `wider` 함수가 문제를 진단하기 위해 제공하는 도구들을 논의하며 마무리하겠습니다.
 
 ## 행으로 분리하기 (Separating into Rows)
 
-문자열을 행으로 분리하는 것은 행마다 구성 요소의 개수가 다를 때 가장 유용합니다. 가장 일반적인 경우는 구분 기호를 기준으로 나누기 위해 <a href="https://tidyr.tidyverse.org/reference/separate_longer_delim.html" class="orm:hideurl"><code>separate_longer_delim()</code></a>이 필요한 경우입니다.
+문자열을 행으로 분리하는 것은 행마다 구성 요소의 개수가 다를 때 유용합니다. 일반적인 경우는 구분 기호를 기준으로 나누기 위해 <a href="https://tidyr.tidyverse.org/reference/separate_longer_delim.html" class="orm:hideurl"><code>separate_longer_delim()</code></a>이 필요한 경우입니다.
 
 ```
 df1 <- tibble(x = c("a,b,c", "d,e", "f"))
@@ -308,7 +308,7 @@ df2 |>
 
 ## 열로 분리하기 (Separating into Columns)
 
-문자열을 열로 분리하는 것은 각 문자열에 고정된 수의 구성 요소가 있고 그것들을 열로 펼치고자(spread) 할 때 가장 유용합니다. 열의 이름을 지정해야 하기 때문에 대응하는 `longer` 함수들보다 약간 더 복잡합니다. 예를 들어, 다음 데이터세트에서 `x`는 코드, 에디션 번호, 연도로 구성되며 `"."`으로 구분되어 있습니다. <a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="orm:hideurl"><code>separate_wider_delim()</code></a>을 사용하려면 두 개의 인자에 구분 기호와 이름들을 제공해야 합니다.
+문자열을 열로 분리하는 것은 각 문자열에 고정된 수의 구성 요소가 있고 그것들을 열로 펼치고자(spread) 할 때 유용합니다. 열의 이름을 지정해야 하기 때문에 대응하는 `longer` 함수들보다 약간 더 복잡합니다. 예를 들어, 다음 데이터세트에서 `x`는 코드, 에디션 번호, 연도로 구성되며 `"."`으로 구분되어 있습니다. <a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="orm:hideurl"><code>separate_wider_delim()</code></a>을 사용하려면 두 개의 인자에 구분 기호와 이름들을 제공해야 합니다.
 
 ```
 df3 <- tibble(x = c("a10.1.2022", "b10.2.2011", "e15.1.2015"))
@@ -530,7 +530,7 @@ str_length(c("a", "R for data science", NA))
 
 ```
 
-이것을 <a href="https://dplyr.tidyverse.org/reference/count.html" class="orm:hideurl"><code>count()</code></a>와 함께 사용하여 미국 아기 이름 길이의 분포를 찾고, 그런 다음 <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 함께 사용하여 가장 긴 이름(마침 15글자인)을 살펴볼 수 있습니다.<sup><a href="ch14.html#idm44771294893344" id="idm44771294893344-marker" data-type="noteref">6</a></sup>
+이것을 <a href="https://dplyr.tidyverse.org/reference/count.html" class="orm:hideurl"><code>count()</code></a>와 함께 사용하여 미국 아기 이름 길이의 분포를 찾고, 그런 다음 <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 함께 사용하여 긴 이름(마침 15글자인)을 살펴볼 수 있습니다.<sup><a href="ch14.html#idm44771294893344" id="idm44771294893344-marker" data-type="noteref">6</a></sup>
 
 ```
 
@@ -623,11 +623,11 @@ last = str_sub(name, -1, -1)
 
 # 영어가 아닌 텍스트 (Non-English Text)
 
-지금까지는 영어 텍스트에 중점을 두었는데, 두 가지 이유로 다루기가 특히 쉽습니다. 첫째, 영어 알파벳은 비교적 단순합니다. 단 26개의 글자만 있습니다. 둘째(그리고 아마도 더 중요한 것은), 오늘날 우리가 사용하는 컴퓨팅 인프라가 주로 영어를 사용하는 사람들에 의해 설계되었다는 것입니다. 안타깝게도 비영어권 언어를 완벽하게 다룰 만한 지면이 없습니다. 그래도 인코딩, 글자 변형, 로케일 의존(locale-dependent) 함수와 같이 여러분이 직면할 수 있는 가장 큰 과제 중 일부에 주의를 환기시키고 싶었습니다.
+지금까지는 영어 텍스트에 중점을 두었는데, 두 가지 이유로 다루기가 특히 쉽습니다. 첫째, 영어 알파벳은 비교적 단순합니다. 단 26개의 글자만 있습니다. 둘째(그리고 아마도 더 중요한 것은), 오늘날 우리가 사용하는 컴퓨팅 인프라가 주로 영어를 사용하는 사람들에 의해 설계되었다는 것입니다. 안타깝게도 비영어권 언어를 완벽하게 다룰 만한 지면이 없습니다. 그래도 인코딩, 글자 변형, 로케일 의존(locale-dependent) 함수와 같이 여러분이 직면할 수 있는 큰 과제 중 일부에 주의를 환기시키고 싶었습니다.
 
 ## 인코딩 (Encoding)
 
-비영어권 텍스트로 작업할 때 가장 먼저 겪는 어려움은 종종 *인코딩(encoding)*입니다. 무슨 일이 일어나고 있는지 이해하려면 컴퓨터가 문자열을 표현하는 방식에 대해 파고들어야 합니다. R에서는 <a href="https://rdrr.io/r/base/rawConversion.html" class="orm:hideurl"><code>charToRaw()</code></a>를 사용하여 문자열의 기본 표현을 얻을 수 있습니다.
+비영어권 텍스트로 작업할 때 먼저 겪는 어려움은 종종 *인코딩(encoding)*입니다. 무슨 일이 일어나고 있는지 이해하려면 컴퓨터가 문자열을 표현하는 방식에 대해 파고들어야 합니다. R에서는 <a href="https://rdrr.io/r/base/rawConversion.html" class="orm:hideurl"><code>charToRaw()</code></a>를 사용하여 문자열의 기본 표현을 얻을 수 있습니다.
 
 ```
 
@@ -750,7 +750,7 @@ str_sort(c("a", "c", "ch", "h", "z"), locale = "cs")
 
 # 요약 (Summary)
 
-이 장에서는 문자열을 만들고, 결합하고, 추출하는 방법과 같은 stringr 패키지의 강력한 기능 일부를 배웠고, 비영어권 문자열을 다룰 때 직면할 수 있는 몇 가지 문제점에 대해서도 배웠습니다. 이제 문자열 작업을 위한 가장 중요하고 강력한 도구 중 하나인 정규 표현식에 대해 알아볼 차례입니다. 정규 표현식은 문자열 내의 패턴을 기술하기 위한 간결하면서도 표현력이 풍부한 언어이며 다음 장의 주제입니다.
+이 장에서는 문자열을 만들고, 결합하고, 추출하는 방법과 같은 stringr 패키지의 강력한 기능 일부를 배웠고, 비영어권 문자열을 다룰 때 직면할 수 있는 몇 가지 문제점에 대해서도 배웠습니다. 이제 문자열 작업을 위한 중요하고 강력한 도구 중 하나인 정규 표현식에 대해 알아볼 차례입니다. 정규 표현식은 문자열 내의 패턴을 기술하기 위한 간결하면서도 표현력이 풍부한 언어이며 다음 장의 주제입니다.
 
 <sup>[1](ch14.html#idm44771296672656-marker)</sup> 또는 기본 R 함수인 <a href="https://rdrr.io/r/base/writeLines.html" class="orm:hideurl"><code>writeLines()</code></a>를 사용하세요.
 

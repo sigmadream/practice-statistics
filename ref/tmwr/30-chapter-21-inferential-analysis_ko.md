@@ -4,7 +4,7 @@
 
 [1장](ch01.xhtml#software-modeling)에서는 모델의 분류(taxonomy)를 간략하게 설명(outlined)하고 대부분의 모델을 설명적(descriptive), 추론적(inferential) 및/또는 예측적(predictive) 모델로 분류할 수 있다고 말했습니다.
 
-이 책의 대부분의 장에서는 예측값의 정확도(예측 모델에 가장 관련성이 높지만 모든 목적의 모델에서 중요한 품질) 관점에서 모델에 중점을 두었습니다(focused on). 추론 모델은 대개(usually) 예측뿐만 아니라 계수 값이나 다른 매개변수와 같은 모델의 일부 구성 요소(component)에 대한 추론(inferences)이나 판단을 내리기 위해 생성됩니다. 이러한 결과는 종종 사전 정의된 질문이나 가설에 대한 답을 제공하는 데(to answer) 사용됩니다. 예측 모델에서는 홀드아웃 데이터(holdout data)에 대한 예측을 사용하여 모델의 품질을 검증하거나 특성화(characterize)합니다. 추론 방법은 모델을 피팅하기 전에 만들어진 확률적(probabilistic) 또는 구조적(structural) 가정을 검증하는 데 중점을 둡니다.
+이 책의 대부분의 장에서는 예측값의 정확도(예측 모델에 관련성이 높지만 모든 목적의 모델에서 중요한 품질) 관점에서 모델에 중점을 두었습니다(focused on). 추론 모델은 대개(usually) 예측뿐만 아니라 계수 값이나 다른 매개변수와 같은 모델의 일부 구성 요소(component)에 대한 추론(inferences)이나 판단을 내리기 위해 생성됩니다. 이러한 결과는 종종 사전 정의된 질문이나 가설에 대한 답을 제공하는 데(to answer) 사용됩니다. 예측 모델에서는 홀드아웃 데이터(holdout data)에 대한 예측을 사용하여 모델의 품질을 검증하거나 특성화(characterize)합니다. 추론 방법은 모델을 피팅하기 전에 만들어진 확률적(probabilistic) 또는 구조적(structural) 가정을 검증하는 데 중점을 둡니다.
 
 예를 들어 보통 선형 회귀(ordinary linear regression)에서 일반적인(common) 가정은 잔차 값이 독립적(independent)이며 분산이 일정한(constant variance) 가우시안 분포를 따른다는 것입니다. 모델 분석을 위한 이러한 가정에 신빙성(credence)을 더해줄(lend) 과학적 또는 도메인 지식이 있을 수 있지만(may have), 가정이 좋은 아이디어였는지 판단하기 위해 대개(usually) 피팅된 모델의 잔차를 검토(examined)합니다. 그 결과, 홀드아웃 예측을 보는 것이 매우 유용할 수 있지만, 모델의 가정이 충족(met)되었는지 확인(determining)하는 방법은 그렇게 간단하지 않습니다(not as simple as).
 
@@ -42,7 +42,7 @@ ggplot(bioChemists, aes(x = art)) +
 <h6 id="figure-21-1.-distribution-of-the-number-of-articles-written-within-3-years-of-graduation.">그림 21-1. 졸업 후 3년 이내에 작성된 논문 수의 분포.</h6>
 </figure>
 
-결과 데이터가 카운트이므로 가장 일반적인(common) 분포 가정은 결과가 푸아송(Poisson) 분포를 따른다는 것입니다. 이 장에서는 여러 유형의 분석을 위해 이 데이터를 사용할 것입니다.
+결과 데이터가 카운트이므로 일반적인(common) 분포 가정은 결과가 푸아송(Poisson) 분포를 따른다는 것입니다. 이 장에서는 여러 유형의 분석을 위해 이 데이터를 사용할 것입니다.
 
 # 2-표본 테스트를 이용한 비교 (Comparisons with Two-Sample Tests)
 
@@ -59,7 +59,7 @@ bioChemists %>%
 #> 2 Women    619   421
 ```
 
-데이터에 남성이 더 많기도 했지만(although), 남성이 훨씬 더 많은 출판물을 냈습니다. 이 데이터를 분석하는 가장 간단한(simplest) 접근 방식은 stats 패키지의 `poisson.test()` 함수를 사용하여 2-표본 비교(two-sample comparison)를 수행하는 것입니다. 이 함수는 하나 또는 두 그룹에 대한 카운트(counts)를 요구합니다.
+데이터에 남성이 더 많기도 했지만(although), 남성이 훨씬 더 많은 출판물을 냈습니다. 이 데이터를 분석하는 간단한(simplest) 접근 방식은 stats 패키지의 `poisson.test()` 함수를 사용하여 2-표본 비교(two-sample comparison)를 수행하는 것입니다. 이 함수는 하나 또는 두 그룹에 대한 카운트(counts)를 요구합니다.
 
 우리의 적용 사례에서 두 성별을 비교하기 위한 가설(hypotheses)은 다음과 같습니다.
 
@@ -91,7 +91,7 @@ poisson.test(c(930, 619), T = 3)
 
 이 함수는 p-값과 함께 출판 비율의 비(ratio)에 대한 신뢰 구간을 보고합니다(reports). 결과는 관찰된 차이가 경험적 잡음(experiential noise)보다 크며(greater than) $`H_{a}`$를 지지(favors)함을 나타냅니다.
 
-이 함수를 사용할 때의 한 가지 문제점(issue)은 결과가 `htest` 객체로 반환(come back)된다는 것입니다. 이러한 유형의 객체는 잘 정의된(well-defined) 구조를 가지고 있지만 보고 또는 시각화와 같은 후속(subsequent) 작업에 사용하기(consume) 어려울 수 있습니다. 추론 모델을 위해 tidymodels가 제공하는(offers) 가장 영향력 있는(impactful) 도구는 broom 패키지의 `tidy()` 함수입니다. 이전에 살펴보았듯이, 이 함수는 객체로부터 형식이 잘 갖춰지고(well-formed) 예측 가능한 이름의 티블(tibble)을 만듭니다. 우리는 2-표본 비교 테스트의 결과를 `tidy()`할 수 있습니다.
+이 함수를 사용할 때의 한 가지 문제점(issue)은 결과가 `htest` 객체로 반환(come back)된다는 것입니다. 이러한 유형의 객체는 잘 정의된(well-defined) 구조를 가지고 있지만 보고 또는 시각화와 같은 후속(subsequent) 작업에 사용하기(consume) 어려울 수 있습니다. 추론 모델을 위해 tidymodels가 제공하는(offers) 영향력 있는(impactful) 도구는 broom 패키지의 `tidy()` 함수입니다. 이전에 살펴보았듯이, 이 함수는 객체로부터 형식이 잘 갖춰지고(well-formed) 예측 가능한 이름의 티블(tibble)을 만듭니다. 우리는 2-표본 비교 테스트의 결과를 `tidy()`할 수 있습니다.
 
 ```
 poisson.test(c(930, 619)) %>%

@@ -7,7 +7,7 @@ source("_common.R")
 
 ## 소개 (Introduction)
 
-프로그래밍 섹션을 마무리하기(finish off) 위해, 책의 다른 부분(otherwise)에서는 다루지 않는 가장 중요한(most important) 기본 R(base R) 함수들에 대해 간단히 살펴보겠습니다(quick tour).
+프로그래밍 섹션을 마무리하기(finish off) 위해, 책의 다른 부분(otherwise)에서는 다루지 않는 중요한(most important) 기본 R(base R) 함수들에 대해 간단히 살펴보겠습니다(quick tour).
 이러한 도구는 프로그래밍을 더 많이 수행할수록(as you do more) 특히 유용하며(particularly useful), 실제(in the wild) 접하게 될(encounter) 코드를 읽는(read) 데 도움이 됩니다.
 
 여기서 tidyverse가 데이터 과학 문제를 해결하는(solve) 유일한(not the only) 방법은 아니라는 점을 상기(remind)시키는 것이 좋습니다.
@@ -65,7 +65,7 @@ library(tidyverse)
 
 3.  **논리 벡터 (A logical vector)**.
     논리 벡터로 부분 집합을 추출하면 `TRUE` 값에 해당하는 모든 값을 유지합니다.
-    이것은 비교 함수(comparison functions)와 함께(in conjunction with) 가장 유용(useful)하게 자주(most often) 사용됩니다.
+    이것은 비교 함수(comparison functions)와 함께(in conjunction with) 유용(useful)하게 자주(most often) 사용됩니다.
 
     ```{r}
     x <- c(10, 3, NA, 5, 8, 1, NA)
@@ -95,7 +95,7 @@ library(tidyverse)
 
 ### 데이터 프레임 부분 집합 추출 (Subsetting data frames)
 
-데이터 프레임에서 `[`를 사용할 수 있는 아주 여러 가지(quite a few) 다양한 방법[^base-r-1]이 있지만, 가장 중요한(most important) 방법은 `df[rows, cols]`를 사용하여 행(rows)과 열(cols)을 독립적으로(independently) 선택(select)하는 것입니다. 여기서 `rows`와 `cols`는 위에서 설명한(described above) 벡터입니다.
+데이터 프레임에서 `[`를 사용할 수 있는 아주 여러 가지(quite a few) 다양한 방법[^base-r-1]이 있지만, 중요한(most important) 방법은 `df[rows, cols]`를 사용하여 행(rows)과 열(cols)을 독립적으로(independently) 선택(select)하는 것입니다. 여기서 `rows`와 `cols`는 위에서 설명한(described above) 벡터입니다.
 예를 들어 `df[rows, ]` 및 `df[, cols]`는 빈 부분 집합(empty subset)을 사용하여 다른 차원(dimension)을 보존(preserve)하면서 행이나 열만 선택합니다.
 
 [^base-r-1]: 데이터 프레임을 1차원(1d) 객체처럼 추출하거나 행렬(matrix)로 부분 집합을 추출하는 방법은 <https://adv-r.hadley.nz/subsetting.html#subset-multiple>을 참조(Read)하세요.
@@ -249,7 +249,7 @@ tb
 해들리(Hadley)는 <https://gist.github.com/hadley/1986a273e384fb2d4d752c18ed71bedf>에 몇 가지 예제를 수집했습니다(collected).
 
 빠른 요약(quick summaries)을 수행할 때 `$`를 직접 사용하는 것이 편리(convenient)합니다.
-예를 들어 가장 큰(biggest) 다이아몬드의 크기나 `cut`의 가능한 값을 찾고 싶다면 `summarize()`를 사용할 필요가 없습니다(no need to use):
+예를 들어 큰(biggest) 다이아몬드의 크기나 `cut`의 가능한 값을 찾고 싶다면 `summarize()`를 사용할 필요가 없습니다(no need to use):
 
 ```{r}
 max(diamonds$carat)
@@ -367,7 +367,7 @@ knitr::include_graphics("diagrams/pepper.png")
 이 문맥(context)에서 apply와 map은 동의어(synonyms)입니다. "벡터의 각 요소에 함수를 매핑(map)한다"고 말하는 또 다른(another) 방법이 "벡터의 각 요소에 함수를 적용(apply)한다"는 것이기 때문입니다.
 여기서는 실제 환경(in the wild)에서 이를 알아볼(recognize) 수 있도록 이 제품군에 대한 간략한 개요(quick overview)를 제공하겠습니다.
 
-이 제품군의 가장 중요한 멤버는 `purrr::map()`[^base-r-3]과 매우 유사(very similar)한 `lapply()`입니다.
+이 제품군의 중요한 멤버는 `purrr::map()`[^base-r-3]과 매우 유사(very similar)한 `lapply()`입니다.
 사실(In fact) 우리는 `map()`의 고급(advanced) 기능을 사용하지 않았기 때문에 @sec-iteration의 모든 `map()` 호출을 `lapply()`로 바꿀 수(replace) 있습니다.
 
 [^base-r-3]: 여기에는 오류가 있을 경우 진행률 표시줄(progress bars)이나 어떤 요소에서 문제가 발생(caused the problem)했는지 보고하는 것과 같은 편리한 기능(convenient features)이 부족(lacks)합니다.
@@ -432,7 +432,7 @@ for (element in vector) {
 }
 ```
 
-`for` 루프를 가장 직관적으로 사용하는 방법(most straightforward use of)은 `walk()`와 동일한 효과(same effect)를 얻는 것입니다. 리스트의 각 요소에 대해 부작용(side-effect)이 있는 일부 함수를 호출하는 것입니다.
+`for` 루프를 직관적으로 사용하는 방법(most straightforward use of)은 `walk()`와 동일한 효과(same effect)를 얻는 것입니다. 리스트의 각 요소에 대해 부작용(side-effect)이 있는 일부 함수를 호출하는 것입니다.
 예를 들어 @sec-save-database에서 `walk()`를 사용하는 대신(instead of):
 
 ```{r}

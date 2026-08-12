@@ -198,8 +198,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../notes/part01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">톺아보기</span></a>
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">R과 데이터 분석</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -207,14 +207,44 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notes/data-visualize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">데이터 시각화 (Data visualization)</span></a>
+  <a href="../../notes/ch01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notes/data-transform.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">소개</span></a>
+  <a href="../../notes/ch02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 변환</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 가져오기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 계층</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 관련 정보</span></a>
   </div>
 </li>
       </ul>
@@ -411,14 +441,14 @@ P(A) = \frac{A\text{에 속한 결과의 수}}{S\text{의 전체 결과 수}}
 <p>확률 변수 역시 사건처럼 확률을 계산할 수 있습니다. 확률 분포(Probability distribution)를 이용하면 확률 변수의 특성을 쉽게 파악할 수 있습니다. 확률 분포는 확률 변수가 가질 수 있는 모든 값(또는 값의 구간)과 그에 대응하는 확률을 연결해 주는 함수 또는 표입니다. 뒤에서 볼 연속 확률 변수의 경우 특정 한 값이 나올 확률은 0이므로, 값이 아니라 구간에 확률을 대응시킨다는 점에 유의하십시오. 분포를 정의하는 함수는 모수(parameters)를 가집니다. 모수의 값에 따라 분포의 형태가 결정되고 각 결과의 확률이 달라집니다.</p>
 <section id="이항-분포" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="이항-분포"><span class="header-section-number">2.1</span> 이항 분포</h3>
-<p>동전을 한 번 던질 때 결과는 앞면이나 뒷면 두 가지뿐입니다. 동전이 공정하다면 앞면이 나올 확률은 <span class="math inline">\(p=0.5\)</span>입니다. 이 과정을 총 10번 반복한다고 가정할 때, 가장 관심 있는 확률 변수 <span class="math inline">\(X\)</span>는 ’10번의 던지기 중 앞면이 나온 횟수’가 될 것입니다.</p>
+<p>동전을 한 번 던질 때 결과는 앞면이나 뒷면 두 가지뿐입니다. 동전이 공정하다면 앞면이 나올 확률은 <span class="math inline">\(p=0.5\)</span>입니다. 이 과정을 총 10번 반복한다고 가정할 때, 관심 있는 확률 변수 <span class="math inline">\(X\)</span>는 ’10번의 던지기 중 앞면이 나온 횟수’가 될 것입니다.</p>
 <p>이항 분포(Binomial distribution)는 정확히 이러한 상황을 모델링하기 위해 고안되었습니다. 이 이산형 분포는 <span class="math inline">\(n\)</span>번의 독립적인 시행에서 관찰된 ‘성공’(성공의 정의는 문제마다 다름) 횟수 <span class="math inline">\(X\)</span>를 설명합니다. <span class="math inline">\(X\)</span>가 가질 수 있는 값은 <span class="math inline">\(0, 1, 2, \dots, n\)</span>이므로 명백한 이산 확률 분포입니다.</p>
 <p>이항 분포는 전체 시행 횟수 <span class="math inline">\(n\)</span>과 개별 시행의 성공 확률 <span class="math inline">\(p\)</span>라는 두 가지 모수에 의해 그 형태가 결정됩니다. 앞선 예시에서 동전 던지기는 10회의 시행과 앞면 확률 0.5를 가지므로, 앞면의 수 <span class="math inline">\(X\)</span>는 이항 분포를 따르며 이를 <span class="math inline">\(X \sim \text{Bin}(10, 0.5)\)</span>로 표기합니다.</p>
 <p>이항 분포의 모수를 이용하면 평균적으로 몇 번의 성공을 기대할 수 있는지도 쉽게 계산할 수 있습니다. <span class="math inline">\(X \sim \text{Bin}(n, p)\)</span>일 때, 예상되는(평균적인) 성공 횟수는 <span class="math inline">\(n \times p\)</span>입니다. 즉, <span class="math inline">\(X \sim \text{Bin}(10, 0.5)\)</span>인 동전 던지기에서는 <span class="math inline">\(10 \times 0.5 = 5\)</span>번의 앞면이 나올 것으로 기대합니다. 이러한 기댓값을 바탕으로 실제 관측된 데이터가 일반적인지, 아니면 이례적인지를 판단하게 됩니다.</p>
 </section>
 <section id="정규분포" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="정규분포"><span class="header-section-number">2.2</span> 정규분포</h3>
-<p>정규분포(Normal distributions)는 통계학에서 가장 중심적인 역할을 하는 연속 확률 분포입니다. 향후 자세히 다루겠지만, 우선 기본적인 성질을 파악해 두어야 합니다. 정규분포는 종 모양(Bell-shaped)의 곡선을 그리며, 좌우 대칭이고 중심에 하나의 봉우리(Unimodal)를 가집니다. 연속 확률 변수를 다루므로 값의 범위는 <span class="math inline">\(-\infty\)</span>에서 <span class="math inline">\(\infty\)</span>까지 이어집니다. 정규분포는 평균 모수 <span class="math inline">\(\mu\)</span>와 분산 모수 <span class="math inline">\(\sigma^2\)</span>라는 두 개의 모수에 의해 완전히 결정됩니다.</p>
+<p>정규분포(Normal distributions)는 통계학에서 중심적인 역할을 하는 연속 확률 분포입니다. 향후 자세히 다루겠지만, 우선 기본적인 성질을 파악해 두어야 합니다. 정규분포는 종 모양(Bell-shaped)의 곡선을 그리며, 좌우 대칭이고 중심에 하나의 봉우리(Unimodal)를 가집니다. 연속 확률 변수를 다루므로 값의 범위는 <span class="math inline">\(-\infty\)</span>에서 <span class="math inline">\(\infty\)</span>까지 이어집니다. 정규분포는 평균 모수 <span class="math inline">\(\mu\)</span>와 분산 모수 <span class="math inline">\(\sigma^2\)</span>라는 두 개의 모수에 의해 완전히 결정됩니다.</p>
 <p>평균 모수 <span class="math inline">\(\mu\)</span>는 정규분포의 중심 위치를 정합니다. 확률 변수가 정규분포를 따른다면, 그 분포에서 무수히 많은 표본을 추출하여 평균을 내었을 때 결국 <span class="math inline">\(\mu\)</span>에 가까워진다는 것을 의미합니다.</p>
 <p>분산 모수 <span class="math inline">\(\sigma^2\)</span>는 분포가 얼마나 퍼져 있는지를 결정합니다. <span class="math inline">\(\sigma^2\)</span>가 클수록 데이터가 넓게 흩어지고 종 모양이 평평해지며, 작을수록 평균 근처에 밀집되어 뾰족한 형태를 띱니다. 평균 <span class="math inline">\(\mu\)</span>가 변하면 종 모양은 그대로 유지된 채 좌우로만 이동하지만, 분산 <span class="math inline">\(\sigma^2\)</span>가 변하면 종의 퍼짐 정도가 달라집니다.</p>
 <p>다양한 정규분포 중에서도 특별히 평균이 <span class="math inline">\(\mu = 0\)</span>이고 분산이 <span class="math inline">\(\sigma^2 = 1\)</span>인 분포를 표준 정규분포(Standard Normal distribution)라고 부릅니다. 이 분포가 중요한 이유는, 평균과 분산이 어떤 값이든 간에 모든 정규분포를 이 표준 정규분포로 변환(표준화)할 수 있기 때문입니다. 확률 변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>, 분산 <span class="math inline">\(\sigma^2\)</span>인 정규분포를 따른다면(<span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>), 다음과 같이 확률 변수 <span class="math inline">\(Z\)</span>를 정의할 수 있습니다.</p>

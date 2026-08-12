@@ -534,7 +534,7 @@ data2022 <- readxl::read_excel("data/y2022.xlsx")
 
 - 첫 번째 인자인 `path`는 살펴볼 디렉터리입니다.
 
-- `pattern`은 파일 이름을 필터링하는 데 사용되는 정규 표현식입니다. 지정된 확장자를 가진 모든 파일을 찾기 위한 가장 일반적인 패턴은 `[.]xlsx$` 또는 `[.]csv$`와 같은 것입니다.
+- `pattern`은 파일 이름을 필터링하는 데 사용되는 정규 표현식입니다. 지정된 확장자를 가진 모든 파일을 찾기 위한 일반적인 패턴은 `[.]xlsx$` 또는 `[.]csv$`와 같은 것입니다.
 
 - `full.names`는 디렉터리 이름이 출력에 포함되어야 하는지 여부를 결정합니다. 거의 항상 이것이 `TRUE`가 되기를 원할 것입니다.
 
@@ -694,7 +694,7 @@ list_rbind()
 
 때로는 파일 이름 자체가 데이터이기도 합니다. 이 예제에서 파일 이름에는 연도가 포함되어 있는데, 개별 파일에는 기록되어 있지 않습니다. 최종 데이터 프레임으로 해당 열을 가져오려면 두 가지를 해야 합니다.
 
-첫째, 경로의 벡터에 이름을 지정합니다. 이를 수행하는 가장 쉬운 방법은 함수를 취할 수 있는 <a href="https://rlang.r-lib.org/reference/set_names.html" class="orm:hideurl"><code>set_names()</code></a> 함수를 사용하는 것입니다. 여기서는 <a href="https://rdrr.io/r/base/basename.html" class="orm:hideurl"><code>basename()</code></a>을 사용하여 전체 경로에서 파일 이름만 추출합니다.
+첫째, 경로의 벡터에 이름을 지정합니다. 이를 수행하는 쉬운 방법은 함수를 취할 수 있는 <a href="https://rlang.r-lib.org/reference/set_names.html" class="orm:hideurl"><code>set_names()</code></a> 함수를 사용하는 것입니다. 여기서는 <a href="https://rdrr.io/r/base/basename.html" class="orm:hideurl"><code>basename()</code></a>을 사용하여 전체 경로에서 파일 이름만 추출합니다.
 
 ```
 
@@ -985,7 +985,7 @@ duckdb::duckdb_read_csv(con, "gapminder", paths)
 
 이것은 여기에서 잘 작동하겠지만, 우리는 CSV 파일이 없고 대신 Excel 스프레드시트가 있습니다. 그래서 우리는 "수작업"으로 해야 할 것입니다. 수작업으로 하는 방법을 배우면 여러 개의 CSV 파일이 있고 작업 중인 데이터베이스에 모두 로드하는 하나의 함수가 없을 때에도 도움이 될 것입니다.
 
-데이터로 채울 테이블을 만드는 것부터 시작해야 합니다. 이를 수행하는 가장 쉬운 방법은 원하는 모든 열을 포함하되 데이터의 샘플링만 포함하는 더미 데이터 프레임인 템플릿(template)을 만드는 것입니다. gapminder 데이터의 경우 단일 파일을 읽고 연도를 추가하여 해당 템플릿을 만들 수 있습니다.
+데이터로 채울 테이블을 만드는 것부터 시작해야 합니다. 이를 수행하는 쉬운 방법은 원하는 모든 열을 포함하되 데이터의 샘플링만 포함하는 더미 데이터 프레임인 템플릿(template)을 만드는 것입니다. gapminder 데이터의 경우 단일 파일을 읽고 연도를 추가하여 해당 템플릿을 만들 수 있습니다.
 
 ```
 

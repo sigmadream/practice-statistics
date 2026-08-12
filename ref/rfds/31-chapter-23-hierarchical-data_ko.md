@@ -4,7 +4,7 @@
 
 이 장에서는 본질적으로 계층적이거나 트리(tree) 모양인 데이터를 행과 열로 구성된 직사각형 데이터 프레임으로 변환하는 데이터 _직사각형화(rectangling)_ 기술을 배울 것입니다. 계층적 데이터는 특히 웹에서 가져온 데이터로 작업할 때 놀라울 정도로 흔하기 때문에 이는 중요합니다.
 
-직사각형화에 대해 배우려면 먼저 계층적 데이터를 가능하게 하는 데이터 구조인 리스트(list)에 대해 배워야 합니다. 그런 다음 <a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="orm:hideurl"><code>tidyr::unnest_longer()</code></a>와 <a href="https://tidyr.tidyverse.org/reference/unnest_wider.html" class="orm:hideurl"><code>tidyr::unnest_wider()</code></a>라는 두 가지 중요한 tidyr 함수에 대해 배울 것입니다. 이어서 실제 문제를 해결하기 위해 이 간단한 함수들을 반복적으로 적용하는 몇 가지 사례 연구를 보여줄 것입니다. 마지막으로 계층적 데이터 세트의 가장 빈번한 출처이자 웹에서 데이터 교환의 일반적인 형식인 JSON에 대해 이야기하며 마무리하겠습니다.
+직사각형화에 대해 배우려면 먼저 계층적 데이터를 가능하게 하는 데이터 구조인 리스트(list)에 대해 배워야 합니다. 그런 다음 <a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="orm:hideurl"><code>tidyr::unnest_longer()</code></a>와 <a href="https://tidyr.tidyverse.org/reference/unnest_wider.html" class="orm:hideurl"><code>tidyr::unnest_wider()</code></a>라는 두 가지 중요한 tidyr 함수에 대해 배울 것입니다. 이어서 실제 문제를 해결하기 위해 이 간단한 함수들을 반복적으로 적용하는 몇 가지 사례 연구를 보여줄 것입니다. 마지막으로 계층적 데이터 세트의 빈번한 출처이자 웹에서 데이터 교환의 일반적인 형식인 JSON에 대해 이야기하며 마무리하겠습니다.
 
 ## 사전 준비
 
@@ -247,7 +247,7 @@ df1 |> unnest_wider(y, names_sep = "_")
 
 ## unnest_longer()
 
-각 행에 이름이 없는 리스트가 포함되어 있을 때 <a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="orm:hideurl"><code>unnest_longer()</code></a>를 사용하여 각 요소를 자체 행에 넣는 것이 가장 자연스럽습니다.
+각 행에 이름이 없는 리스트가 포함되어 있을 때 <a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="orm:hideurl"><code>unnest_longer()</code></a>를 사용하여 각 요소를 자체 행에 넣는 것이 자연스럽습니다.
 
 ```
 df2 |> unnest_longer(y)
@@ -309,7 +309,7 @@ df4 |> unnest_longer(y)
 
 보시다시피 출력에는 리스트 열이 포함되어 있지만, 리스트 열의 각 요소에는 단일 요소만 포함되어 있습니다. <a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="orm:hideurl"><code>unnest_longer()</code></a>가 벡터의 공통 유형을 찾을 수 없기 때문에 원래 유형을 리스트 열에 유지합니다. 열의 모든 요소는 같은 유형이어야 한다는 계명을 위반하는 것이 아닌지 궁금할 수 있습니다. 그렇지 않습니다. 내용물이 서로 다른 유형이더라도 모든 요소는 리스트입니다.
 
-일관되지 않은 유형을 다루는 것은 까다로우며 세부 사항은 문제의 정확한 특성과 목표에 따라 다르지만, 가장 가능성 높은 것은 <a href="ch26.html#chp-iteration" data-type="xref">26장</a>의 도구가 필요할 것이라는 점입니다.
+일관되지 않은 유형을 다루는 것은 까다로우며 세부 사항은 문제의 정확한 특성과 목표에 따라 다르지만, 가능성 높은 것은 <a href="ch26.html#chp-iteration" data-type="xref">26장</a>의 도구가 필요할 것이라는 점입니다.
 
 ## 다른 함수들
 
@@ -787,7 +787,7 @@ locations |>
 
 JSON은 사람이 아닌 기계가 쉽게 읽고 쓸 수 있도록 설계된 간단한 형식입니다. 6가지 핵심 데이터 유형이 있습니다. 그중 4가지는 스칼라(scalar)입니다.
 
-- 가장 단순한 유형은 null(`null`)로, R의 `NA`와 같은 역할을 합니다. 데이터가 없음을 나타냅니다.
+- 단순한 유형은 null(`null`)로, R의 `NA`와 같은 역할을 합니다. 데이터가 없음을 나타냅니다.
 - 문자열(string)은 R의 문자열과 매우 유사하지만 항상 큰따옴표를 사용해야 합니다.
 - 숫자(number)는 R의 숫자와 비슷합니다. 정수(123), 소수(123.45), 과학적 표기법(1.23e3)을 사용할 수 있습니다. JSON은 `Inf`, `-Inf`, `NaN`을 지원하지 않습니다.
 - 불리언(boolean)은 R의 `TRUE`, `FALSE`와 비슷하지만 소문자 `true`와 `false`를 사용합니다.
@@ -833,7 +833,7 @@ str(parse_json('{"x": [1, 2, 3]}'))
 #>   ..$ : int 3
 ```
 
-jsonlite에는 <a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="orm:hideurl"><code>fromJSON()</code></a>이라는 또 다른 중요한 함수가 있습니다. 자동 단순화(`simplifyVector = TRUE`)를 수행하기 때문에 여기서는 사용하지 않습니다. 이것은 종종, 특히 단순한 경우에 잘 작동하지만, 무슨 일이 일어나고 있는지 정확히 알고 가장 복잡한 중첩 구조를 더 쉽게 처리할 수 있도록 직접 직사각형화(rectangling)를 수행하는 편이 더 낫다고 생각합니다.
+jsonlite에는 <a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="orm:hideurl"><code>fromJSON()</code></a>이라는 또 다른 중요한 함수가 있습니다. 자동 단순화(`simplifyVector = TRUE`)를 수행하기 때문에 여기서는 사용하지 않습니다. 이것은 종종, 특히 단순한 경우에 잘 작동하지만, 무슨 일이 일어나고 있는지 정확히 알고 복잡한 중첩 구조를 더 쉽게 처리할 수 있도록 직접 직사각형화(rectangling)를 수행하는 편이 더 낫다고 생각합니다.
 
 ## 직사각형화 프로세스 시작하기
 
@@ -928,6 +928,6 @@ df |> unnest_wider(results)
 
 이 장에서는 리스트가 무엇인지, JSON 파일에서 리스트를 어떻게 생성하는지, 그리고 이를 어떻게 직사각형 형태의 데이터 프레임으로 바꾸는지 배웠습니다. 놀랍게도 우리에게는 리스트 요소를 행으로 넣는 <a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="orm:hideurl"><code>unnest_longer()</code></a>와 리스트 요소를 열로 넣는 <a href="https://tidyr.tidyverse.org/reference/unnest_wider.html" class="orm:hideurl"><code>unnest_wider()</code></a>라는 두 가지 새로운 함수만 필요합니다. 리스트 열이 얼마나 깊게 중첩되어 있는지는 중요하지 않습니다. 여러분이 해야 할 일은 이 두 가지 함수를 반복적으로 호출하는 것뿐입니다.
 
-JSON은 웹 API가 반환하는 가장 일반적인 데이터 형식입니다. 웹사이트에 API가 없지만 웹사이트에서 원하는 데이터를 볼 수 있는 경우에는 어떻게 해야 할까요? 그것이 다음 장의 주제인 웹 스크래핑(web scraping), 즉 HTML 웹 페이지에서 데이터를 추출하는 것입니다.
+JSON은 웹 API가 반환하는 일반적인 데이터 형식입니다. 웹사이트에 API가 없지만 웹사이트에서 원하는 데이터를 볼 수 있는 경우에는 어떻게 해야 할까요? 그것이 다음 장의 주제인 웹 스크래핑(web scraping), 즉 HTML 웹 페이지에서 데이터를 추출하는 것입니다.
 
 <sup>[1](ch23.html#idm44771276868272-marker)</sup> 이것은 RStudio의 기능입니다.

@@ -2,9 +2,9 @@
 
 # 소개 (Introduction)
 
-이 장에서는 논리형 벡터를 다루는 도구를 배울 것입니다. 논리형 벡터는 각 요소가 `TRUE`, `FALSE`, `NA`라는 세 가지 가능한 값 중 하나만 가질 수 있기 때문에 가장 단순한 유형의 벡터입니다. 원시 데이터(raw data)에서 논리형 벡터를 발견하는 일은 비교적 드물지만, 거의 모든 분석 과정에서 논리형 벡터를 생성하고 조작하게 될 것입니다.
+이 장에서는 논리형 벡터를 다루는 도구를 배울 것입니다. 논리형 벡터는 각 요소가 `TRUE`, `FALSE`, `NA`라는 세 가지 가능한 값 중 하나만 가질 수 있기 때문에 단순한 유형의 벡터입니다. 원시 데이터(raw data)에서 논리형 벡터를 발견하는 일은 비교적 드물지만, 거의 모든 분석 과정에서 논리형 벡터를 생성하고 조작하게 될 것입니다.
 
-논리형 벡터를 생성하는 가장 일반적인 방법인 숫자 비교부터 논의를 시작하겠습니다. 그런 다음 부울 대수(Boolean algebra)를 사용하여 서로 다른 논리형 벡터를 결합하는 방법과 유용한 요약(summaries)에 대해 배울 것입니다. 마지막으로 논리형 벡터로 구동되는 조건부 변경을 수행하기 위한 두 가지 유용한 함수인 <a href="https://dplyr.tidyverse.org/reference/if_else.html" class="orm:hideurl"><code>if_else()</code></a>와 <a href="https://dplyr.tidyverse.org/reference/case_when.html" class="orm:hideurl"><code>case_when()</code></a>으로 마무리하겠습니다.
+논리형 벡터를 생성하는 일반적인 방법인 숫자 비교부터 논의를 시작하겠습니다. 그런 다음 부울 대수(Boolean algebra)를 사용하여 서로 다른 논리형 벡터를 결합하는 방법과 유용한 요약(summaries)에 대해 배울 것입니다. 마지막으로 논리형 벡터로 구동되는 조건부 변경을 수행하기 위한 두 가지 유용한 함수인 <a href="https://dplyr.tidyverse.org/reference/if_else.html" class="orm:hideurl"><code>if_else()</code></a>와 <a href="https://dplyr.tidyverse.org/reference/case_when.html" class="orm:hideurl"><code>case_when()</code></a>으로 마무리하겠습니다.
 
 ## 사전 준비 (Prerequisites)
 
@@ -139,14 +139,14 @@ NA > 5
 #> [1] NA
 ```
 
-가장 혼란스러운 결과는 바로 이것입니다.
+혼란스러운 결과는 바로 이것입니다.
 
 ```
 NA == NA
 #> [1] NA
 ```
 
-우리가 약간의 문맥을 인위적으로 제공하면 이것이 왜 참인지 이해하기 가장 쉽습니다.
+우리가 약간의 문맥을 인위적으로 제공하면 이것이 왜 참인지 이해하기 쉽습니다.
 
 ```
 # 우리는 메리의 나이를 모릅니다.
@@ -407,7 +407,7 @@ summarize(n = n())
 
 # 그룹 (Groups)
 
-지금까지 행과 열에 작동하는 함수에 대해 배웠습니다. 그룹화(work with groups) 기능을 추가하면 dplyr은 훨씬 더 강력해집니다. 이 섹션에서는 가장 중요한 함수인 <a href="https://dplyr.tidyverse.org/reference/group_by.html" class="orm:hideurl"><code>group_by()</code></a>, <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a>, 그리고 slice 함수군(family)에 중점을 둘 것입니다.
+지금까지 행과 열에 작동하는 함수에 대해 배웠습니다. 그룹화(work with groups) 기능을 추가하면 dplyr은 훨씬 더 강력해집니다. 이 섹션에서는 중요한 함수인 <a href="https://dplyr.tidyverse.org/reference/group_by.html" class="orm:hideurl"><code>group_by()</code></a>, <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a>, 그리고 slice 함수군(family)에 중점을 둘 것입니다.
 
 ## group_by()
 
@@ -436,7 +436,7 @@ group_by(month)
 
 ## summarize()
 
-가장 중요한 그룹화 연산은 요약(summary)으로, 단일 요약 통계를 계산하는 데 사용되는 경우 데이터 프레임을 축소하여 각 그룹당 단일 행을 갖도록 만듭니다. dplyr에서 이 연산은 다음 예제와 같이 <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a><sup><a href="ch03.html#idm44771326592976" id="idm44771326592976-marker" data-type="noteref">3</a></sup>에 의해 수행되며, 이는 월별 평균 출발 지연을 계산합니다.
+중요한 그룹화 연산은 요약(summary)으로, 단일 요약 통계를 계산하는 데 사용되는 경우 데이터 프레임을 축소하여 각 그룹당 단일 행을 갖도록 만듭니다. dplyr에서 이 연산은 다음 예제와 같이 <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a><sup><a href="ch03.html#idm44771326592976" id="idm44771326592976-marker" data-type="noteref">3</a></sup>에 의해 수행되며, 이는 월별 평균 출발 지연을 계산합니다.
 
 ```
 
@@ -516,7 +516,7 @@ n = n()
 각 그룹의 마지막 행을 가져옵니다.
 
 `df |> slice_min(x, n = 1)`
-`x` 열의 값이 가장 작은 행을 가져옵니다.
+`x` 열의 값이 작은 행을 가져옵니다.
 
 `df |> slice_max(x, n = 1)`
 ## if_else()
@@ -681,7 +681,7 @@ x < -1 ~ TRUE,
 
 ```
 
-한 유형의 벡터를 다른 유형으로 자동 변환하는 것은 오류의 흔한 원인이기 때문에, 전반적으로 비교적 적은 수의 유형들만 호환됩니다. 다음은 호환되는 가장 중요한 경우들입니다.
+한 유형의 벡터를 다른 유형으로 자동 변환하는 것은 오류의 흔한 원인이기 때문에, 전반적으로 비교적 적은 수의 유형들만 호환됩니다. 다음은 호환되는 중요한 경우들입니다.
 
 - <a href="#sec-numeric-summaries-of-logicals" data-type="xref">"논리형 벡터의 숫자 요약"</a>에서 논의했듯이, 숫자(numeric)와 논리형(logical) 벡터는 호환됩니다.
 - 문자열(strings)과 요인(factors)(<a href="ch16.html#chp-factors" data-type="xref">제16장</a>)은 호환됩니다. 요인은 제한된 값 집합을 가진 문자열이라고 생각할 수 있기 때문입니다.
@@ -701,7 +701,7 @@ x < -1 ~ TRUE,
 
 논리형 벡터의 정의는 간단합니다. 각 값은 반드시 `TRUE`, `FALSE`, 또는 `NA`여야 하기 때문입니다. 그러나 논리형 벡터는 엄청난 힘을 제공합니다. 이 장에서 여러분은 `>`, `<`, `<=`, `>=`, `==`, `!=`, <a href="https://rdrr.io/r/base/NA.html" class="orm:hideurl"><code>is.na()</code></a>를 사용하여 논리형 벡터를 만드는 방법; `!`, `&`, `|`를 사용하여 결합하는 방법; 그리고 <a href="https://rdrr.io/r/base/any.html" class="orm:hideurl"><code>any()</code></a>, <a href="https://rdrr.io/r/base/all.html" class="orm:hideurl"><code>all()</code></a>, <a href="https://rdrr.io/r/base/sum.html" class="orm:hideurl"><code>sum()</code></a>, <a href="https://rdrr.io/r/base/mean.html" class="orm:hideurl"><code>mean()</code></a>으로 요약하는 방법을 배웠습니다. 또한 논리형 벡터의 값에 따라 값을 반환할 수 있게 해주는 강력한 <a href="https://dplyr.tidyverse.org/reference/if_else.html" class="orm:hideurl"><code>if_else()</code></a>와 <a href="https://dplyr.tidyverse.org/reference/case_when.html" class="orm:hideurl"><code>case_when()</code></a> 함수도 배웠습니다.
 
-다음 장들에서 우리는 논리형 벡터를 계속해서 볼 것입니다. 예를 들어, <a href="ch14.html#chp-strings" data-type="xref">제14장</a>에서는 `pattern`과 일치하는 `x`의 요소들에 대해 `TRUE`인 논리형 벡터를 반환하는 `str_detect(x, pattern)`에 대해 배울 것이고, <a href="ch17.html#chp-datetimes" data-type="xref">제17장</a>에서는 날짜와 시간의 비교로부터 논리형 벡터를 만들 것입니다. 하지만 일단 지금은 다음으로 가장 중요한 벡터 유형인 숫자 벡터(numeric vectors)로 넘어가겠습니다.
+다음 장들에서 우리는 논리형 벡터를 계속해서 볼 것입니다. 예를 들어, <a href="ch14.html#chp-strings" data-type="xref">제14장</a>에서는 `pattern`과 일치하는 `x`의 요소들에 대해 `TRUE`인 논리형 벡터를 반환하는 `str_detect(x, pattern)`에 대해 배울 것이고, <a href="ch17.html#chp-datetimes" data-type="xref">제17장</a>에서는 날짜와 시간의 비교로부터 논리형 벡터를 만들 것입니다. 하지만 일단 지금은 다음으로 중요한 벡터 유형인 숫자 벡터(numeric vectors)로 넘어가겠습니다.
 
 <sup>[1](ch12.html#idm44771302207136-marker)</sup> R은 보통 당신을 위해 print를 호출하지만(즉, `x`는 `print(x)`의 단축키입니다), 다른 인자를 제공하고 싶다면 명시적으로 호출하는 것이 유용합니다.
 

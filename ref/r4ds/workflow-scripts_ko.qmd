@@ -32,7 +32,7 @@ knitr::include_graphics("diagrams/rstudio/script.png", dpi = 270)
 ### 코드 실행 (Running code)
 
 스크립트 에디터는 복잡한 ggplot2 플롯이나 dplyr 조작의 긴 시퀀스를 구축하는 데 훌륭한 장소입니다.
-스크립트 에디터를 효과적으로 사용하는 열쇠는 가장 중요한 키보드 단축키 중 하나인 Cmd/Ctrl + Enter를 외우는 것입니다.
+스크립트 에디터를 효과적으로 사용하는 열쇠는 중요한 키보드 단축키 중 하나인 Cmd/Ctrl + Enter를 외우는 것입니다.
 이는 콘솔에서 현재의 R 표현식을 실행합니다.
 예를 들어 아래 코드를 살펴보겠습니다.
 

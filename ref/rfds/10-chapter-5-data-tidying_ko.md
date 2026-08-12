@@ -81,7 +81,7 @@ dplyr, ggplot2 및 tidyverse의 다른 모든 패키지들은 정돈된 데이�
 
 이는 대부분의 실제 분석이 최소한 약간의 정돈 작업을 필요로 함을 의미합니다. 먼저 기본 변수와 관측치가 무엇인지 파악하는 것으로 시작할 것입니다. 때로는 이것이 쉽지만, 다른 때에는 원래 데이터를 생성한 사람들과 상의해야 할 수도 있습니다. 다음으로, 변수를 열에, 관측치를 행에 두는 정돈된 형태로 데이터를 *피벗(pivot)*할 것입니다.
 
-tidyr은 데이터를 피벗하기 위한 두 가지 함수를 제공합니다. <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="orm:hideurl"><code>pivot_longer()</code></a>와 <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="orm:hideurl"><code>pivot_wider()</code></a>. <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="orm:hideurl"><code>pivot_longer()</code></a>가 가장 일반적인 경우이기 때문에 먼저 시작할 것입니다. 몇 가지 예제를 살펴보겠습니다.
+tidyr은 데이터를 피벗하기 위한 두 가지 함수를 제공합니다. <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="orm:hideurl"><code>pivot_longer()</code></a>와 <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="orm:hideurl"><code>pivot_wider()</code></a>. <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="orm:hideurl"><code>pivot_longer()</code></a>가 일반적인 경우이기 때문에 먼저 시작할 것입니다. 몇 가지 예제를 살펴보겠습니다.
 
 ## 열 이름에 포함된 데이터
 
@@ -266,7 +266,7 @@ tidyr은 데이터를 피벗하기 위한 두 가지 함수를 제공합니다. 
 
 이 장에서는 변수가 열에 있고 관측치가 행에 있는 데이터인 정돈된 데이터(tidy data)에 대해 배웠습니다. 정돈된 데이터는 대부분의 함수에서 이해되는 일관된 구조이기 때문에 tidyverse에서의 작업을 더 쉽게 만듭니다. 주요 과제는 전달받은 어떤 구조의 데이터든 정돈된 형식으로 변환하는 것입니다. 이를 위해 많은 정돈되지 않은 데이터셋을 정돈할 수 있게 해주는 <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="orm:hideurl"><code>pivot_longer()</code></a>와 <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="orm:hideurl"><code>pivot_wider()</code></a>에 대해 배웠습니다. 여기서 제시한 예제는 <a href="https://tidyr.tidyverse.org/articles/pivot.html" class="orm:hideurl"><code>vignette("pivot", package = "tidyr")</code></a>에서 선택한 것이므로, 이 장에서 도움을 받지 못한 문제에 직면한다면 다음에 시도해 볼 좋은 자료가 바로 그 비네트(vignette)입니다.
 
-또 다른 과제는, 주어진 데이터셋에 대해 더 길거나 넓은 버전을 "정돈된(tidy)" 것이라고 명명하는 것이 불가능할 수 있다는 점입니다. 이는 정돈된 데이터가 각 열에 하나의 변수를 가진다고 말했지만 실제로 변수가 무엇인지는 정의하지 않았던(그리고 정의하기가 놀랍도록 어렵습니다) 우리의 정돈된 데이터 정의를 일부 반영하는 것입니다. 분석을 가장 쉽게 만들어주는 것이라면 무엇이든 변수라고 말하는 등 실용적으로 접근해도 전혀 문제가 없습니다. 따라서 어떤 계산을 어떻게 수행할지 알아내는 데 막혔다면 데이터 구성을 전환하는 것을 고려해 보세요. 필요에 따라 정돈을 해제하고, 변환하고, 다시 정돈하는 것을 두려워하지 마세요!
+또 다른 과제는, 주어진 데이터셋에 대해 더 길거나 넓은 버전을 "정돈된(tidy)" 것이라고 명명하는 것이 불가능할 수 있다는 점입니다. 이는 정돈된 데이터가 각 열에 하나의 변수를 가진다고 말했지만 실제로 변수가 무엇인지는 정의하지 않았던(그리고 정의하기가 놀랍도록 어렵습니다) 우리의 정돈된 데이터 정의를 일부 반영하는 것입니다. 분석을 쉽게 만들어주는 것이라면 무엇이든 변수라고 말하는 등 실용적으로 접근해도 전혀 문제가 없습니다. 따라서 어떤 계산을 어떻게 수행할지 알아내는 데 막혔다면 데이터 구성을 전환하는 것을 고려해 보세요. 필요에 따라 정돈을 해제하고, 변환하고, 다시 정돈하는 것을 두려워하지 마세요!
 
 이 장을 즐겁게 읽었고 기본 이론에 대해 더 알고 싶다면, *Journal of Statistical Software*에 게시된 [“Tidy Data” 논문](https://oreil.ly/86uxw)에서 그 역사와 이론적 토대에 대해 자세히 알아볼 수 있습니다.
 

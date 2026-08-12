@@ -47,7 +47,7 @@ flights
 #> #   carrier <chr>, flight <int>, tailnum <chr>, origin <chr>, dest <chr>, …
 ```
 
-`flights`는 몇 가지 일반적인 함정(gotchas)을 피하기 위해 tidyverse에서 사용하는 특수한 유형의 데이터 프레임인 티블(tibble)입니다. 티블과 데이터 프레임의 가장 중요한 차이점은 티블이 출력되는 방식입니다. 티블은 대규모 데이터셋을 위해 설계되었으므로 처음 몇 개의 행과 한 화면에 맞는 열(column)만 표시합니다. 모든 것을 볼 수 있는 몇 가지 옵션이 있습니다. RStudio를 사용하는 경우 가장 편리한 것은 대화형의 스크롤 가능하고 필터링 가능한 뷰를 열어주는 `View(flights)`일 것입니다. 그렇지 않으면 `print(flights, width = Inf)`를 사용하여 모든 열을 표시하거나 <a href="https://pillar.r-lib.org/reference/glimpse.html" class="orm:hideurl"><code>glimpse()</code></a>를 사용할 수 있습니다.
+`flights`는 몇 가지 일반적인 함정(gotchas)을 피하기 위해 tidyverse에서 사용하는 특수한 유형의 데이터 프레임인 티블(tibble)입니다. 티블과 데이터 프레임의 중요한 차이점은 티블이 출력되는 방식입니다. 티블은 대규모 데이터셋을 위해 설계되었으므로 처음 몇 개의 행과 한 화면에 맞는 열(column)만 표시합니다. 모든 것을 볼 수 있는 몇 가지 옵션이 있습니다. RStudio를 사용하는 경우 편리한 것은 대화형의 스크롤 가능하고 필터링 가능한 뷰를 열어주는 `View(flights)`일 것입니다. 그렇지 않으면 `print(flights, width = Inf)`를 사용하여 모든 열을 표시하거나 <a href="https://pillar.r-lib.org/reference/glimpse.html" class="orm:hideurl"><code>glimpse()</code></a>를 사용할 수 있습니다.
 
 ```
 glimpse(flights)
@@ -86,7 +86,7 @@ glimpse(flights)
 
 - 출력은 항상 새로운 데이터 프레임입니다.
 
-각 동사는 한 가지 일을 잘 수행하므로 복잡한 문제를 해결하려면 일반적으로 여러 동사를 결합해야 하며, 파이프 `|>`를 사용하여 이를 수행할 것입니다. 파이프에 대해서는 <a href="#sec-the-pipe" data-type="xref">"파이프"</a>에서 더 논의하겠지만, 간단히 말해서 파이프는 왼쪽에 있는 것을 가져와 오른쪽에 있는 함수로 전달하므로 `x |> f(y)`는 `f(x, y)`와 같고 `x |> f(y) |> g(z)`는 `g(f(x, y), z)`와 같습니다. 파이프를 발음하는 가장 쉬운 방법은 "then(그러고 나서)"입니다. 이를 통해 세부 사항을 아직 배우지 않았더라도 다음 코드를 이해할 수 있습니다.
+각 동사는 한 가지 일을 잘 수행하므로 복잡한 문제를 해결하려면 일반적으로 여러 동사를 결합해야 하며, 파이프 `|>`를 사용하여 이를 수행할 것입니다. 파이프에 대해서는 <a href="#sec-the-pipe" data-type="xref">"파이프"</a>에서 더 논의하겠지만, 간단히 말해서 파이프는 왼쪽에 있는 것을 가져와 오른쪽에 있는 함수로 전달하므로 `x |> f(y)`는 `f(x, y)`와 같고 `x |> f(y) |> g(z)`는 `g(f(x, y), z)`와 같습니다. 파이프를 발음하는 쉬운 방법은 "then(그러고 나서)"입니다. 이를 통해 세부 사항을 아직 배우지 않았더라도 다음 코드를 이해할 수 있습니다.
 
 ```
 flights |>
@@ -97,11 +97,11 @@ flights |>
   )
 ```
 
-dplyr의 동사들은 작동 대상에 따라 _행(rows)_, _열(columns)_, _그룹(groups)_, _테이블(tables)_ 의 네 가지 그룹으로 구성됩니다. 다음 섹션에서는 행, 열, 그룹에 대한 가장 중요한 동사를 배우게 될 것이며, <a href="ch19.html#chp-joins" data-type="xref">19장</a>에서 테이블에서 작동하는 조인(join) 동사로 돌아오겠습니다. 그럼 뛰어들어 봅시다!
+dplyr의 동사들은 작동 대상에 따라 _행(rows)_, _열(columns)_, _그룹(groups)_, _테이블(tables)_ 의 네 가지 그룹으로 구성됩니다. 다음 섹션에서는 행, 열, 그룹에 대한 중요한 동사를 배우게 될 것이며, <a href="ch19.html#chp-joins" data-type="xref">19장</a>에서 테이블에서 작동하는 조인(join) 동사로 돌아오겠습니다. 그럼 뛰어들어 봅시다!
 
 # 행 (Rows)
 
-데이터셋의 행에 작용하는 가장 중요한 동사는 순서를 변경하지 않고 어떤 행을 유지할지 결정하는 <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 어떤 행이 존재하는지 변경하지 않고 행의 순서를 변경하는 <a href="https://dplyr.tidyverse.org/reference/arrange.html" class="orm:hideurl"><code>arrange()</code></a>입니다. 두 함수 모두 행에만 영향을 미치고 열은 변경되지 않은 상태로 둡니다. 고유한(unique) 값을 가진 행을 찾는 <a href="https://dplyr.tidyverse.org/reference/distinct.html" class="orm:hideurl"><code>distinct()</code></a>에 대해서도 논의할 것입니다. 하지만 <a href="https://dplyr.tidyverse.org/reference/arrange.html" class="orm:hideurl"><code>arrange()</code></a> 및 <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 달리 선택적으로 열을 수정할 수도 있습니다.
+데이터셋의 행에 작용하는 중요한 동사는 순서를 변경하지 않고 어떤 행을 유지할지 결정하는 <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 어떤 행이 존재하는지 변경하지 않고 행의 순서를 변경하는 <a href="https://dplyr.tidyverse.org/reference/arrange.html" class="orm:hideurl"><code>arrange()</code></a>입니다. 두 함수 모두 행에만 영향을 미치고 열은 변경되지 않은 상태로 둡니다. 고유한(unique) 값을 가진 행을 찾는 <a href="https://dplyr.tidyverse.org/reference/distinct.html" class="orm:hideurl"><code>distinct()</code></a>에 대해서도 논의할 것입니다. 하지만 <a href="https://dplyr.tidyverse.org/reference/arrange.html" class="orm:hideurl"><code>arrange()</code></a> 및 <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 달리 선택적으로 열을 수정할 수도 있습니다.
 
 ## filter()
 
@@ -187,7 +187,7 @@ jan1 <- flights |>
 
 ## 흔한 실수
 
-R을 처음 시작할 때 가장 흔히 저지르기 쉬운 실수는 동일성(equality)을 테스트할 때 `==` 대신 `=`를 사용하는 것입니다. <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>는 이런 일이 발생하면 여러분에게 알려줍니다.
+R을 처음 시작할 때 흔히 저지르기 쉬운 실수는 동일성(equality)을 테스트할 때 `==` 대신 `=`를 사용하는 것입니다. <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>는 이런 일이 발생하면 여러분에게 알려줍니다.
 
 ```
 flights |>
@@ -209,7 +209,7 @@ flights |>
 
 ## arrange()
 
-<a href="https://dplyr.tidyverse.org/reference/arrange.html" class="orm:hideurl"><code>arrange()</code></a>는 열의 값을 기준으로 행의 순서를 변경합니다. 데이터 프레임과 정렬 기준이 될 열 이름 집합(또는 더 복잡한 표현식)을 사용합니다. 여러 열 이름을 제공하면 각 추가 열이 이전 열 값에서 순위가 같은 경우(ties) 순위를 매기는 데 사용됩니다. 예를 들어, 다음 코드는 출발 시간에 따라 정렬하며 이 정보는 4개의 열에 분산되어 있습니다. 우리는 가장 이른 연도를 먼저 얻고 그 다음 연도 내에서 가장 이른 달을 얻는 식입니다.
+<a href="https://dplyr.tidyverse.org/reference/arrange.html" class="orm:hideurl"><code>arrange()</code></a>는 열의 값을 기준으로 행의 순서를 변경합니다. 데이터 프레임과 정렬 기준이 될 열 이름 집합(또는 더 복잡한 표현식)을 사용합니다. 여러 열 이름을 제공하면 각 추가 열이 이전 열 값에서 순위가 같은 경우(ties) 순위를 매기는 데 사용됩니다. 예를 들어, 다음 코드는 출발 시간에 따라 정렬하며 이 정보는 4개의 열에 분산되어 있습니다. 우리는 이른 연도를 먼저 얻고 그 다음 연도 내에서 이른 달을 얻는 식입니다.
 
 ```
 flights |>
@@ -227,7 +227,7 @@ flights |>
 #> #   carrier <chr>, flight <int>, tailnum <chr>, origin <chr>, dest <chr>, …
 ```
 
-<a href="https://dplyr.tidyverse.org/reference/arrange.html" class="orm:hideurl"><code>arrange()</code></a> 안에서 열에 <a href="https://dplyr.tidyverse.org/reference/desc.html" class="orm:hideurl"><code>desc()</code></a>를 사용하면 해당 열을 기준으로 데이터 프레임을 내림차순(큰 것부터 작은 것 순)으로 재정렬할 수 있습니다. 예를 들어, 이 코드는 지연 시간이 가장 긴 것부터 짧은 것 순으로 항공편을 정렬합니다.
+<a href="https://dplyr.tidyverse.org/reference/arrange.html" class="orm:hideurl"><code>arrange()</code></a> 안에서 열에 <a href="https://dplyr.tidyverse.org/reference/desc.html" class="orm:hideurl"><code>desc()</code></a>를 사용하면 해당 열을 기준으로 데이터 프레임을 내림차순(큰 것부터 작은 것 순)으로 재정렬할 수 있습니다. 예를 들어, 이 코드는 지연 시간이 긴 것부터 짧은 것 순으로 항공편을 정렬합니다.
 
 ```
 flights |>
@@ -381,7 +381,7 @@ geom_point(position = "jitter")
 
 # 좌표계 (Coordinate Systems)
 
-좌표계는 아마도 ggplot2에서 가장 복잡한 부분일 것입니다. 기본 좌표계는 데카르트 좌표계(Cartesian coordinate system)로, 여기서 x와 y 위치는 각 점의 위치를 결정하기 위해 독립적으로 작용합니다. 가끔 유용하게 쓰일 수 있는 두 가지 다른 좌표계가 있습니다.
+좌표계는 아마도 ggplot2에서 복잡한 부분일 것입니다. 기본 좌표계는 데카르트 좌표계(Cartesian coordinate system)로, 여기서 x와 y 위치는 각 점의 위치를 결정하기 위해 독립적으로 작용합니다. 가끔 유용하게 쓰일 수 있는 두 가지 다른 좌표계가 있습니다.
 
 - <a href="https://ggplot2.tidyverse.org/reference/coord_map.html" class="orm:hideurl"><code>coord_quickmap()</code></a>은 지리적 지도의 가로세로 비율(aspect ratio)을 올바르게 설정합니다. 이는 ggplot2로 공간 데이터를 그릴 때 중요합니다. 이 책에서는 지도를 다룰 공간이 부족하지만, *ggplot2: Elegant Graphics for Data Analysis* (Springer)의 [지도 챕터(Maps chapter)](https://oreil.ly/45GHE)에서 자세히 알아볼 수 있습니다.
 
@@ -621,7 +621,7 @@ mtcars %>%
 
 # 그룹 (Groups)
 
-지금까지 행과 열에 작동하는 함수에 대해 배웠습니다. 그룹화(work with groups) 기능을 추가하면 dplyr은 훨씬 더 강력해집니다. 이 섹션에서는 가장 중요한 함수인 <a href="https://dplyr.tidyverse.org/reference/group_by.html" class="orm:hideurl"><code>group_by()</code></a>, <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a>, 그리고 slice 함수군(family)에 중점을 둘 것입니다.
+지금까지 행과 열에 작동하는 함수에 대해 배웠습니다. 그룹화(work with groups) 기능을 추가하면 dplyr은 훨씬 더 강력해집니다. 이 섹션에서는 중요한 함수인 <a href="https://dplyr.tidyverse.org/reference/group_by.html" class="orm:hideurl"><code>group_by()</code></a>, <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a>, 그리고 slice 함수군(family)에 중점을 둘 것입니다.
 
 ## group_by()
 
@@ -648,7 +648,7 @@ flights |>
 
 ## summarize()
 
-가장 중요한 그룹화 연산은 요약(summary)으로, 단일 요약 통계를 계산하는 데 사용되는 경우 데이터 프레임을 축소하여 각 그룹당 단일 행을 갖도록 만듭니다. dplyr에서 이 연산은 다음 예제와 같이 <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a><sup><a href="ch03.html#idm44771326592976" id="idm44771326592976-marker" data-type="noteref">3</a></sup>에 의해 수행되며, 이는 월별 평균 출발 지연을 계산합니다.
+중요한 그룹화 연산은 요약(summary)으로, 단일 요약 통계를 계산하는 데 사용되는 경우 데이터 프레임을 축소하여 각 그룹당 단일 행을 갖도록 만듭니다. dplyr에서 이 연산은 다음 예제와 같이 <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a><sup><a href="ch03.html#idm44771326592976" id="idm44771326592976-marker" data-type="noteref">3</a></sup>에 의해 수행되며, 이는 월별 평균 출발 지연을 계산합니다.
 
 ```
 flights |>
@@ -722,15 +722,15 @@ flights |>
 각 그룹의 마지막 행을 가져옵니다.
 
 `df |> slice_min(x, n = 1)`  
-`x` 열의 값이 가장 작은 행을 가져옵니다.
+`x` 열의 값이 작은 행을 가져옵니다.
 
 `df |> slice_max(x, n = 1)`  
-`x` 열의 값이 가장 큰 행을 가져옵니다.
+`x` 열의 값이 큰 행을 가져옵니다.
 
 `df |> slice_sample(n = 1)`  
 무작위로 하나의 행을 가져옵니다.
 
-`n`을 변경하여 여러 행을 선택하거나 `n =` 대신 `prop = 0.1`을 사용하여 각 그룹에서 행의 10%를 선택할 수 있습니다. 예를 들어 다음 코드는 각 목적지에서 도착 시 가장 많이 지연된 항공편을 찾습니다.
+`n`을 변경하여 여러 행을 선택하거나 `n =` 대신 `prop = 0.1`을 사용하여 각 그룹에서 행의 10%를 선택할 수 있습니다. 예를 들어 다음 코드는 각 목적지에서 도착 시 많이 지연된 항공편을 찾습니다.
 
 ```
 flights |>
@@ -751,7 +751,7 @@ flights |>
 #> #   arr_delay <dbl>, carrier <chr>, flight <int>, tailnum <chr>, …
 ```
 
-목적지는 105개지만 여기서는 108개의 행이 반환됩니다. 무슨 일일까요? <a href="https://dplyr.tidyverse.org/reference/slice.html" class="orm:hideurl"><code>slice_min()</code></a>과 <a href="https://dplyr.tidyverse.org/reference/slice.html" class="orm:hideurl"><code>slice_max()</code></a>는 값이 같은 항목(tied values)을 유지하므로 `n = 1`은 가장 높은 값을 가진 모든 행을 제공함을 의미합니다. 각 그룹당 정확히 한 행만 원한다면 `with_ties = FALSE`로 설정할 수 있습니다.
+목적지는 105개지만 여기서는 108개의 행이 반환됩니다. 무슨 일일까요? <a href="https://dplyr.tidyverse.org/reference/slice.html" class="orm:hideurl"><code>slice_min()</code></a>과 <a href="https://dplyr.tidyverse.org/reference/slice.html" class="orm:hideurl"><code>slice_max()</code></a>는 값이 같은 항목(tied values)을 유지하므로 `n = 1`은 높은 값을 가진 모든 행을 제공함을 의미합니다. 각 그룹당 정확히 한 행만 원한다면 `with_ties = FALSE`로 설정할 수 있습니다.
 
 이것은 <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a>로 최대 지연을 계산하는 것과 유사하지만, 단일 요약 통계 대신 전체 해당 행(또는 동점인 경우 여러 행)을 얻게 됩니다.
 
@@ -875,9 +875,9 @@ n = n(),
 
 ## 연습 문제
 
-1.  평균 지연 시간이 가장 나쁜 항공사는 어디인가요? 도전: 나쁜 공항의 효과와 나쁜 항공사의 효과를 구분할 수 있나요? 왜 그렇게 생각하시나요/아니라고 생각하시나요? (힌트: `flights |> group_by(carrier, dest) |> summarize(n())`에 대해 생각해 보세요.)
+1.  평균 지연 시간이 나쁜 항공사는 어디인가요? 도전: 나쁜 공항의 효과와 나쁜 항공사의 효과를 구분할 수 있나요? 왜 그렇게 생각하시나요/아니라고 생각하시나요? (힌트: `flights |> group_by(carrier, dest) |> summarize(n())`에 대해 생각해 보세요.)
 
-2.  각 목적지에서 출발 시 가장 많이 지연된 항공편을 찾으세요.
+2.  각 목적지에서 출발 시 많이 지연된 항공편을 찾으세요.
 
 3.  지연 시간이 하루 종일 어떻게 변하나요? 그래프로 답을 설명해 보세요.
 
@@ -975,7 +975,7 @@ batters
 
 - `performance`의 변동성은 타석 수가 적은 선수들 사이에서 더 큽니다. 이 그래프의 형태는 매우 특징적입니다. 평균(또는 다른 요약 통계)을 그룹 크기에 대해 그릴 때마다 표본 크기가 커짐에 따라 변동성이 감소하는 것을 볼 수 있습니다.<sup><a href="ch03.html#idm44771326013808" id="idm44771326013808-marker" data-type="noteref">4</a></sup>
 
-- 기술(`performance`)과 공을 칠 기회(`n`) 사이에는 양의 상관관계(positive correlation)가 있습니다. 팀은 최고의 타자들에게 공을 칠 수 있는 기회를 가장 많이 주고 싶어하기 때문입니다.
+- 기술(`performance`)과 공을 칠 기회(`n`) 사이에는 양의 상관관계(positive correlation)가 있습니다. 팀은 최고의 타자들에게 공을 칠 수 있는 기회를 많이 주고 싶어하기 때문입니다.
 
 ```
 
@@ -993,7 +993,7 @@ geom_smooth(se = FALSE)
 
 ggplot2와 dplyr을 결합하는 유용한 패턴에 주목하세요. 데이터셋 처리를 위한 `|>`에서 그래프에 레이어를 추가하기 위한 `+`로 전환해야 한다는 점만 기억하면 됩니다.
 
-이는 순위 지정(ranking)에도 중요한 의미를 갖습니다. 순진하게(naively) `desc(performance)`로 정렬하면, 최고의 타율을 기록한 사람들은 공을 인플레이시키려 매우 적게 시도했다가 우연히 안타를 친 사람들임이 분명합니다. 그들이 반드시 가장 기술이 뛰어난 선수들인 것은 아닙니다.
+이는 순위 지정(ranking)에도 중요한 의미를 갖습니다. 순진하게(naively) `desc(performance)`로 정렬하면, 최고의 타율을 기록한 사람들은 공을 인플레이시키려 매우 적게 시도했다가 우연히 안타를 친 사람들임이 분명합니다. 그들이 반드시 기술이 뛰어난 선수들인 것은 아닙니다.
 
 ```
 
@@ -1022,7 +1022,7 @@ arrange(desc(performance))
 
 <sup>[1](ch03.html#idm44771332966640-marker)</sup> 나중에 위치를 기반으로 행을 선택할 수 있는 `slice_*()` 함수군에 대해 배우게 될 것입니다.
 
-<sup>[2](ch03.html#idm44771330064672-marker)</sup> RStudio에서 열이 많은 데이터셋을 보는 가장 쉬운 방법은 <a href="https://rdrr.io/r/utils/View.html" class="orm:hideurl"><code>View()</code></a>라는 점을 기억하세요.
+<sup>[2](ch03.html#idm44771330064672-marker)</sup> RStudio에서 열이 많은 데이터셋을 보는 쉬운 방법은 <a href="https://rdrr.io/r/utils/View.html" class="orm:hideurl"><code>View()</code></a>라는 점을 기억하세요.
 
 <sup>[3](ch03.html#idm44771326592976-marker)</sup> 영국식 영어를 선호한다면 <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarise()</code></a>를 사용할 수도 있습니다.
 

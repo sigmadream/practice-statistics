@@ -4,7 +4,7 @@
 
 > “단순한 그래프는 다른 어떤 장치보다 데이터 분석가의 마음에 더 많은 정보를 가져다주었습니다.” —존 튜키(John Tukey)
 
-R에는 그래프를 만들기 위한 여러 시스템이 있지만, ggplot2는 가장 우아하고 다재다능한 시스템 중 하나입니다. ggplot2는 그래프를 설명하고 구축하기 위한 일관된 시스템인 _그래픽 문법(grammar of graphics)_ 을 구현합니다. ggplot2를 사용하면 하나의 시스템을 배워 여러 곳에 적용함으로써 더 빠르고 더 많은 작업을 수행할 수 있습니다.
+R에는 그래프를 만들기 위한 여러 시스템이 있지만, ggplot2는 우아하고 다재다능한 시스템 중 하나입니다. ggplot2는 그래프를 설명하고 구축하기 위한 일관된 시스템인 _그래픽 문법(grammar of graphics)_ 을 구현합니다. ggplot2를 사용하면 하나의 시스템을 배워 여러 곳에 적용함으로써 더 빠르고 더 많은 작업을 수행할 수 있습니다.
 
 이 장에서는 ggplot2를 사용하여 데이터를 시각화하는 방법을 배웁니다. 간단한 산점도를 만드는 것으로 시작하여 ggplot2의 기본 구성 요소인 심미적 매핑(aesthetic mappings)과 기하학적 객체(geometric objects)를 소개하는 데 사용합니다. 그런 다음 단일 변수의 분포를 시각화하고 두 개 이상의 변수 간의 관계를 시각화하는 과정을 안내합니다. 마지막으로 그래프를 저장하는 방법과 문제 해결 팁으로 마무리하겠습니다.
 
@@ -177,7 +177,7 @@ ggplot(
 
 > Removed 2 rows containing missing values (<a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="orm:hideurl"><code>geom_point()</code></a>).
 
-이 메시지가 나타나는 이유는 데이터셋에 체질량 및/또는 지느러미 길이 값이 누락된 펭귄이 두 마리 있으며, ggplot2는 이 두 값 모두 없이는 이들을 그래프에 나타낼 방법이 없기 때문입니다. R과 마찬가지로 ggplot2는 결측값이 조용히 사라지게 내버려두면 안 된다는 철학을 따릅니다. 이런 유형의 경고는 실제 데이터를 다룰 때 아마도 가장 흔하게 볼 수 있는 경고 유형 중 하나일 것입니다. 결측값은 흔한 문제이며, 책 전체, 특히 <a href="ch18.html#chp-missing-values" data-type="xref">18장</a>에서 이에 대해 더 자세히 배울 것입니다. 이 장의 나머지 그래프에서는 우리가 그리는 모든 그래프마다 이 경고가 출력되지 않도록 숨길 것입니다.
+이 메시지가 나타나는 이유는 데이터셋에 체질량 및/또는 지느러미 길이 값이 누락된 펭귄이 두 마리 있으며, ggplot2는 이 두 값 모두 없이는 이들을 그래프에 나타낼 방법이 없기 때문입니다. R과 마찬가지로 ggplot2는 결측값이 조용히 사라지게 내버려두면 안 된다는 철학을 따릅니다. 이런 유형의 경고는 실제 데이터를 다룰 때 아마도 흔하게 볼 수 있는 경고 유형 중 하나일 것입니다. 결측값은 흔한 문제이며, 책 전체, 특히 <a href="ch18.html#chp-missing-values" data-type="xref">18장</a>에서 이에 대해 더 자세히 배울 것입니다. 이 장의 나머지 그래프에서는 우리가 그리는 모든 그래프마다 이 경고가 출력되지 않도록 숨길 것입니다.
 
 ## 심미성과 레이어 추가하기
 
@@ -409,7 +409,7 @@ ggplot(penguins, aes(x = body_mass_g)) +
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_01in13.png" alt="A histogram of body masses of penguins. The distribution is unimodal and right skewed, ranging between approximately 2500 to 6500 grams." />
 </figure>
 
-히스토그램은 x축을 동일한 간격의 구간(bin)으로 나눈 다음 막대의 높이를 사용하여 각 구간에 속하는 관측치의 수를 표시합니다. 이전 그래프에서 가장 높은 막대는 39개의 관측치가 막대의 왼쪽과 오른쪽 가장자리인 3,500에서 3,700그램 사이의 `body_mass_g` 값을 가지고 있음을 보여줍니다.
+히스토그램은 x축을 동일한 간격의 구간(bin)으로 나눈 다음 막대의 높이를 사용하여 각 구간에 속하는 관측치의 수를 표시합니다. 이전 그래프에서 높은 막대는 39개의 관측치가 막대의 왼쪽과 오른쪽 가장자리인 3,500에서 3,700그램 사이의 `body_mass_g` 값을 가지고 있음을 보여줍니다.
 
 `x` 변수의 단위로 측정되는 `binwidth` 인자를 사용하여 히스토그램의 구간 너비를 설정할 수 있습니다. 히스토그램을 작업할 때는 `binwidth` 값이 다르면 다른 패턴이 나타날 수 있으므로 항상 다양한 `binwidth` 값을 탐색해야 합니다. 다음 그래프들에서 `binwidth` 20은 너무 좁아서 막대가 너무 많아져 분포의 모양을 파악하기 어렵게 만듭니다. 마찬가지로 2,000의 `binwidth`는 너무 커서 모든 데이터가 단 3개의 막대에 모이게 되어 분포의 모양을 파악하기 어렵게 만듭니다. `binwidth` 200은 합리적인 균형을 제공합니다.
 
@@ -452,7 +452,7 @@ ggplot(penguins, aes(x = body_mass_g)) +
 
 3.  <a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="orm:hideurl"><code>geom_histogram()</code></a>의 `bins` 인자는 어떤 역할을 하나요?
 
-4.  tidyverse 패키지를 로드할 때 사용할 수 있는 `diamonds` 데이터셋에 있는 `carat` 변수의 히스토그램을 만들어 보세요. 다양한 `binwidth` 값으로 실험해 보세요. 어떤 값이 가장 흥미로운 패턴을 드러내나요?
+4.  tidyverse 패키지를 로드할 때 사용할 수 있는 `diamonds` 데이터셋에 있는 `carat` 변수의 히스토그램을 만들어 보세요. 다양한 `binwidth` 값으로 실험해 보세요. 어떤 값이 흥미로운 패턴을 드러내나요?
 
 # 관계 시각화하기
 
@@ -466,7 +466,7 @@ ggplot(penguins, aes(x = body_mass_g)) +
 
 - 상자의 양쪽 가장자리에서 IQR의 1.5배 이상 벗어난 곳에 떨어지는 관측치를 표시하는 시각적 점(points). 이러한 이상치 점들은 비정상적이므로 개별적으로 그려집니다.
 
-- 상자의 각 끝에서 분포 내 가장 멀리 떨어진 비이상치(non-outlier) 점까지 뻗어 있는 선(또는 수염, whisker).
+- 상자의 각 끝에서 분포 내 멀리 떨어진 비이상치(non-outlier) 점까지 뻗어 있는 선(또는 수염, whisker).
 
 <figure>
 <p><img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_0101.png" alt="A diagram depicting how a boxplot is created following the steps outlined above." /></p>
@@ -543,7 +543,7 @@ ggplot(penguins, aes(x = island, fill = species)) +
 
 ## 두 개의 수치형 변수
 
-지금까지 두 수치형 변수 간의 관계를 시각화하기 위해 산점도(<a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="orm:hideurl"><code>geom_point()</code></a>로 만듦)와 매끄러운 곡선(<a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="orm:hideurl"><code>geom_smooth()</code></a>로 만듦)에 대해 배웠습니다. 산점도는 아마도 두 수치형 변수 간의 관계를 시각화하는 데 가장 일반적으로 사용되는 그래프일 것입니다.
+지금까지 두 수치형 변수 간의 관계를 시각화하기 위해 산점도(<a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="orm:hideurl"><code>geom_point()</code></a>로 만듦)와 매끄러운 곡선(<a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="orm:hideurl"><code>geom_smooth()</code></a>로 만듦)에 대해 배웠습니다. 산점도는 아마도 두 수치형 변수 간의 관계를 시각화하는 데 일반적으로 사용되는 그래프일 것입니다.
 
 ```
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
@@ -620,7 +620,7 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 
 # 그래프 저장하기
 
-그래프를 다 만든 후에는 다른 곳에서 사용할 수 있도록 이미지로 저장하여 R 밖으로 가져오고 싶을 수 있습니다. 이는 가장 최근에 생성된 그래프를 디스크에 저장하는 <a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="orm:hideurl"><code>ggsave()</code></a>의 역할입니다.
+그래프를 다 만든 후에는 다른 곳에서 사용할 수 있도록 이미지로 저장하여 R 밖으로 가져오고 싶을 수 있습니다. 이는 최근에 생성된 그래프를 디스크에 저장하는 <a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="orm:hideurl"><code>ggsave()</code></a>의 역할입니다.
 
 ```
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +

@@ -4,7 +4,7 @@
 
 엄청난 양의 데이터가 데이터베이스에 존재하기 때문에, 데이터베이스에 접근하는 방법을 아는 것은 필수적입니다. 때로는 누군가에게 특정 시점의 데이터를 `.csv` 파일로 다운로드해 달라고 부탁할 수 있지만, 이는 금세 고통스러운 작업이 됩니다. 변경 사항을 적용해야 할 때마다 다른 사람과 소통해야 하기 때문입니다. 여러분은 필요할 때 필요한 데이터를 얻기 위해 데이터베이스에 직접 접근할 수 있기를 원할 것입니다.
 
-이 장에서는 먼저 DBI 패키지의 기본 사항을 배웁니다. 데이터베이스에 연결하고 SQL<sup><a href="ch21.html#idm44771280827536" id="idm44771280827536-marker" data-type="noteref">1</a></sup> 쿼리를 사용하여 데이터를 검색하는 방법입니다. 구조화된 질의어(Structured Query Language)의 약자인 *SQL*은 데이터베이스의 공용어이며 모든 데이터 과학자가 배워야 할 중요한 언어입니다. 그렇지만 SQL로 시작하지 않고, 대신 dplyr 코드를 SQL로 번역해 줄 수 있는 dbplyr를 가르칠 것입니다. 이를 통해 SQL의 가장 중요한 기능 몇 가지를 가르치는 방법으로 사용할 것입니다. 이 장이 끝날 때쯤 여러분이 SQL의 달인이 되지는 않겠지만, 가장 중요한 구성 요소를 식별하고 그것들이 어떤 역할을 하는지 이해할 수는 있을 것입니다.
+이 장에서는 먼저 DBI 패키지의 기본 사항을 배웁니다. 데이터베이스에 연결하고 SQL<sup><a href="ch21.html#idm44771280827536" id="idm44771280827536-marker" data-type="noteref">1</a></sup> 쿼리를 사용하여 데이터를 검색하는 방법입니다. 구조화된 질의어(Structured Query Language)의 약자인 *SQL*은 데이터베이스의 공용어이며 모든 데이터 과학자가 배워야 할 중요한 언어입니다. 그렇지만 SQL로 시작하지 않고, 대신 dplyr 코드를 SQL로 번역해 줄 수 있는 dbplyr를 가르칠 것입니다. 이를 통해 SQL의 중요한 기능 몇 가지를 가르치는 방법으로 사용할 것입니다. 이 장이 끝날 때쯤 여러분이 SQL의 달인이 되지는 않겠지만, 중요한 구성 요소를 식별하고 그것들이 어떤 역할을 하는지 이해할 수는 있을 것입니다.
 
 ## 사전 준비
 
@@ -18,7 +18,7 @@ library(tidyverse)
 
 # 데이터베이스 기초
 
-가장 단순한 수준에서 데이터베이스는 데이터베이스 용어로 *테이블(table)*이라고 불리는 데이터 프레임의 모음이라고 생각할 수 있습니다. `data.frame`과 마찬가지로 데이터베이스 테이블은 이름이 지정된 열의 모음이며, 열의 모든 값은 동일한 유형입니다. 데이터 프레임과 데이터베이스 테이블 간에는 세 가지 주요 차이점이 있습니다.
+단순한 수준에서 데이터베이스는 데이터베이스 용어로 *테이블(table)*이라고 불리는 데이터 프레임의 모음이라고 생각할 수 있습니다. `data.frame`과 마찬가지로 데이터베이스 테이블은 이름이 지정된 열의 모음이며, 열의 모든 값은 동일한 유형입니다. 데이터 프레임과 데이터베이스 테이블 간에는 세 가지 주요 차이점이 있습니다.
 
 - 데이터베이스 테이블은 디스크에 저장되며 임의로 커질 수 있습니다. 데이터 프레임은 메모리에 저장되며 근본적으로 제한이 있습니다(물론 그 제한도 많은 문제에 대해 여전히 충분히 크긴 하지만요).
 
@@ -77,7 +77,7 @@ con <- DBI::dbConnect(duckdb::duckdb(), dbdir = "duckdb")
 
 ## 데이터 로드하기
 
-이것은 새로운 데이터베이스이므로 일부 데이터를 추가하는 것으로 시작해야 합니다. 여기서는 <a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="orm:hideurl"><code>DBI::dbWriteTable()</code></a>을 사용하여 ggplot2의 `mpg`와 `diamonds` 데이터 세트를 추가하겠습니다. <a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="orm:hideurl"><code>dbWriteTable()</code></a>의 가장 간단한 사용법은 데이터베이스 연결, 데이터베이스에 생성할 테이블의 이름, 데이터의 데이터 프레임이라는 세 가지 인자를 필요로 합니다.
+이것은 새로운 데이터베이스이므로 일부 데이터를 추가하는 것으로 시작해야 합니다. 여기서는 <a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="orm:hideurl"><code>DBI::dbWriteTable()</code></a>을 사용하여 ggplot2의 `mpg`와 `diamonds` 데이터 세트를 추가하겠습니다. <a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="orm:hideurl"><code>dbWriteTable()</code></a>의 간단한 사용법은 데이터베이스 연결, 데이터베이스에 생성할 테이블의 이름, 데이터의 데이터 프레임이라는 세 가지 인자를 필요로 합니다.
 
 ```
 dbWriteTable(con, "mpg", ggplot2::mpg)
@@ -248,7 +248,7 @@ planes <- tbl(con, "planes")
 
 SQL의 최상위 수준 구성 요소를 *문(statement)*이라고 합니다. 일반적인 문으로는 새 테이블을 정의하는 `CREATE`, 데이터를 추가하는 `INSERT`, 데이터를 검색하는 `SELECT`가 있습니다. 여러분은 데이터 과학자로서 거의 이것만 사용하게 될 것이므로 `SELECT` 문(또는 *쿼리*라고도 함)에 집중할 것입니다.
 
-쿼리는 *절(clause)*들로 구성됩니다. 다섯 가지 중요한 절이 있습니다. `SELECT`, `FROM`, `WHERE`, `ORDER BY`, `GROUP BY`. 모든 쿼리에는 `SELECT`<sup><a href="ch21.html#idm44771280084352" id="idm44771280084352-marker" data-type="noteref">4</a></sup>와 `FROM`<sup><a href="ch21.html#idm44771280052864" id="idm44771280052864-marker" data-type="noteref">5</a></sup> 절이 있어야 하며 가장 단순한 쿼리는 지정된 테이블의 모든 열을 선택하는 `SELECT * FROM table`입니다. 이것이 조작되지 않은 테이블에 대해 dbplyr가 생성하는 것입니다.
+쿼리는 *절(clause)*들로 구성됩니다. 다섯 가지 중요한 절이 있습니다. `SELECT`, `FROM`, `WHERE`, `ORDER BY`, `GROUP BY`. 모든 쿼리에는 `SELECT`<sup><a href="ch21.html#idm44771280084352" id="idm44771280084352-marker" data-type="noteref">4</a></sup>와 `FROM`<sup><a href="ch21.html#idm44771280052864" id="idm44771280052864-marker" data-type="noteref">5</a></sup> 절이 있어야 하며 단순한 쿼리는 지정된 테이블의 모든 열을 선택하는 `SELECT * FROM table`입니다. 이것이 조작되지 않은 테이블에 대해 dbplyr가 생성하는 것입니다.
 
 ```
 flights |> show_query()
@@ -588,7 +588,7 @@ FULL JOIN planes
 
 ## 다른 동사들
 
-dbplyr는 <a href="https://dplyr.tidyverse.org/reference/distinct.html" class="orm:hideurl"><code>distinct()</code></a>, `slice_*()`, <a href="https://generics.r-lib.org/reference/setops.html" class="orm:hideurl"><code>intersect()</code></a>와 같은 다른 동사뿐만 아니라 <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="orm:hideurl"><code>pivot_longer()</code></a> 및 <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="orm:hideurl"><code>pivot_wider()</code></a>와 같이 점점 더 다양해지는 tidyr 함수들도 번역합니다. 현재 사용 가능한 전체 집합을 보는 가장 쉬운 방법은 [dbplyr 웹사이트](https://oreil.ly/A8OGW)를 방문하는 것입니다.
+dbplyr는 <a href="https://dplyr.tidyverse.org/reference/distinct.html" class="orm:hideurl"><code>distinct()</code></a>, `slice_*()`, <a href="https://generics.r-lib.org/reference/setops.html" class="orm:hideurl"><code>intersect()</code></a>와 같은 다른 동사뿐만 아니라 <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="orm:hideurl"><code>pivot_longer()</code></a> 및 <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="orm:hideurl"><code>pivot_wider()</code></a>와 같이 점점 더 다양해지는 tidyr 함수들도 번역합니다. 현재 사용 가능한 전체 집합을 보는 쉬운 방법은 [dbplyr 웹사이트](https://oreil.ly/A8OGW)를 방문하는 것입니다.
 
 ## 연습문제
 
@@ -741,7 +741,7 @@ dbplyr는 일반적인 문자열 및 날짜-시간 조작 함수들도 번역하
 
 # 요약
 
-이 장에서는 데이터베이스에서 데이터에 접근하는 방법을 배웠습니다. 익숙한 dplyr 코드를 작성하면 이를 자동으로 SQL로 번역해 주는 dplyr "백엔드"인 dbplyr에 초점을 맞추었습니다. 우리는 그 번역을 사용하여 여러분에게 SQL을 약간 가르쳤습니다. SQL은 데이터 작업에 가장 널리 사용되는 언어이며 SQL을 조금 아는 것이 R을 사용하지 않는 다른 데이터 전문가들과 소통하는 것을 더 쉽게 만들어 줄 것이기 때문에 SQL을 조금 배우는 것은 중요합니다. 이 장을 마치고 SQL에 대해 더 배우고 싶다면 두 가지를 추천합니다.
+이 장에서는 데이터베이스에서 데이터에 접근하는 방법을 배웠습니다. 익숙한 dplyr 코드를 작성하면 이를 자동으로 SQL로 번역해 주는 dplyr "백엔드"인 dbplyr에 초점을 맞추었습니다. 우리는 그 번역을 사용하여 여러분에게 SQL을 약간 가르쳤습니다. SQL은 데이터 작업에 널리 사용되는 언어이며 SQL을 조금 아는 것이 R을 사용하지 않는 다른 데이터 전문가들과 소통하는 것을 더 쉽게 만들어 줄 것이기 때문에 SQL을 조금 배우는 것은 중요합니다. 이 장을 마치고 SQL에 대해 더 배우고 싶다면 두 가지를 추천합니다.
 
 - Renée M. P. Teate의 [_SQL for Data Scientists_](https://oreil.ly/QfAat)는 데이터 과학자의 요구에 특별히 맞춰 설계된 SQL 입문서이며 실제 조직에서 마주칠 가능성이 높은 종류의 고도로 상호 연결된 데이터의 예를 포함하고 있습니다.
 - Anthony DeBarros의 [_Practical SQL_](https://oreil.ly/-0Usp)은 데이터 저널리스트(설득력 있는 이야기를 전달하는 데 특화된 데이터 과학자)의 관점에서 작성되었으며 데이터를 데이터베이스에 넣고 자체 DBMS를 실행하는 것에 대해 더 자세히 다룹니다.

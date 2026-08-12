@@ -4,7 +4,7 @@
 
 <a href="ch14.html#chp-strings" data-type="xref">14장</a>에서는 문자열을 다루는 데 유용한 여러 가지 함수에 대해 배웠습니다. 이 장에서는 문자열 내의 패턴을 설명하기 위한 간결하고 강력한 언어인 *정규 표현식(regular expressions)*을 사용하는 함수에 중점을 둡니다. *regular expression*이라는 용어는 다소 길기 때문에 대부분의 사람들은 _regex_<sup><a href="ch15.html#idm44771294160112" id="idm44771294160112-marker" data-type="noteref">1</a></sup> 또는 *regexp*로 축약하여 부릅니다.
 
-이 장은 정규 표현식의 기초와 데이터 분석에 가장 유용한 stringr 함수들로 시작합니다. 그런 다음 패턴에 대한 지식을 확장하여 일곱 가지 중요한 새로운 주제(이스케이핑(escaping), 앵커링(anchoring), 문자 클래스(character classes), 단축 클래스(shorthand classes), 수량자(quantifiers), 우선순위(precedence) 및 그룹화(grouping))를 다룰 것입니다. 다음으로, stringr 함수가 다룰 수 있는 다른 유형의 패턴들과 정규 표현식의 동작을 미세 조정할 수 있는 다양한 "플래그(flags)"에 대해 이야기할 것입니다. 마지막으로, tidyverse 및 기본 R에서 정규 표현식을 사용할 수 있는 다른 곳들을 살펴보며 마무리하겠습니다.
+이 장은 정규 표현식의 기초와 데이터 분석에 유용한 stringr 함수들로 시작합니다. 그런 다음 패턴에 대한 지식을 확장하여 일곱 가지 중요한 새로운 주제(이스케이핑(escaping), 앵커링(anchoring), 문자 클래스(character classes), 단축 클래스(shorthand classes), 수량자(quantifiers), 우선순위(precedence) 및 그룹화(grouping))를 다룰 것입니다. 다음으로, stringr 함수가 다룰 수 있는 다른 유형의 패턴들과 정규 표현식의 동작을 미세 조정할 수 있는 다양한 "플래그(flags)"에 대해 이야기할 것입니다. 마지막으로, tidyverse 및 기본 R에서 정규 표현식을 사용할 수 있는 다른 곳들을 살펴보며 마무리하겠습니다.
 
 ## 사전 준비
 
@@ -25,7 +25,7 @@ library(babynames)
 
 정규 표현식 패턴이 어떻게 작동하는지 배우기 위해 <a href="https://stringr.tidyverse.org/reference/str_view.html" class="orm:hideurl"><code>str_view()</code></a>를 사용할 것입니다. 이전 장에서 우리는 문자열과 그 출력 형태를 더 잘 이해하기 위해 <a href="https://stringr.tidyverse.org/reference/str_view.html" class="orm:hideurl"><code>str_view()</code></a>를 사용했었지만, 이제는 두 번째 인수로 정규 표현식을 전달하여 사용할 것입니다. 이것이 제공되면, <a href="https://stringr.tidyverse.org/reference/str_view.html" class="orm:hideurl"><code>str_view()</code></a>는 일치하는 문자열 벡터의 요소만 표시하고, 각 일치 항목을 `<>`로 둘러싸며, 가능한 경우 일치 항목을 파란색으로 강조 표시합니다.
 
-가장 단순한 패턴은 해당 문자와 정확히 일치하는 문자와 숫자로 구성됩니다.
+단순한 패턴은 해당 문자와 정확히 일치하는 문자와 숫자로 구성됩니다.
 
 ```
 str_view(fruit, "berry")
@@ -131,7 +131,7 @@ str_detect(c("a", "b", "c"), "[aeiou]")
 #> [1]  TRUE FALSE FALSE
 ```
 
-<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>는 초기 벡터와 동일한 길이의 논리 벡터를 반환하기 때문에, <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 잘 맞습니다. 예를 들어, 이 코드는 소문자 "x"를 포함하는 가장 인기 있는 이름들을 모두 찾습니다.
+<a href="https://stringr.tidyverse.org/reference/str_detect.html" class="orm:hideurl"><code>str_detect()</code></a>는 초기 벡터와 동일한 길이의 논리 벡터를 반환하기 때문에, <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 잘 맞습니다. 예를 들어, 이 코드는 소문자 "x"를 포함하는 인기 있는 이름들을 모두 찾습니다.
 
 ```
 babynames |>
@@ -267,7 +267,7 @@ str_remove_all(x, "[aeiou]")
 
 이 장에서는 변수가 열에 있고 관측치가 행에 있는 데이터인 정돈된 데이터(tidy data)에 대해 배웠습니다. 정돈된 데이터는 대부분의 함수에서 이해되는 일관된 구조이기 때문에 tidyverse에서의 작업을 더 쉽게 만듭니다. 주요 과제는 전달받은 어떤 구조의 데이터든 정돈된 형식으로 변환하는 것입니다. 이를 위해 많은 정돈되지 않은 데이터셋을 정돈할 수 있게 해주는 <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="orm:hideurl"><code>pivot_longer()</code></a>와 <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="orm:hideurl"><code>pivot_wider()</code></a>에 대해 배웠습니다. 여기서 제시한 예제는 <a href="https://tidyr.tidyverse.org/articles/pivot.html" class="orm:hideurl"><code>vignette("pivot", package = "tidyr")</code></a>에서 선택한 것이므로, 이 장에서 도움을 받지 못한 문제에 직면한다면 다음에 시도해 볼 좋은 자료가 바로 그 비네트(vignette)입니다.
 
-또 다른 과제는, 주어진 데이터셋에 대해 더 길거나 넓은 버전을 "정돈된(tidy)" 것이라고 명명하는 것이 불가능할 수 있다는 점입니다. 이는 정돈된 데이터가 각 열에 하나의 변수를 가진다고 말했지만 실제로 변수가 무엇인지는 정의하지 않았던(그리고 정의하기가 놀랍도록 어렵습니다) 우리의 정돈된 데이터 정의를 일부 반영하는 것입니다. 분석을 가장 쉽게 만들어주는 것이라면 무엇이든 변수라고 말하는 등 실용적으로 접근해도 전혀 문제가 없습니다. 따라서 어떤 계산을 어떻게 수행할지 알아내는 데 막혔다면 데이터 구성을 전환하는 것을 고려해 보세요. 필요에 따라 정돈을 해제하고, 변환하고, 다시 정돈하는 것을 두려워하지 마세요!
+또 다른 과제는, 주어진 데이터셋에 대해 더 길거나 넓은 버전을 "정돈된(tidy)" 것이라고 명명하는 것이 불가능할 수 있다는 점입니다. 이는 정돈된 데이터가 각 열에 하나의 변수를 가진다고 말했지만 실제로 변수가 무엇인지는 정의하지 않았던(그리고 정의하기가 놀랍도록 어렵습니다) 우리의 정돈된 데이터 정의를 일부 반영하는 것입니다. 분석을 쉽게 만들어주는 것이라면 무엇이든 변수라고 말하는 등 실용적으로 접근해도 전혀 문제가 없습니다. 따라서 어떤 계산을 어떻게 수행할지 알아내는 데 막혔다면 데이터 구성을 전환하는 것을 고려해 보세요. 필요에 따라 정돈을 해제하고, 변환하고, 다시 정돈하는 것을 두려워하지 마세요!
 
 이 장을 즐겁게 읽었고 기본 이론에 대해 더 알고 싶다면, *Journal of Statistical Software*에 게시된 [“Tidy Data” 논문](https://oreil.ly/86uxw)에서 그 역사와 이론적 토대에 대해 자세히 알아볼 수 있습니다.
 
@@ -375,7 +375,7 @@ str_match(x, "gr(?:e|a)y")
    7. 최소 두 개의 모음-자음 쌍이 연속으로 포함된 단어.
    8. 오직 반복되는 모음-자음 쌍으로만 구성된 단어.
 
-4. 다음 각 단어에 대해 영국식 또는 미국식 철자와 일치하는 11개의 정규 표현식을 만드세요. airplane/aeroplane, aluminum/aluminium, analog/analogue, ass/arse, center/centre, defense/defence, donut/doughnut, gray/grey, modeling/modelling, skeptic/sceptic, summarize/summarise. 가능한 가장 짧은 정규 표현식을 만들어 보세요!
+4. 다음 각 단어에 대해 영국식 또는 미국식 철자와 일치하는 11개의 정규 표현식을 만드세요. airplane/aeroplane, aluminum/aluminium, analog/analogue, ass/arse, center/centre, defense/defence, donut/doughnut, gray/grey, modeling/modelling, skeptic/sceptic, summarize/summarise. 가능한 짧은 정규 표현식을 만들어 보세요!
 
 5. `words`의 첫 글자와 마지막 글자를 바꾸세요. 변경된 문자열 중 여전히 `words`에 있는 것은 무엇인가요?
 
@@ -396,7 +396,7 @@ str_match(x, "gr(?:e|a)y")
 
 ## 정규 표현식 플래그
 
-정규 표현식의 세부 사항을 제어하는 데 여러 가지 설정을 사용할 수 있습니다. 이러한 설정들은 다른 프로그래밍 언어에서 종종 *플래그(flags)*라고 불립니다. stringr에서는 패턴을 <a href="https://stringr.tidyverse.org/reference/modifiers.html" class="orm:hideurl"><code>regex()</code></a> 호출로 감싸서 이를 사용할 수 있습니다. 문자가 대문자나 소문자 형태 중 하나와 일치할 수 있게 해 주기 때문에 가장 유용한 플래그는 아마도 `ignore_case = TRUE`일 것입니다.
+정규 표현식의 세부 사항을 제어하는 데 여러 가지 설정을 사용할 수 있습니다. 이러한 설정들은 다른 프로그래밍 언어에서 종종 *플래그(flags)*라고 불립니다. stringr에서는 패턴을 <a href="https://stringr.tidyverse.org/reference/modifiers.html" class="orm:hideurl"><code>regex()</code></a> 호출로 감싸서 이를 사용할 수 있습니다. 문자가 대문자나 소문자 형태 중 하나와 일치할 수 있게 해 주기 때문에 유용한 플래그는 아마도 `ignore_case = TRUE`일 것입니다.
 
 ```
 bananas <- c("banana", "Banana", "BANANA")
@@ -755,11 +755,11 @@ head(list.files(pattern = "\\.Rmd$"))
 
 # 요약
 
-잠재적으로 과부하될 정도로 많은 의미를 가진 모든 구두점 문자를 사용하므로, 정규 표현식은 현존하는 가장 압축적인 언어 중 하나입니다. 처음에는 확실히 헷갈리지만, 정규 표현식을 읽도록 눈을 훈련시키고 이를 이해하도록 뇌를 훈련시키면 R 및 다른 많은 곳에서 사용할 수 있는 강력한 기술을 얻게 됩니다.
+잠재적으로 과부하될 정도로 많은 의미를 가진 모든 구두점 문자를 사용하므로, 정규 표현식은 현존하는 압축적인 언어 중 하나입니다. 처음에는 확실히 헷갈리지만, 정규 표현식을 읽도록 눈을 훈련시키고 이를 이해하도록 뇌를 훈련시키면 R 및 다른 많은 곳에서 사용할 수 있는 강력한 기술을 얻게 됩니다.
 
-이 장에서 여러분은 가장 유용한 stringr 함수와 정규 표현식 언어의 가장 중요한 구성 요소를 배움으로써 정규 표현식 마스터가 되기 위한 여정을 시작했습니다. 그리고 더 배울 수 있는 리소스도 많이 있습니다.
+이 장에서 여러분은 유용한 stringr 함수와 정규 표현식 언어의 중요한 구성 요소를 배움으로써 정규 표현식 마스터가 되기 위한 여정을 시작했습니다. 그리고 더 배울 수 있는 리소스도 많이 있습니다.
 
-시작하기 좋은 곳은 <a href="https://stringr.tidyverse.org/articles/regular-expressions.html" class="orm:hideurl"><code>vignette("regular-expressions", package = "stringr")</code></a>입니다. 이 문서는 stringr에서 지원하는 전체 구문 집합을 문서화합니다. 또 다른 유용한 참고 자료는 [_https://oreil.ly/MVwoC_](https://oreil.ly/MVwoC)입니다. R에 국한된 것은 아니지만, 정규 표현식의 가장 고급 기능들과 그 기능이 내부적으로 어떻게 작동하는지 배우는 데 사용할 수 있습니다.
+시작하기 좋은 곳은 <a href="https://stringr.tidyverse.org/articles/regular-expressions.html" class="orm:hideurl"><code>vignette("regular-expressions", package = "stringr")</code></a>입니다. 이 문서는 stringr에서 지원하는 전체 구문 집합을 문서화합니다. 또 다른 유용한 참고 자료는 [_https://oreil.ly/MVwoC_](https://oreil.ly/MVwoC)입니다. R에 국한된 것은 아니지만, 정규 표현식의 고급 기능들과 그 기능이 내부적으로 어떻게 작동하는지 배우는 데 사용할 수 있습니다.
 
 stringr가 Marek Gagolewski의 stringi 패키지 위에 구현되어 있다는 것을 알아두는 것도 좋습니다. 만약 stringr에서 원하는 작업을 수행하는 함수를 찾는 데 어려움을 겪고 있다면, 주저하지 말고 stringi를 살펴보세요. stringi는 stringr과 동일한 규칙을 많이 따르기 때문에 쉽게 익힐 수 있을 것입니다.
 

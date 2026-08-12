@@ -8,11 +8,11 @@
 
 1886년 골턴은 대규모 부모 집단과 그들의 성인 자녀의 키를 보고했으며, 데이터의 대다수에 대한 요약 통계는 [Table 5.1](./15-CHAPTER_5__Modelling_Relationships_Using_Regression.md#tab5-1)에 나와 있습니다.[1](./31-chapter005_notes.md#ch5-end1) 골턴의 표본은 동시대 성인들과 비슷한 키를 가졌으며(2010년 영국 성인 여성과 남성의 평균 키는 각각 63인치와 69인치로 보고되었습니다), 이는 그의 연구 대상자들이 영양 상태가 양호하고 사회경제적 지위가 높았음을 시사합니다.
 
-[Figure 5.1](./15-CHAPTER_5__Modelling_Relationships_Using_Regression.md#fig5-1)은 아버지의 키와 아들 465명의 키를 보여주는 산점도입니다. 아버지와 아들의 키는 0.39의 피어슨(Pearson) 상관계수를 가지며 뚜렷한 상관관계를 보입니다. 아버지의 키를 바탕으로 아들의 키를 예측하고 싶다면 어떻게 해야 할까요? 어떤 아버지의 키가 주어지더라도 아들의 키를 예측할 수 있도록 직선을 선택하여 예측을 시작할 수 있습니다. 가장 직관적인 방법은 대각선인 '등가(equality)' 선을 사용하여 성인 아들의 키가 아버지와 같을 것이라고 예측하는 것입니다. 하지만 이러한 선택은 더 개선될 수 있습니다.
+[Figure 5.1](./15-CHAPTER_5__Modelling_Relationships_Using_Regression.md#fig5-1)은 아버지의 키와 아들 465명의 키를 보여주는 산점도입니다. 아버지와 아들의 키는 0.39의 피어슨(Pearson) 상관계수를 가지며 뚜렷한 상관관계를 보입니다. 아버지의 키를 바탕으로 아들의 키를 예측하고 싶다면 어떻게 해야 할까요? 어떤 아버지의 키가 주어지더라도 아들의 키를 예측할 수 있도록 직선을 선택하여 예측을 시작할 수 있습니다. 직관적인 방법은 대각선인 '등가(equality)' 선을 사용하여 성인 아들의 키가 아버지와 같을 것이라고 예측하는 것입니다. 하지만 이러한 선택은 더 개선될 수 있습니다.
 
-우리가 선택한 임의의 직선에 대해, 각 데이터 포인트는 아버지를 통해 아들의 키를 예측할 때 발생하는 오차의 크기인 [잔차(residual)](./25-GLOSSARY.md#gloss_127)(그래프의 수직 점선)를 생성합니다. 우리는 이러한 잔차를 작게 만드는 선을 원하며, 표준적인 기법은 잔차의 제곱합이 가장 작은 [최소제곱(least-squares)](./25-GLOSSARY.md#gloss_70) 적합선을 선택하는 것입니다.[fn2](./45-footnotes.md#ch5-fn2) 이 선을 구하는 공식은 간단하며(용어집 참조), 18세기 말 프랑스 수학자 아드리앵마리 르장드르(Adrien-Marie Legendre)와 카를 프리드리히 가우스(Carl Friedrich Gauss)에 의해 개발되었습니다. 이 선은 일반적으로 아버지의 키를 알 때 아들의 키에 대해 할 수 있는 '최적 적합(best-fit)' 예측으로 알려져 있습니다.
+우리가 선택한 임의의 직선에 대해, 각 데이터 포인트는 아버지를 통해 아들의 키를 예측할 때 발생하는 오차의 크기인 [잔차(residual)](./25-GLOSSARY.md#gloss_127)(그래프의 수직 점선)를 생성합니다. 우리는 이러한 잔차를 작게 만드는 선을 원하며, 표준적인 기법은 잔차의 제곱합이 작은 [최소제곱(least-squares)](./25-GLOSSARY.md#gloss_70) 적합선을 선택하는 것입니다.[fn2](./45-footnotes.md#ch5-fn2) 이 선을 구하는 공식은 간단하며(용어집 참조), 18세기 말 프랑스 수학자 아드리앵마리 르장드르(Adrien-Marie Legendre)와 카를 프리드리히 가우스(Carl Friedrich Gauss)에 의해 개발되었습니다. 이 선은 일반적으로 아버지의 키를 알 때 아들의 키에 대해 할 수 있는 '최적 적합(best-fit)' 예측으로 알려져 있습니다.
 
-![Table 5.1 Summary statistics of recorded heights (in inches) of 197 sets of parents and their adult children recorded by Galton in 1886. For reference, 64 inches is 1.63 metres, 69 inches is 1.75 metres. Even without plotting the data, the closeness of the mean and median suggests a symmetric data distribution.](./images/p123.png) 
+![Table 5.1 Summary statistics of recorded heights (in inches) of 197 sets of parents and their adult children recorded by Galton in 1886. For reference, 64 inches is 1.63 metres, 69 inches is 1.75 metres. Even without plotting the data, the closeness of the mean and median suggests a symmetric data distribution.](./images/p123.png)
 
 | Number    | Mean | Median | Standard deviation |     |
 | --------- | ---- | ------ | ------------------ | --- |
@@ -24,7 +24,7 @@
 Table 5.1  
 1886년 골턴이 기록한 부모 197쌍과 그들의 성인 자녀의 키(인치) 요약 통계. 참고로 64인치는 1.63미터, 69인치는 1.75미터입니다. 데이터를 그래프로 그리지 않더라도 평균과 중앙값이 가깝다는 것은 데이터 분포가 대칭적임을 시사합니다.
 
-![Figure 5.1 Scatter of heights of 465 fathers and sons from Galton’s data (many fathers are repeated since they have multiple sons). A jitter has been added to separate the points, and the diagonal dashed line represents exact equality between son and father’s heights. The solid line is the standard ‘best-fit’ line. Each point gives rise to a ‘residual’ (dashed line), which is the size of the error were we to use the line to predict a son’s height from his father’s.](./images/p124.png) 
+![Figure 5.1 Scatter of heights of 465 fathers and sons from Galton’s data (many fathers are repeated since they have multiple sons). A jitter has been added to separate the points, and the diagonal dashed line represents exact equality between son and father’s heights. The solid line is the standard ‘best-fit’ line. Each point gives rise to a ‘residual’ (dashed line), which is the size of the error were we to use the line to predict a son’s height from his father’s.](./images/p124.png)
 
 Figure 5.1  
 골턴 데이터에서 아버지와 아들 465명의 키 산점도(아들이 여러 명인 아버지가 많아 중복된 아버지가 다수 포함됨). 점들을 구분하기 위해 지터(jitter)가 추가되었으며, 대각선 점선은 아들과 아버지의 키가 정확히 일치함을 나타냅니다. 실선은 표준 '최적 적합' 선입니다. 각 점은 아버지를 통해 아들의 키를 예측할 때의 오차 크기인 '잔차'(점선)를 발생시킵니다.
@@ -65,9 +65,9 @@ observation = deterministic model + residual error.
 
 행운(또는 불운)이 연속되는 것은 영원히 지속되지 않으며, 결국 상황은 원래대로 돌아갑니다. 이는 키가 큰 아버지가 작은 아들을 두는 경향과 마찬가지로 평균으로의 회귀로 볼 수 있습니다. 그러나 이러한 행운이나 불운의 연속이 변함없는 상황을 나타낸다고 믿는다면, 상황이 정상으로 돌아오는 것을 우리가 수행한 어떤 개입의 결과로 잘못 돌리게 될 것입니다. 아마도 이 내용이 꽤 자명하게 보일 수 있지만, 이 단순한 개념은 다음과 같은 놀라운 파급 효과를 가지고 있습니다.
 
-* 연패 후 해고된 축구 감독의 후임자가 팀의 실적 정상화에 대한 공로를 인정받는 경우.
-* 액티브 펀드 매니저가 몇 년 동안 좋은 실적을 거둔 후 추천을 받고(어쩌면 큰 보너스까지 받은 후) 성과가 하락하는 경우.
-* '스포츠 일러스트레이티드(Sports Illustrated)의 저주'로, 운동선수들이 일련의 성과를 거둔 후 유명 잡지의 표지를 장식하면 이후 경기력이 하락하는 현상.
+- 연패 후 해고된 축구 감독의 후임자가 팀의 실적 정상화에 대한 공로를 인정받는 경우.
+- 액티브 펀드 매니저가 몇 년 동안 좋은 실적을 거둔 후 추천을 받고(어쩌면 큰 보너스까지 받은 후) 성과가 하락하는 경우.
+- '스포츠 일러스트레이티드(Sports Illustrated)의 저주'로, 운동선수들이 일련의 성과를 거둔 후 유명 잡지의 표지를 장식하면 이후 경기력이 하락하는 현상.
 
 스포츠 팀이 리그 순위에서 차지하는 위치에는 운이 상당한 역할을 하며, 평균으로의 회귀로 인해 한 해 동안 좋은 성적을 거둔 팀은 이듬해 성적이 하락하고 반대로 성적이 부진했던 팀은 순위가 오를 것으로 예상할 수 있습니다. 특히 팀들의 기량이 팽팽하게 맞설 경우 더욱 그렇습니다. 역으로 이러한 변화 양상이 관찰된다면, 평균으로의 회귀가 작용하고 있다고 의심해 볼 수 있으며, 새로운 훈련 방법 등의 영향에 대한 주장에 과도한 의미를 부여하지 않아야 합니다.
 
@@ -81,12 +81,12 @@ observation = deterministic model + residual error.
 
 골턴의 초기 연구 이후 회귀 분석의 기본 개념은 여러 가지로 확장되었으며, 현대 컴퓨팅의 발전이 이에 큰 도움을 주었습니다. 이러한 발전에는 다음이 포함됩니다.
 
-* 다수의 설명 변수 사용
-* 숫자가 아닌 범주형 설명 변수 사용
-* 데이터의 패턴에 유연하게 적응하며 직선이 아닌 관계 모델링
-* 비율 및 개수 등 연속형 변수가 아닌 종속 변수 처리
+- 다수의 설명 변수 사용
+- 숫자가 아닌 범주형 설명 변수 사용
+- 데이터의 패턴에 유연하게 적응하며 직선이 아닌 관계 모델링
+- 비율 및 개수 등 연속형 변수가 아닌 종속 변수 처리
 
-설명 변수가 둘 이상인 경우의 예로서, 아들이나 딸의 키가 아버지와 어머니의 키와 어떻게 관련되어 있는지 살펴볼 수 있습니다. 이제 데이터 포인트의 산점도는 3차원이 되어 지면에 그리기가 훨씬 어려워졌지만, 최소제곱의 원리를 이용하여 성인 자녀의 키를 가장 잘 예측하는 공식을 도출할 수 있습니다. 이를 [다중 선형 회귀(multiple linear regression)](./25-GLOSSARY.md#gloss_86)라고 합니다.[fn5](./45-footnotes.md#ch5-fn5) 설명 변수가 하나일 때 종속 변와의 관계는 기울기로 요약되었으며, 이는 회귀 방정식의 계수로 해석될 수 있습니다. 이 개념은 둘 이상의 설명 변수로 일반화될 수 있습니다.
+설명 변수가 둘 이상인 경우의 예로서, 아들이나 딸의 키가 아버지와 어머니의 키와 어떻게 관련되어 있는지 살펴볼 수 있습니다. 이제 데이터 포인트의 산점도는 3차원이 되어 지면에 그리기가 훨씬 어려워졌지만, 최소제곱의 원리를 이용하여 성인 자녀의 키를 잘 예측하는 공식을 도출할 수 있습니다. 이를 [다중 선형 회귀(multiple linear regression)](./25-GLOSSARY.md#gloss_86)라고 합니다.[fn5](./45-footnotes.md#ch5-fn5) 설명 변수가 하나일 때 종속 변와의 관계는 기울기로 요약되었으며, 이는 회귀 방정식의 계수로 해석될 수 있습니다. 이 개념은 둘 이상의 설명 변수로 일반화될 수 있습니다.
 
 골턴의 가족 데이터에 대한 결과는 [Table 5.3](./15-CHAPTER_5__Modelling_Relationships_Using_Regression.md#tab5-3)에 나타나 있습니다. 여기에 표시된 계수들은 어떻게 해석할 수 있을까요? 첫째, 이들은 특정 어머니와 아버지의 성인 자녀 키를 예측하는 데 사용할 수 있는 공식의 일부입니다.[fn6](./45-footnotes.md#ch5-fn6) 그러나 이들은 동시에 세 번째 교란 요인의 영향을 고려함으로써 겉으로 보이는 관계를 조정하는 개념을 보여주기도 합니다.
 
@@ -114,7 +114,7 @@ Table 5.3
 
 브리스톨을 제외하더라도 더 많은 환자를 치료하는 병원의 생존율이 더 높았으며, 로지스틱 회귀 계수(0.001)는 병원이 4년에 걸쳐 1세 미만 영아를 대상으로 추가로 100건의 수술을 시행할 때마다 사망률이 상대적으로 약 10% 감소할 것으로 예상됨을 의미합니다.[fn7](./45-footnotes.md#ch5-fn7) 물론 흔히 쓰이는 상투적인 표현처럼 상관관계가 인과관계를 의미하지는 않으며, 많은 수술 건수가 더 나은 성과의 원인이라고 결론지을 수는 없습니다. 앞서 언급했듯이, 평판이 좋은 병원일수록 더 많은 환자를 유치하게 되는 역인과관계가 성립할 수도 있습니다.
 
-![Figure 5.2 Fitted logistic regression model for child heart surgery data for under-1s in UK hospitals between 1991 and 1995. Hospitals treating more patients have better survival. The line is part of a curve that will never reach 100%, and is fitted ignoring the outlying data-point representing Bristol.](./images/p137.png) 
+![Figure 5.2 Fitted logistic regression model for child heart surgery data for under-1s in UK hospitals between 1991 and 1995. Hospitals treating more patients have better survival. The line is part of a curve that will never reach 100%, and is fitted ignoring the outlying data-point representing Bristol.](./images/p137.png)
 
 Figure 5.2  
 1991년과 1995년 사이 영국 병원들의 1세 미만 소아 심장 수술 데이터에 적합시킨 로지스틱 회귀 모델. 더 많은 환자를 치료하는 병원일수록 생존율이 높습니다. 이 선은 100%에 절대 도달하지 않는 곡선의 일부이며, 브리스톨을 나타내는 극단적인 데이터 포인트를 제외하고 적합되었습니다.
@@ -125,10 +125,10 @@ Figure 5.2
 
 이 장에서 간략히 설명한 기법들은 한 세기 이상 전에 도입된 이래로 효과적으로 작동해 왔습니다. 하지만 방대한 양의 데이터 활용과 눈부신 컴퓨팅 성능의 향상은 훨씬 정교한 모델이 개발될 수 있는 기반을 마련했습니다. 연구자 커뮤니티별로 채택한 모델링 전략은 크게 네 가지로 분류할 수 있습니다.
 
-* 본 장에서 다룬 선형 회귀 분석과 같이 통계학자들이 선호하는 연관성에 대한 다소 단순한 수학적 표현.
-* 일기 예보에 사용되는 것과 같이, 물리적 과정에 대한 과학적 이해를 바탕으로 기저 메커니즘을 현실적으로 표현하기 위해 응용 수학자들이 주로 개발하는 복잡한 확정적 모델.
-* 온라인 소매업체에서 구매할 만한 책을 추천하는 데 사용하는 것처럼, 컴퓨터 과학 및 [기계 학습(machine learning)](./25-GLOSSARY.md#gloss_76) 분야에서 파생되어 방대한 과거 사례 분석을 바탕으로 의사 결정이나 예측을 수행하는 복잡한 알고리즘. 이들은 우수한 예측 결과를 도출하더라도 내부 구조를 파악하기 힘든 '블랙박스'인 경우가 많으며, 이는 다음 장에서 다룹니다.
-* 경제학자들이 선호하며 인과적 결론 도출을 목표로 하는 회귀 모델.
+- 본 장에서 다룬 선형 회귀 분석과 같이 통계학자들이 선호하는 연관성에 대한 다소 단순한 수학적 표현.
+- 일기 예보에 사용되는 것과 같이, 물리적 과정에 대한 과학적 이해를 바탕으로 기저 메커니즘을 현실적으로 표현하기 위해 응용 수학자들이 주로 개발하는 복잡한 확정적 모델.
+- 온라인 소매업체에서 구매할 만한 책을 추천하는 데 사용하는 것처럼, 컴퓨터 과학 및 [기계 학습(machine learning)](./25-GLOSSARY.md#gloss_76) 분야에서 파생되어 방대한 과거 사례 분석을 바탕으로 의사 결정이나 예측을 수행하는 복잡한 알고리즘. 이들은 우수한 예측 결과를 도출하더라도 내부 구조를 파악하기 힘든 '블랙박스'인 경우가 많으며, 이는 다음 장에서 다룹니다.
+- 경제학자들이 선호하며 인과적 결론 도출을 목표로 하는 회귀 모델.
 
 이는 대략적인 일반화이며, 다행스럽게도 전문 분야 간의 장벽이 무너지면서 향후 모델링에 대해 더 폭넓고 통합적인 접근 방식이 발전하고 있음을 보게 될 것입니다. 그러나 어떤 전략을 채택하든 모델을 구축하고 활용할 때는 공통적인 문제가 발생합니다.
 
@@ -138,8 +138,8 @@ Figure 5.2
 
 #### 요약
 
-* 회귀 모델은 설명 변수 세트와 종속 변수 사이의 수학적 표현을 제공합니다.
-* 회귀 모델의 계수는 설명 변수가 변화하는 것으로 관찰될 때 종속 변수가 얼마나 변화할 것으로 예상되는지 나타냅니다.
-* 극단적인 반응이 장기 평균에 더 가깝게 되돌아갈 때 평균으로의 회귀가 발생하며, 이는 이전의 극단성이 순전히 우연에 의한 것이었기 때문입니다.
-* 회귀 모델은 다양한 유형의 종속 변수, 설명 변수 및 비선형 관계를 통합할 수 있습니다.
-* 모델을 해석할 때는 주의가 필요하며 문자 그대로 받아들여서는 안 됩니다. "모든 모델은 틀렸지만, 일부는 유용합니다."
+- 회귀 모델은 설명 변수 세트와 종속 변수 사이의 수학적 표현을 제공합니다.
+- 회귀 모델의 계수는 설명 변수가 변화하는 것으로 관찰될 때 종속 변수가 얼마나 변화할 것으로 예상되는지 나타냅니다.
+- 극단적인 반응이 장기 평균에 더 가깝게 되돌아갈 때 평균으로의 회귀가 발생하며, 이는 이전의 극단성이 순전히 우연에 의한 것이었기 때문입니다.
+- 회귀 모델은 다양한 유형의 종속 변수, 설명 변수 및 비선형 관계를 통합할 수 있습니다.
+- 모델을 해석할 때는 주의가 필요하며 문자 그대로 받아들여서는 안 됩니다. "모든 모델은 틀렸지만, 일부는 유용합니다."

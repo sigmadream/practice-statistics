@@ -466,7 +466,7 @@ data <- bind_rows(data2019, data2020, data2021, data2022)
 -   첫 번째 인수 `path`는 살펴볼(look in) 디렉터리입니다.
 
 -   `pattern`은 파일 이름을 필터링(filter)하는 데 사용되는 정규 표현식(regular expression)입니다.
-    가장 일반적인 패턴은 지정된 확장자(specified extension)를 가진 모든 파일을 찾기 위한(find) `[.]xlsx$` 또는 `[.]csv$`와 같은 것입니다(something like).
+    일반적인 패턴은 지정된 확장자(specified extension)를 가진 모든 파일을 찾기 위한(find) `[.]xlsx$` 또는 `[.]csv$`와 같은 것입니다(something like).
 
 -   `full.names`는 출력(output)에 디렉터리 이름이 포함될지(should be included) 여부를 결정(determines)합니다.
     거의 항상 이 값을 `TRUE`로 설정하기(want this to be)를 원할 것입니다.
@@ -584,7 +584,7 @@ paths |>
 최종 데이터 프레임에 해당 열을 가져오려면(To get that column into) 두 가지(two things)를 수행해야 합니다.
 
 먼저 경로 벡터(vector of paths)의 이름을 지정(name)합니다.
-이를 수행하는 가장 쉬운 방법(easiest way)은 함수를 취할(take) 수 있는 `set_names()` 함수를 사용하는 것입니다.
+이를 수행하는 쉬운 방법(easiest way)은 함수를 취할(take) 수 있는 `set_names()` 함수를 사용하는 것입니다.
 여기서는 전체 경로(full path)에서 파일 이름만 추출(extract)하기 위해 `basename()`을 사용합니다.
 
 ```{r}
@@ -821,7 +821,7 @@ duckdb::duckdb_read_csv(con, "gapminder", paths)
 수동으로 수행하는 방법을 배우는 것은 여러 개의(a bunch of) csv가 있고 작업 중인 데이터베이스에 모든 csv를 한 번에(all in) 로드하는 함수가 하나도(one) 없는 경우에도 도움이 됩니다.
 
 우리는 데이터로 채울(fill in) 테이블을 생성하는(creating) 것부터 시작해야 합니다.
-이 작업을 수행하는 가장 쉬운 방법은 템플릿(template), 즉 우리가 원하는 모든 열을 포함(contains)하지만 데이터의 샘플링(sampling)만 포함하는 더미 데이터 프레임(dummy data frame)을 만드는 것입니다.
+이 작업을 수행하는 쉬운 방법은 템플릿(template), 즉 우리가 원하는 모든 열을 포함(contains)하지만 데이터의 샘플링(sampling)만 포함하는 더미 데이터 프레임(dummy data frame)을 만드는 것입니다.
 gapminder 데이터의 경우, 단일(single) 파일을 읽고 거기에 연도를 추가(adding)하여 해당 템플릿을 만들 수(make) 있습니다.
 
 ```{r}

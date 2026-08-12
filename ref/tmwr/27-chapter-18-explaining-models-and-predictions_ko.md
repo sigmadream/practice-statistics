@@ -76,7 +76,7 @@ duplex
 #> 1 North_Ames          1040       1949 Duplex        42.0     -93.6
 ```
 
-모델이 이 듀플렉스에 대해 주어진 가격을 예측하는 이유를 이해하는 데 가능한 접근 방식에는 여러 가지가 있습니다. 하나는 DALEX 함수 `predict_parts()`로 구현되는 분석(break-down) 설명입니다; 개별(individual) 피처에 기인한 기여도(contributions attributed to)가 우리의 듀플렉스와 같은 특정 관측치에 대한 평균 모델의 예측을 어떻게 변화(change)시키는지 계산합니다. 선형 모델의 경우 듀플렉스 상태(`Bldg_Type = 3`),<sup><a href="ch18.xhtml#idm45881848206144" id="idm45881848206144-marker" data-type="noteref">1</a></sup> 크기, 경도 및 연식이 모두 절편(intercept)에서 가격을 떨어뜨리는(driven down) 데 가장 많이 기여합니다(contribute):
+모델이 이 듀플렉스에 대해 주어진 가격을 예측하는 이유를 이해하는 데 가능한 접근 방식에는 여러 가지가 있습니다. 하나는 DALEX 함수 `predict_parts()`로 구현되는 분석(break-down) 설명입니다; 개별(individual) 피처에 기인한 기여도(contributions attributed to)가 우리의 듀플렉스와 같은 특정 관측치에 대한 평균 모델의 예측을 어떻게 변화(change)시키는지 계산합니다. 선형 모델의 경우 듀플렉스 상태(`Bldg_Type = 3`),<sup><a href="ch18.xhtml#idm45881848206144" id="idm45881848206144-marker" data-type="noteref">1</a></sup> 크기, 경도 및 연식이 모두 절편(intercept)에서 가격을 떨어뜨리는(driven down) 데 많이 기여합니다(contribute):
 
 ```
 lm_breakdown <- predict_parts(explainer = explainer_lm, new_observation = duplex)
@@ -94,7 +94,7 @@ lm_breakdown
 
 이 선형 모델은 위도와 경도에 대한 스플라인 항을 사용하여 훈련되었으므로 여기에 표시된 `Longitude`의 가격 기여도는 모든 개별 스플라인 항의 효과를 결합합니다. 기여도는 파생된 스플라인 피처가 아니라 원래의 `Longitude` 피처 측면(in terms of)에서입니다.
 
-랜덤 포레스트 모델의 경우 가장 중요한 피처가 약간 다르며, 크기, 연식 및 듀플렉스 상태가 가장 중요합니다.
+랜덤 포레스트 모델의 경우 중요한 피처가 약간 다르며, 크기, 연식 및 듀플렉스 상태가 중요합니다.
 
 ```
 rf_breakdown <- predict_parts(explainer = explainer_rf, new_observation = duplex)
@@ -133,7 +133,7 @@ predict_parts(
 #> random forest: prediction                    4.969
 ```
 
-이러한 분석 설명이 순서를 기반으로 변경된다는 사실을 사용하여 모든(또는 많은) 가능한 순서(orderings)에 대해 가장 중요한 피처를 계산할 수 있습니다. 이것이 섀플리 덧셈 설명(Shapley additive explanations, SHAP)(Lundberg and Lee 2017)의 배후에 있는(behind) 아이디어로, 피처의 평균 기여도가 피처 순서 지정의 다양한 조합 또는 "연합(coalitions)" 하에서(under) 계산됩니다. 무작위 순서 지정을 `B = 20`으로 사용하여 듀플렉스에 대한 SHAP 속성(attributions)을 계산해 보겠습니다.
+이러한 분석 설명이 순서를 기반으로 변경된다는 사실을 사용하여 모든(또는 많은) 가능한 순서(orderings)에 대해 중요한 피처를 계산할 수 있습니다. 이것이 섀플리 덧셈 설명(Shapley additive explanations, SHAP)(Lundberg and Lee 2017)의 배후에 있는(behind) 아이디어로, 피처의 평균 기여도가 피처 순서 지정의 다양한 조합 또는 "연합(coalitions)" 하에서(under) 계산됩니다. 무작위 순서 지정을 `B = 20`으로 사용하여 듀플렉스에 대한 SHAP 속성(attributions)을 계산해 보겠습니다.
 
 ```
 set.seed(1801)
@@ -203,7 +203,7 @@ shap_house <-
 
 # 전역 설명 (Global Explanations)
 
-전역 피처 중요도 또는 변수 중요도라고도 하는 전역 모델 설명은 전체 훈련 세트에 대해 집계(aggregated)되어 전체적인 선형 및 랜덤 포레스트 모델의 예측을 주도하는 데 어떤 피처가 가장 중요한지 이해하는 데 도움이 됩니다. 이전 섹션에서 개별 주택의 판매 가격을 예측하는 데 어떤 변수나 피처가 가장 중요한지 다루었다면(addressed), 전역 피처 중요도는 모델 전체에(in aggregate) 대해 가장 중요한 변수를 다룹니다.
+전역 피처 중요도 또는 변수 중요도라고도 하는 전역 모델 설명은 전체 훈련 세트에 대해 집계(aggregated)되어 전체적인 선형 및 랜덤 포레스트 모델의 예측을 주도하는 데 어떤 피처가 중요한지 이해하는 데 도움이 됩니다. 이전 섹션에서 개별 주택의 판매 가격을 예측하는 데 어떤 변수나 피처가 중요한지 다루었다면(addressed), 전역 피처 중요도는 모델 전체에(in aggregate) 대해 중요한 변수를 다룹니다.
 
 ###### 참고 (Note)
 
@@ -340,7 +340,7 @@ ggplot_pdp(pdp_liv, Gr_Liv_Area) +
 <h6 id="figure-18-5.-partial-dependence-profiles-for-the-random-forest-model-focusing-on-the-year-built-predictor.">그림 18-5. 건축 연도 예측 변수에 초점을 맞춘 랜덤 포레스트 모델의 부분 의존성 프로파일.</h6>
 </figure>
 
-이 코드는 [그림 18-6](#building-type-profiles)을 생성하는데, 여기서 우리는 약 1,000에서 3,000 제곱피트의 생활 면적 사이에서 판매 가격이 가장 많이 증가(increases the most)하고, 주택 유형이 다르면(1가구 주택이나 다른 유형의 타운하우스 등) 대개 생활 공간이 많아질수록 유사하게 증가하는 가격 추세를 보인다는 것을 확인할 수 있습니다.
+이 코드는 [그림 18-6](#building-type-profiles)을 생성하는데, 여기서 우리는 약 1,000에서 3,000 제곱피트의 생활 면적 사이에서 판매 가격이 많이 증가(increases the most)하고, 주택 유형이 다르면(1가구 주택이나 다른 유형의 타운하우스 등) 대개 생활 공간이 많아질수록 유사하게 증가하는 가격 추세를 보인다는 것을 확인할 수 있습니다.
 
 <figure>
 <img src="D:\sd\Practices\any2md\output\[2022] Tidy Modeling with R/assets/tmwr_1806.png" alt="tmwr 1806" />
@@ -400,7 +400,7 @@ vip_beans <-
 
 [그림 18-8](#bean-explainer)에서 볼 수 있는 전역 피처 중요도 측정값은 모든 PLS 성분의 효과를 통합(incorporate)하지만 원래(original) 변수의 측면(in terms of)에서 나타냅니다.
 
-[그림 18-8](#bean-explainer)은 모양(shape) 계수가 콩 유형을 예측하는 데 가장 중요한 특성 중 하나이며, 특히 면적 $`A`$, 장축 $`L`$, 단축 $`l`$을 고려(takes into account)하는 견고성(solidity) 척도(measure)인 모양 계수 4가 중요함을 보여줍니다.
+[그림 18-8](#bean-explainer)은 모양(shape) 계수가 콩 유형을 예측하는 데 중요한 특성 중 하나이며, 특히 면적 $`A`$, 장축 $`L`$, 단축 $`l`$을 고려(takes into account)하는 견고성(solidity) 척도(measure)인 모양 계수 4가 중요함을 보여줍니다.
 
 ```math
 \text{SF4} = \frac{A}{\pi(L/2)(l/2)}
@@ -410,7 +410,7 @@ vip_beans <-
 
 # 이 장의 요약 (Chapter Summary)
 
-일부 유형의 모델에서는 모델이 특정 예측을 수행한 이유에 대한 대답이 직관적(straightforward)이지만, 다른 유형의 모델에서는 예측에 어떤 특성이 상대적으로 가장 중요한지 이해하기 위해 별도의 설명자 알고리즘을 사용해야 합니다. 훈련된 모델에서 두 가지 주요(main) 종류의 모델 설명을 생성할 수 있습니다. 전역 설명은 전체 데이터 세트에 대해 집계된 정보를 제공하는 반면 지역 설명은 단일 관측치에 대한 모델 예측에 대한 이해를 제공합니다.
+일부 유형의 모델에서는 모델이 특정 예측을 수행한 이유에 대한 대답이 직관적(straightforward)이지만, 다른 유형의 모델에서는 예측에 어떤 특성이 상대적으로 중요한지 이해하기 위해 별도의 설명자 알고리즘을 사용해야 합니다. 훈련된 모델에서 두 가지 주요(main) 종류의 모델 설명을 생성할 수 있습니다. 전역 설명은 전체 데이터 세트에 대해 집계된 정보를 제공하는 반면 지역 설명은 단일 관측치에 대한 모델 예측에 대한 이해를 제공합니다.
 
 DALEX 및 해당 지원 패키지 DALEXtra, vip, lime과 같은 패키지를 tidymodels 분석에 통합하여 이러한 모델 설명자를 제공할 수 있습니다. 모델 설명은 모델 성능의 추정치와 함께 모델이 적절(appropriate)하고 효과적인지(effective) 이해하는 한 부분에 불과합니다; [19장](ch19.xhtml#trust)에서는 예측의 품질과 신뢰성(trustworthiness)을 추가로(further) 탐구합니다.
 

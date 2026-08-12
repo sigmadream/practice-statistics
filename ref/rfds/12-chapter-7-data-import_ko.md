@@ -14,7 +14,7 @@ R 패키지에서 제공하는 데이터로 작업하는 것은 데이터 과학
 
 # 파일에서 데이터 읽기 (Reading Data from a File)
 
-시작하기 위해 가장 일반적인 직사각형 데이터 파일 유형인 CSV(comma-separated values의 약자)에 중점을 두겠습니다. 다음은 간단한 CSV 파일의 모습입니다. 보통 *헤더 행(header row)*이라고 불리는 첫 번째 행에는 열 이름이 있고, 다음 6개 행에는 데이터가 있습니다. 열은 쉼표로 구분(또는 _delimited_)됩니다.
+시작하기 위해 일반적인 직사각형 데이터 파일 유형인 CSV(comma-separated values의 약자)에 중점을 두겠습니다. 다음은 간단한 CSV 파일의 모습입니다. 보통 *헤더 행(header row)*이라고 불리는 첫 번째 행에는 열 이름이 있고, 다음 6개 행에는 데이터가 있습니다. 열은 쉼표로 구분(또는 _delimited_)됩니다.
 
 `Student ID,Full Name,favourite.food,mealPlan,AGE 1,Sunil Huffmann,Strawberry yoghurt,Lunch only,4 2,Barclay Lynn,French fries,Lunch only,5 3,Jayendra Lyne,N/A,Breakfast and lunch,7 4,Leon Rossini,Anchovies,Lunch only, 5,Chidiegwu Dunkel,Pizza,Breakfast and lunch,five 6,Güvenç Attila,Ice cream,Lunch only,6`
 
@@ -31,7 +31,7 @@ R 패키지에서 제공하는 데이터로 작업하는 것은 데이터 과학
 
 표 7-1. students.csv 파일의 데이터를 테이블로 나타낸 것 {#tbl-students-table .table .table-sm .table-striped}
 
-<a href="https://readr.tidyverse.org/reference/read_delim.html" class="orm:hideurl"><code>read_csv()</code></a>를 사용하여 이 파일을 R로 읽어들일 수 있습니다. 첫 번째 인수가 가장 중요한데, 바로 파일의 경로(path)입니다. 경로를 파일의 주소라고 생각할 수 있습니다. 파일의 이름은 `students.csv`이고 `data` 폴더 안에 있습니다.
+<a href="https://readr.tidyverse.org/reference/read_delim.html" class="orm:hideurl"><code>read_csv()</code></a>를 사용하여 이 파일을 R로 읽어들일 수 있습니다. 첫 번째 인수가 중요한데, 바로 파일의 경로(path)입니다. 경로를 파일의 주소라고 생각할 수 있습니다. 파일의 이름은 `students.csv`이고 `data` 폴더 안에 있습니다.
 
 `students` `<-` `read_csv``(``"data/students.csv"``)` `#> Rows: 6 Columns: 5` `#> ── Column specification ─────────────────────────────────────────────────────` `#> Delimiter: ","` `#> chr (4): Full Name, favourite.food, mealPlan, AGE` `#> dbl (1): Student ID` `#> ` ``#> ℹ Use `spec()` to retrieve the full column specification for this data.`` ``#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.``
 
@@ -119,7 +119,7 @@ Apache 스타일 로그 파일을 읽습니다.
 
 2.  `file`, `skip`, `comment` 외에 <a href="https://readr.tidyverse.org/reference/read_delim.html" class="orm:hideurl"><code>read_csv()</code></a>와 <a href="https://readr.tidyverse.org/reference/read_delim.html" class="orm:hideurl"><code>read_tsv()</code></a>가 공통적으로 가지는 다른 인수는 무엇입니까?
 
-3.  <a href="https://readr.tidyverse.org/reference/read_fwf.html" class="orm:hideurl"><code>read_fwf()</code></a>의 가장 중요한 인수는 무엇입니까?
+3.  <a href="https://readr.tidyverse.org/reference/read_fwf.html" class="orm:hideurl"><code>read_fwf()</code></a>의 중요한 인수는 무엇입니까?
 
 4.  때때로 CSV 파일의 문자열에 쉼표가 포함되어 있습니다. 이것이 문제를 일으키는 것을 방지하기 위해 `"` 또는 `'`와 같은 인용 문자(quoting character)로 둘러싸여 있어야 합니다. 기본적으로 <a href="https://readr.tidyverse.org/reference/read_delim.html" class="orm:hideurl"><code>read_csv()</code></a>는 인용 문자가 `"`일 것이라고 가정합니다. 다음 텍스트를 데이터 프레임으로 읽어 들이려면 <a href="https://readr.tidyverse.org/reference/read_delim.html" class="orm:hideurl"><code>read_csv()</code></a>에 어떤 인수를 지정해야 합니까?
 
@@ -158,7 +158,7 @@ readr은 열 유형을 파악하기 위해 휴리스틱을 사용합니다. 각 
 
 ## 결측치, 열 유형 및 문제 (Missing Values, Column Types, and Problems)
 
-열 감지가 실패하는 가장 흔한 방식은 열에 예상치 못한 값이 포함되어 있어서, 더 구체적인 유형 대신 문자(character) 열을 얻게 되는 경우입니다. 이에 대한 가장 흔한 원인 중 하나는 readr이 예상하는 `NA`가 아닌 다른 어떤 것을 사용하여 기록된 결측치(missing value)입니다.
+열 감지가 실패하는 흔한 방식은 열에 예상치 못한 값이 포함되어 있어서, 더 구체적인 유형 대신 문자(character) 열을 얻게 되는 경우입니다. 이에 대한 흔한 원인 중 하나는 readr이 예상하는 `NA`가 아닌 다른 어떤 것을 사용하여 기록된 결측치(missing value)입니다.
 
 단일 열로 된 이 간단한 CSV 파일을 예로 들어 보겠습니다.
 
@@ -217,7 +217,7 @@ readr은 여러분이 사용할 수 있도록 총 9가지 열 유형을 제공�
 
 # 파일에 쓰기 (Writing to a File)
 
-readr에는 디스크에 데이터를 쓰기 위한 두 가지 유용한 함수가 함께 제공됩니다. <a href="https://readr.tidyverse.org/reference/write_delim.html" class="orm:hideurl"><code>write_csv()</code></a>와 <a href="https://readr.tidyverse.org/reference/write_delim.html" class="orm:hideurl"><code>write_tsv()</code></a>입니다. 이 함수들의 가장 중요한 인수는 `x`(저장할 데이터 프레임)와 `file`(저장할 위치)입니다. 또한 `na`를 사용하여 결측치를 어떻게 작성할지 지정할 수 있고, 기존 파일에 `append`(추가)할지 여부도 지정할 수 있습니다.
+readr에는 디스크에 데이터를 쓰기 위한 두 가지 유용한 함수가 함께 제공됩니다. <a href="https://readr.tidyverse.org/reference/write_delim.html" class="orm:hideurl"><code>write_csv()</code></a>와 <a href="https://readr.tidyverse.org/reference/write_delim.html" class="orm:hideurl"><code>write_tsv()</code></a>입니다. 이 함수들의 중요한 인수는 `x`(저장할 데이터 프레임)와 `file`(저장할 위치)입니다. 또한 `na`를 사용하여 결측치를 어떻게 작성할지 지정할 수 있고, 기존 파일에 `append`(추가)할지 여부도 지정할 수 있습니다.
 
 `write_csv``(``students``,` `"students.csv"``)`
 

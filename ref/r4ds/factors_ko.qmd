@@ -134,7 +134,7 @@ gss_cat |>
   count(race)
 ```
 
-요인으로 작업할 때 가장 일반적인 두 가지 연산은 수준의 순서를 변경(changing the order)하는 것과 수준의 값을 변경(changing the values)하는 것입니다.
+요인으로 작업할 때 일반적인 두 가지 연산은 수준의 순서를 변경(changing the order)하는 것과 수준의 값을 변경(changing the values)하는 것입니다.
 해당 연산은 아래 섹션에 설명되어 있습니다.
 
 ### 연습 문제 (Exercises)
@@ -143,8 +143,8 @@ gss_cat |>
     기본 막대 차트를 이해하기 어렵게 만드는 것은 무엇입니까?
     플롯을 어떻게 개선할 수 있습니까?
 
-2.  이 설문 조사에서 가장 흔한 `relig`는 무엇입니까?
-    가장 흔한 `partyid`는 무엇입니까?
+2.  이 설문 조사에서 흔한 `relig`는 무엇입니까?
+    흔한 `partyid`는 무엇입니까?
 
 3.  `denom`(종파)은 어느 `relig`에 적용됩니까?
     표(table)로 어떻게 알아낼 수 있습니까?
@@ -183,7 +183,7 @@ ggplot(relig_summary, aes(x = tvhours, y = relig)) +
 #| fig-alt: |
 #|   위와 동일한 산점도이지만 이제 religion은 tvhours의 
 #|   증가(increasing)하는 순서대로 표시됩니다. "Other eastern"은 
-#|   tvhours가 2 미만으로 가장 적고, "Don't know"는 5 이상으로 가장 높습니다.
+#|   tvhours가 2 미만으로 적고, "Don't know"는 5 이상으로 높습니다.
 ggplot(relig_summary, aes(x = tvhours, y = fct_reorder(relig, tvhours))) +
   geom_point()
 ```
@@ -234,7 +234,7 @@ ggplot(rincome_summary, aes(x = age, y = fct_reorder(rincome, age))) +
 #| fig-alt: |
 #|   위와 동일한 산점도이지만 이제 "Not Applicable"이 
 #|   y축의 하단에 표시됩니다. 일반적으로 소득과 연령 사이에는 양의 상관관계가 
-#|   있으며, 평균 연령이 가장 높은 소득 구간은 "Not applicable"입니다.
+#|   있으며, 평균 연령이 높은 소득 구간은 "Not applicable"입니다.
 ggplot(rincome_summary, aes(x = age, y = fct_relevel(rincome, "Not applicable"))) +
   geom_point()
 ```
@@ -242,7 +242,7 @@ ggplot(rincome_summary, aes(x = age, y = fct_relevel(rincome, "Not applicable"))
 "Not applicable"의 평균 연령이 이렇게 높은 이유는 무엇이라고 생각합니까?
 
 플롯의 선에 색을 칠할 때 또 다른 유형의 재정렬이 유용합니다.
-`fct_reorder2(.f, .x, .y)`는 가장 큰 `.x` 값과 관련된 `.y` 값을 기준으로 요인 `.f`를 재정렬합니다.
+`fct_reorder2(.f, .x, .y)`는 큰 `.x` 값과 관련된 `.y` 값을 기준으로 요인 `.f`를 재정렬합니다.
 플롯의 맨 오른쪽에 있는 선의 색상이 범례(legend)와 일치하기 때문에 플롯을 읽기 쉬워집니다.
 
 ```{r}
@@ -276,12 +276,12 @@ ggplot(by_age, aes(x = age, y = prop, color = fct_reorder2(marital, age, prop)))
   labs(color = "marital")
 ```
 
-마지막으로 막대 플롯의 경우 `fct_infreq()`를 사용하여 빈도가 감소하는 순서로 수준을 정렬할 수 있습니다. 이는 추가 변수가 필요하지 않기 때문에 가장 단순한 유형의 재정렬입니다.
-막대 플롯에서 가장 큰 값이 왼쪽이 아닌 오른쪽에 오도록 빈도가 증가하는 순서로 원한다면 `fct_rev()`와 결합하세요.
+마지막으로 막대 플롯의 경우 `fct_infreq()`를 사용하여 빈도가 감소하는 순서로 수준을 정렬할 수 있습니다. 이는 추가 변수가 필요하지 않기 때문에 단순한 유형의 재정렬입니다.
+막대 플롯에서 큰 값이 왼쪽이 아닌 오른쪽에 오도록 빈도가 증가하는 순서로 원한다면 `fct_rev()`와 결합하세요.
 
 ```{r}
 #| fig-alt: |
-#|   가장 흔하지 않은 것부터 가장 흔한 것 순으로 정렬된 결혼 상태 막대 차트:
+#|   흔하지 않은 것부터 흔한 것 순으로 정렬된 결혼 상태 막대 차트:
 #|   무응답(~0), 별거(~1,000), 사별(~2,000), 이혼(~3,000), 
 #|   미혼(~5,000), 기혼(~10,000).
 gss_cat |>
@@ -303,7 +303,7 @@ gss_cat |>
 
 수준의 순서를 변경하는 것보다 더 강력한 것은 수준의 값을 변경하는 것입니다.
 이를 통해 출판용 레이블을 명확히 하고 고수준 표시를 위해 수준을 축소(collapse)할 수 있습니다.
-가장 일반적이고 강력한 도구는 `fct_recode()`입니다.
+일반적이고 강력한 도구는 `fct_recode()`입니다.
 각 수준의 값을 다시 코딩(recode)하거나 변경할 수 있습니다.
 예를 들어 `gss_cat` 데이터 프레임에서 `partyid` 변수를 가져와 보겠습니다.
 
@@ -372,7 +372,7 @@ gss_cat |>
 
 때로는 작은 그룹을 함께 뭉뚱그려(lump together) 플롯이나 표를 더 단순하게 만들고 싶을 때가 있습니다.
 이것이 `fct_lump_*()` 제품군(family)의 함수가 하는 일입니다.
-`fct_lump_lowfreq()`는 가장 작은 그룹 범주를 점진적으로(progressively) "Other"로 뭉뚱그리고 "Other"를 항상 가장 작은 범주로 유지하는 간단한 시작점(starting point)입니다.
+`fct_lump_lowfreq()`는 작은 그룹 범주를 점진적으로(progressively) "Other"로 뭉뚱그리고 "Other"를 항상 작은 범주로 유지하는 간단한 시작점(starting point)입니다.
 
 ```{r}
 gss_cat |>
@@ -425,7 +425,7 @@ ordered(c("a", "b", "c"))
 
 ## 요약 (Summary)
 
-이 장에서는 요인 작업에 편리한(handy) forcats 패키지를 소개하고 가장 일반적으로 사용되는 함수들을 다루었습니다.
+이 장에서는 요인 작업에 편리한(handy) forcats 패키지를 소개하고 일반적으로 사용되는 함수들을 다루었습니다.
 forcats에는 지면상 논의하지 못한(didn't have space to discuss) 다양한 도우미(helpers)가 포함되어 있으므로 이전에 만나본 적이 없는 요인 분석 과제에 직면할 때마다(facing) [참조 색인(reference index)](https://forcats.tidyverse.org/reference/index.html)을 훑어보며(skimming) 문제를 해결하는 데 도움이 되는 미리 준비된(canned) 함수가 있는지 확인해 볼 것을 강력히 추천합니다.
 
 이 장을 읽은 후 요인에 대해 더 배우고 싶다면 Amelia McNamara와 Nicholas Horton의 논문인 [*Wrangling categorical data in R*](https://peerj.com/preprints/3163/)을 읽어보는 것을 권장합니다.

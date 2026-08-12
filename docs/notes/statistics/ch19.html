@@ -200,8 +200,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../notes/part01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">톺아보기</span></a>
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">R과 데이터 분석</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -209,14 +209,44 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notes/data-visualize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">데이터 시각화 (Data visualization)</span></a>
+  <a href="../../notes/ch01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notes/data-transform.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">소개</span></a>
+  <a href="../../notes/ch02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 변환</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 가져오기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 계층</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 관련 정보</span></a>
   </div>
 </li>
       </ul>
@@ -293,7 +323,7 @@ window.Quarto = {
 </blockquote>
 <p>예를 들어, 변수 <span class="math inline">\(x\)</span>가 1단위 증가할 때마다 반응 변수 y가 꾸준히 증가하는 양의 선형 관계가 있다고 가정해 보십시오. 최근 클라우드 컴퓨팅 환경에서 동시 접속자 수(<span class="math inline">\(x\)</span>)가 1만 명 증가할 때마다 AI 서버의 과부하 지수(<span class="math inline">\(y\)</span>)가 약 0.4만큼 상승하는 데이터 센터가 있는가 하면, 접속자가 1만 명 늘어날 때마다 과부하 지수가 1.8이나 급격히 치솟는 데이터 센터도 존재할 수 있습니다.</p>
 <p>두 시스템 모두 동시 접속자 수와 서버 과부하 지수 간의 상관관계(상관계수 <span class="math inline">\(r\)</span>로 요약되는 강도)는 동일하게 매우 높게 나타날 수 있지만, 실제 시스템에 가해지는 충격(기울기)은 완전히 다릅니다. 이처럼 상관계수라는 단일한 지표 너머의 구체적인 관계의 형태, 즉 “예측 변수가 한 단위 변할 때 반응 변수가 얼마나 변하는가”를 구분하고 변수 간의 관계를 실질적으로 예측하기 위해서는 새로운 통계적 접근법이 필요합니다.</p>
-<p>이 기법은 선형 관계를 맺고 있는 두 양적 변수, 즉 하나의 예측 변수(predictor)와 하나의 반응 변수(response)를 취하여 그 관계를 가장 잘 설명하는 단일한 ’직선’을 모델링합니다. 이 직선은 상관관계가 주는 단편적인 정보보다 훨씬 풍부한 인사이트를 제공합니다. 단순 선형 회귀를 통해 반응 변수의 미래 값을 정밀하게 예측할 수 있음은 물론, 이 직선이 내포한 다양한 통계적 특성을 분석하여 폭넓은 비즈니스 및 연구 질문에 답할 수 있습니다.</p>
+<p>이 기법은 선형 관계를 맺고 있는 두 양적 변수, 즉 하나의 예측 변수(predictor)와 하나의 반응 변수(response)를 취하여 그 관계를 잘 설명하는 단일한 ’직선’을 모델링합니다. 이 직선은 상관관계가 주는 단편적인 정보보다 훨씬 풍부한 인사이트를 제공합니다. 단순 선형 회귀를 통해 반응 변수의 미래 값을 정밀하게 예측할 수 있음은 물론, 이 직선이 내포한 다양한 통계적 특성을 분석하여 폭넓은 비즈니스 및 연구 질문에 답할 수 있습니다.</p>
 <p>단순 선형 회귀를 위한 복잡한 수학적 추정치들을 수작업으로 일일이 유도할 수도 있지만, 대규모 데이터를 다루는 현대 데이터 과학 환경에서는 이를 손으로 직접 계산하는 것이 비실용적입니다. 따라서 이 장에서는 추정치가 어떻게 도출되는지 그 핵심 원리만 일반적인 용어로 다루고, R 소프트웨어의 컴퓨팅 파워를 활용하는 실무적 방법에 집중하겠습니다. 분석의 예시로 다음 데이터셋을 살펴보겠습니다.</p>
 <p>올드 페이스풀(Old Faithful) 간헐천은 과거 분출 시간의 길이가 길어지면 다음 분출까지의 대기 시간도 길어진다는 흥미로운 자연 법칙을 따르는 것으로 알려져 있습니다. 우리는 대기 시간을 예측하는 단순 선형 회귀 모델을 구축하기 위해, R의 <code>faithful</code> 데이터셋을 활용하여 이 현상을 통계적으로 파헤쳐 보겠습니다.</p>
 <section id="직선의-기초" class="level2" data-number="1">
@@ -386,7 +416,7 @@ Coefficients:
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>slr <span class="ot">&lt;-</span> <span class="fu">lm</span>(waiting <span class="sc">~</span> eruptions, <span class="at">data =</span> faithful)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>이렇게 저장된 <code>lm</code> 객체에서 우리가 가장 자주 끄집어내야 하는 정보 중 하나가 바로 오차 분산의 추정치인 MSE입니다. MSE를 비롯한 심층 통계량은 <code>lm</code> 객체의 요약 정보(Summary) 깊숙한 곳에 보관되어 있으며, R의 <code>summary</code> 함수를 호출하여 열람할 수 있습니다. 과거 탐색적 데이터 분석 장에서 변수의 다섯 수치 요약(Five-number summary)을 볼 때 사용했던 바로 그 함수입니다. 입력값이 <code>lm</code> 객체일 경우, <code>summary</code> 함수는 회귀 분석에 특화된 방대한 분석 리포트를 생성해 냅니다.</p>
+<p>이렇게 저장된 <code>lm</code> 객체에서 우리가 자주 끄집어내야 하는 정보 중 하나가 바로 오차 분산의 추정치인 MSE입니다. MSE를 비롯한 심층 통계량은 <code>lm</code> 객체의 요약 정보(Summary) 깊숙한 곳에 보관되어 있으며, R의 <code>summary</code> 함수를 호출하여 열람할 수 있습니다. 과거 탐색적 데이터 분석 장에서 변수의 다섯 수치 요약(Five-number summary)을 볼 때 사용했던 바로 그 함수입니다. 입력값이 <code>lm</code> 객체일 경우, <code>summary</code> 함수는 회귀 분석에 특화된 방대한 분석 리포트를 생성해 냅니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_object)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>이 요약 리포트는 회귀 모델의 통계적 유효성을 평가하려는 분석가의 모든 갈증을 해소해 줍니다. <code>slr</code> 객체에 저장된 올드 페이스풀 회귀의 심층 요약 정보를 확인하고 싶다면 아래 코드를 실행하십시오.</p>
 <div class="cell">
@@ -426,7 +456,7 @@ F-statistic:  1162 on 1 and 270 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="회귀를-이용한-예측-생성" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="회귀를-이용한-예측-생성"><span class="header-section-number">3</span> 회귀를 이용한 예측 생성</h2>
 <p>회귀 모델을 그토록 치열하게 적합시키는 궁극적인 비즈니스 목적 중 하나는 바로 ’미래에 대한 예측’을 생성하는 것입니다. 우리는 주행 속도를 바탕으로 사고 위험성을 낮추기 위한 예상 정지 거리를 계산하고 싶고, 간헐천의 이전 분출 시간을 측정하여 관광객에게 다음 분출까지의 대기 시간을 정확히 안내하고 싶어 합니다. 따라서 통계학적으로 완결된 회귀 모델을 실무적인 예측 도구로 활용하는 방법론이 필수적입니다.</p>
-<p>방금 올드 페이스풀 간헐천이 장엄하게 물기둥을 내뿜으며 정확히 2분 동안 분출하는 것을 관측했다고 가정해 보십시오. 관광객이 언제 다시 오면 되는지 대기 시간을 어떻게 예측할 수 있겠습니까? 우리는 앞서 추정한 선형 회귀선이 예측 변수(분출 시간)와 반응 변수(대기 시간) 사이의 역학 관계를 가장 훌륭하게 요약한 수학적 궤적이라고 확신합니다. 이 직선은 분출 시간 <span class="math inline">\(x\)</span>의 모든 가능한 실수 값을 연속적으로 통과하므로, 특정 <span class="math inline">\(x\)</span> 값에 대한 대기 시간 <span class="math inline">\(y\)</span>의 최선의 추측치(즉, 우리의 예측값)는 그 x 좌표에 대응하는 회귀선 상의 y 좌표 값이 되어야 한다는 논리가 성립합니다. 따라서 방금 관측된 분출 시간이 2분이었다면, 대기 시간은 <span class="math inline">\(33.47 + (10.73 \times 2) = 54.93\)</span>분이 될 것이라고 과학적으로 예측할 수 있습니다.</p>
+<p>방금 올드 페이스풀 간헐천이 장엄하게 물기둥을 내뿜으며 정확히 2분 동안 분출하는 것을 관측했다고 가정해 보십시오. 관광객이 언제 다시 오면 되는지 대기 시간을 어떻게 예측할 수 있겠습니까? 우리는 앞서 추정한 선형 회귀선이 예측 변수(분출 시간)와 반응 변수(대기 시간) 사이의 역학 관계를 훌륭하게 요약한 수학적 궤적이라고 확신합니다. 이 직선은 분출 시간 <span class="math inline">\(x\)</span>의 모든 가능한 실수 값을 연속적으로 통과하므로, 특정 <span class="math inline">\(x\)</span> 값에 대한 대기 시간 <span class="math inline">\(y\)</span>의 최선의 추측치(즉, 우리의 예측값)는 그 x 좌표에 대응하는 회귀선 상의 y 좌표 값이 되어야 한다는 논리가 성립합니다. 따라서 방금 관측된 분출 시간이 2분이었다면, 대기 시간은 <span class="math inline">\(33.47 + (10.73 \times 2) = 54.93\)</span>분이 될 것이라고 과학적으로 예측할 수 있습니다.</p>
 <p>일반적으로 모델이 도출한 예측값은 모자에 비유하여 <span class="math inline">\(\hat{y}\)</span> (y hat)으로 표기합니다. 특정한 예측 변수 값 <span class="math inline">\(x_i\)</span>가 주어졌을 때 모델이 산출하는 이 예측값 수식은 <span class="math inline">\(\hat{y}_i=\hat{\beta}_0+\hat{\beta}_1x_i\)</span>가 됩니다. 여기서 용어의 엄밀한 구분이 필요합니다. 만약 <span class="math inline">\(x_i\)</span> 값이 회귀 모델을 훈련하는 데(Fitting) 이미 사용되었던 데이터셋 내부의 관측치라면, 그때 산출된 <span class="math inline">\(\hat{y}_i\)</span>는 모델이 데이터를 얼마나 잘 묘사했는지 보여주는 적합값(fitted value)이라고 부릅니다. 반면, 방금 예시처럼 <span class="math inline">\(x_i\)</span>가 데이터셋에 존재하지 않았던 전혀 새롭고 미지의 값일 경우, 이를 대입해 얻은 <span class="math inline">\(\hat{y}_i\)</span>는 순수한 의미의 예측값(prediction)으로 명명합니다.</p>
 <p>또한, 훈련 데이터에서 산출된 적합값을 이용하면 앞서 다룬 ’잔차(residual)’를 매우 직관적으로 다시 정의할 수 있습니다. 잔차의 원래 공식이 <span class="math inline">\(e_i=y_i-\hat{\beta}_0-\hat{\beta}_1x_i\)</span>였고, 적합값 공식이 <span class="math inline">\(\hat{y}_i=\hat{\beta}_0+\hat{\beta}_1x_i\)</span>임을 떠올려 보십시오. 수학적으로 이 두 수식을 결합하면 잔차는 단순히 실제 관측값과 모델의 적합값 사이의 차이로 축약됩니다.</p>
 <p><span class="math display">\[
@@ -544,7 +574,7 @@ e_i = y_i - \hat{y}_i
 </div>
 </div>
 <p>코드를 실행하면 R 엔진은 62.9809라는 예측값을 출력합니다. 앞서 도출한 회귀식 <span class="math inline">\(y = 33.4744 + 10.7296 \times 2.75\)</span>를 손으로 직접 계산해 보아도 (소수점 반올림 오차를 감안하면) 수치가 정확히 일치함을 확인할 수 있습니다.</p>
-<p>예측과 관련하여 통계학자가 지켜야 할 가장 중요한 금기 사항이 하나 있습니다. 예측 변수의 관측 범위를 크게 벗어나는 극한의 값에 대해 함부로 예측을 시도해서는 안 되며, 통계학에서는 이 위험한 행위를 외삽(Extrapolating)이라고 부릅니다. 외삽이 왜 그토록 치명적인 데이터 분석의 함정일까요? 우리는 “예측 변수와 반응 변수의 관계가 ‘우리가 데이터를 관측한 그 범위 내에서만’ 선형적이다”라고 조심스럽게 가정한 상태에서 회귀선을 그렸습니다. 관측되지 않은 미지의 데이터 영역에서 두 변수가 계속해서 선형 관계를 유지할지, 아니면 임계점을 지나 폭발적으로 치솟거나 기하급수적으로 감소하는 비선형 관계로 돌변할지는 아무도 장담할 수 없습니다.</p>
+<p>예측과 관련하여 통계학자가 지켜야 할 중요한 금기 사항이 하나 있습니다. 예측 변수의 관측 범위를 크게 벗어나는 극한의 값에 대해 함부로 예측을 시도해서는 안 되며, 통계학에서는 이 위험한 행위를 외삽(Extrapolating)이라고 부릅니다. 외삽이 왜 그토록 치명적인 데이터 분석의 함정일까요? 우리는 “예측 변수와 반응 변수의 관계가 ‘우리가 데이터를 관측한 그 범위 내에서만’ 선형적이다”라고 조심스럽게 가정한 상태에서 회귀선을 그렸습니다. 관측되지 않은 미지의 데이터 영역에서 두 변수가 계속해서 선형 관계를 유지할지, 아니면 임계점을 지나 폭발적으로 치솟거나 기하급수적으로 감소하는 비선형 관계로 돌변할지는 아무도 장담할 수 없습니다.</p>
 <p>예를 들어 특정 약물의 투여량(좁은 범위)과 환자의 회복 속도 사이에는 명확한 선형 관계가 성립할 수 있지만, 투여량이 그 범위를 넘어 치사량에 가까워지면 회복 속도는 선형으로 증가하기는커녕 음수로 곤두박질치는 치명적인 비선형성을 보일 것입니다. 좁은 관측 구간의 선형성에만 취해 무분별하게 외삽을 시도한다면, 현실 법칙과 완전히 동떨어진 치명적인 예측 실패를 맛보게 될 것입니다.</p>
 <section id="연습-문제-1" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="연습-문제-1"><span class="header-section-number">3.1</span> 연습 문제</h3>
@@ -557,7 +587,7 @@ e_i = y_i - \hat{y}_i
 </section>
 <section id="회귀의-가정" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="회귀의-가정"><span class="header-section-number">4</span> 회귀의 가정</h2>
-<p>분산 분석이나 <span class="math inline">\(t\)</span>-검정 등 모든 고전적 통계 기법이 그러하듯, 회귀 분석 역시 이 수학적 모델이 도출해 낸 결과가 통계적 잣대 앞에서 흔들리지 않는 유효성을 인정받기 위해 반드시 참으로 전제되어야 하는 엄격한 가정들이 존재합니다. 앞선 섹션에서 오차에 관한 세 가지 가정을 넌지시 언급했지만, 가장 중요한 첫 번째 가정을 추가하여 총 네 가지의 회귀 가정을 완결 지어야 합니다. 바로 우리가 상정한 모델 자체가 현실을 설명하는 데 충분히 ’적절하다’는 것, 즉 두 변수 사이의 관계가 본질적으로 ’선형(linear)’이라는 가정입니다.</p>
+<p>분산 분석이나 <span class="math inline">\(t\)</span>-검정 등 모든 고전적 통계 기법이 그러하듯, 회귀 분석 역시 이 수학적 모델이 도출해 낸 결과가 통계적 잣대 앞에서 흔들리지 않는 유효성을 인정받기 위해 반드시 참으로 전제되어야 하는 엄격한 가정들이 존재합니다. 앞선 섹션에서 오차에 관한 세 가지 가정을 넌지시 언급했지만, 중요한 첫 번째 가정을 추가하여 총 네 가지의 회귀 가정을 완결 지어야 합니다. 바로 우리가 상정한 모델 자체가 현실을 설명하는 데 충분히 ’적절하다’는 것, 즉 두 변수 사이의 관계가 본질적으로 ’선형(linear)’이라는 가정입니다.</p>
 <ol type="1">
 <li>선형 모델이 데이터를 설명하기에 구조적으로 적절합니다(선형성)</li>
 <li>각 관측치의 오차들은 서로 아무런 영향을 주고받지 않는 독립적인 상태입니다(독립성)</li>
@@ -567,7 +597,7 @@ e_i = y_i - \hat{y}_i
 <p>회귀 분석이 산출한 <span class="math inline">\(p\)</span>-값과 예측 구간을 신뢰하고 이를 바탕으로 중대한 비즈니스 결정을 내리려면, 분석가는 반드시 이 가정들이 무너지지 않았는지 의심하고 철저하게 검증해야 합니다. 따라서 우리는 이 네 가지 기둥을 순서대로 하나씩 꼼꼼하게 점검하는 진단 과정을 밟아보겠습니다.</p>
 <section id="가정-1-선형성" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="가정-1-선형성"><span class="header-section-number">4.1</span> 가정 1: 선형성</h3>
-<p>이 가장 기본적인 가정은 애초에 우리가 회귀 모델의 수식을 어떻게 정의했는지 그 태생적 한계에서 기인합니다. 우리는 모델을 <span class="math inline">\(y_i=\beta_0+\beta_1x_i+\epsilon_i\)</span>라고 매우 당차게 선언했음을 상기해 보십시오.</p>
+<p>이 기본적인 가정은 애초에 우리가 회귀 모델의 수식을 어떻게 정의했는지 그 태생적 한계에서 기인합니다. 우리는 모델을 <span class="math inline">\(y_i=\beta_0+\beta_1x_i+\epsilon_i\)</span>라고 매우 당차게 선언했음을 상기해 보십시오.</p>
 <p>이 수식은 반응 변수 <span class="math inline">\(y\)</span>를 설명하는 데 오직 <span class="math inline">\(x\)</span>의 1차항(선형 성분)만을 허용하겠다는 선언입니다. 만약 자연계의 진리가 예측 변수와 반응 변수 사이에 포물선을 그리는 이차식(quadratic) 관계 - 즉, <span class="math inline">\(x_i^2\)</span> 성분이 모델에 반드시 포함되어야만 설명력이 생기는 상황 - 라면, 우리가 억지로 끼워 맞춘 1차 선형 회귀 모델은 태생적으로 부적절한 불량품이 됩니다. 이 가정을 날카롭게 검증하기 위해 통계학자들은 “적합값 대비 잔차 도표(residuals vs fitted plot)”라는 시각화 기법을 고안했습니다. 각 관측치의 <span class="math inline">\(x\)</span>축을 ’모델이 예측한 적합값’으로, <span class="math inline">\(y\)</span>축을 ’그때 발생한 잔차(오차)’로 설정하여 산점도를 그립니다. 만약 선형성 가정이 현실에 부합한다면, 잔차들은 0을 중심으로 아무런 패턴도, 트렌드도 없는 무작위적인 구름 형태로 흩어져 있을 것입니다. 반대로 잔차 도표가 뚜렷한 <span class="math inline">\(U\)</span>자형이나 아치형 패턴을 그린다면, 이는 모델이 잡아내지 못한 비선형 성분이 잔차 속에 고스란히 남아있다는 뜻이며 선형성 가정이 뼈아프게 위반되었음을 의미합니다.</p>
 <p>R 실습 환경에서 이 진단 도표를 그리려면 모델이 뱉어낸 적합값과 잔차 데이터를 추출해야 합니다. 적합값 <span class="math inline">\(\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1x_i\)</span>는 모델의 공식적인 예측치이고, 잔차 <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>는 그 예측이 빗나간 오차의 크기임을 떠올려 보십시오.</p>
 <p>앞서 학습했듯 이 값들은 <code>lm</code> 객체 내부의 <code>fitted.values</code>와 <code>residuals</code>라는 서랍에 잘 정리되어 있습니다. R의 베이스 함수를 이용하여 직관적으로 이 서랍을 열어볼 수 있습니다. 예를 들어, 올드 페이스풀 간헐천 데이터를 분석하고 <code>slr</code>이라는 이름으로 고이 저장해 둔 선형 회귀 객체에서 이 값들을 불러오려면 다음과 같이 타이핑합니다.</p>
@@ -789,7 +819,7 @@ e_i = y_i - \hat{y}_i
 </section>
 <section id="회귀에-대한-추론" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="회귀에-대한-추론"><span class="header-section-number">5</span> 회귀에 대한 추론</h2>
-<p>이제 데이터를 캔버스 삼아 회귀 모델을 멋지게 적합시키고, 미래를 엿보는 예측값을 생성하는 법을 배웠으며, 모델이 기초하고 있는 수학적 가정들까지 샅샅이 검증을 마쳤습니다. 이제 이 챕터의 클라이맥스이자 회귀 분석이 답해야 할 가장 실무적이고 핵심적인 질문에 도달했습니다. “우리가 야심 차게 투입한 예측 변수(<span class="math inline">\(x\)</span>)가 회귀 모델에서 실제로 ’유용(Useful)’합니까?” 더 직설적으로 말하자면, “이 변수가 반응 변수(<span class="math inline">\(y\)</span>)의 움직임을 예측하고 비즈니스 통찰을 얻는 데 통계적으로 진짜 도움이 됩니까?”</p>
+<p>이제 데이터를 캔버스 삼아 회귀 모델을 멋지게 적합시키고, 미래를 엿보는 예측값을 생성하는 법을 배웠으며, 모델이 기초하고 있는 수학적 가정들까지 샅샅이 검증을 마쳤습니다. 이제 이 챕터의 클라이맥스이자 회귀 분석이 답해야 할 실무적이고 핵심적인 질문에 도달했습니다. “우리가 야심 차게 투입한 예측 변수(<span class="math inline">\(x\)</span>)가 회귀 모델에서 실제로 ’유용(Useful)’합니까?” 더 직설적으로 말하자면, “이 변수가 반응 변수(<span class="math inline">\(y\)</span>)의 움직임을 예측하고 비즈니스 통찰을 얻는 데 통계적으로 진짜 도움이 됩니까?”</p>
 <p>이는 수백만 달러의 마케팅 예산이 걸려 있거나 AI 알고리즘의 채택 여부를 가르는 지극히 중대한 질문입니다. 예측 변수가 완전히 쓸모없는 쓰레기 데이터라는 주장과, 반대로 모델의 예측력을 높이는 핵심 피처(Feature)라는 주장을 통계적으로 맞붙게 하여 승자를 가릴 공정한 판정 메커니즘이 절실합니다. 다행히 고전 통계학은 가설 검정(hypothesis testing)이라는 치밀한 판정 시스템을 통해 이 딜레마를 명쾌하게 해결해 줍니다. 이 가설 검정의 뼈대는 이전 장에서 배운 논리와 완전히 동일하며, 우리는 올드 페이스풀 간헐천의 분출 시간(<span class="math inline">\(x\)</span>)이 다음 분출까지의 대기 시간(<span class="math inline">\(y\)</span>)을 예측하는 데 통계적으로 진정 유효한지 검정하는 시나리오를 통해 그 단계들을 하나씩 격파해 나갈 것입니다.</p>
 <section id="가설-설정" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="가설-설정"><span class="header-section-number">5.1</span> 가설 설정</h3>
@@ -805,7 +835,7 @@ H_A&amp;:\beta_1\neq 0
 </section>
 <section id="유의-수준-설정" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="유의-수준-설정"><span class="header-section-number">5.2</span> 유의 수준 설정</h3>
-<p>이제 기계적인 단계입니다. 다른 모든 가설 검정과 마찬가지로, 유의 수준(Significance level) <span class="math inline">\(\alpha\)</span>는 억울하게 귀무 가설을 기각해버리는 제1종 오류(Type I error)의 위험을 분석가가 어디까지 감수할 것인지, 그리고 해당 학문 분야의 오랜 관례가 무엇인지에 따라 결정됩니다. 통계학계의 암묵적인 표준 룰인 <span class="math inline">\(\alpha=0.05\)</span>를 굳이 거스를 이유가 없습니다. 본 올드 페이스풀 예제에서도 가장 보편적인 기준인 <span class="math inline">\(\alpha=0.05\)</span>를 유의 수준 방어선으로 설정하겠습니다.</p>
+<p>이제 기계적인 단계입니다. 다른 모든 가설 검정과 마찬가지로, 유의 수준(Significance level) <span class="math inline">\(\alpha\)</span>는 억울하게 귀무 가설을 기각해버리는 제1종 오류(Type I error)의 위험을 분석가가 어디까지 감수할 것인지, 그리고 해당 학문 분야의 오랜 관례가 무엇인지에 따라 결정됩니다. 통계학계의 암묵적인 표준 룰인 <span class="math inline">\(\alpha=0.05\)</span>를 굳이 거스를 이유가 없습니다. 본 올드 페이스풀 예제에서도 보편적인 기준인 <span class="math inline">\(\alpha=0.05\)</span>를 유의 수준 방어선으로 설정하겠습니다.</p>
 </section>
 <section id="데이터-수집-및-요약" class="level3" data-number="5.3">
 <h3 data-number="5.3" class="anchored" data-anchor-id="데이터-수집-및-요약"><span class="header-section-number">5.3</span> 데이터 수집 및 요약</h3>
@@ -817,7 +847,7 @@ H_A&amp;:\beta_1\neq 0
 <p><span class="math display">\[
 t = \frac{(\text{표본 통계량} - \text{귀무 가설 값})}{\text{표준 오차}}
 \]</span></p>
-<p>우리가 쥐고 있는 원시 데이터, 논리적으로 설정한 가설, 그리고 표본 통계량의 통계학적 지식을 총동원하여 이 뼈대 공식의 각 빈칸을 채워나가야 합니다. 첫 번째 임무는 귀무 가설이 조준하고 있는 참 모수(<span class="math inline">\(\beta_1\)</span>)를 가장 훌륭하게 대리하는 ’표본 통계량’을 발탁하는 일입니다. 회귀 분석의 세계에서 귀무 가설은 다음과 같이 명확히 선언되었습니다.</p>
+<p>우리가 쥐고 있는 원시 데이터, 논리적으로 설정한 가설, 그리고 표본 통계량의 통계학적 지식을 총동원하여 이 뼈대 공식의 각 빈칸을 채워나가야 합니다. 첫 번째 임무는 귀무 가설이 조준하고 있는 참 모수(<span class="math inline">\(\beta_1\)</span>)를 훌륭하게 대리하는 ’표본 통계량’을 발탁하는 일입니다. 회귀 분석의 세계에서 귀무 가설은 다음과 같이 명확히 선언되었습니다.</p>
 <p><span class="math display">\[
 H_0:\beta_1=0.
 \]</span></p>
@@ -879,7 +909,7 @@ F-statistic:  1162 on 1 and 270 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="회귀-모델의-성능-평가" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="회귀-모델의-성능-평가"><span class="header-section-number">6</span> 회귀 모델의 성능 평가</h2>
-<p>가설 검정의 벽을 넘어, 우리가 발탁한 예측 변수가 반응 변수를 모델링하고 궤적을 쫓아가는 데 통계적으로 확실히 유용(Significant)하다는 값진 승전보를 울렸습니다. 하지만 자만하기엔 이릅니다. 이제 우리는 단순 선형 회귀 분석이라는 거대한 산맥의 마지막이자 가장 냉혹한 질문 앞에 서 있습니다. “그래서, 당신이 만든 그 모델이 얼마나 좋은가(How good is it)?” 이 질문은 결코 사소하거나 학구적인 말장난이 아닙니다. 왜냐하면, 아무리 통계적 가설 검정에서 예측 변수의 기울기가 유의미하다며 <span class="math inline">\(H_0:\beta_1=0\)</span>이라는 귀무 가설을 시원하게 기각했을지라도, 그것이 곧 해당 예측 변수가 실전 비즈니스에서 오차 없이 반응 변수를 완벽하게 예측하는 ’초정밀 명품 회귀 모델’을 탄생시켰다는 의미와는 완전히 무관하기 때문입니다. <span class="math inline">\(p\)</span>-값은 단지 기울기가 0이 아니라는 최소한의 존재 증명일 뿐, 모델의 전체적인 퀄리티를 대변하지 않습니다.</p>
+<p>가설 검정의 벽을 넘어, 우리가 발탁한 예측 변수가 반응 변수를 모델링하고 궤적을 쫓아가는 데 통계적으로 확실히 유용(Significant)하다는 값진 승전보를 울렸습니다. 하지만 자만하기엔 이릅니다. 이제 우리는 단순 선형 회귀 분석이라는 거대한 산맥의 마지막이자 냉혹한 질문 앞에 서 있습니다. “그래서, 당신이 만든 그 모델이 얼마나 좋은가(How good is it)?” 이 질문은 결코 사소하거나 학구적인 말장난이 아닙니다. 왜냐하면, 아무리 통계적 가설 검정에서 예측 변수의 기울기가 유의미하다며 <span class="math inline">\(H_0:\beta_1=0\)</span>이라는 귀무 가설을 시원하게 기각했을지라도, 그것이 곧 해당 예측 변수가 실전 비즈니스에서 오차 없이 반응 변수를 완벽하게 예측하는 ’초정밀 명품 회귀 모델’을 탄생시켰다는 의미와는 완전히 무관하기 때문입니다. <span class="math inline">\(p\)</span>-값은 단지 기울기가 0이 아니라는 최소한의 존재 증명일 뿐, 모델의 전체적인 퀄리티를 대변하지 않습니다.</p>
 <p>우리 모델의 절대적인 성능 수준을 냉정하게 평가하고, 이 예측 변수가 실제 현업에서 얼마나 탁월하게 작동하는지 비전문가(이해관계자)도 직관적으로 이해할 수 있도록 돕는 범용적인 성능 지표(metric)가 절실히 필요합니다. 모델이 내놓은 예측값과 현실 세계에서 튀어나온 실제 관측값이 얼마나 뼈아프게 어긋났는지를 낱낱이 기록하는 ‘잔차(residuals)’ 데이터 덩어리는 모델 평가의 출발점이 됩니다. 모델 성능을 한 줄의 숫자로 보고하기 위해 잔차들을 단일한 스코어로 요약하고 싶어 합니다. 안타깝게도 잔차들을 그냥 더해버리면 앞서 증명했듯 음수와 양수가 상쇄되어 평균이 항상 수학적 0으로 소멸해 버리므로, 모델 성능을 변별할 적절한 요약치가 되지 못합니다. 이 문제를 타파하기 위해 통계학자들은 잔차를 각각 제곱(square)한 뒤 합산합니다. 잔차를 제곱하면 부호가 모두 양수로 통일되며, 잔차가 0에 가까울수록 제곱값 역시 작아져 회귀 모델이 정확했음을 보여 줍니다. 이 제곱된 잔차 덩어리들을 모조리 더한 총합을 통계학에서는 잔차 제곱합(sum of squared residuals) 또는 간단히 <strong>SSR</strong>이라고 명명합니다. 다만 교재에 따라 이 값을 RSS(residual sum of squares)로 부르고 SSR은 회귀제곱합(regression sum of squares)이라는 다른 뜻으로 쓰기도 하므로, 다른 문헌을 참고할 때는 약어의 정의를 먼저 확인하시기 바랍니다.</p>
 <p><span class="math display">\[
 SSR=\sum_{i=1}^ne_i^2.
@@ -887,7 +917,7 @@ SSR=\sum_{i=1}^ne_i^2.
 <p>우리가 앞서 단순 선형 회귀의 찌꺼기를 다루며 평균 제곱 오차 공식을 <span class="math inline">\(\hat{\sigma}^2=SSR/(n-2)\)</span>로 정의했음을 떠올려 보십시오. 이 공식에서 볼 수 있듯, 우리의 SSR은 모델의 변동성을 대변하는 평균 제곱 오차 <span class="math inline">\(\hat{\sigma}^2\)</span>와 떼려야 뗄 수 없는 직접적인 혈연관계를 맺고 있습니다. 직관적으로 해석하자면, SSR 값이 0에 한없이 수렴한다는 것은 오차 찌꺼기가 거의 없다는 뜻이므로 모델이 실측 데이터를 기가 막히게 잘 적합(fitting)시키고 있음을 선포하는 훈장입니다. 반대로 ssr 값이 천문학적으로 크다면, 모델 예측이 번번이 과녁을 빗나가 데이터를 전혀 제대로 설명하지 못하는 형편없는 상태임을 의미합니다.</p>
 <p>안타깝게도, “SSR이 작으면 좋은 모델이다”라는 이 순진무구한 해석에는 치명적인 함정이 도사리고 있습니다. SSR의 절대적인 크기는 애초에 모델링하고자 했던 반응 변수(<span class="math inline">\(y\)</span>) 자체에 선천적으로 내재된 가변성(분산)의 스케일에 따라 고무줄처럼 늘어났다 줄어든다는 맹점입니다. 개념 이해를 돕기 위해 가상의 시뮬레이션 데이터셋 두 개를 비교해 보겠습니다. 첫 번째 데이터셋은 반응 변수의 변동 폭 자체가 작고 관측치가 회귀선 주변에 느슨하게 흩어져 있는 반면, 두 번째 데이터셋은 반응 변수의 변동 폭이 훨씬 크지만 관측치가 회귀선 주변에 빽빽하게 모여 있습니다. 산점도만 보면 두 번째 모델이 누가 보아도 반응 변수를 더 잘 예측하는 모델처럼 보입니다. 그러나 충격적이게도 막상 SSR을 계산해 보면, 엉성해 보이던 첫 번째 모델의 SSR은 고작 2421.9에 불과한 반면, 정교해 보이던 두 번째 모델의 SSR은 12050.5로 무려 5배나 거대하게 산출됩니다. 반응 변수의 스케일이 다르기 때문에 SSR의 절대 크기만으로는 두 모델의 우열을 가릴 수 없는 것입니다.</p>
 <p>도대체 왜 이런 기괴한 역전 현상이 벌어지는 것일까요? 해답은 데이터의 원초적 스케일에 있습니다. 오른쪽 데이터셋이 다루는 반응 변수(<span class="math inline">\(y\)</span>) 자체가 근본적으로 거대한 숫자 단위(수백만 달러 규모의 주택 가격)를 지녀 그 자체의 분산(13516.02)이 매우 컸던 반면, 왼쪽 데이터셋의 반응 변수 분산(36.29)은 좁은 범위(센티미터 단위의 신장)에 옹기종기 모여 있었기 때문입니다. 결국 단위에 휘둘리는 SSR만으로는 공정한 성능 평가가 불가능합니다. 반응 변수 자체의 ’전체 변동성 파이’와 모델이 놓쳐버린 찌꺼기인 ’SSR’의 상대적인 비율을 동시에 고려하여, 어떤 데이터셋에도 들이댈 수 있는 표준화된 회귀 성능 통계량이 절실하게 요구됩니다.</p>
-<p>이 두 가지 요소를 솜씨 좋게 융합하여 전 세계 통계학자와 데이터 과학자들이 가장 흔히, 그리고 사랑하며 사용하는 성능 지표가 바로 결정 계수(Coefficient of determination), 통칭 <span class="math inline">\(R^2\)</span> (R-squared)입니다. <span class="math inline">\(R^2\)</span> 값의 비즈니스적 의미는 명쾌합니다. “우리가 기껏 구축한 이 회귀 모델이, 타겟 반응 변수가 가진 애초의 널뛰기(전체 변동성)를 도대체 ’몇 백분율(%)’이나 설명해 내고 통제할 수 있는가?”를 수치화한 것입니다. <span class="math inline">\(R^2\)</span>는 본질적으로 비율(백분율) 개념이므로 수학적으로 0과 1 사이(0%~100%)로 범위가 엄격하게 제한됩니다. <span class="math inline">\(R^2\)</span> 값이 1에 가까워질수록 회귀 모델이 반응 변수의 변동성을 잘 설명하여 좋은 예측 성능을 내고 있음을 과시하며, 0에 가까우면 모델의 설명력이 백지장 수준임을 뼈아프게 나타냅니다. (참고로 분야에 따라 기준은 크게 다릅니다. 데이터의 본질적 노이즈가 큰 사회과학이나 금융 분야에서는 <span class="math inline">\(R^2\)</span>가 0.1~0.2만 되어도 의미 있는 모델로 평가받기도 합니다.)</p>
+<p>이 두 가지 요소를 솜씨 좋게 융합하여 전 세계 통계학자와 데이터 과학자들이 흔히, 그리고 사랑하며 사용하는 성능 지표가 바로 결정 계수(Coefficient of determination), 통칭 <span class="math inline">\(R^2\)</span> (R-squared)입니다. <span class="math inline">\(R^2\)</span> 값의 비즈니스적 의미는 명쾌합니다. “우리가 기껏 구축한 이 회귀 모델이, 타겟 반응 변수가 가진 애초의 널뛰기(전체 변동성)를 도대체 ’몇 백분율(%)’이나 설명해 내고 통제할 수 있는가?”를 수치화한 것입니다. <span class="math inline">\(R^2\)</span>는 본질적으로 비율(백분율) 개념이므로 수학적으로 0과 1 사이(0%~100%)로 범위가 엄격하게 제한됩니다. <span class="math inline">\(R^2\)</span> 값이 1에 가까워질수록 회귀 모델이 반응 변수의 변동성을 잘 설명하여 좋은 예측 성능을 내고 있음을 과시하며, 0에 가까우면 모델의 설명력이 백지장 수준임을 뼈아프게 나타냅니다. (참고로 분야에 따라 기준은 크게 다릅니다. 데이터의 본질적 노이즈가 큰 사회과학이나 금융 분야에서는 <span class="math inline">\(R^2\)</span>가 0.1~0.2만 되어도 의미 있는 모델로 평가받기도 합니다.)</p>
 <p>통계 교과서에 등장하는 <span class="math inline">\(R^2\)</span>의 기본 공식은 다음과 같습니다.</p>
 <p><span class="math display">\[
 R^2=1-SSR/SST
@@ -901,7 +931,7 @@ R^2=1-\frac{(n-2)\hat{\sigma}^2}{(n-1)s^2_{y}}.
 R^2=1-\frac{(270 \times 34.9755)}{(271 \times 184.8233)}=0.8115.
 \]</span></p>
 <p>도출된 0.8115라는 숫자는 실무진에게 이렇게 브리핑됩니다. “우리가 개발한 ‘간헐천 분출 시간’ 기반의 선형 회귀 모델은, 관광객의 다음 분출 ‘대기 시간’ 데이터가 원래 가지고 있던 불확실성(전체 변동성)의 무려 81.15%를 명쾌하게 설명해 내고 예측 통제권 안에 두었습니다.”</p>
-<p>재미있게도 ’단순 선형 회귀’라는 한정된 무대 안에서, 결정 계수 <span class="math inline">\(R^2\)</span>는 우리가 가장 먼저 배웠던 통계량인 피어슨 ’상관관계(r)’와 기적 같은 수학적 연결 고리를 맺고 있습니다. 반응 변수 y와 단 하나의 예측 변수 x만이 외롭게 춤추는 단순 선형 회귀에서 도출된 <span class="math inline">\(R^2\)</span> 값은, 두 변수 간의 순수한 상관계수 <span class="math inline">\(r_{x,y}\)</span>를 무식하게 ’제곱’한 값(<span class="math inline">\(r_{x,y}^2\)</span>)과 소수점 끝자리까지 완벽하게 동일하다는 수학적 정리가 증명되어 있습니다. 올드 페이스풀 회귀 모델에서도 이 소름 돋는 일치 현상을 검증해 볼 수 있습니다. 앞서 데이터 탐색 단계에서 분출 시간과 대기 시간 사이의 상관관계가 <span class="math inline">\(r_{x,y}=0.9008\)</span>이라는 강한 양의 상관성을 띰을 확인한 바 있습니다. 이 상관계수를 단순하게 제곱해 보면 <span class="math inline">\(R^2 = 0.9008^2 = 0.81144...\)</span>가 되어, 우리가 분산 공식을 통해 산출한 -e.8115197609반올림)와 정확히 일치함을 깨닫게 됩니다.</p>
+<p>재미있게도 ’단순 선형 회귀’라는 한정된 무대 안에서, 결정 계수 <span class="math inline">\(R^2\)</span>는 우리가 먼저 배웠던 통계량인 피어슨 ’상관관계(r)’와 기적 같은 수학적 연결 고리를 맺고 있습니다. 반응 변수 y와 단 하나의 예측 변수 x만이 외롭게 춤추는 단순 선형 회귀에서 도출된 <span class="math inline">\(R^2\)</span> 값은, 두 변수 간의 순수한 상관계수 <span class="math inline">\(r_{x,y}\)</span>를 무식하게 ’제곱’한 값(<span class="math inline">\(r_{x,y}^2\)</span>)과 소수점 끝자리까지 완벽하게 동일하다는 수학적 정리가 증명되어 있습니다. 올드 페이스풀 회귀 모델에서도 이 소름 돋는 일치 현상을 검증해 볼 수 있습니다. 앞서 데이터 탐색 단계에서 분출 시간과 대기 시간 사이의 상관관계가 <span class="math inline">\(r_{x,y}=0.9008\)</span>이라는 강한 양의 상관성을 띰을 확인한 바 있습니다. 이 상관계수를 단순하게 제곱해 보면 <span class="math inline">\(R^2 = 0.9008^2 = 0.81144...\)</span>가 되어, 우리가 분산 공식을 통해 산출한 -e.8115197609반올림)와 정확히 일치함을 깨닫게 됩니다.</p>
 <p>가설 검정 결과를 <code>summary</code> 함수로 1초 만에 뽑아냈듯이, 복잡한 분산 공식을 직접 계산기 칠 필요 없이 R 환경에서 <code>lm</code> 객체를 입력받은 <code>summary</code> 함수를 실행하면 모델의 자랑스러운 <span class="math inline">\(R^2\)</span> 성적표를 즉각 건네받을 수 있습니다. <span class="math inline">\(R^2\)</span> 지표는 요약 리포트 하단부의 <code>Coefficients</code> 섹션 아래, <code>Multiple R-squared</code> (다중 결정 계수)라는 이름표를 달고 전시되어 있습니다. <code>slr</code>이라는 이름으로 고이 저장된 올드 페이스풀 회귀 모델의 요약 정보 - <code>summary(slr)</code> 코드를 콘솔에 실행 - 를 꼼꼼히 뜯어보면, <code>Multiple R-squared</code> 항목 옆에 아로새겨진 수치가 우리가 손으로 땀 흘려 계산한 <span class="math inline">\(R^2=0.8115\)</span> 값과 한 치의 어긋남 없이 일치함을 환희와 함께 확인할 수 있습니다.</p>
 <pre class="text"><code>Call:
 lm(formula = waiting ~ eruptions, data = faithful)
@@ -1005,7 +1035,7 @@ F-statistic:  1162 on 1 and 270 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>위 코드에서 <code>interval = "prediction"</code> 옵션을 부여하면 회귀 모델은 예측된 점 추정치뿐만 아니라, 미래의 ’새로운 개별 관측값 하나’가 무작위 오차를 포함하여 실제로 떨어질 수 있는 넓은 불확실성의 범위를 정직하게 제시합니다. 반면 <code>interval = "confidence"</code>를 입력하면, 개별 관측값이 아닌 ’모집단의 평균적인 반응 수준(Mean response)’이 위치할 좁고 치밀한 신뢰 범위를 산출합니다. 예측 구간과 신뢰 구간은 근본적으로 묻고자 하는 통계적 질문의 층위가 다르므로, 당연히 구간의 좌우 폭(불확실성의 크기)도 다르게 나타납니다.</p>
-<p>현업 데이터 과학자로서 회귀 분석을 대할 때 반드시 체화해야 할 가장 중요한 해석 습관은, 요약 리포트의 작은 0값만 보고 성급한 인과적 결론을 내리지 않는 것입니다. 모델이 진정으로 현실을 묘사하는지 입증하려면 원시 데이터의 산점도를 째어보고, 잔차 도표의 패턴을 의심하며, 터무니없는 외삽(Extrapolating)의 유혹에 빠지지 않았는지 자기 검열을 수행하고, 최종적으로 현실적인 예측 구간의 너비를 종합적으로 잣대질해야만 비로소 탄탄한 데이터 기반 의사결정을 내릴 수 있습니다.</p>
+<p>현업 데이터 과학자로서 회귀 분석을 대할 때 반드시 체화해야 할 중요한 해석 습관은, 요약 리포트의 작은 0값만 보고 성급한 인과적 결론을 내리지 않는 것입니다. 모델이 진정으로 현실을 묘사하는지 입증하려면 원시 데이터의 산점도를 째어보고, 잔차 도표의 패턴을 의심하며, 터무니없는 외삽(Extrapolating)의 유혹에 빠지지 않았는지 자기 검열을 수행하고, 최종적으로 현실적인 예측 구간의 너비를 종합적으로 잣대질해야만 비로소 탄탄한 데이터 기반 의사결정을 내릴 수 있습니다.</p>
 
 
 </section>

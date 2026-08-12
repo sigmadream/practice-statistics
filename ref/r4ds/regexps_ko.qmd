@@ -13,7 +13,7 @@ source("_common.R")
 
 [^regexps-1]: 하드 g(reg-x) 또는 소프트 g(rej-x)로 발음할 수 있습니다.
 
-이 장은 정규 표현식의 기본과 데이터 분석에 가장 유용한 stringr 함수로 시작합니다.
+이 장은 정규 표현식의 기본과 데이터 분석에 유용한 stringr 함수로 시작합니다.
 그런 다음 패턴에 대한 지식을 확장하고 7가지 중요한 새로운 주제(이스케이핑(escaping), 앵커링(anchoring), 문자 클래스(character classes), 단축 클래스(shorthand classes), 수량자(quantifiers), 우선순위(precedence) 및 그룹화(grouping))를 다룹니다.
 다음으로, stringr 함수가 작동할 수 있는 다른 유형의 패턴과 정규 표현식의 작동 방식을 미세 조정(tweak)할 수 있는 다양한 "플래그(flags)"에 대해 이야기하겠습니다.
 정규 표현식을 사용할 수 있는 tidyverse 및 기본 R의 다른 곳들에 대한 조사로 마무리하겠습니다.
@@ -41,7 +41,7 @@ library(babynames)
 이전 장에서 문자열과 출력된 표현을 더 잘 이해하기 위해 `str_view()`를 사용했는데, 이제 두 번째 인수인 정규 표현식과 함께 사용할 것입니다.
 이것이 제공되면 `str_view()`는 일치하는 문자열 벡터의 요소만 표시하고 각 일치 항목을 `<>`로 둘러싸며 가능한 경우 일치 항목을 파란색으로 강조 표시합니다.
 
-가장 단순한 패턴은 해당 문자와 정확히 일치하는 글자와 숫자로 구성됩니다.
+단순한 패턴은 해당 문자와 정확히 일치하는 글자와 숫자로 구성됩니다.
 
 ```{r}
 str_view(fruit, "berry")
@@ -118,7 +118,7 @@ str_detect(c("a", "b", "c"), "[aeiou]")
 ```
 
 `str_detect()`는 초기 벡터와 동일한 길이의 논리형 벡터를 반환하므로 `filter()`와 짝이 잘 맞습니다(pairs well).
-예를 들어 다음 코드는 소문자 "x"가 포함된 가장 인기 있는 이름을 모두 찾습니다.
+예를 들어 다음 코드는 소문자 "x"가 포함된 인기 있는 이름을 모두 찾습니다.
 
 ```{r}
 babynames |> 
@@ -266,8 +266,8 @@ df |>
 
 ### 연습 문제 (Exercises)
 
-1.  가장 많은 모음을 가진 아기 이름은 무엇입니까?
-    가장 높은 비율의 모음을 가진 이름은 무엇입니까?
+1.  많은 모음을 가진 아기 이름은 무엇입니까?
+    높은 비율의 모음을 가진 이름은 무엇입니까?
     (힌트: 분모(denominator)는 무엇입니까?)
 
 2.  `"a/b/c/d/e"`의 모든 슬래시(forward slashes)를 백슬래시로 바꾸세요.
@@ -289,7 +289,7 @@ df |>
 그리고 패턴의 구성 요소를 **그룹화(grouping)**하는 몇 가지 세부 사항으로 마무리하겠습니다.
 
 여기서 사용하는 용어는 각 구성 요소에 대한 기술적인 이름입니다.
-이 용어들이 항상 그 목적을 가장 잘 연상시키는(evocative) 것은 아니지만, 나중에 구글에서 더 자세한 내용을 검색하고 싶을 때 올바른 용어를 아는 것이 매우 도움이 됩니다.
+이 용어들이 항상 그 목적을 잘 연상시키는(evocative) 것은 아니지만, 나중에 구글에서 더 자세한 내용을 검색하고 싶을 때 올바른 용어를 아는 것이 매우 도움이 됩니다.
 
 ### 이스케이핑 (Escaping) {#sec-regexp-escaping}
 
@@ -531,7 +531,7 @@ str_match(x, "gr(?:e|a)y")
     h.  반복되는 모음-자음 쌍으로만 구성된 단어.
 
 4.  다음 각 단어에 대한 영국식 또는 미국식 철자와 일치하는 11개의 정규 표현식을 만드세요. airplane/aeroplane, aluminum/aluminium, analog/analogue, ass/arse, center/centre, defense/defence, donut/doughnut, gray/grey, modeling/modelling, skeptic/sceptic, summarize/summarise.
-    가능한 한 가장 짧은 정규 표현식을 만들어 보세요!
+    가능한 한 짧은 정규 표현식을 만들어 보세요!
 
 5.  `words`의 첫 번째 글자와 마지막 글자를 바꾸세요.
     그중 아직 `words`에 있는 문자열은 무엇입니까?
@@ -558,7 +558,7 @@ str_match(x, "gr(?:e|a)y")
 정규 표현식의 세부 사항을 제어하는 데 사용할 수 있는 여러 가지 설정이 있습니다.
 이러한 설정을 다른 프로그래밍 언어에서는 종종 **플래그(flags)**라고 부릅니다.
 stringr에서는 패턴을 `regex()` 호출로 래핑하여(wrapping) 이를 사용할 수 있습니다.
-문자가 대문자 또는 소문자 형식과 일치할 수 있게 해주기 때문에 가장 유용한 플래그는 아마도 `ignore_case = TRUE`일 것입니다.
+문자가 대문자 또는 소문자 형식과 일치할 수 있게 해주기 때문에 유용한 플래그는 아마도 `ignore_case = TRUE`일 것입니다.
 
 ```{r}
 bananas <- c("banana", "Banana", "BANANA")
@@ -847,15 +847,15 @@ head(list.files(pattern = "\\.Rmd$"))
 
 ## 요약 (Summary)
 
-모든 구두점 문자가 의미로 잠재적으로 오버로드(overloaded)되어 있는 정규 표현식은 세상에 존재하는 가장 간결한(compact) 언어 중 하나입니다.
+모든 구두점 문자가 의미로 잠재적으로 오버로드(overloaded)되어 있는 정규 표현식은 세상에 존재하는 간결한(compact) 언어 중 하나입니다.
 처음에는 분명 혼란스럽지만, 그것들을 읽도록 눈을 훈련하고 이해하도록 뇌를 훈련시키면 R과 다른 많은 곳에서 사용할 수 있는 강력한 기술(skill)이 풀리게(unlock) 됩니다.
 
-이 장에서 여러분은 가장 유용한 stringr 함수와 정규 표현식 언어의 가장 중요한 구성 요소를 배움으로써 정규 표현식의 달인(master)이 되기 위한 여정(journey)을 시작했습니다.
+이 장에서 여러분은 유용한 stringr 함수와 정규 표현식 언어의 중요한 구성 요소를 배움으로써 정규 표현식의 달인(master)이 되기 위한 여정(journey)을 시작했습니다.
 그리고 더 배울 수 있는 자료(resources)가 많이 있습니다.
 
 시작하기 좋은 곳은 `vignette("regular-expressions", package = "stringr")`입니다. 이 문서는 stringr에서 지원하는 전체 구문(syntax) 세트를 문서화합니다.
 또 다른 유용한 참고 자료(reference)는 [https://www.regular-expressions.info/](https://www.regular-expressions.info/tutorial.html)입니다.
-이것은 R에 한정된(specific) 것은 아니지만, 정규 표현식의 가장 고급 기능과 이들이 이면에서(under the hood) 어떻게 작동하는지 배우는 데 사용할 수 있습니다.
+이것은 R에 한정된(specific) 것은 아니지만, 정규 표현식의 고급 기능과 이들이 이면에서(under the hood) 어떻게 작동하는지 배우는 데 사용할 수 있습니다.
 
 또한 stringr이 Marek Gagolewski의 stringi 패키지 위에 구현(implemented)되어 있다는 것을 아는 것이 좋습니다.
 stringr에서 필요한 기능을 하는 함수를 찾는 데 어려움을 겪고 있다면(struggling) 주저하지 말고(don't be afraid) stringi를 찾아보세요.

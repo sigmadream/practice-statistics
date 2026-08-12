@@ -6,7 +6,7 @@
 
 이 장에서는 그래픽의 레이어 문법(layered grammar of graphics)에 대해 배우면서 그 토대를 확장할 것입니다. 먼저 심미적 매핑(aesthetic mappings), 기하학적 객체(geometric objects), 패싯(facets)에 대해 더 깊이 파고드는 것으로 시작합니다. 그런 다음 ggplot2가 플롯을 만들 때 내부적으로(under the hood) 수행하는 통계적 변환(statistical transformations)에 대해 알아봅니다. 이러한 변환은 막대 플롯의 막대 높이나 상자 그림의 중앙값과 같이 플롯에 그릴 새로운 값을 계산하는 데 사용됩니다. 또한 플롯에서 기하학적 객체(geom)가 표시되는 방식을 수정하는 위치 조정(position adjustments)에 대해서도 알아봅니다. 마지막으로 좌표계(coordinate systems)를 간략하게 소개합니다.
 
-이러한 각 레이어에 대한 모든 단일 기능과 옵션을 다루지는 않지만, ggplot2에서 제공하는 가장 중요하고 흔히 사용되는 기능을 단계별로 안내하고 ggplot2를 확장하는 패키지들을 소개할 것입니다.
+이러한 각 레이어에 대한 모든 단일 기능과 옵션을 다루지는 않지만, ggplot2에서 제공하는 중요하고 흔히 사용되는 기능을 단계별로 안내하고 ggplot2를 확장하는 패키지들을 소개할 것입니다.
 
 ## 사전 준비 (Prerequisites)
 
@@ -18,7 +18,7 @@ library(tidyverse)
 
 # 심미적 매핑 (Aesthetic Mappings)
 
-> “그림의 가장 큰 가치는 우리가 전혀 볼 것이라 예상하지 못했던 것을 주목하게 만들 때 나타난다.” — 존 튜키(John Tukey)
+> “그림의 큰 가치는 우리가 전혀 볼 것이라 예상하지 못했던 것을 주목하게 만들 때 나타난다.” — 존 튜키(John Tukey)
 
 ggplot2 패키지에 번들로 포함된 `mpg` 데이터 프레임에는 38개 자동차 모델에 대한 234개의 관측치가 포함되어 있다는 것을 기억하세요.
 
@@ -328,13 +328,13 @@ flights |>
     - 도착은 2시간 이상 늦었지만 출발은 늦지 않았습니다.
     - 1시간 이상 지연되었지만 비행 중 30분 이상을 만회했습니다.
 
-2.  `flights`를 정렬하여 출발 지연이 가장 긴 항공편을 찾으세요. 아침에 가장 일찍 출발한 항공편을 찾으세요.
+2.  `flights`를 정렬하여 출발 지연이 긴 항공편을 찾으세요. 아침에 일찍 출발한 항공편을 찾으세요.
 
-3.  `flights`를 정렬하여 가장 빠른 항공편을 찾으세요. (힌트: 함수 내부에 수학 계산을 포함해 보세요.)
+3.  `flights`를 정렬하여 빠른 항공편을 찾으세요. (힌트: 함수 내부에 수학 계산을 포함해 보세요.)
 
 4.  2013년 매일 항공편이 있었나요?
 
-5.  가장 먼 거리를 이동한 항공편은 무엇인가요? 가장 짧은 거리를 이동한 항공편은 무엇인가요?
+5.  먼 거리를 이동한 항공편은 무엇인가요? 짧은 거리를 이동한 항공편은 무엇인가요?
 
 6.  <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a>와 <a href="https://dplyr.tidyverse.org/reference/arrange.html" class="orm:hideurl"><code>arrange()</code></a>를 둘 다 사용하는 경우 어떤 순서로 사용하든 상관이 있나요? 왜 그런가요/아닌가요? 결과와 함수가 해야 할 작업량에 대해 생각해 보세요.
 
@@ -630,7 +630,7 @@ geom_point(position = "jitter")
 
 # 좌표계 (Coordinate Systems)
 
-좌표계는 아마도 ggplot2에서 가장 복잡한 부분일 것입니다. 기본 좌표계는 데카르트 좌표계(Cartesian coordinate system)로, 여기서 x와 y 위치는 각 점의 위치를 결정하기 위해 독립적으로 작용합니다. 가끔 유용하게 쓰일 수 있는 두 가지 다른 좌표계가 있습니다.
+좌표계는 아마도 ggplot2에서 복잡한 부분일 것입니다. 기본 좌표계는 데카르트 좌표계(Cartesian coordinate system)로, 여기서 x와 y 위치는 각 점의 위치를 결정하기 위해 독립적으로 작용합니다. 가끔 유용하게 쓰일 수 있는 두 가지 다른 좌표계가 있습니다.
 
 - <a href="https://ggplot2.tidyverse.org/reference/coord_map.html" class="orm:hideurl"><code>coord_quickmap()</code></a>은 지리적 지도의 가로세로 비율(aspect ratio)을 올바르게 설정합니다. 이는 ggplot2로 공간 데이터를 그릴 때 중요합니다. 이 책에서는 지도를 다룰 공간이 부족하지만, *ggplot2: Elegant Graphics for Data Analysis* (Springer)의 [지도 챕터(Maps chapter)](https://oreil.ly/45GHE)에서 자세히 알아볼 수 있습니다.
 

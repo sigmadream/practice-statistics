@@ -6,8 +6,8 @@
 
 이러한 알고리즘에는 두 가지 광범위한 작업이 있습니다.
 
-* 분류 (판별 또는 **[지도 학습(supervised learning)](./25-GLOSSARY.md#gloss_150)**이라고도 함): 우리가 직면한 상황이 어떤 종류인지 말해줍니다. 예를 들어, 온라인 고객의 호불호(likes and dislikes) 또는 로봇의 시야에 있는 물체가 아이인지 개인지 판별하는 것입니다.
-* 예측: 무슨 일이 일어날지 알려줍니다. 예를 들어, 다음 주 날씨가 어떨지, 내일 주가가 어떻게 될지, 해당 고객이 어떤 제품을 구매할지, 또는 그 아이가 자율 주행 차량 앞으로 튀어나올지 여부입니다.
+- 분류 (판별 또는 **[지도 학습(supervised learning)](./25-GLOSSARY.md#gloss_150)**이라고도 함): 우리가 직면한 상황이 어떤 종류인지 말해줍니다. 예를 들어, 온라인 고객의 호불호(likes and dislikes) 또는 로봇의 시야에 있는 물체가 아이인지 개인지 판별하는 것입니다.
+- 예측: 무슨 일이 일어날지 알려줍니다. 예를 들어, 다음 주 날씨가 어떨지, 내일 주가가 어떻게 될지, 해당 고객이 어떤 제품을 구매할지, 또는 그 아이가 자율 주행 차량 앞으로 튀어나올지 여부입니다.
 
 이러한 작업은 현재와 미래 중 어느 것에 관한 것인지에 따라 차이가 있지만, 현재 상황과 관련된 관측치 집합을 가져와 관련 결론에 매핑한다는 동일한 근본적인 성격을 공유합니다. 이 과정은 **[예측 분석(predictive analytics)](./25-GLOSSARY.md#gloss_108)**이라고 불리지만, 우리는 기계에 구현된 알고리즘을 사용하여 일반적으로 인간의 개입이 필요한 작업을 수행하거나 인간에게 전문가 수준의 조언을 제공하는 **[인공지능(AI)](./25-GLOSSARY.md#gloss_05)**의 영역에 접어들고 있습니다.
 
@@ -47,7 +47,7 @@
 
 계획(Plan)은 이용 가능한 데이터를 수집하고 생존자를 예측하는 알고리즘을 생성하기 위해 다양한 기술을 시도하는 것입니다. 사건이 이미 발생했기 때문에 이는 예측 문제라기보다는 분류에 더 가깝다고 간주될 수 있습니다. 데이터(Data)는 타이타닉 승객 1,309명에 대한 공개적으로 사용 가능한 정보로 구성됩니다. 잠재적인 예측 변수에는 성명, 직함, 성별, 나이, 여행 등급(1등석, 2등석, 3등석), 티켓 지불액, 가족 동반 여부, 배에 탑승한 장소(Southampton, Cherbourg, Queenstown) 및 일부 객실 번호에 대한 제한된 데이터가 포함됩니다.[**1**](./32-chapter006_notes.md#ch6-end1) 반응 변수는 생존 여부(1) 또는 그렇지 않음(0)을 나타내는 지표(indicator)입니다.
 
-![Figure 6.1 The memorial to a Francis William Somerton in the churchyard in Ilfracombe. It reads, ‘Also of Francis William, son of the above, who perished in the Titanic disaster April 14 1912, aged 30 years’.](./images/p150.png) 
+![Figure 6.1 The memorial to a Francis William Somerton in the churchyard in Ilfracombe. It reads, ‘Also of Francis William, son of the above, who perished in the Titanic disaster April 14 1912, aged 30 years’.](./images/p150.png)
 
 그림 6.1  
 일프러콤의 교회 묘지에 있는 프랜시스 윌리엄 서머튼의 기념비. '위의 사람의 아들 프랜시스 윌리엄도 1912년 4월 14일 타이타닉 재앙에서 30세의 나이로 사망함'이라고 적혀 있습니다.
@@ -60,7 +60,7 @@
 
 [그림 6.2](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#fig6-2)는 훈련 세트에 있는 897명의 승객에 대해 생존한 다양한 범주의 승객 비율을 보여줍니다. 이러한 모든 특징들은 그 자체로 예측 능력을 가지고 있으며, 배의 더 좋은 등급에서 여행하는 승객, 여성, 어린이, 티켓에 더 많은 돈을 지불한 사람, 적당한 규모의 가족이 있는 사람, Mrs, Miss 또는 Master 직함을 가진 승객들 사이에서 더 높은 생존율을 보입니다. 이 모든 것은 우리가 이미 의심할 수 있는 바와 일치합니다.
 
-![Figure 6.2 Summary survival statistics for training set of 897 Titanic passengers, showing the percentage of different categories that survived.](./images/p152.png) 
+![Figure 6.2 Summary survival statistics for training set of 897 Titanic passengers, showing the percentage of different categories that survived.](./images/p152.png)
 
 그림 6.2  
 다양한 범주가 생존한 비율을 보여주는 897명의 타이타닉 승객의 훈련 세트에 대한 생존 통계 요약.
@@ -73,9 +73,9 @@
 
 ### 분류 트리 (Classification Trees)
 
-**[분류 트리(classification tree)](./25-GLOSSARY.md#gloss_25)**는 일련의 예/아니오 질문으로 구성되어 각 답변이 다음 질문을 결정하고 결론에 도달할 때까지 진행되기 때문에 아마도 알고리즘의 가장 단순한 형태일 것입니다. [그림 6.3](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#fig6-3)은 타이타닉 데이터에 대한 분류 트리를 보여줍니다. 여기서 승객은 가지(branch) 끝의 다수결 결과에 할당됩니다. 선택된 요인들과 최종 결론을 쉽게 알 수 있습니다. 예를 들어 프랜시스 서머튼은 데이터베이스에서 'Mr' 직함을 가지고 있었으므로 첫 번째 왼쪽 가지를 타게 됩니다. 이 가지의 끝에는 훈련 세트의 58%가 포함되어 있으며 그 중 16%가 생존합니다. 따라서 우리는 제한된 정보를 바탕으로 서머튼이 16%의 생존 가능성을 가졌다고 평가할 수 있습니다. 우리의 간단한 알고리즘은 생존자가 50% 이상인 두 그룹을 식별합니다. (희귀한 직함이 없는 한) 1등석과 2등석의 여성 및 어린이는 93%가 생존합니다. 그리고 대가족 출신인 경우 3등석의 여성과 어린이는 60%가 생존합니다.
+**[분류 트리(classification tree)](./25-GLOSSARY.md#gloss_25)**는 일련의 예/아니오 질문으로 구성되어 각 답변이 다음 질문을 결정하고 결론에 도달할 때까지 진행되기 때문에 아마도 알고리즘의 단순한 형태일 것입니다. [그림 6.3](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#fig6-3)은 타이타닉 데이터에 대한 분류 트리를 보여줍니다. 여기서 승객은 가지(branch) 끝의 다수결 결과에 할당됩니다. 선택된 요인들과 최종 결론을 쉽게 알 수 있습니다. 예를 들어 프랜시스 서머튼은 데이터베이스에서 'Mr' 직함을 가지고 있었으므로 첫 번째 왼쪽 가지를 타게 됩니다. 이 가지의 끝에는 훈련 세트의 58%가 포함되어 있으며 그 중 16%가 생존합니다. 따라서 우리는 제한된 정보를 바탕으로 서머튼이 16%의 생존 가능성을 가졌다고 평가할 수 있습니다. 우리의 간단한 알고리즘은 생존자가 50% 이상인 두 그룹을 식별합니다. (희귀한 직함이 없는 한) 1등석과 2등석의 여성 및 어린이는 93%가 생존합니다. 그리고 대가족 출신인 경우 3등석의 여성과 어린이는 60%가 생존합니다.
 
-![Figure 6.3 A classification tree for the Titanic data in which a sequence of questions leads a passenger to the end of a branch, at which point they are predicted to survive if the proportion of similar people in the training set who survived is greater than 50%; these surviving proportions are shown at the bottom of the tree. The only people predicted to survive are third-class women and children from smaller families, and all women and children in first and second class, provided they do not have rare titles.](./images/p155.png) 
+![Figure 6.3 A classification tree for the Titanic data in which a sequence of questions leads a passenger to the end of a branch, at which point they are predicted to survive if the proportion of similar people in the training set who survived is greater than 50%; these surviving proportions are shown at the bottom of the tree. The only people predicted to survive are third-class women and children from smaller families, and all women and children in first and second class, provided they do not have rare titles.](./images/p155.png)
 
 그림 6.3  
 일련의 질문을 통해 승객을 가지 끝으로 이끄는 타이타닉 데이터에 대한 분류 트리. 이 시점에서 훈련 세트에서 생존한 비슷한 사람들의 비율이 50%보다 크면 생존할 것으로 예측됩니다. 이 생존 비율은 트리의 맨 아래에 표시됩니다. 생존할 것으로 예측되는 유일한 사람들은 소규모 가족 출신의 3등석 여성과 어린이, 그리고 희귀한 직함이 없는 한 1등석 및 2등석의 모든 여성과 어린이입니다.
@@ -84,7 +84,7 @@
 
 ### 알고리즘 성능 평가 (Assessing the Performance of an Algorithm)
 
-알고리즘들이 가장 정확한지를 놓고 경쟁하려면 누군가는 '정확하다'는 것이 무엇을 의미하는지 결정해야 합니다. Kaggle의 타이타닉 과제에서 이는 단순히 올바르게 분류된 테스트 세트 승객의 백분율입니다. 따라서 참가자가 알고리즘을 구축한 후 테스트 세트의 반응 변수에 대한 예측을 업로드하면 Kaggle이 정확도를 측정합니다.[fn2](./45-footnotes.md#ch6-fn2) 우리는 전체 테스트 세트에 대한 결과를 한꺼번에 제시할 것입니다 (이것은 Kaggle 테스트 세트와 같지 않음을 강조합니다).
+알고리즘들이 정확한지를 놓고 경쟁하려면 누군가는 '정확하다'는 것이 무엇을 의미하는지 결정해야 합니다. Kaggle의 타이타닉 과제에서 이는 단순히 올바르게 분류된 테스트 세트 승객의 백분율입니다. 따라서 참가자가 알고리즘을 구축한 후 테스트 세트의 반응 변수에 대한 예측을 업로드하면 Kaggle이 정확도를 측정합니다.[fn2](./45-footnotes.md#ch6-fn2) 우리는 전체 테스트 세트에 대한 결과를 한꺼번에 제시할 것입니다 (이것은 Kaggle 테스트 세트와 같지 않음을 강조합니다).
 
 [그림 6.3](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#fig6-3)에 표시된 분류 트리는 개발에 사용된 훈련 데이터에 적용할 때 82%의 정확도를 갖습니다. 알고리즘이 테스트 세트에 적용되면 정확도는 81%로 약간 떨어집니다. 알고리즘에 의해 발생하는 다양한 유형의 오류 수가 [표 6.1](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#tab6-1)에 표시되어 있습니다. 이를 **[오차 행렬(error matrix)](./25-GLOSSARY.md#gloss_44)** 또는 혼동 행렬(confusion matrix)이라고도 합니다. 생존자를 감지하려고 할 때, 올바르게 예측된 실제 생존자의 비율을 알고리즘의 **[민감도(sensitivity)](./25-GLOSSARY.md#gloss_134)**라고 하고, 올바르게 예측된 실제 비생존자의 비율을 **[특이도(specificity)](./25-GLOSSARY.md#gloss_142)**라고 합니다. 이 용어들은 의학적 진단 검사에서 유래했습니다.
 
@@ -92,26 +92,26 @@
 
 단순한 분류가 아닌 확률(또는 숫자)을 제공하는 알고리즘은 흔히 **[수신자 조작 특성(Receiver Operating Characteristic, ROC) 곡선](./25-GLOSSARY.md#gloss_122)**을 사용하여 비교되며, 이는 제2차 세계 대전 중 레이더 신호를 분석하기 위해 원래 개발되었습니다. 중요한 통찰은 사람들이 생존할 것으로 예측되는 임계값(threshold)을 변경할 수 있다는 것입니다. [표 6.1](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#tab6-1)은 사람을 '생존자'로 예측하기 위해 50%의 임계값을 사용한 효과를 보여주며, 훈련 세트에서 특이도와 민감도는 각각 0.84와 0.78입니다. 하지만 누군가가 생존한다고 예측하기 위해 예를 들어 70%와 같이 더 높은 확률을 요구할 수도 있습니다. 이 경우 특이도와 민감도는 각각 0.98과 0.50이 됩니다. 이러한 더 엄격한 임계값을 사용하면 실제 생존자의 절반만 식별하지만, 생존한다는 잘못된 주장은 거의 하지 않습니다. 생존자를 예측하기 위한 모든 가능한 임계값을 고려하여 특이도와 민감도의 가능한 값들이 곡선을 형성합니다. ROC 곡선을 그릴 때 특이도 축이 관례적으로 1에서 0으로 감소한다는 점에 유의하십시오.
 
-![Table 6.1 Error matrix of classification tree on training and test data, showing accuracy (% correctly classified), sensitivity (% of survivors correctly classified) and specificity (% of non-survivors correctly classified).](./images/p158.png) 
+![Table 6.1 Error matrix of classification tree on training and test data, showing accuracy (% correctly classified), sensitivity (% of survivors correctly classified) and specificity (% of non-survivors correctly classified).](./images/p158.png)
 
-| 훈련 세트 (TRAINING SET)                                                                    | 테스트 세트 (TEST SET)                                                                      |                          |                      |     |     |     |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------ | -------------------- | --- | --- | --- |
-| 생존하지 못할 것으로 예측됨                                                                 | 생존할 것으로 예측됨                                                                        | 생존하지 못할 것으로 예측됨| 생존할 것으로 예측됨 |     |     |     |
-| 생존하지 못함                                                                               | 475                                                                                         | 93                       | 568                  | 228 | 45  | 273 |
-| 생존함                                                                                      | 71                                                                                          | 258                      | 329                  | 35  | 104 | 139 |
-| 546                                                                                         | 351                                                                                         | 897                      | 263                  | 149 | 412 |     |
-| 정확도 = (475 + 258)/897 = 82% 민감도 = 258/329 = 78% 특이도 = 475/568 = 84%              | 정확도 = (228 + 104)/412 = 81% 민감도 = 104/139 = 75% 특이도 = 228/273 = 84%              |                          |                      |     |     |     |
+| 훈련 세트 (TRAINING SET)                                                     | 테스트 세트 (TEST SET)                                                       |                             |                      |     |     |     |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | --------------------------- | -------------------- | --- | --- | --- |
+| 생존하지 못할 것으로 예측됨                                                  | 생존할 것으로 예측됨                                                         | 생존하지 못할 것으로 예측됨 | 생존할 것으로 예측됨 |     |     |     |
+| 생존하지 못함                                                                | 475                                                                          | 93                          | 568                  | 228 | 45  | 273 |
+| 생존함                                                                       | 71                                                                           | 258                         | 329                  | 35  | 104 | 139 |
+| 546                                                                          | 351                                                                          | 897                         | 263                  | 149 | 412 |     |
+| 정확도 = (475 + 258)/897 = 82% 민감도 = 258/329 = 78% 특이도 = 475/568 = 84% | 정확도 = (228 + 104)/412 = 81% 민감도 = 104/139 = 75% 특이도 = 228/273 = 84% |                             |                      |     |     |     |
 
 표 6.1  
 훈련 및 테스트 데이터에 대한 분류 트리의 오차 행렬로, 정확도(올바르게 분류된 %), 민감도(올바르게 분류된 생존자 %), 특이도(올바르게 분류된 비생존자 %)를 보여줍니다.
 
-[그림 6.4](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#fig6-4)는 훈련 및 테스트 세트에 대한 ROC 곡선을 보여줍니다. 무작위로 숫자를 할당하는 완전히 쓸모없는 알고리즘은 대각선 ROC 곡선을 가지며, 가장 우수한 알고리즘은 왼쪽 상단 모서리를 향해 이동하는 ROC 곡선을 갖습니다. ROC 곡선을 비교하는 표준 방법은 곡선 아래 면적을 수평선까지 측정하는 것입니다. 이 값은 무용한 알고리즘의 경우 0.5이고 모든 사람을 맞추는 완벽한 알고리즘의 경우 1이 됩니다. 타이타닉 테스트 세트 데이터의 경우 ROC 곡선 아래 면적은 0.82입니다. 이 영역에 대한 우아한 해석이 있음이 밝혀졌습니다. 무작위로 실제 생존자 한 명과 실제 비생존자 한 명을 고르면 알고리즘이 실제 비생존자보다 실제 생존자에게 더 높은 생존 확률을 부여할 가능성이 82%라는 것입니다. 0.8을 초과하는 면적은 상당히 좋은 판별 능력을 나타냅니다.
+[그림 6.4](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#fig6-4)는 훈련 및 테스트 세트에 대한 ROC 곡선을 보여줍니다. 무작위로 숫자를 할당하는 완전히 쓸모없는 알고리즘은 대각선 ROC 곡선을 가지며, 우수한 알고리즘은 왼쪽 상단 모서리를 향해 이동하는 ROC 곡선을 갖습니다. ROC 곡선을 비교하는 표준 방법은 곡선 아래 면적을 수평선까지 측정하는 것입니다. 이 값은 무용한 알고리즘의 경우 0.5이고 모든 사람을 맞추는 완벽한 알고리즘의 경우 1이 됩니다. 타이타닉 테스트 세트 데이터의 경우 ROC 곡선 아래 면적은 0.82입니다. 이 영역에 대한 우아한 해석이 있음이 밝혀졌습니다. 무작위로 실제 생존자 한 명과 실제 비생존자 한 명을 고르면 알고리즘이 실제 비생존자보다 실제 생존자에게 더 높은 생존 확률을 부여할 가능성이 82%라는 것입니다. 0.8을 초과하는 면적은 상당히 좋은 판별 능력을 나타냅니다.
 
-ROC 곡선 아래 면적은 알고리즘이 생존자와 비생존자를 얼마나 잘 분리하는지 측정하는 한 가지 방법이지만 확률이 얼마나 좋은지는 측정하지 않습니다. 그리고 확률론적 예측에 가장 정통한 사람들은 기상 예보관들입니다.
+ROC 곡선 아래 면적은 알고리즘이 생존자와 비생존자를 얼마나 잘 분리하는지 측정하는 한 가지 방법이지만 확률이 얼마나 좋은지는 측정하지 않습니다. 그리고 확률론적 예측에 정통한 사람들은 기상 예보관들입니다.
 
 특정 시간과 장소에서 내일 비가 올지 여부를 예측하고 싶다고 가정해 보겠습니다. 기본 알고리즘은 단순히 예/아니오 답변을 생성할 수 있으며 결과적으로 옳거나 그를 수 있습니다. 더 정교한 모델은 비가 올 확률을 생성하여 더 세밀한 판단을 허용할 수 있습니다. 알고리즘이 비가 올 확률을 50%라고 말할 때와 5%라고 말할 때 취하는 조치는 다소 다를 수 있습니다.
 
-![Figure 6.4 ROC curves for the classification tree of Figure 6.3 applied to training (dashed line) and test (solid line) sets. ‘Sensitivity’ is the proportion of survivors correctly identified. ‘Specificity’ is the proportion of non-survivors correctly labelled as not surviving. Areas under curves are 0.84 and 0.82 for training and test sets respectively.](./images/p160.png) 
+![Figure 6.4 ROC curves for the classification tree of Figure 6.3 applied to training (dashed line) and test (solid line) sets. ‘Sensitivity’ is the proportion of survivors correctly identified. ‘Specificity’ is the proportion of non-survivors correctly labelled as not surviving. Areas under curves are 0.84 and 0.82 for training and test sets respectively.](./images/p160.png)
 
 그림 6.4  
 [그림 6.3](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#fig6-3)의 분류 트리에 대한 훈련(점선) 및 테스트(실선) 세트에 적용된 ROC 곡선. '민감도(Sensitivity)'는 올바르게 식별된 생존자의 비율입니다. '특이도(Specificity)'는 생존하지 못한 것으로 올바르게 레이블된 비생존자의 비율입니다. 곡선 아래 면적은 훈련 및 테스트 세트에 대해 각각 0.84와 0.82입니다.
@@ -122,7 +122,7 @@ ROC 곡선 아래 면적은 알고리즘이 생존자와 비생존자를 얼마�
 
 하지만 우리는 이 확률들이 얼마나 좋은지 어떻게 확인할 수 있을까요? 알고리즘이 비가 올지 안 올지를 범주형으로 선언하지 않기 때문에 분류 트리에서와 같이 간단한 오차 행렬을 만들 수 없습니다. 우리는 ROC 곡선을 만들 수 있지만, 이는 단지 비가 오는 날이 오지 않는 날보다 더 높은 예측값을 받는지 여부만 조사합니다. 중요한 통찰은 예보관이 비가 올 확률이 70%라고 말한 모든 날을 종합할 때, 실제로 그 날들의 약 70%에서 비가 와야 한다는 의미에서 **[보정(calibration)](./25-GLOSSARY.md#gloss_20)**이 필요하다는 것입니다. 이는 기상 예보관들에 의해 매우 진지하게 받아들여집니다. 확률은 그들이 말하는 바를 의미해야 하며 과대 또는 과소 확신을 가져서는 안 됩니다.
 
-![Figure 6.5 Calibration plot for the simple classification tree that provides probabilities of surviving the Titanic sinking, in which the observed proportion of survivors on the y-axis is plotted against the predicted proportion on the x-axis. We want the points to lie on the diagonal, showing the probabilities are reliable and mean what they say.](./images/p162.png) 
+![Figure 6.5 Calibration plot for the simple classification tree that provides probabilities of surviving the Titanic sinking, in which the observed proportion of survivors on the y-axis is plotted against the predicted proportion on the x-axis. We want the points to lie on the diagonal, showing the probabilities are reliable and mean what they say.](./images/p162.png)
 
 그림 6.5  
 타이타닉 호 침몰에서 생존할 확률을 제공하는 단순 분류 트리에 대한 보정 플롯(Calibration plot). y축의 관측된 생존자 비율이 x축의 예측된 비율에 대해 플롯되었습니다. 우리는 확률이 신뢰할 수 있고 그들이 말하는 바를 의미한다는 것을 보여주기 위해 점들이 대각선 상에 놓이기를 원합니다.
@@ -133,33 +133,33 @@ ROC 곡선 아래 면적은 알고리즘이 생존자와 비생존자를 얼마�
 
 ### 확률에 대한 복합 '정확도' 측정 (A Combined Measure of ‘Accuracy’ for Probabilities)
 
-ROC 곡선이 알고리즘이 그룹을 얼마나 잘 분할하는지 평가하고 보정 플롯이 확률이 의미하는 바를 확인하는 반면, 두 가지 측면을 하나의 숫자로 결합하여 알고리즘을 비교하는 데 사용할 수 있는 간단한 복합 척도를 찾는 것이 가장 좋을 것입니다. 다행히 1950년대의 기상 예보관들은 이것을 정확히 수행하는 방법을 알아냈습니다.
+ROC 곡선이 알고리즘이 그룹을 얼마나 잘 분할하는지 평가하고 보정 플롯이 확률이 의미하는 바를 확인하는 반면, 두 가지 측면을 하나의 숫자로 결합하여 알고리즘을 비교하는 데 사용할 수 있는 간단한 복합 척도를 찾는 것이 좋을 것입니다. 다행히 1950년대의 기상 예보관들은 이것을 정확히 수행하는 방법을 알아냈습니다.
 
 내일 정오의 특정 장소의 온도와 같은 수치를 예측하는 경우, 정확도는 일반적으로 오차, 즉 관측된 온도와 예측된 온도의 차이로 요약됩니다. 며칠 동안의 오차에 대한 일반적인 요약은 **[평균 제곱 오차(mean-squared-error, MSE)](./25-GLOSSARY.md#gloss_80)**입니다. 이것은 오차의 제곱의 평균이며, 회귀 분석에서 사용된 최소제곱 기준과 유사합니다.
 
 확률의 요령은 수치를 예측할 때와 동일한 평균 제곱 오차 기준을 사용하되 미래의 '비' 관측값을 1의 값으로, '비 안 옴'을 0으로 취급하는 것입니다. [표 6.2](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#tab6-2)는 허구의 예측 시스템에서 이것이 어떻게 작동하는지 보여줍니다. 월요일에 비가 올 확률은 0.1이지만 실제로는 비가 오지 않으므로(실제 반응은 0) 오차는 0 - 0.1 = -0.1입니다. 이것을 제곱하여 0.01을 얻고, 일주일 내내 동일한 방식으로 진행됩니다. 그러면 이 제곱된 오차의 평균인 B = 0.11이 예보관의 (부족한) 정확도의 척도가 됩니다.[fn3](./45-footnotes.md#ch6-fn3) 평균 평균-제곱-오차는 1950년에 이 방법을 설명한 기상학자 글렌 브라이어(Glenn Brier)의 이름을 따서 **[브라이어 점수(Brier score)](./25-GLOSSARY.md#gloss_19)**로 알려져 있습니다.
 
-불행하게도 브라이어 점수는 자체적으로 해석하기가 쉽지 않으므로 예보관이 잘하고 있는지 못하고 있는지에 대한 느낌을 얻기 어렵습니다. 따라서 과거 기후 기록에서 파생된 참조 점수와 비교하는 것이 가장 좋습니다. 이러한 '기후 기반' 예보는 현재 조건을 전혀 고려하지 않고, 역사적 기후에서 이 날 비가 온 시간의 비율로 간단히 강수 확률을 나타냅니다. 누구든지 어떤 기술 없이도 이러한 예측을 할 수 있습니다. [표 6.2](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#tab6-2)에서는 이것이 해당 주간의 매일에 대해 20%의 비 확률을 인용하는 것을 의미한다고 가정합니다. 이것은 기후(우리가 BC라고 부름)에 대한 0.28의 브라이어 점수를 제공합니다.
+불행하게도 브라이어 점수는 자체적으로 해석하기가 쉽지 않으므로 예보관이 잘하고 있는지 못하고 있는지에 대한 느낌을 얻기 어렵습니다. 따라서 과거 기후 기록에서 파생된 참조 점수와 비교하는 것이 좋습니다. 이러한 '기후 기반' 예보는 현재 조건을 전혀 고려하지 않고, 역사적 기후에서 이 날 비가 온 시간의 비율로 간단히 강수 확률을 나타냅니다. 누구든지 어떤 기술 없이도 이러한 예측을 할 수 있습니다. [표 6.2](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#tab6-2)에서는 이것이 해당 주간의 매일에 대해 20%의 비 확률을 인용하는 것을 의미한다고 가정합니다. 이것은 기후(우리가 BC라고 부름)에 대한 0.28의 브라이어 점수를 제공합니다.
 
-![Table 6.2 Fictional ‘probability of precipitation’ forecasts of whether it will rain or not at midday next day at a specific location, with the observed outcome: 1 = did rain, 0 = did not rain. The ‘error’ is the difference between the predicted and observed outcome, and the mean-squared-error is the Brier score (B). The climate Brier score (BC) is based on using simple long-term average proportions of rain at this time of year as probabilistic forecasts, in this case assumed to be 20% for all days.](./images/p165.png) 
+![Table 6.2 Fictional ‘probability of precipitation’ forecasts of whether it will rain or not at midday next day at a specific location, with the observed outcome: 1 = did rain, 0 = did not rain. The ‘error’ is the difference between the predicted and observed outcome, and the mean-squared-error is the Brier score (B). The climate Brier score (BC) is based on using simple long-term average proportions of rain at this time of year as probabilistic forecasts, in this case assumed to be 20% for all days.](./images/p165.png)
 
-| 월요일 | 화요일 | 수요일 | 목요일 | 금요일 | 평균 제곱 오차 (브라이어 점수) | |
-| --- | --- | --- | --- | --- | --- | --- |
-| '강수 확률' | 0.1 | 0.2 | 0.5 | 0.6 | 0.3 | |
-| 실제로 비가 왔는가? | 아니오 | 아니오 | 예 | 예 | 아니오 | |
-| 실제 반응 | 0 | 0 | 1 | 1 | 0 | |
-| 오차 | −0.1 | −0.2 | 0.5 | 0.4 | −0.3 | |
-| 제곱 오차 | 0.01 | 0.04 | 0.25 | 0.16 | 0.09 | B = 0.54/5 = 0.11 |
-| 기후로부터의 확률 | 0.2 | 0.2 | 0.2 | 0.2 | 0.2 | |
-| 기후 오차 | −0.2 | −0.2 | 0.8 | 0.8 | 0.2 | |
-| 제곱된 기후 오차 | 0.04 | 0.04 | 0.64 | 0.64 | 0.04 | BC = 1.4/5 = 0.28 |
+| 월요일              | 화요일 | 수요일 | 목요일 | 금요일 | 평균 제곱 오차 (브라이어 점수) |                   |
+| ------------------- | ------ | ------ | ------ | ------ | ------------------------------ | ----------------- |
+| '강수 확률'         | 0.1    | 0.2    | 0.5    | 0.6    | 0.3                            |                   |
+| 실제로 비가 왔는가? | 아니오 | 아니오 | 예     | 예     | 아니오                         |                   |
+| 실제 반응           | 0      | 0      | 1      | 1      | 0                              |                   |
+| 오차                | −0.1   | −0.2   | 0.5    | 0.4    | −0.3                           |                   |
+| 제곱 오차           | 0.01   | 0.04   | 0.25   | 0.16   | 0.09                           | B = 0.54/5 = 0.11 |
+| 기후로부터의 확률   | 0.2    | 0.2    | 0.2    | 0.2    | 0.2                            |                   |
+| 기후 오차           | −0.2   | −0.2   | 0.8    | 0.8    | 0.2                            |                   |
+| 제곱된 기후 오차    | 0.04   | 0.04   | 0.64   | 0.64   | 0.04                           | BC = 1.4/5 = 0.28 |
 
 표 6.2  
 특정 위치에서 다음 날 정오에 비가 올지 여부에 대한 허구적인 '강수 확률' 예측과 실제 관측 결과(1 = 비가 옴, 0 = 비가 안 옴). '오차'는 예측 결과와 관측 결과 간의 차이이며, 평균 제곱 오차는 브라이어 점수(B)입니다. 기후 브라이어 점수(BC)는 연중 이 시기에 비가 내리는 장기 평균 비율을 확률적 예측으로 사용하는 단순한 방법에 기초하며, 이 경우 모든 날짜에 대해 20%로 가정합니다.
 
 어떤 제대로 된 예측 알고리즘이라도 기후에만 기반한 예측보다는 더 나은 성과를 거두어야 하며, 우리의 예측 시스템은 점수를 BC – B = 0.28 – 0.11 = 0.17 만큼 개선했습니다. 그런 다음 예보관은 '기술 점수(skill score)'를 생성합니다. 이것은 기준 점수의 비례적 감소입니다. 이 경우 0.61이며[fn4](./45-footnotes.md#ch6-fn4), 이는 우리 알고리즘이 기후 데이터만 사용하는 순진한 예보관보다 61%의 향상을 이루었음을 의미합니다.
 
-분명히 우리의 목표는 100% 기술이지만, 이는 우리가 관찰한 브라이어 점수가 0으로 줄어드는 경우에만 얻을 수 있으며, 이는 우리가 비가 올지 안 올지를 정확하게 예측하는 경우에만 일어납니다. 이것은 어떤 예보관에게든 너무 많은 것을 기대하는 것이며, 실제로 다음 날에 대한 비 예측의 기술 점수는 현재 약 0.4이고 일주일 후를 예측하는 경우에는 0.2입니다.[**2**](./32-chapter006_notes.md#ch6-end2) 물론 가장 게으른 예측은 오늘 일어난 일은 내일도 일어날 것이라고 간단히 말하는 것입니다. 이는 역사적 데이터(오늘)에는 완벽하게 들어맞지만, 미래를 예측하는 데는 특별히 잘하지 못할 수도 있습니다.
+분명히 우리의 목표는 100% 기술이지만, 이는 우리가 관찰한 브라이어 점수가 0으로 줄어드는 경우에만 얻을 수 있으며, 이는 우리가 비가 올지 안 올지를 정확하게 예측하는 경우에만 일어납니다. 이것은 어떤 예보관에게든 너무 많은 것을 기대하는 것이며, 실제로 다음 날에 대한 비 예측의 기술 점수는 현재 약 0.4이고 일주일 후를 예측하는 경우에는 0.2입니다.[**2**](./32-chapter006_notes.md#ch6-end2) 물론 게으른 예측은 오늘 일어난 일은 내일도 일어날 것이라고 간단히 말하는 것입니다. 이는 역사적 데이터(오늘)에는 완벽하게 들어맞지만, 미래를 예측하는 데는 특별히 잘하지 못할 수도 있습니다.
 
 타이타닉 과제에 있어서는 모든 사람에게 단순하게 39%의 생존 확률을 부여하는 순진한 알고리즘을 생각해 보십시오. 이는 훈련 세트에서 생존자의 전체 비율입니다. 이것은 어떠한 개별 데이터도 사용하지 않으며, 현재 상황에 대한 정보를 사용하기보다 기후 기록을 사용하여 날씨를 예측하는 것과 본질적으로 동등합니다. 이 '기술 없는(skill-less)' 규칙에 대한 브라이어 점수는 0.232입니다.
 
@@ -173,17 +173,17 @@ ROC 곡선이 알고리즘이 그룹을 얼마나 잘 분할하는지 평가하�
 
 [그림 6.6](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#fig6-6)은 많은 세부 요소를 포함하도록 성장한 그러한 트리를 보여줍니다. 이 트리는 훈련 세트에서 83%의 정확도를 가지며 작은 트리보다 우수합니다. 그러나 이 알고리즘을 테스트 데이터에 적용하면 그 정확도는 작은 트리와 동일한 81%로 떨어지고 브라이어 점수는 0.150으로 단순 트리의 0.139보다 명백히 악화됩니다. 우리는 예측 능력이 저하되기 시작할 정도로 훈련 데이터에 트리를 너무 맞추어 버렸습니다.
 
-이것은 **[과적합(over-fitting)](./25-GLOSSARY.md#gloss_94)**이라고 알려져 있으며 알고리즘 구축에서 가장 중요한 주제 중 하나입니다. 알고리즘을 너무 복잡하게 만듦으로써, 우리는 본질적으로 신호가 아닌 노이즈에 맞추기 시작합니다. 랜들 먼로(xkcd 연재 만화로 알려진 만화가)는 미국 대통령들이 따랐던 그럴듯한 '규칙'들을 찾았지만 후속 선거에서 각각이 깨지는 것을 발견함으로써 과적합을 훌륭하게 묘사했습니다.[**3**](./32-chapter006_notes.md#ch6-end3) 예를 들어,
+이것은 **[과적합(over-fitting)](./25-GLOSSARY.md#gloss_94)**이라고 알려져 있으며 알고리즘 구축에서 중요한 주제 중 하나입니다. 알고리즘을 너무 복잡하게 만듦으로써, 우리는 본질적으로 신호가 아닌 노이즈에 맞추기 시작합니다. 랜들 먼로(xkcd 연재 만화로 알려진 만화가)는 미국 대통령들이 따랐던 그럴듯한 '규칙'들을 찾았지만 후속 선거에서 각각이 깨지는 것을 발견함으로써 과적합을 훌륭하게 묘사했습니다.[**3**](./32-chapter006_notes.md#ch6-end3) 예를 들어,
 
-* '하원이나 상원을 장악하지 못한 채 승리한 공화당원은 없다' - 1952년 아이젠하워가 승리할 때까지.
-* '가톨릭 신자는 이길 수 없다' - 1960년 케네디까지.
-* '이혼 후 대통령에 당선된 사람은 없다' - 1980년 레이건 전까지.
+- '하원이나 상원을 장악하지 못한 채 승리한 공화당원은 없다' - 1952년 아이젠하워가 승리할 때까지.
+- '가톨릭 신자는 이길 수 없다' - 1960년 케네디까지.
+- '이혼 후 대통령에 당선된 사람은 없다' - 1980년 레이건 전까지.
 
 기타 등등을 포함하여, 명백히 과도하게 정제된 규칙들과 같은 규칙들이 있습니다.
 
-* '전투 경험이 없는 민주당 현직 의원 중 이름이 스크래블(Scrabble) 게임에서 더 많은 점수를 받는 사람을 이긴 사람은 없다' - 1996년 빌(Bill, 6 스크래블 점수) 클린턴이 밥(Bob, 7 스크래블 점수) 돌을 이기기 전까지.
+- '전투 경험이 없는 민주당 현직 의원 중 이름이 스크래블(Scrabble) 게임에서 더 많은 점수를 받는 사람을 이긴 사람은 없다' - 1996년 빌(Bill, 6 스크래블 점수) 클린턴이 밥(Bob, 7 스크래블 점수) 돌을 이기기 전까지.
 
-![Figure 6.6 Over-fitted classification tree for the Titanic data. As in Figure 6.3, the percentage at the end of each branch is the proportion of passengers in the training set who survived, and a new passenger is predicted to survive if this percentage is greater than 50%. The rather strange set of questions suggests the tree has adapted too much to individual cases in the training set.](./images/p168.png) 
+![Figure 6.6 Over-fitted classification tree for the Titanic data. As in Figure 6.3, the percentage at the end of each branch is the proportion of passengers in the training set who survived, and a new passenger is predicted to survive if this percentage is greater than 50%. The rather strange set of questions suggests the tree has adapted too much to individual cases in the training set.](./images/p168.png)
 
 그림 6.6  
 타이타닉 데이터에 대한 과적합된 분류 트리. [그림 6.3](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#fig6-3)과 같이 각 가지 끝의 백분율은 훈련 세트에서 생존한 승객의 비율이며, 이 비율이 50%를 초과하는 경우 새로운 승객이 생존할 것으로 예측됩니다. 다소 이상한 일련의 질문들은 트리가 훈련 세트의 개별 사례에 너무 많이 적응했음을 시사합니다.
@@ -194,7 +194,7 @@ ROC 곡선이 알고리즘이 그룹을 얼마나 잘 분할하는지 평가하�
 
 그러나 이 평가는 귀하를 데이터베이스의 사례와 일치시키기 위해 몇 가지 특징만을 사용하며, 예측을 구체화할 수 있는 더 개별적인 특성은 무시합니다. 예를 들어 귀하의 현재 건강이나 습관에는 전혀 주의를 기울이지 않습니다. 다른 전략은 체중, 키, 혈압, 콜레스테롤, 운동, 흡연, 음주 등 당신과 훨씬 더 밀접하게 일치하는 사람들을 찾는 것입니다. 거의 완벽하게 일치하는 단 두 사람만 남을 때까지 데이터베이스에서 여러분의 개인적인 특성을 더 많이 일치시키는 과정을 계속했다고 가정해 봅시다. 한 명은 80세에 도달했고 한 명은 그렇지 않았다고 가정하십시오. 그렇다면 우리가 당신이 80세에 도달할 확률을 50%로 추정할 수 있을까요? 그 50% 수치는 어떤 의미에서 당신과 아주 밀접하게 일치하기 때문에 편향이 덜(less biased)하지만, 단 두 명의 사람에 근거하기 때문에 신뢰할 수 있는 추정치가 아닙니다(즉, 큰 분산을 가짐).
 
-직관적으로 우리는 이 두 극단 사이의 행복한 절충안이 있다고 느낍니다. 균형을 찾는 것은 까다롭지만 중요합니다. 과적합을 피하는 기술에는 정규화(regularization)가 포함되는데, 여기서는 복잡한 모델이 장려되지만 변수들의 효과는 영(0)을 향해 당겨집니다. 그러나 아마도 가장 일반적인 보호책은 알고리즘을 구축할 때 **[교차 검증(cross-validation)](./25-GLOSSARY.md#gloss_35)**이라는 간단하지만 강력한 아이디어를 사용하는 것입니다.
+직관적으로 우리는 이 두 극단 사이의 행복한 절충안이 있다고 느낍니다. 균형을 찾는 것은 까다롭지만 중요합니다. 과적합을 피하는 기술에는 정규화(regularization)가 포함되는데, 여기서는 복잡한 모델이 장려되지만 변수들의 효과는 영(0)을 향해 당겨집니다. 그러나 아마도 일반적인 보호책은 알고리즘을 구축할 때 **[교차 검증(cross-validation)](./25-GLOSSARY.md#gloss_35)**이라는 간단하지만 강력한 아이디어를 사용하는 것입니다.
 
 알고리즘 훈련에 사용되지 않은 독립적인 테스트 세트에서 모든 예측을 테스트하는 것은 필수적이지만 이것은 개발 과정의 끝에서만 발생합니다. 따라서 그 당시에 과적합을 드러낼 수 있을지 모르지만 더 나은 알고리즘을 만들어 주지는 않습니다. 그러나 훈련 데이터의 10%를 제거하고, 남은 90%에 대해 알고리즘을 개발하고, 제거된 10%에 대해 테스트함으로써 독립적인 테스트 세트가 있는 것을 흉내 낼 수 있습니다. 이것이 교차 검증이며 차례로 10%를 제거하고 이 과정을 10번 반복하여 체계적으로 수행할 수 있습니다. 이는 10겹 교차 검증(tenfold cross-validation)으로 알려진 절차입니다.
 
@@ -217,14 +217,14 @@ ROC 곡선이 알고리즘이 그룹을 얼마나 잘 분할하는지 평가하�
 LASSO와 같은 비선형 모델 및 공정과 같이, 계수를 0으로 추정하여 계수를 동시에 추정하고 관련 예측 변수를 선택하는 복잡하고 방대한 문제를 처리하기 위해 더 정교한 회귀 접근법을 다수 이용할 수 있습니다.
 
 | 특성 (Characteristic) | 점수 (Score) |
-| --- | --- |
-| 시작 점수 | 3.20 |
-| 3등석 | −2.30 |
-| 'Mr' | −3.86 |
-| 3등석의 남성 | +1.43 |
-| 희귀 직함 | −2.73 |
-| 2등석의 51–60세 | −3.62 |
-| 각 가족 구성원 | −0.38 |
+| --------------------- | ------------ |
+| 시작 점수             | 3.20         |
+| 3등석                 | −2.30        |
+| 'Mr'                  | −3.86        |
+| 3등석의 남성          | +1.43        |
+| 희귀 직함             | −2.73        |
+| 2등석의 51–60세       | −3.62        |
+| 각 가족 구성원        | −0.38        |
 
 표 6.3  
 타이타닉 생존자 데이터에 대한 로지스틱 회귀에서 특징에 적용된 계수. 음수 계수는 생존 가능성을 감소시키고, 양수 계수는 생존 가능성을 증가시킵니다.
@@ -235,25 +235,25 @@ LASSO와 같은 비선형 모델 및 공정과 같이, 계수를 0으로 추정�
 
 머신 러닝 커뮤니티는 분류 트리와 회귀 분석을 활용하지만, 예측 알고리즘을 개발하기 위해 더 광범위하고 다양한 대안적이고 복잡한 방법을 개발해 왔습니다.
 
-| 모든 사람이 생존할 확률 39% (Everyone has a 39% chance of surviving) | 0.639                   | 0.500                               | 0.232                     |
-| 모든 여성은 생존하고 모든 남성은 그렇지 않음 (All females survive, all males do not)  | 0.786                   | 0.578                               | 0.214                     |
-| 단순 분류 트리 (Simple classification tree)             | **0.806**               | 0.819                               | **0.139**                 |
-| 분류 트리(과적합) (Classification tree (over-fitted))      | **0.806**               | 0.810                               | 0.150                     |
-| 로지스틱 회귀 (Logistic regression)                    | 0.789                   | 0.824                               | 0.146                     |
-| 랜덤 포레스트 (Random forest)                          | 0.799                   | **0.850**                           | 0.148                     |
-| 서포트 벡터 머신 (Support Vector Machine (SVM))           | 0.782                   | 0.825                               | 0.153                     |
-| 신경망 (Neural network)                         | 0.794                   | 0.828                               | 0.146                     |
-| 평균 신경망 (Averaged neural network)                | 0.794                   | 0.837                               | 0.142                     |
-| K-최근접 이웃 (K-nearest-neighbour)                    | 0.774                   | 0.812                               | 0.180                     |
+| 모든 사람이 생존할 확률 39% (Everyone has a 39% chance of surviving) | 0.639 | 0.500 | 0.232 |
+| 모든 여성은 생존하고 모든 남성은 그렇지 않음 (All females survive, all males do not) | 0.786 | 0.578 | 0.214 |
+| 단순 분류 트리 (Simple classification tree) | **0.806** | 0.819 | **0.139** |
+| 분류 트리(과적합) (Classification tree (over-fitted)) | **0.806** | 0.810 | 0.150 |
+| 로지스틱 회귀 (Logistic regression) | 0.789 | 0.824 | 0.146 |
+| 랜덤 포레스트 (Random forest) | 0.799 | **0.850** | 0.148 |
+| 서포트 벡터 머신 (Support Vector Machine (SVM)) | 0.782 | 0.825 | 0.153 |
+| 신경망 (Neural network) | 0.794 | 0.828 | 0.146 |
+| 평균 신경망 (Averaged neural network) | 0.794 | 0.837 | 0.142 |
+| K-최근접 이웃 (K-nearest-neighbour) | 0.774 | 0.812 | 0.180 |
 
 표 6.4  
 타이타닉 테스트 데이터에 대한 다양한 알고리즘의 성능. 굵은 글씨는 최상의 결과를 나타냅니다. 복잡한 알고리즘은 ROC 곡선 아래의 면적을 최대화하도록 최적화되었습니다.
 
 이 모든 것은 양적(quantitative) 성능이 알고리즘의 유일한 기준이 아닐 수 있으며, 성능이 '충분히 좋은' 경우 단조로움을 유지하기 위해 더 적은 이득을 희생하는 것이 합리적일 수 있음을 시사합니다.
 
-타이타닉에서 가장 운이 좋은 사람은 누구였습니까?
+타이타닉에서 운이 좋은 사람은 누구였습니까?
 
-모든 알고리즘을 평균했을 때 브라이어 점수가 가장 높은 생존자가 가장 놀라운 생존자로 간주될 수 있습니다. 그는 프랜시스 서머튼과 같은 요금을 지불하고 혼자 3등석을 여행하는 45세의 노르웨이/호주인 목수 칼 달(Karl Dahl)이었습니다. 두 알고리즘은 심지어 그에게 0%의 생존 가능성을 부여했습니다. 분명히 그는 차가운 물속으로 뛰어들었고, 구명보트에 있던 몇몇 사람들이 그를 뒤로 밀어내려 했음에도 불구하고 15번 구명보트에 기어 올랐습니다. 아마도 그는 단지 그의 힘을 사용했을 것입니다.
+모든 알고리즘을 평균했을 때 브라이어 점수가 높은 생존자가 놀라운 생존자로 간주될 수 있습니다. 그는 프랜시스 서머튼과 같은 요금을 지불하고 혼자 3등석을 여행하는 45세의 노르웨이/호주인 목수 칼 달(Karl Dahl)이었습니다. 두 알고리즘은 심지어 그에게 0%의 생존 가능성을 부여했습니다. 분명히 그는 차가운 물속으로 뛰어들었고, 구명보트에 있던 몇몇 사람들이 그를 뒤로 밀어내려 했음에도 불구하고 15번 구명보트에 기어 올랐습니다. 아마도 그는 단지 그의 힘을 사용했을 것입니다.
 
 이것은 일프러콤에서 온 프랜시스 서머튼과 극명한 대조를 이룹니다. 우리가 확인한 바와 같이, 그의 죽음은 일반적인 패턴에 들어맞았습니다. 그의 아내 해나 서머튼(Hannah Somerton)은 미국에 성공한 남편을 둔 대신, 프랜시스가 티켓에 쓴 돈보다 적은 단지 £5만 남겨받았습니다.
 
@@ -261,10 +261,10 @@ LASSO와 같은 비선형 모델 및 공정과 같이, 계수를 0으로 추정�
 
 알고리즘은 놀라운 성능을 보여줄 수 있지만, 사회에서 그들의 역할이 증가함에 따라 그들의 잠재적인 문제점들도 부각되고 있습니다. 네 가지 주요 우려 사항을 식별할 수 있습니다.
 
-* _견고성 부족 (Lack of robustness)_: 알고리즘은 연관성(associations)에서 파생되며 기저의 프로세스를 이해하지 못하기 때문에 변화에 지나치게 민감할 수 있습니다. 우리가 과학적 진리보다는 정확성(accuracy)에만 관심이 있다고 하더라도, PPDAC 사이클의 기본 원칙과, 표본에서 얻은 데이터에서 시작하여 대상 모집단에 대한 진술(statements)을 만들어내는 단계들을 여전히 기억해야 합니다. 예측 분석의 경우 이 대상 모집단은 미래의 사례로 구성되며, 모든 것이 동일하게 유지된다면 과거 데이터에 기반하여 구축된 알고리즘은 잘 작동해야 합니다. 그러나 세상은 항상 동일하게 유지되지 않습니다. 2007-8년의 변화하는 금융 세계에서 알고리즘의 실패를 언급했으며, 또 다른 주목할 만한 사례는 사용자가 제출한 검색어 패턴을 기반으로 독감 유행을 예측하려는 Google의 시도였습니다. 처음에는 잘 수행되었으나 2013년에는 독감 비율을 극적으로 과대 예측하기 시작했습니다. 한 가지 설명은 Google이 검색 엔진에 도입한 변경 사항으로 인해 독감을 가리키는 검색어가 더 많아졌을 수 있다는 것입니다.
-* _통계적 변동성(statistical variability)을 고려하지 않음_: 제한된 데이터에 기반한 자동화된 순위 지정(rankings)은 신뢰할 수 없습니다. 미국의 교사들은 단 1년 동안의 학생 성적에 대해 평가되고 처벌을 받았지만, 30명 미만의 학급 규모는 교사가 추가한 가치(value added)를 평가하기 위한 신뢰할 수 있는 기반을 제공하지 않습니다. 이는 교사들의 연간 평가에서 믿을 수 없을 정도로 극적인 변화를 겪는 것으로 드러납니다. 버지니아에서는 교사의 4분의 1이 해마다 1-100 척도에서 40점 이상의 차이를 보였습니다.[fn6](./45-footnotes.md#ch6-fn6)
-* _암묵적 편향 (Implicit bias)_: 반복하자면 알고리즘은 연관성에 기반을 두고 있으며, 이는 우리가 일반적으로 당면한 작업과 무관하다고 생각하는 특징을 사용하게 될 수도 있음을 의미합니다. 시각 알고리즘이 저먼 셰퍼드(German Shepherds) 사진에서 허스키(huskies)를 구별하도록 훈련되었을 때 애완동물로 기르는 허스키에서 실패하기 전까지는 매우 효과적이었습니다. 알고 보니 그 겉보기 기술은 배경의 눈(snow)을 식별하는 데 기반을 두고 있었습니다.[**4**](./32-chapter006_notes.md#ch6-end4) 덜 사소한 예로는 어두운 피부를 좋아하지 않는 아름다움을 식별하는 알고리즘과 흑인을 고릴라로 식별한 알고리즘이 있습니다. 신용 등급이나 보험 결정과 같이 사람들의 삶에 큰 영향을 미칠 수 있는 알고리즘은 인종을 예측 변수로 사용하는 것이 금지될 수 있지만, 인종에 대한 강력한 프록시(proxy)인 거주지(neighbourhood)를 드러내기 위해 우편 번호를 사용할 수도 있습니다.
-* _투명성 부족 (Lack of transparency)_: 일부 알고리즘은 엄청난 복잡성 때문에 불투명할 수 있습니다. 그러나 독점적인 상업적 제품이 되는 등의 이유로 구조가 비공개로 유지된다면 단순한 회귀 기반 알고리즘조차도 완전히 이해하기 어려워집니다. 이것은 Northpointe의 대안 제재를 위한 교정 범죄자 관리 프로파일링(COMPAS) 또는 MMR의 서비스 인벤토리 수준 - 개정판(LSI-R)과 같은 이른바 재범(recidivism) 알고리즘에 대한 주요 불만 중 하나입니다.[**5**](./32-chapter006_notes.md#ch6-end5) 이러한 알고리즘은 보호 관찰 결정 및 선고를 안내하는 데 사용할 수 있는 위험 점수 또는 범주를 생성하지만 요인이 어떻게 가중치가 부여되는지는 알 수 없습니다. 게다가 양육 및 과거 범죄 동료에 대한 정보가 수집되기 때문에, 결정은 단순히 개인의 범죄 이력에만 근거하는 것이 아니라 기저의 공통 요인이 빈곤과 박탈일지라도 미래의 범죄성과 연관이 있는 것으로 나타난 배경 요인에 근거합니다. 물론 중요한 것이 정확한 예측뿐이라면 무엇이든 상관없으며 인종을 포함한 어떤 요인이라도 사용될 수 있습니다. 그러나 많은 사람들은 공정성과 정의를 위해 이러한 알고리즘이 통제되고 투명하며 이의를 제기할 수 있어야 한다고 주장합니다.
+- _견고성 부족 (Lack of robustness)_: 알고리즘은 연관성(associations)에서 파생되며 기저의 프로세스를 이해하지 못하기 때문에 변화에 지나치게 민감할 수 있습니다. 우리가 과학적 진리보다는 정확성(accuracy)에만 관심이 있다고 하더라도, PPDAC 사이클의 기본 원칙과, 표본에서 얻은 데이터에서 시작하여 대상 모집단에 대한 진술(statements)을 만들어내는 단계들을 여전히 기억해야 합니다. 예측 분석의 경우 이 대상 모집단은 미래의 사례로 구성되며, 모든 것이 동일하게 유지된다면 과거 데이터에 기반하여 구축된 알고리즘은 잘 작동해야 합니다. 그러나 세상은 항상 동일하게 유지되지 않습니다. 2007-8년의 변화하는 금융 세계에서 알고리즘의 실패를 언급했으며, 또 다른 주목할 만한 사례는 사용자가 제출한 검색어 패턴을 기반으로 독감 유행을 예측하려는 Google의 시도였습니다. 처음에는 잘 수행되었으나 2013년에는 독감 비율을 극적으로 과대 예측하기 시작했습니다. 한 가지 설명은 Google이 검색 엔진에 도입한 변경 사항으로 인해 독감을 가리키는 검색어가 더 많아졌을 수 있다는 것입니다.
+- _통계적 변동성(statistical variability)을 고려하지 않음_: 제한된 데이터에 기반한 자동화된 순위 지정(rankings)은 신뢰할 수 없습니다. 미국의 교사들은 단 1년 동안의 학생 성적에 대해 평가되고 처벌을 받았지만, 30명 미만의 학급 규모는 교사가 추가한 가치(value added)를 평가하기 위한 신뢰할 수 있는 기반을 제공하지 않습니다. 이는 교사들의 연간 평가에서 믿을 수 없을 정도로 극적인 변화를 겪는 것으로 드러납니다. 버지니아에서는 교사의 4분의 1이 해마다 1-100 척도에서 40점 이상의 차이를 보였습니다.[fn6](./45-footnotes.md#ch6-fn6)
+- _암묵적 편향 (Implicit bias)_: 반복하자면 알고리즘은 연관성에 기반을 두고 있으며, 이는 우리가 일반적으로 당면한 작업과 무관하다고 생각하는 특징을 사용하게 될 수도 있음을 의미합니다. 시각 알고리즘이 저먼 셰퍼드(German Shepherds) 사진에서 허스키(huskies)를 구별하도록 훈련되었을 때 애완동물로 기르는 허스키에서 실패하기 전까지는 매우 효과적이었습니다. 알고 보니 그 겉보기 기술은 배경의 눈(snow)을 식별하는 데 기반을 두고 있었습니다.[**4**](./32-chapter006_notes.md#ch6-end4) 덜 사소한 예로는 어두운 피부를 좋아하지 않는 아름다움을 식별하는 알고리즘과 흑인을 고릴라로 식별한 알고리즘이 있습니다. 신용 등급이나 보험 결정과 같이 사람들의 삶에 큰 영향을 미칠 수 있는 알고리즘은 인종을 예측 변수로 사용하는 것이 금지될 수 있지만, 인종에 대한 강력한 프록시(proxy)인 거주지(neighbourhood)를 드러내기 위해 우편 번호를 사용할 수도 있습니다.
+- _투명성 부족 (Lack of transparency)_: 일부 알고리즘은 엄청난 복잡성 때문에 불투명할 수 있습니다. 그러나 독점적인 상업적 제품이 되는 등의 이유로 구조가 비공개로 유지된다면 단순한 회귀 기반 알고리즘조차도 완전히 이해하기 어려워집니다. 이것은 Northpointe의 대안 제재를 위한 교정 범죄자 관리 프로파일링(COMPAS) 또는 MMR의 서비스 인벤토리 수준 - 개정판(LSI-R)과 같은 이른바 재범(recidivism) 알고리즘에 대한 주요 불만 중 하나입니다.[**5**](./32-chapter006_notes.md#ch6-end5) 이러한 알고리즘은 보호 관찰 결정 및 선고를 안내하는 데 사용할 수 있는 위험 점수 또는 범주를 생성하지만 요인이 어떻게 가중치가 부여되는지는 알 수 없습니다. 게다가 양육 및 과거 범죄 동료에 대한 정보가 수집되기 때문에, 결정은 단순히 개인의 범죄 이력에만 근거하는 것이 아니라 기저의 공통 요인이 빈곤과 박탈일지라도 미래의 범죄성과 연관이 있는 것으로 나타난 배경 요인에 근거합니다. 물론 중요한 것이 정확한 예측뿐이라면 무엇이든 상관없으며 인종을 포함한 어떤 요인이라도 사용될 수 있습니다. 그러나 많은 사람들은 공정성과 정의를 위해 이러한 알고리즘이 통제되고 투명하며 이의를 제기할 수 있어야 한다고 주장합니다.
 
 독점적인(proprietary) 알고리즘의 경우에도 서로 다른 입력값으로 실험할 수 있다면 어느 정도의 설명은 가능합니다. 온라인 보험에 가입할 때 인용된 보험료는 특정 법적 제약에만 따르는 알 수 없는 공식에 따라 계산됩니다. 예를 들어 영국의 자동차 보험 견적은 신청자의 성별을 고려할 수 없고, 생명 보험은 인종이나 헌팅턴병(Huntingdon’s disease) 이외의 어떠한 유전 정보도 사용할 수 없습니다. 그러나 체계적으로 거짓말을 하고 견적이 어떻게 변하는지 확인하여 다양한 요인의 영향에 대한 아이디어를 여전히 얻을 수 있습니다. 이것은 알고리즘의 특정 정도의 역공학(reverse-engineering)을 허용하여 무엇이 보험료를 주도하는지 볼 수 있게 합니다.
 
@@ -282,18 +282,18 @@ LASSO와 같은 비선형 모델 및 공정과 같이, 계수를 0으로 추정�
 
 Predict 2.1은 완벽하지 않으며 [표 6.5](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#tab6-5)의 수치는 개인에 대한 대략적인 가이드로만 사용할 수 있습니다. 이는 알고리즘에 포함된 특성과 일치하는 여성에게 일어날 것으로 예상되는 것이며 특정 여성에 대해 추가 요인을 고려해야 합니다. 그럼에도 불구하고 Predict 2.1은 매달 수만 건의 사례에 일상적으로 사용되며, 환자의 치료 옵션이 공식화되는 다학제 팀 회의(MDTs)와 그 정보를 여성에게 전달하는 데 모두 사용됩니다. 치료 선택에 전적으로 참여하고자 하는 여성을 위해, '공유 치료(shared-care)'로 알려진 프로세스는 임상의에게만 제공되는 정보를 제공하고 삶에 대한 통제력을 더 많이 가질 수 있도록 권한을 부여할 수 있습니다. 알고리즘은 독점적이지 않으며 소프트웨어는 오픈 소스이고 시스템은 치료의 부작용을 포함한 추가 정보를 제공하기 위해 정기적으로 업그레이드되고 있습니다.
 
-| 치료 (Treatment)                  | 이전 치료 대비 추가 이점 (Additional benefit over previous treatments) | 전체 생존율 % (Overall survival %) |
-| -------------------------- | ------------------------------------------- | ------------------ |
-| 수술만 (Surgery only)               | −                                           | 64%                |
-| \+ 호르몬 치료 (Hormone therapy)         | 7%                                          | 70%                |
-| \+ 화학요법 (Chemotherapy)            | 6%                                          | 76%                |
-| \+ 트라스투주맙 (Trastuzamab, Herceptin) | 3%                                          | 79%                |
-| 암이 없는 여성의 경우 (For women free from cancer) | 87%                                         |                    |
+| 치료 (Treatment)                                   | 이전 치료 대비 추가 이점 (Additional benefit over previous treatments) | 전체 생존율 % (Overall survival %) |
+| -------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------- |
+| 수술만 (Surgery only)                              | −                                                                      | 64%                                |
+| \+ 호르몬 치료 (Hormone therapy)                   | 7%                                                                     | 70%                                |
+| \+ 화학요법 (Chemotherapy)                         | 6%                                                                     | 76%                                |
+| \+ 트라스투주맙 (Trastuzamab, Herceptin)           | 3%                                                                     | 79%                                |
+| 암이 없는 여성의 경우 (For women free from cancer) | 87%                                                                    |                                    |
 
 표 6.5  
 검진(screening)에서 2cm의 2기 종양이 발견되고 두 개의 양성 림프절(positive nodes)이 있으며 ER, HER2 및 Ki-67 상태가 모두 양성인 경우, 유방암 수술 후 10년 동안 생존할 것으로 예상되는 65세 여성의 비율을 Predict 2.1 알고리즘을 사용하여 계산한 결과입니다. 이러한 치료가 부작용을 가질 수 있지만 다양한 보조 치료에 대한 누적 예상 이점이 표시됩니다. '암이 없는 여성'의 생존 비율은 여성의 연령을 감안할 때 달성 가능한 최상의 생존율을 나타냅니다.
 
-![Figure 6.7 Survival curves from Predict 2.1 for up to fifteen years post-surgery, for women with the features listed in the legend to Table 6.5, showing the cumulative additional survival from further treatments. The area above the dashed line represents women with breast cancer who die of other causes.](./images/p184.png) 
+![Figure 6.7 Survival curves from Predict 2.1 for up to fifteen years post-surgery, for women with the features listed in the legend to Table 6.5, showing the cumulative additional survival from further treatments. The area above the dashed line represents women with breast cancer who die of other causes.](./images/p184.png)
 
 그림 6.7  
 [표 6.5](./16-CHAPTER_6__Algorithms,_Analytics_and_Prediction.md#tab6-5)의 범례에 나열된 특징을 가진 여성에 대해 수술 후 최대 15년 동안의 Predict 2.1 생존 곡선으로, 추가 치료로 인한 누적 추가 생존을 보여줍니다. 점선 위 영역은 다른 원인으로 사망하는 유방암 여성을 나타냅니다.
@@ -314,9 +314,8 @@ AI는 기계가 시연하는 지능(intelligence demonstrated by machines)으로
 
 #### 요약 (Summary)
 
-* 데이터에서 구축된 알고리즘은 기술 애플리케이션의 분류 및 예측에 사용될 수 있습니다.
-* 훈련 데이터에 대한 알고리즘의 과적합, 즉 본질적으로 신호보다는 노이즈에 맞추는 것을 경계하는 것이 중요합니다.
-* 알고리즘은 분류 정확도, 그룹 간 판별 능력 및 전반적인 예측 정확도로 평가할 수 있습니다.
-* 복잡한 알고리즘은 투명성이 부족할 수 있으며 이해를 위해 약간의 정확도를 교환할 가치가 있을 수 있습니다.
-* 알고리즘과 인공지능의 사용은 많은 과제를 제시하며, 기계 학습 방법의 힘과 한계 모두에 대한 통찰력이 필수적입니다.
-
+- 데이터에서 구축된 알고리즘은 기술 애플리케이션의 분류 및 예측에 사용될 수 있습니다.
+- 훈련 데이터에 대한 알고리즘의 과적합, 즉 본질적으로 신호보다는 노이즈에 맞추는 것을 경계하는 것이 중요합니다.
+- 알고리즘은 분류 정확도, 그룹 간 판별 능력 및 전반적인 예측 정확도로 평가할 수 있습니다.
+- 복잡한 알고리즘은 투명성이 부족할 수 있으며 이해를 위해 약간의 정확도를 교환할 가치가 있을 수 있습니다.
+- 알고리즘과 인공지능의 사용은 많은 과제를 제시하며, 기계 학습 방법의 힘과 한계 모두에 대한 통찰력이 필수적입니다.

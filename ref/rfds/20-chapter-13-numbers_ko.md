@@ -32,7 +32,7 @@ readr는 문자열을 숫자로 파싱하는 데 유용한 두 가지 함수인 
 
 (<a href="ch04.html#chp-workflow-style" data-type="xref">제4장</a>의 조언에도 불구하고, 계산이 예상대로 작동하는지 빠르게 확인하기 위해 콘솔에서 주로 사용되기 때문에 우리는 보통 <a href="https://dplyr.tidyverse.org/reference/count.html" class="orm:hideurl"><code>count()</code></a>를 한 줄에 작성합니다.)
 
-가장 빈번한 값을 확인하려면 `sort = TRUE`를 추가하세요.
+빈번한 값을 확인하려면 `sort = TRUE`를 추가하세요.
 
 `flights` `|>` `count``(``dest``,` `sort` `=` `TRUE``)` `#> # A tibble: 105 × 2` `#> dest n` `#> <chr> <int>` `#> 1 ORD 17283` `#> 2 ATL 17215` `#> 3 LAX 16174` `#> 4 BOS 15508` `#> 5 MCO 14082` `#> 6 CLT 14064` `#> # … with 99 more rows`
 
@@ -48,7 +48,7 @@ readr는 문자열을 숫자로 파싱하는 데 유용한 두 가지 함수인 
 
 유용하게 사용할 수 있는 <a href="https://dplyr.tidyverse.org/reference/context.html" class="orm:hideurl"><code>n()</code></a>과 <a href="https://dplyr.tidyverse.org/reference/count.html" class="orm:hideurl"><code>count()</code></a>의 몇 가지 변형이 있습니다.
 
-- `n_distinct(x)`는 하나 이상의 변수의 고유한(distinct/unique) 값의 개수를 셉니다. 예를 들어, 어떤 목적지에 가장 많은 항공사가 운항하는지 알아낼 수 있습니다.
+- `n_distinct(x)`는 하나 이상의 변수의 고유한(distinct/unique) 값의 개수를 셉니다. 예를 들어, 어떤 목적지에 많은 항공사가 운항하는지 알아낼 수 있습니다.
 
   `flights` `|>` `group_by``(``dest``)` `|>` `summarize``(``carriers` `=` `n_distinct``(``carrier``))` `|>` `arrange``(``desc``(``carriers``))` `#> # A tibble: 105 × 2` `#> dest carriers` `#> <chr> <int>` `#> 1 ATL 7` `#> 2 BOS 7` `#> 3 CLT 7` `#> 4 ORD 7` `#> 5 TPA 7` `#> 6 AUS 6` `#> # … with 99 more rows`
 
@@ -72,7 +72,7 @@ readr는 문자열을 숫자로 파싱하는 데 유용한 두 가지 함수인 
 
 # 숫자 변환 (Numeric Transformations)
 
-변환 함수(Transformation functions)는 그 출력이 입력과 동일한 길이이기 때문에 <a href="https://dplyr.tidyverse.org/reference/mutate.html" class="orm:hideurl"><code>mutate()</code></a>와 잘 작동합니다. 대다수의 변환 함수는 기본 R에 이미 내장되어 있습니다. 그 모든 것을 나열하는 것은 비실용적이므로, 이 섹션에서는 가장 유용한 것들을 보여줄 것입니다. 한 예로, R은 여러분이 상상할 수 있는 모든 삼각 함수(trigonometric functions)를 제공하지만, 데이터 과학에서 거의 필요하지 않기 때문에 여기에 나열하지 않았습니다.
+변환 함수(Transformation functions)는 그 출력이 입력과 동일한 길이이기 때문에 <a href="https://dplyr.tidyverse.org/reference/mutate.html" class="orm:hideurl"><code>mutate()</code></a>와 잘 작동합니다. 대다수의 변환 함수는 기본 R에 이미 내장되어 있습니다. 그 모든 것을 나열하는 것은 비실용적이므로, 이 섹션에서는 유용한 것들을 보여줄 것입니다. 한 예로, R은 여러분이 상상할 수 있는 모든 삼각 함수(trigonometric functions)를 제공하지만, 데이터 과학에서 거의 필요하지 않기 때문에 여기에 나열하지 않았습니다.
 
 ## 산술 및 리사이클링 규칙 (Arithmetic and Recycling Rules)
 
@@ -96,7 +96,7 @@ R은 짝이 맞지 않는 길이를 처리할 때 짧은 벡터를 *재활용(re
 
 ## 최솟값과 최댓값 (Minimum and Maximum)
 
-산술 함수들은 변수 쌍으로 작업합니다. 밀접하게 관련된 두 가지 함수로 <a href="https://rdrr.io/r/base/Extremes.html" class="orm:hideurl"><code>pmin()</code></a>과 <a href="https://rdrr.io/r/base/Extremes.html" class="orm:hideurl"><code>pmax()</code></a>가 있는데, 두 개 이상의 변수가 주어지면 각 행에서 가장 작거나 가장 큰 값을 반환합니다.
+산술 함수들은 변수 쌍으로 작업합니다. 밀접하게 관련된 두 가지 함수로 <a href="https://rdrr.io/r/base/Extremes.html" class="orm:hideurl"><code>pmin()</code></a>과 <a href="https://rdrr.io/r/base/Extremes.html" class="orm:hideurl"><code>pmax()</code></a>가 있는데, 두 개 이상의 변수가 주어지면 각 행에서 작거나 큰 값을 반환합니다.
 
 `df` `<-` `tribble``(` `~``x``,` `~``y``,` `1``,` `3``,` `5``,` `2``,` `7``,` `NA``,` `)` `df` `|>` `mutate``(` `min` `=` `pmin``(``x``,` `y``,` `na.rm` `=` `TRUE``),` `max` `=` `pmax``(``x``,` `y``,` `na.rm` `=` `TRUE``)` `)` `#> # A tibble: 3 × 4` `#> x y min max` `#> <dbl> <dbl> <dbl> <dbl>` `#> 1 1 3 1 3` `#> 2 5 2 2 5` `#> 3 7 NA 7 7`
 
@@ -129,11 +129,11 @@ R은 짝이 맞지 않는 길이를 처리할 때 짧은 벡터를 *재활용(re
 
 ## 반올림 (Rounding)
 
-숫자를 가장 가까운 정수로 반올림하려면 `round(x)`를 사용하세요.
+숫자를 가까운 정수로 반올림하려면 `round(x)`를 사용하세요.
 
 `round``(``123.456``)` `#> [1] 123`
 
-두 번째 인자인 `digits`를 통해 반올림의 정밀도를 제어할 수 있습니다. `round(x, digits)`는 가장 가까운 `10^-n` 단위로 반올림하므로, `digits = 2`는 가장 가까운 0.01 단위로 반올림합니다. 이 정의는 `round(x, -3)`이 가장 가까운 천 단위로 반올림한다는 것을 의미하기 때문에 유용하며, 실제로도 그렇게 작동합니다.
+두 번째 인자인 `digits`를 통해 반올림의 정밀도를 제어할 수 있습니다. `round(x, digits)`는 가까운 `10^-n` 단위로 반올림하므로, `digits = 2`는 가까운 0.01 단위로 반올림합니다. 이 정의는 `round(x, -3)`이 가까운 천 단위로 반올림한다는 것을 의미하기 때문에 유용하며, 실제로도 그렇게 작동합니다.
 
 `round``(``123.456``,` `2``)` `# two digits` `#> [1] 123.46` `round``(``123.456``,` `1``)` `# one digit` `#> [1] 123.5` `round``(``123.456``,` `-1``)` `# round to nearest ten` `#> [1] 120` `round``(``123.456``,` `-2``)` `# round to nearest hundred` `#> [1] 100`
 
@@ -141,7 +141,7 @@ R은 짝이 맞지 않는 길이를 처리할 때 짧은 벡터를 *재활용(re
 
 `round``(``c``(``1.5``,` `2.5``))` `#> [1] 2 2`
 
-<a href="https://rdrr.io/r/base/Round.html" class="orm:hideurl"><code>round()</code></a>는 "가장 가까운 짝수로 반올림(round half to even)" 또는 은행가 반올림(Banker's rounding)으로 알려진 방식을 사용합니다. 숫자가 두 정수 사이의 정확히 절반에 있을 때, 그것은 _짝수(even)_ 정수 쪽으로 반올림됩니다. 이 방식은 반올림의 편향을 없애주기 때문에 좋은 전략입니다. 0.5로 끝나는 수의 절반은 올림되고, 절반은 내림됩니다.
+<a href="https://rdrr.io/r/base/Round.html" class="orm:hideurl"><code>round()</code></a>는 "가까운 짝수로 반올림(round half to even)" 또는 은행가 반올림(Banker's rounding)으로 알려진 방식을 사용합니다. 숫자가 두 정수 사이의 정확히 절반에 있을 때, 그것은 _짝수(even)_ 정수 쪽으로 반올림됩니다. 이 방식은 반올림의 편향을 없애주기 때문에 좋은 전략입니다. 0.5로 끝나는 수의 절반은 올림되고, 절반은 내림됩니다.
 
 <a href="https://rdrr.io/r/base/Round.html" class="orm:hideurl"><code>round()</code></a>는 항상 내림하는 <a href="https://rdrr.io/r/base/Round.html" class="orm:hideurl"><code>floor()</code></a>, 그리고 항상 올림하는 <a href="https://rdrr.io/r/base/Round.html" class="orm:hideurl"><code>ceiling()</code></a>과 짝을 이룹니다.
 
@@ -173,11 +173,11 @@ R은 짝이 맞지 않는 길이를 처리할 때 짧은 벡터를 *재활용(re
 
 `y` `<-` `c``(``NA``,` `-10``,` `5``,` `10``,` `30``)` `cut``(``y``,` `breaks` `=` `c``(``0``,` `5``,` `10``,` `15``,` `20``))` `#> [1] <NA> <NA> (0,5] (5,10] <NA> ` `#> Levels: (0,5] (5,10] (10,15] (15,20]`
 
-구간이 `[a, b)` 또는 `(a, b]`가 될지, 가장 낮은 구간이 `[a, b]`가 될지 여부를 제어하는 `right` 및 `include.lowest`와 같은 다른 유용한 인자들에 대해서는 문서를 참조하세요.
+구간이 `[a, b)` 또는 `(a, b]`가 될지, 낮은 구간이 `[a, b]`가 될지 여부를 제어하는 `right` 및 `include.lowest`와 같은 다른 유용한 인자들에 대해서는 문서를 참조하세요.
 
 ## 누적 및 이동 집계 (Cumulative and Rolling Aggregates)
 
-기본 R은 진행형(running) 또는 누적 합계, 곱, 최솟값, 최댓값을 구하기 위해 <a href="https://rdrr.io/r/base/cumsum.html" class="orm:hideurl"><code>cumsum()</code></a>, <a href="https://rdrr.io/r/base/cumsum.html" class="orm:hideurl"><code>cumprod()</code></a>, <a href="https://rdrr.io/r/base/cumsum.html" class="orm:hideurl"><code>cummin()</code></a>, <a href="https://rdrr.io/r/base/cumsum.html" class="orm:hideurl"><code>cummax()</code></a>를 제공합니다. dplyr은 누적 평균을 구하기 위해 <a href="https://dplyr.tidyverse.org/reference/cumall.html" class="orm:hideurl"><code>cummean()</code></a>을 제공합니다. 누적 합계(Cumulative sums)가 실제로 가장 많이 사용되는 경향이 있습니다.
+기본 R은 진행형(running) 또는 누적 합계, 곱, 최솟값, 최댓값을 구하기 위해 <a href="https://rdrr.io/r/base/cumsum.html" class="orm:hideurl"><code>cumsum()</code></a>, <a href="https://rdrr.io/r/base/cumsum.html" class="orm:hideurl"><code>cumprod()</code></a>, <a href="https://rdrr.io/r/base/cumsum.html" class="orm:hideurl"><code>cummin()</code></a>, <a href="https://rdrr.io/r/base/cumsum.html" class="orm:hideurl"><code>cummax()</code></a>를 제공합니다. dplyr은 누적 평균을 구하기 위해 <a href="https://dplyr.tidyverse.org/reference/cumall.html" class="orm:hideurl"><code>cummean()</code></a>을 제공합니다. 누적 합계(Cumulative sums)가 실제로 많이 사용되는 경향이 있습니다.
 
 `x` `<-` `1``:``10` `cumsum``(``x``)` `#> [1] 1 3 6 10 15 21 28 36 45 55`
 
@@ -192,7 +192,7 @@ R은 짝이 맞지 않는 길이를 처리할 때 짧은 벡터를 *재활용(re
    `flights` `|>` `filter``(``month` `==` `1``,` `day` `==` `1``)` `|>` `ggplot``(``aes``(``x` `=` `sched_dep_time``,` `y` `=` `dep_delay``))` `+` `geom_point``()`
    이것들을 시간을 더 잘 반영하는 표현(분수 시간(fractional hours)이나 자정 이후의 분(minutes since midnight))으로 변환하세요.
 
-4. `dep_time`과 `arr_time`을 가장 가까운 5분 단위로 반올림하세요.
+4. `dep_time`과 `arr_time`을 가까운 5분 단위로 반올림하세요.
 
 # 일반적인 변환 (General Transformations)
 
@@ -204,7 +204,7 @@ dplyr은 SQL에서 영감을 받은 여러 순위 지정(ranking) 함수를 제�
 
 `x` `<-` `c``(``1``,` `2``,` `2``,` `3``,` `4``,` `NA``)` `min_rank``(``x``)` `#> [1] 1 2 2 4 5 NA`
 
-가장 작은 값이 가장 낮은 순위(1위)를 갖는다는 점에 유의하세요. 가장 큰 값에 가장 낮은 순위를 부여하려면 `desc(x)`를 사용합니다.
+작은 값이 낮은 순위(1위)를 갖는다는 점에 유의하세요. 큰 값에 낮은 순위를 부여하려면 `desc(x)`를 사용합니다.
 
 `min_rank``(``desc``(``x``))` `#> [1] 5 3 3 2 1 NA`
 
@@ -273,8 +273,8 @@ events |>
 
 ## 연습문제 (Exercises)
 
-1. 순위 지정(ranking) 함수를 사용하여 가장 많이 지연된 항공편 10편을 찾으세요. 동점(ties)은 어떻게 처리하시겠습니까? <a href="https://dplyr.tidyverse.org/reference/row_number.html" class="orm:hideurl"><code>min_rank()</code></a> 문서를 주의 깊게 읽어보세요.
-2. 어떤 비행기(`tailnum`)의 정시 도착 기록이 가장 나쁩니까?
+1. 순위 지정(ranking) 함수를 사용하여 많이 지연된 항공편 10편을 찾으세요. 동점(ties)은 어떻게 처리하시겠습니까? <a href="https://dplyr.tidyverse.org/reference/row_number.html" class="orm:hideurl"><code>min_rank()</code></a> 문서를 주의 깊게 읽어보세요.
+2. 어떤 비행기(`tailnum`)의 정시 도착 기록이 나쁩니까?
 3. 지연을 최대한 피하고 싶다면 하루 중 언제 비행해야 합니까?
 4. `flights |> group_by(dest) |> filter(row_number() < 4)`는 무엇을 합니까? `flights |> group_by(dest) |> filter(row_number(dep_delay) < 4)`는 무엇을 합니까?
 5. 각 목적지별로 총 지연 시간(분)을 계산하세요. 각 항공편에 대해 목적지의 전체 지연 시간 중 해당 항공편이 차지하는 비율을 계산하세요.
@@ -282,7 +282,7 @@ events |>
 
    `flights` `|>` `mutate``(``hour` `=` `dep_time` `%/%` `100``)` `|>` `group_by``(``year``,` `month``,` `day``,` `hour``)` `|>` `summarize``(` `dep_delay` `=` `mean``(``dep_delay``,` `na.rm` `=` `TRUE``),` `n` `=` `n``(),` `.groups` `=` `"drop"` `)` `|>` `filter``(``n` `>` `5``)`
 
-7. 각 목적지를 살펴보세요. 의심스러울 정도로 빠른 항공편(즉, 데이터 입력 오류일 가능성이 있는 항공편)을 찾을 수 있습니까? 해당 목적지로 가는 가장 짧은 항공편과 비교하여 각 항공편의 비행 시간을 계산하세요. 비행 중 가장 많이 지연된 항공편은 무엇입니까?
+7. 각 목적지를 살펴보세요. 의심스러울 정도로 빠른 항공편(즉, 데이터 입력 오류일 가능성이 있는 항공편)을 찾을 수 있습니까? 해당 목적지로 가는 짧은 항공편과 비교하여 각 항공편의 비행 시간을 계산하세요. 비행 중 많이 지연된 항공편은 무엇입니까?
 8. 최소 두 개 이상의 항공사가 운항하는 모든 목적지를 찾으세요. 해당 목적지들을 사용하여 동일한 목적지에 대한 실적을 바탕으로 항공사들의 상대적인 순위를 매겨보세요.
 
 # 숫자 요약 (Numeric Summaries)
@@ -302,11 +302,11 @@ events |>
 <h6 id="figure-13-2.-a-scatterplot-showing-the-differences-of-summarizing-hourly-departure-delay-with-median-instead-of-mean.">그림 13-2. 시간당 출발 지연 시간을 평균 대신 중앙값으로 요약할 때의 차이를 보여주는 산점도.</h6>
 </figure>
 
-최빈값(mode), 즉 가장 흔한 값에 대해서도 궁금할 수 있습니다. 이것은 매우 단순한 경우에만 잘 작동하는 요약이어서(고등학교 때 배운 이유이기도 합니다), 많은 실제 데이터세트에서는 잘 작동하지 않습니다. 데이터가 이산형(discrete)인 경우 가장 흔한 값이 여러 개일 수 있고, 데이터가 연속형(continuous)인 경우 모든 값이 아주 미세하게 다르기 때문에 가장 흔한 값이 없을 수도 있습니다. 이러한 이유로 최빈값은 통계학자들에 의해 잘 사용되지 않는 경향이 있으며, 기본 R에는 최빈값 함수가 포함되어 있지 않습니다.<sup><a href="ch13.html#idm44771297333504" id="idm44771297333504-marker" data-type="noteref">2</a></sup>
+최빈값(mode), 즉 흔한 값에 대해서도 궁금할 수 있습니다. 이것은 매우 단순한 경우에만 잘 작동하는 요약이어서(고등학교 때 배운 이유이기도 합니다), 많은 실제 데이터세트에서는 잘 작동하지 않습니다. 데이터가 이산형(discrete)인 경우 흔한 값이 여러 개일 수 있고, 데이터가 연속형(continuous)인 경우 모든 값이 아주 미세하게 다르기 때문에 흔한 값이 없을 수도 있습니다. 이러한 이유로 최빈값은 통계학자들에 의해 잘 사용되지 않는 경향이 있으며, 기본 R에는 최빈값 함수가 포함되어 있지 않습니다.<sup><a href="ch13.html#idm44771297333504" id="idm44771297333504-marker" data-type="noteref">2</a></sup>
 
 ## 최솟값, 최댓값 및 분위수 (Minimum, Maximum, and Quantiles)
 
-중심 이외의 위치에 관심이 있다면 어떨까요? <a href="https://rdrr.io/r/base/Extremes.html" class="orm:hideurl"><code>min()</code></a>과 <a href="https://rdrr.io/r/base/Extremes.html" class="orm:hideurl"><code>max()</code></a>는 가장 큰 값과 가장 작은 값을 알려줍니다. 또 다른 강력한 도구는 중앙값의 일반화(generalization)인 <a href="https://rdrr.io/r/stats/quantile.html" class="orm:hideurl"><code>quantile()</code></a>입니다. `quantile(x, 0.25)`는 하위 25%의 값보다 큰 `x`의 값을 찾을 것이고, `quantile(x, 0.5)`는 중앙값과 동일하며, `quantile(x, 0.95)`는 하위 95%의 값보다 큰 값을 찾을 것입니다.
+중심 이외의 위치에 관심이 있다면 어떨까요? <a href="https://rdrr.io/r/base/Extremes.html" class="orm:hideurl"><code>min()</code></a>과 <a href="https://rdrr.io/r/base/Extremes.html" class="orm:hideurl"><code>max()</code></a>는 큰 값과 작은 값을 알려줍니다. 또 다른 강력한 도구는 중앙값의 일반화(generalization)인 <a href="https://rdrr.io/r/stats/quantile.html" class="orm:hideurl"><code>quantile()</code></a>입니다. `quantile(x, 0.25)`는 하위 25%의 값보다 큰 `x`의 값을 찾을 것이고, `quantile(x, 0.5)`는 중앙값과 동일하며, `quantile(x, 0.95)`는 하위 95%의 값보다 큰 값을 찾을 것입니다.
 
 `flights` 데이터의 경우, 극단적일 수 있는 상위 5%의 지연된 항공편을 무시하기 위해 최댓값 대신 지연의 95% 분위수를 살펴보는 것이 좋을 수 있습니다.
 
@@ -376,7 +376,7 @@ Z-점수(평균 0, 표준편차 1로 표준화됨)를 계산합니다.
 ## 연습문제 (Exercises)
 
 1. 특정 항공편 그룹의 전형적인 지연 특성을 평가할 수 있는 방법을 최소 5가지 이상 브레인스토밍하세요. <a href="https://rdrr.io/r/base/mean.html" class="orm:hideurl"><code>mean()</code></a>은 언제 유용합니까? <a href="https://rdrr.io/r/stats/median.html" class="orm:hideurl"><code>median()</code></a>은 언제 유용합니까? 어떤 경우에 다른 함수를 사용하고 싶을 수 있습니까? 도착 지연(arrival delay)을 사용해야 합니까, 아니면 출발 지연(departure delay)을 사용해야 합니까? `planes` 데이터를 사용해야 하는 이유는 무엇일까요?
-2. 어느 목적지가 비행 속도의 변동성이 가장 큰가요?
+2. 어느 목적지가 비행 속도의 변동성이 큰가요?
 3. 공항 EGE의 미스터리를 더 탐구하기 위한 플롯을 생성하세요. 공항이 위치를 이전했다는 증거를 찾을 수 있습니까? 그 차이를 설명할 수 있는 다른 변수를 찾을 수 있습니까?
 
 # 요약 (Summary)

@@ -149,13 +149,13 @@ gss_cat |>
 #> 3 White 16395
 ```
 
-팩터로 작업할 때 가장 일반적인 두 가지 연산은 수준의 순서를 변경하는 것과 수준의 값을 변경하는 것입니다. 이러한 작업은 다음 섹션에 설명되어 있습니다.
+팩터로 작업할 때 일반적인 두 가지 연산은 수준의 순서를 변경하는 것과 수준의 값을 변경하는 것입니다. 이러한 작업은 다음 섹션에 설명되어 있습니다.
 
 ## 연습문제
 
 1. `rincome`(보고된 소득)의 분포를 탐색해 보세요. 기본 막대 차트를 이해하기 어렵게 만드는 요인은 무엇인가요? 플롯을 어떻게 개선할 수 있을까요?
 
-2. 이 설문 조사에서 가장 흔한 `relig`(종교)는 무엇인가요? 가장 흔한 `partyid`(정당 식별)는 무엇인가요?
+2. 이 설문 조사에서 흔한 `relig`(종교)는 무엇인가요? 흔한 `partyid`(정당 식별)는 무엇인가요?
 
 3. `denom`(교파)은 어떤 `relig`에 적용되나요? 표로 어떻게 알아낼 수 있나요? 시각화로 어떻게 알아낼 수 있나요?
 
@@ -189,7 +189,7 @@ ggplot(relig_summary, aes(x = tvhours, y = fct_reorder(relig, tvhours))) +
 ```
 
 <figure>
-<img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_16in02.png" alt="위와 동일한 산점도이지만, 이제 종교가 tvhours의 오름차순으로 표시됩니다. &quot;Other eastern(기타 동양 종교)&quot;이 2시간 미만으로 가장 적고, &quot;Don't know(모름)&quot;가 5시간 이상으로 가장 높습니다." />
+<img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_16in02.png" alt="위와 동일한 산점도이지만, 이제 종교가 tvhours의 오름차순으로 표시됩니다. &quot;Other eastern(기타 동양 종교)&quot;이 2시간 미만으로 적고, &quot;Don't know(모름)&quot;가 5시간 이상으로 높습니다." />
 </figure>
 
 종교를 재정렬하면 "Don't know(모름)" 범주에 있는 사람들이 TV를 훨씬 더 많이 시청하고, 힌두교 및 기타 동양 종교(other Eastern religions) 사람들은 훨씬 적게 시청한다는 것을 파악하기가 훨씬 쉬워집니다.
@@ -233,12 +233,12 @@ ggplot(rincome_summary, aes(x = age, y = fct_relevel(rincome, "Not applicable"))
 ```
 
 <figure>
-<img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_16in04.png" alt="동일한 산점도이지만 이제 &quot;Not Applicable&quot;이 y축 하단에 표시됩니다. 전반적으로 소득과 연령 사이에는 양의 상관관계가 있으며, 평균 연령이 가장 높은 소득 구간은 &quot;Not applicable&quot;입니다." />
+<img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_16in04.png" alt="동일한 산점도이지만 이제 &quot;Not Applicable&quot;이 y축 하단에 표시됩니다. 전반적으로 소득과 연령 사이에는 양의 상관관계가 있으며, 평균 연령이 높은 소득 구간은 &quot;Not applicable&quot;입니다." />
 </figure>
 
 왜 "Not applicable"의 평균 연령이 그렇게 높다고 생각하시나요?
 
-플롯의 선에 색을 입힐 때 또 다른 유형의 재정렬이 유용합니다. `fct_reorder2(f, x, y)`는 가장 큰 `x` 값과 관련된 `y` 값에 따라 팩터 `f`를 재정렬합니다. 이렇게 하면 플롯의 맨 오른쪽에 있는 선의 색상이 범례와 정렬되어 플롯을 읽기가 더 쉬워집니다.
+플롯의 선에 색을 입힐 때 또 다른 유형의 재정렬이 유용합니다. `fct_reorder2(f, x, y)`는 큰 `x` 값과 관련된 `y` 값에 따라 팩터 `f`를 재정렬합니다. 이렇게 하면 플롯의 맨 오른쪽에 있는 선의 색상이 범례와 정렬되어 플롯을 읽기가 더 쉬워집니다.
 
 ```
 by_age <- gss_cat |>
@@ -265,7 +265,7 @@ ggplot(by_age, aes(x = age, y = prop, color = fct_reorder2(marital, age, prop)))
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_16in05.png" alt="x축에 연령이 있고 y축에 비율이 있는 선형 플롯. 혼인 상태의 각 범주(no answer, never married, separated, divorced, widowed, married)마다 하나의 선이 있습니다. 범례의 순서가 플롯의 선과 관련이 없기 때문에 플롯을 읽기가 약간 어렵습니다. 범례를 재정렬하면 이제 범례 색상이 플롯의 맨 오른쪽에 있는 선의 순서와 일치하므로 플롯을 읽기가 더 쉬워집니다. 놀랍지 않은 몇 가지 패턴을 볼 수 있습니다. 결코 결혼하지 않은(never married) 비율은 나이가 들면서 감소하고, 결혼한(married) 비율은 거꾸로 된 U자 모양을 형성하며, 사별한(widowed) 비율은 낮게 시작하지만 60세 이후에 급격히 증가합니다." />
 </figure>
 
-마지막으로 막대 플롯의 경우 <a href="https://forcats.tidyverse.org/reference/fct_inorder.html" class="orm:hideurl"><code>fct_infreq()</code></a>를 사용하여 수준을 빈도 감소 순으로 정렬할 수 있습니다. 추가 변수가 필요하지 않기 때문에 이것이 가장 간단한 유형의 재정렬입니다. 막대 플롯에서 가장 큰 값이 왼쪽이 아닌 오른쪽에 오도록 빈도 증가 순으로 정렬하려면 <a href="https://forcats.tidyverse.org/reference/fct_rev.html" class="orm:hideurl"><code>fct_rev()</code></a>와 결합하세요.
+마지막으로 막대 플롯의 경우 <a href="https://forcats.tidyverse.org/reference/fct_inorder.html" class="orm:hideurl"><code>fct_infreq()</code></a>를 사용하여 수준을 빈도 감소 순으로 정렬할 수 있습니다. 추가 변수가 필요하지 않기 때문에 이것이 간단한 유형의 재정렬입니다. 막대 플롯에서 큰 값이 왼쪽이 아닌 오른쪽에 오도록 빈도 증가 순으로 정렬하려면 <a href="https://forcats.tidyverse.org/reference/fct_rev.html" class="orm:hideurl"><code>fct_rev()</code></a>와 결합하세요.
 
 ```
 gss_cat |>
@@ -275,7 +275,7 @@ gss_cat |>
 ```
 
 <figure>
-<img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_16in06.png" alt="혼인 상태의 빈도를 가장 적은 것부터 가장 많은 것 순으로 정렬한 막대 차트: no answer (~0), separated (~1,000), widowed (~2,000), divorced (~3,000), never married (~5,000), married (~10,000)." />
+<img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_16in06.png" alt="혼인 상태의 빈도를 적은 것부터 많은 것 순으로 정렬한 막대 차트: no answer (~0), separated (~1,000), widowed (~2,000), divorced (~3,000), never married (~5,000), married (~10,000)." />
 </figure>
 
 ## 연습문제
@@ -288,7 +288,7 @@ gss_cat |>
 
 # 팩터 수준 수정하기
 
-수준의 순서를 변경하는 것보다 더 강력한 것은 그 값을 변경하는 것입니다. 이를 통해 출판물을 위한 레이블을 명확히 하고, 상위 수준의 디스플레이를 위해 수준을 축소(collapse)할 수 있습니다. 가장 일반적이고 강력한 도구는 <a href="https://forcats.tidyverse.org/reference/fct_recode.html" class="orm:hideurl"><code>fct_recode()</code></a>입니다. 이 함수는 각 수준의 값을 다시 코딩하거나 변경할 수 있게 해줍니다. 예를 들어 `gss_cat` 데이터 프레임에서 `partyid` 변수를 가져와 보겠습니다.
+수준의 순서를 변경하는 것보다 더 강력한 것은 그 값을 변경하는 것입니다. 이를 통해 출판물을 위한 레이블을 명확히 하고, 상위 수준의 디스플레이를 위해 수준을 축소(collapse)할 수 있습니다. 일반적이고 강력한 도구는 <a href="https://forcats.tidyverse.org/reference/fct_recode.html" class="orm:hideurl"><code>fct_recode()</code></a>입니다. 이 함수는 각 수준의 값을 다시 코딩하거나 변경할 수 있게 해줍니다. 예를 들어 `gss_cat` 데이터 프레임에서 `partyid` 변수를 가져와 보겠습니다.
 
 ```
 gss_cat |> count(partyid)
@@ -376,7 +376,7 @@ gss_cat |>
 #> 4 dem      7180
 ```
 
-때로는 플롯이나 표를 더 단순하게 만들기 위해 작은 그룹들을 하나로 묶고(lump) 싶을 수 있습니다. 이것이 `fct_lump_*()` 함수 계열이 하는 일입니다. <a href="https://forcats.tidyverse.org/reference/fct_lump.html" class="orm:hideurl"><code>fct_lump_lowfreq()</code></a>는 항상 "Other(기타)"를 가장 작은 범주로 유지하면서 가장 작은 그룹의 범주들을 점진적으로 "Other"로 묶는 간단한 출발점입니다.
+때로는 플롯이나 표를 더 단순하게 만들기 위해 작은 그룹들을 하나로 묶고(lump) 싶을 수 있습니다. 이것이 `fct_lump_*()` 함수 계열이 하는 일입니다. <a href="https://forcats.tidyverse.org/reference/fct_lump.html" class="orm:hideurl"><code>fct_lump_lowfreq()</code></a>는 항상 "Other(기타)"를 작은 범주로 유지하면서 작은 그룹의 범주들을 점진적으로 "Other"로 묶는 간단한 출발점입니다.
 
 ```
 gss_cat |>
@@ -436,7 +436,7 @@ ordered(c("a", "b", "c"))
 
 # 요약
 
-이 장에서는 가장 일반적으로 사용되는 기능들을 설명하면서 팩터 작업을 위해 편리한 forcats 패키지를 소개했습니다. forcats에는 여기에 논의할 공간이 없었던 다른 광범위한 도우미들이 포함되어 있습니다. 따라서 이전에 접해본 적 없는 팩터 분석 문제에 직면할 때마다 [참조 인덱스](https://oreil.ly/J_IIg)를 훑어보면서 문제를 해결하는 데 도움이 되는 미리 만들어진 함수가 있는지 확인해 볼 것을 적극 권장합니다.
+이 장에서는 일반적으로 사용되는 기능들을 설명하면서 팩터 작업을 위해 편리한 forcats 패키지를 소개했습니다. forcats에는 여기에 논의할 공간이 없었던 다른 광범위한 도우미들이 포함되어 있습니다. 따라서 이전에 접해본 적 없는 팩터 분석 문제에 직면할 때마다 [참조 인덱스](https://oreil.ly/J_IIg)를 훑어보면서 문제를 해결하는 데 도움이 되는 미리 만들어진 함수가 있는지 확인해 볼 것을 적극 권장합니다.
 
 이 장을 읽은 후 팩터에 대해 더 배우고 싶다면, Amelia McNamara와 Nicholas Horton의 논문인 ["Wrangling categorical data in R"](https://oreil.ly/zPh8E)을 읽어보시길 권장합니다. 이 논문은 ["stringsAsFactors: An unauthorized biography"](https://oreil.ly/Z9mkP)와 ["stringsAsFactors = \<sigh\>"](https://oreil.ly/phWQo)에서 논의된 일부 역사를 제시하고, 이 책에 요약된 범주형 데이터에 대한 단정한(tidy) 접근 방식과 기본 R 메서드를 비교합니다. 이 논문의 초기 버전은 forcats 패키지의 동기를 부여하고 범위를 정하는 데 도움이 되었습니다. 고마워요, Amelia와 Nick!
 

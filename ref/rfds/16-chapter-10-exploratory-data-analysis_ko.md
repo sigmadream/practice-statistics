@@ -26,9 +26,9 @@ library(tidyverse)
 
 > “틀린 질문에 대한 정확한 답보다, 종종 모호하더라도 올바른 질문에 대한 대략적인 답이 훨씬 낫습니다. 틀린 질문에 대한 정확한 답은 항상 정밀하게 만들어질 수 있기 때문입니다.” — 존 튜키 (John Tukey)
 
-EDA 동안 여러분의 목표는 데이터에 대한 이해를 높이는 것입니다. 이를 수행하는 가장 쉬운 방법은 질문을 조사를 이끄는 도구로 사용하는 것입니다. 질문을 할 때, 그 질문은 데이터세트의 특정 부분에 주의를 집중시키고 어떤 그래프, 모델 또는 변환을 만들어야 할지 결정하는 데 도움을 줍니다.
+EDA 동안 여러분의 목표는 데이터에 대한 이해를 높이는 것입니다. 이를 수행하는 쉬운 방법은 질문을 조사를 이끄는 도구로 사용하는 것입니다. 질문을 할 때, 그 질문은 데이터세트의 특정 부분에 주의를 집중시키고 어떤 그래프, 모델 또는 변환을 만들어야 할지 결정하는 데 도움을 줍니다.
 
-EDA는 근본적으로 창조적인 과정입니다. 대부분의 창조적인 과정과 마찬가지로, _품질 좋은(quality)_ 질문을 던지는 핵심은 _많은(quantity)_ 질문을 생성하는 것입니다. 분석을 시작할 때 데이터세트에서 어떤 통찰력을 얻을 수 있는지 알 수 없기 때문에 처음부터 의미 있는 질문을 던지기는 어렵습니다. 반면에, 새로운 질문을 던질 때마다 데이터의 새로운 측면에 노출되고 발견을 할 가능성이 높아집니다. 발견한 내용을 바탕으로 각 질문에 새로운 질문을 덧붙인다면, 데이터의 가장 흥미로운 부분에 빠르게 접근하고 생각할 거리를 던져주는 질문 세트를 개발할 수 있습니다.
+EDA는 근본적으로 창조적인 과정입니다. 대부분의 창조적인 과정과 마찬가지로, _품질 좋은(quality)_ 질문을 던지는 핵심은 _많은(quantity)_ 질문을 생성하는 것입니다. 분석을 시작할 때 데이터세트에서 어떤 통찰력을 얻을 수 있는지 알 수 없기 때문에 처음부터 의미 있는 질문을 던지기는 어렵습니다. 반면에, 새로운 질문을 던질 때마다 데이터의 새로운 측면에 노출되고 발견을 할 가능성이 높아집니다. 발견한 내용을 바탕으로 각 질문에 새로운 질문을 덧붙인다면, 데이터의 흥미로운 부분에 빠르게 접근하고 생각할 거리를 던져주는 질문 세트를 개발할 수 있습니다.
 
 연구를 안내하기 위해 어떤 질문을 해야 하는지에 대한 규칙은 없습니다. 하지만 데이터 내에서 발견을 하는 데 항상 유용한 두 가지 유형의 질문이 있습니다. 이 질문들을 대략적으로 표현하면 다음과 같습니다.
 
@@ -39,7 +39,7 @@ EDA는 근본적으로 창조적인 과정입니다. 대부분의 창조적인 �
 
 # 변동 (Variation)
 
-_변동(Variation)_ 은 변수의 값이 측정마다 변하는 경향을 말합니다. 실생활에서 변동은 쉽게 볼 수 있습니다. 연속형 변수를 두 번 측정하면 두 개의 다른 결과를 얻게 됩니다. 이는 빛의 속도와 같이 일정한 양을 측정하더라도 마찬가지입니다. 여러분의 각 측정에는 측정마다 변하는 소량의 오차가 포함됩니다. 서로 다른 대상(사람들의 눈 색깔)을 가로질러 측정하거나 다른 시간(다른 순간에 있는 전자의 에너지 수준)에 측정하는 경우에도 변수는 변할 수 있습니다. 모든 변수는 고유한 변동 패턴을 가지고 있으며, 이는 동일한 관측치에 대한 측정 간에, 그리고 관측치를 가로질러 어떻게 변하는지에 대한 흥미로운 정보를 나타낼 수 있습니다. 이 패턴을 이해하는 가장 좋은 방법은 변수 값의 분포(distribution)를 시각화하는 것이며, 이는 <a href="ch01.html#chp-data-visualize" data-type="xref">제1장</a>에서 배웠습니다.
+_변동(Variation)_ 은 변수의 값이 측정마다 변하는 경향을 말합니다. 실생활에서 변동은 쉽게 볼 수 있습니다. 연속형 변수를 두 번 측정하면 두 개의 다른 결과를 얻게 됩니다. 이는 빛의 속도와 같이 일정한 양을 측정하더라도 마찬가지입니다. 여러분의 각 측정에는 측정마다 변하는 소량의 오차가 포함됩니다. 서로 다른 대상(사람들의 눈 색깔)을 가로질러 측정하거나 다른 시간(다른 순간에 있는 전자의 에너지 수준)에 측정하는 경우에도 변수는 변할 수 있습니다. 모든 변수는 고유한 변동 패턴을 가지고 있으며, 이는 동일한 관측치에 대한 측정 간에, 그리고 관측치를 가로질러 어떻게 변하는지에 대한 흥미로운 정보를 나타낼 수 있습니다. 이 패턴을 이해하는 좋은 방법은 변수 값의 분포(distribution)를 시각화하는 것이며, 이는 <a href="ch01.html#chp-data-visualize" data-type="xref">제1장</a>에서 배웠습니다.
 
 `diamonds` 데이터세트에 있는 약 54,000개 다이아몬드의 무게(`carat`) 분포를 시각화하는 것으로 탐색을 시작하겠습니다. `carat`은 수치형 변수(numerical variable)이므로 히스토그램을 사용할 수 있습니다.
 
@@ -52,13 +52,13 @@ ggplot(diamonds, aes(x = carat)) +
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_10in01.png" alt="A histogram of carats of diamonds, with the x-axis ranging from 0 to 4.5 and the y-axis ranging from 0 to 30000. The distribution is right skewed with very few diamonds in the bin centered at 0, almost 30000 diamonds in the bin centered at 0.5, approximately 15000 diamonds in the bin centered at 1, and much fewer, approximately 5000 diamonds in the bin centered at 1.5. Beyond this, there&#39;s a trailing tail." />
 </figure>
 
-이제 변동을 시각화할 수 있으므로 그래프에서 무엇을 찾아야 할까요? 그리고 어떤 유형의 후속 질문을 던져야 할까요? 그래프에서 찾을 수 있는 가장 유용한 정보 유형과 각 정보 유형에 대한 몇 가지 후속 질문 목록을 다음 섹션에 정리해 두었습니다. 좋은 후속 질문을 던지는 핵심은 호기심(무엇에 대해 더 알고 싶은가?)과 회의주의(이것이 어떻게 오해를 불러일으킬 수 있는가?)에 의존하는 것입니다.
+이제 변동을 시각화할 수 있으므로 그래프에서 무엇을 찾아야 할까요? 그리고 어떤 유형의 후속 질문을 던져야 할까요? 그래프에서 찾을 수 있는 유용한 정보 유형과 각 정보 유형에 대한 몇 가지 후속 질문 목록을 다음 섹션에 정리해 두었습니다. 좋은 후속 질문을 던지는 핵심은 호기심(무엇에 대해 더 알고 싶은가?)과 회의주의(이것이 어떻게 오해를 불러일으킬 수 있는가?)에 의존하는 것입니다.
 
 ## 전형적인 값 (Typical Values)
 
 막대 차트(bar charts)와 히스토그램 모두에서 높은 막대는 변수의 흔한 값을 보여주고 짧은 막대는 덜 흔한 값을 보여줍니다. 막대가 없는 곳은 데이터에서 관찰되지 않은 값을 나타냅니다. 이 정보를 유용한 질문으로 바꾸려면 예상치 못한 것을 찾으십시오:
 
-- 어떤 값이 가장 흔한가요? 그 이유는 무엇인가요?
+- 어떤 값이 흔한가요? 그 이유는 무엇인가요?
 - 어떤 값이 드문가요? 그 이유는 무엇인가요? 그것이 여러분의 예상과 일치하나요?
 - 특이한 패턴을 볼 수 있나요? 그것을 어떻게 설명할 수 있을까요?
 
@@ -103,7 +103,7 @@ ggplot(diamonds, aes(x = y)) +
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_10in03.png" alt="A histogram of lengths of diamonds. The x-axis ranges from 0 to 60 and the y-axis ranges from 0 to 12000. There is a peak around 5, and the data appear to be completely clustered around the peak." />
 </figure>
 
-가장 흔한 구간(bins)에 관측치가 너무 많아서 드문 구간은 매우 짧아져 보기가 어렵습니다 (0을 뚫어지게 쳐다보면 무언가 발견할지도 모르지만요). 특이값을 쉽게 보려면 <a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="orm:hideurl"><code>coord_cartesian()</code></a>을 사용하여 y축을 작은 값으로 확대해야 합니다.
+흔한 구간(bins)에 관측치가 너무 많아서 드문 구간은 매우 짧아져 보기가 어렵습니다 (0을 뚫어지게 쳐다보면 무언가 발견할지도 모르지만요). 특이값을 쉽게 보려면 <a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="orm:hideurl"><code>coord_cartesian()</code></a>을 사용하여 y축을 작은 값으로 확대해야 합니다.
 
 ```
 ggplot(diamonds, aes(x = y)) +
@@ -163,7 +163,7 @@ unusual
 
    하나의 유효하지 않은 값이 해당 관측치의 다른 모든 값들도 유효하지 않다는 것을 의미하지는 않기 때문에 이 옵션을 추천하지 않습니다. 게다가, 데이터의 품질이 낮다면 모든 변수에 이 접근 방식을 적용했을 때 남는 데이터가 없을 수도 있습니다!
 
-2. 대신, 특이값을 결측값으로 대체하는 것을 추천합니다. 이를 수행하는 가장 쉬운 방법은 <a href="https://dplyr.tidyverse.org/reference/mutate.html" class="orm:hideurl"><code>mutate()</code></a>를 사용하여 변수를 수정된 복사본으로 바꾸는 것입니다. <a href="https://dplyr.tidyverse.org/reference/if_else.html" class="orm:hideurl"><code>if_else()</code></a> 함수를 사용하여 특이값을 `NA`로 바꿀 수 있습니다.
+2. 대신, 특이값을 결측값으로 대체하는 것을 추천합니다. 이를 수행하는 쉬운 방법은 <a href="https://dplyr.tidyverse.org/reference/mutate.html" class="orm:hideurl"><code>mutate()</code></a>를 사용하여 변수를 수정된 복사본으로 바꾸는 것입니다. <a href="https://dplyr.tidyverse.org/reference/if_else.html" class="orm:hideurl"><code>if_else()</code></a> 함수를 사용하여 특이값을 `NA`로 바꿀 수 있습니다.
 
    ```
    diamonds2 <- diamonds |>
@@ -217,7 +217,7 @@ nycflights13::flights |>
 
 # 공변동 (Covariation)
 
-변동이 하나의 변수 _내의(within)_ 행동을 설명한다면, 공변동은 변수들 _사이의(between)_ 행동을 설명합니다. _공변동(Covariation)_ 은 둘 이상의 변수 값이 연관된 방식으로 함께 변하는 경향입니다. 공변동을 발견하는 가장 좋은 방법은 두 개 이상의 변수 사이의 관계를 시각화하는 것입니다.
+변동이 하나의 변수 _내의(within)_ 행동을 설명한다면, 공변동은 변수들 _사이의(between)_ 행동을 설명합니다. _공변동(Covariation)_ 은 둘 이상의 변수 값이 연관된 방식으로 함께 변하는 경향입니다. 공변동을 발견하는 좋은 방법은 두 개 이상의 변수 사이의 관계를 시각화하는 것입니다.
 
 ## 범주형 변수와 수치형 변수 (A Categorical and a Numerical Variable)
 
@@ -252,7 +252,7 @@ ggplot(diamonds, aes(x = price)) +
 
 이 장에서는 변수가 열에 있고 관측치가 행에 있는 데이터인 정돈된 데이터(tidy data)에 대해 배웠습니다. 정돈된 데이터는 대부분의 함수에서 이해되는 일관된 구조이기 때문에 tidyverse에서의 작업을 더 쉽게 만듭니다. 주요 과제는 전달받은 어떤 구조의 데이터든 정돈된 형식으로 변환하는 것입니다. 이를 위해 많은 정돈되지 않은 데이터셋을 정돈할 수 있게 해주는 <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="orm:hideurl"><code>pivot_longer()</code></a>와 <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="orm:hideurl"><code>pivot_wider()</code></a>에 대해 배웠습니다. 여기서 제시한 예제는 <a href="https://tidyr.tidyverse.org/articles/pivot.html" class="orm:hideurl"><code>vignette("pivot", package = "tidyr")</code></a>에서 선택한 것이므로, 이 장에서 도움을 받지 못한 문제에 직면한다면 다음에 시도해 볼 좋은 자료가 바로 그 비네트(vignette)입니다.
 
-또 다른 과제는, 주어진 데이터셋에 대해 더 길거나 넓은 버전을 "정돈된(tidy)" 것이라고 명명하는 것이 불가능할 수 있다는 점입니다. 이는 정돈된 데이터가 각 열에 하나의 변수를 가진다고 말했지만 실제로 변수가 무엇인지는 정의하지 않았던(그리고 정의하기가 놀랍도록 어렵습니다) 우리의 정돈된 데이터 정의를 일부 반영하는 것입니다. 분석을 가장 쉽게 만들어주는 것이라면 무엇이든 변수라고 말하는 등 실용적으로 접근해도 전혀 문제가 없습니다. 따라서 어떤 계산을 어떻게 수행할지 알아내는 데 막혔다면 데이터 구성을 전환하는 것을 고려해 보세요. 필요에 따라 정돈을 해제하고, 변환하고, 다시 정돈하는 것을 두려워하지 마세요!
+또 다른 과제는, 주어진 데이터셋에 대해 더 길거나 넓은 버전을 "정돈된(tidy)" 것이라고 명명하는 것이 불가능할 수 있다는 점입니다. 이는 정돈된 데이터가 각 열에 하나의 변수를 가진다고 말했지만 실제로 변수가 무엇인지는 정의하지 않았던(그리고 정의하기가 놀랍도록 어렵습니다) 우리의 정돈된 데이터 정의를 일부 반영하는 것입니다. 분석을 쉽게 만들어주는 것이라면 무엇이든 변수라고 말하는 등 실용적으로 접근해도 전혀 문제가 없습니다. 따라서 어떤 계산을 어떻게 수행할지 알아내는 데 막혔다면 데이터 구성을 전환하는 것을 고려해 보세요. 필요에 따라 정돈을 해제하고, 변환하고, 다시 정돈하는 것을 두려워하지 마세요!
 
 이 장을 즐겁게 읽었고 기본 이론에 대해 더 알고 싶다면, *Journal of Statistical Software*에 게시된 [“Tidy Data” 논문](https://oreil.ly/86uxw)에서 그 역사와 이론적 토대에 대해 자세히 알아볼 수 있습니다.
 
@@ -281,7 +281,7 @@ geom_boxplot()
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_10in20.png" alt="Side-by-side box plots of residuals by cut. The x-axis displays the various cuts (Fair to Ideal), the y-axis ranges from 0 to almost 5. The medians are quite similar, between roughly 0.75 to 1.25. Each of the distributions of residuals is right skewed, with many outliers on the higher end." />
 </figure>
 
-이 책에서는 모델링(modeling)에 대해 논의하지 않습니다. 왜냐하면 모델이 무엇이고 어떻게 작동하는지 이해하는 것은 데이터 랭글링(data wrangling)과 프로그래밍을 위한 도구를 손에 쥐었을 때 가장 쉽기 때문입니다.
+이 책에서는 모델링(modeling)에 대해 논의하지 않습니다. 왜냐하면 모델이 무엇이고 어떻게 작동하는지 이해하는 것은 데이터 랭글링(data wrangling)과 프로그래밍을 위한 도구를 손에 쥐었을 때 쉽기 때문입니다.
 
 # 요약 (Summary)
 

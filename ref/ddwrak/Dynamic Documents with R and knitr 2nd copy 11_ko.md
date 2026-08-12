@@ -344,7 +344,7 @@ hook_scianimator JavaScript 라이브러리 SciAnimator(https://github.com/brent
 
 이러한 _.js 및 _.css 파일은 SciAnimator의 Github 저장소에서 다운로드할 수 있습니다. 보시다시피 이 훅 함수는 상당한 HTML 지식을 요구합니다.
 
-hook_r2swf R2SWF 패키지(Qiu et al., 2015)를 사용하여 이미지를 Flash(SWF) 애니메이션으로 변환합니다. 이 훅은 R에 R2SWF 패키지만 설치되어 있으면 되며, 추가 소프트웨어 패키지나 구성이 필요하지 않으므로 가장 사용하기 쉬울 수 있습니다.
+hook_r2swf R2SWF 패키지(Qiu et al., 2015)를 사용하여 이미지를 Flash(SWF) 애니메이션으로 변환합니다. 이 훅은 R에 R2SWF 패키지만 설치되어 있으면 되며, 추가 소프트웨어 패키지나 구성이 필요하지 않으므로 사용하기 쉬울 수 있습니다.
 
 다음은 이 패키지 옵션을 설정하는 방법입니다.
 

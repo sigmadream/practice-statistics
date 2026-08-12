@@ -26,7 +26,7 @@ renderPlot({ x <- faithful[, 2] # Old Faithful Geyser data bins <- seq(min(x), m
 
 })
 
-일반 R Markdown 문서를 대화형 문서로 바꾸려면 YAML 메타데이터에 runtime: shiny 옵션만 추가하면 됩니다. 그러면 shiny 패키지의 함수를 사용할 수 있습니다. 위 예시에서는 shiny의 UI 함수인 sliderInput()을 사용하여 HTML 페이지에 슬라이더를 만들었습니다. 슬라이더의 id는 bins입니다. 그런 다음 renderPlot() 함수를 사용하여 히스토그램을 렌더링했습니다. 이 코드 청크에서 가장 중요한 부분은 id가 bins인 슬라이더와 연관된 변수 값인 input$bins입니다. 슬라이더 값을 업데이트하면 해당 값이 renderPlot()의 표현식으로 전달되고 그에 따라 플롯이 다시 그려집니다.
+일반 R Markdown 문서를 대화형 문서로 바꾸려면 YAML 메타데이터에 runtime: shiny 옵션만 추가하면 됩니다. 그러면 shiny 패키지의 함수를 사용할 수 있습니다. 위 예시에서는 shiny의 UI 함수인 sliderInput()을 사용하여 HTML 페이지에 슬라이더를 만들었습니다. 슬라이더의 id는 bins입니다. 그런 다음 renderPlot() 함수를 사용하여 히스토그램을 렌더링했습니다. 이 코드 청크에서 중요한 부분은 id가 bins인 슬라이더와 연관된 변수 값인 input$bins입니다. 슬라이더 값을 업데이트하면 해당 값이 renderPlot()의 표현식으로 전달되고 그에 따라 플롯이 다시 그려집니다.
 
 render() 대신 rmarkdown의 run() 함수로 대화형 문서를 컴파일해야 합니다. RStudio를 사용하는 경우 R Markdown 문서에 runtime: shiny를 추가한 후 도구 모음의 Knit 버튼 레이블이 Run Document로 바뀌는 것을 볼 수 있으며, 이 버튼을 클릭하여 문서를 실행할 수 있습니다.
 
@@ -60,7 +60,7 @@ rmarkdown 확장의 첫 번째 유형은 새로운 템플릿을 정의하는 것
 
 https://github.com/jgm/pandoc-templates 저장소에는 Pandoc에서 사용하는 모든 템플릿이 포함되어 있으며, https://github.com/rstudio/rmarkdown의 rmarkdown 소스 패키지에서도 사용자 지정 템플릿을 살펴볼 수 있습니다. 이해되지 않는 템플릿 변수가 있다면 http://johnmacfarlane.net/pandoc/ 문서를 확인해 보시기 바랍니다.
 
-템플릿을 다른 사용자와 공유하는 가장 쉬운 방법은 R 패키지의 inst/rmarkdown/templates/ 디렉터리에 넣는 것입니다. 예를 들어 my_template과 같은 새 디렉터리를 만들고 그 아래에 템플릿 파일을 넣을 수 있습니다. 템플릿에는 CSS/JavaScript 파일 또는 LATEX 패키지와 같은 특정 종속성이 필요할 수 있습니다. 이들은 my_template 아래의 skeleton/ 하위 디렉터리에 수집할 수 있습니다. skeleton/ 디렉터리에서 샘플 Rmd 파일 skeleton.Rmd를 제공할 수도 있습니다. 마지막으로 my_template 아래의 YAML 파일 template.yaml에서 다음 세 가지 YAML 필드로 템플릿을 설명할 수 있습니다.
+템플릿을 다른 사용자와 공유하는 쉬운 방법은 R 패키지의 inst/rmarkdown/templates/ 디렉터리에 넣는 것입니다. 예를 들어 my_template과 같은 새 디렉터리를 만들고 그 아래에 템플릿 파일을 넣을 수 있습니다. 템플릿에는 CSS/JavaScript 파일 또는 LATEX 패키지와 같은 특정 종속성이 필요할 수 있습니다. 이들은 my_template 아래의 skeleton/ 하위 디렉터리에 수집할 수 있습니다. skeleton/ 디렉터리에서 샘플 Rmd 파일 skeleton.Rmd를 제공할 수도 있습니다. 마지막으로 my_template 아래의 YAML 파일 template.yaml에서 다음 세 가지 YAML 필드로 템플릿을 설명할 수 있습니다.
 
 name: 템플릿의 이름(“Journal of Statistical Software”)
 description: 템플릿에 대한 간단한 설명(“This is a template for JSS articles”)

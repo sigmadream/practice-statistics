@@ -55,7 +55,7 @@ library(writexl)
 #|   Excel의 students.xlsx라는 스프레드시트.
 #| fig-alt: |
 #|   Excel의 students 스프레드시트 보기. 이 스프레드시트에는 
-#|   6명의 학생에 대한 정보, ID, 전체 이름, 가장 좋아하는 음식, 식사 계획, 
+#|   6명의 학생에 대한 정보, ID, 전체 이름, 좋아하는 음식, 식사 계획, 
 #|   나이가 포함되어 있습니다.
 knitr::include_graphics("screenshots/import-spreadsheets-students.png")
 ```
@@ -531,7 +531,7 @@ readxl과 googlesheets4 패키지는 모두 @sec-data-import에서 보았던 `re
 #|   브라우저 창에 있는 students라는 Google 스프레드시트.
 #| fig-alt: |
 #|   Google 스프레드시트의 students 스프레드시트 보기. 이 스프레드시트에는 
-#|   6명의 학생에 대한 정보, ID, 전체 이름, 가장 좋아하는 음식, 식사 계획, 
+#|   6명의 학생에 대한 정보, ID, 전체 이름, 좋아하는 음식, 식사 계획, 
 #|   나이가 포함되어 있습니다.
 knitr::include_graphics("screenshots/import-googlesheets-students.png")
 ```
@@ -636,7 +636,7 @@ write_sheet(bake_sale, ss = "bake-sale", sheet = "Sales")
 
 ## 요약 (Summary)
 
-Microsoft Excel과 Google 스프레드시트는 가장 인기 있는 스프레드시트 시스템 두 가지입니다.
+Microsoft Excel과 Google 스프레드시트는 인기 있는 스프레드시트 시스템 두 가지입니다.
 R에서 직접 Excel 및 Google 스프레드시트 파일에 저장된 데이터와 상호 작용할 수 있다는 것은 엄청난(superpower) 일입니다!
 이 장에서는 readxl 패키지의 `read_excel()`을 사용하여 Excel에서, googlesheets4 패키지의 `read_sheet()`를 사용하여 Google 스프레드시트에서 R로 데이터를 읽어오는 방법을 배웠습니다.
 이러한 함수들은 서로 매우 유사하게 작동하며 열 이름, NA 문자열, 읽어 들이는 파일 상단에서 건너뛸 행 등을 지정하기 위한 유사한 인수를 갖습니다.

@@ -21,7 +21,7 @@ library(patchwork)
 
 # 레이블 (Labels)
 
-탐색적 그래픽을 설명적(expository) 그래픽으로 바꿀 때 가장 시작하기 쉬운 곳은 좋은 레이블을 사용하는 것입니다. <a href="https://ggplot2.tidyverse.org/reference/labs.html" class="orm:hideurl"><code>labs()</code></a> 함수로 레이블을 추가합니다.
+탐색적 그래픽을 설명적(expository) 그래픽으로 바꿀 때 시작하기 쉬운 곳은 좋은 레이블을 사용하는 것입니다. <a href="https://ggplot2.tidyverse.org/reference/labs.html" class="orm:hideurl"><code>labs()</code></a> 함수로 레이블을 추가합니다.
 
 ```
 ggplot(mpg, aes(x = displ, y = hwy)) +
@@ -80,7 +80,7 @@ ggplot(df, aes(x, y)) +
 
 플롯의 주요 구성 요소에 레이블을 지정하는 것 외에도, 개별 관측치나 관측치 그룹에 레이블을 지정하는 것이 유용할 때가 많습니다. 마음대로 사용할 수 있는 첫 번째 도구는 <a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="orm:hideurl"><code>geom_text()</code></a>입니다. <a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="orm:hideurl"><code>geom_text()</code></a>는 <a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="orm:hideurl"><code>geom_point()</code></a>와 유사하지만 `label`이라는 미적 매핑을 추가로 가지고 있습니다. 이를 통해 플롯에 텍스트 레이블을 추가할 수 있습니다.
 
-레이블의 출처(sources)는 두 가지가 가능합니다. 첫째, 레이블을 제공하는 티블(tibble)을 가질 수 있습니다. 다음 플롯에서는 각 구동 유형에서 엔진 크기가 가장 큰 자동차를 뽑아 그 정보를 `label_info`라는 새로운 데이터 프레임으로 저장합니다.
+레이블의 출처(sources)는 두 가지가 가능합니다. 첫째, 레이블을 제공하는 티블(tibble)을 가질 수 있습니다. 다음 플롯에서는 각 구동 유형에서 엔진 크기가 큰 자동차를 뽑아 그 정보를 `label_info`라는 새로운 데이터 프레임으로 저장합니다.
 
 ```
 label_info <- mpg |>
@@ -212,7 +212,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 2. 티블을 만들지 않고도 마지막 플롯의 한가운데에 포인트 geom을 추가하려면 <a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="orm:hideurl"><code>annotate()</code></a>를 사용해 보세요. 점의 모양, 크기 또는 색상을 사용자 지정하세요.
 3. <a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="orm:hideurl"><code>geom_text()</code></a>를 사용한 레이블은 패싯 분할(faceting)과 어떻게 상호 작용하나요? 단일 패싯에 레이블을 추가하려면 어떻게 해야 하나요? 각 패싯에 다른 레이블을 넣으려면 어떻게 해야 하나요? (힌트: <a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="orm:hideurl"><code>geom_text()</code></a>로 전달되는 데이터세트에 대해 생각해 보세요.)
 4. <a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="orm:hideurl"><code>geom_label()</code></a>의 어떤 인자가 배경 상자(background box)의 모양을 제어하나요?
-5. <a href="https://rdrr.io/r/grid/arrow.html" class="orm:hideurl"><code>arrow()</code></a>의 네 가지 인자는 무엇입니까? 그것들은 어떻게 작동하나요? 가장 중요한 옵션을 시연하는 일련의 플롯을 만드세요.
+5. <a href="https://rdrr.io/r/grid/arrow.html" class="orm:hideurl"><code>arrow()</code></a>의 네 가지 인자는 무엇입니까? 그것들은 어떻게 작동하나요? 중요한 옵션을 시연하는 일련의 플롯을 만드세요.
 
 # 척도 (Scales)
 
@@ -248,7 +248,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 축과 범례를 통틀어 *가이드(guides)*라고 부릅니다. 축은 `x`와 `y` 미적 매핑에 사용되고, 범례는 다른 모든 것에 사용됩니다.
 
-축의 눈금(ticks)과 범례의 키(keys) 모양에 영향을 주는 두 가지 주요 인자(arguments)가 있습니다. `breaks`와 `labels`입니다. `breaks` 인자는 눈금의 위치 또는 키와 연관된 값을 제어합니다. `labels` 인자는 각 눈금/키와 관련된 텍스트 레이블을 제어합니다. `breaks`의 가장 일반적인 용도는 기본 선택을 재정의(override)하는 것입니다.
+축의 눈금(ticks)과 범례의 키(keys) 모양에 영향을 주는 두 가지 주요 인자(arguments)가 있습니다. `breaks`와 `labels`입니다. `breaks` 인자는 눈금의 위치 또는 키와 연관된 값을 제어합니다. `labels` 인자는 각 눈금/키와 관련된 텍스트 레이블을 제어합니다. `breaks`의 일반적인 용도는 기본 선택을 재정의(override)하는 것입니다.
 
 ```
 ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
@@ -329,7 +329,7 @@ presidential |>
 
 ## 범례 레이아웃 (Legend Layout)
 
-축을 조정할 때 `breaks`와 `labels`를 가장 자주 사용하게 될 것입니다. 이 둘은 범례에서도 모두 작동하지만, 더 자주 사용할 만한 몇 가지 다른 기술이 있습니다.
+축을 조정할 때 `breaks`와 `labels`를 자주 사용하게 될 것입니다. 이 둘은 범례에서도 모두 작동하지만, 더 자주 사용할 만한 몇 가지 다른 기술이 있습니다.
 
 범례의 전체적인 위치를 제어하려면 <a href="https://ggplot2.tidyverse.org/reference/theme.html" class="orm:hideurl"><code>theme()</code></a> 설정을 사용해야 합니다. 테마(themes)에 대해서는 이 장의 끝에서 다시 다루겠지만, 간단히 말해서 데이터가 아닌 플롯의 부분을 제어합니다. 테마 설정 `legend.position`은 범례가 그려지는 위치를 제어합니다.
 
@@ -372,7 +372,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ## 척도 대체하기 (Replacing a Scale)
 
-세부 사항을 조금 조정하는 대신, 척도를 완전히 교체할 수도 있습니다. 가장 자주 바꾸고 싶어 할 두 가지 유형의 척도는 연속형 위치 척도(continuous position scales)와 색상 척도(color scales)입니다. 다행히 동일한 원리가 다른 모든 미적 매핑에도 적용되므로, 위치와 색상을 숙달하고 나면 다른 척도 대체 방법도 빠르게 익힐 수 있습니다.
+세부 사항을 조금 조정하는 대신, 척도를 완전히 교체할 수도 있습니다. 자주 바꾸고 싶어 할 두 가지 유형의 척도는 연속형 위치 척도(continuous position scales)와 색상 척도(color scales)입니다. 다행히 동일한 원리가 다른 모든 미적 매핑에도 적용되므로, 위치와 색상을 숙달하고 나면 다른 척도 대체 방법도 빠르게 익힐 수 있습니다.
 
 변수의 변환(transformations)을 플롯하는 것이 유용할 때가 있습니다. 예를 들어, `carat`과 `price`에 로그 변환(log transform)을 적용하면 둘 사이의 정확한 관계를 더 쉽게 볼 수 있습니다.
 
@@ -514,7 +514,7 @@ mpg |>
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_11in21.png" alt="On the left, scatterplot of highway mileage vs. displacement, with displacement. The smooth curve overlaid shows a decreasing, and then increasing, trend like a hockey stick. On the right, same variables are plotted with displacement ranging only from 5 to 6 and highway mileage ranging only from 10 to 25. The smooth curve overlaid shows a trend that&#39;s slightly increasing first and then decreasing." />
 </figure>
 
-이들을 다음의 두 플롯과 비교해 봅시다. 왼쪽 플롯은 개별 척도에 `limits`를 설정하고, 오른쪽 플롯은 <a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="orm:hideurl"><code>coord_cartesian()</code></a>에서 그것들을 설정합니다. 우리는 한계를 줄이는 것이 데이터의 하위 집합을 취하는 것과 동일하다는 것을 볼 수 있습니다. 따라서 플롯의 특정 영역을 확대(zoom in)하려면 일반적으로 <a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="orm:hideurl"><code>coord_cartesian()</code></a>을 사용하는 것이 가장 좋습니다.
+이들을 다음의 두 플롯과 비교해 봅시다. 왼쪽 플롯은 개별 척도에 `limits`를 설정하고, 오른쪽 플롯은 <a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="orm:hideurl"><code>coord_cartesian()</code></a>에서 그것들을 설정합니다. 우리는 한계를 줄이는 것이 데이터의 하위 집합을 취하는 것과 동일하다는 것을 볼 수 있습니다. 따라서 플롯의 특정 영역을 확대(zoom in)하려면 일반적으로 <a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="orm:hideurl"><code>coord_cartesian()</code></a>을 사용하는 것이 좋습니다.
 
 ```
 # Left

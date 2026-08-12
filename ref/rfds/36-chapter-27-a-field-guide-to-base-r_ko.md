@@ -2,7 +2,7 @@
 
 # 소개
 
-프로그래밍 섹션을 마무리하기 위해, 이 책의 다른 곳에서는 다루지 않은 가장 중요한 기본 R 함수들에 대해 간단히 살펴보겠습니다. 이 도구들은 프로그래밍을 더 많이 할 때 특히 유용하며 야생에서 마주치는 코드를 읽는 데 도움이 될 것입니다.
+프로그래밍 섹션을 마무리하기 위해, 이 책의 다른 곳에서는 다루지 않은 중요한 기본 R 함수들에 대해 간단히 살펴보겠습니다. 이 도구들은 프로그래밍을 더 많이 할 때 특히 유용하며 야생에서 마주치는 코드를 읽는 데 도움이 될 것입니다.
 
 여기가 데이터 과학 문제를 해결하는 데 tidyverse만이 유일한 방법은 아니라는 점을 상기시키기에 좋은 곳입니다. 이 책에서 tidyverse를 가르치는 이유는 tidyverse 패키지들이 공통된 설계 철학을 공유하여 함수 간의 일관성을 높이고 각각의 새로운 함수나 패키지를 배우고 사용하기 조금 더 쉽게 만들기 때문입니다. 기본 R(base R)을 사용하지 않고 tidyverse를 사용하는 것은 불가능하므로, 패키지를 로드하는 <a href="https://rdrr.io/r/base/library.html" class="orm:hideurl"><code>library()</code></a>, 숫자 요약을 위한 <a href="https://rdrr.io/r/base/sum.html" class="orm:hideurl"><code>sum()</code></a>과 <a href="https://rdrr.io/r/base/mean.html" class="orm:hideurl"><code>mean()</code></a>, 팩터, 날짜 및 POSIXct 데이터 유형, 그리고 물론 `+`, `-`, `/`, `*`, `|`, `&`, `!`와 같은 모든 기본 연산자를 포함하여 이미 _많은_ 기본 R 함수를 가르쳤습니다. 지금까지 우리가 집중하지 않았던 것은 기본 R 워크플로우이므로 이 장에서는 그 중 몇 가지를 강조하겠습니다.
 
@@ -79,7 +79,7 @@ library(tidyverse)
 
 ## 데이터 프레임 하위 집합 만들기 (Subsetting Data Frames)
 
-데이터 프레임에 `[`를 사용할 수 있는 방법은 꽤 많이 있지만,<sup><a href="ch27.html#idm44771263328096" id="idm44771263328096-marker" data-type="noteref">1</a></sup> 가장 중요한 방법은 `df[rows, cols]`를 사용하여 행과 열을 독립적으로 선택하는 것입니다. 여기서 `rows`와 `cols`는 앞서 설명한 벡터입니다. 예를 들어, `df[rows, ]`와 `df[, cols]`는 빈 하위 집합을 사용하여 다른 차원을 보존하면서 행이나 열만 선택합니다.
+데이터 프레임에 `[`를 사용할 수 있는 방법은 꽤 많이 있지만,<sup><a href="ch27.html#idm44771263328096" id="idm44771263328096-marker" data-type="noteref">1</a></sup> 중요한 방법은 `df[rows, cols]`를 사용하여 행과 열을 독립적으로 선택하는 것입니다. 여기서 `rows`와 `cols`는 앞서 설명한 벡터입니다. 예를 들어, `df[rows, ]`와 `df[, cols]`는 빈 하위 집합을 사용하여 다른 차원을 보존하면서 행이나 열만 선택합니다.
 
 다음은 몇 가지 예입니다.
 
@@ -256,7 +256,7 @@ tb
 
 <a href="https://rdrr.io/r/base/transform.html" class="orm:hideurl"><code>transform()</code></a>, <a href="https://rdrr.io/r/base/with.html" class="orm:hideurl"><code>with()</code></a> 및 <a href="https://rdrr.io/r/base/with.html" class="orm:hideurl"><code>within()</code></a>을 포함하여 새 열을 만드는 다른 여러 가지 기본 R 접근 방식이 있습니다. Hadley는 몇 가지 [예제](https://oreil.ly/z6vyT)를 수집했습니다.
 
-빠른 요약을 수행할 때 `$`를 직접 사용하는 것이 편리합니다. 예를 들어, 가장 큰 다이아몬드의 크기나 `cut`의 가능한 값만 찾고 싶다면 <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a>를 사용할 필요가 없습니다.
+빠른 요약을 수행할 때 `$`를 직접 사용하는 것이 편리합니다. 예를 들어, 큰 다이아몬드의 크기나 `cut`의 가능한 값만 찾고 싶다면 <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a>를 사용할 필요가 없습니다.
 
 ```
 max(diamonds$carat)
@@ -372,7 +372,7 @@ l <- list(
 
 <a href="ch26.html#chp-iteration" data-type="xref">26장</a>에서는 <a href="https://dplyr.tidyverse.org/reference/across.html" class="orm:hideurl"><code>dplyr::across()</code></a> 및 map 함수 제품군과 같은 반복을 위한 tidyverse 기술을 배웠습니다. 이 섹션에서는 기본 R에 해당하는 *apply 함수 제품군(apply family)*에 대해 배울 것입니다. 이 맥락에서 apply와 map은 동의어입니다. 왜냐하면 "벡터의 각 요소에 함수를 매핑(map)한다"를 다르게 표현하면 "벡터의 각 요소에 함수를 적용(apply)한다"이기 때문입니다. 여기서는 여러분이 야생에서 이 제품군을 인식할 수 있도록 빠른 개요를 제공할 것입니다.
 
-이 제품군의 가장 중요한 멤버는 <a href="https://purrr.tidyverse.org/reference/map.html" class="orm:hideurl"><code>purrr::map()</code></a>과 유사한 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>lapply()</code></a>입니다.<sup><a href="ch27.html#idm44771262249040" id="idm44771262249040-marker" data-type="noteref">3</a></sup> 실제로 <a href="https://purrr.tidyverse.org/reference/map.html" class="orm:hideurl"><code>map()</code></a>의 더 고급 기능은 사용하지 않았기 때문에 <a href="ch26.html#chp-iteration" data-type="xref">26장</a>의 모든 <a href="https://purrr.tidyverse.org/reference/map.html" class="orm:hideurl"><code>map()</code></a> 호출을 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>lapply()</code></a>로 바꿀 수 있습니다.
+이 제품군의 중요한 멤버는 <a href="https://purrr.tidyverse.org/reference/map.html" class="orm:hideurl"><code>purrr::map()</code></a>과 유사한 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>lapply()</code></a>입니다.<sup><a href="ch27.html#idm44771262249040" id="idm44771262249040-marker" data-type="noteref">3</a></sup> 실제로 <a href="https://purrr.tidyverse.org/reference/map.html" class="orm:hideurl"><code>map()</code></a>의 더 고급 기능은 사용하지 않았기 때문에 <a href="ch26.html#chp-iteration" data-type="xref">26장</a>의 모든 <a href="https://purrr.tidyverse.org/reference/map.html" class="orm:hideurl"><code>map()</code></a> 호출을 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>lapply()</code></a>로 바꿀 수 있습니다.
 
 <a href="https://dplyr.tidyverse.org/reference/across.html" class="orm:hideurl"><code>across()</code></a>와 정확히 일치하는 기본 R 함수는 없지만 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>lapply()</code></a>와 함께 `[`를 사용하면 근접할 수 있습니다. 내부적으로 데이터 프레임은 열의 리스트이므로 데이터 프레임에 대해 <a href="https://rdrr.io/r/base/lapply.html" class="orm:hideurl"><code>lapply()</code></a>를 호출하면 각 열에 함수가 적용되기 때문입니다.
 
@@ -440,7 +440,7 @@ for (element in vector) {
 }
 ```
 
-`for` 루프의 가장 직접적인 사용은 <a href="https://purrr.tidyverse.org/reference/map.html" class="orm:hideurl"><code>walk()</code></a>와 동일한 효과를 얻는 것입니다. 리스트의 각 요소에 부작용이 있는 함수를 호출하는 것입니다. 예를 들어, <a href="ch26.html#sec-save-database" data-type="xref">“데이터베이스에 쓰기”</a>에서 `walk()`를 사용하는 대신:
+`for` 루프의 직접적인 사용은 <a href="https://purrr.tidyverse.org/reference/map.html" class="orm:hideurl"><code>walk()</code></a>와 동일한 효과를 얻는 것입니다. 리스트의 각 요소에 부작용이 있는 함수를 호출하는 것입니다. 예를 들어, <a href="ch26.html#sec-save-database" data-type="xref">“데이터베이스에 쓰기”</a>에서 `walk()`를 사용하는 대신:
 
 ```
 paths |> walk(append_file)

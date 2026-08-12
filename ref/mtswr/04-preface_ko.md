@@ -4,7 +4,7 @@ Modern Time Series Analysis with R 책에 오신 것을 환영합니다.
 
 오늘날의 세계에서 우리는 선택의 홍수 속에 압도되어 있습니다. 학술 연구와 산업 혁신이 주도하는 풍부한 데이터와 빠른 기술 발전이 우리 손끝에 있습니다. 데이터를 수집하는 비용은 놀라울 정도로 저렴해졌지만, 복잡한 비즈니스 문제를 해결하는 데 필요한 정밀한 분석을 수행하는 것은 그 어느 때보다 어려워졌습니다. 방대한 방법론과 이를 숙달할 시간이 부족한 상황에서, 실무자들은 적절한 접근법을 선택할 핵심 기술이 부족한 경우가 많습니다. 이 책은 비즈니스 연구 문제를 평가하고, 데이터 특성을 파악하며, 시계열 데이터에서 가치를 추출하는 데 필요한 분석 로드맵을 결정하는 방법을 보여줌으로써 시계열 맥락에서의 이러한 간극을 메워줍니다.
 
-시계열 분석은 학계와 산업계 실무자들의 요구를 충족시키는 자료가 풍부한, 과학 문헌에서 성숙한 분야입니다. 시계열 분석을 위한 방법과 모델은 수십 년 동안 오픈 소스 및 독점 소프트웨어 모두에 구현되어 왔으며, 가장 잘 알려진 라이브러리 중 일부는 오픈 소스 공간에 있습니다. 이러한 사실에도 불구하고 산업계에서 시계열 분석의 도입은 뒤처져 있습니다.
+시계열 분석은 학계와 산업계 실무자들의 요구를 충족시키는 자료가 풍부한, 과학 문헌에서 성숙한 분야입니다. 시계열 분석을 위한 방법과 모델은 수십 년 동안 오픈 소스 및 독점 소프트웨어 모두에 구현되어 왔으며, 잘 알려진 라이브러리 중 일부는 오픈 소스 공간에 있습니다. 이러한 사실에도 불구하고 산업계에서 시계열 분석의 도입은 뒤처져 있습니다.
 
 2000년대 초 머신러닝(ML)의 부상은 기업들이 비즈니스 의사결정 과정에서 컴퓨팅의 힘을 활용할 기회를 제공했습니다. Google BigQuery(BigQuery ML에서 ARIMA_PLUS로)와 Databricks(MLflow에서 시계열용 AutoML로) 같은 주요 엔터프라이즈 플랫폼들은 각각의 자동화된 ML 제품군에 전용 시계열 예측을 추가하는 데 수년의 공백이 있었습니다. 이는 ML 워크플로우를 사용한 시계열의 특화된 처리가 필요함을 다시 한번 강조하며, 비즈니스 도메인에서 시계열 기반 기술을 사용하는 것의 이점과 가치를 시사하기도 합니다.
 
@@ -68,7 +68,7 @@ Modern Time Series Analysis with R 책에 오신 것을 환영합니다.
 
 # 이 책을 최대한 활용하려면
 
-이 책은 단계별 튜토리얼이자 장기적인 기술 참고서 역할을 하도록 구성되었습니다. 각 장은 R을 사용한 실습 구현으로 이동하기 전에 이론적 기초부터 시작하여 논리적 진행을 따릅니다. 가장 효과적인 학습 경험을 위해 다음을 권장합니다.
+이 책은 단계별 튜토리얼이자 장기적인 기술 참고서 역할을 하도록 구성되었습니다. 각 장은 R을 사용한 실습 구현으로 이동하기 전에 이론적 기초부터 시작하여 논리적 진행을 따릅니다. 효과적인 학습 경험을 위해 다음을 권장합니다.
 
 - 순차적 경로: 초보자는 컴퓨팅과 지식에 대한 견고한 기반을 구축하기 위해 챕터들을 순차적으로 진행해야 합니다.
 - 응용 경로: 경험이 풍부한 실무자는 예측 또는 인과적 영향 추정과 같은 특정 장으로 바로 넘어가는 것을 선택할 수 있습니다.
@@ -77,7 +77,7 @@ Modern Time Series Analysis with R 책에 오신 것을 환영합니다.
 
 ## 예제 코드 파일 다운로드
 
-이 책의 코드 번들은 GitHub의 <a href="https://github.com/PacktPublishing/Modern-Time-Series-Analysis-with-R.git" style="text-decoration: none;">  https://github.com/PacktPublishing/Modern-Time-Series-Analysis-with-R.git  </a> 에서 호스팅됩니다. 또한 https://github.com/PacktPublishing 에서 책과 비디오로 구성된 풍부한 카탈로그의 다른 코드 번들도 제공하고 있습니다. 꼭 확인해 보세요!
+이 책의 코드 번들은 GitHub의 <a href="https://github.com/PacktPublishing/Modern-Time-Series-Analysis-with-R.git" style="text-decoration: none;"> https://github.com/PacktPublishing/Modern-Time-Series-Analysis-with-R.git </a> 에서 호스팅됩니다. 또한 https://github.com/PacktPublishing 에서 책과 비디오로 구성된 풍부한 카탈로그의 다른 코드 번들도 제공하고 있습니다. 꼭 확인해 보세요!
 
 ## 컬러 이미지 다운로드
 
@@ -122,7 +122,7 @@ row_3  TRUE  TRUE FALSE
 
 불법 복제: 인터넷에서 어떤 형태로든 우리 작품의 불법 복제물을 발견한 경우, 위치 주소나 웹사이트 이름을 제공해 주시면 감사하겠습니다. 관련 자료의 링크와 함께 ` `` copyright@packt.com `` ` 으로 연락해 주세요.
 
-저자가 되는 데 관심이 있다면: 전문 지식이 있는 주제가 있고 책을 쓰거나 기고하는 데 관심이 있다면 <a href="https://http://authors.packt.com/" style="text-decoration: none;">  http://authors.packt.com/  </a> 를 방문해 주세요.
+저자가 되는 데 관심이 있다면: 전문 지식이 있는 주제가 있고 책을 쓰거나 기고하는 데 관심이 있다면 <a href="https://http://authors.packt.com/" style="text-decoration: none;"> http://authors.packt.com/ </a> 를 방문해 주세요.
 
 # 책과 함께 제공되는 무료 혜택
 
@@ -136,7 +136,7 @@ row_3  TRUE  TRUE FALSE
 
 ## 잠금 해제 방법
 
-QR 코드를 스캔하세요(또는 <a href="https://packtpub.com/unlock" style="text-decoration: none;">  packtpub.com/unlock  </a> 로 이동하세요). 이름으로 이 책을 검색하고 에디션을 확인한 후 페이지의 단계를 따르세요.
+QR 코드를 스캔하세요(또는 <a href="https://packtpub.com/unlock" style="text-decoration: none;"> packtpub.com/unlock </a> 로 이동하세요). 이름으로 이 책을 검색하고 에디션을 확인한 후 페이지의 단계를 따르세요.
 
 <span class="image placeholder" data-original-image-src="../Images/B21040_Preface_2.png" data-original-image-title="">Image</span>
 
@@ -150,6 +150,6 @@ Modern Time Series Analysis with R을 읽은 후 여러분의 생각을 듣고 �
 
 <span class="image placeholder" data-original-image-src="../Images/B21040_Preface_4.png" data-original-image-title="">Image</span>
 
-<a href="https://packt.link/r/1805124013" style="text-decoration: none;">  https://packt.link/r/1805124013  </a>
+<a href="https://packt.link/r/1805124013" style="text-decoration: none;"> https://packt.link/r/1805124013 </a>
 
 여러분의 리뷰는 저희와 기술 커뮤니티에 중요하며 훌륭한 품질의 콘텐츠를 제공하고 있는지 확인하는 데 도움이 될 것입니다.

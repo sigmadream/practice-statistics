@@ -135,7 +135,7 @@ AsciiDoc, R Textile, and brew.
 
 원래 마크다운 구문은 단순하게 설계되었으므로, 표 작성, LATEX 수학 수식 작성 또는 참고 문헌 등 저작 환경 측면에서 어느 정도 제약이 있는 것은 불가피합니다. 짧은 과제를 작성하는 것과 같은 일부 경우에는 복잡한 기능이 필요하지 않으므로 마크다운으로도 꽤 잘 작동할 것입니다.
 
-마크다운의 한 가지 문제는 파생 버전입니다. Pandoc의 마크다운(http://johnmacfarlane.net/pandoc), Github Flavored 마크다운(http://github.com), kramdown(http://kramdown.rubyforge.org) 등과 같이 수많은 변형이 존재합니다. 이러한 변형들은 표와 같은 특정 요소를 작성하는 방법에 대해 고유한 정의를 가질 수 있습니다. CommonMark(http://commonmark.org)는 마크다운 구문을 모호하지 않게 정의하기 위한 노력이며, Pandoc의 마크다운은 CommonMark 표준과 호환됩니다. 또한, 현재로서는 Pandoc이 마크다운을 위한 가장 포괄적인 도구일 것입니다. Pandoc은 원래 마크다운에 다음과 같은 유용한 확장 기능들을 많이 추가했습니다.
+마크다운의 한 가지 문제는 파생 버전입니다. Pandoc의 마크다운(http://johnmacfarlane.net/pandoc), Github Flavored 마크다운(http://github.com), kramdown(http://kramdown.rubyforge.org) 등과 같이 수많은 변형이 존재합니다. 이러한 변형들은 표와 같은 특정 요소를 작성하는 방법에 대해 고유한 정의를 가질 수 있습니다. CommonMark(http://commonmark.org)는 마크다운 구문을 모호하지 않게 정의하기 위한 노력이며, Pandoc의 마크다운은 CommonMark 표준과 호환됩니다. 또한, 현재로서는 Pandoc이 마크다운을 위한 포괄적인 도구일 것입니다. Pandoc은 원래 마크다운에 다음과 같은 유용한 확장 기능들을 많이 추가했습니다.
 
 - 1. 세 개의 백틱 쌍으로 둘러싸인 펜스 코드 블록
 - 2. 일반 LATEX(PDF 출력용) 또는 MathJax(http://mathjax.org, HTML 출력용)를 통한 LATEX 수학 수식 지원. 이를 통해 $math$ 또는 $$math$$와 같은 LATEX 구문을 사용하여 웹 페이지에 수학 방정식을 작성할 수 있습니다.
@@ -158,7 +158,7 @@ AsciiDoc, R Textile, and brew.
 
 더 중요한 것은, Pandoc이 마크다운을 PDF/LATEX, HTML, 워드(Microsoft Word 또는 OpenOffice) 및 프레젠테이션 슬라이드(LATEX beamer 또는 HTML5 슬라이드)를 포함한 여러 다른 문서 형식으로 변환할 수 있다는 점입니다. R 패키지 rmarkdown(Allaire 외, 2015a)은 knitr과 Pandoc을 기반으로 하며, 사용자가 기본적으로 꽤 아름다운 출력을 빠르게 만들 수 있도록 자주 사용되는 몇 가지 출력 형식을 포함하고 있습니다.
 
-rmarkdown 패키지는 RStudio 개발자들이 도입했으므로, RStudio가 R 마크다운 문서 형식을 가장 잘 지원한다는 것은 놀라운 일이 아닙니다. RStudio에서 Rmd 문서를 열거나 생성할 때(파일 새로 만들기 R Markdown), 원하는 출력 형식을 묻는 마법사가 나타납니다. 14장에서 R 마크다운을 자세히 다루겠습니다.
+rmarkdown 패키지는 RStudio 개발자들이 도입했으므로, RStudio가 R 마크다운 문서 형식을 잘 지원한다는 것은 놀라운 일이 아닙니다. RStudio에서 Rmd 문서를 열거나 생성할 때(파일 새로 만들기 R Markdown), 원하는 출력 형식을 묻는 마법사가 나타납니다. 14장에서 R 마크다운을 자세히 다루겠습니다.
 
 - 5.2.2 LATEX 마크다운은 주로 웹을 위해 설계되었으며, 더 복잡한 조판 목적을 위해서는 LATEX가 선호될 수 있습니다. 예를 들어, 이 책은 LATEX로 작성되었습니다. Oetiker 등(1995)은 초보자가 LATEX를 배우기에 좋은 고전적인 자습서입니다. 학습 곡선이 가파를 수 있지만 직접 조판하는 것에 관심이 있다면 그만한 가치가 있습니다.
 

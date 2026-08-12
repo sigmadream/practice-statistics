@@ -34,7 +34,7 @@ KNN 모델의 경우 새로운 값 $`x_{0}`$에 대한 예측 방정식은 다�
 \hat{y} = \frac{1}{K}\sum\limits_{\ell = 1}^{K}x_{\ell}^{*}
 ```
 
-여기서 $`K`$는 이웃 수(number of neighbors)이고 $`x_{\ell}^{*}`$는 훈련 세트에서 $`x_{0}`$에 가장 가까운 $`K`$개의 값입니다. 모델 자체는 모델 방정식으로 정의되지 않습니다; 대신 이전 예측 방정식이 그것을 정의합니다. 이러한 특성은 거리 측정(distance measure)의 다루기 어려울(intractability) 가능성과 함께 (반복적이든 아니든) $`K`$에 대해 풀 수 있는(solved for) 일련의 방정식을 만드는 것을 불가능하게 합니다. 이웃의 수는 모델에 심오한(profound) 영향을 미칩니다; 그것은 클래스 경계(class boundary)의 유연성(flexibility)을 지배합니다. $`K`$ 값이 작으면 경계가 매우 정교(elaborate)한 반면 값이 크면 꽤 매끄러울 수 있습니다.
+여기서 $`K`$는 이웃 수(number of neighbors)이고 $`x_{\ell}^{*}`$는 훈련 세트에서 $`x_{0}`$에 가까운 $`K`$개의 값입니다. 모델 자체는 모델 방정식으로 정의되지 않습니다; 대신 이전 예측 방정식이 그것을 정의합니다. 이러한 특성은 거리 측정(distance measure)의 다루기 어려울(intractability) 가능성과 함께 (반복적이든 아니든) $`K`$에 대해 풀 수 있는(solved for) 일련의 방정식을 만드는 것을 불가능하게 합니다. 이웃의 수는 모델에 심오한(profound) 영향을 미칩니다; 그것은 클래스 경계(class boundary)의 유연성(flexibility)을 지배합니다. $`K`$ 값이 작으면 경계가 매우 정교(elaborate)한 반면 값이 크면 꽤 매끄러울 수 있습니다.
 
 최근접 이웃(nearest neighbors) 수는 데이터에서 직접 추정할 수 없는 튜닝 매개변수 또는 하이퍼파라미터의 좋은 예입니다.
 
@@ -76,7 +76,7 @@ KNN 모델의 경우 새로운 값 $`x_{0}`$에 대한 예측 방정식은 다�
 
 설명을 위해, [그림 12-1](#two-class-dat)에 표시된 2개의 예측 변수, 2개의 클래스, 그리고 593개의 데이터 포인트를 갖는 훈련 세트로 구성된 분류(classification) 데이터를 고려해 보겠습니다.
 
-이러한 데이터에 선형 클래스 경계를 피팅하는 것으로 시작할 수 있습니다. 이 작업을 수행하는 가장 일반적인 방법은 _로지스틱 회귀_ 형태의 일반화 선형 모델(generalized linear model)을 사용하는 것입니다. 이 모델은 _로짓(logit)_ 변환을 사용하여 샘플이 클래스 1이 될 *로그 오즈(log odds)*를 연관시킵니다(relates):
+이러한 데이터에 선형 클래스 경계를 피팅하는 것으로 시작할 수 있습니다. 이 작업을 수행하는 일반적인 방법은 _로지스틱 회귀_ 형태의 일반화 선형 모델(generalized linear model)을 사용하는 것입니다. 이 모델은 _로짓(logit)_ 변환을 사용하여 샘플이 클래스 1이 될 *로그 오즈(log odds)*를 연관시킵니다(relates):
 
 ```math
 \log\left( \frac{\pi}{1 - \pi} \right) = \beta_{0} + \beta_{1}x_{1} + ... + \beta_{p}x_{p}
@@ -99,7 +99,7 @@ KNN 모델의 경우 새로운 값 $`x_{0}`$에 대한 예측 방정식은 다�
 \log\left( - \log(1 - \pi) \right) = \beta_{0} + \beta_{1}x_{1} + ... + \beta_{p}x_{p}
 ```
 
-이러한 각 모델은 선형 클래스 경계를 생성합니다(results in). 우리는 어떤 것을 사용해야 할까요? 이 데이터에 대해 모델 매개변수 수는 변하지 않기 때문에 통계적 접근 방식은 각 모델에 대해 (로그) 우도를 계산하고 가장 큰 값을 갖는 모델을 결정하는 것입니다. 전통적으로 우도는 [5장](ch05.xhtml#splitting)과 [10장](ch10.xhtml#resampling)의 데이터 분할 또는 리샘플링과 같은 접근 방식을 사용하지 않고 매개변수를 추정하는 데 사용된 것과 동일한 데이터를 사용하여 계산됩니다.
+이러한 각 모델은 선형 클래스 경계를 생성합니다(results in). 우리는 어떤 것을 사용해야 할까요? 이 데이터에 대해 모델 매개변수 수는 변하지 않기 때문에 통계적 접근 방식은 각 모델에 대해 (로그) 우도를 계산하고 큰 값을 갖는 모델을 결정하는 것입니다. 전통적으로 우도는 [5장](ch05.xhtml#splitting)과 [10장](ch10.xhtml#resampling)의 데이터 분할 또는 리샘플링과 같은 접근 방식을 사용하지 않고 매개변수를 추정하는 데 사용된 것과 동일한 데이터를 사용하여 계산됩니다.
 
 `training_set` 데이터 프레임에 대해, 서로 다른 모델을 계산하고 훈련 세트에 대한 우도 통계를 추출하는 함수를 (`broom::glance()`를 사용하여) 만들어 보겠습니다.
 
@@ -220,7 +220,7 @@ resampled_res %>%
 
 [5장](ch05.xhtml#splitting)과 [10장](ch10.xhtml#resampling)에서는 단순히 훈련 세트를 재예측(repredicting)하는 것이 모델 평가를 위한 좋지 않은 접근 방식임을 시연했습니다. 여기서 신경망은 훈련 세트에서 보는 패턴을 매우 빠르게 과대 해석(overinterpret)하기 시작합니다. [그림 12-5](#two-class-boundaries)에서 훈련 및 테스트 세트에 겹쳐진 (훈련 세트로 개발된) 세 가지 예제 클래스 경계를 비교해 보십시오.
 
-단일 유닛 모델은 (선형이 되도록 제약되어 있기 때문에) 데이터에 매우 유연하게 적응하지 못합니다. 4개의 은닉 유닛이 있는 모델은 데이터 주류(mainstream)에서 멀리 떨어진 값에 대한 비현실적인 경계를 만들어 과적합의 징후를 보이기 시작합니다. 이는 데이터 오른쪽 위(upper-right) 모서리에 있는 첫 번째 클래스의 단일 데이터 포인트 때문에 발생합니다. 은닉 유닛이 20개 정도 되면 모델은 훈련 세트를 암기(memorizing)하기 시작하여 재대입(resubstitution) 오류율을 최소화하기 위해 해당 데이터 주변에 작은 섬(islands)을 만듭니다. 이러한 패턴은 테스트 세트에서 반복되지 않습니다. 이 마지막 패널은 모델이 효과적이도록 복잡성을 제어하는 튜닝 매개변수를 조절해야(modulated) 하는 방법을 보여주는 가장 좋은 예입니다. 20-유닛 모델의 경우 훈련 세트 ROC 곡선 아래 면적(ROC AUC)은 0.944이지만 테스트 세트 값은 0.855입니다.
+단일 유닛 모델은 (선형이 되도록 제약되어 있기 때문에) 데이터에 매우 유연하게 적응하지 못합니다. 4개의 은닉 유닛이 있는 모델은 데이터 주류(mainstream)에서 멀리 떨어진 값에 대한 비현실적인 경계를 만들어 과적합의 징후를 보이기 시작합니다. 이는 데이터 오른쪽 위(upper-right) 모서리에 있는 첫 번째 클래스의 단일 데이터 포인트 때문에 발생합니다. 은닉 유닛이 20개 정도 되면 모델은 훈련 세트를 암기(memorizing)하기 시작하여 재대입(resubstitution) 오류율을 최소화하기 위해 해당 데이터 주변에 작은 섬(islands)을 만듭니다. 이러한 패턴은 테스트 세트에서 반복되지 않습니다. 이 마지막 패널은 모델이 효과적이도록 복잡성을 제어하는 튜닝 매개변수를 조절해야(modulated) 하는 방법을 보여주는 좋은 예입니다. 20-유닛 모델의 경우 훈련 세트 ROC 곡선 아래 면적(ROC AUC)은 0.944이지만 테스트 세트 값은 0.855입니다.
 
 이러한 과적합 발생은 우리가 플롯(plot)할 수 있는 두 개의 예측 변수에서 분명히 나타납니다. 그러나 일반적으로 모델 과적합을 감지하려면 정량적(quantitative) 접근 방식을 사용해야 합니다.
 
@@ -239,7 +239,7 @@ resampled_res %>%
 
 튜닝 매개변수 최적화는 일반적으로 그리드 검색(grid search)과 반복 검색(iterative search)이라는 두 가지 범주 중 하나에 속합니다.
 
-*그리드 검색(Grid search)*은 평가할 매개변수 값 세트를 미리 정의하는 경우입니다. 그리드 검색과 관련된 주요 선택(choices)은 그리드를 만드는 방법과 평가할 매개변수 조합의 수입니다. 그리드 검색은 매개변수 공간(parameter space)을 포괄하는 데 필요한 그리드 포인트의 수가 차원의 저주(curse of dimensionality)로 인해 관리할 수 없게 될(unmanageable) 수 있으므로 종종 비효율적이라고 판단됩니다. 이 우려에는 진실이 담겨 있지만 프로세스가 최적화되지 않았을 때 가장 사실(most true)입니다. 이에 대해서는 [13장](ch13.xhtml#grid-search)에서 자세히 설명합니다.
+*그리드 검색(Grid search)*은 평가할 매개변수 값 세트를 미리 정의하는 경우입니다. 그리드 검색과 관련된 주요 선택(choices)은 그리드를 만드는 방법과 평가할 매개변수 조합의 수입니다. 그리드 검색은 매개변수 공간(parameter space)을 포괄하는 데 필요한 그리드 포인트의 수가 차원의 저주(curse of dimensionality)로 인해 관리할 수 없게 될(unmanageable) 수 있으므로 종종 비효율적이라고 판단됩니다. 이 우려에는 진실이 담겨 있지만 프로세스가 최적화되지 않았을 때 사실(most true)입니다. 이에 대해서는 [13장](ch13.xhtml#grid-search)에서 자세히 설명합니다.
 
 _반복 검색(Iterative search)_ 또는 순차(sequential) 검색은 이전 결과를 기반으로 순차적으로 새로운 매개변수 조합을 발견할(discover) 때입니다. 거의 모든 비선형 최적화 방법이 적절하지만 일부는 다른 것보다 더 효율적입니다. 어떤 경우에는 최적화 프로세스를 시작하기 위해 하나 이상의 매개변수 조합에 대한 초기 결과 세트가 필요합니다. 반복 검색에 대해서는 [14장](ch14.xhtml#iterative-search)에서 자세히 설명합니다.
 
@@ -247,10 +247,10 @@ _반복 검색(Iterative search)_ 또는 순차(sequential) 검색은 이전 결
 
 <figure>
 <img src="D:\sd\Practices\any2md\output\[2022] Tidy Modeling with R/assets/tmwr_1206.png" alt="tmwr 1206" />
-<h6 id="figure-12-6.-examples-of-predefined-grid-tuning-and-an-iterative-search-method.-the-lines-represent-contours-of-a-performance-metric-it-is-best-in-the-upper-right-side-of-the-plot.">그림 12-6. 미리 정의된(predefined) 그리드 튜닝 및 반복 검색 방법의 예. 선은 성능 지표의 등고선을 나타냅니다; 플롯의 오른쪽 윗부분이 가장 좋습니다.</h6>
+<h6 id="figure-12-6.-examples-of-predefined-grid-tuning-and-an-iterative-search-method.-the-lines-represent-contours-of-a-performance-metric-it-is-best-in-the-upper-right-side-of-the-plot.">그림 12-6. 미리 정의된(predefined) 그리드 튜닝 및 반복 검색 방법의 예. 선은 성능 지표의 등고선을 나타냅니다; 플롯의 오른쪽 윗부분이 좋습니다.</h6>
 </figure>
 
-[그림 12-6](#tuning-strategies)의 왼쪽 패널은 공간 채우기 설계(space-filling design)라고 하는 그리드 유형을 보여줍니다. 이것은 튜닝 매개변수 조합들이 서로 가깝지 않도록 매개변수 공간을 포괄하기 위해 고안된 실험 설계(experimental design)의 한 유형입니다. 이 설계를 위한 결과는 어떤 지점(points)도 진정 최적인 위치에 정확히 배치하지 않습니다. 그러나 하나의 지점이 일반적인 부근(vicinity)에 있으며, 아마도 가장 최적 값의 노이즈 범위 내에 있는 성능 지표 결과를 가질 것입니다.
+[그림 12-6](#tuning-strategies)의 왼쪽 패널은 공간 채우기 설계(space-filling design)라고 하는 그리드 유형을 보여줍니다. 이것은 튜닝 매개변수 조합들이 서로 가깝지 않도록 매개변수 공간을 포괄하기 위해 고안된 실험 설계(experimental design)의 한 유형입니다. 이 설계를 위한 결과는 어떤 지점(points)도 진정 최적인 위치에 정확히 배치하지 않습니다. 그러나 하나의 지점이 일반적인 부근(vicinity)에 있으며, 아마도 최적 값의 노이즈 범위 내에 있는 성능 지표 결과를 가질 것입니다.
 
 [그림 12-6](#tuning-strategies)의 오른쪽 패널은 전역(global) 검색 방법인 Nelder-Mead 심플렉스 방법(simplex method) (Olsson and Nelson 1975)의 결과를 보여줍니다. 시작점(starting point)은 매개변수 공간의 왼쪽 아래 부분입니다. 검색은 최적의 위치에 도달할 때까지 공간을 가로질러 굽이쳐(meanders) 이동하며, 수치적으로 최상의 값에 최대한 가까워지기 위해 노력합니다(strives). 이 특정 검색 방법은 효과적이긴 하지만 효율성(efficiency) 측면에서는 알려져 있지(not known for) 않습니다; 특히 최적 값 근처에서 많은 함수 평가가 필요합니다. [14장](ch14.xhtml#iterative-search)에서는 더 효율적인 검색 알고리즘에 대해 설명합니다.
 
@@ -272,7 +272,7 @@ _반복 검색(Iterative search)_ 또는 순차(sequential) 검색은 이전 결
 
 - 페널티 모델에서의 정규화(regularization) 양 (`penalty`, [6장](ch06.xhtml#models))
 
-parsnip 모델 지정의 경우, 두 가지 종류의 매개변수 인수가 있습니다. *기본 인수(Main arguments)*는 가장 자주 성능 최적화의 대상이 되며 여러 엔진에서 사용할 수 있는 인수입니다. 기본 튜닝 매개변수는 모델 지정(specification) 함수의 최상위 인수입니다. 예를 들어 `rand_forest()` 함수에는 가장 자주 지정되거나 최적화되는 `trees`, `min_n`, `mtry`와 같은 기본 인수가 있습니다.
+parsnip 모델 지정의 경우, 두 가지 종류의 매개변수 인수가 있습니다. *기본 인수(Main arguments)*는 자주 성능 최적화의 대상이 되며 여러 엔진에서 사용할 수 있는 인수입니다. 기본 튜닝 매개변수는 모델 지정(specification) 함수의 최상위 인수입니다. 예를 들어 `rand_forest()` 함수에는 자주 지정되거나 최적화되는 `trees`, `min_n`, `mtry`와 같은 기본 인수가 있습니다.
 
 보조 튜닝 매개변수 세트는 _엔진에 고유한(engine specific)_ 매개변수입니다. 이들은 자주 최적화되지 않거나 특정 엔진에만 고유합니다. 다시 랜덤 포레스트를 예로 들면, ranger 패키지에는 다른 패키지에서 사용되지 않는 몇 가지 인수가 포함되어 있습니다. 한 가지 예는 게인 페널티화(gain penalization)로, 트리 귀납(induction) 프로세스에서 예측 변수 선택을 정규화합니다. 이 매개변수는 앙상블에 사용되는 예측 변수 수와 성능 간의 트레이드오프(trade-off)를 조절하는 데 도움이 될 수 있습니다 (Wundervald, Parnell, and Domijan 2020). `ranger()`에서 이 인수의 이름은 `regularization.factor`입니다. parsnip 모델 지정을 통해 값을 지정하기 위해 `set_engine()`에 보충 인수로 추가됩니다.
 
@@ -490,7 +490,7 @@ regularization_factor()
 #> Range: [0, 1]
 ```
 
-마지막으로, 일부 튜닝 매개변수는 변환(transformations)과 연관시키는 것이 가장 좋습니다. 이에 대한 좋은 예는 많은 정규화된(regularized) 회귀 모델과 관련된 페널티 매개변수입니다. 이 매개변수는 음수(nonnegative)가 아니며(nonnegative) 로그 단위로 값을 변경하는 것이 일반적입니다. 기본 dials 매개변수 객체는 기본적으로 변환이 사용됨을 나타냅니다.
+마지막으로, 일부 튜닝 매개변수는 변환(transformations)과 연관시키는 것이 좋습니다. 이에 대한 좋은 예는 많은 정규화된(regularized) 회귀 모델과 관련된 페널티 매개변수입니다. 이 매개변수는 음수(nonnegative)가 아니며(nonnegative) 로그 단위로 값을 변경하는 것이 일반적입니다. 기본 dials 매개변수 객체는 기본적으로 변환이 사용됨을 나타냅니다.
 
 ```
 penalty()

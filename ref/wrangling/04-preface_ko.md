@@ -24,19 +24,19 @@
 
 [_6장_](B18355_06.xhtml#_idTextAnchor114), _날짜 및 시간 객체 다루기(Working with Date and Time Objects)_ 에서는 날짜와 시간이라는 이 매력적인 객체 유형에 대해 더 자세히 알아봅니다. 날짜 및 시간 객체를 생성하는 기초적인 개념부터 시작하여 이것이 분석에 어떻게 사용될 수 있는지 보여주는 실용적인 프로젝트까지 소개합니다.
 
-[_7장_](B18355_07.xhtml#_idTextAnchor126), _Base R을 사용한 변환(Transformations with Base R)_ 은 이 책의 핵심으로, 데이터 세트에서 수행해야 할 가장 중요한 변환들을 탐구합니다. 이 장에서는 슬라이싱, 그룹화, 대체, 정렬, 데이터 결합 등의 작업을 다룹니다. 추가 라이브러리를 로드할 필요 없이 내장 함수를 주로 사용하여 가장 많이 사용되는 변환들을 다룹니다.
+[_7장_](B18355_07.xhtml#_idTextAnchor126), _Base R을 사용한 변환(Transformations with Base R)_ 은 이 책의 핵심으로, 데이터 세트에서 수행해야 할 중요한 변환들을 탐구합니다. 이 장에서는 슬라이싱, 그룹화, 대체, 정렬, 데이터 결합 등의 작업을 다룹니다. 추가 라이브러리를 로드할 필요 없이 내장 함수를 주로 사용하여 많이 사용되는 변환들을 다룹니다.
 
 [_8장_](B18355_08.xhtml#_idTextAnchor142), _tidyverse 라이브러리를 사용한 변환(Transformations with tidyverse Libraries)_ 은 [_7장_](B18355_07.xhtml#_idTextAnchor126)과 동일한 아이디어를 따르지만, 이번에는 데이터 과학에서 매우 많이 사용되는 R 패키지인 **tidyverse**를 사용하여 변환을 수행합니다.
 
 [_9장_](B18355_09.xhtml#_idTextAnchor167), _탐색적 데이터 분석(Exploratory Data Analysis)_ 은 실전에 관한 내용입니다. 다양한 유형의 변수에 대한 많은 변환 함수를 살펴본 후, 습득한 지식을 실습에 적용하여 완전한 탐색적 데이터 분석 프로젝트를 수행해 볼 시간입니다.
 
-[_10장_](B18355_10.xhtml#_idTextAnchor184), _ggplot2 소개(Introduction to ggplot2)_ 에서는 유연성과 견고함 덕분에 R 언어에서 데이터 시각화에 가장 많이 사용되는 시각화 라이브러리인 **ggplot2**를 소개합니다. 이 장에서는 그래픽의 문법(grammar of graphics)과 이 개념을 바탕으로 ggplot2가 어떻게 만들어졌는지 자세히 알아봅니다. 또한 다양한 종류의 플롯과 그 생성 방법에 대해서도 다룹니다.
+[_10장_](B18355_10.xhtml#_idTextAnchor184), _ggplot2 소개(Introduction to ggplot2)_ 에서는 유연성과 견고함 덕분에 R 언어에서 데이터 시각화에 많이 사용되는 시각화 라이브러리인 **ggplot2**를 소개합니다. 이 장에서는 그래픽의 문법(grammar of graphics)과 이 개념을 바탕으로 ggplot2가 어떻게 만들어졌는지 자세히 알아봅니다. 또한 다양한 종류의 플롯과 그 생성 방법에 대해서도 다룹니다.
 
 [_11장_](B18355_11.xhtml#_idTextAnchor207), _ggplot2를 활용한 향상된 시각화(Enhanced Visualizations with ggplot2)_ 에서는 패싯 그리드(facet grids), 지도, 3D 그래픽 등 ggplot2를 사용해 만들 수 있는 보다 고급 유형의 그래픽을 다룹니다.
 
 [_12장_](B18355_12.xhtml#_idTextAnchor218), _기타 데이터 시각화 옵션(Other Data Visualization Options)_ 에서는 **Microsoft Power BI**에서 R 언어를 사용하여 기본 플롯을 만드는 방법 등 데이터를 시각화하는 더 많은 옵션을 살펴봅니다. 또한 워드 클라우드를 만드는 방법과 이러한 시각화가 언제 유용한지도 다룹니다.
 
-[_13장_](B18355_13.xhtml#_idTextAnchor228), _R로 모델 구축하기(Build a Model with R)_ 는 처음부터 끝까지 이어지는 종단간(end-to-end) 데이터 과학 프로젝트에 관한 내용입니다. 데이터 세트를 가져와 탐색을 시작한 다음, 데이터를 정제하고 수행한 단계를 설명하는 데 도움이 되는 몇 가지 시각화를 생성하여 가장 최적의 모델을 만드는 과정으로 안내합니다.
+[_13장_](B18355_13.xhtml#_idTextAnchor228), _R로 모델 구축하기(Build a Model with R)_ 는 처음부터 끝까지 이어지는 종단간(end-to-end) 데이터 과학 프로젝트에 관한 내용입니다. 데이터 세트를 가져와 탐색을 시작한 다음, 데이터를 정제하고 수행한 단계를 설명하는 데 도움이 되는 몇 가지 시각화를 생성하여 최적의 모델을 만드는 과정으로 안내합니다.
 
 [_14장_](B18355_14.xhtml#_idTextAnchor254), _R의 Shiny를 사용한 애플리케이션 구축(Build an Application with Shiny in R)_ 은 마지막 장으로, [_13장_](B18355_13.xhtml#_idTextAnchor228)에서 생성한 모델을 가져와 R용 Shiny로 만든 웹 애플리케이션을 사용하여 프로덕션 환경에 배포합니다.
 

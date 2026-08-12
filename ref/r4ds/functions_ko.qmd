@@ -7,7 +7,7 @@ source("_common.R")
 
 ## 소개 (Introduction)
 
-데이터 과학자로서 여러분의 도달 범위(reach)를 넓히는(improve) 가장 좋은 방법 중 하나는 함수(functions)를 작성하는 것입니다.
+데이터 과학자로서 여러분의 도달 범위(reach)를 넓히는(improve) 좋은 방법 중 하나는 함수(functions)를 작성하는 것입니다.
 함수를 사용하면(allow you to) 복사 및 붙여넣기(copy-and-pasting)보다 더 강력(powerful)하고 일반적인(general) 방법으로 일반적인 작업(common tasks)을 자동화(automate)할 수 있습니다.
 함수를 작성하면 복사 및 붙여넣기를 사용하는 것에 비해 4가지 큰 이점(advantages)이 있습니다.
 
@@ -240,7 +240,7 @@ fix_na <- function(x) {
 }
 ```
 
-우리는 단일 벡터를 사용하는(take) 예제에 초점을 맞췄습니다. 왜냐하면 그것들이 가장 일반적(common)이라고 생각하기 때문입니다.
+우리는 단일 벡터를 사용하는(take) 예제에 초점을 맞췄습니다. 왜냐하면 그것들이 일반적(common)이라고 생각하기 때문입니다.
 하지만(But) 함수가 여러(multiple) 벡터 입력을 받을 수 없는 이유는 없습니다(there's no reason that).
 
 ### 요약 함수 (Summary functions)
@@ -416,7 +416,7 @@ df |> grouped_mean(group, x)
 
 데이터 프레임 함수를 작성할 때 핵심적인 과제(key challenge)는 어떤 인수를 껴안아야 하는지 파악(figuring out)하는 것입니다.
 다행히도(Fortunately) 설명서(documentation)에서 찾을(look it up) 수 있기 때문에 쉽습니다(easy) 😄.
-깔끔한 평가의 두 가지 가장 일반적인(most common) 하위 유형(sub-types)에 해당하는 문서에서 찾아볼 두 가지 용어(terms)가 있습니다.
+깔끔한 평가의 두 가지 일반적인(most common) 하위 유형(sub-types)에 해당하는 문서에서 찾아볼 두 가지 용어(terms)가 있습니다.
 
 -   **데이터 마스킹(Data-masking)**: 이것은 변수를 사용해 계산하는(compute) `arrange()`, `filter()`, `summarize()`와 같은 함수에서 사용됩니다.
 
@@ -709,9 +709,9 @@ diamonds |> hex_plot(carat, price, depth)
 
 ### 다른 tidyverse와 결합 (Combining with other tidyverse)
 
-가장 유용한 도우미 함수(helpers) 중 일부는 약간의 데이터 조작(data manipulation)과 ggplot2를 결합(combine)합니다.
+유용한 도우미 함수(helpers) 중 일부는 약간의 데이터 조작(data manipulation)과 ggplot2를 결합(combine)합니다.
 예를 들어 `fct_infreq()`를 사용하여 막대(bars)를 빈도(frequency) 순서로 자동으로 정렬하는(sort) 수직(vertical) 막대 차트를 그리고 싶을(might want to do) 수 있습니다.
-막대 차트가 수직이므로 가장 높은 값을 맨 위(top)로 가져오려면(get) 일반적인 순서(usual order)를 반전(reverse)해야 합니다.
+막대 차트가 수직이므로 높은 값을 맨 위(top)로 가져오려면(get) 일반적인 순서(usual order)를 반전(reverse)해야 합니다.
 
 ```{r}
 #| fig-alt: |
@@ -749,7 +749,7 @@ diamonds |> conditional_bars(cut == "Good", clarity)
 ```
 
 창의력을 발휘하여(get creative) 다른 방식으로 데이터 요약을 표시(display)할 수도 있습니다.
-<https://gist.github.com/GShotwell/b19ef520b6d56f61a830fabb3454965b>에서 멋진(cool) 애플리케이션(application)을 찾을 수 있습니다. 축 레이블(axis labels)을 사용하여 가장 높은 값을 표시(display)합니다.
+<https://gist.github.com/GShotwell/b19ef520b6d56f61a830fabb3454965b>에서 멋진(cool) 애플리케이션(application)을 찾을 수 있습니다. 축 레이블(axis labels)을 사용하여 높은 값을 표시(display)합니다.
 ggplot2에 대해 더 많이 배우면서 함수의 강력함(power)은 계속 커질 것(continue to increase)입니다.
 
 생성하는(create) 플롯에 레이블을 지정하는 더 복잡한 경우(more complicated case)로 마무리(finish)하겠습니다.

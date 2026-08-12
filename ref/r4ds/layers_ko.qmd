@@ -17,7 +17,7 @@ source("_common.R")
 또한 플롯에 지옴(geoms)이 표시되는 방식을 수정하는 위치 조정(position adjustments)에 대해서도 배웁니다.
 마지막으로 좌표계(coordinate systems)를 간략하게 소개합니다.
 
-이러한 각 레이어에 대한 모든 단일 함수와 옵션을 다루지는 않겠지만, ggplot2에서 제공하는 가장 중요하고 일반적으로 사용되는 기능을 안내하고 ggplot2를 확장하는 패키지들을 소개할 것입니다.
+이러한 각 레이어에 대한 모든 단일 함수와 옵션을 다루지는 않겠지만, ggplot2에서 제공하는 중요하고 일반적으로 사용되는 기능을 안내하고 ggplot2를 확장하는 패키지들을 소개할 것입니다.
 
 ### 전제 조건 (Prerequisites)
 
@@ -32,7 +32,7 @@ library(tidyverse)
 
 ## 심미성 매핑 (Aesthetic mappings)
 
-> "그림의 가장 큰 가치는 전혀 기대하지 않았던 것을 보게 만들 때 나타난다." --- 존 튜키(John Tukey)
+> "그림의 큰 가치는 전혀 기대하지 않았던 것을 보게 만들 때 나타난다." --- 존 튜키(John Tukey)
 
 ggplot2 패키지와 함께 번들로 제공되는 `mpg` 데이터 프레임에는 `r mpg |> distinct(model) |> nrow()`개의 자동차 모델에 대한 `r nrow(mpg)`개의 관측치가 포함되어 있다는 것을 기억하세요.
 
@@ -412,7 +412,7 @@ ggplot(mpg, aes(x = hwy, y = drv, fill = drv, color = drv)) +
   geom_density_ridges(alpha = 0.5, show.legend = FALSE)
 ```
 
-ggplot2가 제공하는 모든 지옴과 패키지의 모든 함수에 대한 포괄적인 개요를 볼 수 있는 가장 좋은 곳은 참조 페이지인 <https://ggplot2.tidyverse.org/reference>입니다.
+ggplot2가 제공하는 모든 지옴과 패키지의 모든 함수에 대한 포괄적인 개요를 볼 수 있는 좋은 곳은 참조 페이지인 <https://ggplot2.tidyverse.org/reference>입니다.
 단일 지옴에 대해 더 자세히 알아보려면 도움말(`?geom_smooth`)을 사용하세요.
 
 ### 연습 문제 (Exercises)
@@ -895,7 +895,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ## 좌표계 (Coordinate systems)
 
-좌표계(Coordinate systems)는 아마도 ggplot2에서 가장 복잡한 부분일 것입니다.
+좌표계(Coordinate systems)는 아마도 ggplot2에서 복잡한 부분일 것입니다.
 기본 좌표계는 각 점의 위치를 결정하기 위해 x 위치와 y 위치가 독립적으로 작용하는 데카르트 좌표계(Cartesian coordinate system)입니다.
 가끔 유용한 두 가지 다른 좌표계가 있습니다.
 

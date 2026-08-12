@@ -63,7 +63,7 @@ ggplot(ames, aes(x = Sale_Price)) +
 <h6 id="figure-4-2.-sale-prices-of-houses-in-ames-iowa.">그림 4-2. 아이오와주 에임스의 주택 판매 가격.</h6>
 </figure>
 
-이 플롯은 데이터가 오른쪽으로 치우쳐(right-skewed) 있음을 보여줍니다. 비싼 주택보다 저렴한 주택이 더 많습니다. 판매 가격의 중앙값(median)은 $160,000이었고 가장 비싼 주택은 $755,000였습니다. 이 결과를 모델링할 때, 가격을 로그 변환(log-transformed)해야 한다는 강력한 주장이 제기될 수 있습니다. 이러한 유형의 변환이 갖는 이점은 음수 판매 가격으로 예측되는 주택이 없다는 점과, 비싼 주택을 예측할 때 발생하는 오차가 모델에 과도한 영향을 미치지 않는다는 점입니다. 또한 통계적인 관점에서 로그 변환은 추론을 더 합법적으로 만드는 방식으로 분산(variance)을 안정화시킬 수도 있습니다. 이제 유사한 단계를 사용하여 [그림 4-3](#figure-4-3.-sale-prices-of-houses-in-ames-iowa-after-a-log-base-10-transformation.)에 표시된 대로 변환된 데이터를 시각화할 수 있습니다.
+이 플롯은 데이터가 오른쪽으로 치우쳐(right-skewed) 있음을 보여줍니다. 비싼 주택보다 저렴한 주택이 더 많습니다. 판매 가격의 중앙값(median)은 $160,000이었고 비싼 주택은 $755,000였습니다. 이 결과를 모델링할 때, 가격을 로그 변환(log-transformed)해야 한다는 강력한 주장이 제기될 수 있습니다. 이러한 유형의 변환이 갖는 이점은 음수 판매 가격으로 예측되는 주택이 없다는 점과, 비싼 주택을 예측할 때 발생하는 오차가 모델에 과도한 영향을 미치지 않는다는 점입니다. 또한 통계적인 관점에서 로그 변환은 추론을 더 합법적으로 만드는 방식으로 분산(variance)을 안정화시킬 수도 있습니다. 이제 유사한 단계를 사용하여 [그림 4-3](#figure-4-3.-sale-prices-of-houses-in-ames-iowa-after-a-log-base-10-transformation.)에 표시된 대로 변환된 데이터를 시각화할 수 있습니다.
 
 ```
 ggplot(ames, aes(x = Sale_Price)) +
@@ -125,7 +125,7 @@ ames <- ames %>% mutate(Sale_Price = log10(Sale_Price))
 <h6 id="figure-4-8.-locations-of-homes-in-crawford.">그림 4-8. Crawford의 주택 위치.</h6>
 </figure>
 
-에임스 동쪽의 주요 도로에 인접한 "Iowa Department of Transportation (DOT) and Rail Road" 동네 역시 눈에 띕니다 ([그림 4-9](#figure-4-9.-homes-labeled-as-iowa-department-of-transportation-dot-and-rail-road.) 참조). 이 동네에는 여러 주택 클러스터뿐만 아니라 세로 방향의 이상치(longitudinal outliers)도 있습니다. 가장 동쪽에 있는 두 집은 다른 위치에서 고립되어 있습니다.
+에임스 동쪽의 주요 도로에 인접한 "Iowa Department of Transportation (DOT) and Rail Road" 동네 역시 눈에 띕니다 ([그림 4-9](#figure-4-9.-homes-labeled-as-iowa-department-of-transportation-dot-and-rail-road.) 참조). 이 동네에는 여러 주택 클러스터뿐만 아니라 세로 방향의 이상치(longitudinal outliers)도 있습니다. 동쪽에 있는 두 집은 다른 위치에서 고립되어 있습니다.
 
 <figure>
 <img src="D:\sd\Practices\any2md\output\[2022] Tidy Modeling with R/assets/tmwr_0409.png" alt="tmwr 0409" />

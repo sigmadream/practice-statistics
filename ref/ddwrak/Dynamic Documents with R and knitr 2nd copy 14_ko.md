@@ -89,7 +89,7 @@ R 마크다운 v1은 C 라이브러리인 sundown에 기반을 두고 있으며,
 
 ###### 14.1 개요
 
-knitr가 다양한 문서 형식(5장)을 지원하지만 R 마크다운이 아마도 가장 인기 있는 문서 형식일 것입니다. 마크다운은 기능 면에서 제한적이기는 하지만 초보자에게는 좋은 문서 언어입니다. 다른 한편으로 작성자는 애초에 많은 기능을 원하지 않을 수도 있습니다. LATEX 사용자의 눈에는 마크다운이 제한적일 수 있지만 모든 사람이 조판 세부 사항에 그렇게 신경 써야 하는 것은 아닙니다.
+knitr가 다양한 문서 형식(5장)을 지원하지만 R 마크다운이 아마도 인기 있는 문서 형식일 것입니다. 마크다운은 기능 면에서 제한적이기는 하지만 초보자에게는 좋은 문서 언어입니다. 다른 한편으로 작성자는 애초에 많은 기능을 원하지 않을 수도 있습니다. LATEX 사용자의 눈에는 마크다운이 제한적일 수 있지만 모든 사람이 조판 세부 사항에 그렇게 신경 써야 하는 것은 아닙니다.
 
 마크다운의 한계는 Pandoc에 의해 대부분 제거될 수 있지만 문제는 Pandoc이 명령줄 도구라는 것입니다. 파워 유저는 이것을 진짜 문제라고 생각하지 않을 수 있지만, 수많은 명령줄 인수는 초보자를 압도할 수 있습니다.
 
@@ -215,7 +215,7 @@ word_document: default
 
 -- R 마크다운 문서의 본문.
 
-rmarkdown에서 YAML 메타데이터의 가장 중요한 필드는 output 필드입니다. 이곳은 원하는 출력 형식을 지정하는 위치입니다. 이것이 누락된 경우 rmarkdown은 출력 형식을 HTML 문서로 간주합니다. 여러 형식이 지정된 경우, 사용자가 render()의 두 번째 인수를 명시적으로 지정하지 않는 한 render() 함수는 기본적으로 첫 번째 형식을 사용합니다. render('foo.Rmd', 'all')을 사용하여 output 필드에 정의된 모든 형식을 렌더링할 수도 있습니다.
+rmarkdown에서 YAML 메타데이터의 중요한 필드는 output 필드입니다. 이곳은 원하는 출력 형식을 지정하는 위치입니다. 이것이 누락된 경우 rmarkdown은 출력 형식을 HTML 문서로 간주합니다. 여러 형식이 지정된 경우, 사용자가 render()의 두 번째 인수를 명시적으로 지정하지 않는 한 render() 함수는 기본적으로 첫 번째 형식을 사용합니다. render('foo.Rmd', 'all')을 사용하여 output 필드에 정의된 모든 형식을 렌더링할 수도 있습니다.
 
 ###### 14.3 출력 형식
 
@@ -427,7 +427,7 @@ pdf_document: latex_engine: xelatex keep_tex: yes
 
 워드 문서를 위해 사용자 지정할 수 있는 옵션은 많지 않습니다. 그래도 여전히 그림 크기, 구문 강조 테마 등을 설정할 수 있습니다. 그림 14.6은 마이크로소프트 워드 2013에서 열린 예제의 워드 출력을 보여줍니다.
 
-워드 문서에서 가장 중요하고 유용한 기능은 아마도 템플릿일 것입니다. 다른 문서 형식의 경우 일반 텍스트 템플릿을 제공할 수 있지만 워드의 경우 그렇게 하기 쉽지 않습니다. 워드 문서는 상대적으로 복잡한 이진(binary) 파일이기 때문입니다. 하지만 Pandoc은 워드 문서를 "참조 문서"로 제공할 수 있게 해 주며, 이는 본질적으로 스타일 템플릿 역할을 합니다. 이 참조 문서는 Pandoc의 워드 출력 문서 중 하나를 기반으로 해야 하며, 거기서 여러 요소들의 스타일을 업데이트합니다. 참고로 이 문서에 정의된 스타일만 사용되며, 콘텐츠는 대부분 무시됩니다.
+워드 문서에서 중요하고 유용한 기능은 아마도 템플릿일 것입니다. 다른 문서 형식의 경우 일반 텍스트 템플릿을 제공할 수 있지만 워드의 경우 그렇게 하기 쉽지 않습니다. 워드 문서는 상대적으로 복잡한 이진(binary) 파일이기 때문입니다. 하지만 Pandoc은 워드 문서를 "참조 문서"로 제공할 수 있게 해 주며, 이는 본질적으로 스타일 템플릿 역할을 합니다. 이 참조 문서는 Pandoc의 워드 출력 문서 중 하나를 기반으로 해야 하며, 거기서 여러 요소들의 스타일을 업데이트합니다. 참고로 이 문서에 정의된 스타일만 사용되며, 콘텐츠는 대부분 무시됩니다.
 
 워드 문서에서 스타일을 정의하는 방법을 보여주기 위해 짧은 비디오를 준비했습니다(https://vimeo.com/110804387). 그림 14.7 및 14.8도 함께 확인할 수 있습니다. 기본 단계는 다음과 같습니다.
 
@@ -541,7 +541,7 @@ Slidy 슬라이드를 인쇄하려면 Google Chrome을 사용할 수도 있습�
 
 이것을 14.3.1절의 R 마크다운 소스 코드와 비교해 보면 순수 LATEX로 작성할 때보다 마크다운으로 작성할 때 입력해야 할 코드가 훨씬 적다는 것을 알 수 있습니다.
 
-새 슬라이드는 마크다운에서 새로운 섹션이며 섹션의 레벨은 문서 계층 구조에서 가장 높은 레벨(가장 상위 레벨) 다음에 바로 슬라이드 콘텐츠가 오는 것으로 결정됩니다. 다음 예제에서는 각 1단계 섹션(#)이 새 슬라이드입니다.
+새 슬라이드는 마크다운에서 새로운 섹션이며 섹션의 레벨은 문서 계층 구조에서 높은 레벨(상위 레벨) 다음에 바로 슬라이드 콘텐츠가 오는 것으로 결정됩니다. 다음 예제에서는 각 1단계 섹션(#)이 새 슬라이드입니다.
 
 --output: beamer_presentation
 
@@ -582,7 +582,7 @@ css <- system.file("rmarkdown", "templates",
 fig_height = fig_height, dev = dev, fig_retina = FALSE, css = css, theme = NULL, highlight = "pygments", ...)
 }
 
-tufte_handout() 형식은 LATEX 문서 클래스 tufte-handout.cls를 위한 래퍼입니다. Tufte 핸드아웃 스타일의 가장 눈에 띄는 특징은 측면 주석(sidenotes)의 사용과 잘 디자인된 타이포그래피일 것입니다. 예제 페이지는 그림 14.12를 참조하십시오. 그 YAML 메타데이터는 다음과 같습니다.
+tufte_handout() 형식은 LATEX 문서 클래스 tufte-handout.cls를 위한 래퍼입니다. Tufte 핸드아웃 스타일의 눈에 띄는 특징은 측면 주석(sidenotes)의 사용과 잘 디자인된 타이포그래피일 것입니다. 예제 페이지는 그림 14.12를 참조하십시오. 그 YAML 메타데이터는 다음과 같습니다.
 
 ## --title: "Tufte 핸드아웃" author: "John Smith" date: "August 13th, 2014" output: rmarkdown::tufte_handout
 
@@ -604,7 +604,7 @@ value = 30)
 renderPlot({ x <- faithful[, 2] # Old Faithful Geyser data bins <- seq(min(x), max(x), length.out = input$bins + 1) # 지정된 수의 빈으로 히스토그램을 그립니다 hist(x, breaks = bins, col = darkgray , border = white )
 })
 
-일반적인 R 마크다운 문서를 대화형 문서로 전환하려면 YAML 메타데이터에 runtime: shiny 옵션만 추가하면 됩니다. 그러면 shiny 패키지의 함수를 사용할 수 있습니다. 위 예제에서는 shiny의 UI 함수인 sliderInput()을 사용하여 HTML 페이지에 슬라이더를 만들었습니다. 슬라이더의 ID는 bins입니다. 그런 다음 renderPlot() 함수를 사용하여 히스토그램을 렌더링했습니다. 이 코드 청크에서 가장 중요한 부분은 input$bins인데, 이는 ID가 bins인 슬라이더와 연결된 변수값입니다. 슬라이더의 값을 업데이트하면 그 값이 renderPlot()의 표현식으로 전달되고 그에 따라 플롯이 다시 그려집니다.
+일반적인 R 마크다운 문서를 대화형 문서로 전환하려면 YAML 메타데이터에 runtime: shiny 옵션만 추가하면 됩니다. 그러면 shiny 패키지의 함수를 사용할 수 있습니다. 위 예제에서는 shiny의 UI 함수인 sliderInput()을 사용하여 HTML 페이지에 슬라이더를 만들었습니다. 슬라이더의 ID는 bins입니다. 그런 다음 renderPlot() 함수를 사용하여 히스토그램을 렌더링했습니다. 이 코드 청크에서 중요한 부분은 input$bins인데, 이는 ID가 bins인 슬라이더와 연결된 변수값입니다. 슬라이더의 값을 업데이트하면 그 값이 renderPlot()의 표현식으로 전달되고 그에 따라 플롯이 다시 그려집니다.
 
 대화형 문서는 render() 대신 rmarkdown의 run() 함수를 통해 컴파일되어야 합니다. RStudio를 사용하는 경우 R 마크다운 문서에 runtime: shiny를 추가하고 나면 툴바의 Knit 버튼 레이블이 Run Document로 변경되는 것을 볼 수 있으며, 이 버튼을 클릭하여 문서를 실행할 수 있습니다.
 
@@ -635,7 +635,7 @@ $endif$ \begin{document} $if(title)$ \maketitle $endif$ $body$ \end{document}
 
 https://github.com/jgm/pandoc-templates 저장소에는 Pandoc에서 사용하는 모든 템플릿이 포함되어 있으며, https://github.com/rstudio/rmarkdown 의 rmarkdown 소스 패키지에서도 사용자 정의 템플릿을 살펴볼 수 있습니다. 이해할 수 없는 템플릿 변수가 있다면 http://johnmacfarlane.net/pandoc/ 의 설명서를 확인할 수 있습니다.
 
-다른 사용자와 템플릿을 공유하는 가장 쉬운 방법은 R 패키지의 inst/rmarkdown/templates/ 디렉터리 아래에 템플릿을 넣는 것입니다. my_template과 같은 새 디렉터리를 만들고 그 아래에 템플릿 파일을 넣을 수 있습니다. 템플릿에 CSS/자바스크립트 파일이나 LATEX 패키지와 같은 특정 종속성이 필요할 수 있습니다. 이러한 파일은 my_template 아래의 하위 디렉터리 skeleton/에 모아둘 수 있습니다. skeleton/ 디렉터리에서는 샘플 Rmd 파일 skeleton.Rmd도 제공할 수 있습니다. 마지막으로 my_template 아래의 YAML 파일 template.yaml에 3개의 YAML 필드를 사용하여 템플릿을 설명할 수 있습니다.
+다른 사용자와 템플릿을 공유하는 쉬운 방법은 R 패키지의 inst/rmarkdown/templates/ 디렉터리 아래에 템플릿을 넣는 것입니다. my_template과 같은 새 디렉터리를 만들고 그 아래에 템플릿 파일을 넣을 수 있습니다. 템플릿에 CSS/자바스크립트 파일이나 LATEX 패키지와 같은 특정 종속성이 필요할 수 있습니다. 이러한 파일은 my_template 아래의 하위 디렉터리 skeleton/에 모아둘 수 있습니다. skeleton/ 디렉터리에서는 샘플 Rmd 파일 skeleton.Rmd도 제공할 수 있습니다. 마지막으로 my_template 아래의 YAML 파일 template.yaml에 3개의 YAML 필드를 사용하여 템플릿을 설명할 수 있습니다.
 
 name 템플릿 이름("Journal of Statistical Software")
 description 템플릿에 대한 간단한 설명("이것은 JSS 논문용 템플릿입니다")
@@ -736,7 +736,7 @@ date: "2015/01/01" output: html_document
 
 ###### 응용
 
-지금까지는 단순성을 위해 짧은 예제와 함께 knitr의 사용법을 소개했습니다. 이 장에서는 knitr가 실제 응용 프로그램과 어떻게 작동하는지 보여주기 위해 몇 가지 구체적이고 완전한 예제를 사용합니다. 이러한 애플리케이션의 모든 세부 사항을 다 설명하지는 않고 가장 중요한 부분만 짚어보겠습니다.
+지금까지는 단순성을 위해 짧은 예제와 함께 knitr의 사용법을 소개했습니다. 이 장에서는 knitr가 실제 응용 프로그램과 어떻게 작동하는지 보여주기 위해 몇 가지 구체적이고 완전한 예제를 사용합니다. 이러한 애플리케이션의 모든 세부 사항을 다 설명하지는 않고 중요한 부분만 짚어보겠습니다.
 
 ###### 15.1 과제
 
@@ -1055,7 +1055,7 @@ fig_height = fig_height, dev = dev, fig_retina = FALSE, css = css, theme = NULL,
 
 }
 
-tufte_handout() 형식은 LATEX 문서 클래스 tufte-handout.cls를 위한 래퍼입니다. Tufte 유인물 스타일의 가장 눈에 띄는 특징은 아마도 사이드노트(sidenote)의 사용과 잘 설계된 타이포그래피일 것입니다. 예시 페이지는 그림 14.12를 참조하십시오. 해당 YAML 메타데이터는 다음과 같습니다.
+tufte_handout() 형식은 LATEX 문서 클래스 tufte-handout.cls를 위한 래퍼입니다. Tufte 유인물 스타일의 눈에 띄는 특징은 아마도 사이드노트(sidenote)의 사용과 잘 설계된 타이포그래피일 것입니다. 예시 페이지는 그림 14.12를 참조하십시오. 해당 YAML 메타데이터는 다음과 같습니다.
 
 --title: "Tufte Handout" author: "John Smith" date: "August 13th, 2014" output: rmarkdown::tufte_handout
 
@@ -1086,7 +1086,7 @@ renderPlot({ x <- faithful[, 2] # Old Faithful Geyser data bins <- seq(min(x), m
 
 })
 
-일반 R Markdown 문서를 대화형 문서로 전환하려면 YAML 메타데이터에 runtime: shiny 옵션만 추가하면 됩니다. 그러면 shiny 패키지의 함수를 사용할 수 있습니다. 위의 예시에서 우리는 shiny의 UI 함수인 sliderInput()을 사용하여 HTML 페이지에 슬라이더를 만들었습니다. 슬라이더의 ID는 bins입니다. 그런 다음 renderPlot() 함수를 사용하여 히스토그램을 렌더링했습니다. 이 코드 청크에서 가장 중요한 부분은 input$bins인데, 이는 ID가 bins인 슬라이더와 연결된 변수 값입니다. 슬라이더 값을 업데이트하면 그 값이 renderPlot()의 표현식으로 전달되고 그에 따라 플롯이 다시 그려집니다.
+일반 R Markdown 문서를 대화형 문서로 전환하려면 YAML 메타데이터에 runtime: shiny 옵션만 추가하면 됩니다. 그러면 shiny 패키지의 함수를 사용할 수 있습니다. 위의 예시에서 우리는 shiny의 UI 함수인 sliderInput()을 사용하여 HTML 페이지에 슬라이더를 만들었습니다. 슬라이더의 ID는 bins입니다. 그런 다음 renderPlot() 함수를 사용하여 히스토그램을 렌더링했습니다. 이 코드 청크에서 중요한 부분은 input$bins인데, 이는 ID가 bins인 슬라이더와 연결된 변수 값입니다. 슬라이더 값을 업데이트하면 그 값이 renderPlot()의 표현식으로 전달되고 그에 따라 플롯이 다시 그려집니다.
 
 대화형 문서는 render() 대신 rmarkdown의 run() 함수로 컴파일해야 합니다. RStudio를 사용하는 경우 R Markdown 문서에 runtime: shiny를 추가한 후 도구 모음의 Knit 버튼 레이블이 Run Document로 바뀌는 것을 볼 수 있으며 이 버튼을 클릭하여 문서를 실행할 수 있습니다.
 
@@ -1121,7 +1121,7 @@ $endif$ \begin{document} $if(title)$ \maketitle $endif$ $body$ \end{document}
 
 저장소 https://github.com/jgm/pandoc-templates에는 Pandoc에서 사용하는 모든 템플릿이 포함되어 있으며, https://github.com/rstudio/rmarkdown의 rmarkdown 소스 패키지에서 사용자 정의 템플릿도 살펴볼 수 있습니다. 이해할 수 없는 템플릿 변수가 있는 경우 http://johnmacfarlane.net/pandoc/에서 문서를 확인할 수 있습니다.
 
-다른 사용자와 템플릿을 공유하는 가장 쉬운 방법은 inst/rmarkdown/templates/ 디렉터리 아래의 R 패키지에 템플릿을 넣는 것입니다. 예를 들어 my_template이라는 새 디렉터리를 만들고 그 아래에 템플릿 파일을 넣을 수 있습니다. 템플릿에는 CSS/JavaScript 파일이나 LATEX 패키지와 같은 특정 종속성이 필요할 수 있습니다. 이러한 항목은 my_template 아래의 하위 디렉터리 skeleton/ 아래에 수집할 수 있습니다. skeleton/ 디렉터리에서는 샘플 Rmd 파일인 skeleton.Rmd를 제공할 수도 있습니다. 마지막으로 my_template 아래에 있는 template.yaml이라는 YAML 파일에서 세 가지 YAML 필드를 사용하여 템플릿을 설명할 수 있습니다.
+다른 사용자와 템플릿을 공유하는 쉬운 방법은 inst/rmarkdown/templates/ 디렉터리 아래의 R 패키지에 템플릿을 넣는 것입니다. 예를 들어 my_template이라는 새 디렉터리를 만들고 그 아래에 템플릿 파일을 넣을 수 있습니다. 템플릿에는 CSS/JavaScript 파일이나 LATEX 패키지와 같은 특정 종속성이 필요할 수 있습니다. 이러한 항목은 my_template 아래의 하위 디렉터리 skeleton/ 아래에 수집할 수 있습니다. skeleton/ 디렉터리에서는 샘플 Rmd 파일인 skeleton.Rmd를 제공할 수도 있습니다. 마지막으로 my_template 아래에 있는 template.yaml이라는 YAML 파일에서 세 가지 YAML 필드를 사용하여 템플릿을 설명할 수 있습니다.
 
 name: 템플릿 이름("Journal of Statistical Software")
 description: 템플릿에 대한 간단한 설명("This is a template for JSS articles")
@@ -1663,7 +1663,7 @@ knit_hooks$get("append")
 
 ###### 15.5.2 The Analysis of Data
 
-또 다른 주목할 만한 예시는 Lebanon(2012)의 도서인 The Analysis of Data입니다. 이 책의 가장 큰 특징은 PDF/HTML 이중 버전이 있다는 점입니다. HTML 버전은 http://theanalysisofdata.com에서 무료로 이용할 수 있습니다. 두 버전은 본질적으로 동일한 소스 문서 집합에서 생성됩니다. HTML 버전의 경우 추가 설정이 있는데, 예를 들어 수식의 조판은 MathJax 라이브러리에 의해 수행되므로 HTML 소스의 head 섹션에 이를 포함해야 합니다.
+또 다른 주목할 만한 예시는 Lebanon(2012)의 도서인 The Analysis of Data입니다. 이 책의 큰 특징은 PDF/HTML 이중 버전이 있다는 점입니다. HTML 버전은 http://theanalysisofdata.com에서 무료로 이용할 수 있습니다. 두 버전은 본질적으로 동일한 소스 문서 집합에서 생성됩니다. HTML 버전의 경우 추가 설정이 있는데, 예를 들어 수식의 조판은 MathJax 라이브러리에 의해 수행되므로 HTML 소스의 head 섹션에 이를 포함해야 합니다.
 
 ###### 15.5.3 R 통계 탐정(The Statistical Sleuth in R)
 
@@ -1671,13 +1671,13 @@ The Statistical Sleuth(Ramsey 및 Schafer, 2002)는 훌륭한 통계학 텍스�
 
 ###### 15.5.4 문학도를 위한 R 텍스트 분석(Text Analysis with R for Students of Literature)
 
-Jockers(2014)의 저서 Text Analysis with R for Students of Literature는 LATEX와 knitr를 사용하여 작성되었습니다. 이 책에 대한 가장 놀라운 사실은 아마도 저자가 이 책을 LATEX로 구성하기 시작하기 전에 혼자서 LATEX를 독학했고 단 몇 달 만에 책 초안을 완성했다는 점일 것입니다. 이 책은 컴퓨팅을 활용한 텍스트 분석에 대한 입문서로 수많은 짧은 예시를 담고 있습니다. 만약 저자가 각 예시를 실행하고 수작업으로 결과를 LATEX 원고에 복사해야 했다면 이 작업은 지루하기 짝이 없었을 것입니다.
+Jockers(2014)의 저서 Text Analysis with R for Students of Literature는 LATEX와 knitr를 사용하여 작성되었습니다. 이 책에 대한 놀라운 사실은 아마도 저자가 이 책을 LATEX로 구성하기 시작하기 전에 혼자서 LATEX를 독학했고 단 몇 달 만에 책 초안을 완성했다는 점일 것입니다. 이 책은 컴퓨팅을 활용한 텍스트 분석에 대한 입문서로 수많은 짧은 예시를 담고 있습니다. 만약 저자가 각 예시를 실행하고 수작업으로 결과를 LATEX 원고에 복사해야 했다면 이 작업은 지루하기 짝이 없었을 것입니다.
 
 ###### 15.6 R 패키지를 위한 문학적 프로그래밍(Literate Programming for R Packages)
 
 이 책의 서두에서 문학적 프로그래밍(LP)을 소개했지만, 실제로 프로그래밍 목적으로 knitr 패키지를 사용하지는 않습니다. 대신 대부분의 경우 우리는 데이터 분석 및 보고 목적으로 knitr를 사용합니다. 본래 LP 패러다임은 위빙(weaving)과 탱글링(tangling)에 모두 관한 것입니다. 소스 문서를 소프트웨어 문서로 결합(weave)하거나, 프로그램 코드를 실행하기 위해 분리(tangle)할 수 있습니다. 보시다시피 knitr를 사용할 때는 실행 목적으로 프로그램 코드를 굳이 분리(tangle)할 필요가 없습니다. 코드 실행이 문서 결합(weaving) 프로세스에서 바로 이루어지기 때문입니다.
 
-흥미롭게도 Knuth의 원본 LP 패러다임이 가장 흔하게 적용된 사례는 패키지 작성자를 위한 "프로그래밍"보다는 사용자에게 보여줄 소프트웨어를 문서화(특별한 형태의 주석을 사용하여)하는 일인 것으로 보입니다. 즉, 우리는 소스 코드를 문서화하는 대신 소프트웨어의 사용법을 문서화하는 데 LP를 사용합니다. 예시로 Doxygen(van Heesch, 2008), Javadoc(http://en.wikipedia.org/wiki/Javadoc) 및 roxygen2(Wickham 등, 2015)를 참조하십시오. 하지만 LATEX 세계에는 한 가지 예외가 있습니다. 일부 LATEX 패키지 작성자는 단일 문서에 LATEX 코드와 문서를 모두 작성하고 이를 소스 코드와 문서가 모두 포함된 PDF 문서로 결합합니다. TEX 및 Pascal을 사용한 Knuth의 LP 원본 구현을 고려할 때 이는 그리 놀라운 일이 아닙니다. Terry Therneau의 survival 및 coxme 패키지와 같이 LP를 사용하는 R 패키지도 소수 존재합니다.
+흥미롭게도 Knuth의 원본 LP 패러다임이 흔하게 적용된 사례는 패키지 작성자를 위한 "프로그래밍"보다는 사용자에게 보여줄 소프트웨어를 문서화(특별한 형태의 주석을 사용하여)하는 일인 것으로 보입니다. 즉, 우리는 소스 코드를 문서화하는 대신 소프트웨어의 사용법을 문서화하는 데 LP를 사용합니다. 예시로 Doxygen(van Heesch, 2008), Javadoc(http://en.wikipedia.org/wiki/Javadoc) 및 roxygen2(Wickham 등, 2015)를 참조하십시오. 하지만 LATEX 세계에는 한 가지 예외가 있습니다. 일부 LATEX 패키지 작성자는 단일 문서에 LATEX 코드와 문서를 모두 작성하고 이를 소스 코드와 문서가 모두 포함된 PDF 문서로 결합합니다. TEX 및 Pascal을 사용한 Knuth의 LP 원본 구현을 고려할 때 이는 그리 놀라운 일이 아닙니다. Terry Therneau의 survival 및 coxme 패키지와 같이 LP를 사용하는 R 패키지도 소수 존재합니다.
 
 LP는 프로그래밍에 널리 쓰이는 방법은 아닌 것 같지만, 여전히 흥미로운 아이디어이며 특히 자신이 선호하는 언어에 적용할 때 유용할 수 있습니다. 어떤 사람들에게는 LATEX 소스 코드를 읽는 것이 지루할 수 있지만 R 소스 코드를 읽는 것은 더 즐거울 수 있습니다. 객관적인 견해를 제쳐두더라도, 우리는 LP가 최소한 두 가지 장점이 있다고 믿습니다.
 
@@ -1868,7 +1868,7 @@ IPython(http://ipython.org)은 코드, 텍스트, 수식, 인라인 플롯 및 �
 
 그림 16.1은 우분투(Ubuntu)의 그놈(GNOME) 터미널에 있는 IPython의 스크린샷입니다. 쉘에 x.spl<TAB>을 입력하면 아래와 같이 자동 완성 기능이 나타나는 등 쉘의 기본 기능이 있음을 알 수 있습니다.
 
-보고서 생성과 관련된 가장 주목할 만한 기능은 웹 기반 노트북입니다. Python 명령을 사용하여 웹 브라우저에서 작업하고 수치 및 그래픽 결과를 포함한 결과를 즉시 확인할 수 있으며 노트북에 더 많은 내용을 입력함에 따라 노트북을 지속적으로 업데이트할 수 있습니다. 이는 knitr에서 코드 청크를 작성하는 것과 매우 비슷합니다.
+보고서 생성과 관련된 주목할 만한 기능은 웹 기반 노트북입니다. Python 명령을 사용하여 웹 브라우저에서 작업하고 수치 및 그래픽 결과를 포함한 결과를 즉시 확인할 수 있으며 노트북에 더 많은 내용을 입력함에 따라 노트북을 지속적으로 업데이트할 수 있습니다. 이는 knitr에서 코드 청크를 작성하는 것과 매우 비슷합니다.
 
 IPython 노트북은 다른 사람과 공유할 수 있는 확장자 \*.ipynb를 가진 JSON 파일로 저장할 수 있습니다. 노트북에는 출력이 포함될 수도 있고 포함되지 않을 수도 있습니다. 출력이 없는 노트북은 knitr의 소스 문서(Rnw 및 Rmd 문서)와 유사합니다.
 

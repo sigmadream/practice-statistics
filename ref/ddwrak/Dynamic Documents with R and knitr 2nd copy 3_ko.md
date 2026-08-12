@@ -10,7 +10,7 @@ knitr는 R 패키지이므로 R에서 일반적인 방법으로 CRAN을 통해 �
 
 install.packages("knitr", dependencies = TRUE)
 
-여기서 dependencies = TRUE는 선택 사항이며, 반드시 필요하지는 않지만 유용한 기능으로 패키지를 향상시킬 수 있는 모든 패키지를 설치합니다. 개발 버전은 Github(https://github.com/yihui/knitr)에서 호스팅되며, 항상 최신 개발 버전을 확인할 수 있습니다. 최신 개발 버전은 안정적이지 않을 수 있지만 최신 버그 수정 및 새로운 기능을 포함합니다. knitr에 문제가 발생하면 가장 먼저 버전을 확인해야 합니다.
+여기서 dependencies = TRUE는 선택 사항이며, 반드시 필요하지는 않지만 유용한 기능으로 패키지를 향상시킬 수 있는 모든 패키지를 설치합니다. 개발 버전은 Github(https://github.com/yihui/knitr)에서 호스팅되며, 항상 최신 개발 버전을 확인할 수 있습니다. 최신 개발 버전은 안정적이지 않을 수 있지만 최신 버그 수정 및 새로운 기능을 포함합니다. knitr에 문제가 발생하면 먼저 버전을 확인해야 합니다.
 
 packageVersion("knitr") # if not the latest version, run update.packages()
 
@@ -252,7 +252,7 @@ for (i in 1:length(zm)) {
 knit_hooks$set(optipng = hook_optipng)
 ```
 
-그런 다음 청크 옵션을 `optipng = TRUE`로 설정하여 청크에 대해 최적화를 활성화하거나, 이 옵션에 문자열을 전달하여 OptiPNG에서 추가 명령줄 인자로 사용하도록 할 수 있습니다. 예를 들어, 가장 높은 수준의 최적화를 지정하려면 `optipng = '-o7'`을 사용할 수 있습니다. 가능한 모든 인자는 OptiPNG의 문서를 참조하시기 바랍니다.
+그런 다음 청크 옵션을 `optipng = TRUE`로 설정하여 청크에 대해 최적화를 활성화하거나, 이 옵션에 문자열을 전달하여 OptiPNG에서 추가 명령줄 인자로 사용하도록 할 수 있습니다. 예를 들어, 높은 수준의 최적화를 지정하려면 `optipng = '-o7'`을 사용할 수 있습니다. 가능한 모든 인자는 OptiPNG의 문서를 참조하시기 바랍니다.
 
 ![image 15](Dynamic Documents with R and knitr 2nd_images/imageFile15.png)
 

@@ -200,8 +200,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../notes/part01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">톺아보기</span></a>
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">R과 데이터 분석</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -209,14 +209,44 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notes/data-visualize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">데이터 시각화 (Data visualization)</span></a>
+  <a href="../../notes/ch01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notes/data-transform.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">소개</span></a>
+  <a href="../../notes/ch02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 변환</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 가져오기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 계층</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/ch07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 관련 정보</span></a>
   </div>
 </li>
       </ul>
@@ -316,7 +346,7 @@ Attaching package: 'Ecdat'</code></pre>
 </div>
 <section id="r에서의-도수분포표-및-분할표" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="r에서의-도수분포표-및-분할표"><span class="header-section-number">1</span> R에서의 도수분포표 및 분할표</h2>
-<p>범주형 변수를 다룰 때 탐색적 분석의 가장 기본적인 형태는 단일 변수에 대한 도수분포표(Frequency table)와 두 변수의 교차를 보여주는 분할표(Contingency table)를 작성하는 것입니다. 이 표들로부터 표본 비율(Sample proportion)을 계산하는 과정은 매우 간단합니다. R에서는 내장된 <code>table()</code> 함수 하나로 이 두 가지 유형의 표를 모두 신속하게 생성할 수 있습니다. 먼저 도수분포표를 생성하기 위한 코드는 다음과 같습니다.</p>
+<p>범주형 변수를 다룰 때 탐색적 분석의 기본적인 형태는 단일 변수에 대한 도수분포표(Frequency table)와 두 변수의 교차를 보여주는 분할표(Contingency table)를 작성하는 것입니다. 이 표들로부터 표본 비율(Sample proportion)을 계산하는 과정은 매우 간단합니다. R에서는 내장된 <code>table()</code> 함수 하나로 이 두 가지 유형의 표를 모두 신속하게 생성할 수 있습니다. 먼저 도수분포표를 생성하기 위한 코드는 다음과 같습니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(variable)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>위 코드를 입력한 후 <code>Enter</code> 키를 누르십시오. 여기서 <code>variable</code>은 메모리에 입력된 벡터(Vector)의 이름이거나, <code>$</code> 기호를 사용하여 더 큰 데이터 프레임(Data frame)에서 특정 열을 선택한 결과일 수 있습니다. R은 지정된 변수의 도수분포표를 즉시 반환합니다.</p>
 <p><code>MASS</code> 라이브러리에 포함된 <code>quine</code> 데이터셋을 살펴보겠습니다. 이 데이터는 호주 학생들의 결석 일수에 대한 조사 결과로, 각 학생의 인종(원주민 또는 비원주민), 성별(남성 또는 여성), 학습 능력(평균 학습자 또는 느린 학습자) 등의 인구통계학적 데이터가 포함되어 있습니다. 설문에서 응답한 인종별 학생 분포를 파악하고 싶다면(<code>quine</code> 데이터 프레임의 <code>Eth</code> 변수), 아래 코드를 실행하여 원주민 학생이 69명, 비원주민 학생이 77명임을 즉시 확인할 수 있습니다.</p>
@@ -525,7 +555,7 @@ Attaching package: 'Ecdat'</code></pre>
 </div>
 </div>
 </div>
-<p>이 코드는 가장 기본적인 산점도를 렌더링합니다. 하지만 실제 보고서나 프레젠테이션에 사용하기에는 다소 투박하므로, <code>ggplot2</code>의 강력한 레이어(Layer) 시스템을 활용하여 도표를 전문가 수준으로 다듬어 보겠습니다.</p>
+<p>이 코드는 기본적인 산점도를 렌더링합니다. 하지만 실제 보고서나 프레젠테이션에 사용하기에는 다소 투박하므로, <code>ggplot2</code>의 강력한 레이어(Layer) 시스템을 활용하여 도표를 전문가 수준으로 다듬어 보겠습니다.</p>
 <ol type="1">
 <li><code>labs(x = ..., y = ..., title = ...)</code>: X축, Y축 라벨과 전체 제목을 명시적으로 부여합니다.</li>
 <li><code>geom_point(shape = ...)</code>: 점의 기하학적 모양을 변경합니다. (기본값 16번 외에 1~25번까지의 고유 형상이 존재합니다.)</li>

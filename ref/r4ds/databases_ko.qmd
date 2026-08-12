@@ -14,8 +14,8 @@ source("_common.R")
 이 장에서는 먼저 DBI 패키지의 기본 사항(basics)에 대해 배웁니다. DBI 패키지를 사용하여 데이터베이스에 연결(connect)한 다음 SQL[^databases-1] 쿼리(query)로 데이터를 검색(retrieve)하는 방법을 배웁니다.
 **구조화된 질의어(Structured Query Language)**의 줄임말인 **SQL**은 데이터베이스의 공통어(lingua franca)이며 모든 데이터 과학자가 배워야 할 중요한 언어입니다.
 그렇기는 하지만(That said), SQL로 시작하지 않고 대신 dplyr 코드를 SQL로 변환할 수 있는 dbplyr를 알려드리겠습니다.
-이것을 SQL의 가장 중요한 기능 중 일부를 가르치기 위한 방법으로 사용할 것입니다.
-이 장이 끝날 때까지(by the end of the chapter) 여러분이 SQL 마스터가 되지는 않겠지만 가장 중요한 구성 요소(components)를 식별(identify)하고 그것들이 무엇을 하는지 이해할 수 있을 것입니다.
+이것을 SQL의 중요한 기능 중 일부를 가르치기 위한 방법으로 사용할 것입니다.
+이 장이 끝날 때까지(by the end of the chapter) 여러분이 SQL 마스터가 되지는 않겠지만 중요한 구성 요소(components)를 식별(identify)하고 그것들이 무엇을 하는지 이해할 수 있을 것입니다.
 
 [^databases-1]: SQL은 "에스"-"큐"-"엘" 또는 "시퀄(sequel)"로 발음됩니다.
 
@@ -34,7 +34,7 @@ library(tidyverse)
 
 ## 데이터베이스 기초 (Database basics)
 
-가장 간단한 수준에서 데이터베이스는 데이터베이스 용어(terminology)로 **테이블(tables)**이라고 하는 데이터 프레임의 모음(collection)이라고 생각할 수 있습니다.
+간단한 수준에서 데이터베이스는 데이터베이스 용어(terminology)로 **테이블(tables)**이라고 하는 데이터 프레임의 모음(collection)이라고 생각할 수 있습니다.
 데이터 프레임과 마찬가지로 데이터베이스 테이블은 열의 모든 값이 동일한 유형(type)인 명명된(named) 열의 모음입니다.
 데이터 프레임과 데이터베이스 테이블 간에는 세 가지 높은 수준의(high level) 차이점이 있습니다.
 
@@ -120,7 +120,7 @@ con <- DBI::dbConnect(duckdb::duckdb(), dbdir = "duckdb")
 
 이것은 새 데이터베이스이므로 일부 데이터를 추가하는 것부터 시작해야 합니다.
 여기서는 `DBI::dbWriteTable()`을 사용하여 ggplot2의 `mpg`와 `diamonds` 데이터셋을 추가하겠습니다.
-`dbWriteTable()`의 가장 간단한 용법(usage)에는 데이터베이스 연결, 데이터베이스에 만들 테이블 이름, 데이터 프레임 형식의 데이터 등 세 가지 인수가 필요합니다.
+`dbWriteTable()`의 간단한 용법(usage)에는 데이터베이스 연결, 데이터베이스에 만들 테이블 이름, 데이터 프레임 형식의 데이터 등 세 가지 인수가 필요합니다.
 
 ```{r}
 dbWriteTable(con, "mpg", ggplot2::mpg)
@@ -257,7 +257,7 @@ SQL의 최상위(top-level) 구성 요소는 **명령문(statements)**이라고 
 데이터 과학자로서 거의 배타적으로(exclusively) 사용하게 될 명령문인 **쿼리(queries)**라고도 하는 `SELECT` 명령문에 중점(focus)을 둘 것입니다.
 
 쿼리는 **절(clauses)**로 구성(made up of)됩니다.
-중요한 절은 `SELECT`, `FROM`, `WHERE`, `ORDER BY`, `GROUP BY` 등 5가지입니다. 모든 쿼리에는 `SELECT`[^databases-4] 및 `FROM`[^databases-5] 절이 있어야 하며 지정된(specified) 테이블에서 모든 열을 선택하는 `SELECT * FROM table`이 가장 간단한 쿼리입니다.
+중요한 절은 `SELECT`, `FROM`, `WHERE`, `ORDER BY`, `GROUP BY` 등 5가지입니다. 모든 쿼리에는 `SELECT`[^databases-4] 및 `FROM`[^databases-5] 절이 있어야 하며 지정된(specified) 테이블에서 모든 열을 선택하는 `SELECT * FROM table`이 간단한 쿼리입니다.
 이것은 dbplyr가 순수한(unadulterated) 테이블에 대해 생성하는 것입니다.
 
 [^databases-4]: 혼란스럽게도(Confusingly) 문맥(context)에 따라 `SELECT`는 명령문이거나 절입니다.
@@ -414,7 +414,7 @@ flights |>
 
 SQL은 `NA` 대신 `NULL`을 사용합니다.
 `NULL`은 `NA`와 비슷하게 동작(behave)합니다.
-가장 큰(main) 차이점은 비교 및 산술(arithmetic)에서 "전염성(infectious)"이 있지만 요약할(summarizing) 때는 조용히(silently) 삭제(dropped)된다는 것입니다.
+큰(main) 차이점은 비교 및 산술(arithmetic)에서 "전염성(infectious)"이 있지만 요약할(summarizing) 때는 조용히(silently) 삭제(dropped)된다는 것입니다.
 dbplyr는 여러분이 이 동작에 처음 부딪혔을(hit) 때 이 동작에 대해 상기시켜(remind) 줄 것입니다.
 
 ```{r}
@@ -530,7 +530,7 @@ FULL JOIN planes ON (flights.tailnum = planes.tailnum)
 ### 다른 동사들 (Other verbs)
 
 dbplyr는 `distinct()`, `slice_*()`, `intersect()`와 같은 다른 동사(verbs)와 `pivot_longer()`, `pivot_wider()`와 같이 점점 더 다양해지는(growing selection) tidyr 함수도 변환합니다.
-현재 사용 가능한 전체 세트(full set)를 확인하는 가장 쉬운 방법은 dbplyr 웹사이트(<https://dbplyr.tidyverse.org/reference/>)를 방문(visit)하는 것입니다.
+현재 사용 가능한 전체 세트(full set)를 확인하는 쉬운 방법은 dbplyr 웹사이트(<https://dbplyr.tidyverse.org/reference/>)를 방문(visit)하는 것입니다.
 
 ### 연습 문제 (Exercises)
 
@@ -651,7 +651,7 @@ dbplyr의 변환이 확실히 완벽한 것은 아니며 아직 변환되지 않
 
 이 장에서는 데이터베이스의 데이터에 접근하는 방법을 배웠습니다.
 익숙한(familiar with) dplyr 코드를 작성하면 자동으로 SQL로 변환되도록 해주는 dplyr "백엔드"인 dbplyr에 중점(focused)을 두었습니다.
-우리는 그 변환을 사용하여 SQL을 조금 가르쳐 주었습니다; SQL은 데이터 작업에 가장 많이 사용되는 언어이며 이를 조금 알고 있으면 R을 사용하지 않는 다른 데이터 관련 종사자들(folks)과 더 쉽게 의사소통할 수 있기 때문에 중요합니다.
+우리는 그 변환을 사용하여 SQL을 조금 가르쳐 주었습니다; SQL은 데이터 작업에 많이 사용되는 언어이며 이를 조금 알고 있으면 R을 사용하지 않는 다른 데이터 관련 종사자들(folks)과 더 쉽게 의사소통할 수 있기 때문에 중요합니다.
 
 이 장을 다 읽고(finished) SQL에 대해 더 자세히 알아보고 싶으시다면 두 가지 추천 도서(recommendations)가 있습니다.
 

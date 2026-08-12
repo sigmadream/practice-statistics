@@ -50,7 +50,7 @@ treatment |>
 
 ## 고정값(Fixed Values)
 
-때로는 결측값이 알려진 고정된 값, 가장 흔하게는 0을 나타냅니다. <a href="https://dplyr.tidyverse.org/reference/coalesce.html" class="orm:hideurl"><code>dplyr::coalesce()</code></a>를 사용하여 이를 대체할 수 있습니다.
+때로는 결측값이 알려진 고정된 값, 흔하게는 0을 나타냅니다. <a href="https://dplyr.tidyverse.org/reference/coalesce.html" class="orm:hideurl"><code>dplyr::coalesce()</code></a>를 사용하여 이를 대체할 수 있습니다.
 
 ```
 x <- c(1, 4, 5, 7, NA)

@@ -43,11 +43,11 @@ library(rvest)
 이 세 가지 요소(factors)가 중요한 이유는 아래에서 논의할 사이트의 이용 약관(terms and conditions), 개인 식별 정보(personally identifiable information) 및 저작권(copyright)과 관련(connected to)이 있기 때문입니다.
 
 [^webscraping-2]: 분명히(Obviously) 우리는 변호사(lawyers)가 아니며 이것은 법적 조언(legal advice)이 아닙니다.
-    하지만 이것은 우리가 이 주제(topic)에 대해 많은 것을 읽고 나서 제공할 수 있는(we can give) 가장 좋은 요약(summary)입니다.
+    하지만 이것은 우리가 이 주제(topic)에 대해 많은 것을 읽고 나서 제공할 수 있는(we can give) 좋은 요약(summary)입니다.
 
 데이터가 공개적, 비개인적 또는 사실적이지 않거나, 데이터를 특별히(specifically) 돈을 벌기 위해(make money with it) 스크랩하는 경우 변호사와 상담(talk to)해야 합니다.
 어떤 경우든(In any case) 스크랩하려는 페이지를 호스팅(hosting)하는 서버의 리소스(resources)를 존중(respectful)해야 합니다.
-가장 중요한 것(Most importantly)은 여러(many) 페이지를 스크랩하는 경우 각 요청 사이에 약간 기다려야(wait a little) 한다는 점을 확실히(make sure) 해야 한다는 것입니다.
+중요한 것(Most importantly)은 여러(many) 페이지를 스크랩하는 경우 각 요청 사이에 약간 기다려야(wait a little) 한다는 점을 확실히(make sure) 해야 한다는 것입니다.
 이를 위한 쉬운 방법 중 하나는 Dmytro Perepolkin의 [**polite**](https://dmi3kno.github.io/polite/) 패키지를 사용하는 것입니다.
 이 패키지는 요청 사이에 자동으로(automatically) 일시 중지(pause)하고 결과를 캐시(cache)하므로 동일한(same) 페이지를 두 번(twice) 요청하는 일이 없습니다.
 
@@ -108,7 +108,7 @@ HTML은 **H**yper**T**ext **M**arkup **L**anguage의 약자(stands for)이며 �
 
 HTML은 시작(start) 태그(tag, 예: `<tag>`), 선택적(optional) **속성(attributes)**(`id='first'`), 종료(end) 태그[^webscraping-4](`<tag>` 등) 및 **콘텐츠(contents)**(시작 태그와 종료 태그 사이의 모든 항목)로 구성된(consist of) **요소(elements)**로 형성된(formed by) 계층 구조(hierarchical structure)를 가지고 있습니다.
 
-[^webscraping-4]: 여러(A number of) 태그(`<p>` 및 `<li>` 포함)에는 종료 태그가 필요(require)하지 않지만, HTML 구조를 좀 더 쉽게 볼 수 있으므로 포함하는 것이 가장 좋다고 생각(we think it's best)합니다.
+[^webscraping-4]: 여러(A number of) 태그(`<p>` 및 `<li>` 포함)에는 종료 태그가 필요(require)하지 않지만, HTML 구조를 좀 더 쉽게 볼 수 있으므로 포함하는 것이 좋다고 생각(we think it's best)합니다.
 
 `<` 및 `>`는 시작 태그와 종료 태그에 사용되므로 직접 작성(write them directly)할 수 없습니다.
 대신 HTML **이스케이프(escapes)**인 `&gt;`(보다 큼, greater than) 및 `&lt;`(보다 작음, less than)을 사용해야(have to use) 합니다.
@@ -120,7 +120,7 @@ HTML은 시작(start) 태그(tag, 예: `<tag>`), 선택적(optional) **속성(at
 ### 요소 (Elements)
 
 100개가 넘는(over) HTML 요소가 있습니다.
-가장 중요한 몇 가지는 다음과 같습니다.
+중요한 몇 가지는 다음과 같습니다.
 
 -   모든 HTML 페이지는 `<html>` 요소 안에 있어야(must be in) 하며 두 개의 자식(children)이 있어야(must have) 합니다. 페이지 제목과 같은 문서 메타데이터(document metadata)를 포함하는 `<head>`와 브라우저(browser)에 표시되는 콘텐츠(content you see)를 포함하는 `<body>`입니다.
 
@@ -147,7 +147,7 @@ HTML은 시작(start) 태그(tag, 예: `<tag>`), 선택적(optional) **속성(at
 ### 속성 (Attributes)
 
 태그에는 `name1='value1' name2='value2'`와 같은 명명된 **속성(attributes)**이 있을 수(can have) 있습니다.
-가장 중요한 두 가지 속성은 `id`와 `class`이며 CSS(Cascading Style Sheets)와 함께(in conjunction with) 사용하여 페이지의 시각적 외관(visual appearance)을 제어(control)합니다.
+중요한 두 가지 속성은 `id`와 `class`이며 CSS(Cascading Style Sheets)와 함께(in conjunction with) 사용하여 페이지의 시각적 외관(visual appearance)을 제어(control)합니다.
 이들은(These are) 페이지에서 데이터를 스크랩할 때 종종(often) 유용(useful)합니다.
 속성은 링크 대상(`<a>` 요소의 `href` 속성)과 이미지 소스(`<img>` 요소의 `src` 속성)를 기록(record)하는 데에도(also) 사용됩니다.
 
@@ -345,7 +345,7 @@ html |>
 
 ## 올바른 선택자 찾기 (Finding the right selectors) {#sec-css-selectors}
 
-데이터에 필요한 선택자를 파악하는 것(Figuring out)은 일반적으로 이 문제(problem)에서 가장 어려운(hardest) 부분입니다.
+데이터에 필요한 선택자를 파악하는 것(Figuring out)은 일반적으로 이 문제(problem)에서 어려운(hardest) 부분입니다.
 특정하고(specific, 즉 관심 없는 항목은 선택하지 않음) 민감한(sensitive, 즉 관심 있는 모든 항목을 선택함) 선택자를 찾기 위해 약간의 실험(experimenting)을 해야 하는(need to do) 경우가 많습니다.
 많은 시행착오(trial and error)는 과정의 정상적인(normal) 부분입니다!
 이 과정에 도움이 되는 두 가지 주요 도구가 있습니다. SelectorGadget과 브라우저의 개발자 도구(developer tools)입니다.

@@ -56,7 +56,7 @@ Figure 7.2
 
 이 리샘플링을 1,000번 반복하면 평균에 대한 1,000개의 가능한 추정치를 얻게 됩니다. 이것들은 [Figure 7.3](./17-CHAPTER_7__How_Sure_Can_We_Be_About_What_Is_Going_On__Estimates_and_Intervals.md#fig7-3)의 두 번째 패널에 히스토그램으로 표시됩니다. 다른 패널들은 [Figure 7.1](./17-CHAPTER_7__How_Sure_Can_We_Be_About_What_Is_Going_On__Estimates_and_Intervals.md#fig7-1)에 표시된 다른 표본들을 부트스트래핑한 결과를 보여주며, 각 히스토그램은 [원래 표본의 평균(mean of the original sample)](./25-GLOSSARY.md#gloss_79) 주위에 부트스트랩 추정치들이 퍼져있는 것을 보여줍니다. 데이터의 반복 샘플링에서 발생하는 추정치의 변동성을 반영하기 때문에 이들은 추정치의 **[표집 분포(sampling distributions)](./25-GLOSSARY.md#gloss_133)**로 알려져 있습니다.
 
-[Figure 7.3](./17-CHAPTER_7__How_Sure_Can_We_Be_About_What_Is_Going_On__Estimates_and_Intervals.md#fig7-3)은 몇 가지 명확한 특징을 보여줍니다. 첫 번째이자 아마도 가장 주목할 만한 점은 원래 표본의 비대칭성 흔적이 거의 사라졌다는 것입니다. 리샘플링된 데이터를 기반으로 한 추정치의 분포는 원래 데이터의 평균을 중심으로 거의 대칭을 이룹니다. 이것은 데이터 분포의 원본 모양과 거의 무관하게 표본 크기가 증가함에 따라 표본 평균의 분포가 정규 분포의 형태로 향한다는 것을 말하는 [중심 극한 정리(Central Limit Theorem)](./25-GLOSSARY.md#gloss_23)라고 알려진 것을 처음으로 살짝 엿본 것입니다. 이것은 예외적인 결과이며, [Chapter 9](./19-CHAPTER_9__Putting_Probability_and_Statistics_Together.md)에서 자세히 살펴볼 것입니다.
+[Figure 7.3](./17-CHAPTER_7__How_Sure_Can_We_Be_About_What_Is_Going_On__Estimates_and_Intervals.md#fig7-3)은 몇 가지 명확한 특징을 보여줍니다. 첫 번째이자 아마도 주목할 만한 점은 원래 표본의 비대칭성 흔적이 거의 사라졌다는 것입니다. 리샘플링된 데이터를 기반으로 한 추정치의 분포는 원래 데이터의 평균을 중심으로 거의 대칭을 이룹니다. 이것은 데이터 분포의 원본 모양과 거의 무관하게 표본 크기가 증가함에 따라 표본 평균의 분포가 정규 분포의 형태로 향한다는 것을 말하는 [중심 극한 정리(Central Limit Theorem)](./25-GLOSSARY.md#gloss_23)라고 알려진 것을 처음으로 살짝 엿본 것입니다. 이것은 예외적인 결과이며, [Chapter 9](./19-CHAPTER_9__Putting_Probability_and_Statistics_Together.md)에서 자세히 살펴볼 것입니다.
 
 ![Figure 7.3 Figure 7.1에 표시된 크기 10, 50, 200, 796의 원본 표본 각각에 대한 1,000개 부트스트랩 재표본의 표본 평균 분포. 표본 크기가 증가함에 따라 부트스트랩 재표본의 표본 평균의 변동성이 감소합니다.](./images/p198.png)
 

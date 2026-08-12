@@ -51,7 +51,7 @@ R과 knitr는 모두 CRAN(Comprehensive R Archive Network)에서 무료 오픈 �
 - ## [11] LC_MEASUREMENT=en_US.UTF-8
 - ## [12] LC_IDENTIFICATION=C ## ## attached base packages: ## [1] stats graphics grDevices utils datasets ## [6] base ## ## other attached packages: ## [1] knitr_1.10 ## ## loaded via a namespace (and not attached): ## [1] formatR_1.2 tools_3.2.0 highr_0.5 ## [4] stringr_0.6.2 evaluate_0.7
 
-knitr 패키지는 웹사이트 http://yihui.name/knitr/ 에 자세히 문서화되어 있으며, 가장 중요한 페이지는 아마도 청크 옵션에 대한 전체 참조를 찾을 수 있는 http://yihui.name/knitr/options 일 것입니다(5.1.1절). 개발 버전은 Github(https://github.com/yihui/knitr)에서 호스팅됩니다. 언제든지 최신 개발 버전을 확인하거나, 이슈/기능 요청을 제출하거나, 저장소를 포크하고 직접 변경하여 개발에 참여할 수 있습니다. https://github.com/yihui/knitr-examples 저장소에는 최소한의 예제와 고급 예제를 모두 포함하여 수많은 예제가 있습니다. Karl Broman은 http://kbroman.org/knitr_knutshell 에 knitr에 대한 멋진 최소한의 자습서를 준비했으며, 이는 초보자가 knitr를 빠르게 배우는 데 유용할 수 있습니다. 밴더빌트 대학교 생물통계학과의 Frank Harrell 등이 유지 관리하는 위키 페이지도 있으며, knitr 사용에 대한 몇 가지 요령과 유용한 경험을 소개했습니다. http://biostat.mc.vanderbilt.edu.
+knitr 패키지는 웹사이트 http://yihui.name/knitr/ 에 자세히 문서화되어 있으며, 중요한 페이지는 아마도 청크 옵션에 대한 전체 참조를 찾을 수 있는 http://yihui.name/knitr/options 일 것입니다(5.1.1절). 개발 버전은 Github(https://github.com/yihui/knitr)에서 호스팅됩니다. 언제든지 최신 개발 버전을 확인하거나, 이슈/기능 요청을 제출하거나, 저장소를 포크하고 직접 변경하여 개발에 참여할 수 있습니다. https://github.com/yihui/knitr-examples 저장소에는 최소한의 예제와 고급 예제를 모두 포함하여 수많은 예제가 있습니다. Karl Broman은 http://kbroman.org/knitr_knutshell 에 knitr에 대한 멋진 최소한의 자습서를 준비했으며, 이는 초보자가 knitr를 빠르게 배우는 데 유용할 수 있습니다. 밴더빌트 대학교 생물통계학과의 Frank Harrell 등이 유지 관리하는 위키 페이지도 있으며, knitr 사용에 대한 몇 가지 요령과 유용한 경험을 소개했습니다. http://biostat.mc.vanderbilt.edu.
 
 R에 대한 다른 많은 책과 달리 이 책에서는 R 소스 코드에 프롬프트를 추가하지 않으며, 이전 R 세션 정보에서 볼 수 있듯이 기본적으로 두 개의 해시 ##를 사용하여 텍스트 출력을 주석 처리합니다. 이러한 규칙의 이유는 6장에서 설명합니다. 패키지 이름은 일반 텍스트(rpart)로, 함수 이름은 평문(paste())으로, 인라인 코드는 타자기로 된 글꼴(mean(1:10, trim = 0.1))로 서식이 지정되며, 파일 이름은 산세리프 글꼴(figure/foo.pdf)로 지정됩니다.
 
@@ -87,7 +87,7 @@ knitr의 변경 사항을 추적하려면 https://github.com/yihui/knitr/release
 
 먼저, 이 책의 1판의 핵심 장을 작성하기 시작했을 때(에임스의 지루한 겨울) 고장 났던 제 무선 라우터에 감사드립니다. 게다가 그 기간 동안 이더넷 케이블을 주지 않은 아내에게도 감사합니다.
 
-이 책은 의심할 여지 없이 강력한 R 언어가 없었다면 불가능했을 것이며, R 핵심 팀과 기여자들에게 감사드립니다. Sweave(Friedrich Leisch와 R-core가 개발)의 획기적인 연구는 knitr의 가장 중요한 영감의 원천입니다. 일부 추가 기능은 cacheSweave(Roger Peng), pgfSweave(Cameron Bracken 및 Charlie Sharpsteen), weaver(Seth Falcon), SweaveListingUtils(Peter Ruckdeschel), highlight(Romain Francois), brew(Jeffrey Horner)를 포함한 다른 R 패키지에서 영감을 얻었습니다. 초기 디자인은 Hadley Wickham의 decumar 패키지를 기반으로 했으며, 평가자는 그의 evaluate 패키지를 기반으로 합니다. LYX와 RStudio 모두 knitr가 나온 후 신속하게 knitr에 대한 지원을 포함했으며, 이로 인해 소스 문서를 작성하기가 훨씬 쉬워졌습니다. 개발자(특히 Jean-Marc Lasgouttes, JJ Allaire, Joe Cheng)에게 감사드립니다. 마찬가지로 Emacs/ESS와 같은 다른 편집기의 개발자에게도 감사드립니다. John MacFarlane의 Pandoc을 어떻게 설명해야 할지 모르겠습니다. 그것은 마법입니다. "네, 워드를 지원합니다! 재현 가능한 연구의 세계에 오신 것을 환영합니다!"
+이 책은 의심할 여지 없이 강력한 R 언어가 없었다면 불가능했을 것이며, R 핵심 팀과 기여자들에게 감사드립니다. Sweave(Friedrich Leisch와 R-core가 개발)의 획기적인 연구는 knitr의 중요한 영감의 원천입니다. 일부 추가 기능은 cacheSweave(Roger Peng), pgfSweave(Cameron Bracken 및 Charlie Sharpsteen), weaver(Seth Falcon), SweaveListingUtils(Peter Ruckdeschel), highlight(Romain Francois), brew(Jeffrey Horner)를 포함한 다른 R 패키지에서 영감을 얻었습니다. 초기 디자인은 Hadley Wickham의 decumar 패키지를 기반으로 했으며, 평가자는 그의 evaluate 패키지를 기반으로 합니다. LYX와 RStudio 모두 knitr가 나온 후 신속하게 knitr에 대한 지원을 포함했으며, 이로 인해 소스 문서를 작성하기가 훨씬 쉬워졌습니다. 개발자(특히 Jean-Marc Lasgouttes, JJ Allaire, Joe Cheng)에게 감사드립니다. 마찬가지로 Emacs/ESS와 같은 다른 편집기의 개발자에게도 감사드립니다. John MacFarlane의 Pandoc을 어떻게 설명해야 할지 모르겠습니다. 그것은 마법입니다. "네, 워드를 지원합니다! 재현 가능한 연구의 세계에 오신 것을 환영합니다!"
 
 R/knitr 사용자 커뮤니티는 정말 놀랍습니다. 2011년 말 개발이 시작된 이래로 많은 피드백이 있었습니다. 제가 첫 베타 버전을 출시했을 때 일부 사용자들이 옥상에서 외쳤던 것을 아직도 기억합니다. 저는 이런 종류의 흥분을 감사합니다. 메일링 리스트(https://groups.google.com/group/knitr)와 웹사이트 StackOverflow(http://stackoverflow.com/tags/knitr/)의 수천 개의 질문과 의견이 이 패키지를 제가 상상했던 것보다 훨씬 더 강력하게 만들었습니다. 개발 저장소는 Github에 있으며, 이곳에서 Ramnath Vaidyanathan, Taiyun Wei, Kirill Müller, JJ Allaire를 포함한 많은 기여자로부터 거의 800개의 이슈와 160개 이상의 풀 리퀘스트를 받았습니다(https://github.com/yihui/knitr/pulls).
 
@@ -237,7 +237,7 @@ plot(x, type = "l", ylab = "$x_{i+1}=x_i+\\epsilon_{i+1}$", xlab = "step")
 
 이 작업을 수작업으로 수행한다면 R을 열고 코드를 R 콘솔에 붙여넣어 그림을 그리고 PDF 파일로 저장한 다음 \includegraphics{}를 사용하여 LATEX 문서에 삽입해야 합니다. 이는 작성자에게 지루할 뿐만 아니라 유지 관리하기도 어렵습니다. set.seed()에서 임의 시드를 변경하거나 단계 수를 늘리거나 꺾은선형 차트 대신 산점도를 사용하려는 경우 소스 코드와 출력을 모두 업데이트해야 합니다. 실제로 컴퓨팅 및 분석은 그림 1.1의 장난감 예제보다 훨씬 더 복잡할 수 있으며, 그에 따라 더 많은 수작업이 필요할 것입니다.
 
-동적 문서의 정신은 S 언어에 대한 ESS 프로젝트(Rossini et al., 2004)의 철학으로 가장 잘 설명할 수 있습니다.
+동적 문서의 정신은 S 언어에 대한 ESS 프로젝트(Rossini et al., 2004)의 철학으로 잘 설명할 수 있습니다.
 
 소스 코드가 진짜입니다.
 
@@ -366,7 +366,7 @@ knitr는 R 패키지이므로 R에서 일반적인 방법으로 CRAN에서 설�
 install.packages("knitr", dependencies = TRUE)
 ```
 
-여기서 dependencies = TRUE는 선택 사항이며, 절대적으로 필요하지는 않지만 몇 가지 유용한 기능으로 이 패키지를 향상시킬 수 있는 모든 패키지를 설치합니다. 개발 버전은 Github(https://github.com/yihui/knitr)에서 호스팅되며 언제든지 최신 개발 버전을 확인할 수 있습니다. 안정적이지 않을 수 있지만 최신 버그 수정 및 새로운 기능이 포함되어 있습니다. knitr에 문제가 있는 경우 가장 먼저 확인해야 할 것은 버전입니다.
+여기서 dependencies = TRUE는 선택 사항이며, 절대적으로 필요하지는 않지만 몇 가지 유용한 기능으로 이 패키지를 향상시킬 수 있는 모든 패키지를 설치합니다. 개발 버전은 Github(https://github.com/yihui/knitr)에서 호스팅되며 언제든지 최신 개발 버전을 확인할 수 있습니다. 안정적이지 않을 수 있지만 최신 버그 수정 및 새로운 기능이 포함되어 있습니다. knitr에 문제가 있는 경우 먼저 확인해야 할 것은 버전입니다.
 
 ```r
 packageVersion("knitr") # 최신 버전이 아니면 update.packages() 실행
@@ -401,7 +401,7 @@ str(cars)
 
 여기서 필수적인 것은 R 코드를 LATEX에 어떻게 내장했는지입니다. Rnw 문서에서 < <> >=는 코드 청크의 시작을 나타내고 @는 코드 청크를 종료합니다(이 설명은 엄밀하지는 않지만 이해하기 더 쉽습니다). 이 예제에서는 산점도를 그리고, 선형 모델을 맞추고, 산점도에 회귀선을 추가하기 위해 두 마커 사이에 4줄의 R 코드가 있습니다. \Sexpr{} 명령은 인라인 R 코드를 내장하는 데 사용됩니다(이 예제의 coef(fit)[2]). < <와 > >= 사이에 코드 청크에 대한 청크 옵션을 쓸 수 있습니다. 이 예제의 청크 옵션은 플롯 크기를 4 x 3인치(fig.width 및 fig.height)로 지정하고 플롯을 중앙에 정렬해야 함(fig.align)을 지정했습니다.
 
-이 최소한의 예제에는 보고서의 가장 기본적인 요소가 있습니다.
+이 최소한의 예제에는 보고서의 기본적인 요소가 있습니다.
 
 - 1. 제목, 저자 및 날짜
 - 2. 모델 설명
@@ -474,9 +474,9 @@ LATEX, HTML 및 마크다운 문서를 위한 성숙하고 훌륭한 편집기�
 
 ###### 4.1 RStudio
 
-RStudio는 특별히 R을 대상으로 하는 비교적 새로운 편집기입니다. Sweave 및 knitr를 가장 포괄적으로 지원하므로 초보자가 시작하기에 가장 좋은 편집기일 수 있습니다. RStudio는 크로스 플랫폼 무료 오픈 소스 소프트웨어이며 http://www.rstudio.com 에서 다운로드할 수 있습니다. R 프로그래밍에 대한 탁월한 지원 외에도 다른 많은 편집기에는 없는 가장 주목할 만한 기능이 있습니다. 데스크톱 버전과 동일하게 보이는 서버 버전이 있으며 Linux 서버에 서버 버전을 설치한 후 웹 브라우저에서 R을 사용할 수 있습니다.
+RStudio는 특별히 R을 대상으로 하는 비교적 새로운 편집기입니다. Sweave 및 knitr를 포괄적으로 지원하므로 초보자가 시작하기에 좋은 편집기일 수 있습니다. RStudio는 크로스 플랫폼 무료 오픈 소스 소프트웨어이며 http://www.rstudio.com 에서 다운로드할 수 있습니다. R 프로그래밍에 대한 탁월한 지원 외에도 다른 많은 편집기에는 없는 주목할 만한 기능이 있습니다. 데스크톱 버전과 동일하게 보이는 서버 버전이 있으며 Linux 서버에 서버 버전을 설치한 후 웹 브라우저에서 R을 사용할 수 있습니다.
 
-전체 설명서는 웹사이트에서 찾을 수 있습니다. 여기서는 동적 문서와 관련된 기능만 간략하게 소개합니다. Rnw 문서(LATEX)를 작성하려는 경우 RStudio에서 knitr를 사용하기 위해 가장 먼저 해야 할 일은 Tools 메뉴에서 옵션을 변경하는 것입니다.
+전체 설명서는 웹사이트에서 찾을 수 있습니다. 여기서는 동적 문서와 관련된 기능만 간략하게 소개합니다. Rnw 문서(LATEX)를 작성하려는 경우 RStudio에서 knitr를 사용하기 위해 먼저 해야 할 일은 Tools 메뉴에서 옵션을 변경하는 것입니다.
 
 19
 
@@ -746,7 +746,7 @@ rnorm(10)
 
 원래 마크다운 구문은 단순하게 설계되었기 때문에 표, LATEX 수학 식 또는 참고 문헌을 작성하는 기능과 같이 저작 환경 측면에서 약간의 제한이 있을 수밖에 없습니다. 짧은 숙제를 작성하는 것과 같은 일부 경우에는 복잡한 기능이 필요하지 않으므로 마크다운이 상당히 잘 작동할 것입니다.
 
-마크다운의 한 가지 문제는 파생물입니다. Pandoc의 마크다운(http://johnmacfarlane.net/pandoc), Github Flavored 마크다운(http://github.com), kramdown(http://kramdown.rubyforge.org) 등 여러 가지 변형이 있습니다. 이러한 방식은 특정 요소(표)를 작성하는 방법에 대한 자체 정의가 있을 수 있습니다. CommonMark(http://commonmark.org)는 마크다운 구문을 모호하지 않게 정의하려는 노력의 일환이며, Pandoc의 마크다운은 CommonMark 표준과 호환됩니다. 게다가 현재 마크다운을 위한 가장 포괄적인 도구는 아마도 Pandoc일 것입니다. 원본 마크다운에 다음과 같은 여러 유용한 확장을 추가했습니다.
+마크다운의 한 가지 문제는 파생물입니다. Pandoc의 마크다운(http://johnmacfarlane.net/pandoc), Github Flavored 마크다운(http://github.com), kramdown(http://kramdown.rubyforge.org) 등 여러 가지 변형이 있습니다. 이러한 방식은 특정 요소(표)를 작성하는 방법에 대한 자체 정의가 있을 수 있습니다. CommonMark(http://commonmark.org)는 마크다운 구문을 모호하지 않게 정의하려는 노력의 일환이며, Pandoc의 마크다운은 CommonMark 표준과 호환됩니다. 게다가 현재 마크다운을 위한 포괄적인 도구는 아마도 Pandoc일 것입니다. 원본 마크다운에 다음과 같은 여러 유용한 확장을 추가했습니다.
 
 - 1. 세 개의 백틱 쌍 안의 제한된 코드 블록;
 - 2. 일반 LATEX(PDF 출력용) 또는 MathJax(http://mathjax.org, HTML 출력용)를 통한 LATEX 수학. 이를 통해 웹 페이지에서 LATEX 구문(즉, $math$ 또는 $$math$$)을 사용하여 수학 방정식을 쓸 수 있습니다.
@@ -783,7 +783,7 @@ rnorm(10)
 
 더 중요한 것은 Pandoc이 마크다운을 PDF/LATEX, HTML, Word(Microsoft Word 또는 OpenOffice) 및 프레젠테이션 슬라이드(LATEX beamer 또는 HTML5 슬라이드)를 포함한 여러 다른 문서 형식으로 변환할 수 있다는 것입니다. rmarkdown 패키지(Allaire et al., 2015a)는 knitr와 Pandoc을 기반으로 하며 몇 가지 일반적으로 사용되는 출력 형식을 포함하므로 사용자가 기본적으로 상당히 아름다운 출력을 빠르게 만들 수 있습니다.
 
-rmarkdown 패키지는 RStudio 개발자들이 소개했기 때문에 R 마크다운 문서 형식이 RStudio에서 가장 잘 지원된다는 것은 놀라운 일이 아닙니다. RStudio에서 Rmd 문서를 열거나 만들 때(File > New > R Markdown) 원하는 출력 형식을 묻는 마법사를 볼 수 있습니다. R 마크다운에 대해서는 14장에서 자세히 다루겠습니다.
+rmarkdown 패키지는 RStudio 개발자들이 소개했기 때문에 R 마크다운 문서 형식이 RStudio에서 잘 지원된다는 것은 놀라운 일이 아닙니다. RStudio에서 Rmd 문서를 열거나 만들 때(File > New > R Markdown) 원하는 출력 형식을 묻는 마법사를 볼 수 있습니다. R 마크다운에 대해서는 14장에서 자세히 다루겠습니다.
 
 - 5.2.2 LATEX
 
@@ -1742,7 +1742,7 @@ hook_scianimator JavaScript 라이브러리인 SciAnimator(https://github.com/br
 
 이러한 _.js 및 _.css 파일은 SciAnimator의 Github 저장소에서 다운로드할 수 있습니다. 겉보기에는 이 훅 함수가 HTML에 대한 상당한 지식을 필요로 하는 것 같습니다.
 
-hook_r2swf R2SWF 패키지(Qiu 등, 2015)를 사용하여 이미지를 Flash(SWF) 애니메이션으로 변환합니다. 이 훅은 R에 R2SWF 패키지만 설치하면 되며, 추가 소프트웨어 패키지나 구성이 필요하지 않으므로 사용하기 가장 쉬울 수 있습니다.
+hook_r2swf R2SWF 패키지(Qiu 등, 2015)를 사용하여 이미지를 Flash(SWF) 애니메이션으로 변환합니다. 이 훅은 R에 R2SWF 패키지만 설치하면 되며, 추가 소프트웨어 패키지나 구성이 필요하지 않으므로 사용하기 쉬울 수 있습니다.
 
 이 패키지 옵션을 설정하는 방법은 다음과 같습니다.
 
@@ -4275,7 +4275,7 @@ R 마크다운 v1은 C 라이브러리인 sundown을 기반으로 하며 HTML �
 
 ###### 14.1 개요
 
-knitr가 다양한 문서 형식을 지원하지만(5장) R 마크다운이 아마도 가장 인기 있는 형식일 것입니다. 기능 측면에서 제한적이지만 마크다운은 초보자를 위한 훌륭한 문서 언어입니다. 한편, 저자들은 많은 기능을 원하지 않을 수도 있습니다. LATEX 사용자의 관점에서 볼 때 마크다운은 제약이 많을 수 있지만, 모든 사람이 조판 세부 사항에 그렇게 신경 써야 하는 것은 아닙니다.
+knitr가 다양한 문서 형식을 지원하지만(5장) R 마크다운이 아마도 인기 있는 형식일 것입니다. 기능 측면에서 제한적이지만 마크다운은 초보자를 위한 훌륭한 문서 언어입니다. 한편, 저자들은 많은 기능을 원하지 않을 수도 있습니다. LATEX 사용자의 관점에서 볼 때 마크다운은 제약이 많을 수 있지만, 모든 사람이 조판 세부 사항에 그렇게 신경 써야 하는 것은 아닙니다.
 
 마크다운의 한계는 Pandoc을 통해 상당 부분 해소될 수 있지만 문제는 Pandoc이 명령줄 도구라는 것입니다. 파워 유저는 이것이 큰 문제라고 생각하지 않을 수 있지만 많은 명령줄 인수는 초보자를 압도할 수 있습니다.
 
@@ -4412,7 +4412,7 @@ output:
 R 마크다운 문서의 본문.
 ```
 
-rmarkdown용 YAML 메타데이터에서 가장 중요한 필드는 output 필드입니다. 여기서 우리는 원하는 출력 형식을 지정합니다. 이것이 없으면 rmarkdown은 출력 형식을 HTML 문서로 가정합니다. 여러 형식이 지정된 경우 render() 함수는 두 번째 인수를 명시적으로 지정하지 않는 한 기본적으로 첫 번째 형식을 사용합니다. render('foo.Rmd', 'all')을 사용하여 output 필드에 정의된 모든 형식을 렌더링할 수도 있습니다.
+rmarkdown용 YAML 메타데이터에서 중요한 필드는 output 필드입니다. 여기서 우리는 원하는 출력 형식을 지정합니다. 이것이 없으면 rmarkdown은 출력 형식을 HTML 문서로 가정합니다. 여러 형식이 지정된 경우 render() 함수는 두 번째 인수를 명시적으로 지정하지 않는 한 기본적으로 첫 번째 형식을 사용합니다. render('foo.Rmd', 'all')을 사용하여 output 필드에 정의된 모든 형식을 렌더링할 수도 있습니다.
 
 ###### 14.3 출력 형식
 
@@ -4800,7 +4800,7 @@ output:
 
 Word 문서에는 사용자 지정할 수 있는 옵션이 많지 않습니다. 그래도 그림 크기나 구문 강조 표시 테마 등을 설정할 수 있습니다. 그림 14.6은 Microsoft Word 2013의 예제에서 Word 출력을 보여줍니다.
 
-Word 문서에서 가장 중요하고 유용한 기능은 아마도 템플릿일 것입니다. 다른 문서 형식의 경우 일반 텍스트 템플릿을 제공할 수 있지만 Word 문서는 비교적 복잡한 바이너리 파일이므로 쉽게 제공할 수 없습니다. 그러나 Pandoc을 사용하면 Word 문서를 본질적으로 스타일 템플릿인 "참조 문서"로 제공할 수 있습니다. 이 참조 문서는 Pandoc의 Word 출력 문서 중 하나를 기반으로 해야 하며, 해당 문서에서 다양한 요소에 대한 스타일을 업데이트합니다. 문서에 정의된 스타일만 사용되고 내용은 대부분 무시됩니다.
+Word 문서에서 중요하고 유용한 기능은 아마도 템플릿일 것입니다. 다른 문서 형식의 경우 일반 텍스트 템플릿을 제공할 수 있지만 Word 문서는 비교적 복잡한 바이너리 파일이므로 쉽게 제공할 수 없습니다. 그러나 Pandoc을 사용하면 Word 문서를 본질적으로 스타일 템플릿인 "참조 문서"로 제공할 수 있습니다. 이 참조 문서는 Pandoc의 Word 출력 문서 중 하나를 기반으로 해야 하며, 해당 문서에서 다양한 요소에 대한 스타일을 업데이트합니다. 문서에 정의된 스타일만 사용되고 내용은 대부분 무시됩니다.
 
 Word 문서에서 스타일을 정의하는 방법을 보여주기 위해 https://vimeo.com/110804387에 짧은 동영상을 준비했습니다. 그림 14.7 및 14.8도 볼 수 있습니다. 기본 단계는 다음과 같습니다.
 
@@ -4968,7 +4968,7 @@ Of course you can write lists:
 
 14.3.1절의 R 마크다운 소스 코드와 비교해 보면 마크다운으로 작성할 때보다 원시 LATEX로 작성할 때 얼마나 더 많은 코드를 입력해야 하는지 알 수 있을 것입니다.
 
-각각의 새 슬라이드는 마크다운의 새로운 섹션이며 섹션의 수준은 문서 계층 구조에서 슬라이드 내용 바로 뒤에 오는 가장 높은 수준에 의해 결정됩니다. 다음 예에서 각 1수준 섹션(#)은 새로운 슬라이드입니다.
+각각의 새 슬라이드는 마크다운의 새로운 섹션이며 섹션의 수준은 문서 계층 구조에서 슬라이드 내용 바로 뒤에 오는 높은 수준에 의해 결정됩니다. 다음 예에서 각 1수준 섹션(#)은 새로운 슬라이드입니다.
 
 ```yaml
 ---
@@ -5032,7 +5032,7 @@ html_vignette <- function(fig_width = 3, fig_height = 3, dev = "png", css = NULL
 }
 ```
 
-tufte_handout() 형식은 LATEX 문서 클래스 tufte-handout.cls에 대한 래퍼입니다. Tufte 유인물 스타일의 가장 주목할 만한 특징은 아마도 여백(sidenote)의 사용과 잘 설계된 타이포그래피일 것입니다. 예제 페이지는 그림 14.12를 참조하십시오. 해당 YAML 메타데이터는 다음과 같습니다.
+tufte_handout() 형식은 LATEX 문서 클래스 tufte-handout.cls에 대한 래퍼입니다. Tufte 유인물 스타일의 주목할 만한 특징은 아마도 여백(sidenote)의 사용과 잘 설계된 타이포그래피일 것입니다. 예제 페이지는 그림 14.12를 참조하십시오. 해당 YAML 메타데이터는 다음과 같습니다.
 
 ```yaml
 ---
@@ -5081,7 +5081,7 @@ renderPlot({
 
 ````
 
-일반 R 마크다운 문서를 대화형 문서로 전환하려면 YAML 메타데이터에 runtime: shiny 옵션만 추가하면 됩니다. 그런 다음 shiny 패키지의 함수를 사용할 수 있습니다. 위 예에서는 shiny의 UI 함수인 sliderInput()을 사용하여 HTML 페이지에 슬라이더를 만들었습니다. 슬라이더의 id는 bins입니다. 그런 다음 renderPlot() 함수를 사용하여 히스토그램을 렌더링했습니다. 이 코드 청크에서 가장 중요한 부분은 input$bins로, 이는 id가 bins인 슬라이더와 연결된 변수 값입니다. 슬라이더의 값을 업데이트하면 해당 값이 renderPlot()의 식으로 전달되고 그에 따라 플롯이 다시 그려집니다.
+일반 R 마크다운 문서를 대화형 문서로 전환하려면 YAML 메타데이터에 runtime: shiny 옵션만 추가하면 됩니다. 그런 다음 shiny 패키지의 함수를 사용할 수 있습니다. 위 예에서는 shiny의 UI 함수인 sliderInput()을 사용하여 HTML 페이지에 슬라이더를 만들었습니다. 슬라이더의 id는 bins입니다. 그런 다음 renderPlot() 함수를 사용하여 히스토그램을 렌더링했습니다. 이 코드 청크에서 중요한 부분은 input$bins로, 이는 id가 bins인 슬라이더와 연결된 변수 값입니다. 슬라이더의 값을 업데이트하면 해당 값이 renderPlot()의 식으로 전달되고 그에 따라 플롯이 다시 그려집니다.
 
 대화형 문서는 render() 대신 rmarkdown의 run() 함수에 의해 컴파일되어야 합니다. RStudio를 사용하는 경우 R 마크다운 문서에 runtime: shiny를 추가하면 도구 모음에 있는 Knit 버튼의 레이블이 Run Document로 바뀌는 것을 볼 수 있으며, 이 버튼을 클릭하여 문서를 실행할 수 있습니다.
 
@@ -5136,7 +5136,7 @@ $body$
 
 https://github.com/jgm/pandoc-templates 저장소에는 Pandoc에서 사용하는 모든 템플릿이 포함되어 있으며, https://github.com/rstudio/rmarkdown 의 rmarkdown 소스 패키지에서 사용자 지정 템플릿을 살펴볼 수도 있습니다. 이해되지 않는 템플릿 변수가 있으면 http://johnmacfarlane.net/pandoc/ 의 설명서를 확인하십시오.
 
-다른 사용자와 템플릿을 공유하는 가장 쉬운 방법은 inst/rmarkdown/templates/ 디렉터리 아래에 있는 R 패키지에 템플릿을 넣는 것입니다. 예를 들어 my_template이라는 새 디렉터리를 만들고 그 아래에 템플릿 파일을 넣을 수 있습니다. 귀하의 템플릿에는 CSS/JavaScript 파일이나 LATEX 패키지와 같은 특정 종속성이 필요할 수 있습니다. 이들은 my_template 아래의 하위 디렉터리인 skeleton/ 아래에 수집할 수 있습니다. skeleton/ 디렉터리에는 예제 Rmd 파일인 skeleton.Rmd 도 제공할 수 있습니다. 마지막으로 my_template 아래에 있는 YAML 파일인 template.yaml 에 다음 세 가지 YAML 필드를 사용하여 템플릿을 설명할 수 있습니다.
+다른 사용자와 템플릿을 공유하는 쉬운 방법은 inst/rmarkdown/templates/ 디렉터리 아래에 있는 R 패키지에 템플릿을 넣는 것입니다. 예를 들어 my_template이라는 새 디렉터리를 만들고 그 아래에 템플릿 파일을 넣을 수 있습니다. 귀하의 템플릿에는 CSS/JavaScript 파일이나 LATEX 패키지와 같은 특정 종속성이 필요할 수 있습니다. 이들은 my_template 아래의 하위 디렉터리인 skeleton/ 아래에 수집할 수 있습니다. skeleton/ 디렉터리에는 예제 Rmd 파일인 skeleton.Rmd 도 제공할 수 있습니다. 마지막으로 my_template 아래에 있는 YAML 파일인 template.yaml 에 다음 세 가지 YAML 필드를 사용하여 템플릿을 설명할 수 있습니다.
 
 - name: 템플릿의 이름, 예: "Journal of Statistical Software";
 - description: 템플릿에 대한 짧은 설명, 예: "This is a template for JSS articles";
@@ -5751,7 +5751,7 @@ knit_hooks$get("append")
 
 ###### 15.5.2 데이터 분석(The Analysis of Data)
 
-또 다른 주목할 만한 예는 Lebanon(2012)의 "The Analysis of Data(데이터 분석)"라는 책입니다. 이 책의 가장 주목할 만한 특징은 이중 PDF/HTML 버전을 가지고 있다는 것입니다. HTML 버전은 http://theanalysisofdata.com 에서 무료로 사용할 수 있습니다. 두 버전 모두 본질적으로 동일한 소스 문서 세트에서 생성됩니다. HTML 버전의 경우 추가 설정이 있는데, 예를 들어 수학 식의 조판은 MathJax 라이브러리에 의해 수행되므로 HTML 소스의 head 섹션에 포함되어야 합니다.
+또 다른 주목할 만한 예는 Lebanon(2012)의 "The Analysis of Data(데이터 분석)"라는 책입니다. 이 책의 주목할 만한 특징은 이중 PDF/HTML 버전을 가지고 있다는 것입니다. HTML 버전은 http://theanalysisofdata.com 에서 무료로 사용할 수 있습니다. 두 버전 모두 본질적으로 동일한 소스 문서 세트에서 생성됩니다. HTML 버전의 경우 추가 설정이 있는데, 예를 들어 수학 식의 조판은 MathJax 라이브러리에 의해 수행되므로 HTML 소스의 head 섹션에 포함되어야 합니다.
 
 ###### 15.5.3 R을 이용한 통계적 탐정(The Statistical Sleuth in R)
 
@@ -5759,13 +5759,13 @@ knit_hooks$get("append")
 
 ###### 15.5.4 문학도를 위한 R을 이용한 텍스트 분석(Text Analysis with R for Students of Literature)
 
-Jockers(2014)의 "Text Analysis with R for Students of Literature(문학도를 위한 R을 이용한 텍스트 분석)"라는 책은 LATEX와 knitr를 사용하여 작성되었습니다. 이 책에 관한 가장 놀라운 사실은 아마도 저자가 LATEX로 이 책을 구성하기 시작하기 전에 혼자서 LATEX를 독학했고 단 몇 달 만에 책의 초안을 완성했다는 것일 겁니다. 이 책은 계산적(computational) 텍스트 분석에 대한 소개서이며 많은 짧은 예제들을 포함하고 있습니다. 저자가 각 예제를 실행하고 그 결과를 LATEX 원고에 일일이 복사해야 했다면 극도로 지루했을 것입니다.
+Jockers(2014)의 "Text Analysis with R for Students of Literature(문학도를 위한 R을 이용한 텍스트 분석)"라는 책은 LATEX와 knitr를 사용하여 작성되었습니다. 이 책에 관한 놀라운 사실은 아마도 저자가 LATEX로 이 책을 구성하기 시작하기 전에 혼자서 LATEX를 독학했고 단 몇 달 만에 책의 초안을 완성했다는 것일 겁니다. 이 책은 계산적(computational) 텍스트 분석에 대한 소개서이며 많은 짧은 예제들을 포함하고 있습니다. 저자가 각 예제를 실행하고 그 결과를 LATEX 원고에 일일이 복사해야 했다면 극도로 지루했을 것입니다.
 
 ###### 15.6 R 패키지를 위한 문학적 프로그래밍(Literate Programming)
 
 이 책의 서두에서 문학적 프로그래밍(LP)을 소개했지만, 실제로 프로그래밍 목적으로 knitr 패키지를 사용하지는 않습니다. 대신 우리는 대개 데이터 분석 및 보고 목적으로 knitr를 사용합니다. 원래의 LP 패러다임은 편물 짜기(weaving)와 추출(tangling)에 모두 관한 것입니다. 소스 문서를 소프트웨어 문서로 엮거나, 프로그램 코드를 실행하기 위해 추출할 수 있습니다. 분명히 knitr를 사용할 때는 코드 실행이 바로 엮기(weaving) 과정에서 발생하기 때문에, 실행 목적으로 프로그램 코드를 굳이 추출할 필요가 없습니다.
 
-흥미롭게도 Knuth의 원래 LP 패러다임이 가장 흔하게 적용되는 것은, 패키지 작성자를 위한 "프로그래밍"이 아니라 사용자를 위해 (특수한 형태의 주석을 사용하여) 소프트웨어를 문서화하는 작업인 듯합니다. 다시 말해 우리는 소스 코드를 문서화하는 대신 소프트웨어 사용법을 문서화하기 위해 LP를 사용합니다. Doxygen(van Heesch, 2008), Javadoc(http://en.wikipedia.org/wiki/Javadoc) 및 roxygen2(Wickham 등, 2015) 등의 예를 참조하십시오. 하지만 LATEX 세계에는 한 가지 예외가 있습니다. 일부 LATEX 패키지 작성자는 단일 문서에 LATEX 코드와 문서를 모두 작성하고, 이를 엮어 소스 코드와 문서가 모두 포함된 하나의 PDF 문서로 만듭니다. Knuth가 TEX와 Pascal을 사용하여 LP를 처음 구현했던 것을 생각하면 이는 전혀 놀라운 일이 아닙니다. Terry Therneau의 survival 및 coxme 패키지와 같이 LP를 사용하는 소수의 R 패키지도 존재합니다.
+흥미롭게도 Knuth의 원래 LP 패러다임이 흔하게 적용되는 것은, 패키지 작성자를 위한 "프로그래밍"이 아니라 사용자를 위해 (특수한 형태의 주석을 사용하여) 소프트웨어를 문서화하는 작업인 듯합니다. 다시 말해 우리는 소스 코드를 문서화하는 대신 소프트웨어 사용법을 문서화하기 위해 LP를 사용합니다. Doxygen(van Heesch, 2008), Javadoc(http://en.wikipedia.org/wiki/Javadoc) 및 roxygen2(Wickham 등, 2015) 등의 예를 참조하십시오. 하지만 LATEX 세계에는 한 가지 예외가 있습니다. 일부 LATEX 패키지 작성자는 단일 문서에 LATEX 코드와 문서를 모두 작성하고, 이를 엮어 소스 코드와 문서가 모두 포함된 하나의 PDF 문서로 만듭니다. Knuth가 TEX와 Pascal을 사용하여 LP를 처음 구현했던 것을 생각하면 이는 전혀 놀라운 일이 아닙니다. Terry Therneau의 survival 및 coxme 패키지와 같이 LP를 사용하는 소수의 R 패키지도 존재합니다.
 
 LP가 널리 사용되는 프로그래밍 접근 방식은 아닌 듯하지만 여전히 흥미로운 아이디어이며, 자신이 선호하는 언어에 적용할 때 특히 유용할 수 있습니다. LATEX 소스 코드를 읽는 것은 일부 사람들에게는 지루할 수 있지만 R 소스 코드를 읽는 것은 더 즐거울 수 있습니다. 객관적인 의견을 떠나 우리는 LP에 적어도 두 가지 장점이 있다고 믿습니다.
 
@@ -6077,7 +6077,7 @@ IPython(http://ipython.org)은 파이썬을 위한 대화형 셸로, 코드, 텍
 
 그림 16.1은 Ubuntu의 GNOME 터미널에 있는 IPython의 스크린샷입니다. 명령 자동 완성 기능과 같은 셸의 기본 기능을 가지고 있음을 알 수 있습니다. 셸에 `x.spl<TAB>` 을 입력하면 아래에 자동 완성 항목이 표시됩니다.
 
-보고서 생성과 관련된 가장 눈에 띄는 기능은 웹 기반 노트북입니다. 웹 브라우저에서 파이썬 명령으로 작업하고 결과(숫자 및 그래픽 결과 모두 포함)를 즉시 볼 수 있으며, 노트북에 더 많은 내용을 입력함에 따라 지속적으로 업데이트할 수 있습니다. 이것은 knitr에서 코드 청크를 작성하는 것과 매우 비슷합니다.
+보고서 생성과 관련된 눈에 띄는 기능은 웹 기반 노트북입니다. 웹 브라우저에서 파이썬 명령으로 작업하고 결과(숫자 및 그래픽 결과 모두 포함)를 즉시 볼 수 있으며, 노트북에 더 많은 내용을 입력함에 따라 지속적으로 업데이트할 수 있습니다. 이것은 knitr에서 코드 청크를 작성하는 것과 매우 비슷합니다.
 
 IPython 노트북은 확장자가 \*.ipynb인 JSON 파일로 저장할 수 있으며 다른 사람과 공유할 수 있습니다. 노트북에는 출력이 포함될 수도 있고 포함되지 않을 수도 있습니다. 출력이 없는 노트북은 knitr의 소스 문서(Rnw 및 Rmd 문서)와 유사합니다.
 

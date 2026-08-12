@@ -2,7 +2,7 @@
 
 # 소개
 
-데이터 과학자로서 역량을 향상시키는 가장 좋은 방법 중 하나는 함수를 작성하는 것입니다. 함수를 사용하면 복사 및 붙여넣기보다 더 강력하고 일반적인 방식으로 일반적인 작업을 자동화할 수 있습니다. 함수 작성은 복사 및 붙여넣기를 사용하는 것에 비해 세 가지 큰 장점이 있습니다.
+데이터 과학자로서 역량을 향상시키는 좋은 방법 중 하나는 함수를 작성하는 것입니다. 함수를 사용하면 복사 및 붙여넣기보다 더 강력하고 일반적인 방식으로 일반적인 작업을 자동화할 수 있습니다. 함수 작성은 복사 및 붙여넣기를 사용하는 것에 비해 세 가지 큰 장점이 있습니다.
 
 - 코드를 이해하기 쉽게 만드는 직관적인(evocative) 이름을 함수에 부여할 수 있습니다.
 
@@ -235,7 +235,7 @@ fix_na <- function(x) {
 }
 ```
 
-단일 벡터를 취하는 예제에 집중한 이유는 그것이 가장 일반적이라고 생각하기 때문입니다. 하지만 함수가 여러 벡터 입력을 받을 수 없다는 이유는 없습니다.
+단일 벡터를 취하는 예제에 집중한 이유는 그것이 일반적이라고 생각하기 때문입니다. 하지만 함수가 여러 벡터 입력을 받을 수 없다는 이유는 없습니다.
 
 ## 요약 함수 (Summary Functions)
 
@@ -402,7 +402,7 @@ df |> grouped_mean(group, x)
 
 ## 언제 포용(Embrace)해야 하는가?
 
-데이터 프레임 함수를 작성할 때 주요 과제는 어떤 인자를 포용해야 하는지 파악하는 것입니다. 다행히 문서에서 찾아볼 수 있기 때문에 쉽습니다. 문서에서 tidy 평가의 두 가지 가장 일반적인 하위 유형에 해당하는 다음 두 가지 용어를 찾을 수 있습니다.
+데이터 프레임 함수를 작성할 때 주요 과제는 어떤 인자를 포용해야 하는지 파악하는 것입니다. 다행히 문서에서 찾아볼 수 있기 때문에 쉽습니다. 문서에서 tidy 평가의 두 가지 일반적인 하위 유형에 해당하는 다음 두 가지 용어를 찾을 수 있습니다.
 
 Data masking (데이터 마스킹)  
 변수를 사용하여 계산하는 <a href="https://dplyr.tidyverse.org/reference/arrange.html" class="orm:hideurl"><code>arrange()</code></a>, <a href="https://dplyr.tidyverse.org/reference/filter.html" class="orm:hideurl"><code>filter()</code></a> 및 <a href="https://dplyr.tidyverse.org/reference/summarise.html" class="orm:hideurl"><code>summarize()</code></a>와 같은 함수에서 사용됩니다.
@@ -742,7 +742,7 @@ diamonds |> hex_plot(carat, price, depth)
 
 ## 다른 Tidyverse 패키지와 결합하기 (Combining with Other Tidyverse Packages)
 
-가장 유용한 헬퍼 중 일부는 데이터 조작의 약간과 ggplot2를 결합합니다. 예를 들어, <a href="https://forcats.tidyverse.org/reference/fct_inorder.html" class="orm:hideurl"><code>fct_infreq()</code></a>를 사용하여 빈도순으로 막대를 자동으로 정렬하는 수직 막대 차트를 그리고 싶을 수 있습니다. 막대 차트가 수직이므로 일반적인 순서를 반대로 하여 맨 위에 가장 높은 값이 오도록 해야 합니다.
+유용한 헬퍼 중 일부는 데이터 조작의 약간과 ggplot2를 결합합니다. 예를 들어, <a href="https://forcats.tidyverse.org/reference/fct_inorder.html" class="orm:hideurl"><code>fct_infreq()</code></a>를 사용하여 빈도순으로 막대를 자동으로 정렬하는 수직 막대 차트를 그리고 싶을 수 있습니다. 막대 차트가 수직이므로 일반적인 순서를 반대로 하여 맨 위에 높은 값이 오도록 해야 합니다.
 
 ```
 sorted_bars <- function(df, var) {
@@ -778,7 +778,7 @@ diamonds |> conditional_bars(cut == "Good", clarity)
 <img src="D:\sd\Practices\any2md\output\[2023] R for Data Science/assets/rds2_25in05.png" alt="Bar plot of clarity of diamonds. The most common is SI1, then SI2, then VS2, then VS1, then VVS2, then VVS1, then I1, then lastly IF." />
 </figure>
 
-창의력을 발휘하여 다른 방식으로 데이터 요약을 표시할 수도 있습니다. [_https://oreil.ly/MV4kQ_](https://oreil.ly/MV4kQ)에서 멋진 응용 프로그램을 찾을 수 있습니다. 축 레이블을 사용하여 가장 높은 값을 표시합니다. ggplot2에 대해 더 많이 배울수록 함수의 위력은 계속해서 증가할 것입니다.
+창의력을 발휘하여 다른 방식으로 데이터 요약을 표시할 수도 있습니다. [_https://oreil.ly/MV4kQ_](https://oreil.ly/MV4kQ)에서 멋진 응용 프로그램을 찾을 수 있습니다. 축 레이블을 사용하여 높은 값을 표시합니다. ggplot2에 대해 더 많이 배울수록 함수의 위력은 계속해서 증가할 것입니다.
 
 생성한 플롯에 레이블을 지정하는 더 복잡한 사례로 마무리하겠습니다.
 

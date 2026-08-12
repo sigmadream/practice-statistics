@@ -307,7 +307,7 @@ age = "[0-9]+"
 
 ## 연습문제
 
-1. 가장 모음이 많은 아기 이름은 무엇인가요? 모음의 비율이 가장 높은 이름은 무엇인가요? (힌트: 분모는 무엇일까요?)
+1. 모음이 많은 아기 이름은 무엇인가요? 모음의 비율이 높은 이름은 무엇인가요? (힌트: 분모는 무엇일까요?)
 
 2. `"a/b/c/d/e"`의 모든 슬래시를 백슬래시로 변경하세요. 백슬래시를 다시 슬래시로 변경하여 변환을 되돌리려고 하면 어떤 일이 발생하나요? (이 문제에 대해서는 곧 논의할 것입니다.)
 
@@ -548,7 +548,7 @@ geom_freqpoly(aes(color = cut), binwidth = 500, linewidth = 0.75)
 
 우리는 밀도를 `y`에 매핑하고 있지만, `density`는 `diamonds` 데이터세트의 변수가 아니기 때문에 먼저 계산해야 한다는 점에 유의하세요. 이를 위해 <a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="orm:hideurl"><code>after_stat()</code></a> 함수를 사용합니다.
 
-이 플롯에는 꽤 놀라운 점이 있습니다. (품질이 가장 낮은) Fair 다이아몬드가 가장 높은 평균 가격을 가지는 것처럼 보입니다! 하지만 이는 도수 다각형을 해석하기가 약간 어렵기 때문일 수 있습니다. 이 플롯에서는 많은 일이 벌어지고 있습니다.
+이 플롯에는 꽤 놀라운 점이 있습니다. (품질이 낮은) Fair 다이아몬드가 높은 평균 가격을 가지는 것처럼 보입니다! 하지만 이는 도수 다각형을 해석하기가 약간 어렵기 때문일 수 있습니다. 이 플롯에서는 많은 일이 벌어지고 있습니다.
 
 이 관계를 탐색하기 위한 시각적으로 더 간단한 플롯은 나란히 놓인 상자 그림(side-by-side boxplots)을 사용하는 것입니다.
 
@@ -607,7 +607,7 @@ geom_boxplot()
 ### 연습문제 (Exercises)
 
 1. 배운 내용을 사용하여 취소된 항공편과 취소되지 않은 항공편의 출발 시간 시각화를 개선해 보세요.
-2. EDA를 기반으로 할 때, 다이아몬드 데이터세트에서 다이아몬드의 가격을 예측하는 데 가장 중요한 변수는 무엇으로 보이나요? 해당 변수는 cut과 어떤 상관관계가 있나요? 두 관계의 조합이 품질이 낮은 다이아몬드가 더 비싼 이유로 이어지는 이유는 무엇일까요?
+2. EDA를 기반으로 할 때, 다이아몬드 데이터세트에서 다이아몬드의 가격을 예측하는 데 중요한 변수는 무엇으로 보이나요? 해당 변수는 cut과 어떤 상관관계가 있나요? 두 관계의 조합이 품질이 낮은 다이아몬드가 더 비싼 이유로 이어지는 이유는 무엇일까요?
 3. x와 y 변수를 교환하는 대신, 수직 상자 그림에 <a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="orm:hideurl"><code>coord_flip()</code></a>을 새 레이어로 추가하여 수평 상자 그림을 만들어 보세요. 변수를 교환하는 것과 비교하면 어떻습니까?
 4. 상자 그림의 한 가지 문제점은 훨씬 더 작은 데이터세트 시대에 개발되었기 때문에, "이상치 값(outlying values)"을 지나치게 많이 표시하는 경향이 있다는 것입니다. 이 문제를 해결하기 위한 한 가지 접근 방식은 문자값 플롯(letter value plot)입니다. lvplot 패키지를 설치하고, `geom_lv()`를 사용하여 cut 대 price의 분포를 표시해 보세요. 무엇을 알게 되나요? 플롯을 어떻게 해석하나요?
 5. <a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="orm:hideurl"><code>geom_violin()</code></a>을 사용하여 다이아몬드 가격 대 `diamonds` 데이터세트의 범주형 변수의 시각화를 생성하고, 그 다음으로 분할된(faceted) <a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="orm:hideurl"><code>geom_histogram()</code></a>, 색상이 지정된 <a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="orm:hideurl"><code>geom_freqpoly()</code></a>, 그리고 색상이 지정된 <a href="https://ggplot2.tidyverse.org/reference/geom_density.html" class="orm:hideurl"><code>geom_density()</code></a>를 차례로 생성하세요. 네 개의 플롯을 비교하고 대조해 보세요. 범주형 변수의 수준(levels)을 기준으로 수치형 변수의 분포를 시각화하는 각 방법의 장단점은 무엇입니까?

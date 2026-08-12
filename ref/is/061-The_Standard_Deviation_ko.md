@@ -12,7 +12,7 @@
 
 ![image](./images/00154.jpeg)
 
-표준 편차는 평균으로부터의 편차와 이 편차의 빈도를 보여줍니다. 이것은 변동을 측정하는 가장 널리 사용되는 통계 도구 중 하나로 의심의 여지 없이 남아 있습니다.
+표준 편차는 평균으로부터의 편차와 이 편차의 빈도를 보여줍니다. 이것은 변동을 측정하는 널리 사용되는 통계 도구 중 하나로 의심의 여지 없이 남아 있습니다.
 
 ![image](./images/00155.jpeg)
 
@@ -30,7 +30,7 @@
 
 ![image](./images/00158.jpeg)
 
-표준 편차가 변동의 실용적인 척도인 반면, 분산(variance)은 이론적 작업, 특히 _분산 분석(analysis of variance)_에 사용됩니다([여기](./100-Fisher’s_Statistical_Analysis_of_Variance.md#pg168) 참조).
+표준 편차가 변동의 실용적인 척도인 반면, 분산(variance)은 이론적 작업, 특히 *분산 분석(analysis of variance)*에 사용됩니다([여기](./100-Fisher’s_Statistical_Analysis_of_Variance.md#pg168) 참조).
 
 ![image](./images/00159.jpeg)
 

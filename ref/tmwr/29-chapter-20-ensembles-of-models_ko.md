@@ -1,6 +1,6 @@
 # 20장. 모델의 앙상블 (Ensembles of Models)
 
-여러 단일 학습자(single learners)의 예측을 집계(aggregated)하여 하나의 예측을 수행하는 모델 앙상블(model ensemble)은 고성능의 최종 모델을 생성할 수 있습니다. 앙상블 모델을 만드는 가장 인기 있는 방법은 배깅(bagging)(Breiman 1996a), 랜덤 포레스트(Ho 1995; Breiman 2001a) 및 부스팅(boosting)(Freund and Schapire 1997)입니다. 이러한 각 방법은 동일한 유형의 모델(분류 트리)의 여러 버전에서 나온 예측을 결합합니다. 그러나 앙상블을 만드는 가장 초기의 방법 중 하나는 *모델 스태킹(model stacking)*입니다(Wolpert 1992; Breiman 1996b).
+여러 단일 학습자(single learners)의 예측을 집계(aggregated)하여 하나의 예측을 수행하는 모델 앙상블(model ensemble)은 고성능의 최종 모델을 생성할 수 있습니다. 앙상블 모델을 만드는 인기 있는 방법은 배깅(bagging)(Breiman 1996a), 랜덤 포레스트(Ho 1995; Breiman 2001a) 및 부스팅(boosting)(Freund and Schapire 1997)입니다. 이러한 각 방법은 동일한 유형의 모델(분류 트리)의 여러 버전에서 나온 예측을 결합합니다. 그러나 앙상블을 만드는 초기의 방법 중 하나는 *모델 스태킹(model stacking)*입니다(Wolpert 1992; Breiman 1996b).
 
 ###### 참고 (Note)
 
@@ -113,7 +113,7 @@ workflowsets 패키지를 사용하지 않은 경우, tune 및 finetune의 객�
 
 # 예측 혼합하기 (Blend the Predictions)
 
-훈련 세트 예측과 이에 상응하는(corresponding) 관찰 결과 데이터는 평가 세트 예측이 관찰된 결과 데이터의 예측 변수가 되는 *메타 학습 모델(meta-learning model)*을 생성하는 데 사용됩니다. 메타 학습은 모든 모델을 사용하여 수행할(accomplished) 수 있습니다. 가장 일반적으로 사용되는 모델은 선형, 로지스틱 및 다항(multinomial) 모델을 포괄하는(encompasses) 정규화된 일반화 선형 모델(regularized generalized linear model)입니다. 특히, 축소(shrinkage)를 사용하여 점(points)을 중심 값으로 끌어당기는(pull) 올가미 패널티(lasso penalty)(Tibshirani 1996)를 통한 정규화에는 몇 가지 이점(advantages)이 있습니다.
+훈련 세트 예측과 이에 상응하는(corresponding) 관찰 결과 데이터는 평가 세트 예측이 관찰된 결과 데이터의 예측 변수가 되는 *메타 학습 모델(meta-learning model)*을 생성하는 데 사용됩니다. 메타 학습은 모든 모델을 사용하여 수행할(accomplished) 수 있습니다. 일반적으로 사용되는 모델은 선형, 로지스틱 및 다항(multinomial) 모델을 포괄하는(encompasses) 정규화된 일반화 선형 모델(regularized generalized linear model)입니다. 특히, 축소(shrinkage)를 사용하여 점(points)을 중심 값으로 끌어당기는(pull) 올가미 패널티(lasso penalty)(Tibshirani 1996)를 통한 정규화에는 몇 가지 이점(advantages)이 있습니다.
 
 - 올가미 패널티를 사용하면 앙상블에서 후보(때로는 전체 모델 유형)를 제거할 수 있습니다.
 
@@ -128,7 +128,7 @@ set.seed(2001)
 ens <- blend_predictions(concrete_stack)
 ```
 
-이것은 사전 정의된 올가미 패널티 값의 그리드에 대해 메타 학습 모델을 평가하고, 내부(internal) 재표집 방법을 사용하여 가장 좋은 값을 결정합니다. [그림 20-1](#stacking-autoplot)에 표시된 `autoplot()` 메서드는 기본 페널티(penalization) 방법이 충분(sufficient)했는지 파악(understand)하는 데 도움이 됩니다.
+이것은 사전 정의된 올가미 패널티 값의 그리드에 대해 메타 학습 모델을 평가하고, 내부(internal) 재표집 방법을 사용하여 좋은 값을 결정합니다. [그림 20-1](#stacking-autoplot)에 표시된 `autoplot()` 메서드는 기본 페널티(penalization) 방법이 충분(sufficient)했는지 파악(understand)하는 데 도움이 됩니다.
 
 ```
 autoplot(ens)
@@ -161,7 +161,7 @@ autoplot(ens)
 
 회귀 모델을 사용하여 예측을 혼합(blending)할 때, 혼합 매개변수가 음수가 되지 않도록 제한하는 것이 일반적(common)입니다. 이 데이터의 경우, 이러한 제약 조건(constraint)은 여러 잠재적인 앙상블 멤버를 제거하는(eliminating) 효과가 있습니다; 매우 낮은(fairly low) 패널티에서도 앙상블은 원래 18개의 일부(fraction)로 제한(limited)됩니다.
 
-가장 작은 RMSE와 관련된 페널티 값은 0.051이었습니다. 객체를 프린트하면 메타 학습 모델의 세부 정보(details)가 표시됩니다.
+작은 RMSE와 관련된 페널티 값은 0.051이었습니다. 객체를 프린트하면 메타 학습 모델의 세부 정보(details)가 표시됩니다.
 
 ```
 ens
@@ -195,7 +195,7 @@ autoplot(ens, "weights") +
   lims(x = c(-0.01, 0.8))
 ```
 
-부스팅된 트리(boosted tree) 모델과 신경망 모델이 앙상블에 가장 크게 기여(contributions)합니다. 이 앙상블의 경우 결과는 다음 방정식(equation)으로 예측됩니다.
+부스팅된 트리(boosted tree) 모델과 신경망 모델이 앙상블에 크게 기여(contributions)합니다. 이 앙상블의 경우 결과는 다음 방정식(equation)으로 예측됩니다.
 
 ```math
 \begin{aligned}
@@ -252,7 +252,7 @@ ens <- fit_members(ens)
 
 # 테스트 세트 결과 (Test Set Results)
 
-혼합 프로세스에서 재표집(resampling)을 사용했기 때문에 7개 멤버가 있는 앙상블의 예상 RMSE가 4.12로 추정(estimate)된다고 할 수 있습니다. [15장](ch15.xhtml#workflow-sets)에서 가장 좋은 부스팅된 트리(boosted tree)의 테스트 세트 RMSE가 3.33이었음을 상기하십시오. 앙상블 모델은 테스트 세트에서 어떻게 비교될까요? `predict()`를 사용하여 알아볼(find out) 수 있습니다.
+혼합 프로세스에서 재표집(resampling)을 사용했기 때문에 7개 멤버가 있는 앙상블의 예상 RMSE가 4.12로 추정(estimate)된다고 할 수 있습니다. [15장](ch15.xhtml#workflow-sets)에서 좋은 부스팅된 트리(boosted tree)의 테스트 세트 RMSE가 3.33이었음을 상기하십시오. 앙상블 모델은 테스트 세트에서 어떻게 비교될까요? `predict()`를 사용하여 알아볼(find out) 수 있습니다.
 
 ```
 reg_metrics <- metric_set(rmse, rsq)
@@ -269,7 +269,7 @@ ens_test_pred %>%
 #> 2 rsq     standard       0.957
 ```
 
-이것은 우리가 가진 가장 좋은 단일 모델보다 적당히(moderately) 더 좋습니다. 최상의 단일 모델과 비교할 때 스태킹이 점진적인(incremental) 이점(benefits)을 생성하는 것은 매우 일반적(fairly common)입니다.
+이것은 우리가 가진 좋은 단일 모델보다 적당히(moderately) 더 좋습니다. 최상의 단일 모델과 비교할 때 스태킹이 점진적인(incremental) 이점(benefits)을 생성하는 것은 매우 일반적(fairly common)입니다.
 
 # 이 장의 요약 (Chapter Summary)
 

@@ -74,7 +74,7 @@ sc_taken <- read_rds(here::here("data/sc_taken_2022.rds")) set.seed(12345) taken
 
 스트라이크 존은 어디인가요? 167 스트라이크 존에 던져진 투구는 스트라이크로 판정되는 경향이 있음에 유의하십시오. 또한 기술적으로 스트라이크 존을 벗어났더라도 많은 투구가 스트라이크로 판정됨을 알 수 있습니다.
 
-plate_width <- 17 + 2 * (9/pi) k_zone_plot <- ggplot(
+plate_width <- 17 + 2 \* (9/pi) k_zone_plot <- ggplot(
 
 NULL, aes(x = plate_x, y = plate_z) ) +
 
@@ -87,7 +87,6 @@ geom_rect( xmin = -(plate_width/2)/12, xmax = (plate_width/2)/12, ymin = 1.5, ym
 ) +
 
 - scale_y_continuous( "수직 위치 (ft.)", limits = c(0, 5)
-
 
 )
 
@@ -383,7 +382,7 @@ mutate( mlb_name = paste(name_first, name_last), mlb_id = key_mlbam
 
 ) |> select(mlb_id, mlb_name) |> filter(!is.na(mlb_id))
 
-이름 정보를 c_effects 데이터 프레임과 병합하고 가장 크고 가장 작은 무작위 효과 추정치를 가진 포수 이름을 아래에 표시합니다.
+이름 정보를 c_effects 데이터 프레임과 병합하고 크고 작은 무작위 효과 추정치를 가진 포수 이름을 아래에 표시합니다.
 
 c_effects <- c_effects |>
 
@@ -415,7 +414,7 @@ id effect mlb_name <dbl> <dbl> <chr>
 - 5 435559 -0.357 Kurt Suzuki
 - 6 595956 -0.390 Cam Gallagher
 
-이 출력에서 Donny Sands가 스트라이크 판정을 받는 데 가장 효과적이었고 Cam Gallagher가 가장 덜 효과적이었음을 알 수 있습니다.
+이 출력에서 Donny Sands가 스트라이크 판정을 받는 데 효과적이었고 Cam Gallagher가 덜 효과적이었음을 알 수 있습니다.
 
 이 첫 번째 모델에 대한 한 가지 비판은 투수나 타자를 고려하지 않았다는 것이며, 두 사람 모두 스트라이크 판정 확률에 영향을 미친다고 여겨집니다. 위의 모델을 투수와 타자 모두에 대한 무작위 효과를 포함하도록 확장할 수 있습니다. 이 모델은 다음과 같이 작성됩니다.
 
@@ -457,7 +456,7 @@ id effect mlb_name <dbl> <dbl> <chr>
 - 5 435559 -0.357 Kurt Suzuki
 - 6 595956 -0.390 Cam Gallagher
 
-이 출력에서 Donny Sands가 스트라이크 판정을 받는 데 가장 효과적이었고 Cam Gallagher가 가장 덜 효과적이었음을 알 수 있습니다.
+이 출력에서 Donny Sands가 스트라이크 판정을 받는 데 효과적이었고 Cam Gallagher가 덜 효과적이었음을 알 수 있습니다.
 
 이 첫 번째 모델에 대한 한 가지 비판은 투수나 타자를 고려하지 않았다는 것이며, 두 사람 모두 스트라이크 판정 확률에 영향을 미친다고 여겨집니다. 위의 모델을 투수와 타자 모두에 대한 무작위 효과를 포함하도록 확장할 수 있습니다. 이 모델은 다음과 같이 작성됩니다.
 
@@ -485,9 +484,9 @@ VarCorr(mod_b)
 
 Groups Name Std.Dev. pitcher (Intercept) 0.267 batter (Intercept) 0.251 fielder_2_1 (Intercept) 0.209
 
-이 표는 스트라이크 판정의 전체 변동성에 가장 큰 기여를 하는 구성 요소를 식별하는 데 유용합니다. 가장 큰 표준 편차는 sp = 0.267 및 sb = 0.251로, 스트라이크 판정이 투수와 타자의 정체성에 가장 큰 영향을 받고 포수의 정체성이 그 뒤를 잇는다는 것을 나타냅니다.
+이 표는 스트라이크 판정의 전체 변동성에 큰 기여를 하는 구성 요소를 식별하는 데 유용합니다. 큰 표준 편차는 sp = 0.267 및 sb = 0.251로, 스트라이크 판정이 투수와 타자의 정체성에 큰 영향을 받고 포수의 정체성이 그 뒤를 잇는다는 것을 나타냅니다.
 
-이전과 마찬가지로 ranef() 함수를 통해 포수 효과 추정치를 추출하고 모든 포수의 ID, 이름 및 추정치로 데이터 프레임을 만든 다음 프레이밍과 관련하여 가장 훌륭한 포수와 가장 못한 포수를 표시합니다. 이 목록은 더 단순한 무작위 효과 모델로 준비된 목록과 유사하지 않으며, 이는 이러한 포수들이 스트라이크 판정에 영향을 미친 서로 다른 투수 및 타자와 협력했음을 시사합니다.
+이전과 마찬가지로 ranef() 함수를 통해 포수 효과 추정치를 추출하고 모든 포수의 ID, 이름 및 추정치로 데이터 프레임을 만든 다음 프레이밍과 관련하여 훌륭한 포수와 못한 포수를 표시합니다. 이 목록은 더 단순한 무작위 효과 모델로 준비된 목록과 유사하지 않으며, 이는 이러한 포수들이 스트라이크 판정에 영향을 미친 서로 다른 투수 및 타자와 협력했음을 시사합니다.
 
 c_effects <- mod_b |> ranef() |> as_tibble() |> filter(grpvar == "fielder_2_1") |> transmute(
 
@@ -608,4 +607,3 @@ fit <- glm( Outcome == "called_strike" ~ Home, data = taken, family = binomial
 )
 
 이 표현식에서 Home은 타자가 홈팀 소속이면 1이고 그렇지 않으면 0인 새로운 변수입니다. 이 적합의 출력으로부터 홈 타자와 원정 타자 사이에서 스트라이크가 어떻게 다른지 해석하십시오.
-

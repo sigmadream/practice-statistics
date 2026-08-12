@@ -72,7 +72,7 @@ Microsoft Word와 같은 많은 프로그램은 "스마트 따옴표(smart quote
 
 Python과 R 모두 패키지를 통해 확장할 수 있기 때문에 언어로서 성공하고 번창하고 있습니다. Python에는 다중 패키지 관리 시스템(multiple package-management systems)이 있으며, 이는 초보자와 고급 사용자 모두에게 혼란을 줄 수 있습니다. 초보 사용자는 종종 어떤 시스템을 사용해야 할지 모르고, 고급 사용자는 시스템 간에 패키지 버전이 충돌하는 문제에 직면합니다.
 
-Python 패키지를 설치하는 가장 간단한 방법은 아마도 `pip` 명령을 사용하여 Python 외부의 터미널에서 설치하는 것일 겁니다. 예를 들어 `pip install seaborn`을 사용하여 `seaborn`을 설치할 수 있습니다. R에는 현재 이 책의 독자가 관심을 가질 만한 주요 저장소가 하나 있는데 바로 CRAN(Comprehensive R Archive Network)입니다. 두 번째 저장소인 Bioconductor는 주로 생물정보학(bioinformatics) 프로젝트를 지원합니다. R 패키지는 `install.packages()` 함수를 사용하여 R 내부에서 설치할 수 있습니다. 예를 들어 `install.packages("ggplot2")`를 사용하여 `ggplot2`를 설치할 수 있습니다.
+Python 패키지를 설치하는 간단한 방법은 아마도 `pip` 명령을 사용하여 Python 외부의 터미널에서 설치하는 것일 겁니다. 예를 들어 `pip install seaborn`을 사용하여 `seaborn`을 설치할 수 있습니다. R에는 현재 이 책의 독자가 관심을 가질 만한 주요 저장소가 하나 있는데 바로 CRAN(Comprehensive R Archive Network)입니다. 두 번째 저장소인 Bioconductor는 주로 생물정보학(bioinformatics) 프로젝트를 지원합니다. R 패키지는 `install.packages()` 함수를 사용하여 R 내부에서 설치할 수 있습니다. 예를 들어 `install.packages("ggplot2")`를 사용하여 `ggplot2`를 설치할 수 있습니다.
 
 패키지가 CRAN에 없거나 코드를 사용하지 못하게 만드는 버그를 수정하기 위해 개발 버전(development version)이 필요하기 때문에, 여러분도 언젠가는 GitHub와 같은 사이트에서 패키지를 설치해야 하는 상황에 놓일 수 있습니다. 이러한 설치 방법은 이 책의 범위를 벗어나지만 검색 엔진을 사용하여 쉽게 찾을 수 있습니다. 게다가 패키지 버전을 잠글(lock down) 수 있는 환경 관리 소프트웨어도 존재합니다. 이에 대해서는 <a href="ch09.html#sec-advanced-tool" data-type="xref">9장</a>에서 논의했습니다.
 
@@ -112,7 +112,7 @@ _통합 개발 환경(_ _IDE_ *)*이라는 강력한 코드 편집 도구를 사
 
 # 기본 Python 데이터 형식 (Basic Python Data Types)
 
-Python에 대한 속성 코스(crash course)로서 언어 내에는 다양한 유형의 객체가 존재합니다. 적어도 이 책에서 사용되는 가장 기본적인 형식에는 _정수(integers)_, _부동 소수점 숫자(floating-point numbers)_, _논리값(logical)_, _문자열(strings)_, _리스트(lists)_, _딕셔너리(dictionaries)_ 가 포함됩니다. 일반적으로 Python은 이러한 데이터 형식에 대한 고민을 알아서 처리하며 일반적으로 숫자의 형식을 대신 변경해 줍니다.
+Python에 대한 속성 코스(crash course)로서 언어 내에는 다양한 유형의 객체가 존재합니다. 적어도 이 책에서 사용되는 기본적인 형식에는 _정수(integers)_, _부동 소수점 숫자(floating-point numbers)_, _논리값(logical)_, _문자열(strings)_, _리스트(lists)_, _딕셔너리(dictionaries)_ 가 포함됩니다. 일반적으로 Python은 이러한 데이터 형식에 대한 고민을 알아서 처리하며 일반적으로 숫자의 형식을 대신 변경해 줍니다.
 
 _정수(Integers)_ (줄여서 _ints_)는 1, 2, 3과 같은 자연수(whole numbers)입니다. 때로는 객체를 인덱싱하기 위해 정수가 필요합니다(예를 들어 벡터 `x`에 대해 `x[1]`을 사용하여 두 번째 요소를 가져오는 경우. Python은 `0`부터 계산하기 시작함을 기억하십시오). 예를 들어 Python에서 정수 `x`를 만들 수 있습니다.
 
@@ -197,7 +197,7 @@ my_dict_2 = {"a": 0, "b": 1}
 
 # 기본 R 데이터 형식 (Basic R Data Types)
 
-R에 대한 속성 코스로서, Python에서와 마찬가지로 언어 내에 여러 유형의 객체가 존재합니다. 적어도 이 책에서 사용되는 가장 기본적인 형식에는 _정수(integers)_, _숫자 부동 소수점 수(numeric floating-point numbers)_, _논리값(logical)_, _문자(characters)_, _리스트(lists)_ 가 포함됩니다. 일반적으로 R은 사용자를 대신하여 이러한 구조에 대한 고민을 알아서 처리하며 일반적으로 사용자를 위해 형식을 변경해 줍니다. R은 Python과 약간 다른 이름을 사용합니다. 따라서 이 섹션은 <a href="#sec-py-datatypes" data-type="xref">“기본 Python 데이터 형식(Basic Python Data Types)”</a>과 유사하지만 약간 다릅니다.
+R에 대한 속성 코스로서, Python에서와 마찬가지로 언어 내에 여러 유형의 객체가 존재합니다. 적어도 이 책에서 사용되는 기본적인 형식에는 _정수(integers)_, _숫자 부동 소수점 수(numeric floating-point numbers)_, _논리값(logical)_, _문자(characters)_, _리스트(lists)_ 가 포함됩니다. 일반적으로 R은 사용자를 대신하여 이러한 구조에 대한 고민을 알아서 처리하며 일반적으로 사용자를 위해 형식을 변경해 줍니다. R은 Python과 약간 다른 이름을 사용합니다. 따라서 이 섹션은 <a href="#sec-py-datatypes" data-type="xref">“기본 Python 데이터 형식(Basic Python Data Types)”</a>과 유사하지만 약간 다릅니다.
 
 _정수(Integers)_ 는 1, 2, 3과 같은 자연수(whole numbers)입니다. 때때로 객체를 인덱싱하기 위해 정수가 필요합니다. 예를 들어 벡터 `x`에 대해 `x[2]`를 사용하여 두 번째 요소를 가져오는 경우입니다. R은 `1`부터 계산하기 시작함을 기억하십시오. 예를 들어, `L`을 사용하여 R에서 정수 `x`를 만들 수 있습니다.
 

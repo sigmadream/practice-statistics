@@ -1,0 +1,15 @@
+{
+  "hash": "29c846c966e5c01de5ea8c9ff12b7662",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"시각화\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n앞선 노트를 통해 데이터 과학을 수행하기 위한 중요한 도구들을 (적어도 피상적으로는) 이해하게 되었습니다. 이 중에서 중요한 시각화에 대해 좀 더 살펴보도록 하겠습니다.\n\n먼저, 그래픽의 계층화된 문법(layered grammar of graphics)에 대해 배울 것입니다. 그리고 시각화를 호기심 및 회의적인 시각과 결합하여 데이터에 관한 흥미로운 질문을 던지고 답하는 방법을 다룰 것입니다. 마지막으로, 탐색적 그래픽을 발전시켜 여러분의 분석을 처음 접하는 사람이 어떤 상황인지 빠르고 쉽게 이해할 수 있도록 돕는 설명적(expository) 그래픽으로 바꾸는 방법을 배울 것입니다.\n\n시각화 관련해서 다양한 아이디어나 확장이 필요하시면 ggplot2 확장 갤러리([https://exts.ggplot2.tidyverse.org/gallery/](https://exts.ggplot2.tidyverse.org/gallery/))를 참고하시면 좋습니다.\n\nggplot2의 이론적 기초에 대해 더 자세히 알고 싶다면 ggplot2의 이론을 상세히 설명한 과학 논문인 \"The Layered Grammar of Graphics\"([https://vita.had.co.nz/papers/layered-grammar.pdf](https://vita.had.co.nz/papers/layered-grammar.pdf))를 읽어보시기를 권합니다.\n\n다른 유용한 리소스로는 Winston Chang의 \"R Graphics Cookbook\"([https://r-graphics.org](https://r-graphics.org))과 Claus Wilke의 \"Fundamentals of Data Visualization\"([https://clauswilke.com/dataviz/](https://clauswilke.com/dataviz/))가 있습니다.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
