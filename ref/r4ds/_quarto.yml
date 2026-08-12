@@ -24,22 +24,22 @@ book:
     - preface-2e.qmd
     - intro.qmd
 
-    - part: whole-game.qmd
-      chapters:
-        - data-visualize.qmd
-        - workflow-basics.qmd
-        - data-transform.qmd
-        - workflow-style.qmd
-        - data-tidy.qmd
-        - workflow-scripts.qmd
-        - data-import.qmd
-        - workflow-help.qmd
+    # - part: whole-game.qmd
+    #   chapters:
+    #     - data-visualize.qmd
+    #     - workflow-basics.qmd
+    #     - data-transform.qmd
+    #     - workflow-style.qmd
+    #     - data-tidy.qmd
+    #     - workflow-scripts.qmd
+    #     - data-import.qmd
+    #     - workflow-help.qmd
 
-    - part: visualize.qmd
-      chapters:
-        - layers.qmd
-        - EDA.qmd
-        - communication.qmd
+    # - part: visualize.qmd
+    #   chapters:
+    #     - layers.qmd
+    #     - EDA.qmd
+    #     - communication.qmd
 
     - part: transform.qmd
       chapters:
