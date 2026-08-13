@@ -34,6 +34,8 @@ website:
           - notes/ch05.qmd
           - notes/ch06.qmd
           - notes/ch07.qmd
+          - notes/ch08.qmd
+          - notes/ch09.qmd
 
       # - section: "R로 배우는 확률"
       #   contents:        
