@@ -1,4 +1,6 @@
-﻿# 논리형 벡터
+﻿---
+title: "벡터: 논리형"
+---
 
 ```{r}
 #| echo: false
@@ -163,7 +165,7 @@ flights |>
   arrange(desc(is.na(dep_time)), dep_time)
 ```
 
-### 연습 문제 (Exercises)
+### 연습 문제
 
 1. `dplyr::near()`는 어떻게 작동하나요? 소스 코드를 보려면 `near`를 입력하세요. `sqrt(2)^2`는 2에 가까운가요(near)?
 

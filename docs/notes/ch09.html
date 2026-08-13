@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch01.html">R과 데이터 분석</a></li><li class="breadcrumb-item"><a href="../notes/ch09.html">숫자 만들기</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch01.html">R과 데이터 분석</a></li><li class="breadcrumb-item"><a href="../notes/ch09.html">벡터: 숫자</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -223,13 +223,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">비교</span></a>
+ <span class="menu-text">벡터: 논리형</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch09.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">숫자 만들기</span></a>
+ <span class="menu-text">벡터: 숫자</span></a>
   </div>
 </li>
       </ul>
@@ -244,53 +244,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#숫자" id="toc-숫자" class="nav-link active" data-scroll-target="#숫자"><span class="header-section-number">1</span> 숫자</a>
+  <li><a href="#숫자-만들기" id="toc-숫자-만들기" class="nav-link active" data-scroll-target="#숫자-만들기"><span class="header-section-number">1</span> 숫자 만들기</a></li>
+  <li><a href="#개수-세기" id="toc-개수-세기" class="nav-link" data-scroll-target="#개수-세기"><span class="header-section-number">2</span> 개수 세기</a>
   <ul class="collapse">
-  <li><a href="#숫자-만들기" id="toc-숫자-만들기" class="nav-link" data-scroll-target="#숫자-만들기"><span class="header-section-number">1.1</span> 숫자 만들기</a></li>
-  <li><a href="#개수-세기" id="toc-개수-세기" class="nav-link" data-scroll-target="#개수-세기"><span class="header-section-number">1.2</span> 개수 세기</a>
-  <ul class="collapse">
-  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">1.2.1</span> 연습 문제</a></li>
+  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">2.1</span> 연습 문제</a></li>
   </ul></li>
-  <li><a href="#숫자-변환" id="toc-숫자-변환" class="nav-link" data-scroll-target="#숫자-변환"><span class="header-section-number">1.3</span> 숫자 변환</a>
+  <li><a href="#숫자-변환" id="toc-숫자-변환" class="nav-link" data-scroll-target="#숫자-변환"><span class="header-section-number">3</span> 숫자 변환</a>
   <ul class="collapse">
-  <li><a href="#산술-및-재활용-규칙" id="toc-산술-및-재활용-규칙" class="nav-link" data-scroll-target="#산술-및-재활용-규칙"><span class="header-section-number">1.3.1</span> 산술 및 재활용 규칙</a></li>
-  <li><a href="#최솟값과-최댓값" id="toc-최솟값과-최댓값" class="nav-link" data-scroll-target="#최솟값과-최댓값"><span class="header-section-number">1.3.2</span> 최솟값과 최댓값</a></li>
-  <li><a href="#모듈러-산술" id="toc-모듈러-산술" class="nav-link" data-scroll-target="#모듈러-산술"><span class="header-section-number">1.3.3</span> 모듈러 산술</a></li>
-  <li><a href="#로그" id="toc-로그" class="nav-link" data-scroll-target="#로그"><span class="header-section-number">1.3.4</span> 로그</a></li>
-  <li><a href="#반올림" id="toc-반올림" class="nav-link" data-scroll-target="#반올림"><span class="header-section-number">1.3.5</span> 반올림</a></li>
-  <li><a href="#숫자를-범위로-자르기" id="toc-숫자를-범위로-자르기" class="nav-link" data-scroll-target="#숫자를-범위로-자르기"><span class="header-section-number">1.3.6</span> 숫자를 범위로 자르기</a></li>
-  <li><a href="#누적-및-이동-집계" id="toc-누적-및-이동-집계" class="nav-link" data-scroll-target="#누적-및-이동-집계"><span class="header-section-number">1.3.7</span> 누적 및 이동 집계</a></li>
-  <li><a href="#연습-문제-1" id="toc-연습-문제-1" class="nav-link" data-scroll-target="#연습-문제-1"><span class="header-section-number">1.3.8</span> 연습 문제</a></li>
+  <li><a href="#산술-및-재활용-규칙" id="toc-산술-및-재활용-규칙" class="nav-link" data-scroll-target="#산술-및-재활용-규칙"><span class="header-section-number">3.1</span> 산술 및 재활용 규칙</a></li>
+  <li><a href="#최솟값과-최댓값" id="toc-최솟값과-최댓값" class="nav-link" data-scroll-target="#최솟값과-최댓값"><span class="header-section-number">3.2</span> 최솟값과 최댓값</a></li>
+  <li><a href="#모듈러-산술" id="toc-모듈러-산술" class="nav-link" data-scroll-target="#모듈러-산술"><span class="header-section-number">3.3</span> 모듈러 산술</a></li>
+  <li><a href="#로그" id="toc-로그" class="nav-link" data-scroll-target="#로그"><span class="header-section-number">3.4</span> 로그</a></li>
+  <li><a href="#반올림" id="toc-반올림" class="nav-link" data-scroll-target="#반올림"><span class="header-section-number">3.5</span> 반올림</a></li>
+  <li><a href="#숫자를-범위로-자르기" id="toc-숫자를-범위로-자르기" class="nav-link" data-scroll-target="#숫자를-범위로-자르기"><span class="header-section-number">3.6</span> 숫자를 범위로 자르기</a></li>
+  <li><a href="#누적-및-이동-집계" id="toc-누적-및-이동-집계" class="nav-link" data-scroll-target="#누적-및-이동-집계"><span class="header-section-number">3.7</span> 누적 및 이동 집계</a></li>
+  <li><a href="#연습-문제-1" id="toc-연습-문제-1" class="nav-link" data-scroll-target="#연습-문제-1"><span class="header-section-number">3.8</span> 연습 문제</a></li>
   </ul></li>
-  <li><a href="#일반-변환" id="toc-일반-변환" class="nav-link" data-scroll-target="#일반-변환"><span class="header-section-number">1.4</span> 일반 변환</a>
+  <li><a href="#일반-변환" id="toc-일반-변환" class="nav-link" data-scroll-target="#일반-변환"><span class="header-section-number">4</span> 일반 변환</a>
   <ul class="collapse">
-  <li><a href="#순위" id="toc-순위" class="nav-link" data-scroll-target="#순위"><span class="header-section-number">1.4.1</span> 순위</a></li>
-  <li><a href="#오프셋" id="toc-오프셋" class="nav-link" data-scroll-target="#오프셋"><span class="header-section-number">1.4.2</span> 오프셋</a></li>
-  <li><a href="#연속된-식별자" id="toc-연속된-식별자" class="nav-link" data-scroll-target="#연속된-식별자"><span class="header-section-number">1.4.3</span> 연속된 식별자</a></li>
-  <li><a href="#연습-문제-2" id="toc-연습-문제-2" class="nav-link" data-scroll-target="#연습-문제-2"><span class="header-section-number">1.4.4</span> 연습 문제</a></li>
+  <li><a href="#순위" id="toc-순위" class="nav-link" data-scroll-target="#순위"><span class="header-section-number">4.1</span> 순위</a></li>
+  <li><a href="#오프셋" id="toc-오프셋" class="nav-link" data-scroll-target="#오프셋"><span class="header-section-number">4.2</span> 오프셋</a></li>
+  <li><a href="#연속된-식별자" id="toc-연속된-식별자" class="nav-link" data-scroll-target="#연속된-식별자"><span class="header-section-number">4.3</span> 연속된 식별자</a></li>
+  <li><a href="#연습-문제-2" id="toc-연습-문제-2" class="nav-link" data-scroll-target="#연습-문제-2"><span class="header-section-number">4.4</span> 연습 문제</a></li>
   </ul></li>
-  <li><a href="#숫자-요약" id="toc-숫자-요약" class="nav-link" data-scroll-target="#숫자-요약"><span class="header-section-number">1.5</span> 숫자 요약</a>
+  <li><a href="#숫자-요약" id="toc-숫자-요약" class="nav-link" data-scroll-target="#숫자-요약"><span class="header-section-number">5</span> 숫자 요약</a>
   <ul class="collapse">
-  <li><a href="#중심" id="toc-중심" class="nav-link" data-scroll-target="#중심"><span class="header-section-number">1.5.1</span> 중심</a></li>
-  <li><a href="#최솟값-최댓값-및-분위수" id="toc-최솟값-최댓값-및-분위수" class="nav-link" data-scroll-target="#최솟값-최댓값-및-분위수"><span class="header-section-number">1.5.2</span> 최솟값, 최댓값 및 분위수</a></li>
-  <li><a href="#퍼짐" id="toc-퍼짐" class="nav-link" data-scroll-target="#퍼짐"><span class="header-section-number">1.5.3</span> 퍼짐</a></li>
-  <li><a href="#분포" id="toc-분포" class="nav-link" data-scroll-target="#분포"><span class="header-section-number">1.5.4</span> 분포</a></li>
-  <li><a href="#위치" id="toc-위치" class="nav-link" data-scroll-target="#위치"><span class="header-section-number">1.5.5</span> 위치</a></li>
-  <li><a href="#mutate와-함께-사용하기" id="toc-mutate와-함께-사용하기" class="nav-link" data-scroll-target="#mutate와-함께-사용하기"><span class="header-section-number">1.5.6</span> <code>mutate()</code>와 함께 사용하기</a></li>
-  <li><a href="#연습-문제-3" id="toc-연습-문제-3" class="nav-link" data-scroll-target="#연습-문제-3"><span class="header-section-number">1.5.7</span> 연습 문제</a></li>
-  </ul></li>
+  <li><a href="#중심" id="toc-중심" class="nav-link" data-scroll-target="#중심"><span class="header-section-number">5.1</span> 중심</a></li>
+  <li><a href="#최솟값-최댓값-및-분위수" id="toc-최솟값-최댓값-및-분위수" class="nav-link" data-scroll-target="#최솟값-최댓값-및-분위수"><span class="header-section-number">5.2</span> 최솟값, 최댓값 및 분위수</a></li>
+  <li><a href="#퍼짐" id="toc-퍼짐" class="nav-link" data-scroll-target="#퍼짐"><span class="header-section-number">5.3</span> 퍼짐</a></li>
+  <li><a href="#분포" id="toc-분포" class="nav-link" data-scroll-target="#분포"><span class="header-section-number">5.4</span> 분포</a></li>
+  <li><a href="#위치" id="toc-위치" class="nav-link" data-scroll-target="#위치"><span class="header-section-number">5.5</span> 위치</a></li>
+  <li><a href="#mutate와-함께-사용하기" id="toc-mutate와-함께-사용하기" class="nav-link" data-scroll-target="#mutate와-함께-사용하기"><span class="header-section-number">5.6</span> <code>mutate()</code>와 함께 사용하기</a></li>
+  <li><a href="#연습-문제-3" id="toc-연습-문제-3" class="nav-link" data-scroll-target="#연습-문제-3"><span class="header-section-number">5.7</span> 연습 문제</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch01.html">R과 데이터 분석</a></li><li class="breadcrumb-item"><a href="../notes/ch09.html">숫자 만들기</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch01.html">R과 데이터 분석</a></li><li class="breadcrumb-item"><a href="../notes/ch09.html">벡터: 숫자</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">벡터: 숫자</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="숫자" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> 숫자</h1>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <blockquote class="blockquote">
 <p>숫자형 벡터(numeric vectors)는 데이터 과학의 중추(backbone)이며, 여러분은 이 책의 앞부분에서 이미 여러 번 사용해 보았습니다. 이제 R에서 숫자로 할 수 있는 작업을 체계적으로 조사(survey)하여 숫자형 벡터와 관련된 향후 문제에 대처(tackle)할 수 있는 좋은 위치(well situated)에 서게 될 때입니다.</p>
 </blockquote>
@@ -299,8 +310,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="숫자-만들기" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="숫자-만들기"><span class="header-section-number">1.1</span> 숫자 만들기</h2>
+<section id="숫자-만들기" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="숫자-만들기"><span class="header-section-number">1</span> 숫자 만들기</h2>
 <p>대부분의 경우 이미 R의 숫자 유형 중 하나인 정수(integer) 또는 배정도 실수(double)로 기록된 숫자를 얻게 됩니다. 그러나 열 머리글(column headers)에서 피벗하여 생성했거나 데이터 가져오기 프로세스에서 무언가 잘못되어 문자열로 표시되는 경우가 있습니다.</p>
 <p>readr은 문자열을 숫자로 파싱하는 데 유용한 두 가지 함수인 <code>parse_double()</code>과 <code>parse_number()</code>를 제공합니다. 문자열로 작성된 숫자가 있을 때 <code>parse_double()</code>을 사용합니다.</p>
 <div class="cell">
@@ -315,8 +326,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1234 3513   59</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="개수-세기" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="개수-세기"><span class="header-section-number">1.2</span> 개수 세기</h2>
+<section id="개수-세기" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="개수-세기"><span class="header-section-number">2</span> 개수 세기</h2>
 <p>개수 세기(counts)와 약간의 기본 산술만으로 얼마나 많은 데이터 과학을 할 수 있는지 놀랍기 때문에 dplyr은 <code>count()</code>를 사용하여 개수를 세는 것을 가능한 한 쉽게 만들기 위해 노력(strives)합니다. 이 함수는 분석 중 빠른 탐색(quick exploration) 및 검사(checks)에 매우 좋습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">count</span>(dest)</span>
@@ -434,8 +445,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 AUS            21</span></span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 99 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="연습-문제" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">1.2.1</span> 연습 문제</h3>
+<section id="연습-문제" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">2.1</span> 연습 문제</h3>
 <ol type="1">
 <li><p>특정 변수에 대해 결측값이 있는 행의 수를 세기 위해 <code>count()</code>를 어떻게 사용할 수 있습니까?</p></li>
 <li><p><code>count()</code>에 대한 다음 호출(calls)을 대신 <code>group_by()</code>, <code>summarize()</code>, <code>arrange()</code>를 사용하도록 확장(Expand)하세요.</p></li>
@@ -444,11 +455,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">count</span>(tailnum, <span class="at">wt =</span> distance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="숫자-변환" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="숫자-변환"><span class="header-section-number">1.3</span> 숫자 변환</h2>
+<section id="숫자-변환" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="숫자-변환"><span class="header-section-number">3</span> 숫자 변환</h2>
 <p>변환 함수(Transformation functions)는 출력이 입력과 길이가 동일하기 때문에 <code>mutate()</code>와 잘 작동합니다. 대부분의(The vast majority of) 변환 함수는 이미 기본 R에 내장되어 있습니다. 이 모든 것을 나열하는 것은 비현실적이므로(impractical) 이 섹션에서는 유용한 것을 보여줄 것입니다. 예를 들어 R은 여러분이 꿈꿀 수 있는 모든 삼각 함수(trigonometric functions)를 제공하지만, 데이터 과학에서는 거의 필요하지 않기 때문에 여기에 나열하지 않습니다.</p>
-<section id="산술-및-재활용-규칙" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="산술-및-재활용-규칙"><span class="header-section-number">1.3.1</span> 산술 및 재활용 규칙</h3>
+<section id="산술-및-재활용-규칙" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="산술-및-재활용-규칙"><span class="header-section-number">3.1</span> 산술 및 재활용 규칙</h3>
 <p>우리는 산술(<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>)의 기초를 소개했고 그 이후로 많이 사용해 왔습니다. 이 함수들은 여러분이 초등학교(grade school)에서 배운 것을 수행하기 때문에 많은 설명이 필요하지 않습니다. 그러나 우리는 좌변(left)과 우변(right)의 길이가 다를 때 어떤 일이 일어나는지를 결정하는 재활용 규칙(recycling rules)에 대해 간단히 이야기할 필요가 있습니다. 이것은 <code>flights |&gt; mutate(air_time = air_time / 60)</code>과 같은 연산에 중요한데, 왜냐하면 <code>/</code>의 왼쪽에는 336,776개의 숫자가 있지만 오른쪽에는 하나만 있기 때문입니다.</p>
 <p>R은 짧은 벡터를 재활용(recycling), 즉 반복(repeating)하여 불일치하는 길이(mismatched lengths)를 처리합니다. 데이터 프레임 외부에 몇 개의 벡터를 만들면 이러한 작동을 더 쉽게 볼 수 있습니다.</p>
 <div class="cell">
@@ -487,8 +498,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>코드는 오류 없이 실행되지만 원하는 결과를 반환하지 않습니다. 재활용 규칙 때문에 홀수(odd numbered) 행에서는 1월 출발 비행편을, 짝수(even numbered) 행에서는 2월 출발 비행편을 찾습니다. 그리고 불행하게도 <code>flights</code>의 행 수가 짝수이기 때문에 경고도 없습니다.</p>
 <p>이러한 유형의 조용한 실패(silent failure)로부터 여러분을 보호하기 위해 대부분의 tidyverse 함수는 단일 값(single values)만 재활용하는 더 엄격한(stricter) 형태의 재활용을 사용합니다. 불행하게도 여기서나 다른 많은 경우에는 핵심 계산이 <code>filter()</code>가 아닌 기본 R 함수 <code>==</code>에 의해 수행되기 때문에 그것이 도움이 되지 않습니다.</p>
 </section>
-<section id="최솟값과-최댓값" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="최솟값과-최댓값"><span class="header-section-number">1.3.2</span> 최솟값과 최댓값</h3>
+<section id="최솟값과-최댓값" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="최솟값과-최댓값"><span class="header-section-number">3.2</span> 최솟값과 최댓값</h3>
 <p>산술 함수는 쌍으로 이루어진(pairs of) 변수들과 작동합니다. 밀접하게 관련된 두 함수인 <code>pmin()</code>과 <code>pmax()</code>는 두 개 이상의 변수가 주어졌을 때 각 행에서 작거나 큰 값을 반환합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
@@ -525,8 +536,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     7    NA     1     7</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="모듈러-산술" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="모듈러-산술"><span class="header-section-number">1.3.3</span> 모듈러 산술</h3>
+<section id="모듈러-산술" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="모듈러-산술"><span class="header-section-number">3.3</span> 모듈러 산술</h3>
 <p>모듈러 산술(Modular arithmetic)은 여러분이 소수 자릿수(decimal places)에 대해 배우기 전에 했던 수학의 한 유형, 즉 정수(whole number)와 나머지(remainder)를 산출하는 나눗셈의 기술적인 이름입니다. R에서 <code>%/%</code>는 정수 나눗셈을 수행하고 <code>%%</code>는 나머지를 계산합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%/%</span> <span class="dv">3</span></span>
@@ -576,13 +587,13 @@ Figure&nbsp;1: x축에는 예정된 출발 시간(hour), y축에는 취소된 �
 </div>
 </div>
 </section>
-<section id="로그" class="level3" data-number="1.3.4">
-<h3 data-number="1.3.4" class="anchored" data-anchor-id="로그"><span class="header-section-number">1.3.4</span> 로그</h3>
+<section id="로그" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="로그"><span class="header-section-number">3.4</span> 로그</h3>
 <p>로그(Logarithms)는 여러 자릿수(orders of magnitude)에 걸쳐 있는 데이터를 처리하고 지수적(exponential) 성장을 선형(linear) 성장으로 변환하는 데 믿을 수 없을 정도로(incredibly) 유용한 변환입니다. R에서는 <code>log()</code> (자연로그, 밑이 e), <code>log2()</code> (밑이 2), <code>log10()</code> (밑이 10) 세 가지 로그 중에서 선택할 수 있습니다. 우리는 <code>log2()</code> 또는 <code>log10()</code>을 사용할 것을 권장합니다.</p>
 <p><code>log2()</code>는 로그 스케일에서 1의 차이가 원래 스케일에서 두 배가 되는 것에 해당하고 -1의 차이는 절반이 되는 것에 해당하기 때문에 해석하기 쉽습니다. 반면에 <code>log10()</code>은 역변환(back-transform)하기 쉽습니다 (3은 10^3 = 1000). <code>log()</code>의 역함수는 <code>exp()</code>입니다; <code>log2()</code> 또는 <code>log10()</code>의 역함수를 계산하려면 <code>2^</code> 또는 <code>10^</code>을 사용해야 합니다.</p>
 </section>
-<section id="반올림" class="level3" data-number="1.3.5">
-<h3 data-number="1.3.5" class="anchored" data-anchor-id="반올림"><span class="header-section-number">1.3.5</span> 반올림</h3>
+<section id="반올림" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="반올림"><span class="header-section-number">3.5</span> 반올림</h3>
 <p>숫자를 가까운 정수로 반올림하려면 <code>round(x)</code>를 사용하세요.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">123.456</span>)</span>
@@ -634,8 +645,8 @@ Figure&nbsp;1: x축에는 예정된 출발 시간(hour), y축에는 취소된 �
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 123.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="숫자를-범위로-자르기" class="level3" data-number="1.3.6">
-<h3 data-number="1.3.6" class="anchored" data-anchor-id="숫자를-범위로-자르기"><span class="header-section-number">1.3.6</span> 숫자를 범위로 자르기</h3>
+<section id="숫자를-범위로-자르기" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="숫자를-범위로-자르기"><span class="header-section-number">3.6</span> 숫자를 범위로 자르기</h3>
 <p><code>cut()</code>을 사용하여 숫자형 벡터를 이산형 버킷(discrete buckets)으로 나누세요(break up (일명 bin)).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>)</span>
@@ -667,8 +678,8 @@ Figure&nbsp;1: x축에는 예정된 출발 시간(hour), y축에는 취소된 �
 </div>
 <p>구간이 <code>[a, b)</code>인지 <code>(a, b]</code>인지, 그리고 낮은 구간이 <code>[a, b]</code>여야 하는지를 제어하는 <code>right</code> 및 <code>include.lowest</code>와 같은 다른 유용한 인수에 대한 설명서를 참조하세요.</p>
 </section>
-<section id="누적-및-이동-집계" class="level3" data-number="1.3.7">
-<h3 data-number="1.3.7" class="anchored" data-anchor-id="누적-및-이동-집계"><span class="header-section-number">1.3.7</span> 누적 및 이동 집계</h3>
+<section id="누적-및-이동-집계" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="누적-및-이동-집계"><span class="header-section-number">3.7</span> 누적 및 이동 집계</h3>
 <p>기본 R은 누계(running) 또는 누적(cumulative) 합계(sums), 곱(products), 최솟값(mins), 최댓값(maxes)을 위한 <code>cumsum()</code>, <code>cumprod()</code>, <code>cummin()</code>, <code>cummax()</code>를 제공합니다. dplyr은 누적 평균을 위한 <code>cummean()</code>을 제공합니다. 실제로는 누적 합계가 자주 등장하는 경향이 있습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
@@ -677,8 +688,8 @@ Figure&nbsp;1: x축에는 예정된 출발 시간(hour), y축에는 취소된 �
 </div>
 <p>더 복잡한 롤링(rolling) 또는 슬라이딩(sliding) 집계가 필요하다면 slider(<a href="https://slider.r-lib.org/">https://slider.r-lib.org/</a>) 패키지를 시도해 보세요.</p>
 </section>
-<section id="연습-문제-1" class="level3" data-number="1.3.8">
-<h3 data-number="1.3.8" class="anchored" data-anchor-id="연습-문제-1"><span class="header-section-number">1.3.8</span> 연습 문제</h3>
+<section id="연습-문제-1" class="level3" data-number="3.8">
+<h3 data-number="3.8" class="anchored" data-anchor-id="연습-문제-1"><span class="header-section-number">3.8</span> 연습 문제</h3>
 <ol type="1">
 <li><p>R은 어떤 삼각 함수를 제공합니까? 몇 가지 이름을 추측하고 문서를 찾아보세요. 도(degrees)를 사용합니까 아니면 라디안(radians)을 사용합니까?</p></li>
 <li><p>현재 <code>dep_time</code>과 <code>sched_dep_time</code>은 보기는 편하지만 실제로는 연속된 숫자가 아니기 때문에 계산하기가 어렵습니다. 아래 코드를 실행하면 기본적인 문제를 볼 수 있습니다. 각 시간(hour) 사이에 간격(gap)이 있습니다. 이들을 시간에 대한 보다 진실한(truthful) 표현(시간의 분수(fractional) 형태 또는 자정 이후의 분(minutes))으로 변환하세요.</p></li>
@@ -694,11 +705,11 @@ Figure&nbsp;1: x축에는 예정된 출발 시간(hour), y축에는 취소된 �
 </ol>
 </section>
 </section>
-<section id="일반-변환" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="일반-변환"><span class="header-section-number">1.4</span> 일반 변환</h2>
+<section id="일반-변환" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="일반-변환"><span class="header-section-number">4</span> 일반 변환</h2>
 <p>다음 섹션에서는 숫자형 벡터에 자주 사용되지만 다른 모든 열(column) 유형에도 적용할 수 있는 몇 가지 일반적인 변환에 대해 설명합니다.</p>
-<section id="순위" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="순위"><span class="header-section-number">1.4.1</span> 순위</h3>
+<section id="순위" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="순위"><span class="header-section-number">4.1</span> 순위</h3>
 <p>dplyr은 SQL에서 영감을 받은 여러 가지 순위(ranking) 함수를 제공하지만 항상 <code>dplyr::min_rank()</code>로 시작해야 합니다. 이것은 동점(ties)을 처리하는 전형적인 방법, 예를 들어 1등, 2등, 2등, 4등 방식을 사용합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">17</span>, <span class="dv">22</span>, <span class="cn">NA</span>)</span>
@@ -752,8 +763,8 @@ Figure&nbsp;1: x축에는 예정된 출발 시간(hour), y축에는 취소된 �
 <span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="오프셋" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="오프셋"><span class="header-section-number">1.4.2</span> 오프셋</h3>
+<section id="오프셋" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="오프셋"><span class="header-section-number">4.2</span> 오프셋</h3>
 <p><code>dplyr::lead()</code>와 <code>dplyr::lag()</code>를 사용하면 “현재” 값 바로 앞이나 바로 뒤의 값을 참조할 수 있습니다. 이들은 입력과 같은 길이의 벡터를 반환하며 시작이나 끝은 <code>NA</code>로 채워집니다(padded).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">19</span>, <span class="dv">35</span>)</span>
@@ -778,8 +789,8 @@ Figure&nbsp;1: x축에는 예정된 출발 시간(hour), y축에는 취소된 �
 </div>
 <p>두 번째 인수 <code>n</code>을 사용하여 두 개 이상의 위치를 앞당기거나(lead) 뒤처지게(lag) 할 수 있습니다.</p>
 </section>
-<section id="연속된-식별자" class="level3" data-number="1.4.3">
-<h3 data-number="1.4.3" class="anchored" data-anchor-id="연속된-식별자"><span class="header-section-number">1.4.3</span> 연속된 식별자</h3>
+<section id="연속된-식별자" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="연속된-식별자"><span class="header-section-number">4.3</span> 연속된 식별자</h3>
 <p>때로는 어떤 이벤트가 발생할 때마다 새 그룹을 시작하고 싶을 수 있습니다. 예를 들어 웹사이트 데이터를 볼 때 이벤트를 세션으로 나누는 것이 일반적인데, 이때 마지막 활동(activity) 이후 <code>x</code>분 이상의 간격(gap)이 생긴 후 새로운 세션을 시작합니다. 예를 들어 누군가 웹사이트를 방문한 시간이 있다고 상상해 보세요.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>events <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
@@ -846,8 +857,8 @@ Figure&nbsp;1: x축에는 예정된 출발 시간(hour), y축에는 취소된 �
 <span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 1 more row</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="연습-문제-2" class="level3" data-number="1.4.4">
-<h3 data-number="1.4.4" class="anchored" data-anchor-id="연습-문제-2"><span class="header-section-number">1.4.4</span> 연습 문제</h3>
+<section id="연습-문제-2" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="연습-문제-2"><span class="header-section-number">4.4</span> 연습 문제</h3>
 <ol type="1">
 <li><p>순위 지정 함수를 사용하여 많이 지연된 비행편 10개를 찾으세요. 동점(ties)은 어떻게 처리하고 싶나요? <code>min_rank()</code>에 대한 설명서를 주의 깊게 읽어보세요.</p></li>
 <li><p>어떤 비행기(<code>tailnum</code>)의 정시 도착 기록이 나쁩니까?</p></li>
@@ -873,11 +884,11 @@ Figure&nbsp;1: x축에는 예정된 출발 시간(hour), y축에는 취소된 �
 </ol>
 </section>
 </section>
-<section id="숫자-요약" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="숫자-요약"><span class="header-section-number">1.5</span> 숫자 요약</h2>
+<section id="숫자-요약" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="숫자-요약"><span class="header-section-number">5</span> 숫자 요약</h2>
 <p>우리가 이미 소개한 개수, 평균, 합계만 사용해도 많은 것을 할 수 있지만, R은 유용한 요약 함수들을 더 많이 제공합니다. 다음은 여러분이 유용하다고 여길 만한 몇 가지 선택 사항(selection)입니다.</p>
-<section id="중심" class="level3" data-number="1.5.1">
-<h3 data-number="1.5.1" class="anchored" data-anchor-id="중심"><span class="header-section-number">1.5.1</span> 중심</h3>
+<section id="중심" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="중심"><span class="header-section-number">5.1</span> 중심</h3>
 <p>지금까지 값 벡터의 중심을 요약하기 위해 주로 <code>mean()</code>을 사용했습니다. 평균은 합계를 개수로 나눈 것이기 때문에 몇 개의 비정상적으로 높거나 낮은 값에 민감(sensitive)합니다. 대안은 벡터의 “중간(middle)”에 있는 값을 찾는 <code>median()</code>(중앙값)을 사용하는 것입니다. 즉, 값의 50%는 중앙값보다 위에 있고 50%는 아래에 있습니다.</p>
 <p>관심 있는 변수 분포의 모양에 따라 평균 또는 중앙값이 중심에 대한 더 나은 척도(measure)가 될 수 있습니다. 예를 들어 대칭 분포(symmetric distributions)의 경우 일반적으로 평균을 보고하고, 치우친(비대칭) 분포(skewed distributions)의 경우 일반적으로 중앙값을 보고합니다.</p>
 <p>각 목적지에 대한 평균 출발 지연(분 단위)과 중앙값 출발 지연을 비교합니다. 비행편이 때때로 몇 시간 늦게 떠나지만 결코 몇 시간 일찍 떠나지는 않기 때문에 중앙값 지연은 항상 평균 지연보다 작습니다.</p>
@@ -909,8 +920,8 @@ Figure&nbsp;2: 일일 출발 지연을 평균 대신 중앙값으로 요약할 �
 <p>여러분은 또한 흔한 값인 최빈값(mode)에 대해서도 궁금해할 수 있습니다. 이것은 매우 단순한 경우(고등학교에서 이것에 대해 배웠을 수 있는 이유)에만 잘 작동하는 요약이지만, 많은 실제 데이터셋에서는 잘 작동하지 않습니다. 데이터가 이산형(discrete)이면 일반적인 값이 여러 개일 수 있고, 데이터가 연속형(continuous)이면 모든 값이 아주 조금씩(ever so slightly) 다르기 때문에 일반적인 값이 전혀 없을 수도 있습니다.</p>
 <p>이러한 이유로 최빈값은 통계학자들이 잘 사용하지 않는 경향이 있으며 기본 R에는 최빈값 함수가 포함되어 있지 않습니다.</p>
 </section>
-<section id="최솟값-최댓값-및-분위수" class="level3" data-number="1.5.2">
-<h3 data-number="1.5.2" class="anchored" data-anchor-id="최솟값-최댓값-및-분위수"><span class="header-section-number">1.5.2</span> 최솟값, 최댓값 및 분위수</h3>
+<section id="최솟값-최댓값-및-분위수" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="최솟값-최댓값-및-분위수"><span class="header-section-number">5.2</span> 최솟값, 최댓값 및 분위수</h3>
 <p>중심 이외의 위치(locations)에 관심이 있다면 어떨까요? <code>min()</code>과 <code>max()</code>는 큰 값과 작은 값을 제공합니다. 또 다른 강력한 도구는 중앙값의 일반화인 <code>quantile()</code>입니다. <code>quantile(x, 0.25)</code>는 값의 25%보다 큰 <code>x</code>의 값을 찾고, <code>quantile(x, 0.5)</code>는 중앙값과 동일하며, <code>quantile(x, 0.95)</code>는 값의 95%보다 큰 값을 찾습니다.</p>
 <p><code>flights</code> 데이터의 경우, 많이 지연된 5%의 비행편은 꽤 극단적(extreme)일 수 있고 이를 무시할 것이기 때문에 최대값보다는 지연의 95% 분위수를 보는 것이 좋습니다.</p>
 <div class="cell">
@@ -933,8 +944,8 @@ Figure&nbsp;2: 일일 출발 지연을 평균 대신 중앙값으로 요약할 �
 <span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 359 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="퍼짐" class="level3" data-number="1.5.3">
-<h3 data-number="1.5.3" class="anchored" data-anchor-id="퍼짐"><span class="header-section-number">1.5.3</span> 퍼짐</h3>
+<section id="퍼짐" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="퍼짐"><span class="header-section-number">5.3</span> 퍼짐</h3>
 <p>때때로 데이터의 대부분(bulk)이 어디에 있는지보다는 데이터가 얼마나 널리 퍼져 있는지(spread out)에 더 관심이 있습니다. 일반적으로 사용되는 두 가지 요약은 표준편차 <code>sd(x)</code>와 사분위수 범위 <code>IQR()</code>입니다. 여러분은 아마도 이미 <code>sd()</code>에 익숙할 것이기 때문에 여기서는 설명하지 않겠지만, <code>IQR()</code>은 새로울 수 있습니다. 이것은 <code>quantile(x, 0.75) - quantile(x, 0.25)</code>이며 데이터의 중간 50%가 포함된 범위를 제공합니다.</p>
 <p>우리는 이것을 사용하여 <code>flights</code> 데이터에서 약간 이상한 점을 드러낼 수 있습니다. 공항은 항상 같은 장소에 있기 때문에 출발지와 목적지 사이의 거리의 퍼짐 정도(spread)가 0일 것이라고 예상할 수 있습니다. 하지만 아래 코드는 EGE(<a href="https://en.wikipedia.org/wiki/Eagle_County_Regional_Airport">https://en.wikipedia.org/wiki/Eagle_County_Regional_Airport</a>) 공항에 대한 데이터의 이상한 점을 보여줍니다.</p>
 <div class="cell">
@@ -953,8 +964,8 @@ Figure&nbsp;2: 일일 출발 지연을 평균 대신 중앙값으로 요약할 �
 <span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 JFK    EGE              1   103</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="분포" class="level3" data-number="1.5.4">
-<h3 data-number="1.5.4" class="anchored" data-anchor-id="분포"><span class="header-section-number">1.5.4</span> 분포</h3>
+<section id="분포" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="분포"><span class="header-section-number">5.4</span> 분포</h3>
 <p>위에 설명된 모든 요약 통계(summary statistics)는 분포를 단일 숫자로 줄이는(reducing) 방법이라는 것을 기억할 가치가 있습니다. 이것은 그것들이 근본적으로 환원적(reductive)이며, 잘못된 요약을 선택하면 그룹 간의 중요한 차이를 쉽게 놓칠 수 있음을 의미합니다. 그렇기 때문에 요약 통계량을 확정하기 전(before committing to)에 분포를 시각화하는 것이 항상 좋은 생각입니다.</p>
 <p>분포가 너무 치우쳐 있어서 데이터의 대부분(bulk)을 보려면 확대해야 합니다. 이것은 평균이 좋은 요약이 될 가능성이 낮으며 대신 중앙값을 선호할 수 있음을 시사(suggests)합니다.</p>
 <div class="cell">
@@ -987,8 +998,8 @@ Figure&nbsp;3: (왼쪽) 전체 데이터의 히스토그램은 매우 치우쳐 
 </div>
 <p>여러분이 다루고 있는 데이터에 특별히 맞춤화된 자신만의 커스텀 요약을 탐구하는 것을 두려워하지 마세요. 이 경우, 그것은 일찍 떠난 비행편과 늦게 떠난 비행편을 따로 요약하거나 값이 심하게(heavily) 치우쳐 있다는 점을 감안하여(given that) 로그 변환(log-transformation)을 시도하는 것을 의미할 수 있습니다. 수치 요약을 생성할 때마다 각 그룹의 관측치 수를 포함하는 것이 좋습니다.</p>
 </section>
-<section id="위치" class="level3" data-number="1.5.5">
-<h3 data-number="1.5.5" class="anchored" data-anchor-id="위치"><span class="header-section-number">1.5.5</span> 위치</h3>
+<section id="위치" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="위치"><span class="header-section-number">5.5</span> 위치</h3>
 <p>숫자형 벡터에 유용하지만 다른 모든 유형의 값과도 작동하는 마지막 한 가지 요약 유형이 있습니다. 바로 특정 위치의 값을 추출하는 것입니다. <code>first(x)</code>, <code>last(x)</code>, 그리고 <code>nth(x, n)</code>. 예를 들어 매일 첫 번째, 다섯 번째, 마지막 출발을 찾을 수 있습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
@@ -1038,8 +1049,8 @@ Figure&nbsp;3: (왼쪽) 전체 데이터의 히스토그램은 매우 치우쳐 
 <span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 12 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="mutate와-함께-사용하기" class="level3" data-number="1.5.6">
-<h3 data-number="1.5.6" class="anchored" data-anchor-id="mutate와-함께-사용하기"><span class="header-section-number">1.5.6</span> <code>mutate()</code>와 함께 사용하기</h3>
+<section id="mutate와-함께-사용하기" class="level3" data-number="5.6">
+<h3 data-number="5.6" class="anchored" data-anchor-id="mutate와-함께-사용하기"><span class="header-section-number">5.6</span> <code>mutate()</code>와 함께 사용하기</h3>
 <p>이름에서 알 수 있듯이(As the names suggest) 요약 함수는 일반적으로 <code>summarize()</code>와 짝을 이룹니다. 논의한 재활용 규칙 때문에 특히 일종의 그룹 표준화(group standardization)를 수행하려는 경우 <code>mutate()</code>와 유용하게 짝을 이룰 수도 있습니다.</p>
 <ol type="1">
 <li><code>x / sum(x)</code>는 전체 비율을 계산합니다.</li>
@@ -1048,8 +1059,8 @@ Figure&nbsp;3: (왼쪽) 전체 데이터의 히스토그램은 매우 치우쳐 
 <li><code>x / first(x)</code>는 첫 번째 관측치를 기준으로 지수(index)를 계산합니다.</li>
 </ol>
 </section>
-<section id="연습-문제-3" class="level3" data-number="1.5.7">
-<h3 data-number="1.5.7" class="anchored" data-anchor-id="연습-문제-3"><span class="header-section-number">1.5.7</span> 연습 문제</h3>
+<section id="연습-문제-3" class="level3" data-number="5.7">
+<h3 data-number="5.7" class="anchored" data-anchor-id="연습-문제-3"><span class="header-section-number">5.7</span> 연습 문제</h3>
 <ol type="1">
 <li><p>비행편 그룹의 전형적인 지연 특성을 평가(assess)하는 5가지 이상의 서로 다른 방법에 대해 브레인스토밍하세요. 언제 <code>mean()</code>이 유용합니까? 언제 <code>median()</code>이 유용합니까? 언제 다른 것을 사용하고 싶을 수 있나요? 도착 지연이나 출발 지연 중 어느 것을 사용해야 할까요? <code>planes</code>의 데이터를 사용하고 싶을 수 있는 이유는 무엇입니까?</p></li>
 <li><p>어느 목적지가 비행 속도에서 큰 변동(variation)을 보입니까?</p></li>
@@ -1057,7 +1068,6 @@ Figure&nbsp;3: (왼쪽) 전체 데이터의 히스토그램은 매우 치우쳐 
 </ol>
 
 
-</section>
 </section>
 </section>
 
@@ -1464,8 +1474,8 @@ Figure&nbsp;3: (왼쪽) 전체 데이터의 히스토그램은 매우 치우쳐 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../notes/ch08.html" class="pagination-link" aria-label="비교">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">비교</span>
+      <a href="../notes/ch08.html" class="pagination-link" aria-label="벡터: 논리형">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">벡터: 논리형</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

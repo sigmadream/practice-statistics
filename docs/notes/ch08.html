@@ -129,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch01.html">R과 데이터 분석</a></li><li class="breadcrumb-item"><a href="../notes/ch08.html">비교</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch01.html">R과 데이터 분석</a></li><li class="breadcrumb-item"><a href="../notes/ch08.html">벡터: 논리형</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -221,13 +221,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch08.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">비교</span></a>
+ <span class="menu-text">벡터: 논리형</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/ch09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">숫자 만들기</span></a>
+ <span class="menu-text">벡터: 숫자</span></a>
   </div>
 </li>
       </ul>
@@ -242,47 +242,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#논리형-벡터" id="toc-논리형-벡터" class="nav-link active" data-scroll-target="#논리형-벡터"><span class="header-section-number">1</span> 논리형 벡터</a>
+  <li><a href="#비교" id="toc-비교" class="nav-link active" data-scroll-target="#비교"><span class="header-section-number">1</span> 비교</a>
   <ul class="collapse">
-  <li><a href="#비교" id="toc-비교" class="nav-link" data-scroll-target="#비교"><span class="header-section-number">1.1</span> 비교</a>
-  <ul class="collapse">
-  <li><a href="#부동-소수점-비교" id="toc-부동-소수점-비교" class="nav-link" data-scroll-target="#부동-소수점-비교"><span class="header-section-number">1.1.1</span> 부동 소수점 비교</a></li>
-  <li><a href="#결측값" id="toc-결측값" class="nav-link" data-scroll-target="#결측값"><span class="header-section-number">1.1.2</span> 결측값</a></li>
-  <li><a href="#is.na" id="toc-is.na" class="nav-link" data-scroll-target="#is.na"><span class="header-section-number">1.1.3</span> <code>is.na()</code></a></li>
-  <li><a href="#연습-문제-exercises" id="toc-연습-문제-exercises" class="nav-link" data-scroll-target="#연습-문제-exercises"><span class="header-section-number">1.1.4</span> 연습 문제 (Exercises)</a></li>
+  <li><a href="#부동-소수점-비교" id="toc-부동-소수점-비교" class="nav-link" data-scroll-target="#부동-소수점-비교"><span class="header-section-number">1.1</span> 부동 소수점 비교</a></li>
+  <li><a href="#결측값" id="toc-결측값" class="nav-link" data-scroll-target="#결측값"><span class="header-section-number">1.2</span> 결측값</a></li>
+  <li><a href="#is.na" id="toc-is.na" class="nav-link" data-scroll-target="#is.na"><span class="header-section-number">1.3</span> <code>is.na()</code></a></li>
+  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">1.4</span> 연습 문제</a></li>
   </ul></li>
-  <li><a href="#부울-대수" id="toc-부울-대수" class="nav-link" data-scroll-target="#부울-대수"><span class="header-section-number">1.2</span> 부울 대수</a>
+  <li><a href="#부울-대수" id="toc-부울-대수" class="nav-link" data-scroll-target="#부울-대수"><span class="header-section-number">2</span> 부울 대수</a>
   <ul class="collapse">
-  <li><a href="#결측값-1" id="toc-결측값-1" class="nav-link" data-scroll-target="#결측값-1"><span class="header-section-number">1.2.1</span> 결측값</a></li>
-  <li><a href="#연산-순서" id="toc-연산-순서" class="nav-link" data-scroll-target="#연산-순서"><span class="header-section-number">1.2.2</span> 연산 순서</a></li>
-  <li><a href="#in" id="toc-in" class="nav-link" data-scroll-target="#in"><span class="header-section-number">1.2.3</span> <code>%in%</code></a></li>
-  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">1.2.4</span> 연습 문제</a></li>
+  <li><a href="#결측값-1" id="toc-결측값-1" class="nav-link" data-scroll-target="#결측값-1"><span class="header-section-number">2.1</span> 결측값</a></li>
+  <li><a href="#연산-순서" id="toc-연산-순서" class="nav-link" data-scroll-target="#연산-순서"><span class="header-section-number">2.2</span> 연산 순서</a></li>
+  <li><a href="#in" id="toc-in" class="nav-link" data-scroll-target="#in"><span class="header-section-number">2.3</span> <code>%in%</code></a></li>
+  <li><a href="#연습-문제-1" id="toc-연습-문제-1" class="nav-link" data-scroll-target="#연습-문제-1"><span class="header-section-number">2.4</span> 연습 문제</a></li>
   </ul></li>
-  <li><a href="#논리형-요약" id="toc-논리형-요약" class="nav-link" data-scroll-target="#논리형-요약"><span class="header-section-number">1.3</span> 논리형 요약</a>
+  <li><a href="#논리형-요약" id="toc-논리형-요약" class="nav-link" data-scroll-target="#논리형-요약"><span class="header-section-number">3</span> 논리형 요약</a>
   <ul class="collapse">
-  <li><a href="#논리형-벡터의-숫자-요약" id="toc-논리형-벡터의-숫자-요약" class="nav-link" data-scroll-target="#논리형-벡터의-숫자-요약"><span class="header-section-number">1.3.1</span> 논리형 벡터의 숫자 요약</a></li>
-  <li><a href="#논리형-부분집합" id="toc-논리형-부분집합" class="nav-link" data-scroll-target="#논리형-부분집합"><span class="header-section-number">1.3.2</span> 논리형 부분집합</a></li>
-  <li><a href="#연습-문제-1" id="toc-연습-문제-1" class="nav-link" data-scroll-target="#연습-문제-1"><span class="header-section-number">1.3.3</span> 연습 문제</a></li>
+  <li><a href="#논리형-벡터의-숫자-요약" id="toc-논리형-벡터의-숫자-요약" class="nav-link" data-scroll-target="#논리형-벡터의-숫자-요약"><span class="header-section-number">3.1</span> 논리형 벡터의 숫자 요약</a></li>
+  <li><a href="#논리형-부분집합" id="toc-논리형-부분집합" class="nav-link" data-scroll-target="#논리형-부분집합"><span class="header-section-number">3.2</span> 논리형 부분집합</a></li>
+  <li><a href="#연습-문제-2" id="toc-연습-문제-2" class="nav-link" data-scroll-target="#연습-문제-2"><span class="header-section-number">3.3</span> 연습 문제</a></li>
   </ul></li>
-  <li><a href="#조건부-변환" id="toc-조건부-변환" class="nav-link" data-scroll-target="#조건부-변환"><span class="header-section-number">1.4</span> 조건부 변환</a>
+  <li><a href="#조건부-변환" id="toc-조건부-변환" class="nav-link" data-scroll-target="#조건부-변환"><span class="header-section-number">4</span> 조건부 변환</a>
   <ul class="collapse">
-  <li><a href="#if_else" id="toc-if_else" class="nav-link" data-scroll-target="#if_else"><span class="header-section-number">1.4.1</span> <code>if_else()</code></a></li>
-  <li><a href="#case_when" id="toc-case_when" class="nav-link" data-scroll-target="#case_when"><span class="header-section-number">1.4.2</span> <code>case_when()</code></a></li>
-  <li><a href="#호환-가능한-유형" id="toc-호환-가능한-유형" class="nav-link" data-scroll-target="#호환-가능한-유형"><span class="header-section-number">1.4.3</span> 호환 가능한 유형</a></li>
-  <li><a href="#연습-문제-2" id="toc-연습-문제-2" class="nav-link" data-scroll-target="#연습-문제-2"><span class="header-section-number">1.4.4</span> 연습 문제</a></li>
-  </ul></li>
+  <li><a href="#if_else" id="toc-if_else" class="nav-link" data-scroll-target="#if_else"><span class="header-section-number">4.1</span> <code>if_else()</code></a></li>
+  <li><a href="#case_when" id="toc-case_when" class="nav-link" data-scroll-target="#case_when"><span class="header-section-number">4.2</span> <code>case_when()</code></a></li>
+  <li><a href="#호환-가능한-유형" id="toc-호환-가능한-유형" class="nav-link" data-scroll-target="#호환-가능한-유형"><span class="header-section-number">4.3</span> 호환 가능한 유형</a></li>
+  <li><a href="#연습-문제-3" id="toc-연습-문제-3" class="nav-link" data-scroll-target="#연습-문제-3"><span class="header-section-number">4.4</span> 연습 문제</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch01.html">R과 데이터 분석</a></li><li class="breadcrumb-item"><a href="../notes/ch08.html">비교</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/ch01.html">R과 데이터 분석</a></li><li class="breadcrumb-item"><a href="../notes/ch08.html">벡터: 논리형</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">벡터: 논리형</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="논리형-벡터" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> 논리형 벡터</h1>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <blockquote class="blockquote">
 <p>논리형 벡터는 각 요소가 <code>TRUE</code>, <code>FALSE</code>, <code>NA</code>의 세 가지 가능한 값 중 하나만 될 수 있기 때문에 간단한 유형의 벡터입니다. 원시 데이터(raw data)에서 논리형 벡터를 찾는 것은 비교적 드물지만 거의 모든 분석 과정에서 논리형 벡터를 만들고 조작(manipulate)하게 될 것입니다.</p>
 </blockquote>
@@ -313,8 +324,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    11    22</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 1 more row</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="비교" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="비교"><span class="header-section-number">1.1</span> 비교</h2>
+<section id="비교" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="비교"><span class="header-section-number">1</span> 비교</h2>
 <p>논리형 벡터를 만드는 매우 일반적인 방법은 <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>!=</code>, <code>==</code>를 사용한 숫자 비교를 통하는 것입니다. 지금까지 우리는 대부분 <code>filter()</code> 내에서 논리형 변수를 일시적으로(transiently) 만들었습니다 — 이 변수들은 계산되고(computed), 사용된 후 버려집니다. 예를 들어 다음 필터는 대략 제시간에(roughly on time) 도착하는 모든 주간(daytime) 출발을 찾습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
@@ -360,8 +371,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(daytime <span class="sc">&amp;</span> approx_ontime)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="부동-소수점-비교" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="부동-소수점-비교"><span class="header-section-number">1.1.1</span> 부동 소수점 비교</h3>
+<section id="부동-소수점-비교" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="부동-소수점-비교"><span class="header-section-number">1.1</span> 부동 소수점 비교</h3>
 <p>숫자에 <code>==</code>를 사용할 때는 주의하세요. 예를 들어 이 벡터는 숫자 1과 2를 포함하는 것처럼 보입니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">49</span> <span class="sc">*</span> <span class="dv">49</span>, <span class="fu">sqrt</span>(<span class="dv">2</span>) <span class="sc">^</span> <span class="dv">2</span>)</span>
@@ -384,8 +395,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE TRUE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="결측값" class="level3" data-number="1.1.2">
-<h3 data-number="1.1.2" class="anchored" data-anchor-id="결측값"><span class="header-section-number">1.1.2</span> 결측값</h3>
+<section id="결측값" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="결측값"><span class="header-section-number">1.2</span> 결측값</h3>
 <p>결측값(missing values)은 알 수 없는(unknown) 것을 나타내므로 “전염성(contagious)”이 있습니다. 알 수 없는 값을 포함하는 거의 모든 작업도 알 수 없게(unknown) 됩니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">&gt;</span> <span class="dv">5</span></span>
@@ -421,8 +432,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>대신에 우리는 새로운 도구가 필요합니다.</p>
 </section>
-<section id="is.na" class="level3" data-number="1.1.3">
-<h3 data-number="1.1.3" class="anchored" data-anchor-id="is.na"><span class="header-section-number">1.1.3</span> <code>is.na()</code></h3>
+<section id="is.na" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="is.na"><span class="header-section-number">1.3</span> <code>is.na()</code></h3>
 <p><code>is.na(x)</code>는 모든 유형의 벡터에서 작동하며 결측값에 대해서는 <code>TRUE</code>를, 그 외의 모든 것에는 <code>FALSE</code>를 반환합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">NA</span>, <span class="cn">FALSE</span>))</span>
@@ -481,20 +492,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="연습-문제-exercises" class="level3" data-number="1.1.4">
-<h3 data-number="1.1.4" class="anchored" data-anchor-id="연습-문제-exercises"><span class="header-section-number">1.1.4</span> 연습 문제 (Exercises)</h3>
+<section id="연습-문제" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">1.4</span> 연습 문제</h3>
 <ol type="1">
 <li><p><code>dplyr::near()</code>는 어떻게 작동하나요? 소스 코드를 보려면 <code>near</code>를 입력하세요. <code>sqrt(2)^2</code>는 2에 가까운가요(near)?</p></li>
 <li><p><code>mutate()</code>, <code>is.na()</code>, <code>count()</code>를 함께 사용하여 <code>dep_time</code>, <code>sched_dep_time</code>, <code>dep_delay</code>의 결측값이 어떻게 연결되어 있는지 설명하세요.</p></li>
 </ol>
 </section>
 </section>
-<section id="부울-대수" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="부울-대수"><span class="header-section-number">1.2</span> 부울 대수</h2>
+<section id="부울-대수" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="부울-대수"><span class="header-section-number">2</span> 부울 대수</h2>
 <p>여러 개의 논리형 벡터가 있으면 부울 대수(boolean algebra)를 사용하여 이들을 함께 결합할 수 있습니다. R에서 <code>&amp;</code>는 “and(그리고)”, <code>|</code>는 “or(또는)”, <code>!</code>는 “not(아니다)”, <code>xor()</code>는 배타적 논리합(exclusive or)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>입니다. 예를 들어 <code>df |&gt; filter(!is.na(x))</code>는 <code>x</code>가 누락되지 않은 모든 행을 찾고 <code>df |&gt; filter(x &lt; -10 | x &gt; 0)</code>는 <code>x</code>가 -10보다 작거나 0보다 큰 모든 행을 찾습니다.</p>
 <p><code>&amp;</code> 및 <code>|</code>뿐만 아니라 R에는 <code>&amp;&amp;</code> 및 <code>||</code>도 있습니다. dplyr 함수 내에서 그것들을 사용하지 마세요! 이들은 단락(short-circuiting) 연산자라고 불리며 단일(single) <code>TRUE</code> 또는 <code>FALSE</code>만 반환합니다. 이것들은 데이터 과학이 아니라 프로그래밍을 위해 중요합니다.</p>
-<section id="결측값-1" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="결측값-1"><span class="header-section-number">1.2.1</span> 결측값</h3>
+<section id="결측값-1" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="결측값-1"><span class="header-section-number">2.1</span> 결측값</h3>
 <p>부울 대수에서 결측값에 대한 규칙은 언뜻 보기에(at first glance) 일관성이 없는 것(inconsistent)처럼 보이기 때문에 설명하기가 약간 까다롭습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span>))</span>
@@ -513,8 +524,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>무슨 일이 일어나고 있는지 이해하려면 <code>NA | TRUE</code>(<code>NA</code> 또는 <code>TRUE</code>)에 대해 생각해 보세요. 논리형 벡터의 결측값은 그 값이 <code>TRUE</code>일 수도 있고 <code>FALSE</code>일 수도 있음을 의미합니다. <code>TRUE | TRUE</code>와 <code>FALSE | TRUE</code>는 적어도 하나가 <code>TRUE</code>이기 때문에 둘 다 <code>TRUE</code>입니다. <code>NA | TRUE</code>도 <code>NA</code>가 <code>TRUE</code>이거나 <code>FALSE</code>일 수 있기 때문에 반드시 <code>TRUE</code>여야 합니다. 그러나 <code>NA | FALSE</code>는 <code>NA</code>가 <code>TRUE</code>인지 <code>FALSE</code>인지 모르기 때문에 <code>NA</code>입니다. 두 조건이 모두 충족(fulfilled)되어야 한다는 점을 고려할 때 <code>&amp;</code>에 대해서도 유사한 추론이 적용됩니다. 따라서 <code>NA &amp; TRUE</code>는 <code>NA</code>가 <code>TRUE</code>이거나 <code>FALSE</code>일 수 있기 때문에 <code>NA</code>이고, <code>NA &amp; FALSE</code>는 조건 중 적어도 하나가 <code>FALSE</code>이기 때문에 <code>FALSE</code>입니다.</p>
 </section>
-<section id="연산-순서" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="연산-순서"><span class="header-section-number">1.2.2</span> 연산 순서</h3>
+<section id="연산-순서" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="연산-순서"><span class="header-section-number">2.2</span> 연산 순서</h3>
 <p>연산 순서가 영어(또는 한국어 일상어)와 같은 방식으로 작동하지 않는다는 점에 유의하세요. 11월이나 12월에 출발한 모든 비행편을 찾는 다음 코드를 살펴보세요.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
@@ -556,8 +567,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 336,770 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="in" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="in"><span class="header-section-number">1.2.3</span> <code>%in%</code></h3>
+<section id="in" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="in"><span class="header-section-number">2.3</span> <code>%in%</code></h3>
 <p><code>==</code>와 <code>|</code>를 올바른 순서로 가져오는 문제를 피하는 쉬운 방법은 <code>%in%</code>을 사용하는 것입니다. <code>x %in% y</code>는 <code>x</code>의 값이 <code>y</code>의 어디에든 있을 때마다 <code>TRUE</code>인, <code>x</code>와 같은 길이의 논리형 벡터를 반환합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">12</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">11</span>)</span>
@@ -594,8 +605,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="연습-문제" class="level3" data-number="1.2.4">
-<h3 data-number="1.2.4" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">1.2.4</span> 연습 문제</h3>
+<section id="연습-문제-1" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="연습-문제-1"><span class="header-section-number">2.4</span> 연습 문제</h3>
 <ol type="1">
 <li><p><code>arr_delay</code>는 누락되었지만 <code>dep_delay</code>는 누락되지 않은 모든 비행편을 찾으세요. <code>arr_time</code>도 <code>sched_arr_time</code>도 누락되지 않았지만 <code>arr_delay</code>는 누락된 모든 비행편을 찾으세요.</p></li>
 <li><p>누락된 <code>dep_time</code>이 있는 비행편은 몇 개인가요? 이 행에서 다른 변수는 무엇이 누락되었습니까? 이 행들은 무엇을 나타낼 수 있나요?</p></li>
@@ -603,8 +614,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 </section>
-<section id="논리형-요약" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="논리형-요약"><span class="header-section-number">1.3</span> 논리형 요약</h2>
+<section id="논리형-요약" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="논리형-요약"><span class="header-section-number">3</span> 논리형 요약</h2>
 <p>두 가지 주요 논리형 요약인 <code>any()</code>와 <code>all()</code>이 있습니다. <code>any(x)</code>는 <code>|</code>와 동일합니다; <code>x</code>에 <code>TRUE</code>가 하나라도 있으면 <code>TRUE</code>를 반환합니다. <code>all(x)</code>는 <code>&amp;</code>와 동일합니다; <code>x</code>의 모든 값이 <code>TRUE</code>일 때만 <code>TRUE</code>를 반환합니다. 대부분의 요약 함수와 마찬가지로 <code>na.rm = TRUE</code>를 사용하여 결측값이 사라지게 할 수 있습니다.</p>
 <p>예를 들어 <code>all()</code> 및 <code>any()</code>를 사용하여 모든 비행편이 출발 시 최대 1시간만 지연되었는지 또는 도착 시 5시간 이상 지연된 비행편이 있는지 확인할 수 있습니다. 그리고 <code>group_by()</code>를 사용하면 이를 일(day) 단위로 수행할 수 있습니다.</p>
 <div class="cell">
@@ -627,8 +638,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 359 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>그러나 대부분의 경우 <code>any()</code>와 <code>all()</code>은 너무 투박(crude)하며 <code>TRUE</code> 또는 <code>FALSE</code> 값이 몇 개인지에 대해 조금 더 자세한 정보를 얻을 수 있다면 좋을 것입니다. 그것이 우리를 숫자 요약으로 이끕니다.</p>
-<section id="논리형-벡터의-숫자-요약" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="논리형-벡터의-숫자-요약"><span class="header-section-number">1.3.1</span> 논리형 벡터의 숫자 요약</h3>
+<section id="논리형-벡터의-숫자-요약" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="논리형-벡터의-숫자-요약"><span class="header-section-number">3.1</span> 논리형 벡터의 숫자 요약</h3>
 <p>논리형 벡터를 숫자 컨텍스트에서 사용하면 <code>TRUE</code>는 1이 되고 <code>FALSE</code>는 0이 됩니다. 이렇게 하면 <code>sum(x)</code>는 <code>TRUE</code>의 수를 제공하고 <code>mean(x)</code>는 <code>TRUE</code>의 비율을 제공하기 때문에 (왜냐하면 <code>mean()</code>은 단순히 <code>sum()</code>을 <code>length()</code>로 나눈 것이기 때문입니다) 논리형 벡터에 <code>sum()</code>과 <code>mean()</code>을 매우 유용하게 사용할 수 있습니다.</p>
 <p>예를 들어 이를 통해 출발 시 최대 1시간만 지연된 비행편의 비율과 도착 시 5시간 이상 지연된 비행편의 수를 확인할 수 있습니다.</p>
 <div class="cell">
@@ -651,8 +662,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 359 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="논리형-부분집합" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="논리형-부분집합"><span class="header-section-number">1.3.2</span> 논리형 부분집합</h3>
+<section id="논리형-부분집합" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="논리형-부분집합"><span class="header-section-number">3.2</span> 논리형 부분집합</h3>
 <p>요약에서 논리형 벡터의 마지막 한 가지 용도가 있습니다. 논리형 벡터를 사용하여 단일 변수를 관심 있는 부분 집합으로 필터링(filter)할 수 있습니다. 이것은 기본(base) <code>[</code> (부분집합으로 발음됨(pronounced subset)) 연산자를 활용합니다.</p>
 <p>실제로 지연된 비행편에 대해서만 평균 지연 시간을 살펴보고 싶다고 상상해 보세요. 이를 수행하는 한 가지 방법은 먼저 비행편을 필터링한 다음 평균 지연을 계산하는 것입니다.</p>
 <div class="cell">
@@ -699,19 +710,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>그룹 크기의 차이에도 유의하세요. 첫 번째 청크에서 <code>n()</code>은 일별(per day) 지연된 비행편 수를 제공하고; 두 번째 청크에서 <code>n()</code>은 비행편의 총 수를 제공합니다.</p>
 </section>
-<section id="연습-문제-1" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="연습-문제-1"><span class="header-section-number">1.3.3</span> 연습 문제</h3>
+<section id="연습-문제-2" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="연습-문제-2"><span class="header-section-number">3.3</span> 연습 문제</h3>
 <ol type="1">
 <li><p><code>sum(is.na(x))</code>는 무엇을 말해 주나요? <code>mean(is.na(x))</code>는 어떨까요?</p></li>
 <li><p>논리형 벡터에 적용될 때 <code>prod()</code>는 무엇을 반환합니까? 어떤 논리형 요약 함수와 동일합니까? 논리형 벡터에 적용될 때 <code>min()</code>은 무엇을 반환합니까? 어떤 논리형 요약 함수와 동일합니까? 문서를 읽고 몇 가지 실험을 수행해 보세요.</p></li>
 </ol>
 </section>
 </section>
-<section id="조건부-변환" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="조건부-변환"><span class="header-section-number">1.4</span> 조건부 변환</h2>
+<section id="조건부-변환" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="조건부-변환"><span class="header-section-number">4</span> 조건부 변환</h2>
 <p>논리형 벡터의 강력한 특징 중 하나는 조건부 변환(conditional transformations), 즉 조건 x에 대해서는 한 가지 일을 하고 조건 y에 대해서는 다른 일을 하는 데 사용하는 것입니다. 이를 위한 두 가지 중요한 도구가 있습니다. <code>if_else()</code>와 <code>case_when()</code>입니다.</p>
-<section id="if_else" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="if_else"><span class="header-section-number">1.4.1</span> <code>if_else()</code></h3>
+<section id="if_else" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="if_else"><span class="header-section-number">4.1</span> <code>if_else()</code></h3>
 <p>조건이 <code>TRUE</code>일 때 한 값을 사용하고 <code>FALSE</code>일 때 다른 값을 사용하고 싶다면 <code>dplyr::if_else()</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>를 사용할 수 있습니다. 항상 <code>if_else()</code>의 처음 세 인수를 사용하게 될 것입니다. 첫 번째 인수 <code>condition</code>은 논리형 벡터이고, 두 번째 <code>true</code>는 조건이 true일 때의 출력을 제공하며, 세 번째 <code>false</code>는 조건이 false일 때의 출력을 제공합니다.</p>
 <p>숫자 벡터에 “+ve” (양수) 또는 “-ve” (음수) 라벨을 지정하는 간단한 예부터 시작해 보겠습니다.</p>
 <div class="cell">
@@ -743,8 +754,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>이것은 이미 읽기 약간 어려우며, 더 많은 조건이 있으면 어려워지기만 할 것이라고 상상할 수 있습니다. 대신 <code>dplyr::case_when()</code>으로 전환(switch)할 수 있습니다.</p>
 </section>
-<section id="case_when" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="case_when"><span class="header-section-number">1.4.2</span> <code>case_when()</code></h3>
+<section id="case_when" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="case_when"><span class="header-section-number">4.2</span> <code>case_when()</code></h3>
 <p>dplyr의 <code>case_when()</code>은 SQL의 <code>CASE</code> 구문에서 영감을 받았으며(inspired by) 다양한 조건에 대해 서로 다른 계산을 유연하게(flexible way) 수행할 수 있는 방법을 제공합니다. 불행히도 tidyverse에서 사용할 다른 어떤 것과도 다르게 보이는 특별한 구문(syntax)을 가지고 있습니다. <code>condition ~ output</code>처럼 보이는 쌍을 취합니다. <code>condition</code>은 논리형 벡터여야 합니다. <code>TRUE</code>일 때 <code>output</code>이 사용될 것입니다.</p>
 <p>이는 우리의 이전 중첩된(nested) <code>if_else()</code>를 다음과 같이 다시 만들 수 있다는 것을 의미합니다.</p>
 <div class="cell">
@@ -810,8 +821,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>이런 종류의 복잡한 <code>case_when()</code> 구문을 작성할 때는 주의하세요; 저의 처음 두 번의 시도는 <code>&lt;</code>와 <code>&gt;</code>를 섞어 사용했고 실수로 겹치는 조건을 계속 만들었습니다.</p>
 </section>
-<section id="호환-가능한-유형" class="level3" data-number="1.4.3">
-<h3 data-number="1.4.3" class="anchored" data-anchor-id="호환-가능한-유형"><span class="header-section-number">1.4.3</span> 호환 가능한 유형</h3>
+<section id="호환-가능한-유형" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="호환-가능한-유형"><span class="header-section-number">4.3</span> 호환 가능한 유형</h3>
 <p><code>if_else()</code>와 <code>case_when()</code> 모두 출력에서 호환 가능한(compatible) 유형을 요구한다는 점에 유의하세요. 호환되지 않으면 다음과 같은 오류가 표시됩니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">if_else</span>(<span class="cn">TRUE</span>, <span class="st">"a"</span>, <span class="dv">1</span>)</span>
@@ -834,8 +845,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>이 규칙들을 암기하라고 기대하지는 않지만(we don’t expect you to), 이 규칙들이 tidyverse 전반에 걸쳐 일관되게(consistently) 적용되기 때문에 시간이 지남에 따라 제2의 천성(second nature)이 되어야 할 것입니다.</p>
 </section>
-<section id="연습-문제-2" class="level3" data-number="1.4.4">
-<h3 data-number="1.4.4" class="anchored" data-anchor-id="연습-문제-2"><span class="header-section-number">1.4.4</span> 연습 문제</h3>
+<section id="연습-문제-3" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="연습-문제-3"><span class="header-section-number">4.4</span> 연습 문제</h3>
 <ol type="1">
 <li><p>숫자가 2로 나누어떨어지면 짝수이며, R에서는 <code>x %% 2 == 0</code>으로 확인할 수 있습니다. 이 사실과 <code>if_else()</code>를 사용하여 0에서 20 사이의 각 숫자가 짝수인지 홀수인지 확인하세요.</p></li>
 <li><p><code>x &lt;- c("Monday", "Saturday", "Wednesday")</code>와 같은 요일 벡터가 주어지면 <code>if_else()</code> 구문을 사용하여 주말(weekends) 또는 평일(weekdays)로 라벨을 지정하세요.</p></li>
@@ -844,7 +855,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 
 
-</section>
 </section>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
@@ -1264,8 +1274,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notes/ch09.html" class="pagination-link" aria-label="숫자 만들기">
-        <span class="nav-page-text">숫자 만들기</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../notes/ch09.html" class="pagination-link" aria-label="벡터: 숫자">
+        <span class="nav-page-text">벡터: 숫자</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
