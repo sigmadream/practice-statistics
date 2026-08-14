@@ -1,4 +1,4 @@
-# 1Games
+# Games
 
 DOI: [10.1201/b23262-1](./https___doi.org_10.1201_b23262-1.md)
 
