@@ -7,18 +7,17 @@ title: "반복"
 source("_common.R")
 ```
 
-R에서의 반복은 대개(generally) 암묵적(implicit)이며 무료로(for free) 얻을 수 있기 때문에(so much of it is) 다른 프로그래밍 언어와는 상당히 다르게(rather different from) 보이는 경향(tends to look)이 있습니다.
+R의 반복은 대개(generally) 암묵적(implicit)이며 별도 작업 없이(for free) 이루어집니다. 그래서(so much of it is) 다른 프로그래밍 언어와 상당히 다르게(rather different from) 보입니다(tends to look).
 
-예를 들어, R에서 숫자 벡터 `x`를 두 배로 만들고 싶다면 그냥(just) `2 * x`를 쓰면(write) 됩니다.
-대부분의 다른 언어에서는 일종의(some sort of) for 루프를 사용하여 `x`의 각 요소를 명시적으로(explicitly) 두 배로 만들어야 합니다.
+예를 들어 R에서 숫자 벡터 `x`를 두 배로 만들 때는 `2 * x`만 쓰면(write) 됩니다(just). 다른 언어 대부분은 일종의(some sort of) for 루프로 `x`의 각 요소를 명시적으로(explicitly) 두 배로 만듭니다.
 
 - `facet_wrap()`과 `facet_grid()`는 각 하위 집합(subset)에 대한 플롯을 그립니다(draws).
 - `group_by()`와 `summarize()`를 함께 사용하여 각 하위 집합에 대한 요약 통계(summary statistics)를 계산(computes)합니다.
-- `unnest_wider()`와 `unnest_longer()`는 리스트 열(list-column)의 각 요소에 대해 새 행과 열을 생성(create)합니다.
+- `unnest_wider()`와 `unnest_longer()`는 리스트 열(list-column)의 요소마다 새 행과 열을 생성(create)합니다.
 
-이제는 다른 함수를 입력으로 취하는 함수를 중심으로 구축(built around)되기 때문에 흔히(often) 함수형 프로그래밍(functional programming) 도구라고 불리는 좀 더(some more) 일반적인(general) 도구를 배울 차례(time to learn)입니다.
+이제 다른 함수를 입력으로 받는 좀 더(some more) 일반적인(general) 도구를 배워봅시다(time to learn). 이런 도구는 함수를 중심으로 구성돼(built around) 흔히(often) 함수형 프로그래밍(functional programming) 도구라고 합니다.
 
-함수형 프로그래밍을 배우다 보면 쉽게(easily) 추상적인 것(abstract)으로 방향이 틀어질(veer into) 수 있지만, 이 장에서는 여러 열 수정, 여러 파일 읽기, 여러 객체 저장이라는 세 가지 일반적인 작업(common tasks)에 중점을 두어(focusing on) 구체적으로(concrete) 유지(keep things)하겠습니다.
+함수형 프로그래밍은 쉽게(easily) 추상적인 이야기(abstract)로 흐릅니다(veer into). 이 장에서는 여러 열 수정, 여러 파일 읽기, 여러 객체 저장이라는 세 가지 일반적인 작업(common tasks)에 집중해(focusing on) 구체성을(concrete) 유지합니다(keep things).
 
 ```{r}
 #| label: setup
@@ -28,7 +27,7 @@ library(tidyverse)
 
 ## 여러 열 수정
 
-이 간단한 티블이 있고 관측치(observations)의 수를 세고(count) 모든 열의 중앙값(median)을 계산하고(compute) 싶다고 상상해 보세요.
+간단한 티블에서 관측치(observations) 수를 세고(count) 모든 열의 중앙값(median)을 계산한다고(compute) 해봅시다.
 
 ```{r}
 set.seed(1014)
@@ -40,7 +39,7 @@ df <- tibble(
 )
 ```
 
-복사해서 붙여넣기(copy-and-paste)로 수행할 수 있습니다.
+복사해서 붙이는(copy-and-paste) 방법이 먼저 떠오릅니다.
 
 ```{r}
 df |> summarize(
@@ -52,7 +51,7 @@ df |> summarize(
 )
 ```
 
-이것은 두 번 이상 복사해서 붙여넣지(never copy and paste more than twice) 않는다는 경험 법칙(rule of thumb)을 깨뜨리며(breaks), 수십(tens) 또는 수백(hundreds) 개의 열이 있는 경우 이 작업이 매우 지루해질(tedious) 것이라고 상상할 수 있습니다. 대신(Instead) `across()`를 사용할 수 있습니다.
+이 코드는 두 번 넘게 복사해 붙이지 말라는(never copy and paste more than twice) 경험 법칙(rule of thumb)을 어깁니다(breaks). 열이 수십(tens), 수백(hundreds) 개라면 작업도 매우 지루합니다(tedious). 이때(Instead) `across()`를 사용합니다.
 
 ```{r}
 df |> summarize(
@@ -61,13 +60,13 @@ df |> summarize(
 )
 ```
 
-`across()`에는 특히(particularly) 중요한 세 가지 인수가 있으며, 다음 섹션에서 자세히(in detail) 논의(discuss)하겠습니다. `across()`를 사용할 때마다 처음 두 개를 사용하게 됩니다. 첫 번째 인수 `.cols`는 반복할(iterate over) 열을 지정(specifies)하고, 두 번째 인수 `.fns`는 각 열에 대해 수행할 작업(what to do with)을 지정합니다. 출력 열의 이름에 대한 추가 제어(additional control)가 필요할 때 `.names` 인수를 사용할 수 있으며, 이는 `mutate()`와 함께 `across()`를 사용할 때 특히 중요합니다. 또한 `filter()`와 함께 작동하는 두 가지 중요한 변형(variations)인 `if_any()` 및 `if_all()`에 대해서도 논의하겠습니다.
+`across()`에는 중요한 인수가 세 개 있으며 다음 절에서 자세히(in detail) 다룹니다(discuss). 늘 쓰는 첫 두 인수 가운데 `.cols`는 반복할(iterate over) 열을 지정하고(specifies), `.fns`는 각 열에 적용할 작업(what to do with)을 지정합니다. 출력 열 이름을 더 세밀하게 제어할(additional control) 때는 `.names`를 씁니다. 특히 `mutate()`와 함께 쓸 때 중요합니다. `filter()`에서 작동하는 변형(variations)인 `if_any()`와 `if_all()`도 살펴봅니다.
 
 ### `.cols`를 사용하여 열 선택하기
 
-`across()`의 첫 번째 인수 `.cols`는 변환(transform)할 열을 선택합니다. 이것은 `select()`(@sec-select 참조)와 동일한 지정(specifications)을 사용하므로 `starts_with()` 및 `ends_with()`와 같은 함수를 사용하여 이름을 기반으로 열을 선택할 수 있습니다.
+`across()`의 첫 번째 인수 `.cols`는 변환(transform)할 열을 고릅니다. `select()`(@sec-select 참조)와 같은 지정(specifications)을 사용하므로 `starts_with()`와 `ends_with()`로 이름에 따라 열을 선택합니다.
 
-`across()`에 특히 유용한 두 가지 추가 선택 기술(selection techniques)이 있습니다. `everything()`과 `where()`입니다. `everything()`은 간단(straightforward)합니다. 모든(every) (그룹화되지 않은) 열을 선택합니다.
+`across()`에서 특히 유용한 선택 기술(selection techniques)은 `everything()`과 `where()`입니다. `everything()`은 모든(every) 그룹화되지 않은 열을 선택합니다(straightforward).
 
 ```{r}
 set.seed(1014)
@@ -84,9 +83,9 @@ df |>
   summarize(across(everything(), median))
 ```
 
-그룹화(grouping) 열(여기서는 `grp`)은 `summarize()`에 의해 자동으로 보존(preserved)되므로 `across()`에 포함(included)되지 않는다는 점에 유의하세요.
+그룹화(grouping) 열인 `grp`는 `summarize()`가 자동으로 보존하므로(preserved) `across()`에 포함되지 않습니다(included).
 
-`where()`를 사용하면(allows you to) 유형(type)을 기반으로 열을 선택할 수 있습니다.
+`where()`는 유형(type)에 따라 열을 선택합니다(allows you to).
 
 1. `where(is.numeric)`은 모든 숫자(numeric) 열을 선택합니다.
 2. `where(is.character)`는 모든 문자열(string) 열을 선택합니다.
@@ -94,13 +93,13 @@ df |>
 4. `where(is.POSIXct)`는 모든 날짜-시간(date-time) 열을 선택합니다.
 5. `where(is.logical)`은 모든 논리(logical) 열을 선택합니다.
 
-다른 선택자(selectors)와 마찬가지로(Just like) 부울 대수(Boolean algebra)와 결합(combine)할 수 있습니다. 예를 들어 `!where(is.numeric)`은 모든 숫자가 아닌(non-numeric) 열을 선택하고 `starts_with("a") & where(is.logical)`은 이름이 "a"로 시작하는 모든 논리 열을 선택합니다.
+다른 선택자(selectors)처럼(Just like) 부울 대수(Boolean algebra)와 결합합니다(combine). `!where(is.numeric)`은 숫자가 아닌(non-numeric) 모든 열을, `starts_with("a") & where(is.logical)`은 이름이 "a"로 시작하는 모든 논리 열을 선택합니다.
 
 ### 단일 함수 호출
 
-`across()`의 두 번째 인수는 각 열이 변환되는 방식을 정의(defines)합니다. 위와 같은(as above) 간단한 경우에는 이것이 단일 기존(existing) 함수가 됩니다. 이것은 R의 아주 특별한(pretty special) 기능입니다. 우리는 하나의 함수(`median`, `mean`, `str_flatten` ...)를 다른 함수(`across`)에 전달(passing)하고 있습니다. 이것은 R을 함수형 프로그래밍 언어로 만드는 기능 중 하나입니다.
+`across()`의 두 번째 인수는 각 열의 변환 방식을 정합니다(defines). 위와 같은(as above) 간단한 경우에는 기존(existing) 함수 하나를 넣습니다. 하나의 함수(`median`, `mean`, `str_flatten` ...)를 다른 함수(`across`)에 전달하는(passing), R의 특별한(pretty special) 기능입니다. R이 함수형 프로그래밍 언어인 이유 중 하나이기도 합니다.
 
-이 함수를 `across()`에 전달하여 `across()`가 이를 호출할(call it) 수 있도록 한다는 점에 유의(note)하는 것이 중요합니다. 우리가 직접 호출하는 것이 아닙니다(not calling it ourselves). 즉, 함수 이름 뒤에(followed by) `()`가 오면 안 됩니다. 잊어버린 경우(If you forget) 오류가 발생합니다.
+함수는 `across()`가 호출하도록(call it) 전달할 뿐(note), 직접 호출하지 않습니다(not calling it ourselves). 따라서 함수 이름 뒤에(followed by) `()`를 붙이면 안 됩니다. 붙이면(If you forget) 오류가 납니다.
 
 ```{r}
 #| error: true
@@ -109,7 +108,7 @@ df |>
   summarize(across(everything(), median()))
 ```
 
-이 오류는 예를 들어 입력 없이 함수를 호출했기 때문에 발생(arises)합니다.
+입력 없이 함수를 호출했기 때문에 생긴(arises) 오류입니다.
 
 ```{r}
 #| error: true
@@ -118,10 +117,9 @@ median()
 
 ### 여러 함수 호출
 
-더 복잡한 경우 추가 인수를 제공(supply)하거나 여러 변환을 수행(perform)하고 싶을 수 있습니다.
-간단한 예제로 이 문제를 동기 부여해 보겠습니다(motivate this problem): 데이터에 결측값(missing values)이 있으면 어떻게 될까요?
+더 복잡한 경우에는 추가 인수를 주거나(supply) 여러 변환을 수행합니다(perform). 간단한 예제로 문제를 살펴봅시다(motivate this problem). 데이터에 결측값(missing values)이 있으면 어떻게 될까요?
 
-`median()`은 이러한 결측값을 전파(propagates)하여 차선의(suboptimal) 출력을 제공합니다.
+`median()`은 결측값을 전파해(propagates) 만족스럽지 않은(suboptimal) 출력을 만듭니다.
 
 ```{r}
 set.seed(1014)
@@ -142,7 +140,7 @@ df_miss |>
   )
 ```
 
-이러한 결측값을 제거(remove)하기 위해 `median()`에 `na.rm = TRUE`를 함께 전달할(pass along) 수 있다면 좋을 것입니다. 그렇게 하려면(To do so) `median()`을 직접(directly) 호출하는 대신, 원하는(desired) 인수를 사용하여 `median()`을 호출하는 새 함수를 만들어야(create) 합니다.
+결측값을 제거하려면(remove) `median()`에 `na.rm = TRUE`를 함께 전달해야 합니다(pass along). `median()`을 직접(directly) 호출하는 대신 원하는(desired) 인수로 호출하는 새 함수를 만드세요(create).
 
 ```{r}
 df_miss |> 
@@ -152,11 +150,11 @@ df_miss |>
   )
 ```
 
-이것은 약간 장황(verbose)하므로 R에는 편리한 단축키(handy shortcut)가 함께 제공(comes with)됩니다. 이러한 종류의 일회용(throw away) 또는 익명(anonymous) 함수의 경우 `function`을 `\`로 바꿀 수 있습니다(replace).
+조금 장황하므로(verbose) R에는 편리한 단축키가 있습니다(handy shortcut). 이런 일회용(throw away), 즉 익명(anonymous) 함수에서는 `function`을 `\`로 바꿉니다(replace).
 
-익명이라는 것은 `<-`로 명시적인 이름을 부여(gave it a name)한 적이 없기 때문입니다. 프로그래머가 이에 대해 사용하는 또 다른 용어(term)는 "람다 함수(lambda function)"입니다.
+`<-`로 명시적인 이름을 붙이지(gave it a name) 않아 익명이라고 합니다. 프로그래머는 "람다 함수(lambda function)"라는 용어(term)도 씁니다.
 
-이전(older) 코드에서는 `~ .x + 1`과 같은 구문(syntax)을 볼 수 있습니다. 이것은 익명 함수를 작성하는 또 다른 방법(another way)이지만 tidyverse 함수 내부(inside)에서만 작동하며 항상 변수 이름 `.x`를  사용합니다. 이제는 기본 구문인 `\(x) x + 1`을 권장(recommend)합니다.
+이전(older) 코드에는 `~ .x + 1` 같은 구문(syntax)도 있습니다. 익명 함수를 쓰는 다른 방법(another way)이지만 tidyverse 함수 안에서만(inside) 작동하고 변수 이름은 늘 `.x`입니다. 이제는 기본 구문인 `\(x) x + 1`을 권합니다(recommend).
 
 ```{r}
 #| results: false
@@ -167,7 +165,7 @@ df_miss |>
   )
 ```
 
-두 경우(In either case) 모두 `across()`는 효과적(effectively)으로 다음 코드로 확장(expands to)됩니다.
+어느 경우든(In either case) `across()`는 사실상(effectively) 다음 코드로 확장됩니다(expands to).
 
 ```{r}
 #| eval: false
@@ -181,7 +179,7 @@ df_miss |>
   )
 ```
 
-`median()`에서 결측값을 제거할 때 제거된 값이 몇 개인지 알 수 있다면 좋을 것입니다(nice to know just how many). `across()`에 두 개의 함수, 하나는 중앙값을 계산하는 함수이고 다른 하나는 결측값의 개수를 세는(count) 함수를 제공하여(supplying) 알아낼(find that out) 수 있습니다. `.fns`에 명명된 리스트(named list)를 사용하여 여러 함수를 제공합니다.
+`median()`에서 결측값을 제거할 때 몇 개가 빠졌는지도 알아봅시다(nice to know just how many). `across()`에 중앙값 계산 함수와 결측값 개수를 세는(count) 함수를 함께 전달합니다(supplying). 여러 함수는 `.fns`에 명명된 리스트(named list)로 넣습니다.
 
 ```{r}
 df_miss |> 
@@ -194,11 +192,11 @@ df_miss |>
   )
 ```
 
-자세히 살펴보면(If you look carefully), 열이 `{.col}_{.fn}`과 같은 글루 지정자(glue specification)를 사용하여 명명(named)되었다는 것을 직감(intuit)할 수 있습니다. 여기서 `.col`은 원본 열의 이름이고 `.fn`은 함수의 이름입니다. 그것은 우연(coincidence)이 아닙니다! 다음 섹션에서 배우게(learn) 되겠지만(As), `.names` 인수를 사용하여 사용자 지정(your own) 글루 스펙(glue spec)을 제공할 수 있습니다.
+자세히 보면(If you look carefully) 열 이름은 `{.col}_{.fn}` 형태의 글루 지정자(glue specification)를 따릅니다(named). `.col`은 원본 열, `.fn`은 함수 이름입니다. 우연(coincidence)이 아닙니다! 다음 절에서(As) `.names` 인수로 사용자 지정(your own) 글루 스펙(glue spec)을 만드는 법을 배웁니다(learn).
 
 ### 열 이름
 
-`across()`의 결과는 `.names` 인수에 제공된(provided) 지정자(specification)에 따라 명명(named according to)됩니다. 함수 이름이 먼저 나오게(come first) 하려면 고유한 이름을 지정할 수 있습니다.
+`across()` 결과의 이름은 `.names`에 넣은(provided) 지정자(specification)에 따라 정해집니다(named according to). 함수 이름을 앞에 두려면(come first) 직접 지정합니다.
 
 ```{r}
 df_miss |> 
@@ -215,7 +213,7 @@ df_miss |>
   )
 ```
 
-`.names` 인수는 `mutate()`와 함께 `across()`를 사용할 때 특히 중요합니다. 기본적(By default)으로 `across()`의 출력에는 입력과 동일한 이름이 부여됩니다. 이는 `mutate()` 내부의 `across()`가 기존 열을 대체(replace)한다는 것을 의미합니다. 예를 들어 여기서는 `coalesce()`를 사용하여 `NA`를 `0`으로 대체합니다.
+`.names`는 `mutate()` 안에서 `across()`를 쓸 때 특히 중요합니다. 기본적으로(By default) 출력 이름이 입력과 같아서 기존 열을 대체합니다(replace). 다음 예제에서는 `coalesce()`로 `NA`를 `0`으로 바꿉니다.
 
 ```{r}
 df_miss |> 
@@ -224,7 +222,7 @@ df_miss |>
   )
 ```
 
-대신 새 열을 생성(create new columns)하려면 `.names` 인수를 사용하여 출력에 새 이름을 지정(give)할 수 있습니다.
+새 열을 만들려면(create new columns) `.names`로 출력에 새 이름을 붙입니다(give).
 
 ```{r}
 df_miss |> 
@@ -235,9 +233,9 @@ df_miss |>
 
 ### 필터링
 
-`across()`는 `summarize()` 및 `mutate()`와 훌륭한 조화(great match)를 이루지만(but) 보통(usually) `|`나 `&`를 사용하여 여러 조건(conditions)을 결합하기 때문에 `filter()`와 함께 사용하기에는 더 어색(more awkward)합니다.
+`across()`는 `summarize()`와 `mutate()`에 잘 맞지만(great match) `filter()`에서는 다소 어색합니다(more awkward). 여러 조건(conditions)을 보통(usually) `|`나 `&`로 결합하기 때문입니다.
 
-`across()`가 여러 논리 열을 생성하는 데 도움이 될 수 있음은 분명하지만(clear), 그 다음에는(but then what) 어떻게 해야 할까요? 그래서 dplyr은 `if_any()`와 `if_all()`이라는 두 가지 `across()` 변형(variants)을 제공합니다.
+`across()`로 여러 논리 열을 만들 수는 있지만(clear) 그다음은 어떻게 해야 할까요(but then what)? 그래서 dplyr에는 `if_any()`와 `if_all()`이라는 두 가지 변형(variants)이 있습니다.
 
 ```{r}
 # df_miss |> filter(is.na(a) | is.na(b) | is.na(c) | is.na(d))와 동일함(same as)
@@ -249,7 +247,7 @@ df_miss |> filter(if_all(a:d, is.na))
 
 ### 함수 내의 `across()`
 
-`across()`는 여러 열에 대해 작업할 수 있게 해주기(allows you to operate) 때문에(because) 프로그램을 작성할 때(to program with) 특히(particularly) 유용합니다. 예를 들어 [Jacob Scott]([https://twitter.com/_wurli/status/1571836746899283969](https://twitter.com/_wurli/status/1571836746899283969))은 여러(a bunch of) lubridate 함수를 감싸(wraps) 모든 날짜 열을 연, 월, 일 열로 확장(expand)하는 이 작은 도우미(little helper)를 사용합니다.
+`across()`는 여러 열을 다루므로(allows you to operate) 프로그램을 작성할 때(to program with) 특히(particularly) 유용합니다. [Jacob Scott]([https://twitter.com/_wurli/status/1571836746899283969](https://twitter.com/_wurli/status/1571836746899283969))은 여러(a bunch of) lubridate 함수를 묶어(wraps) 모든 날짜 열을 연, 월, 일로 확장하는(expand) 작은 도우미(little helper)를 사용합니다.
 
 ```{r}
 expand_dates <- function(df) {
@@ -268,9 +266,9 @@ df_date |>
   expand_dates()
 ```
 
-`across()`의 첫 번째 인수는 깔끔한 선택(tidy-select)을 사용하기 때문에 단일 인수에 여러 열을 쉽게(easy to) 제공(supply)할 수 있습니다. 해당 인수를 껴안는(embrace) 것만 기억하면(just need to remember) 됩니다. 
+`across()`의 첫 번째 인수는 깔끔한 선택(tidy-select)을 사용하므로 한 인수에 여러 열을 쉽게(easy to) 넣습니다(supply). 인수를 껴안아야(embrace) 한다는 점만 기억하세요(just need to remember).
 
-예를 들어 이 함수는 기본적으로(by default) 숫자 열의 평균을 계산(compute)합니다. 그러나 두 번째 인수를 제공하여 선택한 열만 요약하도록 선택할(choose to) 수 있습니다.
+이 함수는 기본적으로(by default) 숫자 열의 평균을 계산합니다(compute). 두 번째 인수를 주면 선택한 열만 요약합니다(choose to).
 
 ```{r}
 summarize_means <- function(df, summary_vars = where(is.numeric)) {
@@ -292,16 +290,16 @@ diamonds |>
 
 ### `pivot_longer()`와 비교
 
-계속하기 전에(Before we go on) `across()`와 `pivot_longer()`(@sec-pivoting) 사이의 흥미로운 연결 고리(interesting connection)를 지적할(pointing out) 가치가 있습니다. 많은 경우, 먼저 데이터를 피벗(pivoting)한 다음(and then) 열(column) 단위가 아닌 그룹(group) 단위로 연산(operations)을 수행(performing)하여 동일한 계산을 수행(perform)할 수 있습니다.
+계속하기 전에(Before we go on) `across()`와 `pivot_longer()`(@sec-pivoting)의 흥미로운 연결 고리(interesting connection)를 살펴봅시다(pointing out). 데이터를 먼저 피벗한(pivoting) 뒤(and then) 열(column)이 아닌 그룹(group) 단위로 연산하면(performing) 같은 계산을 수행합니다(perform).
 
-예를 들어, 다음과 같은(take this) 다중 기능(multi-function) 요약을 살펴봅시다.
+예를 들어 다음(take this) 다중 기능(multi-function) 요약을 살펴봅시다.
 
 ```{r}
 df |> 
   summarize(across(a:d, list(median = median, mean = mean)))
 ```
 
-우리는 길게 피벗(pivoting longer)한 다음(and then) 요약(summarizing)하여 동일한 값(same values)을 계산(compute)할 수 있습니다.
+길게 피벗하고(pivoting longer) 요약하면(and then) 같은 값(same values)을 계산합니다(compute).
 
 ```{r}
 long <- df |> 
@@ -314,7 +312,7 @@ long <- df |>
 long
 ```
 
-그리고 `across()`와 동일한 구조(structure)를 원한다면 다시 피벗(pivot again)할 수 있습니다.
+`across()`와 같은 구조(structure)가 필요하다면 다시 피벗합니다(pivot again).
 
 ```{r}
 long |> 
@@ -394,7 +392,7 @@ nycflights13::flights |> show_missing(c(year, month, day))
 
 ## 여러 파일 읽기
 
-이전 섹션에서는 `dplyr::across()`를 사용하여 여러 열에 대해 변환(transformation)을 반복(repeat)하는 방법을 배웠습니다. 이 섹션에서는 `purrr::map()`을 사용하여 디렉터리 내의 모든 파일(every file)에 대해 무언가(something)를 수행(do)하는 방법을 배웁니다. 약간의 동기 부여(a little motivation)부터 시작하겠습니다. 읽고(read) 싶은 엑셀 스프레드시트가 가득 찬(full of) 디렉터리가 있다고 상상(imagine)해 보세요. 복사해서 붙여넣기(copy and paste)로 이 작업을 수행할 수 있습니다.
+앞 절에서는 `dplyr::across()`로 여러 열에 같은 변환(transformation)을 반복했습니다(repeat). 이번에는 `purrr::map()`으로 디렉터리의 모든 파일(every file)에 같은 작업(something)을 적용합니다(do). 읽어야(read) 할 엑셀 스프레드시트가 가득한(full of) 디렉터리를 예로 들어봅시다(imagine). 먼저 복사해서 붙이는(copy and paste) 방법입니다.
 
 ```{r}
 #| eval: false
@@ -404,29 +402,28 @@ data2021 <- readxl::read_excel("data/y2021.xlsx")
 data2022 <- readxl::read_excel("data/y2022.xlsx")
 ```
 
-그런 다음 `dplyr::bind_rows()`를 사용하여 모두 결합(combine them all together)합니다.
+그런 다음 `dplyr::bind_rows()`로 모두 결합합니다(combine them all together).
 
 ```{r}
 #| eval: false
 data <- bind_rows(data2019, data2020, data2021, data2022)
 ```
 
-이 작업은 특히(especially) 파일이 4개가 아니라 수백(hundreds) 개인 경우 빠르게 지루해질(tedious quickly) 수 있음을 상상할 수(can imagine) 있습니다. 다음 섹션(sections)에서는 이런 종류의 작업을 자동화(automate)하는 방법을 보여줍니다. 세 가지 기본 단계(basic steps)가 있습니다. `list.files()`를 사용하여 디렉터리의 모든 파일을 나열(list)한 다음 `purrr::map()`을 사용하여 각 파일을 리스트로 읽어 들인 다음(read each of them into a list) `purrr::list_rbind()`를 사용하여 단일 데이터 프레임으로 결합(combine)합니다. 그런 다음 모든 파일에 대해 완전히 동일한 작업(exactly the same thing)을 수행할 수 없는 이질성(heterogeneity)이 증가(increasing)하는 상황을 처리(handle)할 수 있는 방법에 대해 논의(discuss)하겠습니다.
+파일이 4개가 아니라 수백(hundreds) 개라면 이 작업은 금세 지루해집니다(tedious quickly). 다음 절(sections)에서는 세 단계(basic steps)로 자동화합니다(automate). `list.files()`로 모든 파일을 나열하고(list), `purrr::map()`으로 각 파일을 리스트에 읽은 뒤(read each of them into a list), `purrr::list_rbind()`로 하나의 데이터 프레임에 결합합니다(combine). 모든 파일에 똑같은 작업(exactly the same thing)을 적용하기 어려울 만큼 이질성(heterogeneity)이 커지는(increasing) 상황도 다룹니다(handle).
 
 ### 디렉터리의 파일 나열
 
-이름에서 알 수 있듯이(As the name suggests) `list.files()`는 디렉터리의 파일을 나열(lists)합니다.
-거의 항상 세 가지(three) 인수를 사용하게 됩니다.
+이름에서 알 수 있듯(As the name suggests) `list.files()`는 디렉터리의 파일을 나열합니다(lists). 거의 항상 인수 세 개(three)를 사용합니다.
 
 1. 첫 번째 인수 `path`는 살펴볼(look in) 디렉터리입니다.
 
 2. `pattern`은 파일 이름을 필터링(filter)하는 데 사용되는 정규 표현식(regular expression)입니다. 일반적인 패턴은 지정된 확장자(specified extension)를 가진 모든 파일을 찾기 위한(find) `[.]xlsx$` 또는 `[.]csv$`와 같은 것입니다(something like).
 
-3. `full.names`는 출력(output)에 디렉터리 이름이 포함될지(should be included) 여부를 결정(determines)합니다. 거의 항상 이 값을 `TRUE`로 설정하기(want this to be)를 원할 것입니다.
+3. `full.names`는 출력(output)에 디렉터리 이름을 포함할지(should be included) 정합니다(determines). 거의 언제나 `TRUE`로 설정합니다(want this to be).
 
-우리의 동기 부여 예제(motivating example)를 구체화(concrete)하기 위해, 이 책에는 gapminder 패키지의 데이터가 포함된 12개의 엑셀 스프레드시트(excel spreadsheets)가 있는 폴더가 포함되어 있습니다(contains).
+예제를 구체화하려고(motivating example) gapminder 패키지의 데이터가 든 엑셀 스프레드시트(excel spreadsheets) 12개를 사용합니다(concrete). 이 책에 포함된(contains) 폴더입니다.
 
-이 폴더는 [https://github.com/hadley/r4ds/tree/main/data/gapminder](https://github.com/hadley/r4ds/tree/main/data/gapminder)에서 찾을 수 있습니다(can be found at). 각 파일에는 142개국의 1년 치(one year's worth of) 데이터가 포함되어 있습니다.
+폴더는 [https://github.com/hadley/r4ds/tree/main/data/gapminder](https://github.com/hadley/r4ds/tree/main/data/gapminder)에 있습니다(can be found at). 파일마다 142개국의 1년 치(one year's worth of) 데이터가 들어 있습니다.
 
 ```{r}
 paths <- list.files("data/gapminder", pattern = "[.]xlsx$", full.names = TRUE)
@@ -435,7 +432,7 @@ paths
 
 ### 리스트 (Lists)
 
-이제(Now that) 12개의 경로(paths)가 있으므로(we have) `read_excel()`을 12번 호출(call)하여 12개의 데이터 프레임을 얻을 수 있습니다.
+이제(Now that) 경로(paths) 12개가 있으니(we have) `read_excel()`을 12번 호출해(call) 데이터 프레임 12개를 만듭니다.
 
 ```{r}
 #| eval: false
@@ -446,9 +443,7 @@ gapminder_1962 <- readxl::read_excel("data/gapminder/1962.xlsx")
 gapminder_2007 <- readxl::read_excel("data/gapminder/2007.xlsx")
 ```
 
-하지만 각 시트(sheet)를 고유한 변수(its own variable)에 넣으면(putting) 몇 단계(a few steps) 거쳐야 할(down the road) 때 다루기 어려워집니다(hard to work with).
-대신(Instead) 단일(single) 객체에 넣으면(put them into) 다루기가 더 쉬워집니다.
-리스트는 이 작업(job)을 위한 완벽한 도구(perfect tool)입니다.
+하지만 시트(sheet)마다 별도 변수(its own variable)에 넣으면(putting) 몇 단계 뒤(down the road)에 다루기 어렵습니다(hard to work with). 하나의(single) 객체에 모으면(Instead) 더 쉽습니다(put them into). 리스트가 이 작업(job)에 알맞은 도구입니다(perfect tool).
 
 ```{r}
 #| eval: false
@@ -466,7 +461,7 @@ files <- list(
 files <- map(paths, readxl::read_excel)
 ```
 
-이제 리스트에 이러한 데이터 프레임이 생겼으니(have), 어떻게 하나를 꺼낼(get one out) 수 있을까요? `files[[i]]`를 사용하여 i번째 요소를 추출(extract)할 수 있습니다.
+리스트에 데이터 프레임을 담았으니(have) 하나를 꺼내봅시다(get one out). `files[[i]]`는 i번째 요소를 추출합니다(extract).
 
 ```r
 files[[3]]
@@ -474,9 +469,9 @@ files[[3]]
 
 ### `purrr::map()`과 `list_rbind()`
 
-이러한(those) 데이터 프레임을 리스트에 "수동으로(by hand)" 수집(collect)하는 코드는 기본적으로 파일을 하나씩(one-by-one) 읽는 코드만큼(just as) 입력하기 지루(tedious to type)합니다. 다행히(Happily), `purrr::map()`을 사용하면 `paths` 벡터를 훨씬(even) 더 잘 활용할(make better use of) 수 있습니다.
+데이터 프레임을 리스트에 "수동으로(by hand)" 모으는(collect) 코드도 파일을 하나씩(one-by-one) 읽는 코드만큼(just as) 입력하기 지루합니다(tedious to type). 다행히(Happily) `purrr::map()`을 쓰면 `paths` 벡터를 훨씬(even) 잘 활용합니다(make better use of).
 
-`map()`은 `across()`와 유사(similar)하지만 데이터 프레임의 각 열에 무언가를 수행(doing something)하는 대신 벡터의 각 요소에 무언가를 수행합니다. `map(x, f)`는 다음의 약어(shorthand)입니다.
+`map()`은 `across()`와 비슷하지만(similar), 데이터 프레임의 각 열 대신 벡터의 각 요소에 작업을 적용합니다(doing something). `map(x, f)`는 다음 코드의 약어(shorthand)입니다.
 
 ```{r}
 #| eval: false
@@ -488,7 +483,7 @@ list(
 )
 ```
 
-따라서 `map()`을 사용하여 12개의 데이터 프레임 리스트를 얻을(get) 수 있습니다.
+`map()`으로 데이터 프레임 12개의 리스트를 만듭니다(get).
 
 ```{r}
 #| eval: false
@@ -500,13 +495,13 @@ files[[1]]
 
 (이것은 `str()`로 특히 간결하게(compactly) 표시(display)되지 않는 또 다른 데이터 구조(data structure)이므로 RStudio에 로드(load)하고 `View()`로 검사(inspect)하고 싶을 수 있습니다).
 
-이제 `purrr::list_rbind()`를 사용하여 해당 데이터 프레임 리스트를 단일 데이터 프레임으로 결합(combine)할 수 있습니다.
+이제 `purrr::list_rbind()`로 리스트의 데이터 프레임을 하나로 결합합니다(combine).
 
 ```{r}
 list_rbind(files)
 ```
 
-또는 파이프라인에서 두 단계(both steps)를 한 번에(at once) 수행할 수 있습니다.
+파이프라인에서는 두 단계(both steps)를 한 번에(at once) 수행합니다.
 
 ```{r}
 #| results: false
@@ -515,10 +510,9 @@ paths |>
   list_rbind()
 ```
 
-`read_excel()`에 추가 인수(extra arguments)를 전달(pass in)하려면 어떻게 해야 할까요?
-`across()`에서 사용했던 것과 동일한 기술(same technique)을 사용합니다.
+`read_excel()`에 추가 인수(extra arguments)를 전달하려면(pass in) `across()`에서 쓴 것과 같은 기술(same technique)을 적용합니다.
 
-예를 들어 `n_max = 1`을 사용하여 데이터의 처음 몇 행(first few rows)을 살짝 살펴보는(peek at) 것이 종종 유용합니다.
+예를 들어 `n_max = 1`로 데이터의 첫 몇 행(first few rows)을 살펴보면(peek at) 유용합니다.
 
 ```{r}
 paths |> 
@@ -526,22 +520,21 @@ paths |>
   list_rbind()
 ```
 
-이것은 무언가 누락(missing)되었다는 것을 명확하게 보여줍니다(makes it clear): `year` 열이 없는데, 그 값(value)은 개별(individual) 파일이 아니라 경로(path)에 기록(recorded)되어 있기 때문입니다.
+여기서 누락된(missing) 항목이 분명히 드러납니다(makes it clear). `year` 열이 없습니다. 값(value)이 개별(individual) 파일이 아니라 경로(path)에 기록돼(recorded) 있기 때문입니다.
 
 다음으로 그 문제(problem)를 해결(tackle)하겠습니다.
 
 ### 경로 내의 데이터
 
-때로는 파일 이름 자체가 데이터이기도 합니다(is data itself). 이 예제(example)에서 파일 이름에는 연도(year)가 포함되어 있는데, 연도는 개별 파일에는 다른 방식(otherwise)으로 기록되어 있지 않습니다.
-최종 데이터 프레임에 해당 열을 가져오려면(To get that column into) 두 가지(two things)를 수행해야 합니다.
+파일 이름 자체가 데이터인(is data itself) 경우도 있습니다. 이 예제(example)에서는 개별 파일에 따로(otherwise) 기록되지 않은 연도(year)가 파일 이름에 들어 있습니다. 최종 데이터 프레임에 이 열을 넣으려면(To get that column into) 두 단계(two things)가 필요합니다.
 
-먼저 경로 벡터(vector of paths)의 이름을 지정(name)합니다. 이를 수행하는 쉬운 방법(easiest way)은 함수를 취할(take) 수 있는 `set_names()` 함수를 사용하는 것입니다. 여기서는 전체 경로(full path)에서 파일 이름만 추출(extract)하기 위해 `basename()`을 사용합니다.
+먼저 경로 벡터(vector of paths)에 이름을 붙입니다(name). 함수를 받을(take) 수 있는 `set_names()`를 쓰는 것이 가장 쉽습니다(easiest way). 여기서는 `basename()`으로 전체 경로(full path)에서 파일 이름만 추출합니다(extract).
 
 ```{r}
 paths |> set_names(basename) 
 ```
 
-이러한 이름은 모든 map 함수에 의해 자동으로 전달(carried along)되므로 데이터 프레임 리스트도 동일한 이름(same names)을 갖게 됩니다.
+이 이름은 모든 map 함수가 자동으로 전달하므로(carried along) 데이터 프레임 리스트에도 같은 이름(same names)이 붙습니다.
 
 ```{r}
 files <- paths |> 
@@ -562,14 +555,14 @@ files <- list(
 )
 ```
 
-이름으로(by name) 요소를 추출(extract)하기 위해 `[[`를 사용할 수도 있습니다.
+이름으로(by name) 요소를 추출할 때는(extract) `[[`를 사용합니다.
 
 ```{r}
 #| eval: false
 files[["1962.xlsx"]]
 ```
 
-그런 다음 `list_rbind()`에 `names_to` 인수를 사용하여 이름을 `year`라는 새 열에 저장(save)하도록 지시(tell)한 다음, `readr::parse_number()`를 사용하여 문자열(string)에서 숫자를 추출(extract)합니다.
+그런 다음 `list_rbind()`의 `names_to` 인수로 이름을 `year`라는 새 열에 저장하고(save), `readr::parse_number()`로 문자열(string)에서 숫자를 추출합니다(extract).
 
 ```{r}
 #| eval: false
@@ -580,7 +573,7 @@ paths |>
   mutate(year = parse_number(year))
 ```
 
-더 복잡한 경우에는 디렉터리 이름에 저장된(stored) 다른 변수가 있거나 파일 이름에 여러 개의 데이터 비트(multiple bits)가 포함(contains)되어 있을 수 있습니다. 이 경우 `set_names()`(인수 없이(without any arguments))를 사용하여 전체 경로를 기록(record)한 다음, `tidyr::separate_wider_delim()` 및 기타 함수(friends)를 사용하여 유용한 열(useful columns)로 변환(turn them into)합니다.
+더 복잡한 경우에는 디렉터리 이름에 다른 변수가 저장되거나(stored) 파일 이름에 여러 데이터 조각(multiple bits)이 들어 있습니다(contains). 이때 인수 없는(without any arguments) `set_names()`로 전체 경로를 기록한(record) 뒤 `tidyr::separate_wider_delim()`과 관련 함수(friends)로 유용한 열(useful columns)을 만듭니다(turn them into).
 
 ```{r}
 #| eval: false
@@ -594,7 +587,7 @@ paths |>
 
 ### 작업 저장
 
-이제 깔끔한(nice tidy) 데이터 프레임을 얻기(get to) 위해 이 모든 힘든 작업(hard work)을 마쳤으므로(Now that you've done) 작업을 저장할(save your work) 아주 좋은 시기(great time)입니다.
+깔끔한(nice tidy) 데이터 프레임을 얻기 위한(get to) 힘든 작업(hard work)을 마쳤으니(Now that you've done) 이제 저장할(save your work) 차례입니다(great time).
 
 ```{r}
 #| eval: false
@@ -607,25 +600,24 @@ gapminder <- paths |>
 write_csv(gapminder, "gapminder.csv")
 ```
 
-이제 향후에(in the future) 이 문제로 돌아올(come back to) 때 단일(single) csv 파일을 읽을(read in) 수 있습니다. parquet를 사용하는 것이 `.csv`보다 더 나은 선택(better choice)일 수 있습니다.
+나중에(in the future) 다시 작업할(come back to) 때는 단일(single) csv 파일만 읽으면 됩니다(read in). parquet가 `.csv`보다 나은 선택(better choice)일 수도 있습니다.
 
 ```{r}
 #| include: false
 unlink("gapminder.csv")
 ```
 
-프로젝트에서 작업 중인(working in) 경우 이런 종류의(this sort of) 데이터 준비 작업(data prep work)을 수행하는 파일 이름을 `0-cleanup.R`과 같이(something like) 지정하는(calling) 것이 좋습니다(suggest).
-파일 이름의 `0`은 이 파일이 다른 어떤 것보다(before anything else) 먼저 실행되어야(run) 함을 시사(suggests)합니다.
+프로젝트에서(working in) 이런 종류의(this sort of) 데이터 준비 작업(data prep work)을 하는 파일은 `0-cleanup.R`처럼(something like) 이름 붙이기를 권합니다(calling). 이름의 `0`은 다른 파일보다(before anything else) 먼저 실행해야(run) 한다는 뜻입니다(suggests).
 
-입력 데이터 파일이 시간이 지남에 따라(over time) 변경되는(change) 경우, [targets]([https://docs.ropensci.org/targets/](https://docs.ropensci.org/targets/))와 같은 도구를 배우는 것을 고려하여(might consider) 입력 파일 중 하나가 수정될(modified) 때마다(whenever) 데이터 정리 코드(data cleaning code)가 자동으로 다시 실행되도록(automatically re-run) 설정(set up)할 수 있습니다.
+입력 데이터 파일이 시간에 따라(over time) 바뀐다면(change) [targets]([https://docs.ropensci.org/targets/](https://docs.ropensci.org/targets/)) 같은 도구를 고려하세요(might consider). 입력 파일이 수정될(modified) 때마다(whenever) 데이터 정리 코드(data cleaning code)를 자동으로 다시 실행하도록(automatically re-run) 설정합니다(set up).
 
 ### 여러 가지 간단한 반복
 
-여기서는 디스크에서 직접(directly) 데이터를 로드(loaded)했고, 충분히 운이 좋게도(lucky enough to) 깔끔한 데이터셋을 얻을 수 있었습니다. 대부분의 경우(In most cases) 몇 가지 추가 정리(additional tidying)를 수행해야(need to do) 하며 두 가지 기본 옵션(basic options)이 있습니다. 복잡한(complex) 함수를 사용하여 반복을 한 번(one round of) 수행하거나 간단한 함수를 사용하여 반복을 여러 번(multiple rounds of) 수행할 수 있습니다.
+여기서는 디스크에서 직접(directly) 데이터를 불러왔고(loaded) 운 좋게도(lucky enough to) 깔끔한 데이터셋을 얻었습니다. 대부분(In most cases)은 추가 정리(additional tidying)가 필요합니다(need to do). 기본 옵션(basic options)은 복잡한(complex) 함수로 한 번(one round of) 반복하거나 간단한 함수로 여러 번(multiple rounds of) 반복하는 두 가지입니다.
 
-우리의 경험상(In our experience) 대부분의 사람들은(most folks) 먼저(first) 하나의 복잡한 반복을 찾지만(reach for), 종종 여러 가지 간단한 반복을 수행하는 것이 더 낫습니다(better).
+경험상(In our experience) 대부분의 사람은(most folks) 먼저(first) 복잡한 반복 하나를 택하지만(reach for) 간단한 반복을 여러 번 하는 편이 더 나을 때가 많습니다(better).
 
-예를 들어 많은 파일(a bunch of files)을 읽어 들이고(read in), 결측값을 필터링(filter out)하고, 피벗(pivot)한 다음 결합(combine)하려고 한다고 상상해 보세요. 이 문제에 접근하는(approach) 한 가지 방법은 파일을 가져와(takes) 이 모든 단계를 수행하는 함수를 작성(write a function)한 다음 `map()`을 한 번 호출하는 것입니다.
+여러 파일(a bunch of files)을 읽고(read in) 결측값을 걸러낸(filter out) 뒤 피벗(pivot)하고 결합하는(combine) 상황을 예로 들어봅시다. 한 가지 접근법(approach)은 파일을 받아(takes) 모든 단계를 수행하는 함수를 작성한(write a function) 뒤 `map()`을 한 번 호출하는 것입니다.
 
 ```{r}
 #| eval: false
@@ -643,7 +635,7 @@ paths |>
   list_rbind()
 ```
 
-대안으로(Alternatively) 모든 파일에 대해 `process_file()`의 각 단계를 수행(perform)할 수 있습니다.
+대안으로(Alternatively) 모든 파일에서 `process_file()`의 각 단계를 수행합니다(perform).
 
 ```{r}
 #| eval: false
@@ -655,9 +647,9 @@ paths |>
   list_rbind()
 ```
 
-나머지로 넘어가기(moving on to the rest) 전에 첫 번째 파일을 올바르게 가져오는 데 집착(getting fixated on)하는 것을 막아주기(stops you) 때문에 이 접근 방식을 권장(recommend)합니다. 정리 및 클리닝(tidying and cleaning)을 수행할 때 모든 데이터를 고려(considering)함으로써 보다 전체적으로(holistically) 생각할 가능성이 높아지고(more likely to) 결국(end up with) 더 높은 품질(higher quality)의 결과를 얻게 됩니다.
+이 접근 방식은 첫 파일만 제대로 가져오는 데 집착하지 않도록(stops you) 해주므로 권합니다(recommend). 모든 데이터를 함께 보면서(considering) 정리하고 클리닝하면(tidying and cleaning) 더 전체적으로(holistically) 판단하게 되고(more likely to) 결과의 품질도 높아집니다(higher quality).
 
-이 특정 예제(particular example)에서는 모든 데이터 프레임을 더 일찍(earlier) 결합(binding)하여 수행할 수 있는 또 다른 최적화(optimization)가 있습니다. 그러면 일반적인(regular) dplyr 동작(behavior)에 의존(rely on)할 수 있습니다.
+이 예제(particular example)에는 데이터 프레임을 더 일찍(earlier) 결합하는(binding) 최적화(optimization)도 있습니다. 그러면 일반적인(regular) dplyr 동작(behavior)을 활용합니다(rely on).
 
 ```{r}
 #| eval: false
@@ -671,9 +663,9 @@ paths |>
 
 ### 이질적인 데이터
 
-불행하게도(Unfortunately) 데이터 프레임이 너무(so) 이질적(heterogeneous)이어서 `list_rbind()`가 실패(fails)하거나 별로 유용하지 않은(not very useful) 데이터 프레임을 생성(yields)하기 때문에 `map()`에서 `list_rbind()`로 바로 이동(go straight)할 수 없는 경우가 있습니다.
+데이터 프레임이 너무(so) 이질적이면(heterogeneous) `list_rbind()`가 실패하거나(fails) 쓸모가 적은(not very useful) 결과를 냅니다(yields). 이때는(Unfortunately) `map()`에서 `list_rbind()`로 바로 넘어가지(go straight) 못합니다.
 
-이러한 경우에는(In that case) 모든 파일을 로드하는(loading) 것으로 시작하는 것이 여전히(still) 유용합니다.
+그래도(In that case) 모든 파일을 먼저 불러오면(loading) 유용합니다(still).
 
 ```{r}
 #| eval: false
@@ -681,9 +673,9 @@ files <- paths |>
   map(readxl::read_excel) 
 ```
 
-그런 다음 데이터 과학 기술(skills)을 사용하여 탐색(explore)할 수 있도록 데이터 프레임의 구조(structure)를 캡처(capture)하는 것이 매우 유용한 전략(strategy)입니다.
+그런 다음 데이터 과학 기술(skills)로 탐색하도록(explore) 데이터 프레임의 구조(structure)를 기록합니다(capture). 매우 유용한 전략(strategy)입니다.
 
-그렇게 하는 한 가지 방법은 각 열마다 하나의 행이 있는 티블을 반환하는 유용한(handy) `df_types` 함수를 사용하는 것입니다.
+한 가지 방법은 열마다 행 하나를 반환하는 `df_types` 함수를 쓰는 것입니다(handy).
 
 ```{r}
 #| eval: false
@@ -698,7 +690,7 @@ df_types <- function(df) {
 df_types(gapminder)
 ```
 
-그런 다음 이 함수를 모든 파일에 적용(apply)할 수 있으며 약간의(some) 피벗(pivoting)을 수행하여 차이점(differences)이 어디에(where) 있는지 쉽게 확인할(see) 수 있습니다. 예를 들어 이렇게 하면(this makes it easy to) 우리가 작업해 온(working with) gapminder 스프레드시트가 모두 상당히(quite) 동질적(homogeneous)인지 쉽게 확인할(verify) 수 있습니다.
+이 함수를 모든 파일에 적용하고(apply) 조금(some) 피벗하면(pivoting) 차이가(differences) 어디에(where) 있는지 쉽게 보입니다(see). 다음 예제로 작업 중인(working with) gapminder 스프레드시트가 모두 상당히(quite) 동질적인지(homogeneous) 확인합니다(verify).
 
 ```{r}
 #| eval: false
@@ -709,17 +701,17 @@ files |>
   pivot_wider(names_from = col_name, values_from = col_type)
 ```
 
-파일에 이질적인 형식(heterogeneous formats)이 있는 경우 병합(merge)을 성공적(successfully)으로 수행할 수 있기 전에 더 많은 처리(more processing)를 수행해야(need to do) 할 수 있습니다. 불행하게도(Unfortunately) 이제 여러분 스스로 알아내도록(figure that out on your own) 맡겨두어야 하지만(leave you to), `map_if()` 및 `map_at()`에 대해 읽어보는 것이 좋습니다(might want to). `map_if()`를 사용하면 값(values)에 따라(based on) 리스트의 요소를 선택적(selectively)으로 수정(modify)할 수 있으며, `map_at()`을 사용하면 이름(names)에 따라(based on) 요소를 선택적으로 수정할 수 있습니다.
+파일 형식이 이질적이면(heterogeneous formats) 성공적으로(successfully) 병합하기(merge) 전에 더 많은 처리(more processing)가 필요합니다(need to do). 이 부분은 직접 해결해야 하지만(Unfortunately, figure that out on your own) `map_if()`와 `map_at()`을 읽어보세요(might want to). `map_if()`는 값(values)에 따라(based on), `map_at()`은 이름(names)에 따라 리스트 요소를 선택적으로(selectively) 수정합니다(modify).
 
 ### 실패 처리
 
-때로는(Sometimes) 데이터의 구조(structure)가 충분히 거칠어(sufficiently wild) 단일 명령(single command)으로 모든 파일을 다 읽을 수는(can't even read) 없을 수 있습니다. 그러면 `map()`의 단점(downsides) 중 하나에 부딪히게(encounter) 됩니다. 그것은(it) 전체적(as a whole)으로 성공(succeeds)하거나 실패(fails)합니다. `map()`은 디렉터리의 모든 파일을 성공적으로 읽거나(read) 0개의 파일을 읽으면서 오류와 함께 실패(fail)합니다.
+데이터 구조(structure)가 매우 거칠면(sufficiently wild) 명령 하나(single command)로 모든 파일을 읽지(can't even read) 못할 때가 있습니다(Sometimes). 이때 `map()`의 단점(downsides)이 드러납니다(encounter). 전체가(as a whole) 성공하거나(succeeds) 실패합니다(fails). 디렉터리의 모든 파일을 읽든지(read), 하나도 읽지 못하고 오류로 끝납니다(fail).
 
-이것은 짜증납니다(annoying): 한 가지 실패로 인해(why does one failure) 다른 모든 성공(successes)에 액세스하지(accessing) 못하는(prevent you from) 이유는 무엇일까요? 다행히(Luckily) purrr에는 이 문제를 해결(tackle)할 수 있는 도우미인 `possibly()`가 함께 제공(comes with)됩니다.
+한 번의 실패 때문에(why does one failure) 나머지 성공 결과(successes)까지 이용하지(accessing) 못하니(prevent you from) 짜증스럽습니다(annoying). 다행히(Luckily) purrr의 `possibly()`가 이 문제를 해결합니다(tackle).
 
-`possibly()`는 함수 연산자(function operator)로 알려져(known as) 있습니다. 함수를 취하고(takes) 수정된 동작(modified behavior)을 가진 함수를 반환(returns)합니다. 
+`possibly()`는 함수 연산자(function operator)입니다(known as). 함수를 받아(takes) 동작을 바꾼(modified behavior) 함수를 반환합니다(returns).
 
-특히(In particular) `possibly()`는 함수가 오류를 발생(erroring)시키는 것에서(from) 사용자가 지정한(specify) 값을 반환(returning)하는 것으로(to) 변경(changes)합니다.
+구체적으로(In particular) 오류를 내는(erroring) 대신(from) 사용자가 지정한(specify) 값을 반환하도록(returning) 바꿉니다(changes).
 
 ```{r}
 files <- paths |> 
@@ -728,18 +720,18 @@ files <- paths |>
 data <- files |> list_rbind()
 ```
 
-많은 tidyverse 함수와 마찬가지로(like) `list_rbind()`가 `NULL`을 자동으로 무시(ignores)하기 때문에 여기서 특히 잘(particularly well) 작동(works)합니다. 이제 쉽게 읽을(can be read easily) 수 있는 모든 데이터가 준비되었으므로, 일부 파일의 로드에 실패(failed to load)한 이유(why)와 이에 대해 어떻게 해야(what to do about it) 할지 파악(figuring out)하는 어려운 부분(hard part)을 해결(tackle)할 차례(time to)입니다. 실패한(failed) 경로를 가져오는(getting) 것부터 시작합니다(Start by):
+`list_rbind()`는 많은 tidyverse 함수처럼(like) `NULL`을 자동으로 무시해(ignores) 여기서 특히 잘(particularly well) 작동합니다(works). 읽기 쉬운(can be read easily) 데이터는 모두 준비됐습니다. 이제 일부 파일을 불러오지 못한(failed to load) 이유(why)와 처리 방법(what to do about it)을 파악하는(figuring out) 어려운 단계(hard part)입니다(tackle). 먼저(Start by) 실패한(failed) 경로를 확인합니다(getting).
 
 ```{r}
 failed <- map_vec(files, is.null)
 paths[failed]
 ```
 
-그런 다음 각 실패에 대해 임포트(import) 함수를 다시 호출하고 무엇이 잘못되었는지(what went wrong) 파악(figure out)합니다.
+그런 다음 실패마다 임포트(import) 함수를 다시 호출해 무엇이 잘못됐는지(what went wrong) 파악합니다(figure out).
 
 ## 여러 출력 저장
 
-이전 섹션에서는 여러 파일을 단일 객체로 읽어 들이는 데 유용한 `map()`에 대해 배웠습니다. 이 섹션에서는 이제 반대 문제(opposite problem)를 살펴보겠습니다(explore): 어떻게 하면 하나 이상의(one or more) R 객체를 가져와서(take) 하나 이상의 파일에 저장할(save) 수 있을까요? 세 가지 예제를 사용하여 이 과제(challenge)를 살펴보겠습니다.
+앞 절에서는 여러 파일을 하나의 객체로 읽는 `map()`을 배웠습니다. 이제 반대 문제(opposite problem)를 살펴봅니다(explore). 하나 이상의(one or more) R 객체를 받아(take) 하나 이상의 파일에 저장하는(save) 방법입니다. 세 가지 예제로 이 과제(challenge)를 다룹니다.
 
 - 여러 데이터 프레임을 하나의 데이터베이스에 저장하기.
 - 여러 데이터 프레임을 여러 `.csv` 파일에 저장하기.
@@ -747,7 +739,7 @@ paths[failed]
 
 ### 데이터베이스에 쓰기
 
-때로는 한 번에 여러 파일로 작업할 때 모든 데이터를 한 번에(at once) 메모리에 맞추는(fit) 것이 불가능할(not possible) 수 있으며 `map(files, read_csv)`를 수행할 수 없습니다. 이 문제를 처리(deal with)하는 한 가지 접근 방식(approach)은 데이터를 데이터베이스에 로드(load)하여 dbplyr를 사용해 필요한 부분(bits)에만 액세스(access)할 수 있도록 하는 것입니다.
+여러 파일의 모든 데이터를 한 번에(at once) 메모리에 올리지(fit) 못하면(not possible) `map(files, read_csv)`를 실행할 수 없습니다. 한 가지 해결법(approach)은 데이터를 데이터베이스에 넣고(load) dbplyr로 필요한 부분(bits)에만 접근하는(access) 것입니다(deal with).
 
 운이 좋다면(If you're lucky) 사용 중인 데이터베이스 패키지에서 경로 벡터(vector of paths)를 가져와서 모두 데이터베이스에 로드하는 편리한 함수(handy function)를 제공할 것입니다. duckdb의 `duckdb_read_csv()`가 바로 이 경우(the case)입니다.
 
@@ -757,8 +749,7 @@ con <- DBI::dbConnect(duckdb::duckdb())
 duckdb::duckdb_read_csv(con, "gapminder", paths)
 ```
 
-이것은 여기서는 잘(well) 작동하겠지만, 우리는 csv 파일이 없고 대신 엑셀 스프레드시트가 있습니다.
-따라서 우리는 "수동으로(by hand)" 수행해야 할(going to have to do it) 것입니다. 수동으로 수행하는 방법을 배우는 것은 여러 개의(a bunch of) csv가 있고 작업 중인 데이터베이스에 모든 csv를 한 번에(all in) 로드하는 함수가 하나도(one) 없는 경우에도 도움이 됩니다.
+여기서는 잘(well) 작동하겠지만 csv 파일이 아니라 엑셀 스프레드시트가 있습니다. 따라서 "수동으로(by hand)" 처리해야 합니다(going to have to do it). 이 방법은 csv가 여러 개(a bunch of)인데 데이터베이스에 모두 한 번에(all in) 넣는 함수가 하나도(one) 없을 때도 유용합니다.
 
 우리는 데이터로 채울(fill in) 테이블을 생성하는(creating) 것부터 시작해야 합니다. 이 작업을 수행하는 쉬운 방법은 템플릿(template), 즉 우리가 원하는 모든 열을 포함(contains)하지만 데이터의 샘플링(sampling)만 포함하는 더미 데이터 프레임(dummy data frame)을 만드는 것입니다. gapminder 데이터의 경우, 단일(single) 파일을 읽고 거기에 연도를 추가(adding)하여 해당 템플릿을 만들 수(make) 있습니다.
 
@@ -784,7 +775,7 @@ DBI::dbCreateTable(con, "gapminder", template)
 con |> tbl("gapminder")
 ```
 
-다음으로 단일 파일 경로를 취하고(takes) R로 읽어들여(reads) `gapminder` 테이블에 결과를 추가하는(adds) 함수가 필요합니다. `read_excel()`을 `DBI::dbAppendTable()`과 결합(combining)하여 이를 수행할 수 있습니다.
+다음으로 파일 경로 하나를 받아(takes) R로 읽고(reads) 결과를 `gapminder` 테이블에 추가하는(adds) 함수가 필요합니다. `read_excel()`과 `DBI::dbAppendTable()`을 결합합니다(combining).
 
 ```{r}
 #| eval: false
@@ -796,21 +787,21 @@ append_file <- function(path) {
 }
 ```
 
-이제 `paths`의 각 요소에 대해 `append_file()`을 한 번씩(once) 호출해야 합니다. `map()`을 사용하면 확실히(certainly) 가능(possible)합니다.
+이제 `paths`의 각 요소마다 `append_file()`을 한 번씩(once) 호출합니다. `map()`으로도 가능합니다(certainly).
 
 ```{r}
 #| eval: false
 paths |> map(append_file)
 ```
 
-하지만 우리는 `append_file()`의 출력(output)에는 신경 쓰지(don't care about) 않으므로 `map()` 대신 `walk()`를 사용하는 것이 약간 더 낫습니다(slightly nicer). `walk()`는 `map()`과 완전히 동일한 작업(exactly the same thing)을 수행하지만 출력을 버립니다(throws away):
+하지만 `append_file()`의 출력(output)은 필요하지 않으므로(don't care about) `map()`보다 `walk()`가 조금 낫습니다(slightly nicer). `walk()`는 같은 작업(exactly the same thing)을 하고 출력을 버립니다(throws away).
 
 ```{r}
 #| eval: false
 paths |> walk(append_file)
 ```
 
-이제 테이블에 모든 데이터가 있는지 확인할(can see) 수 있습니다.
+이제 테이블에 모든 데이터가 있는지 확인합니다(can see).
 
 ```{r}
 #| eval: false
@@ -827,7 +818,7 @@ DBI::dbDisconnect(con, shutdown = TRUE)
 
 ### csv 파일 쓰기
 
-각 그룹에 대해 하나씩(one for each group) 여러 csv 파일을 쓰려는(want to write) 경우에도 동일한 기본 원칙(basic principle)이 적용(applies)됩니다. `ggplot2::diamonds` 데이터를 가져와서(take) 각 `clarity`에 대해 하나의 csv 파일을 저장한다고 상상(imagine)해 봅시다. 먼저 개별 데이터셋을 만들어야(make) 합니다. 여러 가지 방법이 있지만, 특히 좋아하는 방법(one way we particularly like)인 `group_nest()`가 있습니다.
+그룹마다 하나씩(one for each group) csv 파일을 여러 개 쓸(want to write) 때도 같은 원칙(basic principle)을 적용합니다(applies). `ggplot2::diamonds` 데이터에서(take) 각 `clarity`별 csv 파일을 저장한다고(imagine) 해봅시다. 먼저 개별 데이터셋을 만듭니다(make). 여러 방법 가운데 `group_nest()`를 사용하겠습니다(one way we particularly like).
 
 ```{r}
 by_clarity <- diamonds |> 
@@ -836,13 +827,13 @@ by_clarity <- diamonds |>
 by_clarity
 ```
 
-이렇게 하면 8개의 행과 2개의 열이 있는 새 티블이 제공(gives us)됩니다. `clarity`는 그룹화 변수(grouping variable)이고 `data`는 `clarity`의 각 고유 값(unique value)에 대해 하나의 티블을 포함(containing)하는 리스트 열(list-column)입니다.
+그러면 행 8개, 열 2개의 티블이 나옵니다(gives us). `clarity`는 그룹화 변수(grouping variable)이고 `data`는 `clarity`의 고유 값(unique value)마다 티블 하나를 담은(containing) 리스트 열(list-column)입니다.
 
 ```{r}
 by_clarity$data[[1]]
 ```
 
-여기 있는 김에(While we're here) `mutate()`와 `str_glue()`를 사용하여 출력 파일의 이름을 지정(gives the name of)하는 열을 생성(create)해 봅시다.
+이어서(While we're here) `mutate()`와 `str_glue()`로 출력 파일 이름을 담는(gives the name of) 열을 만듭니다(create).
 
 ```{r}
 by_clarity <- by_clarity |> 
@@ -851,7 +842,7 @@ by_clarity <- by_clarity |>
 by_clarity
 ```
 
-따라서 이 데이터 프레임들을 수동(by hand)으로 저장(save)하려는 경우(if we were going to), 다음과 같이 작성(might write something like)할 수 있습니다.
+이 데이터 프레임을 수동으로(by hand) 저장한다면(save) 다음과 같이 작성합니다(if we were going to).
 
 ```{r}
 #| eval: false
@@ -862,7 +853,7 @@ write_csv(by_clarity$data[[3]], by_clarity$path[[3]])
 write_csv(by_clarity$data[[8]], by_clarity$path[[8]])
 ```
 
-이것은 하나의 인수만이 아니라 변경(changing)되는 두 개의 인수가 있기 때문에 이전의(previous) `map()` 사용과는 조금 다릅니다(little different). 즉, 첫 번째 인수와 두 번째 인수 모두를 변화(varies)시키는 새로운 함수인 `map2()`가 필요합니다. 그리고 우리는 출력을 다시(again) 신경 쓰지 않기(don't care about) 때문에 `map2()`가 아니라 `walk2()`를 원합니다.
+이번에는 변하는(changing) 인수가 두 개라 이전(previous)의 `map()`과 조금 다릅니다(little different). 첫 번째와 두 번째 인수를 모두 바꾸는(varies) `map2()`가 필요합니다. 출력은 다시(again) 필요하지 않으므로(don't care about) 실제로는 `walk2()`를 씁니다.
 
 ```{r}
 walk2(by_clarity$data, by_clarity$path, write_csv)
@@ -875,7 +866,7 @@ unlink(by_clarity$path)
 
 ### 플롯 저장 (Saving plots)
 
-동일한 기본 접근 방식을 사용하여 여러 플롯을 만들(create many plots) 수 있습니다. 먼저 원하는 플롯을 그리는(draws) 함수를 만들어 보겠습니다.
+같은 기본 방식으로 플롯도 여러 개 만듭니다(create many plots). 먼저 원하는 플롯을 그리는(draws) 함수를 작성합니다.
 
 ```{r}
 #| fig-alt: |
@@ -890,7 +881,7 @@ carat_histogram <- function(df) {
 carat_histogram(by_clarity$data[[1]])
 ```
 
-이제 `map()`을 사용하여 여러 플롯과 최종(eventual) 파일 경로의 리스트를 만들(create) 수 있습니다. 
+이제 `map()`으로 여러 플롯과 최종(eventual) 파일 경로의 리스트를 만듭니다(create).
 
 ```{r}
 by_clarity <- by_clarity |> 
@@ -900,7 +891,7 @@ by_clarity <- by_clarity |>
   )
 ```
 
-그런 다음 `walk2()`와 함께 `ggsave()`를 사용하여 각 플롯을 저장(save)합니다.
+그런 다음 `walk2()`와 `ggsave()`로 각 플롯을 저장합니다(save).
 
 ```{r}
 walk2(
@@ -928,4 +919,36 @@ unlink(by_clarity$path)
 
 ### 연습 문제
 
-1. (다른 변수들 중에서도) `school_name`과 `student_id`가 포함된(containing) 학생 데이터 테이블이 있다고 상상해 보세요. 각 학생에 대한 모든 정보를 `{school}` 디렉터리의 `{student_id}.csv`라는 파일에 저장하려고 할(want to) 때 작성할(write) 코드를 스케치(Sketch out)해 보세요.
+1. 여러 변수 중 `school_name`과 `student_id`가 포함된(containing) 학생 데이터 테이블이 있다고 해봅시다. 각 학생의 모든 정보를 `{school}` 디렉터리의 `{student_id}.csv` 파일에 저장하는(want to) 코드를 스케치하세요(Sketch out).
+
+<!-- HUMANIZE-SUMMARY
+원본 글자수: 30,817자
+윤문본 글자수: 28,056자
+변경률: 12.2% (마크업 제외, verify_change_rate.py)
+
+카테고리별 탐지 건수(before → after):
+- A-1 "~에 대해" 번역투: 18 → 0
+- A-7 가지다 직역: 0 → 0
+- A-10 가능 표현 남발: 36 → 0
+- A-11 목적절 남발: 4 → 0
+- A-15 본문 추상 주어·만능 동사: 5 → 0
+- C-11 연결어미 뒤 쉼표: 9 → 0
+
+자체검증: 6/6 통과
+1. 고유명사·수치·날짜·인용·내용 앵커 보존: 통과
+2. 변경률 30% 이하: 통과
+3. 장르 유지: 통과
+4. register 유지: 통과
+5. 잔존 S1 패턴 0건: 통과
+6. 새 비유·수사·상투구 없음: 통과
+
+등급: A
+사유: S1·선별 S2 패턴이 남지 않았고 본문 변경률이 10~25% 범위임.
+
+주요 변경 하이라이트:
+- "무료로 얻을 수 있기 때문에" → "별도 작업 없이 이루어집니다"
+- "지루해질 것이라고 상상할 수 있습니다" → "작업도 매우 지루합니다"
+- "세 가지 기본 단계가 있습니다" → "세 단계로 자동화합니다"
+- "한 가지 실패로 인해 다른 모든 성공에 액세스하지 못하는" → "한 번의 실패 때문에 나머지 성공 결과까지 이용하지 못하는"
+- "어떻게 하면 R 객체를 파일에 저장할 수 있을까요" → "R 객체를 파일에 저장하는 방법입니다"
+-->
