@@ -1,0 +1,690 @@
+﻿---
+title: "벡터: 숫자"
+---
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+> 숫자형 벡터(numeric vectors)는 데이터 과학의 중추(backbone)이며 이 책의 앞부분에서도 여러 번 사용했습니다. 이제 R에서 숫자로 하는 작업을 체계적으로 살펴보고(survey) 앞으로 숫자형 벡터와 관련된 문제에 대처(tackle)할 기반(well situated)을 다질 차례입니다.
+
+먼저 문자열에서 숫자를 만드는 도구 몇 가지와 `count()`를 자세히 알아봅니다. 이어서 `mutate()`와 잘 어울리는(pair well) 여러 숫자 변환을 살펴봅니다(dive into). 여기에는 다른 유형의 벡터에도 적용되지만 숫자형 벡터에 자주 쓰이는 일반 변환(transformations)이 포함됩니다. 마지막에는 `summarize()`와 잘 맞는 요약(summary) 함수와 이를 `mutate()`에서 사용하는 방법을 다룹니다.
+
+```{r}
+#| label: setup
+#| message: false
+library(tidyverse)
+library(nycflights13)
+```
+
+## 숫자 만들기
+
+대부분 숫자는 이미 R의 숫자 유형인 정수(integer)나 배정도 실수(double)로 기록되어 있습니다.
+그러나 열 머리글(column headers)을 피벗해서 만들었거나 데이터를 가져오는 과정에서 문제가 생기면 문자열로 표시되기도 합니다.
+
+readr에는 문자열을 숫자로 파싱하는 `parse_double()`과 `parse_number()`가 있습니다.
+문자열로 작성된 숫자에는 `parse_double()`을 사용합니다.
+
+```{r}
+x <- c("1.2", "5.6", "1e3")
+parse_double(x)
+```
+
+문자열에 무시할 숫자 아닌 텍스트가 들어 있다면 `parse_number()`를 사용하세요.
+통화(currency) 데이터와 백분율에 특히 유용합니다.
+
+```{r}
+x <- c("$1,234", "USD 3,513", "59%")
+parse_number(x)
+```
+
+## 개수 세기
+
+개수 세기(counts)와 약간의 기본 산술만으로도 상당히 많은 데이터 과학 작업을 해냅니다. 그래서 dplyr은 `count()`로 개수를 최대한 쉽게 세도록 설계됐습니다(strives). 분석 중 빠른 탐색(quick exploration)과 검사(checks)에 매우 유용한 함수입니다.
+
+```{r}
+flights |> count(dest)
+```
+
+`count()`는 계산이 예상대로 작동하는지 콘솔에서 빠르게 확인할 때 자주 쓰므로 보통 한 줄에 적습니다. 흔한 값부터 보려면 `sort = TRUE`를 추가하세요.
+
+```{r}
+flights |> count(dest, sort = TRUE)
+```
+
+모든 값을 보려면 `|> View()`나 `|> print(n = Inf)`를 사용하세요.
+
+`group_by()`, `summarize()`, `n()`으로 같은 계산을 "수동으로(by hand)" 수행해도 됩니다. 다른 요약(summaries)을 동시에 계산할 때 유용합니다.
+
+```{r}
+flights |> 
+  group_by(dest) |> 
+  summarize(
+    n = n(),
+    delay = mean(arr_delay, na.rm = TRUE)
+  )
+```
+
+`n()`은 인자를 받는 대신 "현재(current)" 그룹의 정보에 접근하는 특별한 요약 함수입니다. 따라서 dplyr 동사(verbs) 안에서만 작동합니다.
+
+```{r}
+#| error: true
+n()
+```
+
+`n()`과 `count()`에는 유용한 변형(variants)이 몇 가지 있습니다.
+
+1. `n_distinct(x)`는 하나 이상의 변수에서 뚜렷하게 구분되는(distinct), 곧 고유한(unique) 값의 개수를 셉니다. 예를 들어 여러 항공사(carriers)가 운항하는 목적지를 찾습니다.
+
+```{r}
+flights |> 
+  group_by(dest) |> 
+  summarize(carriers = n_distinct(carrier)) |> 
+  arrange(desc(carriers))
+```
+
+2. 가중 카운트(weighted count)는 합계(sum)입니다. 예를 들어 각 비행기가 비행한 마일(miles) 수를 "셀(count)" 수 있습니다.
+
+```{r}
+flights |> 
+  group_by(tailnum) |> 
+  summarize(miles = sum(distance))
+```
+
+3. 가중 카운트는 일반적인 문제이므로 `count()`에는 동일한 작업을 수행하는 `wt` 인수가 있습니다.
+
+```{r}
+#| results: false
+flights |> count(tailnum, wt = distance)
+```
+
+4. `sum()`과 `is.na()`를 결합하면 결측값의 개수를 셉니다. `flights` 데이터셋에서는 취소된 비행편을 나타냅니다.
+
+```{r}
+flights |> 
+  group_by(dest) |> 
+  summarize(n_cancelled = sum(is.na(dep_time))) 
+```
+
+### 연습 문제
+
+1. 특정 변수에 결측값이 있는 행의 수를 `count()`로 어떻게 세겠습니까?
+
+2. `count()`에 대한 다음 호출(calls)을 대신 `group_by()`, `summarize()`, `arrange()`를 사용하도록 확장(Expand)하세요.
+
+```r
+flights |> count(dest, sort = TRUE)
+flights |> count(tailnum, wt = distance)
+```
+
+## 숫자 변환
+
+변환 함수(Transformation functions)는 출력과 입력의 길이가 같아서 `mutate()`와 잘 작동합니다. 대다수(The vast majority of)는 이미 기본 R에 내장되어 있습니다. 모두 나열하기는 비현실적이므로(impractical) 이 절에서는 유용한 함수만 살펴봅니다. 가령 R에는 거의 모든 삼각 함수(trigonometric functions)가 있지만 데이터 과학에서는 별로 필요하지 않아 여기서 다루지 않습니다.
+
+### 산술 및 재활용 규칙
+
+산술(`+`, `-`, `*`, `/`, `^`)의 기초는 이미 소개했고 그 뒤로 자주 사용했습니다. 초등학교(grade school)에서 배운 방식대로 작동하므로 설명은 많이 필요하지 않습니다. 다만 좌변(left)과 우변(right)의 길이가 다를 때 적용되는 재활용 규칙(recycling rules)은 짚고 넘어가야 합니다. `flights |> mutate(air_time = air_time / 60)` 같은 연산에서는 `/`의 왼쪽에 숫자가 336,776개 있지만 오른쪽에는 하나만 있어서 이 규칙이 중요합니다.
+
+R은 짧은 벡터를 재활용(recycling), 곧 반복(repeating)해 불일치하는 길이(mismatched lengths)를 처리합니다.
+데이터 프레임 밖에서 벡터 몇 개를 만들면 작동 방식을 더 쉽게 확인합니다.
+
+```{r}
+x <- c(1, 2, 10, 20)
+x / 5
+# is shorthand for
+x / c(5, 5, 5, 5)
+```
+
+대개 단일 숫자, 곧 길이가 1인 벡터만 재활용하겠지만 R은 더 짧은 벡터라면 무엇이든 재활용합니다. 긴 벡터의 길이가 짧은 벡터 길이의 배수(multiple)가 아니면 보통(항상은 아니지만) 경고(warning)를 표시합니다.
+
+```{r}
+x * c(1, 2)
+x * c(1, 2, 3)
+```
+
+이 재활용 규칙은 논리 비교(`==`, `<`, `<=`, `>`, `>=`, `!=`)에도 적용됩니다. 실수로 `%in%` 대신 `==`를 쓰고 데이터 프레임의 행 수까지 불행한 수(unfortunate number of rows)라면 뜻밖의 결과가 나옵니다.
+1월과 2월의 모든 비행편을 찾는 코드를 예로 살펴보세요.
+
+```{r}
+flights |> 
+  filter(month == c(1, 2))
+```
+
+코드는 오류 없이 실행되지만 원하는 결과를 반환하지 않습니다. 재활용 규칙 때문에 홀수(odd numbered) 행에서는 1월 출발 비행편을, 짝수(even numbered) 행에서는 2월 출발 비행편을 찾습니다. 공교롭게도 `flights`의 행 수가 짝수라서 경고도 나오지 않습니다.
+
+이런 조용한 실패(silent failure)를 막으려고 대부분의 tidyverse 함수는 단일 값(single values)만 재활용하는 더 엄격한(stricter) 규칙을 사용합니다. 하지만 여기서는 핵심 계산을 `filter()`가 아니라 기본 R 함수 `==`가 수행하므로 도움이 되지 않습니다. 다른 많은 경우도 마찬가지입니다.
+
+### 최솟값과 최댓값
+
+산술 함수는 변수의 쌍(pairs of)에 작용합니다. 이와 밀접한 `pmin()`과 `pmax()`는 변수가 두 개 이상 주어지면 각 행에서 가장 작거나 큰 값을 반환합니다.
+
+```{r}
+df <- tribble(
+  ~x, ~y,
+  1,  3,
+  5,  2,
+  7, NA,
+)
+
+df |> 
+  mutate(
+    min = pmin(x, y, na.rm = TRUE),
+    max = pmax(x, y, na.rm = TRUE)
+  )
+```
+
+두 함수는 여러 관측치에서 값 하나를 반환하는 요약 함수 `min()`과 `max()`와 다릅니다. 모든 최솟값과 최댓값이 같다면 잘못된 형식을 사용한 것입니다.
+
+```{r}
+df |> 
+  mutate(
+    min = min(x, y, na.rm = TRUE),
+    max = max(x, y, na.rm = TRUE)
+  )
+```
+
+### 모듈러 산술
+
+모듈러 산술(Modular arithmetic)은 소수 자릿수(decimal places)를 배우기 전에 접한 수학, 곧 정수(whole number)와 나머지(remainder)를 구하는 나눗셈의 기술적인 이름입니다. R에서 `%/%`는 정수 나눗셈을 하고 `%%`는 나머지를 계산합니다.
+
+```{r}
+1:10 %/% 3
+1:10 %% 3
+```
+
+모듈러 산술은 `sched_dep_time` 변수를 `hour`와 `minute`으로 풀 때(unpack) 유용합니다.
+
+```{r}
+flights |> 
+  mutate(
+    hour = sched_dep_time %/% 100,
+    minute = sched_dep_time %% 100,
+    .keep = "used"
+  )
+```
+
+이를 `mean(is.na(x))` 기법과 결합하면 취소된 비행편의 비율이 하루 동안 어떻게 달라지는지(varies) 확인합니다.
+
+```{r}
+#| label: fig-prop-cancelled
+#| fig-cap: | 
+#|   x축에는 예정된 출발 시간(hour), y축에는 취소된 비행편의 
+#|   비율을 나타내는 선형 플롯(line plot). 취소는 오후 8시까지 
+#|   하루 동안 누적되는 것으로 보이며 매우 늦은 비행편은
+#|   취소될 가능성이 훨씬 낮습니다.
+
+flights |> 
+  group_by(hour = sched_dep_time %/% 100) |> 
+  summarize(prop_cancelled = mean(is.na(dep_time)), n = n()) |> 
+  filter(hour > 1) |> 
+  ggplot(aes(x = hour, y = prop_cancelled)) +
+  geom_line(color = "grey50") + 
+  geom_point(aes(size = n))
+```
+
+### 로그
+
+로그(Logarithms)는 여러 자릿수(orders of magnitude)에 걸친 데이터를 처리하고 지수적(exponential) 성장을 선형(linear) 성장으로 바꿀 때 매우(incredibly) 유용합니다. R에서는 `log()`(자연로그, 밑이 e), `log2()`(밑이 2), `log10()`(밑이 10) 가운데 선택합니다. 여기서는 `log2()`나 `log10()`을 권장합니다.
+
+`log2()`는 해석하기 쉽습니다. 로그 스케일에서 1의 차이는 원래 스케일의 두 배, -1의 차이는 절반에 해당합니다. 반면 `log10()`은 역변환(back-transform)이 쉽습니다(3은 10\^3 = 1000). `log()`의 역함수는 `exp()`입니다. `log2()`나 `log10()`의 역함수는 `2^` 또는 `10^`으로 계산합니다.
+
+### 반올림
+
+숫자를 가까운 정수로 반올림하려면 `round(x)`를 사용하세요.
+
+```{r}
+round(123.456)
+```
+
+두 번째 인수 `digits`로 반올림의 정밀도(precision)를 제어합니다. `round(x, digits)`는 가까운 `10^-n`으로 반올림하므로 `digits = 2`는 가까운 0.01로 반올림합니다. 같은 정의에 따라 `round(x, -3)`은 실제로 가까운 1000으로 반올림합니다.
+
+```{r}
+round(123.456, 2)  # 두 자리 (two digits)
+round(123.456, 1)  # 한 자리 (one digit)
+round(123.456, -1) # 가까운 10의 배수로 반올림 (round to nearest ten)
+round(123.456, -2) # 가까운 100의 배수로 반올림 (round to nearest hundred)
+```
+
+`round()`에는 언뜻(at first glance) 이상해 보이는 점(weirdness)이 하나 있습니다.
+
+```{r}
+round(c(1.5, 2.5))
+```
+
+`round()`는 "짝수 반올림(round half to even)", 또는 은행원 반올림(Banker's rounding)을 사용합니다. 숫자가 두 정수의 정중앙(half way)에 있으면 짝수(even) 정수로 반올림합니다. 모든 0.5 가운데 절반은 올리고 절반은 내려 반올림의 편향을 막는(unbiased) 좋은 전략입니다.
+
+`round()`는 항상 내림(rounds down)하는 `floor()` 및 항상 올림(rounds up)하는 `ceiling()`과 짝을 이룹니다.
+
+```{r}
+x <- 123.456
+
+floor(x)
+ceiling(x)
+```
+
+이 함수들에는 `digits` 인수가 없습니다. 대신 크기를 줄이고(scale down) 반올림한 뒤 다시 키웁니다(scale back up).
+
+```{r}
+# 가까운 두 자리 소수로 내림 (Round down to nearest two digits)
+floor(x / 0.01) * 0.01
+# 가까운 두 자리 소수로 올림 (Round up to nearest two digits)
+ceiling(x / 0.01) * 0.01
+```
+
+다른 숫자의 배수(multiple)로 `round()`할 때도 같은 기법을 사용합니다.
+
+```{r}
+# 가까운 4의 배수로 반올림 (Round to nearest multiple of 4)
+round(x / 4) * 4
+
+# 가까운 0.25 단위로 반올림 (Round to nearest 0.25)
+round(x / 0.25) * 0.25
+```
+
+### 숫자를 범위로 자르기
+
+`cut()`으로 숫자형 벡터를 이산형 버킷(discrete buckets)으로 나눕니다(break up (일명 bin)).
+
+```{r}
+x <- c(1, 2, 5, 10, 15, 20)
+cut(x, breaks = c(0, 5, 10, 15, 20))
+```
+
+구간(breaks)이 일정한 간격(evenly spaced)일 필요는 없습니다.
+
+```{r}
+cut(x, breaks = c(0, 5, 10, 100))
+```
+
+필요하면 직접 만든 `labels`를 지정합니다. `labels`의 개수는 `breaks`보다 하나 적어야 합니다.
+
+```{r}
+cut(x, 
+  breaks = c(0, 5, 10, 15, 20), 
+  labels = c("sm", "md", "lg", "xl")
+)
+```
+
+구간의 범위(range of the breaks)를 벗어나는(outside of) 값은 `NA`가 됩니다.
+
+```{r}
+y <- c(NA, -10, 5, 10, 30)
+cut(y, breaks = c(0, 5, 10, 15, 20))
+```
+
+구간이 `[a, b)`인지 `(a, b]`인지, 가장 낮은 구간이 `[a, b]`여야 하는지는 `right`와 `include.lowest`로 제어합니다. 다른 유용한 인수도 설명서에서 확인하세요.
+
+### 누적 및 이동 집계
+
+기본 R에는 누계(running) 또는 누적(cumulative) 합계(sums), 곱(products), 최솟값(mins), 최댓값(maxes)을 구하는 `cumsum()`, `cumprod()`, `cummin()`, `cummax()`가 있습니다. dplyr에는 누적 평균 함수인 `cummean()`이 있습니다.
+실제로는 누적 합계를 자주 사용합니다.
+
+```{r}
+x <- 1:10
+cumsum(x)
+```
+
+더 복잡한 롤링(rolling)이나 슬라이딩(sliding) 집계가 필요하다면 slider([https://slider.r-lib.org/](https://slider.r-lib.org/)) 패키지를 사용해 보세요.
+
+### 연습 문제
+
+1. R에는 어떤 삼각 함수가 있습니까? 몇 가지 이름을 추측하고 문서를 찾아보세요. 도(degrees)를 사용합니까 아니면 라디안(radians)을 사용합니까?
+
+2. 현재 `dep_time`과 `sched_dep_time`은 보기는 편하지만 실제로는 연속된 숫자가 아니기 때문에 계산하기가 어렵습니다. 아래 코드를 실행하면 기본적인 문제를 볼 수 있습니다. 각 시간(hour) 사이에 간격(gap)이 있습니다. 이들을 시간에 대한 보다 진실한(truthful) 표현(시간의 분수(fractional) 형태 또는 자정 이후의 분(minutes))으로 변환하세요.
+
+```{r}
+#| eval: false
+flights |> 
+  filter(month == 1, day == 1) |> 
+  ggplot(aes(x = sched_dep_time, y = dep_delay)) +
+  geom_point()
+```
+
+3. `dep_time`과 `arr_time`을 가까운 5분 단위로 반올림하세요.
+
+## 일반 변환
+
+다음 절에서는 숫자형 벡터에 자주 쓰이지만 다른 모든 열(column) 유형에도 적용되는 일반 변환 몇 가지를 설명합니다.
+
+### 순위
+
+dplyr에는 SQL에서 영감을 받은 여러 순위(ranking) 함수가 있지만 먼저 `dplyr::min_rank()`부터 사용하세요. 이 함수는 동점(ties)을 1등, 2등, 2등, 4등처럼 처리하는 전형적인 방식을 따릅니다.
+
+```{r}
+x <- c(1, 5, 5, 17, 22, NA)
+min_rank(x)
+```
+
+작은 값이 낮은 순위를 받습니다. 큰 값에 낮은 순위를 부여하려면 `desc(x)`를 사용하세요.
+
+```{r}
+min_rank(desc(x))
+```
+
+`min_rank()`가 원하는 작업과 맞지 않으면 `dplyr::row_number()`, `dplyr::dense_rank()`, `dplyr::percent_rank()`, `dplyr::cume_dist()`를 살펴보세요.
+
+```{r}
+df <- tibble(x = x)
+df |> 
+  mutate(
+    row_number = row_number(x),
+    dense_rank = dense_rank(x),
+    percent_rank = percent_rank(x),
+    cume_dist = cume_dist(x)
+  )
+```
+
+기본 R의 `rank()`에 알맞은 `ties.method` 인수를 지정해도 같은 결과를 대부분 얻습니다. `NA`를 그대로 유지하려면 `na.last = "keep"`을 설정합니다. `row_number()`는 dplyr 동사 안에서 인수 없이 쓸 수도 있으며 이때 "현재" 행의 번호를 반환합니다. `%%`나 `%/%`와 결합하면 데이터를 크기가 비슷한 그룹으로 나누는 데 유용합니다.
+
+```{r}
+df <- tibble(id = 1:10)
+
+df |> 
+  mutate(
+    row0 = row_number() - 1,
+    three_groups = row0 %% 3,
+    three_in_each_group = row0 %/% 3
+  )
+```
+
+### 오프셋
+
+`dplyr::lead()`와 `dplyr::lag()`는 "현재" 값의 바로 앞이나 뒤에 있는 값을 참조합니다. 입력과 길이가 같은 벡터를 반환하며 시작이나 끝은 `NA`로 채웁니다(padded).
+
+```{r}
+x <- c(2, 5, 11, 11, 19, 35)
+lag(x)
+lead(x)
+```
+
+1. `x - lag(x)`는 현재 값과 이전 값의 차이를 구합니다.
+
+```{r}
+x - lag(x)
+```
+
+2. `x == lag(x)`는 현재 값이 언제 바뀌는지 알려줍니다.
+
+```{r}
+x == lag(x)
+```
+
+두 번째 인수 `n`으로 두 칸 이상 앞당기거나(lead) 뒤처지게(lag) 합니다.
+
+### 연속된 식별자
+
+때로는 특정 이벤트가 발생할 때마다 새 그룹을 시작해야 합니다. 웹사이트 데이터를 세션으로 나누는 경우가 대표적입니다. 마지막 활동(activity) 이후 `x`분 이상의 간격(gap)이 생기면 새 세션을 시작합니다. 누군가 웹사이트를 방문한 시간이 있다고 해봅시다.
+
+```{r}
+events <- tibble(
+  time = c(0, 1, 2, 3, 5, 10, 12, 15, 17, 19, 20, 27, 28, 30)
+)
+```
+
+각 이벤트 사이의 시간을 계산하고 간격이 조건을 충족할(qualify) 만큼 큰지도 파악합니다.
+
+```{r}
+events <- events |> 
+  mutate(
+    diff = time - lag(time, default = first(time)),
+    has_gap = diff >= 5
+  )
+events
+```
+
+이 논리형 벡터를 `group_by()`에 쓸 값으로 어떻게 바꿀까요? 간격(gap), 곧 `has_gap`이 `TRUE`일 때마다 `group`을 1씩 늘리면 되므로 `cumsum()`이 적합합니다.
+
+```{r}
+events |> mutate(
+  group = cumsum(has_gap)
+)
+```
+
+그룹화 변수(grouping variables)는 `consecutive_id()`로도 만듭니다. 이 함수는 인수 가운데 하나가 바뀔 때마다 새 그룹을 시작합니다.
+
+```{r}
+df <- tibble(
+  x = c("a", "a", "a", "b", "c", "c", "d", "e", "a", "a", "b", "b"),
+  y = c(1, 2, 3, 2, 4, 1, 3, 9, 4, 8, 10, 199)
+)
+```
+
+반복되는 각 `x`에서 첫 번째 행만 남기려면 `group_by()`, `consecutive_id()`, `slice_head()`를 사용합니다.
+
+```{r}
+df |> 
+  group_by(id = consecutive_id(x)) |> 
+  slice_head(n = 1)
+```
+
+### 연습 문제
+
+1. 순위 지정 함수를 사용하여 많이 지연된 비행편 10개를 찾으세요. 동점(ties)은 어떻게 처리하고 싶나요? `min_rank()`에 대한 설명서를 주의 깊게 읽어보세요.
+
+2. 어떤 비행기(`tailnum`)의 정시 도착 기록이 나쁩니까?
+
+3. 지연을 최대한 피하고 싶다면 하루 중 어느 시간에 비행기를 타야 할까요?
+
+4. `flights |> group_by(dest) |> filter(row_number() < 4)`는 무엇을 합니까? `flights |> group_by(dest) |> filter(row_number(dep_delay) < 4)`는 무엇을 합니까?
+
+5. 목적지별 총 지연 시간을 분(minutes) 단위로 계산하세요. 이어서 각 비행편이 해당 목적지의 총 지연 시간에서 차지하는 비율을 계산하세요.
+
+6. 지연은 일반적으로 시간적으로 상관관계가 있습니다(temporally correlated). 초기 지연을 유발한 문제가 해결되더라도 이전 비행편이 떠날 수 있도록 이후 비행편이 지연됩니다. `lag()`를 사용하여 특정 시간(hour)의 평균 비행 지연이 이전 시간의 평균 지연과 어떻게 관련되어 있는지 탐색해 보세요.
+
+```{r}
+#| results: false
+flights |> 
+  mutate(hour = dep_time %/% 100) |> 
+  group_by(year, month, day, hour) |> 
+  summarize(
+    dep_delay = mean(dep_delay, na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  ) |> 
+  filter(n > 5)
+```
+
+7. 각 목적지를 살펴보세요. 의심스러울(suspiciously) 정도로 빠른 비행편, 곧 잠재적인 데이터 입력 오류를 나타내는 비행편이 있습니까? 해당 목적지까지 짧은 비행편을 기준으로 비행편의 비행 시간(air time)을 계산하세요. 어느 비행편이 공중(in the air)에서 많이 지연되었나요?
+
+8. 두 개 이상의 항공사가 운항하는 모든 목적지를 찾으세요. 이러한 목적지들을 사용하여 동일한 목적지에 대한 실적을 바탕으로 항공사들의 상대적인 순위를 매겨보세요.
+
+## 숫자 요약
+
+이미 소개한 개수, 평균, 합계만으로도 많은 일을 하지만 R에는 유용한 요약 함수가 더 있습니다. 그중 몇 가지(selection)를 살펴보겠습니다.
+
+### 중심
+
+지금까지 값 벡터의 중심은 주로 `mean()`으로 요약했습니다. 평균은 합계를 개수로 나누므로 비정상적으로 높거나 낮은 값 몇 개에도 민감(sensitive)합니다. 대안인 `median()`(중앙값)은 벡터의 "중간(middle)" 값을 찾습니다. 값의 50%는 중앙값보다 위에, 나머지 50%는 아래에 있습니다.
+
+변수 분포의 모양에 따라 평균과 중앙값 중 더 나은 중심 척도(measure)가 달라집니다. 대칭 분포(symmetric distributions)는 일반적으로 평균을, 치우친(비대칭) 분포(skewed distributions)는 중앙값을 보고합니다.
+
+각 목적지의 평균 출발 지연(분 단위)과 중앙값 출발 지연을 비교해 보겠습니다. 비행편은 때때로 몇 시간 늦게 떠나지만 몇 시간 일찍 떠나지는 않으므로 중앙값 지연이 항상 평균 지연보다 작습니다.
+
+```{r}
+#| label: fig-mean-vs-median
+#| fig-cap: |
+#|   일일 출발 지연을 평균 대신 중앙값으로 요약할 때의 차이를 보여주는 산점도.
+#| fig-alt: |
+#|   모든 점이 45° 선 아래에 위치하며 이는 중앙값 지연이
+#|   항상 평균 지연보다 작음을 의미합니다. 대부분의 점은 평균 
+#|   [0, 20] 및 중앙값 [-5, 5]의 조밀한(dense) 영역에 모여 있습니다. 평균 지연이 
+#|   증가함에 따라 중앙값의 퍼짐 정도(spread)도 증가합니다. 평균 ~60, 중앙값 ~30인 점과 
+#|   평균 ~85, 중앙값 ~55인 두 개의 멀리 떨어진(outlying) 점이 있습니다.
+flights |>
+  group_by(year, month, day) |>
+  summarize(
+    mean = mean(dep_delay, na.rm = TRUE),
+    median = median(dep_delay, na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  ) |> 
+  ggplot(aes(x = mean, y = median)) + 
+  geom_abline(slope = 1, intercept = 0, color = "white", linewidth = 2) +
+  geom_point()
+```
+
+흔한 값인 최빈값(mode)도 궁금할 법합니다. 매우 단순한 경우에만 잘 작동하는 요약이라 고등학교에서 배웠을 법하지만 많은 실제 데이터셋에는 잘 맞지 않습니다.
+이산형(discrete) 데이터에는 일반적인 값이 여러 개일 수 있습니다. 연속형(continuous) 데이터는 모든 값이 아주 조금씩(ever so slightly) 달라 일반적인 값이 아예 없을 수도 있습니다.
+
+이런 이유로 통계학자는 최빈값을 잘 사용하지 않으며 기본 R에도 최빈값 함수가 없습니다.
+
+### 최솟값, 최댓값 및 분위수
+
+중심 이외의 위치(locations)를 살펴볼 때 `min()`과 `max()`는 큰 값과 작은 값을 구합니다. 중앙값을 일반화한 `quantile()`도 강력한 도구입니다. `quantile(x, 0.25)`는 값의 25%보다 큰 `x`의 값을 찾고 `quantile(x, 0.5)`는 중앙값과 같으며 `quantile(x, 0.95)`는 값의 95%보다 큰 값을 찾습니다.
+
+`flights` 데이터에서는 많이 지연된 5%의 비행편이 꽤 극단적(extreme)이어서 무시할 만합니다. 따라서 최대값보다 지연의 95% 분위수를 보는 편이 좋습니다.
+
+```{r}
+flights |>
+  group_by(year, month, day) |>
+  summarize(
+    max = max(dep_delay, na.rm = TRUE),
+    q95 = quantile(dep_delay, 0.95, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+### 퍼짐
+
+때로는 데이터의 대부분(bulk)이 있는 위치보다 얼마나 널리 퍼져 있는지(spread out)가 더 중요합니다. 흔히 쓰는 요약은 표준편차 `sd(x)`와 사분위수 범위 `IQR()`입니다. 이미 익숙할 `sd()`는 여기서 설명하지 않지만 `IQR()`은 새로울 수 있습니다. `quantile(x, 0.75) - quantile(x, 0.25)`로 계산하며 데이터의 중간 50%가 포함된 범위를 구합니다.
+
+이 요약으로 `flights` 데이터의 이상한 점을 찾아보겠습니다. 공항은 늘 같은 장소에 있으므로 출발지와 목적지 사이 거리의 퍼짐 정도(spread)는 0이어야 합니다. 하지만 아래 코드에서는 EGE([https://en.wikipedia.org/wiki/Eagle_County_Regional_Airport](https://en.wikipedia.org/wiki/Eagle_County_Regional_Airport)) 공항 데이터에 이상한 점이 나타납니다.
+
+```{r}
+flights |> 
+  group_by(origin, dest) |> 
+  summarize(
+    distance_iqr = IQR(distance), 
+    n = n(),
+    .groups = "drop"
+  ) |> 
+  filter(distance_iqr > 0)
+```
+
+### 분포
+
+앞에서 설명한 요약 통계(summary statistics)는 모두 분포를 숫자 하나로 줄이는(reducing) 방법입니다. 본질적으로 환원적(reductive)이어서 잘못된 요약을 고르면 그룹 사이의 중요한 차이를 놓치기 쉽습니다. 그래서 요약 통계량을 정하기 전(before committing to)에 분포를 시각화하는 편이 좋습니다.
+
+분포가 너무 치우쳐 데이터의 대부분(bulk)을 보려면 확대해야 합니다. 이런 분포에는 평균보다 중앙값이 더 나은 요약임을 알 수 있습니다(suggests).
+
+```{r}
+#| echo: false
+#| label: fig-flights-dist
+#| fig-cap: |
+#|   (왼쪽) 전체 데이터의 히스토그램은 매우 치우쳐 있어서 세부 사항을 
+#|   파악하기 어렵습니다. (오른쪽) 2시간 미만의 지연으로 확대하면 
+#|   대부분의 관측치에서 무슨 일이 일어나고 있는지 
+#|   볼 수 있습니다.
+#| fig-alt: |
+#|   `dep_delay`의 두 히스토그램. 왼쪽에서는 0 부근에서 매우 큰 
+#|   스파이크(spike)가 있고 막대의 높이가 급격히 감소(decay)하며 
+#|   플롯의 대부분에서 막대가 너무 짧아서 볼 수 없다는 점 외에는 패턴을 
+#|   보기가 매우 어렵습니다. 오른쪽에서는 2시간 
+#|   초과의 지연을 버린 상태로 볼 때, 스파이크가 0보다 약간 낮은 
+#|   곳에서 발생하지만(즉, 대부분의 비행편이 
+#|   몇 분 일찍 떠남), 그 이후에는 여전히 매우 가파른 감소가 있음을 알 수 있습니다.
+#| fig-asp: 0.5
+library(patchwork)
+
+full <- flights |>
+  ggplot(aes(x = dep_delay)) + 
+  geom_histogram(binwidth = 15, na.rm = TRUE)
+
+delayed120 <- flights |>
+  filter(dep_delay < 120) |> 
+  ggplot(aes(x = dep_delay)) + 
+  geom_histogram(binwidth = 5)
+
+full + delayed120
+```
+
+하위 그룹의 분포가 전체와 닮았는지도 확인해 보세요. 다음 플롯에는 일(day)마다 하나씩 365개의 `dep_delay` 도수 다각형(frequency polygons)이 오버레이(overlaid)되어 있습니다. 분포가 일반적인 패턴을 따르므로 각 요일에도 같은 요약을 쓰는 편이 좋습니다.
+
+```{r}
+#| fig-alt: |
+#|   `dep_delay`의 분포는 오른쪽으로 많이 치우쳐 있으며(right skewed) 
+#|   0보다 약간 작은 곳에서 강한 정점(peak)을 이룹니다. 365개의 도수 다각형은 대부분 
+#|   겹쳐져 두꺼운 검은색 띠를 형성합니다.
+flights |>
+  filter(dep_delay < 120) |> 
+  ggplot(aes(x = dep_delay, group = interaction(day, month))) + 
+  geom_freqpoly(binwidth = 5, alpha = 1/5)
+```
+
+다루는 데이터에 맞춰 자신만의 커스텀 요약을 탐구해도 좋습니다. 여기서는 일찍 떠난 비행편과 늦게 떠난 비행편을 따로 요약하거나 값이 심하게(heavily) 치우친 점을 감안해(given that) 로그 변환(log-transformation)을 시도합니다. 수치 요약에는 각 그룹의 관측치 수도 포함하는 편이 좋습니다.
+
+### 위치
+
+마지막 요약 유형은 특정 위치의 값을 추출하는 `first(x)`, `last(x)`, `nth(x, n)`입니다. 숫자형 벡터에 유용하지만 다른 모든 유형의 값에도 작동합니다. 예를 들어 매일 첫 번째, 다섯 번째, 마지막 출발을 찾습니다.
+
+```{r}
+flights |> 
+  group_by(year, month, day) |> 
+  summarize(
+    first_dep = first(dep_time, na_rm = TRUE), 
+    fifth_dep = nth(dep_time, 5, na_rm = TRUE),
+    last_dep = last(dep_time, na_rm = TRUE)
+  )
+```
+
+(주의(NB): dplyr 함수들은 함수와 인수 이름의 구성 요소를 구분하는 데 `_`를 사용하기 때문에 이 함수들은 `na.rm` 대신 `na_rm`을 사용합니다.)
+
+다시 설명할 `[`에 익숙하다면 이런 함수가 왜 필요한지 의문이 들 수 있습니다. 이유는 세 가지입니다. `default` 인수는 지정한 위치가 없을 때 기본값을 반환합니다. `order_by`는 행 순서를 로컬에서 무시하고(locally override) `na_rm`은 결측값을 삭제(drop)합니다.
+
+위치에서 값을 추출하는 기능은 순위 필터링(filtering on ranks)을 보완(complementary)합니다. 필터링은 각 관측치가 별도 행에 있는 모든 변수를 반환합니다.
+
+```{r}
+flights |> 
+  group_by(year, month, day) |> 
+  mutate(r = min_rank(sched_dep_time)) |> 
+  filter(r %in% c(1, max(r)))
+```
+
+### `mutate()`와 함께 사용하기
+
+이름에서 알 수 있듯이(As the names suggest) 요약 함수는 보통 `summarize()`와 짝을 이룹니다. 앞서 다룬 재활용 규칙 덕분에 그룹 표준화(group standardization)를 할 때는 `mutate()`와도 잘 맞습니다.
+
+1. `x / sum(x)`는 전체 비율을 계산합니다.
+2. `(x - mean(x)) / sd(x)`는 Z-점수(Z-score)를 계산합니다 (평균 0, 표준편차 1로 표준화).
+3. `(x - min(x)) / (max(x) - min(x))`는 [0, 1] 범위로 표준화합니다.
+4. `x / first(x)`는 첫 번째 관측치를 기준으로 지수(index)를 계산합니다.
+
+### 연습 문제
+
+1. 비행편 그룹의 전형적인 지연 특성을 평가(assess)하는 방법을 5가지 이상 브레인스토밍하세요. 언제 `mean()`이 유용합니까? 언제 `median()`이 유용합니까? 다른 방법은 언제 쓰고 싶을까요? 도착 지연과 출발 지연 중 어느 것을 사용해야 할까요? `planes`의 데이터를 쓰고 싶은 이유는 무엇입니까?
+
+2. 어느 목적지가 비행 속도에서 큰 변동(variation)을 보입니까?
+
+3. 플롯을 만들어 EGE의 모험을 더 탐구해 보세요. 공항이 위치를 옮겼다는 증거가 있습니까? 차이를 설명하는 다른 변수가 있습니까?
+
+<!-- HUMANIZE-SUMMARY
+원본 글자수: 19,950자
+윤문본 글자수: 18,500자
+변경률: 10.5% (마크업 제외, verify_change_rate.py)
+
+카테고리별 탐지 건수(before → after):
+- A-1 "~에 대해" 번역투: 12 → 0
+- A-7 가지다 직역: 0 → 0
+- A-10 가능 표현 남발: 29 → 0
+- A-11 목적절 남발: 3 → 0
+- A-15 본문 추상 주어·만능 동사: 12 → 0
+- C-11 연결어미 뒤 쉼표: 17 → 0
+
+자체검증: 6/6 통과
+1. 고유명사·수치·날짜·인용·내용 앵커 보존: 통과
+2. 변경률 30% 이하: 통과
+3. 장르 유지: 통과
+4. register 유지: 통과
+5. 잔존 S1 패턴 0건: 통과
+6. 새 비유·수사·상투구 없음: 통과
+
+등급: A
+사유: S1·선별 S2 패턴이 남지 않았고 본문 변경률이 10~25% 범위임.
+
+주요 변경 하이라이트:
+- "좋은 위치에 서게 될 때입니다" → "문제에 대처할 기반을 다질 차례입니다"
+- "가능한 한 쉽게 만들기 위해 노력합니다" → "최대한 쉽게 세도록 설계됐습니다"
+- "cumsum()이 구세주로 등장합니다" → "cumsum()이 적합합니다"
+- "분포를 단일 숫자로 줄이는 방법" → "분포를 숫자 하나로 줄이는 방법"
+-->
