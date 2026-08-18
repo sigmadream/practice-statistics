@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ch13 – R과 데이터 분석 입문</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-77072c9bb77c017c95fbd10e8121cada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="R과 데이터 분석 입문">
+<meta property="og:description" content="">
+<meta property="og:image" content="ch13_files/figure-html/unnamed-chunk-12-1.png">
+<meta property="og:site_name" content="R과 데이터 분석 입문">
+<meta property="og:image:alt" content="x축에 출발 시간(2013년 1월-12월), y축에 항공편 수(0-1000)를 나타내는 빈도 다각형(frequency polyon). 이 빈도 다각형은 일별로 구간이 나누어져(binned) 있어 날짜별 항공편 시계열을 볼 수 있습니다. 이 패턴은 주간 패턴(weekly pattern)에 의해 지배됩니다(dominated); 주말에는 항공편이 적습니다. 2월 초, 7월 초, 11월 말, 12월 말에 항공편 수가 놀랍도록(surprisingly) 적어 눈에 띄는 며칠이 있습니다.">
+<meta name="twitter:title" content="R과 데이터 분석 입문">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="ch13_files/figure-html/unnamed-chunk-12-1.png">
+<meta name="twitter:image:alt" content="x축에 출발 시간(2013년 1월-12월), y축에 항공편 수(0-1000)를 나타내는 빈도 다각형(frequency polyon). 이 빈도 다각형은 일별로 구간이 나누어져(binned) 있어 날짜별 항공편 시계열을 볼 수 있습니다. 이 패턴은 주간 패턴(weekly pattern)에 의해 지배됩니다(dominated); 주말에는 항공편이 적습니다. 2월 초, 7월 초, 11월 말, 12월 말에 항공편 수가 놀랍도록(surprisingly) 적어 눈에 띄는 며칠이 있습니다.">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      R과 데이터 분석 입문
+      </li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">R과 데이터 분석 입문</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 언어</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">R과 데이터 분석</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 변환</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">훑어보기: 데이터 가져오기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 계층</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 관련 정보</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">벡터: 논리형</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">벡터: 숫자</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#날짜시간-생성하기" id="toc-날짜시간-생성하기" class="nav-link active" data-scroll-target="#날짜시간-생성하기"><span class="header-section-number">1</span> 날짜/시간 생성하기</a>
+  <ul class="collapse">
+  <li><a href="#가져오기-중" id="toc-가져오기-중" class="nav-link" data-scroll-target="#가져오기-중"><span class="header-section-number">1.1</span> 가져오기 중</a></li>
+  <li><a href="#문자열에서-생성" id="toc-문자열에서-생성" class="nav-link" data-scroll-target="#문자열에서-생성"><span class="header-section-number">1.2</span> 문자열에서 생성</a></li>
+  <li><a href="#개별-구성-요소에서-생성" id="toc-개별-구성-요소에서-생성" class="nav-link" data-scroll-target="#개별-구성-요소에서-생성"><span class="header-section-number">1.3</span> 개별 구성 요소에서 생성</a></li>
+  <li><a href="#다른-유형에서-생성" id="toc-다른-유형에서-생성" class="nav-link" data-scroll-target="#다른-유형에서-생성"><span class="header-section-number">1.4</span> 다른 유형에서 생성</a></li>
+  <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">1.5</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#날짜-시간-구성-요소" id="toc-날짜-시간-구성-요소" class="nav-link" data-scroll-target="#날짜-시간-구성-요소"><span class="header-section-number">2</span> 날짜-시간 구성 요소</a>
+  <ul class="collapse">
+  <li><a href="#구성-요소-가져오기" id="toc-구성-요소-가져오기" class="nav-link" data-scroll-target="#구성-요소-가져오기"><span class="header-section-number">2.1</span> 구성 요소 가져오기</a></li>
+  <li><a href="#반올림-rounding" id="toc-반올림-rounding" class="nav-link" data-scroll-target="#반올림-rounding"><span class="header-section-number">2.2</span> 반올림 (Rounding)</a></li>
+  <li><a href="#구성-요소-수정하기" id="toc-구성-요소-수정하기" class="nav-link" data-scroll-target="#구성-요소-수정하기"><span class="header-section-number">2.3</span> 구성 요소 수정하기</a></li>
+  <li><a href="#연습-문제-1" id="toc-연습-문제-1" class="nav-link" data-scroll-target="#연습-문제-1"><span class="header-section-number">2.4</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#시간-범위" id="toc-시간-범위" class="nav-link" data-scroll-target="#시간-범위"><span class="header-section-number">3</span> 시간 범위</a>
+  <ul class="collapse">
+  <li><a href="#지속-시간-durations" id="toc-지속-시간-durations" class="nav-link" data-scroll-target="#지속-시간-durations"><span class="header-section-number">3.1</span> 지속 시간 (Durations)</a></li>
+  <li><a href="#기간-periods" id="toc-기간-periods" class="nav-link" data-scroll-target="#기간-periods"><span class="header-section-number">3.2</span> 기간 (Periods)</a></li>
+  <li><a href="#구간" id="toc-구간" class="nav-link" data-scroll-target="#구간"><span class="header-section-number">3.3</span> 구간</a></li>
+  <li><a href="#연습-문제-2" id="toc-연습-문제-2" class="nav-link" data-scroll-target="#연습-문제-2"><span class="header-section-number">3.4</span> 연습 문제</a></li>
+  </ul></li>
+  <li><a href="#시간대" id="toc-시간대" class="nav-link" data-scroll-target="#시간대"><span class="header-section-number">4</span> 시간대</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">날짜와 시간</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>이 장에서는 R에서 날짜와 시간으로 작업하는 방법을 보여줄 것입니다. 언뜻 보기에(At first glance) 날짜와 시간은 단순해 보입니다. 여러분은 일상생활에서 날짜와 시간을 항상 사용하며, 그것들은 큰 혼란을 일으키는 것 같지 않습니다. 그러나 날짜와 시간에 대해 더 많이 배울수록 점점 더 복잡해지는(complicated) 것 같습니다!</p>
+<p>워밍업(warm up)을 위해 1년에 며칠이 있고 하루에 몇 시간이 있는지 생각해 보세요. 대부분의 해는 365일이지만 윤년(leap years)은 366일이라는 것을 기억할 것입니다. 어떤 해가 윤년인지 결정하는 전체 규칙을 알고 계십니까 하루의 시간 수는 약간 덜 명확합니다. 대부분의 날은 24시간이지만 일광 절약 시간제(DST)를 사용하는 곳에서는 매년 하루는 23시간이고 다른 하루는 25시간입니다.</p>
+<p>날짜와 시간이 어려운 이유는 두 가지 물리적 현상(지구의 자전과 태양 주위의 공전)을 월, 시간대(time zones), 일광 절약 시간제(DST)를 포함한 온갖 지정학적(geopolitical) 현상과 조화(reconcile)시켜야 하기 때문입니다.</p>
+<p>이 장에서는 날짜와 시간에 대한 모든 세부 사항을 다 가르치지는 않지만, 일반적인 데이터 분석 과제를 해결하는 데 도움이 될 실용적인 기술의 탄탄한 기초(solid grounding)를 제공할 것입니다.</p>
+<p>최신 tidyverse 릴리스부터 lubridate는 핵심 tidyverse의 일부입니다. 실습 데이터를 위해 nycflights13도 필요합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="날짜시간-생성하기" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="날짜시간-생성하기"><span class="header-section-number">1</span> 날짜/시간 생성하기</h2>
+<p>시간상의 한순간(instant)을 나타내는 날짜/시간 데이터에는 세 가지 유형이 있습니다.</p>
+<ul>
+<li><p>날짜(date): 티블(Tibbles)은 이를 <code>&lt;date&gt;</code>로 출력합니다.</p></li>
+<li><p>하루 중의 시간(time): 티블은 이를 <code>&lt;time&gt;</code>으로 출력합니다.</p></li>
+<li><p>날짜-시간(date-time)은 날짜에 시간을 더한 것입니다. 이는 시간상의 한순간을 고유하게 식별합니다(보통 가까운 초(second)까지): 티블은 이를 <code>&lt;dttm&gt;</code>으로 출력합니다. 기본 R은 이것을 POSIXct라고 부르지만, 입에 착 달라붙지는(trip off the tongue) 않습니다.</p></li>
+</ul>
+<p>R에는 시간을 저장하는 기본 클래스가 없기 때문에 이 장에서는 날짜와 날짜-시간에 중점을 둘 것입니다. 필요한 경우 hms 패키지를 사용할 수 있습니다.</p>
+<p>요구 사항에 맞는(works for your needs) 가능한 한 단순한 데이터 유형을 항상 사용해야 합니다. 즉, 날짜-시간 대신 날짜를 사용할 수 있다면 그렇게 해야 합니다.</p>
+<p>날짜-시간은 시간대를 처리해야 하기 때문에 훨씬(substantially) 더 복잡하며, 이에 대해서는 장의 끝에서 다시 설명하겠습니다.</p>
+<p>현재 날짜나 날짜-시간을 얻으려면 <code>today()</code> 또는 <code>now()</code>를 사용할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2026-08-18"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2026-08-18 10:34:26 KST"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>그렇지 않은 경우(Otherwise), 다음 섹션에서는 날짜/시간을 생성할 가능성이 있는 네 가지 방법을 설명합니다.</p>
+<ul>
+<li>readr을 사용하여 파일을 읽는 동안</li>
+<li>문자열에서 생성</li>
+<li>개별 날짜-시간 구성 요소에서 생성</li>
+<li>기존 날짜/시간 객체에서 생성</li>
+</ul>
+<section id="가져오기-중" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="가져오기-중"><span class="header-section-number">1.1</span> 가져오기 중</h3>
+<p>CSV에 ISO8601 날짜 또는 날짜-시간이 포함되어 있으면 아무것도 할 필요가 없습니다. readr이 자동으로 인식합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>csv <span class="ot">&lt;-</span> <span class="st">"date,datetime</span><span class="sc">\n</span><span class="st">2022-01-02,2022-01-02 05:12"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(csv)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: The `file` argument of `read_csv()` should use `I()` for literal data as of</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; readr 2.2.0.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   # Bad (for example):</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   read_csv("x,y\n1,2")</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   # Good:</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   read_csv(I("x,y\n1,2"))</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   date       datetime           </span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;     &lt;dttm&gt;             </span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2022-01-02 2022-01-02 05:12:00</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>이전에 ISO8601에 대해 들어본 적이 없다면, 이것은 <code>-</code>로 구분되어 큰 것에서 작은 것 순으로 날짜의 구성 요소가 구성되는 국제 표준 날짜 표기법입니다. 예를 들어 ISO8601에서 2022년 5월 3일은 <code>2022-05-03</code>입니다. ISO8601 날짜에는 시간도 포함될 수 있으며 시, 분, 초는 <code>:</code>로 구분되고 날짜와 시간 구성 요소는 <code>T</code> 또는 공백으로 구분됩니다.</p>
+<p>예를 들어 2022년 5월 3일 오후 4시 26분을 <code>2022-05-03 16:26</code> 또는 <code>2022-05-03T16:26</code>으로 쓸 수 있습니다.</p>
+<p>다른 날짜-시간 형식의 경우, 날짜-시간 형식과 함께 <code>col_types</code> 및 <code>col_date()</code> 또는 <code>col_datetime()</code>을 사용해야 합니다. readr에서 사용하는 날짜-시간 형식은 여러 프로그래밍 언어에서 사용되는 표준으로, <code>%</code> 뒤에 단일 문자가 오는 형태로 날짜 구성 요소를 설명합니다. 예를 들어 <code>%Y-%m-%d</code>는 연도, <code>-</code>, 월(숫자), <code>-</code>, 일로 구성된 날짜를 지정합니다.</p>
+<p>아래 표에는 모든 옵션이 나열되어 있습니다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 43%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>유형(Type)</th>
+<th>코드(Code)</th>
+<th>의미(Meaning)</th>
+<th>예시(Example)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>연(Year)</td>
+<td><code>%Y</code></td>
+<td>4자리 연도</td>
+<td>2021</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>%y</code></td>
+<td>2자리 연도</td>
+<td>21</td>
+</tr>
+<tr class="odd">
+<td>월(Month)</td>
+<td><code>%m</code></td>
+<td>숫자</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>%b</code></td>
+<td>약어 이름</td>
+<td>Feb</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>%B</code></td>
+<td>전체 이름</td>
+<td>February</td>
+</tr>
+<tr class="even">
+<td>일(Day)</td>
+<td><code>%d</code></td>
+<td>1자리 또는 2자리 숫자</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>%e</code></td>
+<td>2자리 숫자</td>
+<td>02</td>
+</tr>
+<tr class="even">
+<td>시간(Time)</td>
+<td><code>%H</code></td>
+<td>24시간 형식 시간</td>
+<td>13</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>%I</code></td>
+<td>12시간 형식 시간</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>%p</code></td>
+<td>AM/PM</td>
+<td>pm</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>%M</code></td>
+<td>분</td>
+<td>35</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>%S</code></td>
+<td>초</td>
+<td>45</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>%OS</code></td>
+<td>소수(decimal) 구성 요소가 있는 초</td>
+<td>45.35</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>%Z</code></td>
+<td>시간대 이름</td>
+<td>America/Chicago</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>%z</code></td>
+<td>UTC와의 오프셋(Offset)</td>
+<td>+0800</td>
+</tr>
+<tr class="even">
+<td>기타(Other)</td>
+<td><code>%.</code></td>
+<td>숫자가 아닌 문자 한 개 건너뛰기</td>
+<td>:</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>%*</code></td>
+<td>숫자가 아닌 임의 개의 문자 건너뛰기</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>그리고 이 코드는 매우 모호한(ambiguous) 날짜에 적용된 몇 가지 옵션을 보여줍니다.</p>
+<div class="cell" data-messages="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>csv <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">  date</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">  01/02/15</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(csv, <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">date =</span> <span class="fu">col_date</span>(<span class="st">"%m/%d/%y"</span>)))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 1</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   date      </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;    </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2015-01-02</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(csv, <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">date =</span> <span class="fu">col_date</span>(<span class="st">"%d/%m/%y"</span>)))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 1</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   date      </span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;    </span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2015-02-01</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(csv, <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">date =</span> <span class="fu">col_date</span>(<span class="st">"%y/%m/%d"</span>)))</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 1</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   date      </span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;    </span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2001-02-15</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>날짜 형식을 어떻게 지정하든 R로 가져오면 항상 같은 방식으로 표시(displayed)된다는 점에 유의하세요.</p>
+<p><code>%b</code> 또는 <code>%B</code>를 사용하고 영어가 아닌 날짜로 작업하는 경우 <code>locale()</code>도 제공해야 합니다. <code>date_names_langs()</code>에서 내장 언어 목록을 참조하거나 <code>date_names()</code>를 사용하여 자신만의 언어를 만드세요,</p>
+</section>
+<section id="문자열에서-생성" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="문자열에서-생성"><span class="header-section-number">1.2</span> 문자열에서 생성</h3>
+<p>날짜-시간 지정 언어는 강력하지만 날짜 형식에 대한 신중한 분석이 필요합니다. 대안적인 접근 방식은 구성 요소의 순서를 지정하면 자동으로 형식을 결정(determine)하려고 시도하는 lubridate의 도우미 함수를 사용하는 것입니다. 이를 사용하려면 날짜에 연, 월, 일이 나타나는 순서를 식별한 다음 동일한 순서로 “y”, “m”, “d”를 배열(arrange)합니다. 그러면 날짜를 구문 분석(parse)할 lubridate 함수의 이름이 됩니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2017-01-31"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2017-01-31"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">"January 31st, 2017"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2017-01-31"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(<span class="st">"31-Jan-2017"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2017-01-31"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>ymd()</code> 및 그 친구 함수들(friends)은 날짜를 생성합니다. 날짜-시간을 생성하려면 구문 분석 함수 이름에 밑줄(<code>_</code>)과 “h”, “m”, “s” 중 하나 이상을 추가합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">"2017-01-31 20:11:59"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2017-01-31 20:11:59 UTC"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy_hm</span>(<span class="st">"01/31/2017 08:01"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2017-01-31 08:01:00 UTC"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>시간대를 제공하여 날짜에서 날짜-시간을 생성하도록 강제(force)할 수도 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2017-01-31"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2017-01-31 UTC"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>여기서 저는 GMT 또는 그리니치 표준시(Greenwich Mean Time)로도 알려진 경도(longitude) 0°의 시간대인 UTC 시간대를 사용합니다. 이것은 일광 절약 시간제를 사용하지 않으므로 계산하기가 좀 더 쉽습니다 (UTC가 무엇의 약자인지 궁금할 수 있습니다. 이는 영어인 “Coordinated Universal Time”과 프랑스어인 “Temps Universel Coordonné” 사이의 타협안(compromise)입니다).</p>
+</section>
+<section id="개별-구성-요소에서-생성" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="개별-구성-요소에서-생성"><span class="header-section-number">1.3</span> 개별 구성 요소에서 생성</h3>
+<p>단일 문자열 대신 날짜-시간의 개별 구성 요소가 여러 열(columns)에 걸쳐 분산되어(spread) 있는 경우가 있습니다. 이것이 <code>flights</code> 데이터에 있는 내용입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, month, day, hour, minute)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 336,776 × 5</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    year month   day  hour minute</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  2013     1     1     5     15</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  2013     1     1     5     29</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  2013     1     1     5     40</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  2013     1     1     5     45</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  2013     1     1     6      0</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  2013     1     1     5     58</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 336,770 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>이러한 종류의 입력에서 날짜/시간을 생성하려면 날짜의 경우 <code>make_date()</code>를 사용하고 날짜-시간의 경우 <code>make_datetime()</code>을 사용합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, month, day, hour, minute) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">departure =</span> <span class="fu">make_datetime</span>(year, month, day, hour, minute))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 336,776 × 6</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    year month   day  hour minute departure          </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dttm&gt;             </span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  2013     1     1     5     15 2013-01-01 05:15:00</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  2013     1     1     5     29 2013-01-01 05:29:00</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  2013     1     1     5     40 2013-01-01 05:40:00</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  2013     1     1     5     45 2013-01-01 05:45:00</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  2013     1     1     6      0 2013-01-01 06:00:00</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  2013     1     1     5     58 2013-01-01 05:58:00</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 336,770 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>flights</code>의 네 가지 시간 열 각각에 대해 동일한 작업을 수행해 봅시다. 시간은 약간 이상한(odd) 형식으로 표시(represented)되므로 나머지 연산(modulus arithmetic)을 사용하여 시(hour)와 분(minute) 구성 요소를 추출합니다. 날짜-시간 변수를 만들고 나면 이 장의 나머지 부분에서 살펴볼 변수에 초점을 맞춥니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>make_datetime_100 <span class="ot">&lt;-</span> <span class="cf">function</span>(year, month, day, time) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">make_datetime</span>(year, month, day, time <span class="sc">%/%</span> <span class="dv">100</span>, time <span class="sc">%%</span> <span class="dv">100</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>flights_dt <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(dep_time), <span class="sc">!</span><span class="fu">is.na</span>(arr_time)) <span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep_time =</span> <span class="fu">make_datetime_100</span>(year, month, day, dep_time),</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">arr_time =</span> <span class="fu">make_datetime_100</span>(year, month, day, arr_time),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">sched_dep_time =</span> <span class="fu">make_datetime_100</span>(year, month, day, sched_dep_time),</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">sched_arr_time =</span> <span class="fu">make_datetime_100</span>(year, month, day, sched_arr_time)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(origin, dest, <span class="fu">ends_with</span>(<span class="st">"delay"</span>), <span class="fu">ends_with</span>(<span class="st">"time"</span>))</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>flights_dt</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 328,063 × 9</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   origin dest  dep_delay arr_delay dep_time            sched_dep_time     </span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dttm&gt;              &lt;dttm&gt;             </span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 EWR    IAH           2        11 2013-01-01 05:17:00 2013-01-01 05:15:00</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 LGA    IAH           4        20 2013-01-01 05:33:00 2013-01-01 05:29:00</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 JFK    MIA           2        33 2013-01-01 05:42:00 2013-01-01 05:40:00</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 JFK    BQN          -1       -18 2013-01-01 05:44:00 2013-01-01 05:45:00</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 LGA    ATL          -6       -25 2013-01-01 05:54:00 2013-01-01 06:00:00</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 EWR    ORD          -4        12 2013-01-01 05:54:00 2013-01-01 05:58:00</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 328,057 more rows</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 3 more variables: arr_time &lt;dttm&gt;, sched_arr_time &lt;dttm&gt;, …</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>이 데이터를 통해 한 해 동안의 출발 시간 분포를 시각화할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>flights_dt <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> dep_time)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="dv">86400</span>) <span class="co"># 86400초 = 1일</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch13_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" alt="x축에 출발 시간(2013년 1월-12월), y축에 항공편 수(0-1000)를 나타내는 빈도 다각형(frequency polyon). 이 빈도 다각형은 일별로 구간이 나누어져(binned) 있어 날짜별 항공편 시계열을 볼 수 있습니다. 이 패턴은 주간 패턴(weekly pattern)에 의해 지배됩니다(dominated); 주말에는 항공편이 적습니다. 2월 초, 7월 초, 11월 말, 12월 말에 항공편 수가 놀랍도록(surprisingly) 적어 눈에 띄는 며칠이 있습니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>또는 단일 요일(single day) 내에서 시각화할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>flights_dt <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dep_time <span class="sc">&lt;</span> <span class="fu">ymd</span>(<span class="dv">20130102</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> dep_time)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="dv">600</span>) <span class="co"># 600초 = 10분</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch13_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" alt="x축에 출발 시간(1월 1일 오전 6시 - 자정), y축에 항공편 수(0-17)를 나타내며, 10분 단위(increments)로 구간이 나누어진 빈도 다각형. 변동성(variability)이 높아 패턴을 많이 보기는 어렵지만(hard to see much pattern), 대부분의 구간에는 8-12편의 항공편이 있으며 오전 6시 이전과 오후 8시 이후에는 항공편이 현저히(markedly) 적습니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>날짜-시간을 (히스토그램과 같은) 수치적 문맥(numeric context)에서 사용할 때 1은 1초를 의미하므로, <code>binwidth</code>가 86400이라는 것은 하루를 의미한다는 점에 유의하세요. 날짜의 경우 1은 1일을 의미합니다.</p>
+</section>
+<section id="다른-유형에서-생성" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="다른-유형에서-생성"><span class="header-section-number">1.4</span> 다른 유형에서 생성</h3>
+<p>날짜-시간과 날짜 사이를 전환(switch)하고 싶을 수 있습니다. 이것이 <code>as_datetime()</code> 및 <code>as_date()</code>의 역할(job)입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="fu">today</span>())</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2026-08-18 UTC"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as_date</span>(<span class="fu">now</span>())</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2026-08-18"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>때로는 1970-01-01인 “유닉스 에포크(Unix Epoch)”로부터의 수치적 오프셋(numeric offsets)으로 날짜/시간을 얻게 될 것입니다. 오프셋이 초 단위인 경우 <code>as_datetime()</code>을 사용하고 일(days) 단위인 경우 <code>as_date()</code>를 사용합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="dv">60</span> <span class="sc">*</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">10</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "1970-01-01 10:00:00 UTC"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as_date</span>(<span class="dv">365</span> <span class="sc">*</span> <span class="dv">10</span> <span class="sc">+</span> <span class="dv">2</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "1980-01-01"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="연습-문제" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="연습-문제"><span class="header-section-number">1.5</span> 연습 문제</h3>
+<ol type="1">
+<li>유효하지 않은 날짜가 포함된 문자열을 구문 분석(parse)하면 어떻게 됩니까?</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="fu">c</span>(<span class="st">"2010-10-10"</span>, <span class="st">"bananas"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="2" type="1">
+<li><p><code>today()</code>의 <code>tzone</code> 인수는 무슨 일을 합니까? 그것이 중요한 이유는 무엇입니까?</p></li>
+<li><p>다음 각 날짜-시간에 대해 readr 열 사양(column specification)과 lubridate 함수를 사용하여 이를 어떻게 구문 분석할지 보여주세요.</p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="st">"January 1, 2010"</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="st">"2015-Mar-07"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>d3 <span class="ot">&lt;-</span> <span class="st">"06-Jun-2017"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>d4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"August 19 (2015)"</span>, <span class="st">"July 1 (2015)"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>d5 <span class="ot">&lt;-</span> <span class="st">"12/30/14"</span> <span class="co"># 2014년 12월 30일</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="st">"1705"</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="st">"11:15:10.12 PM"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="날짜-시간-구성-요소" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="날짜-시간-구성-요소"><span class="header-section-number">2</span> 날짜-시간 구성 요소</h2>
+<p>이제 날짜-시간 데이터를 R의 날짜-시간 데이터 구조로 가져오는 방법을 알았으니 이들로 무엇을 할 수 있는지 탐색(explore)해 봅시다.</p>
+<section id="구성-요소-가져오기" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="구성-요소-가져오기"><span class="header-section-number">2.1</span> 구성 요소 가져오기</h3>
+<p>접근자 함수인 <code>year()</code>, <code>month()</code>, <code>mday()</code>(월의 일(day of the month)), <code>yday()</code>(연의 일(day of the year)), <code>wday()</code>(요일(day of the week)), <code>hour()</code>, <code>minute()</code>, <code>second()</code>를 사용하여 날짜의 개별 부분을 추출(pull out)할 수 있습니다.</p>
+<p>이것들은 사실상(effectively) <code>make_datetime()</code>의 반대입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2026-07-08 12:34:56"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(datetime)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2026</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(datetime)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mday</span>(datetime)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">yday</span>(datetime)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 189</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(datetime)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>month()</code> 및 <code>wday()</code>의 경우 <code>label = TRUE</code>를 설정하여 월이나 요일의 약어 이름을 반환할 수 있습니다. 전체 이름을 반환하려면 <code>abbr = FALSE</code>를 설정하세요.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(datetime, <span class="at">label =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] Jul</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(datetime, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] Wednesday</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>wday()</code>를 사용하여 주말보다 주중(during the week)에 더 많은 항공편이 출발한다는 것을 확인할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>flights_dt <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wday =</span> <span class="fu">wday</span>(dep_time, <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wday)) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch13_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" alt="x축에 요일(days of the week), y축에 항공편 수를 나타내는 막대 차트. 월요일-금요일은 항공편 수가 대략 48,000편으로 비슷하며, 일주일이 지나면서(over the course of the week) 약간씩 감소합니다. 일요일은 약간 더 낮고(~45,000), 토요일은 훨씬 더 낮습니다(~38,000)." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>한 시간 내의 분당 평균 출발 지연 시간을 살펴볼 수도 있습니다. 흥미로운 패턴이 있습니다. 20-30분과 50-60분에 떠나는 항공편이 그 시간의 나머지 부분보다 훨씬 지연이 적습니다!</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>flights_dt <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">minute =</span> <span class="fu">minute</span>(dep_time)) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(minute) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_delay =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> minute, <span class="at">y =</span> avg_delay)) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch13_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" alt="x축에 실제 출발 분(0-60), y축에 평균 지연 시간(4-20)을 나타내는 선형 차트(line chart). 평균 지연 시간은 (0, 12)에서 시작하여 (18, 20)까지 꾸준히(steadily) 증가하다가 급격히(sharply) 떨어져, 매시 약 23분(23 minute past the hour)에 최소인 9분의 지연 시간을 기록합니다. 그 후 다시 (17, 35)로 증가하고 (55, 4)로 급격히 감소합니다. 마지막으로 (60, 9)로 증가하며 마무리됩니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>흥미롭게도(Interestingly) 예정된(scheduled) 출발 시간을 살펴보면 그렇게 강력한 패턴이 보이지 않습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sched_dep <span class="ot">&lt;-</span> flights_dt <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">minute =</span> <span class="fu">minute</span>(sched_dep_time)) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(minute) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_delay =</span> <span class="fu">mean</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sched_dep, <span class="fu">aes</span>(<span class="at">x =</span> minute, <span class="at">y =</span> avg_delay)) <span class="sc">+</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch13_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" alt="x축에 예정된 출발 분(0-60), y축에 평균 지연 시간(4-16)을 나타내는 선형 차트. 패턴이 상대적으로 적으며, 한 시간 동안 평균 지연 시간이 아마 10분에서 8분으로 감소한다는 약간의 암시(suggestion)만 있습니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>그렇다면 실제 출발 시간에서 이런 패턴이 보이는 이유는 무엇일까요?</p>
+<p>글쎄요, 인간이 수집한 많은 데이터와 마찬가지로 항공편이 “깔끔한(nice)” 출발 시간에 떠나는 경향이 강한 편향(bias)이 있습니다.</p>
+<p>인간의 판단(judgement)이 관련된 데이터로 작업할 때는 항상 이러한 종류의 패턴에 대해 경계(alert)하세요!</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-human-rounding" class="quarto-float quarto-figure quarto-figure-center anchored" alt="x축에 출발 분(0-60), y축에 항공편 수(0-60000)를 나타내는 선 그래프. 대부분의 항공편은 정각(~60,000)이나 30분(~35,000)에 출발하도록 예정되어 있습니다. 그 외에는 거의 모든 항공편이 5의 배수에 출발하도록 예정되어 있으며, 15분, 45분, 55분에 몇 편 더(a few extra) 있습니다. ">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-human-rounding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ch13_files/figure-html/fig-human-rounding-1.png" class="img-fluid figure-img" alt="x축에 출발 분(0-60), y축에 항공편 수(0-60000)를 나타내는 선 그래프. 대부분의 항공편은 정각(~60,000)이나 30분(~35,000)에 출발하도록 예정되어 있습니다. 그 외에는 거의 모든 항공편이 5의 배수에 출발하도록 예정되어 있으며, 15분, 45분, 55분에 몇 편 더(a few extra) 있습니다. " width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-human-rounding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: 매시간(each hour) 출발하도록 예정된 항공편 수를 보여주는 빈도 다각형. 0과 30 같은 딱 떨어지는 숫자(round numbers)와 일반적으로 5의 배수인 숫자에 대한 강한 선호(preference)를 볼 수 있습니다.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="반올림-rounding" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="반올림-rounding"><span class="header-section-number">2.2</span> 반올림 (Rounding)</h3>
+<p>개별 구성 요소를 시각화(plotting)하는 대안적(alternative) 접근 방식은 <code>floor_date()</code>, <code>round_date()</code>, <code>ceiling_date()</code>를 사용하여 날짜를 근처의(nearby) 시간 단위로 반올림하는 것입니다.</p>
+<p>각 함수는 조정(adjust)할 날짜 벡터를 취한 다음 내림(floor), 올림(ceiling), 또는 반올림(round to)할 단위의 이름을 취합니다. 예를 들어, 이를 통해 주당 항공편 수를 시각화할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>flights_dt <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(<span class="at">week =</span> <span class="fu">floor_date</span>(dep_time, <span class="st">"week"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> week, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch13_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" alt="x축에 주(2013년 1월-12월), y축에 항공편 수(2,000-7,000)를 나타내는 선 그래프. 2월부터 11월까지는 주당 약 7,000편의 항공편으로 꽤 평탄한(flat) 패턴을 보입니다. 연초의 첫 주(약 4,500편)와 마지막 주(약 2,500편)에는 항공편 수가 훨씬 적습니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>dep_time</code>과 그날의 이른 순간(earliest instant) 사이의 차이를 계산하여 반올림을 사용해 하루 동안의(across the course of a day) 항공편 분포를 보여줄 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>flights_dt <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dep_hour =</span> dep_time <span class="sc">-</span> <span class="fu">floor_date</span>(dep_time, <span class="st">"day"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> dep_hour)) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">30</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Don't know how to automatically pick scale for object of type &lt;difftime&gt;.</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Defaulting to continuous.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch13_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" alt="x축에 출발 시간을 나타내는 선 그래프. 자정 이후의 초 단위(units of seconds)이므로 해석하기 어렵습니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>한 쌍의(pair of) 날짜-시간 간의 차이를 계산하면 <code>difftime</code>이 산출됩니다. 이를 <code>hms</code> 객체로 변환하여 더 유용한 x축을 얻을 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>flights_dt <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dep_hour =</span> hms<span class="sc">::</span><span class="fu">as_hms</span>(dep_time <span class="sc">-</span> <span class="fu">floor_date</span>(dep_time, <span class="st">"day"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> dep_hour)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch13_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" alt="x축에 출발 시간(자정에서 자정), y축에 항공편 수(0에서 15,000)를 나타내는 선 그래프. 오전 5시 이전에는 항공편이 매우 적습니다(<100). 그런 다음 항공편 수는 시간당 12,000편으로 빠르게 증가하여 오전 9시에 15,000편으로 최고치(peaking)에 달한 후, 오전 10시부터 오후 2시까지 시간당 약 8,000편으로 떨어집니다(falling). 그런 다음 항공편 수는 오후 8시까지 시간당 약 12,000편으로 다시 증가하다가 다시 급격히(rapidly) 감소합니다." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="구성-요소-수정하기" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="구성-요소-수정하기"><span class="header-section-number">2.3</span> 구성 요소 수정하기</h3>
+<p>각 접근자 함수를 사용하여 날짜/시간의 구성 요소를 수정할 수도 있습니다.이것은 데이터 분석에서는 많이 발생하지(come up) 않지만, 날짜가 분명히 잘못된 데이터를 정리(cleaning)할 때 유용할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(datetime <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2026-07-08 12:34:56"</span>))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2026-07-08 12:34:56 UTC"</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(datetime) <span class="ot">&lt;-</span> <span class="dv">2030</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>datetime</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2030-07-08 12:34:56 UTC"</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(datetime) <span class="ot">&lt;-</span> <span class="dv">01</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>datetime</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2030-01-08 12:34:56 UTC"</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(datetime) <span class="ot">&lt;-</span> <span class="fu">hour</span>(datetime) <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>datetime</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2030-01-08 13:34:56 UTC"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>대안으로, 기존 변수를 수정하는 대신 <code>update()</code>를 사용하여 새 날짜-시간을 만들 수 있습니다. 또한 이를 통해 한 번에(in one step) 여러 값을 설정할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update</span>(datetime, <span class="at">year =</span> <span class="dv">2030</span>, <span class="at">month =</span> <span class="dv">2</span>, <span class="at">mday =</span> <span class="dv">2</span>, <span class="at">hour =</span> <span class="dv">2</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2030-02-02 02:34:56 UTC"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>값이 너무 크면 이월(roll-over)됩니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update</span>(<span class="fu">ymd</span>(<span class="st">"2023-02-01"</span>), <span class="at">mday =</span> <span class="dv">30</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2023-03-02"</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">update</span>(<span class="fu">ymd</span>(<span class="st">"2023-02-01"</span>), <span class="at">hour =</span> <span class="dv">400</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2023-02-17 16:00:00 UTC"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="연습-문제-1" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="연습-문제-1"><span class="header-section-number">2.4</span> 연습 문제</h3>
+<ol type="1">
+<li><p>하루 중 항공편 시간의 분포는 한 해 동안(over the course of the year) 어떻게 변합니까?</p></li>
+<li><p><code>dep_time</code>, <code>sched_dep_time</code> 및 <code>dep_delay</code>를 비교하세요. 이것들은 일관성이 있습니까(consistent)? 여러분이 발견한 것을 설명하세요.</p></li>
+<li><p><code>air_time</code>을 출발(departure)과 도착(arrival) 사이의 지속 시간(duration)과 비교하세요. 여러분이 발견한 것을 설명하세요. (힌트: 공항의 위치를 고려하세요.)</p></li>
+<li><p>평균 지연 시간은 하루 동안 어떻게 변합니까? <code>dep_time</code>을 사용해야 합니까, 아니면 <code>sched_dep_time</code>을 사용해야 합니까? 이유는 무엇입니까?</p></li>
+<li><p>지연 가능성(chance)을 최소화(minimise)하려면 요일 중 어느 날짜에 출발해야 합니까?</p></li>
+<li><p><code>diamonds$carat</code>의 분포와 <code>flights$sched_dep_time</code>의 분포를 비슷하게 만드는 것은 무엇입니까?</p></li>
+<li><p>20-30분과 50-60분에 항공편이 일찍 출발(early departures)하는 것이 일찍 떠나는 예정된 항공편 때문이라는 가설(hypothesis)을 확인하세요.(힌트: 항공편이 지연되었는지 여부를 알려주는 이진 변수(binary variable)를 만드세요)</p></li>
+</ol>
+</section>
+</section>
+<section id="시간-범위" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="시간-범위"><span class="header-section-number">3</span> 시간 범위</h2>
+<p>다음으로 뺄셈(subtraction), 덧셈(addition), 나눗셈(division)을 포함하여 날짜에 대한 산술 연산이 어떻게 작동하는지 배울 것입니다. 그 과정에서(Along the way) 시간 범위를 나타내는 중요한 세 가지 클래스에 대해 배울 것입니다.</p>
+<ol type="1">
+<li>지속 시간(Durations)은 정확한 초 수를 나타냅니다.</li>
+<li>기간(Periods)은 주(weeks)나 월(months)과 같은 인간의 단위를 나타냅니다.</li>
+<li>구간(Intervals)은 시작점과 끝점을 나타냅니다.</li>
+</ol>
+<p>지속 시간, 기간, 구간 중에서 어떻게 선택합니까? 항상 그렇듯이(As always) 문제를 해결하는 단순한 데이터 구조를 선택하세요. 물리적 시간만 신경 쓴다면(care about) 지속 시간을 사용하세요; 인간의 시간을 추가해야 한다면 기간을 사용하세요; 인간의 단위로 범위가 얼마나 긴지 파악해야 한다면 구간을 사용하세요.</p>
+<section id="지속-시간-durations" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="지속-시간-durations"><span class="header-section-number">3.1</span> 지속 시간 (Durations)</h3>
+<p>R에서 두 날짜를 빼면 <code>difftime</code> 객체를 얻습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hadley의 나이는 몇 살입니까?</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>h_age <span class="ot">&lt;-</span> <span class="fu">today</span>() <span class="sc">-</span> <span class="fu">ymd</span>(<span class="st">"1979-10-14"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>h_age</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Time difference of 17110 days</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>difftime</code> 클래스 객체는 초, 분, 시간, 일 또는 주 단위의 시간 범위를 기록합니다. 이러한 모호성(ambiguity)으로 인해 <code>difftime</code> 작업이 약간 고통스러울 수 있으므로 lubridate는 항상 초를 사용하는 대안인 지속 시간(duration)을 제공합니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.duration</span>(h_age)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "1478304000s (~46.84 years)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>지속 시간은 여러 편리한 생성자(convenient constructors)와 함께 제공됩니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dseconds</span>(<span class="dv">15</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "15s"</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dminutes</span>(<span class="dv">10</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "600s (~10 minutes)"</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dhours</span>(<span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">24</span>))</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "43200s (~12 hours)" "86400s (~1 days)"</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ddays</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "0s"                "86400s (~1 days)"  "172800s (~2 days)"</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] "259200s (~3 days)" "345600s (~4 days)" "432000s (~5 days)"</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dweeks</span>(<span class="dv">3</span>)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "1814400s (~3 weeks)"</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="fu">dyears</span>(<span class="dv">1</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "31557600s (~1 years)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>지속 시간은 항상 시간 범위를 초 단위로 기록합니다. 분, 시간, 일, 주, 연을 초로 변환하여 더 큰 단위를 만듭니다. 1분은 60초, 1시간은 60분, 하루는 24시간, 일주일은 7일입니다. 더 큰 시간 단위는 더 문제가 많습니다(problematic). 1년은 1년의 “평균” 일수, 즉 365.25를 사용합니다. 변동(variation)이 너무 크기 때문에 월을 지속 시간으로 변환할 방법이 없습니다.</p>
+<p>지속 시간을 더하고 곱할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">dyears</span>(<span class="dv">1</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "63115200s (~2 years)"</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dyears</span>(<span class="dv">1</span>) <span class="sc">+</span> <span class="fu">dweeks</span>(<span class="dv">12</span>) <span class="sc">+</span> <span class="fu">dhours</span>(<span class="dv">15</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "38869200s (~1.23 years)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>날짜(days)에 지속 시간을 더하거나 뺄 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tomorrow <span class="ot">&lt;-</span> <span class="fu">today</span>() <span class="sc">+</span> <span class="fu">ddays</span>(<span class="dv">1</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>last_year <span class="ot">&lt;-</span> <span class="fu">today</span>() <span class="sc">-</span> <span class="fu">dyears</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>그러나 지속 시간은 정확한 초 수를 나타내므로 때로는 예상치 못한(unexpected) 결과를 얻을 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>one_am <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2026-03-08 01:00:00"</span>, <span class="at">tz =</span> <span class="st">"America/New_York"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>one_am</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2026-03-08 01:00:00 EST"</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>one_am <span class="sc">+</span> <span class="fu">ddays</span>(<span class="dv">1</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2026-03-09 02:00:00 EDT"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>왜 3월 8일 오전 1시의 하루 뒤가 3월 9일 오전 2시일까요? 날짜를 주의 깊게 보면 시간대가 변경된 것도 알 수 있습니다. 3월 8일은 일광 절약 시간제(DST)가 시작되는 시기이기 때문에 23시간밖에 없으므로, 하루 분량의(full days worth of) 초를 더하면 결국 다른 시간이 됩니다.</p>
+</section>
+<section id="기간-periods" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="기간-periods"><span class="header-section-number">3.2</span> 기간 (Periods)</h3>
+<p>이 문제를 해결하기 위해 lubridate는 기간(periods)을 제공합니다. 기간은 시간 범위이지만 초 단위의 고정된 길이를 갖지 않고 일(days)과 월(months)과 같은 “인간의” 시간으로 작동합니다. 이로 인해 좀 더 직관적인 방식(intuitive way)으로 작동할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>one_am</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2026-03-08 01:00:00 EST"</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>one_am <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2026-03-09 01:00:00 EDT"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>지속 시간과 마찬가지로 기간은 친숙한 여러 생성자 함수(constructor functions)를 사용하여 만들 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hours</span>(<span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">24</span>))</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "12H 0M 0S" "24H 0M 0S"</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">days</span>(<span class="dv">7</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "7d 0H 0M 0S"</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">months</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "1m 0d 0H 0M 0S" "2m 0d 0H 0M 0S" "3m 0d 0H 0M 0S" "4m 0d 0H 0M 0S"</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5] "5m 0d 0H 0M 0S" "6m 0d 0H 0M 0S"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>기간을 더하고 곱할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">*</span> (<span class="fu">months</span>(<span class="dv">6</span>) <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">1</span>))</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "60m 10d 0H 0M 0S"</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">days</span>(<span class="dv">50</span>) <span class="sc">+</span> <span class="fu">hours</span>(<span class="dv">25</span>) <span class="sc">+</span> <span class="fu">minutes</span>(<span class="dv">2</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "50d 25H 2M 0S"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>그리고 당연히 날짜에 추가할 수도 있습니다. 지속 시간과 비교할 때 기간은 예상한 대로 수행될 가능성이 더 높습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 윤년</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2024-01-01"</span>) <span class="sc">+</span> <span class="fu">dyears</span>(<span class="dv">1</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2024-12-31 06:00:00 UTC"</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2024-01-01"</span>) <span class="sc">+</span> <span class="fu">years</span>(<span class="dv">1</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2025-01-01"</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 일광 절약 시간제</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>one_am <span class="sc">+</span> <span class="fu">ddays</span>(<span class="dv">1</span>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2026-03-09 02:00:00 EDT"</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>one_am <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2026-03-09 01:00:00 EDT"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>기간을 사용하여 항공편 날짜와 관련된 이상한 점(oddity)을 수정해 보겠습니다. 일부 비행기는 뉴욕시에서 출발하기 전에 목적지에 도착한 것처럼 보입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>flights_dt <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(arr_time <span class="sc">&lt;</span> dep_time)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10,633 × 9</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   origin dest  dep_delay arr_delay dep_time            sched_dep_time     </span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dttm&gt;              &lt;dttm&gt;             </span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 EWR    BQN           9        -4 2013-01-01 19:29:00 2013-01-01 19:20:00</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 JFK    DFW          59        NA 2013-01-01 19:39:00 2013-01-01 18:40:00</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 EWR    TPA          -2         9 2013-01-01 20:58:00 2013-01-01 21:00:00</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 EWR    SJU          -6       -12 2013-01-01 21:02:00 2013-01-01 21:08:00</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 EWR    SFO          11       -14 2013-01-01 21:08:00 2013-01-01 20:57:00</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 LGA    FLL         -10        -2 2013-01-01 21:20:00 2013-01-01 21:30:00</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 10,627 more rows</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 3 more variables: arr_time &lt;dttm&gt;, sched_arr_time &lt;dttm&gt;, …</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>이것들은 야간 비행(overnight flights)입니다. 우리는 출발 시간과 도착 시간에 동일한 날짜 정보를 사용했지만, 이 항공편들은 다음 날 도착했습니다. 각 야간 항공편의 도착 시간에 <code>days(1)</code>을 더하여 이를 수정할 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>flights_dt <span class="ot">&lt;-</span> flights_dt <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">overnight =</span> arr_time <span class="sc">&lt;</span> dep_time,</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">arr_time =</span> arr_time <span class="sc">+</span> <span class="fu">days</span>(overnight),</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sched_arr_time =</span> sched_arr_time <span class="sc">+</span> <span class="fu">days</span>(overnight)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>이제 우리의 모든 항공편이 물리학의 법칙(laws of physics)을 따릅니다(obey).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>flights_dt <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(arr_time <span class="sc">&lt;</span> dep_time)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 0 × 10</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 10 variables: origin &lt;chr&gt;, dest &lt;chr&gt;, dep_delay &lt;dbl&gt;,</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   arr_delay &lt;dbl&gt;, dep_time &lt;dttm&gt;, sched_dep_time &lt;dttm&gt;, …</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="구간" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="구간"><span class="header-section-number">3.3</span> 구간</h3>
+<p><code>dyears(1) / ddays(365)</code>는 무엇을 반환합니까? 1이 아닙니다. 왜냐하면 <code>dyears()</code>는 평균 1년당 초 수로 정의되며 이는 365.25일이기 때문입니다.</p>
+<p><code>years(1) / days(1)</code>은 무엇을 반환합니까? 글쎄요, 연도가 2015년이면 365를 반환해야 하지만, 2016년이면 366을 반환해야 합니다!</p>
+<p>lubridate가 하나의 명확한 답을 제공할 만큼 충분한 정보가 없습니다. 대신 그것이 하는 일은 추정치(estimate)를 제공하는 것입니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">years</span>(<span class="dv">1</span>) <span class="sc">/</span> <span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 365.25</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>보다 정확한 측정(measurement)을 원한다면 구간(interval)을 사용해야 합니다. 구간은 시작 날짜 시간과 종료 날짜 시간의 쌍(pair)이거나 시작점이 있는 지속 시간이라고 생각할 수 있습니다.</p>
+<p><code>start %--% end</code>를 작성하여 구간을 만들 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>y2023 <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2023-01-01"</span>) <span class="sc">%--%</span> <span class="fu">ymd</span>(<span class="st">"2024-01-01"</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>y2024 <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2024-01-01"</span>) <span class="sc">%--%</span> <span class="fu">ymd</span>(<span class="st">"2025-01-01"</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>y2023</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2023-01-01 UTC--2024-01-01 UTC</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>y2024</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2024-01-01 UTC--2025-01-01 UTC</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>그런 다음 <code>days()</code>로 나누어 그 해에 며칠이 들어맞는지(fit) 알아낼 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>y2023 <span class="sc">/</span> <span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 365</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>y2024 <span class="sc">/</span> <span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 366</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="연습-문제-2" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="연습-문제-2"><span class="header-section-number">3.4</span> 연습 문제</h3>
+<ol type="1">
+<li><p>이제 막 R을 배우기 시작한 사람에게 <code>days(!overnight)</code>와 <code>days(overnight)</code>를 설명하세요. 여러분이 알아야 할 핵심 사실은 무엇입니까?</p></li>
+<li><p>2015년 매달의 첫째 날을 제공하는(giving) 날짜 벡터를 만드세요. 현재 연도 매달의 첫째 날을 제공하는 날짜 벡터를 만드세요.</p></li>
+<li><p>여러분의 생일(날짜로)이 주어지면 몇 살(in years)인지 반환하는 함수를 작성하세요.</p></li>
+</ol>
+</section>
+</section>
+<section id="시간대" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="시간대"><span class="header-section-number">4</span> 시간대</h2>
+<p>시간대는 지정학적 엔티티와의 상호 작용 때문에 엄청나게 복잡한 주제입니다. 다행히 데이터 분석에 모두 중요한 것은 아니기 때문에 모든 세부 사항을 파헤칠(dig into) 필요는 없지만, 정면으로 대처해야 할(tackle head on) 몇 가지 과제가 있습니다.</p>
+<p>첫 번째 과제는 일상적인 시간대 이름이 모호한(ambiguous) 경향이 있다는 것입니다. 예를 들어 여러분이 미국인이라면 EST, 즉 동부 표준시(Eastern Standard Time)에 익숙할 것입니다.</p>
+<p>그러나 호주와 캐나다에도 EST가 있습니다! 혼란을 피하기 위해 R은 국제 표준 IANA 시간대를 사용합니다. 이들은 일관된 이름 지정 체계(naming scheme)인 <code>{area}/{location}</code>을 사용하며, 일반적으로 <code>{continent}/{city}</code> 또는 <code>{ocean}/{city}</code> 형태입니다. 예를 들어 “America/New_York”, “Europe/Paris”, “Pacific/Auckland” 등이 있습니다.</p>
+<p>일반적으로 시간대가 한 국가 또는 국가 내 지역과 관련되어 있다고 생각하는데 왜 시간대가 도시를 사용하는지 궁금할 것입니다. 이것은 IANA 데이터베이스가 수십 년 분량의 시간대 규칙을 기록해야 하기 때문입니다. 수십 년에 걸쳐 국가 이름이 꽤 자주 변경되거나(또는 분할되거나-break apart)하지만, 도시 이름은 동일하게 유지되는 경향이 있습니다. 또 다른 문제는 이름이 현재의 동작(behavior)뿐만 아니라 완전한 역사도 반영해야(reflect) 한다는 것입니다. 예를 들어 “America/New_York”과 “America/Detroit”에 대한 시간대가 모두 있습니다. 이 두 도시 모두 현재 동부 표준시를 사용하지만 1969-1972년에 미시간주(디트로이트가 위치한 주)는 일광 절약 시간제(DST)를 따르지 않았으므로 다른 이름이 필요합니다.</p>
+<p>이러한 이야기 중 일부를 읽기 위해서라도 원시 시간대 데이터베이스(<a href="https://www.iana.org/time-zones">https://www.iana.org/time-zones</a>)를 읽어볼 가치가 있습니다!</p>
+<p><code>Sys.timezone()</code>을 사용하여 R이 여러분의 현재 시간대를 무엇이라고 생각하는지 알아낼 수 있습니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.timezone</span>()</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Asia/Seoul"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>(R이 모르면 <code>NA</code>를 얻게 됩니다.)</p>
+<p>그리고 <code>OlsonNames()</code>를 사용하여 모든 시간대 이름의 전체 목록을 확인하세요.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">OlsonNames</span>())</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 485</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">OlsonNames</span>())</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Africa/Abidjan"     "Africa/Accra"       "Africa/Addis_Ababa"</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] "Africa/Algiers"     "Africa/Asmara"      "Africa/Bamako"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>R에서 시간대는 인쇄(printing)만 제어하는 날짜-시간의 속성(attribute)입니다. 예를 들어 다음 세 객체는 시간상의 동일한 순간(instant in time)을 나타냅니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2024-06-01 12:00:00"</span>, <span class="at">tz =</span> <span class="st">"America/New_York"</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>x1</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2024-06-01 12:00:00 EDT"</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2024-06-01 18:00:00"</span>, <span class="at">tz =</span> <span class="st">"Europe/Copenhagen"</span>)</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>x2</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2024-06-01 18:00:00 CEST"</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2024-06-02 04:00:00"</span>, <span class="at">tz =</span> <span class="st">"Pacific/Auckland"</span>)</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>x3</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2024-06-02 04:00:00 NZST"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>뺄셈을 사용하여 동일한 시간인지 확인할 수 있습니다(verify):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="sc">-</span> x2</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Time difference of 0 secs</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="sc">-</span> x3</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Time difference of 0 secs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>달리 명시되지 않는 한(Unless otherwise specified) lubridate는 항상 UTC를 사용합니다. UTC(협정 세계시 - Coordinated Universal Time)는 과학계(scientific community)에서 사용하는 표준 시간대이며 대략(roughly) GMT(그리니치 표준시 - Greenwich Mean Time)와 같습니다. 일광 절약 시간제(DST)가 없기 때문에 계산을 위한 편리한 표현(representation)을 제공합니다. <code>c()</code>와 같이 날짜-시간을 결합하는 연산은 종종 시간대를 삭제합니다(drop). 이 경우 날짜-시간은 첫 번째 요소의 시간대로 표시됩니다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>x4 <span class="ot">&lt;-</span> <span class="fu">c</span>(x1, x2, x3)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>x4</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2024-06-01 12:00:00 EDT" "2024-06-01 12:00:00 EDT"</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] "2024-06-01 12:00:00 EDT"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>두 가지 방법으로 시간대를 변경할 수 있습니다.</p>
+<ol type="1">
+<li>시간상의 순간은 동일하게 유지하고(Keep the instant in time the same) 표시되는 방식을 변경합니다. 순간은 올바르지만 더 자연스러운 표시를 원할 때 사용합니다.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>x4a <span class="ot">&lt;-</span> <span class="fu">with_tz</span>(x4, <span class="at">tzone =</span> <span class="st">"Australia/Lord_Howe"</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>x4a</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2024-06-02 02:30:00 +1030" "2024-06-02 02:30:00 +1030"</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] "2024-06-02 02:30:00 +1030"</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>x4a <span class="sc">-</span> x4</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Time differences in secs</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0 0 0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>(이것은 시간대의 또 다른 과제도 보여줍니다. 모든 시간대가 정수(integer) 시간 오프셋은 아닙니다!)</p>
+<ol start="2" type="1">
+<li>시간상의 근본적인(underlying) 순간을 변경합니다. 잘못된 시간대로 레이블이 지정된 순간이 있고 이를 수정해야 할 때 사용합니다.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>x4b <span class="ot">&lt;-</span> <span class="fu">force_tz</span>(x4, <span class="at">tzone =</span> <span class="st">"Australia/Lord_Howe"</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>x4b</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2024-06-01 12:00:00 +1030" "2024-06-01 12:00:00 +1030"</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] "2024-06-01 12:00:00 +1030"</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>x4b <span class="sc">-</span> x4</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Time differences in hours</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -14.5 -14.5 -14.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

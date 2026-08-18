@@ -1,4 +1,4 @@
-﻿---
+---
 title: "벡터: Factors"
 ---
 
@@ -78,7 +78,7 @@ y2
 
 ```{r}
 #| error: true
-#| y2 <- fct(x2, levels = month_levels)
+y2 <- fct(x2, levels = month_levels)
 ```
 
 수준을 생략하면 데이터에서 알파벳순으로 수준을 가져옵니다.
