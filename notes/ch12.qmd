@@ -1,5 +1,5 @@
 ﻿---
-title: "Factors"
+title: "벡터: Factors"
 ---
 
 ```{r}

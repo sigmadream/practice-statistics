@@ -1,4 +1,6 @@
-﻿# 조인 (Joins) {#sec-joins}
+﻿---
+title: "Joins"
+---
 
 ```{r}
 #| echo: false

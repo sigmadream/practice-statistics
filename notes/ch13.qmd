@@ -147,33 +147,33 @@ ymd("2017-01-31", tz = "UTC")
 
 ```{r}
 flights |>
-    select(year, month, day, hour, minute)
+  select(year, month, day, hour, minute)
 ```
 
 이러한 종류의 입력에서 날짜/시간을 생성하려면 날짜의 경우 `make_date()`를 사용하고 날짜-시간의 경우 `make_datetime()`을 사용합니다.
 
 ```{r}
 flights |>
-    select(year, month, day, hour, minute) |>
-    mutate(departure = make_datetime(year, month, day, hour, minute))
+  select(year, month, day, hour, minute) |>
+  mutate(departure = make_datetime(year, month, day, hour, minute))
 ```
 
 `flights`의 네 가지 시간 열 각각에 대해 동일한 작업을 수행해 봅시다. 시간은 약간 이상한(odd) 형식으로 표시(represented)되므로 나머지 연산(modulus arithmetic)을 사용하여 시(hour)와 분(minute) 구성 요소를 추출합니다. 날짜-시간 변수를 만들고 나면 이 장의 나머지 부분에서 살펴볼 변수에 초점을 맞춥니다.
 
 ```{r}
 make_datetime_100 <- function(year, month, day, time) {
-    make_datetime(year, month, day, time %/% 100, time %% 100)
+  make_datetime(year, month, day, time %/% 100, time %% 100)
 }
 
 flights_dt <- flights |>
-    filter(!is.na(dep_time), !is.na(arr_time)) |>
-    mutate(
-        dep_time = make_datetime_100(year, month, day, dep_time),
-        arr_time = make_datetime_100(year, month, day, arr_time),
-        sched_dep_time = make_datetime_100(year, month, day, sched_dep_time),
-        sched_arr_time = make_datetime_100(year, month, day, sched_arr_time)
-    ) |>
-    select(origin, dest, ends_with("delay"), ends_with("time"))
+  filter(!is.na(dep_time), !is.na(arr_time)) |>
+  mutate(
+    dep_time = make_datetime_100(year, month, day, dep_time),
+    arr_time = make_datetime_100(year, month, day, arr_time),
+    sched_dep_time = make_datetime_100(year, month, day, sched_dep_time),
+    sched_arr_time = make_datetime_100(year, month, day, sched_arr_time)
+  ) |>
+  select(origin, dest, ends_with("delay"), ends_with("time"))
 
 flights_dt
 ```
@@ -182,30 +182,30 @@ flights_dt
 
 ```{r}
 #| fig.alt: >
-#|   x축에 출발 시간(2013년 1월-12월), y축에 항공편 수(0-1000)를 나타내는 
-#|   빈도 다각형(frequency polyon). 이 빈도 다각형은 일별로 구간이 
-#|   나누어져(binned) 있어 날짜별 항공편 시계열을 볼 수 있습니다. 이 패턴은 
-#|   주간 패턴(weekly pattern)에 의해 지배됩니다(dominated); 주말에는 
-#|   항공편이 적습니다. 2월 초, 7월 초, 11월 말, 12월 말에 항공편 수가 
+#|   x축에 출발 시간(2013년 1월-12월), y축에 항공편 수(0-1000)를 나타내는
+#|   빈도 다각형(frequency polyon). 이 빈도 다각형은 일별로 구간이
+#|   나누어져(binned) 있어 날짜별 항공편 시계열을 볼 수 있습니다. 이 패턴은
+#|   주간 패턴(weekly pattern)에 의해 지배됩니다(dominated); 주말에는
+#|   항공편이 적습니다. 2월 초, 7월 초, 11월 말, 12월 말에 항공편 수가
 #|   놀랍도록(surprisingly) 적어 눈에 띄는 며칠이 있습니다.
 flights_dt |>
-    ggplot(aes(x = dep_time)) +
-    geom_freqpoly(binwidth = 86400) # 86400초 = 1일
+  ggplot(aes(x = dep_time)) +
+  geom_freqpoly(binwidth = 86400) # 86400초 = 1일
 ```
 
 또는 단일 요일(single day) 내에서 시각화할 수 있습니다.
 
 ```{r}
 #| fig.alt: >
-#|   x축에 출발 시간(1월 1일 오전 6시 - 자정), y축에 항공편 수(0-17)를 나타내며, 
-#|   10분 단위(increments)로 구간이 나누어진 빈도 다각형. 변동성(variability)이 
-#|   높아 패턴을 많이 보기는 어렵지만(hard to see much pattern), 대부분의 구간에는 
-#|   8-12편의 항공편이 있으며 오전 6시 이전과 오후 8시 이후에는 항공편이 현저히(markedly) 
+#|   x축에 출발 시간(1월 1일 오전 6시 - 자정), y축에 항공편 수(0-17)를 나타내며,
+#|   10분 단위(increments)로 구간이 나누어진 빈도 다각형. 변동성(variability)이
+#|   높아 패턴을 많이 보기는 어렵지만(hard to see much pattern), 대부분의 구간에는
+#|   8-12편의 항공편이 있으며 오전 6시 이전과 오후 8시 이후에는 항공편이 현저히(markedly)
 #|   적습니다.
 flights_dt |>
-    filter(dep_time < ymd(20130102)) |>
-    ggplot(aes(x = dep_time)) +
-    geom_freqpoly(binwidth = 600) # 600초 = 10분
+  filter(dep_time < ymd(20130102)) |>
+  ggplot(aes(x = dep_time)) +
+  geom_freqpoly(binwidth = 600) # 600초 = 10분
 ```
 
 날짜-시간을 (히스토그램과 같은) 수치적 문맥(numeric context)에서 사용할 때 1은 1초를 의미하므로, `binwidth`가 86400이라는 것은 하루를 의미한다는 점에 유의하세요. 날짜의 경우 1은 1일을 의미합니다.
@@ -228,55 +228,49 @@ as_datetime(60 * 60 * 10)
 as_date(365 * 10 + 2)
 ```
 
-### 연습 문제 (Exercises)
+### 연습 문제
 
-1.  유효하지 않은 날짜가 포함된 문자열을 구문 분석(parse)하면 어떻게 됩니까?
+1. 유효하지 않은 날짜가 포함된 문자열을 구문 분석(parse)하면 어떻게 됩니까?
 
-    ```{r}
-    #| eval: false
+```{r}
+#| eval: false
+ymd(c("2010-10-10", "bananas"))
+```
 
-    ymd(c("2010-10-10", "bananas"))
-    ```
+2. `today()`의 `tzone` 인수는 무슨 일을 합니까? 그것이 중요한 이유는 무엇입니까?
 
-2.  `today()`의 `tzone` 인수는 무슨 일을 합니까?
-    그것이 중요한 이유는 무엇입니까?
+3. 다음 각 날짜-시간에 대해 readr 열 사양(column specification)과 lubridate 함수를 사용하여 이를 어떻게 구문 분석할지 보여주세요.
 
-3.  다음 각 날짜-시간에 대해 readr 열 사양(column specification)과 lubridate 함수를 사용하여 이를 어떻게 구문 분석할지 보여주세요.
+```{r}
+d1 <- "January 1, 2010"
+d2 <- "2015-Mar-07"
+d3 <- "06-Jun-2017"
+d4 <- c("August 19 (2015)", "July 1 (2015)")
+d5 <- "12/30/14" # 2014년 12월 30일
+t1 <- "1705"
+t2 <- "11:15:10.12 PM"
+```
 
-    ```{r}
-    d1 <- "January 1, 2010"
-    d2 <- "2015-Mar-07"
-    d3 <- "06-Jun-2017"
-    d4 <- c("August 19 (2015)", "July 1 (2015)")
-    d5 <- "12/30/14" # 2014년 12월 30일
-    t1 <- "1705"
-    t2 <- "11:15:10.12 PM"
-    ```
+## 날짜-시간 구성 요소
 
-## 날짜-시간 구성 요소 (Date-time components)
+이제 날짜-시간 데이터를 R의 날짜-시간 데이터 구조로 가져오는 방법을 알았으니 이들로 무엇을 할 수 있는지 탐색(explore)해 봅시다. 
 
-이제 날짜-시간 데이터를 R의 날짜-시간 데이터 구조로 가져오는 방법을 알았으니 이들로 무엇을 할 수 있는지 탐색(explore)해 봅시다.
-이 섹션에서는 개별 구성 요소를 가져오고(get) 설정(set)할 수 있게 해주는 접근자 함수(accessor functions)에 초점을 맞출 것입니다.
-다음 섹션에서는 날짜-시간에 산술(arithmetic) 연산이 어떻게 작동하는지 살펴보겠습니다.
-
-### 구성 요소 가져오기 (Getting components)
+### 구성 요소 가져오기
 
 접근자 함수인 `year()`, `month()`, `mday()`(월의 일(day of the month)), `yday()`(연의 일(day of the year)), `wday()`(요일(day of the week)), `hour()`, `minute()`, `second()`를 사용하여 날짜의 개별 부분을 추출(pull out)할 수 있습니다.
+
 이것들은 사실상(effectively) `make_datetime()`의 반대입니다.
 
 ```{r}
 datetime <- ymd_hms("2026-07-08 12:34:56")
-
 year(datetime)
 month(datetime)
 mday(datetime)
-
 yday(datetime)
 wday(datetime)
 ```
 
-`month()` 및 `wday()`의 경우 `label = TRUE`를 설정하여 월이나 요일의 약어 이름을 반환할 수 있습니다.
-전체 이름을 반환하려면 `abbr = FALSE`를 설정하세요.
+`month()` 및 `wday()`의 경우 `label = TRUE`를 설정하여 월이나 요일의 약어 이름을 반환할 수 있습니다. 전체 이름을 반환하려면 `abbr = FALSE`를 설정하세요.
 
 ```{r}
 month(datetime, label = TRUE)
@@ -287,145 +281,145 @@ wday(datetime, label = TRUE, abbr = FALSE)
 
 ```{r}
 #| fig-alt: |
-#|   x축에 요일(days of the week), y축에 항공편 수를 나타내는 
-#|   막대 차트. 월요일-금요일은 항공편 수가 대략 48,000편으로 비슷하며, 
+#|   x축에 요일(days of the week), y축에 항공편 수를 나타내는
+#|   막대 차트. 월요일-금요일은 항공편 수가 대략 48,000편으로 비슷하며,
 #|   일주일이 지나면서(over the course of the week) 약간씩 감소합니다.
 #|   일요일은 약간 더 낮고(~45,000), 토요일은 훨씬 더 낮습니다(~38,000).
 flights_dt |>
-    mutate(wday = wday(dep_time, label = TRUE)) |>
-    ggplot(aes(x = wday)) +
-    geom_bar()
+  mutate(wday = wday(dep_time, label = TRUE)) |>
+  ggplot(aes(x = wday)) +
+  geom_bar()
 ```
 
-한 시간 내의 분당 평균 출발 지연 시간을 살펴볼 수도 있습니다.
-흥미로운 패턴이 있습니다. 20-30분과 50-60분에 떠나는 항공편이 그 시간의 나머지 부분보다 훨씬 지연이 적습니다!
+한 시간 내의 분당 평균 출발 지연 시간을 살펴볼 수도 있습니다. 흥미로운 패턴이 있습니다. 20-30분과 50-60분에 떠나는 항공편이 그 시간의 나머지 부분보다 훨씬 지연이 적습니다!
 
 ```{r}
-#| fig-alt: | 
-#|   x축에 실제 출발 분(0-60), y축에 평균 지연 시간(4-20)을 
-#|   나타내는 선형 차트(line chart). 평균 지연 시간은 (0, 12)에서 시작하여 
-#|   (18, 20)까지 꾸준히(steadily) 증가하다가 급격히(sharply) 떨어져, 
-#|   매시 약 23분(23 minute past the hour)에 최소인 9분의 지연 시간을 기록합니다. 
-#|   그 후 다시 (17, 35)로 증가하고 (55, 4)로 급격히 감소합니다. 
+#| fig-alt: |
+#|   x축에 실제 출발 분(0-60), y축에 평균 지연 시간(4-20)을
+#|   나타내는 선형 차트(line chart). 평균 지연 시간은 (0, 12)에서 시작하여
+#|   (18, 20)까지 꾸준히(steadily) 증가하다가 급격히(sharply) 떨어져,
+#|   매시 약 23분(23 minute past the hour)에 최소인 9분의 지연 시간을 기록합니다.
+#|   그 후 다시 (17, 35)로 증가하고 (55, 4)로 급격히 감소합니다.
 #|   마지막으로 (60, 9)로 증가하며 마무리됩니다.
 flights_dt |>
-    mutate(minute = minute(dep_time)) |>
-    group_by(minute) |>
-    summarize(
-        avg_delay = mean(dep_delay, na.rm = TRUE),
-        n = n()
-    ) |>
-    ggplot(aes(x = minute, y = avg_delay)) +
-    geom_line()
+  mutate(minute = minute(dep_time)) |>
+  group_by(minute) |>
+  summarize(
+    avg_delay = mean(dep_delay, na.rm = TRUE),
+    n = n()
+  ) |>
+  ggplot(aes(x = minute, y = avg_delay)) +
+  geom_line()
 ```
 
-흥미롭게도(Interestingly) *예정된(scheduled)* 출발 시간을 살펴보면 그렇게 강력한 패턴이 보이지 않습니다.
+흥미롭게도(Interestingly) 예정된(scheduled) 출발 시간을 살펴보면 그렇게 강력한 패턴이 보이지 않습니다.
 
 ```{r}
-#| fig-alt: | 
-#|   x축에 예정된 출발 분(0-60), y축에 평균 지연 시간(4-16)을 나타내는 
-#|   선형 차트. 패턴이 상대적으로 적으며, 한 시간 동안 평균 지연 시간이 
+#| fig-alt: |
+#|   x축에 예정된 출발 분(0-60), y축에 평균 지연 시간(4-16)을 나타내는
+#|   선형 차트. 패턴이 상대적으로 적으며, 한 시간 동안 평균 지연 시간이
 #|   아마 10분에서 8분으로 감소한다는 약간의 암시(suggestion)만 있습니다.
 sched_dep <- flights_dt |>
-    mutate(minute = minute(sched_dep_time)) |>
-    group_by(minute) |>
-    summarize(
-        avg_delay = mean(arr_delay, na.rm = TRUE),
-        n = n()
-    )
+  mutate(minute = minute(sched_dep_time)) |>
+  group_by(minute) |>
+  summarize(
+    avg_delay = mean(arr_delay, na.rm = TRUE),
+    n = n()
+  )
 
 ggplot(sched_dep, aes(x = minute, y = avg_delay)) +
-    geom_line()
+  geom_line()
 ```
 
 그렇다면 실제 출발 시간에서 이런 패턴이 보이는 이유는 무엇일까요?
-글쎄요, 인간이 수집한 많은 데이터와 마찬가지로 @fig-human-rounding이 보여주듯이 항공편이 "깔끔한(nice)" 출발 시간에 떠나는 경향이 강한 편향(bias)이 있습니다.
+
+글쎄요, 인간이 수집한 많은 데이터와 마찬가지로 항공편이 "깔끔한(nice)" 출발 시간에 떠나는 경향이 강한 편향(bias)이 있습니다.
+
 인간의 판단(judgement)이 관련된 데이터로 작업할 때는 항상 이러한 종류의 패턴에 대해 경계(alert)하세요!
 
 ```{r}
 #| label: fig-human-rounding
 #| fig-cap: |
-#|   매시간(each hour) 출발하도록 예정된 항공편 수를 보여주는 
-#|   빈도 다각형. 0과 30 같은 딱 떨어지는 숫자(round numbers)와 
+#|   매시간(each hour) 출발하도록 예정된 항공편 수를 보여주는
+#|   빈도 다각형. 0과 30 같은 딱 떨어지는 숫자(round numbers)와
 #|   일반적으로 5의 배수인 숫자에 대한 강한 선호(preference)를 볼 수 있습니다.
 #| fig-alt: |
-#|   x축에 출발 분(0-60), y축에 항공편 수(0-60000)를 나타내는 
-#|   선 그래프. 대부분의 항공편은 정각(~60,000)이나 
-#|   30분(~35,000)에 출발하도록 예정되어 있습니다. 그 외에는 
-#|   거의 모든 항공편이 5의 배수에 출발하도록 예정되어 있으며, 
+#|   x축에 출발 분(0-60), y축에 항공편 수(0-60000)를 나타내는
+#|   선 그래프. 대부분의 항공편은 정각(~60,000)이나
+#|   30분(~35,000)에 출발하도록 예정되어 있습니다. 그 외에는
+#|   거의 모든 항공편이 5의 배수에 출발하도록 예정되어 있으며,
 #|   15분, 45분, 55분에 몇 편 더(a few extra) 있습니다.
 #| echo: false
 ggplot(sched_dep, aes(x = minute, y = n)) +
-    geom_line()
+  geom_line()
 ```
 
 ### 반올림 (Rounding)
 
 개별 구성 요소를 시각화(plotting)하는 대안적(alternative) 접근 방식은 `floor_date()`, `round_date()`, `ceiling_date()`를 사용하여 날짜를 근처의(nearby) 시간 단위로 반올림하는 것입니다.
-각 함수는 조정(adjust)할 날짜 벡터를 취한 다음 내림(floor), 올림(ceiling), 또는 반올림(round to)할 단위의 이름을 취합니다.
-예를 들어, 이를 통해 주당 항공편 수를 시각화할 수 있습니다.
+
+각 함수는 조정(adjust)할 날짜 벡터를 취한 다음 내림(floor), 올림(ceiling), 또는 반올림(round to)할 단위의 이름을 취합니다. 예를 들어, 이를 통해 주당 항공편 수를 시각화할 수 있습니다.
 
 ```{r}
 #| fig-alt: |
-#|   x축에 주(2013년 1월-12월), y축에 항공편 수(2,000-7,000)를 
-#|   나타내는 선 그래프. 2월부터 11월까지는 주당 약 7,000편의 
-#|   항공편으로 꽤 평탄한(flat) 패턴을 보입니다. 연초의 
-#|   첫 주(약 4,500편)와 마지막 주(약 2,500편)에는 항공편 수가 
+#|   x축에 주(2013년 1월-12월), y축에 항공편 수(2,000-7,000)를
+#|   나타내는 선 그래프. 2월부터 11월까지는 주당 약 7,000편의
+#|   항공편으로 꽤 평탄한(flat) 패턴을 보입니다. 연초의
+#|   첫 주(약 4,500편)와 마지막 주(약 2,500편)에는 항공편 수가
 #|   훨씬 적습니다.
 flights_dt |>
-    count(week = floor_date(dep_time, "week")) |>
-    ggplot(aes(x = week, y = n)) +
-    geom_line() +
-    geom_point()
+  count(week = floor_date(dep_time, "week")) |>
+  ggplot(aes(x = week, y = n)) +
+  geom_line() +
+  geom_point()
 ```
 
 `dep_time`과 그날의 이른 순간(earliest instant) 사이의 차이를 계산하여 반올림을 사용해 하루 동안의(across the course of a day) 항공편 분포를 보여줄 수 있습니다.
 
 ```{r}
 #| fig-alt: |
-#|   x축에 출발 시간을 나타내는 선 그래프. 자정 이후의 
+#|   x축에 출발 시간을 나타내는 선 그래프. 자정 이후의
 #|   초 단위(units of seconds)이므로 해석하기 어렵습니다.
 flights_dt |>
-    mutate(dep_hour = dep_time - floor_date(dep_time, "day")) |>
-    ggplot(aes(x = dep_hour)) +
-    geom_freqpoly(binwidth = 60 * 30)
+  mutate(dep_hour = dep_time - floor_date(dep_time, "day")) |>
+  ggplot(aes(x = dep_hour)) +
+  geom_freqpoly(binwidth = 60 * 30)
 ```
 
-한 쌍의(pair of) 날짜-시간 간의 차이를 계산하면 `difftime`이 산출됩니다(이에 대해서는 @sec-intervals에서 자세히 설명합니다).
-이를 `hms` 객체로 변환하여 더 유용한 x축을 얻을 수 있습니다.
+한 쌍의(pair of) 날짜-시간 간의 차이를 계산하면 `difftime`이 산출됩니다. 이를 `hms` 객체로 변환하여 더 유용한 x축을 얻을 수 있습니다.
 
 ```{r}
 #| fig-alt: |
-#|   x축에 출발 시간(자정에서 자정), y축에 항공편 수(0에서 15,000)를 
-#|   나타내는 선 그래프. 오전 5시 이전에는 항공편이 매우 적습니다(<100). 
-#|   그런 다음 항공편 수는 시간당 12,000편으로 빠르게 증가하여 
-#|   오전 9시에 15,000편으로 최고치(peaking)에 달한 후, 오전 10시부터 
-#|   오후 2시까지 시간당 약 8,000편으로 떨어집니다(falling). 그런 다음 항공편 수는 
+#|   x축에 출발 시간(자정에서 자정), y축에 항공편 수(0에서 15,000)를
+#|   나타내는 선 그래프. 오전 5시 이전에는 항공편이 매우 적습니다(<100).
+#|   그런 다음 항공편 수는 시간당 12,000편으로 빠르게 증가하여
+#|   오전 9시에 15,000편으로 최고치(peaking)에 달한 후, 오전 10시부터
+#|   오후 2시까지 시간당 약 8,000편으로 떨어집니다(falling). 그런 다음 항공편 수는
 #|   오후 8시까지 시간당 약 12,000편으로 다시 증가하다가 다시 급격히(rapidly) 감소합니다.
 flights_dt |>
-    mutate(dep_hour = hms::as_hms(dep_time - floor_date(dep_time, "day"))) |>
-    ggplot(aes(x = dep_hour)) +
-    geom_freqpoly(binwidth = 60 * 30)
+  mutate(dep_hour = hms::as_hms(dep_time - floor_date(dep_time, "day"))) |>
+  ggplot(aes(x = dep_hour)) +
+  geom_freqpoly(binwidth = 60 * 30)
 ```
 
-### 구성 요소 수정하기 (Modifying components)
+### 구성 요소 수정하기
 
-각 접근자 함수를 사용하여 날짜/시간의 구성 요소를 수정할 수도 있습니다.
-이것은 데이터 분석에서는 많이 발생하지(come up) 않지만, 날짜가 분명히 잘못된 데이터를 정리(cleaning)할 때 유용할 수 있습니다.
+각 접근자 함수를 사용하여 날짜/시간의 구성 요소를 수정할 수도 있습니다.이것은 데이터 분석에서는 많이 발생하지(come up) 않지만, 날짜가 분명히 잘못된 데이터를 정리(cleaning)할 때 유용할 수 있습니다.
 
 ```{r}
 (datetime <- ymd_hms("2026-07-08 12:34:56"))
 
 year(datetime) <- 2030
 datetime
+
 month(datetime) <- 01
 datetime
+
 hour(datetime) <- hour(datetime) + 1
 datetime
 ```
 
-대안으로, 기존 변수를 수정하는 대신 `update()`를 사용하여 새 날짜-시간을 만들 수 있습니다.
-또한 이를 통해 한 번에(in one step) 여러 값을 설정할 수 있습니다.
+대안으로, 기존 변수를 수정하는 대신 `update()`를 사용하여 새 날짜-시간을 만들 수 있습니다. 또한 이를 통해 한 번에(in one step) 여러 값을 설정할 수 있습니다.
 
 ```{r}
 update(datetime, year = 2030, month = 2, mday = 2, hour = 2)
@@ -438,41 +432,32 @@ update(ymd("2023-02-01"), mday = 30)
 update(ymd("2023-02-01"), hour = 400)
 ```
 
-### 연습 문제 (Exercises)
+### 연습 문제
 
-1.  하루 중 항공편 시간의 분포는 한 해 동안(over the course of the year) 어떻게 변합니까?
+1. 하루 중 항공편 시간의 분포는 한 해 동안(over the course of the year) 어떻게 변합니까?
 
-2.  `dep_time`, `sched_dep_time` 및 `dep_delay`를 비교하세요.
-    이것들은 일관성이 있습니까(consistent)?
-    여러분이 발견한 것을 설명하세요.
+2. `dep_time`, `sched_dep_time` 및 `dep_delay`를 비교하세요. 이것들은 일관성이 있습니까(consistent)? 여러분이 발견한 것을 설명하세요.
 
-3.  `air_time`을 출발(departure)과 도착(arrival) 사이의 지속 시간(duration)과 비교하세요.
-    여러분이 발견한 것을 설명하세요.
-    (힌트: 공항의 위치를 고려하세요.)
+3. `air_time`을 출발(departure)과 도착(arrival) 사이의 지속 시간(duration)과 비교하세요. 여러분이 발견한 것을 설명하세요. (힌트: 공항의 위치를 고려하세요.)
 
-4.  평균 지연 시간은 하루 동안 어떻게 변합니까?
-    `dep_time`을 사용해야 합니까, 아니면 `sched_dep_time`을 사용해야 합니까?
-    이유는 무엇입니까?
+4. 평균 지연 시간은 하루 동안 어떻게 변합니까? `dep_time`을 사용해야 합니까, 아니면 `sched_dep_time`을 사용해야 합니까?     이유는 무엇입니까?
 
-5.  지연 가능성(chance)을 최소화(minimise)하려면 요일 중 어느 날짜에 출발해야 합니까?
+5. 지연 가능성(chance)을 최소화(minimise)하려면 요일 중 어느 날짜에 출발해야 합니까?
 
-6.  `diamonds$carat`의 분포와 `flights$sched_dep_time`의 분포를 비슷하게 만드는 것은 무엇입니까?
+6. `diamonds$carat`의 분포와 `flights$sched_dep_time`의 분포를 비슷하게 만드는 것은 무엇입니까?
 
-7.  20-30분과 50-60분에 항공편이 일찍 출발(early departures)하는 것이 일찍 떠나는 예정된 항공편 때문이라는 가설(hypothesis)을 확인하세요.
-    힌트: 항공편이 지연되었는지 여부를 알려주는 이진 변수(binary variable)를 만드세요.
+7. 20-30분과 50-60분에 항공편이 일찍 출발(early departures)하는 것이 일찍 떠나는 예정된 항공편 때문이라는 가설(hypothesis)을 확인하세요.(힌트: 항공편이 지연되었는지 여부를 알려주는 이진 변수(binary variable)를 만드세요)
 
-## 시간 범위 (Time spans)
+## 시간 범위
 
 다음으로 뺄셈(subtraction), 덧셈(addition), 나눗셈(division)을 포함하여 날짜에 대한 산술 연산이 어떻게 작동하는지 배울 것입니다.
 그 과정에서(Along the way) 시간 범위를 나타내는 중요한 세 가지 클래스에 대해 배울 것입니다.
 
--   지속 시간(Durations)은 정확한 초 수를 나타냅니다.
--   기간(Periods)은 주(weeks)나 월(months)과 같은 인간의 단위를 나타냅니다.
--   구간(Intervals)은 시작점과 끝점을 나타냅니다.
+1. 지속 시간(Durations)은 정확한 초 수를 나타냅니다.
+2. 기간(Periods)은 주(weeks)나 월(months)과 같은 인간의 단위를 나타냅니다.
+3. 구간(Intervals)은 시작점과 끝점을 나타냅니다.
 
-지속 시간, 기간, 구간 중에서 어떻게 선택합니까?
-항상 그렇듯이(As always) 문제를 해결하는 단순한 데이터 구조를 선택하세요.
-물리적 시간만 신경 쓴다면(care about) 지속 시간을 사용하세요; 인간의 시간을 추가해야 한다면 기간을 사용하세요; 인간의 단위로 범위가 얼마나 긴지 파악해야 한다면 구간을 사용하세요.
+지속 시간, 기간, 구간 중에서 어떻게 선택합니까? 항상 그렇듯이(As always) 문제를 해결하는 단순한 데이터 구조를 선택하세요. 물리적 시간만 신경 쓴다면(care about) 지속 시간을 사용하세요; 인간의 시간을 추가해야 한다면 기간을 사용하세요; 인간의 단위로 범위가 얼마나 긴지 파악해야 한다면 구간을 사용하세요.
 
 ### 지속 시간 (Durations)
 
@@ -484,8 +469,7 @@ h_age <- today() - ymd("1979-10-14")
 h_age
 ```
 
-`difftime` 클래스 객체는 초, 분, 시간, 일 또는 주 단위의 시간 범위를 기록합니다.
-이러한 모호성(ambiguity)으로 인해 `difftime` 작업이 약간 고통스러울 수 있으므로 lubridate는 항상 초를 사용하는 대안인 지속 시간(duration)을 제공합니다.
+`difftime` 클래스 객체는 초, 분, 시간, 일 또는 주 단위의 시간 범위를 기록합니다. 이러한 모호성(ambiguity)으로 인해 `difftime` 작업이 약간 고통스러울 수 있으므로 lubridate는 항상 초를 사용하는 대안인 지속 시간(duration)을 제공합니다.
 
 ```{r}
 as.duration(h_age)
@@ -502,11 +486,8 @@ dweeks(3)
 dyears(1)
 ```
 
-지속 시간은 항상 시간 범위를 초 단위로 기록합니다.
-분, 시간, 일, 주, 연을 초로 변환하여 더 큰 단위를 만듭니다. 1분은 60초, 1시간은 60분, 하루는 24시간, 일주일은 7일입니다.
-더 큰 시간 단위는 더 문제가 많습니다(problematic).
-1년은 1년의 "평균" 일수, 즉 365.25를 사용합니다.
-변동(variation)이 너무 크기 때문에 월을 지속 시간으로 변환할 방법이 없습니다.
+지속 시간은 항상 시간 범위를 초 단위로 기록합니다. 분, 시간, 일, 주, 연을 초로 변환하여 더 큰 단위를 만듭니다. 1분은 60초, 1시간은 60분, 하루는 24시간, 일주일은 7일입니다. 더 큰 시간 단위는 더 문제가 많습니다(problematic).
+1년은 1년의 "평균" 일수, 즉 365.25를 사용합니다. 변동(variation)이 너무 크기 때문에 월을 지속 시간으로 변환할 방법이 없습니다.
 
 지속 시간을 더하고 곱할 수 있습니다.
 
@@ -526,20 +507,15 @@ last_year <- today() - dyears(1)
 
 ```{r}
 one_am <- ymd_hms("2026-03-08 01:00:00", tz = "America/New_York")
-
 one_am
 one_am + ddays(1)
 ```
 
-왜 3월 8일 오전 1시의 하루 뒤가 3월 9일 오전 2시일까요?
-날짜를 주의 깊게 보면 시간대가 변경된 것도 알 수 있습니다.
-3월 8일은 일광 절약 시간제(DST)가 시작되는 시기이기 때문에 23시간밖에 없으므로, 하루 분량의(full days worth of) 초를 더하면 결국 다른 시간이 됩니다.
+왜 3월 8일 오전 1시의 하루 뒤가 3월 9일 오전 2시일까요? 날짜를 주의 깊게 보면 시간대가 변경된 것도 알 수 있습니다. 3월 8일은 일광 절약 시간제(DST)가 시작되는 시기이기 때문에 23시간밖에 없으므로, 하루 분량의(full days worth of) 초를 더하면 결국 다른 시간이 됩니다.
 
 ### 기간 (Periods)
 
-이 문제를 해결하기 위해 lubridate는 기간(periods)을 제공합니다.
-기간은 시간 범위이지만 초 단위의 고정된 길이를 갖지 않고 일(days)과 월(months)과 같은 "인간의" 시간으로 작동합니다.
-이로 인해 좀 더 직관적인 방식(intuitive way)으로 작동할 수 있습니다.
+이 문제를 해결하기 위해 lubridate는 기간(periods)을 제공합니다. 기간은 시간 범위이지만 초 단위의 고정된 길이를 갖지 않고 일(days)과 월(months)과 같은 "인간의" 시간으로 작동합니다. 이로 인해 좀 더 직관적인 방식(intuitive way)으로 작동할 수 있습니다.
 
 ```{r}
 one_am
@@ -561,8 +537,7 @@ months(1:6)
 days(50) + hours(25) + minutes(2)
 ```
 
-그리고 당연히 날짜에 추가할 수도 있습니다.
-지속 시간과 비교할 때 기간은 예상한 대로 수행될 가능성이 더 높습니다.
+그리고 당연히 날짜에 추가할 수도 있습니다. 지속 시간과 비교할 때 기간은 예상한 대로 수행될 가능성이 더 높습니다.
 
 ```{r}
 # 윤년
@@ -574,43 +549,38 @@ one_am + ddays(1)
 one_am + days(1)
 ```
 
-기간을 사용하여 항공편 날짜와 관련된 이상한 점(oddity)을 수정해 보겠습니다.
-일부 비행기는 뉴욕시에서 출발하기 *전에* 목적지에 도착한 것처럼 보입니다.
+기간을 사용하여 항공편 날짜와 관련된 이상한 점(oddity)을 수정해 보겠습니다. 일부 비행기는 뉴욕시에서 출발하기 전에 목적지에 도착한 것처럼 보입니다.
 
 ```{r}
 flights_dt |>
-    filter(arr_time < dep_time)
+  filter(arr_time < dep_time)
 ```
 
-이것들은 야간 비행(overnight flights)입니다.
-우리는 출발 시간과 도착 시간에 동일한 날짜 정보를 사용했지만, 이 항공편들은 다음 날 도착했습니다.
-각 야간 항공편의 도착 시간에 `days(1)`을 더하여 이를 수정할 수 있습니다.
+이것들은 야간 비행(overnight flights)입니다. 우리는 출발 시간과 도착 시간에 동일한 날짜 정보를 사용했지만, 이 항공편들은 다음 날 도착했습니다. 각 야간 항공편의 도착 시간에 `days(1)`을 더하여 이를 수정할 수 있습니다.
 
 ```{r}
 flights_dt <- flights_dt |>
-    mutate(
-        overnight = arr_time < dep_time,
-        arr_time = arr_time + days(overnight),
-        sched_arr_time = sched_arr_time + days(overnight)
-    )
+  mutate(
+    overnight = arr_time < dep_time,
+    arr_time = arr_time + days(overnight),
+    sched_arr_time = sched_arr_time + days(overnight)
+  )
 ```
 
 이제 우리의 모든 항공편이 물리학의 법칙(laws of physics)을 따릅니다(obey).
 
 ```{r}
 flights_dt |>
-    filter(arr_time < dep_time)
+  filter(arr_time < dep_time)
 ```
 
-### 구간 (Intervals) {#sec-intervals}
+### 구간
 
-`dyears(1) / ddays(365)`는 무엇을 반환합니까?
-1이 아닙니다. 왜냐하면 `dyears()`는 평균 1년당 초 수로 정의되며 이는 365.25일이기 때문입니다.
+`dyears(1) / ddays(365)`는 무엇을 반환합니까? 1이 아닙니다. 왜냐하면 `dyears()`는 평균 1년당 초 수로 정의되며 이는 365.25일이기 때문입니다.
 
-`years(1) / days(1)`은 무엇을 반환합니까?
-글쎄요, 연도가 2015년이면 365를 반환해야 하지만, 2016년이면 366을 반환해야 합니다!
-lubridate가 하나의 명확한 답을 제공할 만큼 충분한 정보가 없습니다.
-대신 그것이 하는 일은 추정치(estimate)를 제공하는 것입니다.
+`years(1) / days(1)`은 무엇을 반환합니까? 글쎄요, 연도가 2015년이면 365를 반환해야 하지만, 2016년이면 366을 반환해야 합니다!
+
+lubridate가 하나의 명확한 답을 제공할 만큼 충분한 정보가 없습니다. 대신 그것이 하는 일은 추정치(estimate)를 제공하는 것입니다.
 
 ```{r}
 years(1) / days(1)
@@ -636,20 +606,17 @@ y2023 / days(1)
 y2024 / days(1)
 ```
 
-### 연습 문제 (Exercises)
+### 연습 문제
 
-1.  이제 막 R을 배우기 시작한 사람에게 `days(!overnight)`와 `days(overnight)`를 설명하세요.
-    여러분이 알아야 할 핵심 사실은 무엇입니까?
+1. 이제 막 R을 배우기 시작한 사람에게 `days(!overnight)`와 `days(overnight)`를 설명하세요. 여러분이 알아야 할 핵심 사실은 무엇입니까?
 
-2.  2015년 매달의 첫째 날을 제공하는(giving) 날짜 벡터를 만드세요.
-    *현재* 연도 매달의 첫째 날을 제공하는 날짜 벡터를 만드세요.
+2. 2015년 매달의 첫째 날을 제공하는(giving) 날짜 벡터를 만드세요. 현재 연도 매달의 첫째 날을 제공하는 날짜 벡터를 만드세요.
 
-3.  여러분의 생일(날짜로)이 주어지면 몇 살(in years)인지 반환하는 함수를 작성하세요.
+3. 여러분의 생일(날짜로)이 주어지면 몇 살(in years)인지 반환하는 함수를 작성하세요.
 
 ## 시간대
 
-시간대는 지정학적 엔티티와의 상호 작용 때문에 엄청나게 복잡한 주제입니다.
-다행히 데이터 분석에 모두 중요한 것은 아니기 때문에 모든 세부 사항을 파헤칠(dig into) 필요는 없지만, 정면으로 대처해야 할(tackle head on) 몇 가지 과제가 있습니다.
+시간대는 지정학적 엔티티와의 상호 작용 때문에 엄청나게 복잡한 주제입니다. 다행히 데이터 분석에 모두 중요한 것은 아니기 때문에 모든 세부 사항을 파헤칠(dig into) 필요는 없지만, 정면으로 대처해야 할(tackle head on) 몇 가지 과제가 있습니다.
 
 첫 번째 과제는 일상적인 시간대 이름이 모호한(ambiguous) 경향이 있다는 것입니다.
 예를 들어 여러분이 미국인이라면 EST, 즉 동부 표준시(Eastern Standard Time)에 익숙할 것입니다.

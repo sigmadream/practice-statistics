@@ -1,4 +1,7 @@
-# 결측값 (Missing values) {#sec-missing-values}
+
+---
+title: "결측값"
+---
 
 ```{r}
 #| echo: false
