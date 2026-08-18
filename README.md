@@ -1,5 +1,9 @@
 # `R`을 공부하면서 알게 된 몇가지
 
+## 리눅스 사용자
+
+[https://github.com/eddelbuettel/r2u](https://github.com/eddelbuettel/r2u)에서 R 패키지 설치 및 설정을 진행하세요.
+
 ## 설정
 
 ```bash
