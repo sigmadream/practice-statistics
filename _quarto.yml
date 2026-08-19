@@ -31,11 +31,11 @@ website:
           - notes/ch02.qmd
           - notes/ch03.qmd
           - notes/ch04.qmd
-          - notes/ch05.qmd
-          - notes/ch06.qmd
-          - notes/ch07.qmd
-          - notes/ch08.qmd
-          - notes/ch09.qmd
+          # - notes/ch05.qmd
+          # - notes/ch06.qmd
+          # - notes/ch07.qmd
+          # - notes/ch08.qmd
+          # - notes/ch09.qmd
 
       # - section: "R로 배우는 확률"
       #   contents:        
