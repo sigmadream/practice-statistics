@@ -556,9 +556,9 @@ count_prop <- function(df, var, sort = FALSE) {
 }
 ```
 
-## 플롯 함수
+## 그래프 함수
 
-데이터 프레임을 반환하는 대신 플롯을 반환하고 싶을(might want to) 수 있습니다. 다행히도 `aes()`는 데이터 마스킹 함수이므로 ggplot2와 동일한 기술(same techniques)을 사용할 수 있습니다. 예를 들어 많은 히스토그램(histograms)을 만들고 있다고 상상해 보세요.
+데이터 프레임을 반환하는 대신 그래프을 반환하고 싶을(might want to) 수 있습니다. 다행히도 `aes()`는 데이터 마스킹 함수이므로 ggplot2와 동일한 기술(same techniques)을 사용할 수 있습니다. 예를 들어 많은 히스토그램(histograms)을 만들고 있다고 상상해 보세요.
 
 ```{r}
 #| fig-show: hide
@@ -586,7 +586,7 @@ histogram <- function(df, var, binwidth = NULL) {
 diamonds |> histogram(carat, 0.1)
 ```
 
-`histogram()`이 ggplot2 플롯을 반환하므로 원하는 경우 추가 구성 요소(additional components)를 계속(still) 추가(add on)할 수 있습니다. 단지 `|>`에서 `+`로 전환(switch from)하는 것을 기억하세요.
+`histogram()`이 ggplot2 그래프을 반환하므로 원하는 경우 추가 구성 요소(additional components)를 계속(still) 추가(add on)할 수 있습니다. 단지 `|>`에서 `+`로 전환(switch from)하는 것을 기억하세요.
 
 ```{r}
 #| fig.show: hide
@@ -661,7 +661,7 @@ diamonds |> sorted_bars(clarity)
 여기서는 사용자가 제공한 데이터를 기반(based on)으로 변수 이름을 생성(generating)하기 때문에 새로운 연산자인 `:=`(일반적으로 "바다코끼리 연산자(walrus operator)"라고 함)를 사용해야(have to use) 합니다.
 변수 이름은 `=`의 왼쪽(left hand side)에 위치(go on)하지만, R의 구문(syntax)은 단일 리터럴 이름(single literal name)을 제외하고는 `=`의 왼쪽에 아무것도 허용하지 않습니다. 이 문제를 우회(work around)하기 위해 우리는 깔끔한 평가가 `=`와 완전히 동일한 방식(exactly the same way)으로 처리하는 특수(special) 연산자 `:=`를 사용합니다.
 
-또는 데이터의 하위 집합(subset)에 대해서만 막대 플롯을 쉽게(easy to) 그릴 수 있게 하고 싶을 수 있습니다.
+또는 데이터의 하위 집합(subset)에 대해서만 막대 그래프을 쉽게(easy to) 그릴 수 있게 하고 싶을 수 있습니다.
 
 ```{r}
 #| fig-alt: |
@@ -709,7 +709,7 @@ fancy_ts <- function(df, val, group) {
 }
 ```
 
-ggplot2에 대해 더 많이 배우면서 함수의 강력함(power)은 계속 커질 것(continue to increase)입니다. 생성하는(create) 플롯에 레이블을 지정하는 더 복잡한 경우(more complicated case)로 마무리(finish)하겠습니다.
+ggplot2에 대해 더 많이 배우면서 함수의 강력함(power)은 계속 커질 것(continue to increase)입니다. 생성하는(create) 그래프에 레이블을 지정하는 더 복잡한 경우(more complicated case)로 마무리(finish)하겠습니다.
 
 ### 라벨링
 
@@ -746,7 +746,7 @@ histogram <- function(df, var, binwidth) {
 diamonds |> histogram(carat, 0.1)
 ```
 
-ggplot2 플롯에서 문자열을 제공(supply)하려는 다른(any other) 위치에서도 동일한 접근 방식(approach)을 사용할 수 있습니다.
+ggplot2 그래프에서 문자열을 제공(supply)하려는 다른(any other) 위치에서도 동일한 접근 방식(approach)을 사용할 수 있습니다.
 
 ### 연습 문제
 

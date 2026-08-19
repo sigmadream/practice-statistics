@@ -12,7 +12,7 @@ R에서의 반복은 대개(generally) 암묵적(implicit)이며 무료로(for f
 예를 들어, R에서 숫자 벡터 `x`를 두 배로 만들고 싶다면 그냥(just) `2 * x`를 쓰면(write) 됩니다.
 대부분의 다른 언어에서는 일종의(some sort of) for 루프를 사용하여 `x`의 각 요소를 명시적으로(explicitly) 두 배로 만들어야 합니다.
 
-- `facet_wrap()`과 `facet_grid()`는 각 하위 집합(subset)에 대한 플롯을 그립니다(draws).
+- `facet_wrap()`과 `facet_grid()`는 각 하위 집합(subset)에 대한 그래프을 그립니다(draws).
 - `group_by()`와 `summarize()`를 함께 사용하여 각 하위 집합에 대한 요약 통계(summary statistics)를 계산(computes)합니다.
 - `unnest_wider()`와 `unnest_longer()`는 리스트 열(list-column)의 각 요소에 대해 새 행과 열을 생성(create)합니다.
 
@@ -743,7 +743,7 @@ paths[failed]
 
 - 여러 데이터 프레임을 하나의 데이터베이스에 저장하기.
 - 여러 데이터 프레임을 여러 `.csv` 파일에 저장하기.
-- 여러 플롯(plots)을 여러 `.png` 파일에 저장하기.
+- 여러 그래프(plots)을 여러 `.png` 파일에 저장하기.
 
 ### 데이터베이스에 쓰기
 
@@ -873,9 +873,9 @@ walk2(by_clarity$data, by_clarity$path, write_csv)
 unlink(by_clarity$path)
 ```
 
-### 플롯 저장 (Saving plots)
+### 그래프 저장 (Saving plots)
 
-동일한 기본 접근 방식을 사용하여 여러 플롯을 만들(create many plots) 수 있습니다. 먼저 원하는 플롯을 그리는(draws) 함수를 만들어 보겠습니다.
+동일한 기본 접근 방식을 사용하여 여러 그래프을 만들(create many plots) 수 있습니다. 먼저 원하는 그래프을 그리는(draws) 함수를 만들어 보겠습니다.
 
 ```{r}
 #| fig-alt: |
@@ -890,7 +890,7 @@ carat_histogram <- function(df) {
 carat_histogram(by_clarity$data[[1]])
 ```
 
-이제 `map()`을 사용하여 여러 플롯과 최종(eventual) 파일 경로의 리스트를 만들(create) 수 있습니다. 
+이제 `map()`을 사용하여 여러 그래프과 최종(eventual) 파일 경로의 리스트를 만들(create) 수 있습니다. 
 
 ```{r}
 by_clarity <- by_clarity |> 
@@ -900,7 +900,7 @@ by_clarity <- by_clarity |>
   )
 ```
 
-그런 다음 `walk2()`와 함께 `ggsave()`를 사용하여 각 플롯을 저장(save)합니다.
+그런 다음 `walk2()`와 함께 `ggsave()`를 사용하여 각 그래프을 저장(save)합니다.
 
 ```{r}
 walk2(

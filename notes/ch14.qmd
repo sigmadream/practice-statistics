@@ -187,7 +187,7 @@ health |> count(smoker, .drop = FALSE)
 #| fig-width: 3
 #| fig-alt: 
 #|   - x축에 "no"라는 단일 값이 있는 막대 차트.
-#|   - 마지막 플롯과 동일한 막대 차트이지만 
+#|   - 마지막 그래프과 동일한 막대 차트이지만 
 #|     이제 x축에 "yes"와 "no"라는 두 개의 값이 있습니다. "yes" 범주에는 막대가 없습니다.
 ggplot(health, aes(x = smoker)) +
   geom_bar() +
