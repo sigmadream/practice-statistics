@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-77072c9bb77c017c95fbd10e8121cada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-05671fd07ca6d6876311839a4a0c21df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -204,6 +204,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">훑어보기: 데이터 가져오기</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 계층</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 관련 정보</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -232,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#apply-제품군" id="toc-apply-제품군" class="nav-link" data-scroll-target="#apply-제품군"><span class="header-section-number">3</span> Apply 제품군</a></li>
   <li><a href="#for-루프" id="toc-for-루프" class="nav-link" data-scroll-target="#for-루프"><span class="header-section-number">4</span> <code>for</code> 루프</a></li>
-  <li><a href="#플롯-plots" id="toc-플롯-plots" class="nav-link" data-scroll-target="#플롯-plots"><span class="header-section-number">5</span> 플롯 (Plots)</a></li>
+  <li><a href="#그래프-plots" id="toc-그래프-plots" class="nav-link" data-scroll-target="#그래프-plots"><span class="header-section-number">5</span> 그래프 (Plots)</a></li>
   </ul>
 </nav>
     </div>
@@ -685,11 +703,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>이 패턴은 벡터가 매우 길 때 매우 느려질 수 있으므로 피하는 것을 권장합니다. 이것이 <code>for</code> 루프는 느리다는 끊임없는 헛소문의 근원입니다. 루프가 느린 게 아니라 반복적으로 벡터를 키우는 것이 느린 것입니다.</p>
 </section>
-<section id="플롯-plots" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="플롯-plots"><span class="header-section-number">5</span> 플롯 (Plots)</h2>
+<section id="그래프-plots" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="그래프-plots"><span class="header-section-number">5</span> 그래프 (Plots)</h2>
 <p>그렇지 않으면 tidyverse를 사용하지 않는 많은 R 사용자는 합리적인 기본값, 자동 범례 및 최신 디자인과 같은 유용한 기능으로 인해 플로팅에 ggplot2를 선호합니다.</p>
-<p>그러나 기본 R 플로팅 함수는 매우 간결하기 때문에 기본적인 탐색적 플롯을 수행하는 데 입력이 매우 적게 필요하므로 여전히 유용할 수 있습니다.</p>
-<p>실제 환경에서 보게 될 기본 플롯에는 각각 <code>plot()</code>과 <code>hist()</code>로 생성되는 산점도와 히스토그램의 두 가지 주요 유형이 있습니다. 다음은 다이아몬드 데이터셋의 간단한 예제입니다.</p>
+<p>그러나 기본 R 플로팅 함수는 매우 간결하기 때문에 기본적인 탐색적 그래프을 수행하는 데 입력이 매우 적게 필요하므로 여전히 유용할 수 있습니다.</p>
+<p>실제 환경에서 보게 될 기본 그래프에는 각각 <code>plot()</code>과 <code>hist()</code>로 생성되는 산점도와 히스토그램의 두 가지 주요 유형이 있습니다. 다음은 다이아몬드 데이터셋의 간단한 예제입니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 왼쪽(Left)</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(diamonds<span class="sc">$</span>carat)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>

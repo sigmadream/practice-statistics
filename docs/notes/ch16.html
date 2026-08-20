@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-77072c9bb77c017c95fbd10e8121cada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-05671fd07ca6d6876311839a4a0c21df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -204,6 +204,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">훑어보기: 데이터 가져오기</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 계층</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 관련 정보</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -232,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#데이터-마스킹-대-깔끔한-선택" id="toc-데이터-마스킹-대-깔끔한-선택" class="nav-link" data-scroll-target="#데이터-마스킹-대-깔끔한-선택"><span class="header-section-number">2.4</span> 데이터 마스킹 대 깔끔한 선택</a></li>
   <li><a href="#연습-문제" id="toc-연습-문제" class="nav-link" data-scroll-target="#연습-문제"><span class="header-section-number">2.5</span> 연습 문제</a></li>
   </ul></li>
-  <li><a href="#플롯-함수" id="toc-플롯-함수" class="nav-link" data-scroll-target="#플롯-함수"><span class="header-section-number">3</span> 플롯 함수</a>
+  <li><a href="#그래프-함수" id="toc-그래프-함수" class="nav-link" data-scroll-target="#그래프-함수"><span class="header-section-number">3</span> 그래프 함수</a>
   <ul class="collapse">
   <li><a href="#더-많은-변수" id="toc-더-많은-변수" class="nav-link" data-scroll-target="#더-많은-변수"><span class="header-section-number">3.1</span> 더 많은 변수</a></li>
   <li><a href="#다른-tidyverse와-결합" id="toc-다른-tidyverse와-결합" class="nav-link" data-scroll-target="#다른-tidyverse와-결합"><span class="header-section-number">3.2</span> 다른 tidyverse와 결합</a></li>
@@ -824,9 +842,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="플롯-함수" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="플롯-함수"><span class="header-section-number">3</span> 플롯 함수</h2>
-<p>데이터 프레임을 반환하는 대신 플롯을 반환하고 싶을(might want to) 수 있습니다. 다행히도 <code>aes()</code>는 데이터 마스킹 함수이므로 ggplot2와 동일한 기술(same techniques)을 사용할 수 있습니다. 예를 들어 많은 히스토그램(histograms)을 만들고 있다고 상상해 보세요.</p>
+<section id="그래프-함수" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="그래프-함수"><span class="header-section-number">3</span> 그래프 함수</h2>
+<p>데이터 프레임을 반환하는 대신 그래프을 반환하고 싶을(might want to) 수 있습니다. 다행히도 <code>aes()</code>는 데이터 마스킹 함수이므로 ggplot2와 동일한 기술(same techniques)을 사용할 수 있습니다. 예를 들어 많은 히스토그램(histograms)을 만들고 있다고 상상해 보세요.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> </span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
@@ -853,7 +871,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><code>histogram()</code>이 ggplot2 플롯을 반환하므로 원하는 경우 추가 구성 요소(additional components)를 계속(still) 추가(add on)할 수 있습니다. 단지 <code>|&gt;</code>에서 <code>+</code>로 전환(switch from)하는 것을 기억하세요.</p>
+<p><code>histogram()</code>이 ggplot2 그래프을 반환하므로 원하는 경우 추가 구성 요소(additional components)를 계속(still) 추가(add on)할 수 있습니다. 단지 <code>|&gt;</code>에서 <code>+</code>로 전환(switch from)하는 것을 기억하세요.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> </span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">histogram</span>(carat, <span class="fl">0.1</span>) <span class="sc">+</span></span>
@@ -927,7 +945,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>여기서는 사용자가 제공한 데이터를 기반(based on)으로 변수 이름을 생성(generating)하기 때문에 새로운 연산자인 <code>:=</code>(일반적으로 “바다코끼리 연산자(walrus operator)”라고 함)를 사용해야(have to use) 합니다. 변수 이름은 <code>=</code>의 왼쪽(left hand side)에 위치(go on)하지만, R의 구문(syntax)은 단일 리터럴 이름(single literal name)을 제외하고는 <code>=</code>의 왼쪽에 아무것도 허용하지 않습니다. 이 문제를 우회(work around)하기 위해 우리는 깔끔한 평가가 <code>=</code>와 완전히 동일한 방식(exactly the same way)으로 처리하는 특수(special) 연산자 <code>:=</code>를 사용합니다.</p>
-<p>또는 데이터의 하위 집합(subset)에 대해서만 막대 플롯을 쉽게(easy to) 그릴 수 있게 하고 싶을 수 있습니다.</p>
+<p>또는 데이터의 하위 집합(subset)에 대해서만 막대 그래프을 쉽게(easy to) 그릴 수 있게 하고 싶을 수 있습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>conditional_bars <span class="ot">&lt;-</span> <span class="cf">function</span>(df, condition, var) {</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
@@ -975,7 +993,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
 <span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>ggplot2에 대해 더 많이 배우면서 함수의 강력함(power)은 계속 커질 것(continue to increase)입니다. 생성하는(create) 플롯에 레이블을 지정하는 더 복잡한 경우(more complicated case)로 마무리(finish)하겠습니다.</p>
+<p>ggplot2에 대해 더 많이 배우면서 함수의 강력함(power)은 계속 커질 것(continue to increase)입니다. 생성하는(create) 그래프에 레이블을 지정하는 더 복잡한 경우(more complicated case)로 마무리(finish)하겠습니다.</p>
 </section>
 <section id="라벨링" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="라벨링"><span class="header-section-number">3.3</span> 라벨링</h3>
@@ -1009,7 +1027,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>ggplot2 플롯에서 문자열을 제공(supply)하려는 다른(any other) 위치에서도 동일한 접근 방식(approach)을 사용할 수 있습니다.</p>
+<p>ggplot2 그래프에서 문자열을 제공(supply)하려는 다른(any other) 위치에서도 동일한 접근 방식(approach)을 사용할 수 있습니다.</p>
 </section>
 <section id="연습-문제-1" class="level3" data-number="3.4">
 <h3 data-number="3.4" class="anchored" data-anchor-id="연습-문제-1"><span class="header-section-number">3.4</span> 연습 문제</h3>

@@ -50,8 +50,8 @@ glimpse(flights)
 ```{r}
 #| eval: false
 flights |>
-  filter(dest == "IAH") |> 
-  group_by(year, month, day) |> 
+  filter(dest == "IAH") |>
+  group_by(year, month, day) |>
   summarize(
     arr_delay = mean(arr_delay, na.rm = TRUE)
   )
@@ -70,7 +70,7 @@ dplyr의 동사는 연산 대상에 따라 4가지 그룹(행, 열, 그룹 또�
 `filter()`는 열의 값을 기준으로 행을 유지합니다. 첫 번째 인수는 데이터 프레임입니다. 두 번째와 그 뒤의 인수들은 행을 유지할 때 참(true)이어야 하는 조건(conditions)입니다. 예를 들어 120분(2시간) 이상 늦게 출발한 모든 비행을 찾습니다.
 
 ```{r}
-flights |> 
+flights |>
   filter(dep_delay > 120)
 ```
 
@@ -78,11 +78,11 @@ flights |>
 
 ```{r}
 # 1월 1일에 출발한 항공편
-flights |> 
+flights |>
   filter(month == 1 & day == 1)
 
 # 1월 또는 2월에 출발한 항공편
-flights |> 
+flights |>
   filter(month == 1 | month == 2)
 ```
 
@@ -90,14 +90,14 @@ flights |>
 
 ```{r}
 # 1월 또는 2월에 출발한 항공편을 선택하는 더 짧은 방법
-flights |> 
+flights |>
   filter(month %in% c(1, 2))
 ```
 
 `filter()`를 실행하면 dplyr은 필터링한 새 데이터 프레임을 만들어 인쇄(print)합니다. dplyr 함수는 입력값을 수정하지 않으므로 기존 `flights` 데이터셋은 그대로입니다. 결과를 저장하려면 할당 연산자 `<-`를 사용해야 합니다.
 
 ```{r}
-jan1 <- flights |> 
+jan1 <- flights |>
   filter(month == 1 & day == 1)
 ```
 
@@ -105,7 +105,7 @@ R을 시작할 때 범하기 쉬운 실수는 동등성(equality)을 테스트�
 
 ```{r}
 #| error: true
-flights |> 
+flights |>
   filter(month = 1)
 ```
 
@@ -113,11 +113,11 @@ flights |>
 
 ```{r}
 #| eval: false
-flights |> 
+flights |>
   filter(month == 1 | 2)
 ```
 
-이 코드는 오류가 발생하지 않는다는 의미에서는 "작동"합니다. 하지만 `|`가 조건 `month == 1`을 확인한 다음 조건 `2`를 확인하므로 원하는 결과는 나오지 않습니다(`2`는 확인하기에 타당한 조건이 아닙니다). 
+이 코드는 오류가 발생하지 않는다는 의미에서는 "작동"합니다. 하지만 `|`가 조건 `month == 1`을 확인한 다음 조건 `2`를 확인하므로 원하는 결과는 나오지 않습니다(`2`는 확인하기에 타당한 조건이 아닙니다).
 
 ### `arrange()`
 
@@ -126,14 +126,14 @@ flights |>
 열 이름을 두 개 이상 입력하면 앞 열의 값이 동일한 경우(tie) 다음 열로 순서를 결정합니다. 예를 들어 다음 코드는 4개 열에 나뉜 출발 시간을 기준으로 정렬합니다. 이른 연도가 먼저 표시되고 같은 연도 안에서는 이른 월 순으로 정렬됩니다.
 
 ```{r}
-flights |> 
+flights |>
   arrange(year, month, day, dep_time)
 ```
 
 `arrange()` 내부의 열에 `desc()`를 사용하면 해당 열을 기준으로 데이터 프레임을 내림차순(큰 값부터 작은 값 순으로) 정렬합니다. 예를 들어 이 코드는 지연(delayed) 시간이 긴 비행부터 짧은 비행 순으로 정렬합니다.
 
 ```{r}
-flights |> 
+flights |>
   arrange(desc(dep_delay))
 ```
 
@@ -145,18 +145,18 @@ flights |>
 
 ```{r}
 # 중복 행이 있는 경우 제거
-flights |> 
+flights |>
   distinct()
 
 # 모든 고유한 출발지(origin)와 목적지(dest) 쌍 찾기
-flights |> 
+flights |>
   distinct(origin, dest)
 ```
 
 고유한 행을 필터링하면서 다른 열을 유지하려면 `.keep_all = TRUE` 옵션을 사용합니다.
 
 ```{r}
-flights |> 
+flights |>
   distinct(origin, dest, .keep_all = TRUE)
 ```
 
@@ -200,7 +200,7 @@ flights |>
 지금은 기본적인 대수(algebra)를 고수하여 지연된 항공편이 공중에서 만회한 시간인 `gain`과 시속 마일 단위의 `speed`를 계산해 보겠습니다.
 
 ```{r}
-flights |> 
+flights |>
   mutate(
     gain = dep_delay - arr_delay,
     speed = distance / air_time * 60
@@ -210,7 +210,7 @@ flights |>
 기본적으로 `mutate()`는 데이터셋 오른쪽에 새 열을 추가하므로 무슨 일이 일어났는지 확인하기 어렵습니다. `.before` 인수를 사용하면 변수를 왼쪽에 추가합니다.
 
 ```{r}
-flights |> 
+flights |>
   mutate(
     gain = dep_delay - arr_delay,
     speed = distance / air_time * 60,
@@ -222,7 +222,7 @@ flights |>
 
 ```{r}
 #| results: false
-flights |> 
+flights |>
   mutate(
     gain = dep_delay - arr_delay,
     speed = distance / air_time * 60,
@@ -234,7 +234,7 @@ flights |>
 
 ```{r}
 #| results: false
-flights |> 
+flights |>
   mutate(
     gain = dep_delay - arr_delay,
     hours = air_time / 60,
@@ -253,7 +253,7 @@ flights |>
 
 ```{r}
 #| results: false
-flights |> 
+flights |>
   select(year, month, day)
 ```
 
@@ -261,7 +261,7 @@ flights |>
 
 ```{r}
 #| results: false
-flights |> 
+flights |>
   select(year:day)
 ```
 
@@ -269,7 +269,7 @@ flights |>
 
 ```{r}
 #| results: false
-flights |> 
+flights |>
   select(!year:day)
 ```
 
@@ -279,7 +279,7 @@ flights |>
 
 ```{r}
 #| results: false
-flights |> 
+flights |>
   select(where(is.character))
 ```
 
@@ -293,7 +293,7 @@ flights |>
 정규식(regular expressions)을 알게 되면 `matches()`를 사용하여 패턴과 일치하는 변수를 선택할 수도 있습니다. `select()`에서 `=`를 사용하면 변수 이름을 바꿀 수 있습니다. 새 이름은 `=` 왼쪽에, 기존 변수는 오른쪽에 놓습니다.
 
 ```{r}
-flights |> 
+flights |>
   select(tail_num = tailnum)
 ```
 
@@ -302,7 +302,7 @@ flights |>
 기존 변수를 모두 유지하면서 몇 가지 이름만 바꾸려면 `select()` 대신 `rename()`을 사용합니다.
 
 ```{r}
-flights |> 
+flights |>
   rename(tail_num = tailnum)
 ```
 
@@ -313,7 +313,7 @@ flights |>
 변수를 이리저리 옮길 때는 `relocate()`를 사용합니다. 관련 변수를 한데 모으거나 중요한 변수를 맨 앞으로 옮길 때 유용합니다. 기본적으로 `relocate()`는 변수를 앞으로 이동합니다.
 
 ```{r}
-flights |> 
+flights |>
   relocate(time_hour, air_time)
 ```
 
@@ -321,9 +321,9 @@ flights |>
 
 ```{r}
 #| results: false
-flights |> 
+flights |>
   relocate(year:dep_time, .after = time_hour)
-flights |> 
+flights |>
   relocate(starts_with("arr"), .before = dep_time)
 ```
 
@@ -370,8 +370,8 @@ flights |> select(contains("TIME"))
 
 ```{r}
 #| error: true
-flights |> 
-  select(tailnum) |> 
+flights |>
+  select(tailnum) |>
   arrange(arr_delay)
 ```
 
@@ -380,10 +380,10 @@ flights |>
 위에서 파이프(pipe)의 간단한 예를 살펴봤지만 진정한 힘은 여러 동사를 결합할 때 나타납니다. 휴스턴의 IAH 공항으로 가는 빠른 항공편을 찾는다고 해 봅시다. `filter()`, `mutate()`, `select()`, `arrange()`를 결합해야 합니다.
 
 ```{r}
-flights |> 
-  filter(dest == "IAH") |> 
-  mutate(speed = distance / air_time * 60) |> 
-  select(year:day, dep_time, carrier, flight, speed) |> 
+flights |>
+  filter(dest == "IAH") |>
+  mutate(speed = distance / air_time * 60) |>
+  select(year:day, dep_time, carrier, flight, speed) |>
   arrange(desc(speed))
 ```
 
@@ -397,7 +397,7 @@ arrange(
   select(
     mutate(
       filter(
-        flights, 
+        flights,
         dest == "IAH"
       ),
       speed = distance / air_time * 60
@@ -429,7 +429,7 @@ arrange(flights3, desc(speed))
 데이터셋을 분석에 의미 있는 그룹으로 나누려면 `group_by()`를 사용하세요.
 
 ```{r}
-flights |> 
+flights |>
   group_by(month)
 ```
 
@@ -440,8 +440,8 @@ flights |>
 주요 그룹화 연산인 요약(summary)은 단일 요약 통계량을 계산할 때 데이터 프레임을 줄여 그룹당 행 하나만 남깁니다. dplyr에서는 `summarize()`가 이 작업을 수행합니다. 다음 예제는 월별 평균 출발 지연을 계산합니다.
 
 ```{r}
-flights |> 
-  group_by(month) |> 
+flights |>
+  group_by(month) |>
   summarize(
     avg_delay = mean(dep_delay)
   )
@@ -450,8 +450,8 @@ flights |>
 뭔가 잘못되어 모든 결과가 R의 결측값(missing value) 기호인 `NA`로 나옵니다. 일부 항공편의 지연 열(delay column)에 데이터가 누락되어 있고 이를 포함해 평균을 계산했기 때문입니다. 지금은 `na.rm` 인수를 `TRUE`로 설정해 `mean()` 함수가 모든 결측값을 무시하도록 하겠습니다.
 
 ```{r}
-flights |> 
-  group_by(month) |> 
+flights |>
+  group_by(month) |>
   summarize(
     avg_delay = mean(dep_delay, na.rm = TRUE)
   )
@@ -460,10 +460,10 @@ flights |>
 `summarize()`를 한 번 호출(single call)해 원하는 만큼 요약(summaries)을 생성합니다. 각 그룹의 행 수를 반환하는 `n()`도 매우 유용합니다.
 
 ```{r}
-flights |> 
-  group_by(month) |> 
+flights |>
+  group_by(month) |>
   summarize(
-    avg_delay = mean(dep_delay, na.rm = TRUE), 
+    avg_delay = mean(dep_delay, na.rm = TRUE),
     n = n()
   )
 ```
@@ -483,8 +483,8 @@ flights |>
 `n`을 바꾸면 둘 이상의 행을 선택합니다. `n =` 대신 `prop = 0.1`을 사용하면 각 그룹에서 행의 10%를 선택합니다. 다음 코드는 각 목적지 도착 시 지연된 항공편을 찾습니다.
 
 ```{r}
-flights |> 
-  group_by(dest) |> 
+flights |>
+  group_by(dest) |>
   slice_max(arr_delay, n = 1) |>
   relocate(dest)
 ```
@@ -498,7 +498,7 @@ flights |>
 둘 이상의 변수로 그룹을 만들 수도 있습니다. 예를 들어 날짜별 그룹을 만들 수 있습니다.
 
 ```{r}
-daily <- flights |>  
+daily <- flights |>
   group_by(year, month, day)
 daily
 ```
@@ -506,7 +506,7 @@ daily
 둘 이상의 변수로 그룹화한 티블을 요약할 때마다 마지막 그룹이 벗겨집니다(peels off). 돌이켜보면 함수를 작동시키는 좋은 방법은 아니었지만 기존 코드를 깨뜨리지 않고는 바꾸기 어렵습니다. dplyr은 무슨 일이 일어나는지 분명히 하려고 이 동작을 변경하는 방법을 메시지로 알려줍니다.
 
 ```{r}
-daily_flights <- daily |> 
+daily_flights <- daily |>
   summarize(n = n())
 ```
 
@@ -515,9 +515,9 @@ daily_flights <- daily |>
 ```{r}
 #| results: false
 
-daily_flights <- daily |> 
+daily_flights <- daily |>
   summarize(
-    n = n(), 
+    n = n(),
     .groups = "drop_last"
   )
 ```
@@ -530,17 +530,17 @@ daily_flights <- daily |>
 이때는 `ungroup()`을 사용합니다.
 
 ```{r}
-daily |> 
+daily |>
   ungroup()
 ```
 
 이제 그룹을 해제한 데이터 프레임을 요약하면 어떤 일이 일어나는지 살펴봅시다.
 
 ```{r}
-daily |> 
+daily |>
   ungroup() |>
   summarize(
-    avg_delay = mean(dep_delay, na.rm = TRUE), 
+    avg_delay = mean(dep_delay, na.rm = TRUE),
     flights = n()
   )
 ```
@@ -553,9 +553,9 @@ dplyr 1.1.0에는 연산별 그룹화(per-operation grouping)를 위한 새롭�
 
 ```{r}
 #| results: false
-flights |> 
+flights |>
   summarize(
-    delay = mean(dep_delay, na.rm = TRUE), 
+    delay = mean(dep_delay, na.rm = TRUE),
     n = n(),
     .by = month
   )
@@ -565,9 +565,9 @@ flights |>
 
 ```{r}
 #| results: false
-flights |> 
+flights |>
   summarize(
-    delay = mean(dep_delay, na.rm = TRUE), 
+    delay = mean(dep_delay, na.rm = TRUE),
     n = n(),
     .by = c(origin, dest)
   )
@@ -604,7 +604,7 @@ df <- tibble(
 a. 출력이 어떻게 나타날지 생각해 보고 적어둔 다음 정답인지 확인하고 `group_by()`가 하는 일을 설명하세요.
 
 ```{r}
-#| eval: false 
+#| eval: false
 df |>
   group_by(y)
 ```
@@ -629,7 +629,7 @@ df |>
 d. 출력이 어떻게 나타날지 생각해 보고 적어둔 다음 정답인지 확인하고 파이프라인이 하는 일을 설명하세요. 그런 다음 메시지가 무엇을 의미하는지 논평하세요.
 
 ```{r}
-#| eval: false  
+#| eval: false
 df |>
   group_by(y, z) |>
   summarize(mean_x = mean(x))
@@ -647,11 +647,11 @@ df |>
 f. 출력이 어떻게 나타날지 생각해 보고 적어둔 다음 정답인지 확인하고 각 파이프라인이 하는 일을 설명하세요. 두 파이프라인의 출력은 어떻게 다른가요?
 
 ```{r}
-#| eval: false  
+#| eval: false
 df |>
   group_by(y, z) |>
   summarize(mean_x = mean(x))
-    
+
 df |>
   group_by(y, z) |>
   mutate(mean_x = mean(x))
@@ -662,8 +662,8 @@ df |>
 집계(aggregation)할 때는 항상 개수(`n()`)를 포함하는 편이 좋습니다. 그러면 아주 적은 데이터를 근거로 결론을 내리는 일을 피합니다. 이를 설명하기 위해 Lahman 패키지의 야구 데이터를 사용하겠습니다. 구체적으로 선수가 안타를 치는 비율(`H`)과 공을 인플레이시키려 시도한 횟수(`AB`)를 비교합니다.
 
 ```{r}
-batters <- Lahman::Batting |> 
-  group_by(playerID) |> 
+batters <- Lahman::Batting |>
+  group_by(playerID) |>
   summarize(
     performance = sum(H, na.rm = TRUE) / sum(AB, na.rm = TRUE),
     n = sum(AB, na.rm = TRUE)
@@ -680,15 +680,15 @@ batters
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   타석 기회 대 타석 성과를 나타내는 산점도에 부드러운 곡선이 
-#|   겹쳐져 있습니다. 평균 성과는 n이 ~100일 때 0.2에서 
-#|   n이 ~1000일 때 0.25로 급격히 증가합니다. 평균 성과는 
-#|   훨씬 더 완만한 기울기로 선형적으로 계속 증가하여 
+#|   타석 기회 대 타석 성과를 나타내는 산점도에 부드러운 곡선이
+#|   겹쳐져 있습니다. 평균 성과는 n이 ~100일 때 0.2에서
+#|   n이 ~1000일 때 0.25로 급격히 증가합니다. 평균 성과는
+#|   훨씬 더 완만한 기울기로 선형적으로 계속 증가하여
 #|   n이 ~12,000일 때 0.3에 도달합니다.
-batters |> 
-  filter(n > 100) |> 
+batters |>
+  filter(n > 100) |>
   ggplot(aes(x = n, y = performance)) +
-  geom_point(alpha = 1 / 10) + 
+  geom_point(alpha = 1 / 10) +
   geom_smooth(se = FALSE)
 ```
 
@@ -697,7 +697,7 @@ ggplot2와 dplyr을 결합하는 유용한 패턴에 주목하세요. 데이터�
 이 패턴은 순위 매기기(ranking)에도 중요합니다. 단순히 `desc(performance)`로 정렬하면 타율이 좋은 사람들은 공을 인플레이시키려 시도한 횟수가 매우 적고 우연히 안타를 친 사람들일 뿐, 반드시 기술이 뛰어난 선수는 아닙니다.
 
 ```{r}
-batters |> 
+batters |>
   arrange(desc(performance))
 ```
 

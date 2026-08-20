@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-77072c9bb77c017c95fbd10e8121cada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-05671fd07ca6d6876311839a4a0c21df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -204,6 +204,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">훑어보기: 데이터 가져오기</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 계층</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 관련 정보</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -242,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#데이터베이스에-쓰기" id="toc-데이터베이스에-쓰기" class="nav-link" data-scroll-target="#데이터베이스에-쓰기"><span class="header-section-number">3.1</span> 데이터베이스에 쓰기</a></li>
   <li><a href="#csv-파일-쓰기" id="toc-csv-파일-쓰기" class="nav-link" data-scroll-target="#csv-파일-쓰기"><span class="header-section-number">3.2</span> csv 파일 쓰기</a></li>
-  <li><a href="#플롯-저장-saving-plots" id="toc-플롯-저장-saving-plots" class="nav-link" data-scroll-target="#플롯-저장-saving-plots"><span class="header-section-number">3.3</span> 플롯 저장 (Saving plots)</a></li>
+  <li><a href="#그래프-저장-saving-plots" id="toc-그래프-저장-saving-plots" class="nav-link" data-scroll-target="#그래프-저장-saving-plots"><span class="header-section-number">3.3</span> 그래프 저장 (Saving plots)</a></li>
   <li><a href="#연습-문제-1" id="toc-연습-문제-1" class="nav-link" data-scroll-target="#연습-문제-1"><span class="header-section-number">3.4</span> 연습 문제</a></li>
   </ul></li>
   </ul>
@@ -273,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>R에서의 반복은 대개(generally) 암묵적(implicit)이며 무료로(for free) 얻을 수 있기 때문에(so much of it is) 다른 프로그래밍 언어와는 상당히 다르게(rather different from) 보이는 경향(tends to look)이 있습니다.</p>
 <p>예를 들어, R에서 숫자 벡터 <code>x</code>를 두 배로 만들고 싶다면 그냥(just) <code>2 * x</code>를 쓰면(write) 됩니다. 대부분의 다른 언어에서는 일종의(some sort of) for 루프를 사용하여 <code>x</code>의 각 요소를 명시적으로(explicitly) 두 배로 만들어야 합니다.</p>
 <ul>
-<li><code>facet_wrap()</code>과 <code>facet_grid()</code>는 각 하위 집합(subset)에 대한 플롯을 그립니다(draws).</li>
+<li><code>facet_wrap()</code>과 <code>facet_grid()</code>는 각 하위 집합(subset)에 대한 그래프을 그립니다(draws).</li>
 <li><code>group_by()</code>와 <code>summarize()</code>를 함께 사용하여 각 하위 집합에 대한 요약 통계(summary statistics)를 계산(computes)합니다.</li>
 <li><code>unnest_wider()</code>와 <code>unnest_longer()</code>는 리스트 열(list-column)의 각 요소에 대해 새 행과 열을 생성(create)합니다.</li>
 </ul>
@@ -956,7 +974,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>여러 데이터 프레임을 하나의 데이터베이스에 저장하기.</li>
 <li>여러 데이터 프레임을 여러 <code>.csv</code> 파일에 저장하기.</li>
-<li>여러 플롯(plots)을 여러 <code>.png</code> 파일에 저장하기.</li>
+<li>여러 그래프(plots)을 여러 <code>.png</code> 파일에 저장하기.</li>
 </ul>
 <section id="데이터베이스에-쓰기" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="데이터베이스에-쓰기"><span class="header-section-number">3.1</span> 데이터베이스에 쓰기</h3>
@@ -1069,9 +1087,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">walk2</span>(by_clarity<span class="sc">$</span>data, by_clarity<span class="sc">$</span>path, write_csv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="플롯-저장-saving-plots" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="플롯-저장-saving-plots"><span class="header-section-number">3.3</span> 플롯 저장 (Saving plots)</h3>
-<p>동일한 기본 접근 방식을 사용하여 여러 플롯을 만들(create many plots) 수 있습니다. 먼저 원하는 플롯을 그리는(draws) 함수를 만들어 보겠습니다.</p>
+<section id="그래프-저장-saving-plots" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="그래프-저장-saving-plots"><span class="header-section-number">3.3</span> 그래프 저장 (Saving plots)</h3>
+<p>동일한 기본 접근 방식을 사용하여 여러 그래프을 만들(create many plots) 수 있습니다. 먼저 원하는 그래프을 그리는(draws) 함수를 만들어 보겠습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>carat_histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>)  </span>
@@ -1086,7 +1104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>이제 <code>map()</code>을 사용하여 여러 플롯과 최종(eventual) 파일 경로의 리스트를 만들(create) 수 있습니다.</p>
+<p>이제 <code>map()</code>을 사용하여 여러 그래프과 최종(eventual) 파일 경로의 리스트를 만들(create) 수 있습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>by_clarity <span class="ot">&lt;-</span> by_clarity <span class="sc">|&gt;</span> </span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -1094,7 +1112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> <span class="fu">str_glue</span>(<span class="st">"clarity-{clarity}.png"</span>)</span>
 <span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>그런 다음 <code>walk2()</code>와 함께 <code>ggsave()</code>를 사용하여 각 플롯을 저장(save)합니다.</p>
+<p>그런 다음 <code>walk2()</code>와 함께 <code>ggsave()</code>를 사용하여 각 그래프을 저장(save)합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">walk2</span>(</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  by_clarity<span class="sc">$</span>path,</span>

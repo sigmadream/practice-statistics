@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-77072c9bb77c017c95fbd10e8121cada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-05671fd07ca6d6876311839a4a0c21df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -202,6 +202,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../notes/ch04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">훑어보기: 데이터 가져오기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 계층</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 관련 정보</span></a>
   </div>
 </li>
       </ul>
@@ -389,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="연습-문제-exercises" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="연습-문제-exercises"><span class="header-section-number">2.1</span> 연습 문제 (Exercises)</h3>
 <ol type="1">
-<li><p><code>rincome</code>(보고된 소득)의 분포를 탐색하세요. 기본 막대 차트를 이해하기 어렵게 만드는 것은 무엇입니까? 플롯을 어떻게 개선할 수 있습니까?</p></li>
+<li><p><code>rincome</code>(보고된 소득)의 분포를 탐색하세요. 기본 막대 차트를 이해하기 어렵게 만드는 것은 무엇입니까? 그래프을 어떻게 개선할 수 있습니까?</p></li>
 <li><p>이 설문 조사에서 흔한 <code>relig</code>는 무엇입니까? 흔한 <code>partyid</code>는 무엇입니까?</p></li>
 <li><p><code>denom</code>(종파)은 어느 <code>relig</code>에 적용됩니까? 표(table)로 어떻게 알아낼 수 있습니까? 시각화(visualization)로 어떻게 알아낼 수 있습니까?</p></li>
 </ol>
@@ -416,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>전체적인 패턴이 없기 때문에 이 플롯을 읽기 어렵습니다. <code>fct_reorder()</code>를 사용하여 <code>relig</code>의 수준을 재정렬(reordering)함으로써 플롯을 개선할 수 있습니다. <code>fct_reorder()</code>는 세 가지 인수를 사용합니다.</p>
+<p>전체적인 패턴이 없기 때문에 이 그래프을 읽기 어렵습니다. <code>fct_reorder()</code>를 사용하여 <code>relig</code>의 수준을 재정렬(reordering)함으로써 그래프을 개선할 수 있습니다. <code>fct_reorder()</code>는 세 가지 인수를 사용합니다.</p>
 <ul>
 <li><code>.f</code>, 수준을 수정하려는 요인.</li>
 <li><code>.x</code>, 수준을 재정렬하는 데 사용하려는 숫자형 벡터.</li>
@@ -434,7 +452,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>종교를 재정렬하면 “Don’t know” 범주의 사람들이 TV를 훨씬 더 많이 시청하고 힌두교(Hinduism) 및 기타 동양(Other Eastern) 종교 사람들은 훨씬 적게 시청한다는 것을 파악하기가 훨씬 쉬워집니다.</p>
-<p>더 복잡한 변환(transformations)을 만들기 시작할 때는 이를 <code>aes()</code> 외부로 꺼내어(moving them out of) 별도의 <code>mutate()</code> 단계에 넣을 것을 권장합니다. 예를 들어 위의 플롯을 다음과 같이 다시 작성할 수 있습니다.</p>
+<p>더 복잡한 변환(transformations)을 만들기 시작할 때는 이를 <code>aes()</code> 외부로 꺼내어(moving them out of) 별도의 <code>mutate()</code> 단계에 넣을 것을 권장합니다. 예를 들어 위의 그래프을 다음과 같이 다시 작성할 수 있습니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>relig_summary <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
@@ -443,7 +461,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tvhours, <span class="at">y =</span> relig)) <span class="sc">+</span></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>보고된 소득(reported income) 수준에 따라 평균 연령이 어떻게 변하는지 보여주는 비슷한 플롯을 만들면 어떨까요?</p>
+<p>보고된 소득(reported income) 수준에 따라 평균 연령이 어떻게 변하는지 보여주는 비슷한 그래프을 만들면 어떨까요?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rincome_summary <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(rincome) <span class="sc">|&gt;</span></span>
@@ -479,7 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>“Not applicable”의 평균 연령이 이렇게 높은 이유는 무엇이라고 생각합니까?</p>
-<p>플롯의 선에 색을 칠할 때 또 다른 유형의 재정렬이 유용합니다. <code>fct_reorder2(.f, .x, .y)</code>는 큰 <code>.x</code> 값과 관련된 <code>.y</code> 값을 기준으로 요인 <code>.f</code>를 재정렬합니다. 플롯의 맨 오른쪽에 있는 선의 색상이 범례(legend)와 일치하기 때문에 플롯을 읽기 쉬워집니다.</p>
+<p>그래프의 선에 색을 칠할 때 또 다른 유형의 재정렬이 유용합니다. <code>fct_reorder2(.f, .x, .y)</code>는 큰 <code>.x</code> 값과 관련된 <code>.y</code> 값을 기준으로 요인 <code>.f</code>를 재정렬합니다. 그래프의 맨 오른쪽에 있는 선의 색상이 범례(legend)와 일치하기 때문에 그래프을 읽기 쉬워집니다.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>by_age <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(age)) <span class="sc">|&gt;</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(age, marital) <span class="sc">|&gt;</span></span>
@@ -502,14 +520,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="ch12_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" alt="x축에 age, y축에 proportion(비율)이 있는 선 그래프(line plot). 무응답(no answer), 미혼(never married), 별거(separated), 이혼(divorced),  사별(widowed), 기혼(married) 등 각 결혼 상태(marital status) 범주마다  하나의 선이 있습니다. 범례의 순서가 플롯의 선과 관련이 없기 때문에  플롯을 읽기가 조금 어렵습니다. 범례를 재정렬하면 범례 색상이 이제  플롯 맨 오른쪽에 있는 선의 순서와 일치하기 때문에 플롯을 읽기가 더 쉬워집니다. 놀랍지 않은 몇 가지 패턴을 볼 수 있습니다. 미혼 비율은 나이가 들면서 감소하고,  기혼은 거꾸로 된 U자 모양(upside-down U shape)을 형성하며, 사별은 낮게  시작하지만 60세 이후 가파르게 증가합니다." width="288"></p>
+<p><img src="ch12_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" alt="x축에 age, y축에 proportion(비율)이 있는 선 그래프(line plot). 무응답(no answer), 미혼(never married), 별거(separated), 이혼(divorced),  사별(widowed), 기혼(married) 등 각 결혼 상태(marital status) 범주마다  하나의 선이 있습니다. 범례의 순서가 그래프의 선과 관련이 없기 때문에  그래프을 읽기가 조금 어렵습니다. 범례를 재정렬하면 범례 색상이 이제  그래프 맨 오른쪽에 있는 선의 순서와 일치하기 때문에 그래프을 읽기가 더 쉬워집니다. 놀랍지 않은 몇 가지 패턴을 볼 수 있습니다. 미혼 비율은 나이가 들면서 감소하고,  기혼은 거꾸로 된 U자 모양(upside-down U shape)을 형성하며, 사별은 낮게  시작하지만 60세 이후 가파르게 증가합니다." width="288"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="ch12_files/figure-html/unnamed-chunk-20-2.png" class="img-fluid" alt="x축에 age, y축에 proportion(비율)이 있는 선 그래프(line plot). 무응답(no answer), 미혼(never married), 별거(separated), 이혼(divorced),  사별(widowed), 기혼(married) 등 각 결혼 상태(marital status) 범주마다  하나의 선이 있습니다. 범례의 순서가 플롯의 선과 관련이 없기 때문에  플롯을 읽기가 조금 어렵습니다. 범례를 재정렬하면 범례 색상이 이제  플롯 맨 오른쪽에 있는 선의 순서와 일치하기 때문에 플롯을 읽기가 더 쉬워집니다. 놀랍지 않은 몇 가지 패턴을 볼 수 있습니다. 미혼 비율은 나이가 들면서 감소하고,  기혼은 거꾸로 된 U자 모양(upside-down U shape)을 형성하며, 사별은 낮게  시작하지만 60세 이후 가파르게 증가합니다." width="288"></p>
+<p><img src="ch12_files/figure-html/unnamed-chunk-20-2.png" class="img-fluid" alt="x축에 age, y축에 proportion(비율)이 있는 선 그래프(line plot). 무응답(no answer), 미혼(never married), 별거(separated), 이혼(divorced),  사별(widowed), 기혼(married) 등 각 결혼 상태(marital status) 범주마다  하나의 선이 있습니다. 범례의 순서가 그래프의 선과 관련이 없기 때문에  그래프을 읽기가 조금 어렵습니다. 범례를 재정렬하면 범례 색상이 이제  그래프 맨 오른쪽에 있는 선의 순서와 일치하기 때문에 그래프을 읽기가 더 쉬워집니다. 놀랍지 않은 몇 가지 패턴을 볼 수 있습니다. 미혼 비율은 나이가 들면서 감소하고,  기혼은 거꾸로 된 U자 모양(upside-down U shape)을 형성하며, 사별은 낮게  시작하지만 60세 이후 가파르게 증가합니다." width="288"></p>
 </div>
 </div>
 </div>
-<p>마지막으로 막대 플롯의 경우 <code>fct_infreq()</code>를 사용하여 빈도가 감소하는 순서로 수준을 정렬할 수 있습니다. 이는 추가 변수가 필요하지 않기 때문에 단순한 유형의 재정렬입니다. 막대 플롯에서 큰 값이 왼쪽이 아닌 오른쪽에 오도록 빈도가 증가하는 순서로 원한다면 <code>fct_rev()</code>와 결합하세요.</p>
+<p>마지막으로 막대 그래프의 경우 <code>fct_infreq()</code>를 사용하여 빈도가 감소하는 순서로 수준을 정렬할 수 있습니다. 이는 추가 변수가 필요하지 않기 때문에 단순한 유형의 재정렬입니다. 막대 그래프에서 큰 값이 왼쪽이 아닌 오른쪽에 오도록 빈도가 증가하는 순서로 원한다면 <code>fct_rev()</code>와 결합하세요.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">marital =</span> marital <span class="sc">|&gt;</span> <span class="fu">fct_infreq</span>() <span class="sc">|&gt;</span> <span class="fu">fct_rev</span>()) <span class="sc">|&gt;</span></span>
@@ -528,7 +546,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p><code>tvhours</code>에 의심스러울 정도로 높은 숫자(suspiciously high numbers)가 일부 있습니다. 평균(mean)이 좋은 요약(summary)입니까?</p></li>
 <li><p><code>gss_cat</code>의 각 요인에 대해 수준의 순서가 임의적인지 아니면 원칙적인지 식별하세요.</p></li>
-<li><p>“Not applicable”을 수준의 맨 앞으로 이동했는데 왜 플롯의 맨 아래로 이동했을까요?</p></li>
+<li><p>“Not applicable”을 수준의 맨 앞으로 이동했는데 왜 그래프의 맨 아래로 이동했을까요?</p></li>
 </ol>
 </section>
 </section>
@@ -616,7 +634,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 ind      8409</span></span>
 <span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 dem      7180</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>때로는 작은 그룹을 함께 뭉뚱그려(lump together) 플롯이나 표를 더 단순하게 만들고 싶을 때가 있습니다. 이것이 <code>fct_lump_*()</code> 제품군(family)의 함수가 하는 일입니다. <code>fct_lump_lowfreq()</code>는 작은 그룹 범주를 점진적으로(progressively) “Other”로 뭉뚱그리고 “Other”를 항상 작은 범주로 유지하는 간단한 시작점(starting point)입니다.</p>
+<p>때로는 작은 그룹을 함께 뭉뚱그려(lump together) 그래프이나 표를 더 단순하게 만들고 싶을 때가 있습니다. 이것이 <code>fct_lump_*()</code> 제품군(family)의 함수가 하는 일입니다. <code>fct_lump_lowfreq()</code>는 작은 그룹 범주를 점진적으로(progressively) “Other”로 뭉뚱그리고 “Other”를 항상 작은 범주로 유지하는 간단한 시작점(starting point)입니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">relig =</span> <span class="fu">fct_lump_lowfreq</span>(relig)) <span class="sc">|&gt;</span></span>

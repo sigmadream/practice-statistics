@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-77072c9bb77c017c95fbd10e8121cada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-05671fd07ca6d6876311839a4a0c21df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -200,6 +200,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../notes/ch04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">훑어보기: 데이터 가져오기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 계층</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ch07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">시각화: 관련 정보</span></a>
   </div>
 </li>
       </ul>
@@ -550,7 +568,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="ch09_files/figure-html/fig-prop-cancelled-1.png" class="img-fluid figure-img" width="576">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prop-cancelled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: x축에는 예정된 출발 시간(hour), y축에는 취소된 비행편의 비율을 나타내는 선형 플롯(line plot). 취소는 오후 8시까지 하루 동안 누적되는 것으로 보이며, 매우 늦은 비행편은 취소될 가능성이 훨씬 낮습니다.
+Figure&nbsp;1: x축에는 예정된 출발 시간(hour), y축에는 취소된 비행편의 비율을 나타내는 선형 그래프(line plot). 취소는 오후 8시까지 하루 동안 누적되는 것으로 보이며, 매우 늦은 비행편은 취소될 가능성이 훨씬 낮습니다.
 </figcaption>
 </figure>
 </div>
@@ -940,10 +958,10 @@ Figure&nbsp;2: 일일 출발 지연을 평균 대신 중앙값으로 요약할 �
 <p>분포가 너무 치우쳐 있어서 데이터의 대부분(bulk)을 보려면 확대해야 합니다. 이것은 평균이 좋은 요약이 될 가능성이 낮으며 대신 중앙값을 선호할 수 있음을 시사(suggests)합니다.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-flights-dist" class="quarto-float quarto-figure quarto-figure-center anchored" alt="`dep_delay`의 두 히스토그램. 왼쪽에서는 0 부근에서 매우 큰  스파이크(spike)가 있고 막대의 높이가 급격히 감소(decay)하며  플롯의 대부분에서 막대가 너무 짧아서 볼 수 없다는 점 외에는 패턴을  보기가 매우 어렵습니다. 오른쪽에서는 2시간  초과의 지연을 버린 상태로 볼 때, 스파이크가 0보다 약간 낮은  곳에서 발생하지만(즉, 대부분의 비행편이  몇 분 일찍 떠남), 그 이후에는 여전히 매우 가파른 감소가 있음을 알 수 있습니다. ">
+<div id="fig-flights-dist" class="quarto-float quarto-figure quarto-figure-center anchored" alt="`dep_delay`의 두 히스토그램. 왼쪽에서는 0 부근에서 매우 큰  스파이크(spike)가 있고 막대의 높이가 급격히 감소(decay)하며  그래프의 대부분에서 막대가 너무 짧아서 볼 수 없다는 점 외에는 패턴을  보기가 매우 어렵습니다. 오른쪽에서는 2시간  초과의 지연을 버린 상태로 볼 때, 스파이크가 0보다 약간 낮은  곳에서 발생하지만(즉, 대부분의 비행편이  몇 분 일찍 떠남), 그 이후에는 여전히 매우 가파른 감소가 있음을 알 수 있습니다. ">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-flights-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ch09_files/figure-html/fig-flights-dist-1.png" class="img-fluid figure-img" alt="`dep_delay`의 두 히스토그램. 왼쪽에서는 0 부근에서 매우 큰  스파이크(spike)가 있고 막대의 높이가 급격히 감소(decay)하며  플롯의 대부분에서 막대가 너무 짧아서 볼 수 없다는 점 외에는 패턴을  보기가 매우 어렵습니다. 오른쪽에서는 2시간  초과의 지연을 버린 상태로 볼 때, 스파이크가 0보다 약간 낮은  곳에서 발생하지만(즉, 대부분의 비행편이  몇 분 일찍 떠남), 그 이후에는 여전히 매우 가파른 감소가 있음을 알 수 있습니다. " width="576">
+<img src="ch09_files/figure-html/fig-flights-dist-1.png" class="img-fluid figure-img" alt="`dep_delay`의 두 히스토그램. 왼쪽에서는 0 부근에서 매우 큰  스파이크(spike)가 있고 막대의 높이가 급격히 감소(decay)하며  그래프의 대부분에서 막대가 너무 짧아서 볼 수 없다는 점 외에는 패턴을  보기가 매우 어렵습니다. 오른쪽에서는 2시간  초과의 지연을 버린 상태로 볼 때, 스파이크가 0보다 약간 낮은  곳에서 발생하지만(즉, 대부분의 비행편이  몇 분 일찍 떠남), 그 이후에는 여전히 매우 가파른 감소가 있음을 알 수 있습니다. " width="576">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flights-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: (왼쪽) 전체 데이터의 히스토그램은 매우 치우쳐 있어서 세부 사항을 파악하기 어렵습니다. (오른쪽) 2시간 미만의 지연으로 확대하면 대부분의 관측치에서 무슨 일이 일어나고 있는지 볼 수 있습니다.
@@ -952,7 +970,7 @@ Figure&nbsp;3: (왼쪽) 전체 데이터의 히스토그램은 매우 치우쳐 
 </div>
 </div>
 </div>
-<p>하위 그룹에 대한 분포가 전체와 닮았는지 확인하는 것도 좋은 생각입니다. 다음 플롯에는 일(day)마다 하나씩, 365개의 <code>dep_delay</code> 도수 다각형(frequency polygons)이 오버레이(overlaid)되어 있습니다. 분포가 일반적인 패턴을 따르는 것 같으므로, 각 요일에 대해 동일한 요약을 사용하는 것이 좋음을 시사합니다.</p>
+<p>하위 그룹에 대한 분포가 전체와 닮았는지 확인하는 것도 좋은 생각입니다. 다음 그래프에는 일(day)마다 하나씩, 365개의 <code>dep_delay</code> 도수 다각형(frequency polygons)이 오버레이(overlaid)되어 있습니다. 분포가 일반적인 패턴을 따르는 것 같으므로, 각 요일에 대해 동일한 요약을 사용하는 것이 좋음을 시사합니다.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dep_delay <span class="sc">&lt;</span> <span class="dv">120</span>) <span class="sc">|&gt;</span> </span>
@@ -1034,7 +1052,7 @@ Figure&nbsp;3: (왼쪽) 전체 데이터의 히스토그램은 매우 치우쳐 
 <ol type="1">
 <li><p>비행편 그룹의 전형적인 지연 특성을 평가(assess)하는 5가지 이상의 서로 다른 방법에 대해 브레인스토밍하세요. 언제 <code>mean()</code>이 유용합니까? 언제 <code>median()</code>이 유용합니까? 언제 다른 것을 사용하고 싶을 수 있나요? 도착 지연이나 출발 지연 중 어느 것을 사용해야 할까요? <code>planes</code>의 데이터를 사용하고 싶을 수 있는 이유는 무엇입니까?</p></li>
 <li><p>어느 목적지가 비행 속도에서 큰 변동(variation)을 보입니까?</p></li>
-<li><p>플롯을 만들어 EGE의 모험에 대해 더 탐구해 보세요. 공항이 위치를 옮겼다는 증거를 찾을 수 있습니까? 차이를 설명할 수 있는 다른 변수를 찾을 수 있습니까?</p></li>
+<li><p>그래프을 만들어 EGE의 모험에 대해 더 탐구해 보세요. 공항이 위치를 옮겼다는 증거를 찾을 수 있습니까? 차이를 설명할 수 있는 다른 변수를 찾을 수 있습니까?</p></li>
 </ol>
 
 

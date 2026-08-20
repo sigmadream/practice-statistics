@@ -3,7 +3,7 @@ project:
   output-dir: docs
   preview:
     port: 9999
-    browser: false  
+    browser: false
   render:
     - "index.qmd"
     - "notes/"
@@ -31,14 +31,14 @@ website:
           - notes/ch02.qmd
           - notes/ch03.qmd
           - notes/ch04.qmd
-          # - notes/ch05.qmd
-          # - notes/ch06.qmd
-          # - notes/ch07.qmd
+          - notes/ch05.qmd
+          - notes/ch06.qmd
+          - notes/ch07.qmd
           # - notes/ch08.qmd
           # - notes/ch09.qmd
 
       # - section: "R로 배우는 확률"
-      #   contents:        
+      #   contents:
       #   - notes/statistics/ch01.qmd
       #   - notes/statistics/ch02.qmd
       #   - notes/statistics/ch03.qmd
@@ -48,7 +48,7 @@ website:
       #   - notes/statistics/ch07.qmd
       # - section: "확률과 검증"
       #   contents:
-      #   - notes/statistics/ch08.qmd        
+      #   - notes/statistics/ch08.qmd
       #   - notes/statistics/ch09.qmd
       #   - notes/statistics/ch10.qmd
       #   - notes/statistics/ch11.qmd
@@ -115,9 +115,9 @@ format:
   #   code-cap-location: bottom
   #   code-block-border-left: "#e8e8e8"
   #   highlight-style: pygments
-  #   geometry:      
+  #   geometry:
   #     - left=20mm
-  #     - top=20mm 
+  #     - top=20mm
   #   titlepage: false
   #   include-in-header:
   #     - text: |

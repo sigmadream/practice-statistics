@@ -35,7 +35,7 @@ mpg
 
 3. `class`: 자동차의 유형, 범주형(categorical) 변수입니다.
 
-여러 `class`의 자동차에서 `displ`과 `hwy`의 관계를 시각화하며 시작하겠습니다. 
+여러 `class`의 자동차에서 `displ`과 `hwy`의 관계를 시각화하며 시작하겠습니다.
 
 숫자형 변수는 `x`와 `y` 시각 속성에, 범주형 변수는 `color`나 `shape` 같은 시각 속성에 매핑(Aesthetic mappings)한 산점도를 사용합니다.
 
@@ -43,14 +43,14 @@ mpg
 #| layout-ncol: 2
 #| fig-width: 4
 #| fig-alt: |
-#|   나란히 있는 두 개의 산점도로, 둘 다 자동차의 고속도로 연료 
-#|   효율 대 엔진 크기를 시각화하고 음의 
-#|   연관성을 보여줍니다. 왼쪽 그래프에서 class는 색상 
-#|   시각 속성에 매핑되어 각 class에 대해 다른 색상을 
-#|   나타냅니다. 오른쪽 그래프에서 class는 모양 시각 속성에 매핑되어 
-#|   suv를 제외한 각 class에 대해 다른 그래프 문자 모양을 
-#|   나타냅니다. 각 그래프에는 색상 또는 모양과 
-#|   class 변수의 수준 간의 매핑을 보여주는 범례가 함께 
+#|   나란히 있는 두 개의 산점도로, 둘 다 자동차의 고속도로 연료
+#|   효율 대 엔진 크기를 시각화하고 음의
+#|   연관성을 보여줍니다. 왼쪽 그래프에서 class는 색상
+#|   시각 속성에 매핑되어 각 class에 대해 다른 색상을
+#|   나타냅니다. 오른쪽 그래프에서 class는 모양 시각 속성에 매핑되어
+#|   suv를 제외한 각 class에 대해 다른 그래프 문자 모양을
+#|   나타냅니다. 각 그래프에는 색상 또는 모양과
+#|   class 변수의 수준 간의 매핑을 보여주는 범례가 함께
 #|   제공됩니다.
 # Left
 ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
@@ -76,14 +76,14 @@ ggplot2는 기본적으로 한 번에 모양을 6개만 사용하므로 추가 �
 #| layout-ncol: 2
 #| fig-width: 4
 #| fig-alt: |
-#|   나란히 있는 두 개의 산점도로, 둘 다 자동차의 고속도로 연료 
-#|   효율 대 엔진 크기를 시각화하고 음의 
-#|   연관성을 보여줍니다. 왼쪽 그래프에서 class는 크기 
-#|   시각 속성에 매핑되어 각 class에 대해 다른 크기를 
-#|   나타냅니다. 오른쪽 그래프에서 class는 알파 시각 속성에 매핑되어 
-#|   각 class에 대해 다른 알파(투명도) 수준을 나타냅니다. 
-#|   각 그래프에는 크기 또는 알파 수준과 
-#|   class 변수의 수준 간의 매핑을 보여주는 범례가 함께 
+#|   나란히 있는 두 개의 산점도로, 둘 다 자동차의 고속도로 연료
+#|   효율 대 엔진 크기를 시각화하고 음의
+#|   연관성을 보여줍니다. 왼쪽 그래프에서 class는 크기
+#|   시각 속성에 매핑되어 각 class에 대해 다른 크기를
+#|   나타냅니다. 오른쪽 그래프에서 class는 알파 시각 속성에 매핑되어
+#|   각 class에 대해 다른 알파(투명도) 수준을 나타냅니다.
+#|   각 그래프에는 크기 또는 알파 수준과
+#|   class 변수의 수준 간의 매핑을 보여주는 범례가 함께
 #|   제공됩니다.
 # Left
 ggplot(mpg, aes(x = displ, y = hwy, size = class)) +
@@ -108,9 +108,9 @@ Using alpha for a discrete variable is not advised.
 
 ```{r}
 #| fig-alt: |
-#|   음의 연관성을 보여주는 자동차의 고속도로 연료 효율 대 엔진 크기의 
+#|   음의 연관성을 보여주는 자동차의 고속도로 연료 효율 대 엔진 크기의
 #|   산점도. 모든 점은 파란색입니다.
-ggplot(mpg, aes(x = displ, y = hwy)) + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point(color = "blue")
 ```
 
@@ -127,38 +127,38 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 #| fig.asp: 0.364
 #| fig-align: "center"
 #| fig-cap: |
-#|   R에는 숫자로 식별되는 26개의 내장 모양이 있습니다. 일부 
-#|   중복되어 보이는 것들이 있습니다. 예를 들어 0, 15, 22는 모두 정사각형입니다. 
-#|   차이는 `color`와 `fill` 시각 속성의 상호 작용에서 비롯됩니다. 
-#|   속이 빈 모양(0~14)은 `color`에 의해 테두리가 결정되고 
-#|   속이 찬 모양(15~20)은 `color`로 채워지며 채워진 모양 
-#|   (21~25)은 `color`의 테두리를 갖고 `fill`로 채워집니다. 비슷한 모양끼리 
-#|   옆에 있도록 배열되어 있습니다.  
+#|   R에는 숫자로 식별되는 26개의 내장 모양이 있습니다. 일부
+#|   중복되어 보이는 것들이 있습니다. 예를 들어 0, 15, 22는 모두 정사각형입니다.
+#|   차이는 `color`와 `fill` 시각 속성의 상호 작용에서 비롯됩니다.
+#|   속이 빈 모양(0~14)은 `color`에 의해 테두리가 결정되고
+#|   속이 찬 모양(15~20)은 `color`로 채워지며 채워진 모양
+#|   (21~25)은 `color`의 테두리를 갖고 `fill`로 채워집니다. 비슷한 모양끼리
+#|   옆에 있도록 배열되어 있습니다.
 #| fig-alt: |
-#|   모양과 이를 나타내는 숫자 간의 매핑: 
-#|   0 - 속이 빈 정사각형, 1 - 속이 빈 원, 
-#|   2 - 속이 빈 삼각형, 3 - 플러스, 
-#|   4 - 십자가, 5 - 속이 빈 다이아몬드, 
-#|   6 - 속이 빈 역삼각형, 7 - 정사각형 십자가, 
-#|   8 - 별표, 9 - 다이아몬드 플러스, 
-#|   10 - 원 플러스, 11 - 별, 12 - 정사각형 플러스, 
-#|   13 - 원 십자가, 14 - 정사각형 삼각형, 15 - 정사각형, 
-#|   16 - 작은 원, 17 - 삼각형, 18 - 다이아몬드, 
-#|   19 - 원, 20 - 총알, 21 - 채워진 원, 
-#|   22 - 채워진 정사각형, 23 - 채워진 다이아몬드, 
+#|   모양과 이를 나타내는 숫자 간의 매핑:
+#|   0 - 속이 빈 정사각형, 1 - 속이 빈 원,
+#|   2 - 속이 빈 삼각형, 3 - 플러스,
+#|   4 - 십자가, 5 - 속이 빈 다이아몬드,
+#|   6 - 속이 빈 역삼각형, 7 - 정사각형 십자가,
+#|   8 - 별표, 9 - 다이아몬드 플러스,
+#|   10 - 원 플러스, 11 - 별, 12 - 정사각형 플러스,
+#|   13 - 원 십자가, 14 - 정사각형 삼각형, 15 - 정사각형,
+#|   16 - 작은 원, 17 - 삼각형, 18 - 다이아몬드,
+#|   19 - 원, 20 - 총알, 21 - 채워진 원,
+#|   22 - 채워진 정사각형, 23 - 채워진 다이아몬드,
 #|   24 - 채워진 삼각형, 25 - 채워진 역삼각형.
 shapes <- tibble(
   shape = c(0, 1, 2, 5, 3, 4, 6:19, 22, 21, 24, 23, 20, 25),
   x = (0:25 %/% 5) / 2,
   y = (-(0:25 %% 5)) / 4
 )
-ggplot(shapes, aes(x, y)) + 
+ggplot(shapes, aes(x, y)) +
   geom_point(aes(shape = shape), size = 5, fill = "red") +
   geom_text(aes(label = shape), hjust = 0, nudge_x = 0.15) +
   scale_shape_identity() +
   expand_limits(x = 4.1) +
-  scale_x_continuous(NULL, breaks = NULL) + 
-  scale_y_continuous(NULL, breaks = NULL, limits = c(-1.2, 0.2)) + 
+  scale_x_continuous(NULL, breaks = NULL) +
+  scale_y_continuous(NULL, breaks = NULL, limits = c(-1.2, 0.2)) +
   theme_minimal() +
   theme(aspect.ratio = 1/2.75)
 ```
@@ -176,10 +176,10 @@ ggplot(shapes, aes(x, y)) +
 ```{r}
 #| fig-show: hide
 #| fig-alt: |
-#|   음의 연관성을 보여주는 자동차의 고속도로 연료 효율 대 엔진 크기의 
-#|   산점도. 모든 점은 빨간색이고 
+#|   음의 연관성을 보여주는 자동차의 고속도로 연료 효율 대 엔진 크기의
+#|   산점도. 모든 점은 빨간색이고
 #|   범례에는 blue라는 단어에 매핑된 빨간색 점이 표시됩니다.
-ggplot(mpg) + 
+ggplot(mpg) +
   geom_point(aes(x = displ, y = hwy, color = "blue"))
 ```
 
@@ -197,15 +197,15 @@ ggplot(mpg) +
 #| layout-ncol: 2
 #| fig-width: 3
 #| fig-alt: |
-#|   두 개의 그래프이 있습니다. 왼쪽 그래프은 자동차의 엔진 크기 대 고속도로 
-#|   연료 효율의 산점도이고 오른쪽 그래프은 
-#|   이들 변수 간 관계의 궤적을 따르는 매끄러운 
-#|   곡선을 보여줍니다. 매끄러운 곡선 주변의 신뢰 구간도 
+#|   두 개의 그래프이 있습니다. 왼쪽 그래프은 자동차의 엔진 크기 대 고속도로
+#|   연료 효율의 산점도이고 오른쪽 그래프은
+#|   이들 변수 간 관계의 궤적을 따르는 매끄러운
+#|   곡선을 보여줍니다. 매끄러운 곡선 주변의 신뢰 구간도
 #|   표시됩니다.
-ggplot(mpg, aes(x = displ, y = hwy)) + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point()
 
-ggplot(mpg, aes(x = displ, y = hwy)) + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_smooth()
 ```
 
@@ -216,17 +216,17 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 ```{r}
 #| fig-show: hide
 # Left
-ggplot(mpg, aes(x = displ, y = hwy)) + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point()
 
 # Right
-ggplot(mpg, aes(x = displ, y = hwy)) + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_smooth()
 ```
 
-ggplot2의 모든 도형 함수는 `mapping` 인수를 사용합니다. 이 인수는 도형 레이어에 정의하거나 `ggplot()` 레이어에 전역으로 정의합니다. 다만 모든 시각 속성이 모든 도형에서 작동하지는 않습니다. 
+ggplot2의 모든 도형 함수는 `mapping` 인수를 사용합니다. 이 인수는 도형 레이어에 정의하거나 `ggplot()` 레이어에 전역으로 정의합니다. 다만 모든 시각 속성이 모든 도형에서 작동하지는 않습니다.
 
-점의 모양은 설정하지만 선의 "모양(shape)"은 설정하지 못합니다. 시도해도 ggplot2는 해당 시각 속성을 조용히 무시합니다. 반면 선종류(linetype)는 설정할 수 있습니다. 
+점의 모양은 설정하지만 선의 "모양(shape)"은 설정하지 못합니다. 시도해도 ggplot2는 해당 시각 속성을 조용히 무시합니다. 반면 선종류(linetype)는 설정할 수 있습니다.
 
 `geom_smooth()`는 선종류에 매핑한 변수의 고유 값마다 다른 선을 그립니다.
 
@@ -236,17 +236,17 @@ ggplot2의 모든 도형 함수는 `mapping` 인수를 사용합니다. 이 인�
 #| fig-width: 3
 #| fig-alt: |
 #|   자동차의 고속도로 연료 효율 대 엔진 크기에 대한 두 개의 그래프.
-#|   데이터는 매끄러운 곡선으로 나타납니다. 왼쪽에는 선종류가 모두 같은 
-#|   세 개의 매끄러운 곡선이 있습니다. 오른쪽에는 각 구동계(drive train) 유형에 대해 
-#|   선종류(실선, 파선 또는 긴 파선)가 다른 세 개의 매끄러운 곡선이 
-#|   있습니다. 두 그래프 모두에서 매끄러운 곡선 주위의 신뢰 
+#|   데이터는 매끄러운 곡선으로 나타납니다. 왼쪽에는 선종류가 모두 같은
+#|   세 개의 매끄러운 곡선이 있습니다. 오른쪽에는 각 구동계(drive train) 유형에 대해
+#|   선종류(실선, 파선 또는 긴 파선)가 다른 세 개의 매끄러운 곡선이
+#|   있습니다. 두 그래프 모두에서 매끄러운 곡선 주위의 신뢰
 #|   구간도 표시됩니다.
 # Left
-ggplot(mpg, aes(x = displ, y = hwy, shape = drv)) + 
+ggplot(mpg, aes(x = displ, y = hwy, shape = drv)) +
   geom_smooth()
 
 # Right
-ggplot(mpg, aes(x = displ, y = hwy, linetype = drv)) + 
+ggplot(mpg, aes(x = displ, y = hwy, linetype = drv)) +
   geom_smooth()
 ```
 
@@ -259,11 +259,11 @@ ggplot(mpg, aes(x = displ, y = hwy, linetype = drv)) +
 ```{r}
 #| message: false
 #| fig-alt: |
-#|   자동차의 고속도로 연료 효율 대 엔진 크기 그래프. 데이터는 
-#|   점(구동계별로 색칠됨)뿐만 아니라 매끄러운 곡선(선종류 또한 
-#|   구동계에 따라 결정됨)으로 나타납니다. 
+#|   자동차의 고속도로 연료 효율 대 엔진 크기 그래프. 데이터는
+#|   점(구동계별로 색칠됨)뿐만 아니라 매끄러운 곡선(선종류 또한
+#|   구동계에 따라 결정됨)으로 나타납니다.
 #|   매끄러운 곡선 주위의 신뢰 구간도 표시됩니다.
-ggplot(mpg, aes(x = displ, y = hwy, color = drv)) + 
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
   geom_point() +
   geom_smooth(aes(linetype = drv))
 ```
@@ -278,13 +278,13 @@ ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
 #| fig-asp: 1
 #| message: false
 #| fig-alt: |
-#|   세 개의 그래프, 각각 y축은 고속도로 연료 효율이고 x축은 자동차의 엔진 크기이며 
+#|   세 개의 그래프, 각각 y축은 고속도로 연료 효율이고 x축은 자동차의 엔진 크기이며
 #|   데이터는 매끄러운 곡선으로 표현됩니다.
-#|   첫 번째 그래프에는 이 두 변수만 있고 가운데 그래프에는 구동계의 
-#|   각 수준에 대해 3개의 별도 매끄러운 곡선이 있으며 오른쪽 
-#|   그래프은 구동계의 각 수준에 대해 동일하게 3개의 별도 매끄러운 곡선이 
-#|   있을 뿐만 아니라 곡선들이 다른 색상으로 그려집니다. 
-#|   매끄러운 곡선 주위의 신뢰 구간 
+#|   첫 번째 그래프에는 이 두 변수만 있고 가운데 그래프에는 구동계의
+#|   각 수준에 대해 3개의 별도 매끄러운 곡선이 있으며 오른쪽
+#|   그래프은 구동계의 각 수준에 대해 동일하게 3개의 별도 매끄러운 곡선이
+#|   있을 뿐만 아니라 곡선들이 다른 색상으로 그려집니다.
+#|   매끄러운 곡선 주위의 신뢰 구간
 #|   또한 표시됩니다.
 # Left
 ggplot(mpg, aes(x = displ, y = hwy)) +
@@ -304,12 +304,12 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 ```{r}
 #| message: false
 #| fig-alt: |
-#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 점은 
-#|   자동차 class에 따라 색칠됩니다. 자동차의 고속도로 연료 효율 대 엔진 크기 간 
-#|   관계의 궤적을 따르는 매끄러운 곡선이 주위에 
+#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 점은
+#|   자동차 class에 따라 색칠됩니다. 자동차의 고속도로 연료 효율 대 엔진 크기 간
+#|   관계의 궤적을 따르는 매끄러운 곡선이 주위에
 #|   신뢰 구간과 함께 겹쳐집니다.
-ggplot(mpg, aes(x = displ, y = hwy)) + 
-  geom_point(aes(color = class)) + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class)) +
   geom_smooth()
 ```
 
@@ -318,21 +318,21 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 ```{r}
 #| message: false
 #| fig-alt: |
-#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 여기서 
+#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 여기서
 #|   2인승 자동차는 빨간색 점과 속이 빈 원으로 강조 표시됩니다.
-ggplot(mpg, aes(x = displ, y = hwy)) + 
-  geom_point() + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
   geom_point(
-    data = mpg |> filter(class == "2seater"), 
+    data = mpg |> filter(class == "2seater"),
     color = "red"
   ) +
   geom_point(
-    data = mpg |> filter(class == "2seater"), 
+    data = mpg |> filter(class == "2seater"),
     shape = "circle open", size = 3, color = "red"
   )
 ```
 
-도형은 ggplot2의 기본 구성 요소(building blocks)입니다. 도형을 바꾸면 그래프의 모양(look)이 완전히 달라지고 데이터의 다른 특징이 드러납니다. 
+도형은 ggplot2의 기본 구성 요소(building blocks)입니다. 도형을 바꾸면 그래프의 모양(look)이 완전히 달라지고 데이터의 다른 특징이 드러납니다.
 
 아래의 히스토그램과 밀도 그래프(density plot)에서는 고속도로 주행 거리(highway mileage)의 분포가 쌍봉형(bimodal)이고 오른쪽으로 꼬리가 긴 형태(right skewed)입니다. 상자 그림(boxplot)에는 잠재적인 이상치(outliers)가 두 개 나타납니다.
 
@@ -340,7 +340,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 #| layout-ncol: 3
 #| fig-width: 3
 #| fig-alt: |
-#|   세 개의 그래프: 고속도로 주행 거리의 히스토그램, 
+#|   세 개의 그래프: 고속도로 주행 거리의 히스토그램,
 #|   밀도 그래프, 상자 그림.
 # Left
 ggplot(mpg, aes(x = hwy)) +
@@ -363,11 +363,11 @@ ggplot(mpg, aes(x = hwy)) +
 
 ```{r}
 #| fig-asp: 0.33
-#| fig-alt: 
-#|   후륜(rear wheel), 전륜(front wheel), 4륜(4-wheel drive) 구동 자동차에 대한 
-#|   고속도로 주행 거리의 밀도 곡선이 따로 그래프됩니다. 
-#|   후륜 및 4륜 구동 자동차의 분포는 
-#|   쌍봉형이고 대략 대칭적인 반면 전륜 구동 자동차는 
+#| fig-alt:
+#|   후륜(rear wheel), 전륜(front wheel), 4륜(4-wheel drive) 구동 자동차에 대한
+#|   고속도로 주행 거리의 밀도 곡선이 따로 그래프됩니다.
+#|   후륜 및 4륜 구동 자동차의 분포는
+#|   쌍봉형이고 대략 대칭적인 반면 전륜 구동 자동차는
 #|   단봉형(unimodal)이고 오른쪽으로 꼬리가 깁니다.
 library(ggridges)
 
@@ -400,37 +400,37 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 #| layout-ncol: 2
 #| fig-width: 3
 #| fig-alt: |
-#|   이 그림에는 3x2 그리드로 배열된 6개의 산점도가 있습니다. 
-#|   모든 그래프에서 자동차의 고속도로 연료 효율이 y축에 있고 
-#|   엔진 크기가 x축에 있습니다. 첫 번째 그래프은 매끄러운 곡선이 겹쳐진 
-#|   모든 검은색 점을 보여줍니다. 두 번째 그래프에서도 점들은 
-#|   모두 검은색이며 구동계의 각 수준에 대해 별도의 매끄러운 곡선이 
-#|   겹쳐져 있습니다. 세 번째 그래프에서 점과 매끄러운 곡선은 
-#|   구동계의 각 수준에 대해 다른 색상으로 표시됩니다. 네 번째 
-#|   그래프에서 점들은 구동계의 각 수준에 대해 다른 색상으로 
-#|   표시되지만 전체 데이터에 맞춰진 단일한 매끄러운 선만 
-#|   있습니다. 다섯 번째 그래프에서 점들은 구동계의 각 수준에 
-#|   대해 다른 색상으로 표시되며 선종류가 다른 
-#|   별도의 매끄러운 곡선이 구동계의 각 수준에 맞춰집니다. 그리고 
-#|   마지막으로 여섯 번째 그래프에서 점들은 구동계의 각 수준에 
+#|   이 그림에는 3x2 그리드로 배열된 6개의 산점도가 있습니다.
+#|   모든 그래프에서 자동차의 고속도로 연료 효율이 y축에 있고
+#|   엔진 크기가 x축에 있습니다. 첫 번째 그래프은 매끄러운 곡선이 겹쳐진
+#|   모든 검은색 점을 보여줍니다. 두 번째 그래프에서도 점들은
+#|   모두 검은색이며 구동계의 각 수준에 대해 별도의 매끄러운 곡선이
+#|   겹쳐져 있습니다. 세 번째 그래프에서 점과 매끄러운 곡선은
+#|   구동계의 각 수준에 대해 다른 색상으로 표시됩니다. 네 번째
+#|   그래프에서 점들은 구동계의 각 수준에 대해 다른 색상으로
+#|   표시되지만 전체 데이터에 맞춰진 단일한 매끄러운 선만
+#|   있습니다. 다섯 번째 그래프에서 점들은 구동계의 각 수준에
+#|   대해 다른 색상으로 표시되며 선종류가 다른
+#|   별도의 매끄러운 곡선이 구동계의 각 수준에 맞춰집니다. 그리고
+#|   마지막으로 여섯 번째 그래프에서 점들은 구동계의 각 수준에
 #|   대해 다른 색상으로 표시되며 두꺼운 흰색 테두리를 가집니다.
-ggplot(mpg, aes(x = displ, y = hwy)) + 
-  geom_point() + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
   geom_smooth(se = FALSE)
-ggplot(mpg, aes(x = displ, y = hwy)) + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_smooth(aes(group = drv), se = FALSE) +
   geom_point()
-ggplot(mpg, aes(x = displ, y = hwy, color = drv)) + 
-  geom_point() + 
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point() +
   geom_smooth(se = FALSE)
-ggplot(mpg, aes(x = displ, y = hwy)) + 
-  geom_point(aes(color = drv)) + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = drv)) +
   geom_smooth(se = FALSE)
-ggplot(mpg, aes(x = displ, y = hwy)) + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point(aes(color = drv)) +
   geom_smooth(aes(linetype = drv), se = FALSE)
-ggplot(mpg, aes(x = displ, y = hwy)) + 
-  geom_point(size = 4, color = "white") + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(size = 4, color = "white") +
   geom_point(aes(color = drv))
 ```
 
@@ -440,10 +440,10 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ```{r}
 #| fig-alt: |
-#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 실린더 수별로 
+#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 실린더 수별로
 #|   분할 처리(faceted)되었으며 두 개의 행에 걸쳐 분할이 표시됩니다.
-ggplot(mpg, aes(x = displ, y = hwy)) + 
-  geom_point() + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
   facet_wrap(~cyl)
 ```
 
@@ -451,14 +451,14 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ```{r}
 #| fig-alt: |
-#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 행에 걸쳐 
-#|   실린더 수로 분할 처리되고 열에 걸쳐 구동계 유형으로 
-#|   분할 처리되었습니다. 이로 인해 12개의 분할으로 구성된 4x3 그리드가 생성됩니다. 
-#|   이들 분할 중 일부에는 관측치가 없습니다. 5기통 4륜 구동, 
+#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 행에 걸쳐
+#|   실린더 수로 분할 처리되고 열에 걸쳐 구동계 유형으로
+#|   분할 처리되었습니다. 이로 인해 12개의 분할으로 구성된 4x3 그리드가 생성됩니다.
+#|   이들 분할 중 일부에는 관측치가 없습니다. 5기통 4륜 구동,
 #|   4기통 또는 5기통 전륜 구동,
 #|   4기통 또는 5기통 전륜 구동.
-ggplot(mpg, aes(x = displ, y = hwy)) + 
-  geom_point() + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
   facet_grid(drv ~ cyl)
 ```
 
@@ -468,15 +468,15 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ```{r}
 #| fig-alt: |
-#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 행에 걸쳐 
-#|   실린더 수로 분할 처리되고 열에 걸쳐 구동계 유형으로 
-#|   분할 처리되었습니다. 이로 인해 12개의 분할으로 구성된 4x3 그리드가 생성됩니다. 
-#|   이들 분할 중 일부에는 관측치가 없습니다. 5기통 4륜 구동, 
-#|   4기통 또는 5기통 전륜 구동. 행 내의 분할들은 
-#|   동일한 y-스케일을 공유하고 열 내의 분할들은 
+#|   자동차의 고속도로 연료 효율 대 엔진 크기 산점도, 행에 걸쳐
+#|   실린더 수로 분할 처리되고 열에 걸쳐 구동계 유형으로
+#|   분할 처리되었습니다. 이로 인해 12개의 분할으로 구성된 4x3 그리드가 생성됩니다.
+#|   이들 분할 중 일부에는 관측치가 없습니다. 5기통 4륜 구동,
+#|   4기통 또는 5기통 전륜 구동. 행 내의 분할들은
+#|   동일한 y-스케일을 공유하고 열 내의 분할들은
 #|   동일한 x-스케일을 공유합니다.
-ggplot(mpg, aes(x = displ, y = hwy)) + 
-  geom_point() + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
   facet_grid(drv ~ cyl, scales = "free")
 ```
 
@@ -488,7 +488,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ```{r}
 #| fig-show: hide
-ggplot(mpg) + 
+ggplot(mpg) +
   geom_point(aes(x = drv, y = cyl))
 ```
 
@@ -496,11 +496,11 @@ ggplot(mpg) +
 
 ```{r}
 #| fig-show: hide
-ggplot(mpg) + 
+ggplot(mpg) +
   geom_point(aes(x = displ, y = hwy)) +
   facet_grid(drv ~ .)
 
-ggplot(mpg) + 
+ggplot(mpg) +
   geom_point(aes(x = displ, y = hwy)) +
   facet_grid(. ~ cyl)
 ```
@@ -509,8 +509,8 @@ ggplot(mpg) +
 
 ```{r}
 #| fig-show: hide
-ggplot(mpg) + 
-  geom_point(aes(x = displ, y = hwy)) + 
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy)) +
   facet_wrap(~ cyl, nrow = 2)
 ```
 
@@ -521,11 +521,11 @@ ggplot(mpg) +
 ```{r}
 #| fig-show: hide
 #| message: false
-ggplot(mpg, aes(x = displ)) + 
-  geom_histogram() + 
+ggplot(mpg, aes(x = displ)) +
+  geom_histogram() +
   facet_grid(drv ~ .)
 
-ggplot(mpg, aes(x = displ)) + 
+ggplot(mpg, aes(x = displ)) +
   geom_histogram() +
   facet_grid(. ~ drv)
 ```
@@ -534,7 +534,7 @@ ggplot(mpg, aes(x = displ)) +
 
 ```{r}
 #| fig-show: hide
-ggplot(mpg) + 
+ggplot(mpg) +
   geom_point(aes(x = displ, y = hwy)) +
   facet_grid(drv ~ .)
 ```
@@ -549,10 +549,10 @@ ggplot(mpg) +
 
 ```{r}
 #| fig-alt: |
-#|   각 다이아몬드 컷의 개수를 나타내는 막대 차트. 약 1500개의 
-#|   Fair, 5000개의 Good, 12000개의 Very Good, 14000개의 Premium, 22000개의 Ideal 컷 
+#|   각 다이아몬드 컷의 개수를 나타내는 막대 차트. 약 1500개의
+#|   Fair, 5000개의 Good, 12000개의 Very Good, 14000개의 Premium, 22000개의 Ideal 컷
 #|   다이아몬드가 있습니다.
-ggplot(diamonds, aes(x = cut)) + 
+ggplot(diamonds, aes(x = cut)) +
   geom_bar()
 ```
 
@@ -581,8 +581,8 @@ x축에는 `diamonds`의 변수인 `cut`이 표시됩니다. y축에는 개수(c
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   각 다이아몬드 컷의 개수를 나타내는 막대 차트. 약 1500개의 
-#|   Fair, 5000개의 Good, 12000개의 Very Good, 14000개의 Premium, 22000개의 Ideal 컷 
+#|   각 다이아몬드 컷의 개수를 나타내는 막대 차트. 약 1500개의
+#|   Fair, 5000개의 Good, 12000개의 Very Good, 14000개의 Premium, 22000개의 Ideal 컷
 #|   다이아몬드가 있습니다.
 diamonds |>
   count(cut) |>
@@ -594,10 +594,10 @@ diamonds |>
 
 ```{r}
 #| fig-alt: |
-#|   각 다이아몬드 컷의 비율을 나타내는 막대 차트. 대략 Fair 
-#|   다이아몬드가 0.03, Good 0.09, Very Good 0.22, Premium 0.26, 
+#|   각 다이아몬드 컷의 비율을 나타내는 막대 차트. 대략 Fair
+#|   다이아몬드가 0.03, Good 0.09, Very Good 0.22, Premium 0.26,
 #|   Ideal 0.40을 차지합니다.
-ggplot(diamonds, aes(x = cut, y = after_stat(prop), group = 1)) + 
+ggplot(diamonds, aes(x = cut, y = after_stat(prop), group = 1)) +
   geom_bar()
 ```
 
@@ -605,12 +605,12 @@ ggplot(diamonds, aes(x = cut, y = after_stat(prop), group = 1)) +
 
 ```{r}
 #| fig-alt: |
-#|   y축은 depth, x축은 다이아몬드의 cut(수준은 
-#|   fair, good, very good, premium, ideal)인 그래프. cut의 
-#|   각 수준에 대해 해당 cut 카테고리의 다이아몬드의 
-#|   최소 depth에서 최대 depth까지 수직선이 연장되고 
+#|   y축은 depth, x축은 다이아몬드의 cut(수준은
+#|   fair, good, very good, premium, ideal)인 그래프. cut의
+#|   각 수준에 대해 해당 cut 카테고리의 다이아몬드의
+#|   최소 depth에서 최대 depth까지 수직선이 연장되고
 #|   중앙값 depth가 선 위에 점으로 표시됩니다.
-ggplot(diamonds) + 
+ggplot(diamonds) +
   stat_summary(
     aes(x = cut, y = depth),
     fun.min = min,
@@ -635,9 +635,9 @@ ggplot2에는 stat이 20개 이상 있습니다. 각 stat은 함수이므로 일
 
 ```{r}
 #| fig-show: hide
-ggplot(diamonds, aes(x = cut, y = after_stat(prop))) + 
+ggplot(diamonds, aes(x = cut, y = after_stat(prop))) +
   geom_bar()
-ggplot(diamonds, aes(x = cut, fill = color, y = after_stat(prop))) + 
+ggplot(diamonds, aes(x = cut, fill = color, y = after_stat(prop))) +
   geom_bar()
 ```
 
@@ -650,16 +650,16 @@ ggplot(diamonds, aes(x = cut, fill = color, y = after_stat(prop))) +
 #| layout-ncol: 2
 #| fig-width: 4
 #| fig-alt: |
-#|   자동차의 구동 유형에 대한 두 개의 막대 차트. 첫 번째 그래프에서 막대는 
-#|   색상 테두리를 가집니다. 두 번째 그래프에서는 색상으로 채워집니다. 
-#|   막대의 높이는 각 drv 카테고리에 속한 자동차의 수에 
+#|   자동차의 구동 유형에 대한 두 개의 막대 차트. 첫 번째 그래프에서 막대는
+#|   색상 테두리를 가집니다. 두 번째 그래프에서는 색상으로 채워집니다.
+#|   막대의 높이는 각 drv 카테고리에 속한 자동차의 수에
 #|   해당합니다.
 # Left
-ggplot(mpg, aes(x = drv, color = drv)) + 
+ggplot(mpg, aes(x = drv, color = drv)) +
   geom_bar()
 
 # Right
-ggplot(mpg, aes(x = drv, fill = drv)) + 
+ggplot(mpg, aes(x = drv, fill = drv)) +
   geom_bar()
 ```
 
@@ -667,12 +667,12 @@ fill 시각 속성을 `class` 같은 다른 변수에 매핑하면 막대가 자
 
 ```{r}
 #| fig-alt: |
-#|   자동차의 구동 유형에 대한 분할 막대 차트(Segmented bar chart), 
-#|   여기서 각 막대는 자동차 class에 대한 색상으로 채워집니다. 막대의 높이는 각 구동 
-#|   카테고리의 자동차 수에 해당하며 색상이 칠해진 
-#|   세그먼트의 높이는 특정 구동 유형 수준 내에서 특정 
+#|   자동차의 구동 유형에 대한 분할 막대 차트(Segmented bar chart),
+#|   여기서 각 막대는 자동차 class에 대한 색상으로 채워집니다. 막대의 높이는 각 구동
+#|   카테고리의 자동차 수에 해당하며 색상이 칠해진
+#|   세그먼트의 높이는 특정 구동 유형 수준 내에서 특정
 #|   class 수준을 가진 자동차의 수를 나타냅니다.
-ggplot(mpg, aes(x = drv, fill = class)) + 
+ggplot(mpg, aes(x = drv, fill = class)) +
   geom_bar()
 ```
 
@@ -684,18 +684,18 @@ ggplot(mpg, aes(x = drv, fill = class)) +
 #| layout-ncol: 2
 #| fig-width: 4
 #| fig-alt: |
-#|   자동차의 구동 유형에 대한 분할 막대 차트, 여기서 각 막대는 자동차 class에 대한 색상으로 채워집니다. 
-#|   색상이 칠해진 
-#|   세그먼트의 높이는 특정 구동 유형 수준 내에서 특정 class 
-#|   수준을 가진 자동차의 수를 나타냅니다. 그러나 세그먼트들이 겹칩니다. 
+#|   자동차의 구동 유형에 대한 분할 막대 차트, 여기서 각 막대는 자동차 class에 대한 색상으로 채워집니다.
+#|   색상이 칠해진
+#|   세그먼트의 높이는 특정 구동 유형 수준 내에서 특정 class
+#|   수준을 가진 자동차의 수를 나타냅니다. 그러나 세그먼트들이 겹칩니다.
 #|   첫 번째 그래프에서 막대는 투명한 색상으로 채워져 있고
 #|   두 번째 그래프에서는 색상으로 윤곽선만 그려져 있습니다.
 # Left
-ggplot(mpg, aes(x = drv, fill = class)) + 
+ggplot(mpg, aes(x = drv, fill = class)) +
   geom_bar(alpha = 1/5, position = "identity")
 
 # Right
-ggplot(mpg, aes(x = drv, color = class)) + 
+ggplot(mpg, aes(x = drv, color = class)) +
   geom_bar(fill = NA, position = "identity")
 ```
 
@@ -707,22 +707,22 @@ ggplot(mpg, aes(x = drv, color = class)) +
 #| layout-ncol: 2
 #| fig-width: 4
 #| fig-alt: |
-#|   왼쪽에는 자동차 구동 유형의 분할 막대 차트, 여기서 각 막대는 class 수준에 대한 색상으로 
-#|   채워져 있습니다. 각 막대의 높이는 1이고 색상이 칠해진 
-#|   세그먼트의 높이는 특정 구동 유형 내에서 특정 class 
+#|   왼쪽에는 자동차 구동 유형의 분할 막대 차트, 여기서 각 막대는 class 수준에 대한 색상으로
+#|   채워져 있습니다. 각 막대의 높이는 1이고 색상이 칠해진
+#|   세그먼트의 높이는 특정 구동 유형 내에서 특정 class
 #|   수준을 가진 자동차의 비율을 나타냅니다.
-#|   오른쪽에는 자동차 구동 유형의 회피(dodged) 막대 차트. 회피된 막대들은 
-#|   구동 유형의 수준에 따라 그룹화됩니다. 각 그룹 내에서 막대들은 class의 
-#|   각 수준을 나타냅니다. 일부 class는 일부 구동 유형 내에 표시되고 다른 
-#|   구동 유형 내에는 표시되지 않아 각 그룹 내 막대 수가 다릅니다. 
-#|   이러한 막대의 높이는 주어진 수준의 구동 유형 및 class를 
+#|   오른쪽에는 자동차 구동 유형의 회피(dodged) 막대 차트. 회피된 막대들은
+#|   구동 유형의 수준에 따라 그룹화됩니다. 각 그룹 내에서 막대들은 class의
+#|   각 수준을 나타냅니다. 일부 class는 일부 구동 유형 내에 표시되고 다른
+#|   구동 유형 내에는 표시되지 않아 각 그룹 내 막대 수가 다릅니다.
+#|   이러한 막대의 높이는 주어진 수준의 구동 유형 및 class를
 #|   가진 자동차의 수를 나타냅니다.
 # Left
-ggplot(mpg, aes(x = drv, fill = class)) + 
+ggplot(mpg, aes(x = drv, fill = class)) +
   geom_bar(position = "fill")
 
 # Right
-ggplot(mpg, aes(x = drv, fill = class)) + 
+ggplot(mpg, aes(x = drv, fill = class)) +
   geom_bar(position = "dodge")
 ```
 
@@ -731,9 +731,9 @@ ggplot(mpg, aes(x = drv, fill = class)) +
 ```{r}
 #| echo: false
 #| fig-alt: |
-#|   음의 연관성을 보여주는 자동차의 고속도로 연료 효율 대 엔진 크기의 
+#|   음의 연관성을 보여주는 자동차의 고속도로 연료 효율 대 엔진 크기의
 #|   산점도.
-ggplot(mpg, aes(x = displ, y = hwy)) + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point()
 ```
 
@@ -745,9 +745,9 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ```{r}
 #| fig-alt: |
-#|   자동차의 고속도로 연료 효율 대 엔진 크기의 지터 처리된(Jittered) 산점도. 
+#|   자동차의 고속도로 연료 효율 대 엔진 크기의 지터 처리된(Jittered) 산점도.
 #|   그래프은 음의 연관성을 보여줍니다.
-ggplot(mpg, aes(x = displ, y = hwy)) + 
+ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point(position = "jitter")
 ```
 
@@ -763,7 +763,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ```{r}
 #| fig-show: hide
-ggplot(mpg, aes(x = cty, y = hwy)) + 
+ggplot(mpg, aes(x = cty, y = hwy)) +
   geom_point()
 ```
 
@@ -794,7 +794,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 #| fig-width: 3
 #| message: false
 #| fig-alt: |
-#|   뉴질랜드 경계의 두 지도. 첫 번째 그래프에서는 가로세로 
+#|   뉴질랜드 경계의 두 지도. 첫 번째 그래프에서는 가로세로
 #|   비율이 잘못되었고 두 번째 그래프에서는 올바릅니다.
 nz <- map_data("nz")
 
@@ -813,14 +813,14 @@ ggplot(nz, aes(x = long, y = lat, group = group)) +
 #| fig-width: 3
 #| fig-asp: 1
 #| fig-alt: |
-#|   두 개의 그래프이 있습니다. 왼쪽은 다이아몬드 clarity에 대한 막대 차트이고 
+#|   두 개의 그래프이 있습니다. 왼쪽은 다이아몬드 clarity에 대한 막대 차트이고
 #|   오른쪽은 동일한 데이터에 대한 콕스콤 차트입니다.
-bar <- ggplot(data = diamonds) + 
+bar <- ggplot(data = diamonds) +
   geom_bar(
-    mapping = aes(x = clarity, fill = clarity), 
+    mapping = aes(x = clarity, fill = clarity),
     show.legend = FALSE,
     width = 1
-  ) + 
+  ) +
   theme(aspect.ratio = 1)
 
 bar + coord_flip()
@@ -838,7 +838,7 @@ bar + coord_polar()
 ```{r}
 #| fig-show: hide
 ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
-  geom_point() + 
+  geom_point() +
   geom_abline() +
   coord_fixed()
 ```
@@ -847,11 +847,11 @@ ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
 
 그래프 작성 템플릿에 위치 조정, stats, 좌표계, 분할 처리를 더하면 다음처럼 확장됩니다.
 
-```         
-ggplot(data = <DATA>) + 
+```
+ggplot(data = <DATA>) +
   <GEOM_FUNCTION>(
      mapping = aes(<MAPPINGS>),
-     stat = <STAT>, 
+     stat = <STAT>,
      position = <POSITION>
   ) +
   <COORDINATE_FUNCTION> +
